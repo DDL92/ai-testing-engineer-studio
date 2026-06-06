@@ -10,16 +10,13 @@ I help SaaS teams, startups, agencies, and AI product teams reduce regression ri
 
 I specialize in:
 
-- Playwright test automation.
-- TypeScript frameworks.
-- Page Object Model architecture.
-- UI smoke tests.
-- API health and regression tests.
-- GitHub Actions CI setup.
-- QA automation audits.
-- AI response quality testing.
-- Prompt injection defensive testing.
-- RAG quality checks.
+- Reducing manual regression time with focused Playwright coverage.
+- Creating CI-ready smoke coverage for critical SaaS flows.
+- Identifying automation gaps with practical QA audits.
+- Improving release confidence with UI, API, and AI regression checks.
+- Building maintainable Playwright + TypeScript frameworks using Page Object Model.
+- Adding API health checks that catch backend availability issues early.
+- Testing AI response quality, defensive prompt injection resistance, and RAG grounding.
 
 My work is practical and delivery-focused. I can audit your current QA process, build a starter Playwright framework, or create focused AI testing coverage for chatbots, RAG apps, and AI workflows.
 
@@ -29,12 +26,12 @@ If your releases depend on manual regression testing, I can help you identify th
 
 ## Portfolio Bullets
 
-- Built Playwright POM frameworks for SaaS-style workflows.
-- Created API health test patterns for release confidence.
-- Designed AI testing checklists for prompt quality and safety.
-- Built reusable QA audit templates for fast client delivery.
+- Built maintainable Playwright POM frameworks for SaaS-style workflows.
+- Created CI-ready smoke coverage to reduce manual regression effort.
+- Identified automation gaps through focused QA audit templates.
+- Improved release confidence with API health and regression test patterns.
+- Designed AI testing checklists for prompt quality, safety, and grounding.
 
 ## CTA
 
 Send me your app URL and top three critical flows. I can recommend the fastest automation path.
-

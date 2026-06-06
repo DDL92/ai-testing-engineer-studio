@@ -5,6 +5,7 @@
   "description": "Lean MVP for selling Playwright, TypeScript, QA Automation, and AI Testing services.",
   "scripts": {
     "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
     "test:ui": "playwright test playwright-framework/tests/ui",
     "test:api": "playwright test playwright-framework/tests/api",
     "test:ai": "playwright test playwright-framework/tests/ai",
@@ -18,4 +19,3 @@
     "typescript": "^5.5.0"
   }
 }
-

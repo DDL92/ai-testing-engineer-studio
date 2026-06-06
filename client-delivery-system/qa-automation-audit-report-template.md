@@ -38,6 +38,12 @@ Primary recommendation:
 - Medium:
 - Low:
 
+## Example Finding: SaaS Login/Dashboard Flow
+
+| ID | Finding | Severity | Evidence | Recommendation |
+| --- | --- | --- | --- | --- |
+| QA-001 | Login and dashboard access are manually checked before releases, but no automated smoke test currently verifies that a valid user can sign in and see the dashboard. | High | Login and dashboard are business-critical entry points. A failure would block active users and delay release validation. | Add a Playwright UI smoke test using stable role/label locators, run it locally before release, and include it in CI once the framework is adopted. |
+
 ## Recommended Tests
 
 1. Login smoke test.
@@ -70,4 +76,3 @@ Estimated price:
 ## Natural Upsell
 
 The fastest next step is a Playwright Starter Framework that turns these recommendations into a CI-ready test suite your team can extend.
-
