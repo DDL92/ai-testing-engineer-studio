@@ -1,0 +1,21 @@
+{
+  "name": "ai-testing-engineer-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lean MVP for selling Playwright, TypeScript, QA Automation, and AI Testing services.",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test playwright-framework/tests/ui",
+    "test:api": "playwright test playwright-framework/tests/api",
+    "test:ai": "playwright test playwright-framework/tests/ai",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.46.0",
+    "typescript": "^5.5.0"
+  }
+}
+
