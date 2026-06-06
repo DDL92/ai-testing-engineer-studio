@@ -12,10 +12,20 @@
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
     "report": "playwright show-report",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "operator:qualify": "tsx sales-marketing-engine/operator/scripts/qualifyLeads.ts",
+    "operator:brief": "tsx sales-marketing-engine/operator/scripts/generateDailySalesBrief.ts",
+    "operator:messages": "tsx sales-marketing-engine/operator/scripts/generateMessagesToSend.ts",
+    "operator:proposals": "tsx sales-marketing-engine/operator/scripts/generateProposalQueue.ts",
+    "operator:followups": "tsx sales-marketing-engine/operator/scripts/generateFollowUpsDue.ts",
+    "operator:content": "tsx sales-marketing-engine/operator/scripts/generateContentPack.ts",
+    "operator:pipeline": "tsx sales-marketing-engine/operator/scripts/generatePipelineSummary.ts",
+    "operator:weekly": "tsx sales-marketing-engine/operator/scripts/runWeeklyOperator.ts",
+    "operator:daily": "tsx sales-marketing-engine/operator/scripts/runDailyOperator.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.46.0",
+    "tsx": "^4.19.2",
     "typescript": "^5.5.0"
   }
 }

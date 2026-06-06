@@ -1,0 +1,7 @@
+date_added,platform,lead_name,company,role,website_or_profile,source,company_type,pain_point,service_fit,status,last_contact_date,next_follow_up_date,estimated_value,priority,notes
+2026-06-06,LinkedIn,Maya Chen,FlowLedger,SaaS Founder,https://flowledger.example,Founder search,SaaS,Manual regression before billing releases,Playwright QA Automation Audit,Qualified,2026-06-06,2026-06-08,500,High,Good fit for low-risk audit entry offer
+2026-06-06,Upwork,Jordan Blake,Northstar QA,QA Manager,https://upwork.com/jobs/example-playwright,Upwork job,SaaS,Needs Playwright TypeScript framework and CI-ready smoke tests,Playwright Starter Framework,Contacted,2026-06-06,2026-06-08,1500,High,Job post mentions Playwright and reporting
+2026-06-06,LinkedIn,Sofia Ramirez,LaunchOps,Startup CTO,https://launchops.example,Launch post,Startup,Upcoming release with limited regression testing,Playwright QA Automation Audit,New,2026-06-06,2026-06-09,500,Medium,Recent launch announcement
+2026-06-06,Email,Ethan Patel,PromptDesk,AI App Founder,https://promptdesk.example,AI directory,AI app,AI responses need grounding format and safety checks,AI Testing Audit,Qualified,2026-06-06,2026-06-08,1000,High,RAG chatbot quality risk
+2026-06-06,LinkedIn,Claire Morgan,BrightBuild Studio,Software Agency Owner,https://brightbuild.example,Agency website,Software agency,Needs recurring QA automation support for client SaaS apps,Monthly QA Automation Retainer,Follow Up Later,2026-06-06,2026-06-13,1500,Medium,Retainer angle after first small audit
+
