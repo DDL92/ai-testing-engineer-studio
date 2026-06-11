@@ -6,6 +6,15 @@ reports
 dist
 coverage
 .DS_Store
+data/leads/leads.json
+data/leads/opportunities.json
+data/leads/daily-summary.json
+data/leads/outreach-history.json
+data/leads/conversions.json
+data/leads/clients.json
+data/leads/closed-leads.json
+data/leads/revenue-summary.json
+data/leads/weekly-executive-dashboard.json
 sales-marketing-engine/operator/generated/*
 !sales-marketing-engine/operator/generated/.gitkeep
 sales-marketing-engine/operator/approval-queue/*

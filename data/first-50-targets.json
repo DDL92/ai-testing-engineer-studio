@@ -1,0 +1,92 @@
+[
+  {
+    "companyName": "Demo SignupOS",
+    "website": "https://demo-signupos.example",
+    "industry": "SaaS",
+    "priority": "high",
+    "source": "Demo manual research",
+    "targetStatus": "queued",
+    "notes": "DEMO TARGET ONLY. Self-serve onboarding and dashboard flow could be a fit for a QA Audit."
+  },
+  {
+    "companyName": "Demo CheckoutLane",
+    "website": "https://demo-checkoutlane.example",
+    "industry": "E-commerce",
+    "priority": "high",
+    "source": "Demo manual research",
+    "targetStatus": "researching",
+    "notes": "DEMO TARGET ONLY. Checkout and mobile purchase flow may benefit from smoke review."
+  },
+  {
+    "companyName": "Demo MarketNest",
+    "website": "https://demo-marketnest.example",
+    "industry": "Marketplace",
+    "priority": "high",
+    "source": "Demo manual research",
+    "targetStatus": "queued",
+    "notes": "DEMO TARGET ONLY. Buyer and seller workflows suggest automation opportunity."
+  },
+  {
+    "companyName": "Demo BookPilot",
+    "website": "https://demo-bookpilot.example",
+    "industry": "Booking platform",
+    "priority": "high",
+    "source": "Demo manual research",
+    "targetStatus": "added-to-leads",
+    "notes": "DEMO TARGET ONLY. Scheduling and availability flow could support QA Audit positioning."
+  },
+  {
+    "companyName": "Demo FinOps Portal",
+    "website": "https://demo-finops-portal.example",
+    "industry": "Fintech SaaS",
+    "priority": "high",
+    "source": "Demo manual research",
+    "targetStatus": "queued",
+    "notes": "DEMO TARGET ONLY. Login, dashboard, and API workflow risks may justify a Playwright Starter Pack."
+  },
+  {
+    "companyName": "Demo CareScheduler",
+    "website": "https://demo-carescheduler.example",
+    "industry": "HealthTech",
+    "priority": "medium",
+    "source": "Demo manual research",
+    "targetStatus": "researching",
+    "notes": "DEMO TARGET ONLY. Scheduling and patient intake flows require careful manual qualification."
+  },
+  {
+    "companyName": "Demo LaunchPartner Studio",
+    "website": "https://demo-launchpartner.example",
+    "industry": "Agency",
+    "priority": "high",
+    "source": "Demo manual research",
+    "targetStatus": "contacted",
+    "notes": "DEMO TARGET ONLY. Agency partner retainer potential if they maintain multiple client apps."
+  },
+  {
+    "companyName": "Demo WorkflowAI",
+    "website": "https://demo-workflowai.example",
+    "industry": "AI product",
+    "priority": "medium",
+    "source": "Demo manual research",
+    "targetStatus": "follow-up",
+    "notes": "DEMO TARGET ONLY. AI workflow and onboarding claims would need cautious manual review."
+  },
+  {
+    "companyName": "Demo SupportDesk SaaS",
+    "website": "https://demo-supportdesk.example",
+    "industry": "SaaS",
+    "priority": "medium",
+    "source": "Demo manual research",
+    "targetStatus": "proposal-stage",
+    "notes": "DEMO TARGET ONLY. Support workflow and admin dashboard could support Starter Pack scope."
+  },
+  {
+    "companyName": "Demo Local Portal",
+    "website": "https://demo-localportal.example",
+    "industry": "Local business with web product",
+    "priority": "low",
+    "source": "Demo manual research",
+    "targetStatus": "paused",
+    "notes": "DEMO TARGET ONLY. Paused until stronger software-product evidence is found."
+  }
+]

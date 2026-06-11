@@ -1,0 +1,68 @@
+name: Daily Lead Operator
+
+on:
+  schedule:
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+
+jobs:
+  daily-lead-operator:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Validate business assets
+        run: npm run validate:business
+
+      - name: Run lead operator
+        run: |
+          echo "Running daily lead operator at 14:00 UTC schedule or manual dispatch."
+          npm run lead:auto
+          npm run lead:followups:due
+          npm run lead:pipeline
+          npm run lead:daily
+          npm run revenue:summary
+          npm run message:queue
+          npm run sources:report
+          npm run actions:cockpit
+          echo "AI copy optimizer is optional. Scheduled workflow does not call paid AI APIs by default."
+          echo "AI_COPY_ENABLED=${AI_COPY_ENABLED:-false}"
+          echo "Daily summary path: sales-marketing-engine/operator/generated/daily-lead-summary.md"
+          echo "Pipeline summary path: sales-marketing-engine/operator/generated/pipeline-summary.md"
+          echo "Revenue summary path: sales-marketing-engine/operator/generated/revenue-summary.md"
+          echo "Message review queue path: sales-marketing-engine/operator/generated/message-review-queue.md"
+          echo "Source quality path: sales-marketing-engine/operator/generated/source-quality-report.md"
+          echo "Action cockpit path: sales-marketing-engine/operator/generated/action-cockpit.md"
+          echo "Approval queue path: sales-marketing-engine/operator/approval-queue"
+
+      - name: Upload lead artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-lead-operator-artifacts
+          path: |
+            data/leads/*.json
+            sales-marketing-engine/operator/generated/daily-lead-summary.md
+            sales-marketing-engine/operator/generated/pipeline-summary.md
+            sales-marketing-engine/operator/generated/revenue-summary.md
+            sales-marketing-engine/operator/generated/message-review-queue.md
+            data/leads/message-review-queue.json
+            sales-marketing-engine/operator/generated/source-quality-report.md
+            data/leads/source-quality.json
+            sales-marketing-engine/operator/generated/action-cockpit.md
+            data/leads/action-cockpit.json
+            sales-marketing-engine/operator/generated/lead-*-review.md
+            sales-marketing-engine/operator/approval-queue/*.md
+          if-no-files-found: warn

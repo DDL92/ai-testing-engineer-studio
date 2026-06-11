@@ -1,0 +1,68 @@
+name: Weekly Business Dashboard
+
+on:
+  schedule:
+    - cron: '0 15 * * 1'
+  workflow_dispatch:
+
+jobs:
+  weekly-business-dashboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Validate required business files
+        run: npm run validate:business
+
+      - name: Generate weekly dashboard
+        run: |
+          echo "Generating weekly executive dashboard."
+          npm run business:weekly
+          npm run revenue:summary
+          npm run lead:pipeline
+          npm run message:queue
+          npm run sources:report
+          npm run actions:cockpit
+          echo "AI copy optimizer is optional. Scheduled workflow does not call paid AI APIs by default."
+          echo "AI_COPY_ENABLED=${AI_COPY_ENABLED:-false}"
+          test -f sales-marketing-engine/operator/generated/weekly-executive-dashboard.md
+          test -f data/leads/weekly-executive-dashboard.json
+          test -f sales-marketing-engine/operator/generated/message-review-queue.md
+          test -f data/leads/message-review-queue.json
+          test -f sales-marketing-engine/operator/generated/source-quality-report.md
+          test -f data/leads/source-quality.json
+          test -f sales-marketing-engine/operator/generated/action-cockpit.md
+          test -f data/leads/action-cockpit.json
+          echo "Weekly dashboard generated successfully."
+
+      - name: Upload weekly business artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-business-dashboard-artifacts
+          path: |
+            sales-marketing-engine/operator/generated/weekly-executive-dashboard.md
+            data/leads/weekly-executive-dashboard.json
+            sales-marketing-engine/operator/generated/action-cockpit.md
+            data/leads/action-cockpit.json
+            sales-marketing-engine/operator/generated/message-review-queue.md
+            data/leads/message-review-queue.json
+            sales-marketing-engine/operator/generated/source-quality-report.md
+            data/leads/source-quality.json
+            sales-marketing-engine/operator/generated/revenue-summary.md
+            sales-marketing-engine/operator/generated/pipeline-summary.md
+            data/leads/*.json
+            sales-marketing-engine/operator/approval-queue/*.md
+          if-no-files-found: error

@@ -1,0 +1,44 @@
+{
+  "name": "Daily Lead Operator Example",
+  "nodes": [
+    {
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 8 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Fetch Public Sources",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "url": "https://example.com/public-feed"
+      }
+    },
+    {
+      "name": "Score Placeholder",
+      "type": "n8n-nodes-base.code",
+      "parameters": {
+        "jsCode": "return items.map(item => ({ json: { ...item.json, score: 0, requiresApproval: true } }));"
+      }
+    },
+    {
+      "name": "Approval Queue",
+      "type": "n8n-nodes-base.noOp",
+      "parameters": {}
+    },
+    {
+      "name": "Daily Summary",
+      "type": "n8n-nodes-base.noOp",
+      "parameters": {}
+    }
+  ],
+  "connections": {}
+}

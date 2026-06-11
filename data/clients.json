@@ -1,0 +1,55 @@
+[
+  {
+    "id": "demo-retainer-client",
+    "companyName": "Demo Retainer SaaS",
+    "website": "https://demo-retainer.example",
+    "serviceType": "qa-automation-retainer",
+    "status": "active",
+    "startDate": "2026-06-01",
+    "monthlyFee": 2000,
+    "currentFocus": "Maintain smoke coverage for onboarding, login, and regression-prone release flows.",
+    "completedWork": [
+      "Reviewed current smoke coverage priorities for onboarding and login.",
+      "Documented recurring regression risks for the next automation pass.",
+      "Prepared a local report structure for weekly and monthly QA updates."
+    ],
+    "openRisks": [
+      "Payment and account flows are not in scope unless explicitly approved.",
+      "Coverage should not be described as complete product coverage.",
+      "Regression priorities need confirmation before adding deeper test cases."
+    ],
+    "recommendedNextSteps": [
+      "Confirm the next highest-risk workflow for safe Playwright coverage.",
+      "Review recent failures or manual QA notes before expanding automation.",
+      "Prepare a concise monthly summary with evidence links when available."
+    ],
+    "lastReportDate": "2026-06-08",
+    "createdAt": "2026-06-01T09:00:00.000Z",
+    "updatedAt": "2026-06-11T09:00:00.000Z"
+  },
+  {
+    "id": "demo-starter-client",
+    "companyName": "Demo Starter Marketplace",
+    "website": "https://demo-starter.example",
+    "serviceType": "playwright-starter-pack",
+    "status": "active",
+    "startDate": "2026-06-03",
+    "monthlyFee": 0,
+    "currentFocus": "Create starter-level Playwright smoke coverage for public marketplace pages.",
+    "completedWork": [
+      "Outlined safe public-page smoke test candidates.",
+      "Identified navigation and content checks for first-pass automation."
+    ],
+    "openRisks": [
+      "Authenticated seller and buyer flows are not included yet.",
+      "No performance or accessibility compliance claims should be made without evidence."
+    ],
+    "recommendedNextSteps": [
+      "Confirm whether the starter pack should include only public flows.",
+      "Decide whether this project should move into a small monthly maintenance retainer."
+    ],
+    "lastReportDate": "2026-06-07",
+    "createdAt": "2026-06-03T09:00:00.000Z",
+    "updatedAt": "2026-06-11T09:00:00.000Z"
+  }
+]

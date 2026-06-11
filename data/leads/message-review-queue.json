@@ -1,0 +1,933 @@
+{
+  "generatedAt": "2026-06-07T23:03:59.694Z",
+  "items": [
+    {
+      "id": "72e4cb30ca6a",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/content-ready-to-post.md",
+      "fileName": "content-ready-to-post.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "592c1d4f4fb7",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/follow-ups-ready-to-send.md",
+      "fileName": "follow-ups-ready-to-send.md",
+      "messageType": "follow_up",
+      "channel": "unknown",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "97deaf8354ed",
+      "leadId": "007df9d2c284",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-007df9d2c284-proposal.md",
+      "fileName": "lead-007df9d2c284-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "35bf0e697c20",
+      "leadId": "04672075be1a",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-04672075be1a-proposal.md",
+      "fileName": "lead-04672075be1a-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "99a249dd00ab",
+      "leadId": "090be9282ec2",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-090be9282ec2-proposal.md",
+      "fileName": "lead-090be9282ec2-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "af8ccefceef9",
+      "leadId": "0a11f05d9779",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-0a11f05d9779-proposal.md",
+      "fileName": "lead-0a11f05d9779-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "868d2813aad1",
+      "leadId": "0db34f0246b4",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-0db34f0246b4-proposal.md",
+      "fileName": "lead-0db34f0246b4-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "7db4a9c437c8",
+      "leadId": "0e41387da68e",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-0e41387da68e-proposal.md",
+      "fileName": "lead-0e41387da68e-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "cada3cad287b",
+      "leadId": "0e8685431345",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-0e8685431345-proposal.md",
+      "fileName": "lead-0e8685431345-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "e6b2474d22fe",
+      "leadId": "168c9820cc2d",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-168c9820cc2d-proposal.md",
+      "fileName": "lead-168c9820cc2d-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "fa4e716e1395",
+      "leadId": "185e212a03ff",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-185e212a03ff-proposal.md",
+      "fileName": "lead-185e212a03ff-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "19fd86b02917",
+      "leadId": "26ad4f4403b5",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-26ad4f4403b5-proposal.md",
+      "fileName": "lead-26ad4f4403b5-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "6fab3dff5bcc",
+      "leadId": "291bf35d3b25",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-291bf35d3b25-proposal.md",
+      "fileName": "lead-291bf35d3b25-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "ec16b5e6b305",
+      "leadId": "2b50677e0bc9",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-2b50677e0bc9-proposal.md",
+      "fileName": "lead-2b50677e0bc9-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "7793e26c5f70",
+      "leadId": "344b8de96ddf",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-344b8de96ddf-proposal.md",
+      "fileName": "lead-344b8de96ddf-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "771c51c43408",
+      "leadId": "3cd60539b891",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-3cd60539b891-proposal.md",
+      "fileName": "lead-3cd60539b891-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "ebdfa2478a2d",
+      "leadId": "47ce4b54734a",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-47ce4b54734a-proposal.md",
+      "fileName": "lead-47ce4b54734a-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "19b28a08b0a7",
+      "leadId": "4cb5dd8c1418",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-4cb5dd8c1418-proposal.md",
+      "fileName": "lead-4cb5dd8c1418-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "49cae45673f8",
+      "leadId": "74abf76b9c84",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-74abf76b9c84-proposal.md",
+      "fileName": "lead-74abf76b9c84-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "a6478a700ea4",
+      "leadId": "76fa75e4c21f",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-76fa75e4c21f-proposal.md",
+      "fileName": "lead-76fa75e4c21f-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "89fcd5ff3bfc",
+      "leadId": "7e7172e9baa1",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-7e7172e9baa1-proposal.md",
+      "fileName": "lead-7e7172e9baa1-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "22815da75ec6",
+      "leadId": "8a9367f7fda7",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-8a9367f7fda7-proposal.md",
+      "fileName": "lead-8a9367f7fda7-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "21e70e1b26cd",
+      "leadId": "917163a7b4f0",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-917163a7b4f0-proposal.md",
+      "fileName": "lead-917163a7b4f0-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "995c94af5636",
+      "leadId": "b2927e946d1b",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-b2927e946d1b-proposal.md",
+      "fileName": "lead-b2927e946d1b-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "5422b0d63206",
+      "leadId": "b89dd9d89c7a",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-b89dd9d89c7a-proposal.md",
+      "fileName": "lead-b89dd9d89c7a-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "3d4261443f84",
+      "leadId": "c3af3a35d4f2",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-c3af3a35d4f2-proposal.md",
+      "fileName": "lead-c3af3a35d4f2-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "17796564b78e",
+      "leadId": "c76c1b065bbc",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-c76c1b065bbc-proposal.md",
+      "fileName": "lead-c76c1b065bbc-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "935e0078b086",
+      "leadId": "dcc700a5d6ae",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-dcc700a5d6ae-proposal.md",
+      "fileName": "lead-dcc700a5d6ae-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "2947e6f70481",
+      "leadId": "ec3c0af8904e",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-ec3c0af8904e-proposal.md",
+      "fileName": "lead-ec3c0af8904e-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "d2f113d1ccc9",
+      "leadId": "f715790be067",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-f715790be067-proposal.md",
+      "fileName": "lead-f715790be067-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "29560ede5228",
+      "leadId": "fa3cd2abd7f3",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-fa3cd2abd7f3-proposal.md",
+      "fileName": "lead-fa3cd2abd7f3-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "baab8900e3d6",
+      "leadId": "sample-lead",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-sample-lead-audit-based-proposal.md",
+      "fileName": "lead-sample-lead-audit-based-proposal.md",
+      "messageType": "follow_up",
+      "channel": "unknown",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "29aeae2fbe60",
+      "leadId": "sample-lead",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-sample-lead-optimized-follow_up.md",
+      "fileName": "lead-sample-lead-optimized-follow_up.md",
+      "messageType": "follow_up",
+      "channel": "unknown",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "ee3120466001",
+      "leadId": "sample-lead",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-sample-lead-optimized-linkedin_dm.md",
+      "fileName": "lead-sample-lead-optimized-linkedin_dm.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "162e3002cf39",
+      "leadId": "sample-lead",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/lead-sample-lead-proposal.md",
+      "fileName": "lead-sample-lead-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "e45e9a32c755",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/messages-ready-to-send.md",
+      "fileName": "messages-ready-to-send.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "3017eb020599",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/proposals-ready-to-send.md",
+      "fileName": "proposals-ready-to-send.md",
+      "messageType": "follow_up",
+      "channel": "unknown",
+      "status": "pending_review",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        }
+      ],
+      "reviewedAt": "",
+      "reviewedBy": "",
+      "sentAt": "",
+      "qualityWarnings": [],
+      "note": "",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:18.726Z"
+    },
+    {
+      "id": "55835d7c0d87",
+      "leadId": "007df9d2c284",
+      "sourceFile": "sales-marketing-engine/operator/approval-queue/optimized-lead-007df9d2c284-proposal.md",
+      "fileName": "optimized-lead-007df9d2c284-proposal.md",
+      "messageType": "linkedin_dm",
+      "channel": "linkedin",
+      "status": "sent",
+      "statusHistory": [
+        {
+          "status": "pending_review",
+          "note": "Added by message:queue scan.",
+          "changedAt": "2026-06-07T14:52:18.726Z",
+          "changedBy": "system"
+        },
+        {
+          "status": "approved",
+          "note": "Validation approval",
+          "changedAt": "2026-06-07T14:52:32.749Z",
+          "changedBy": "Daniel"
+        },
+        {
+          "status": "sent",
+          "note": "Validation manually sent record",
+          "changedAt": "2026-06-07T14:52:44.253Z",
+          "changedBy": "Daniel"
+        }
+      ],
+      "reviewedAt": "2026-06-07T14:52:44.253Z",
+      "reviewedBy": "Daniel",
+      "sentAt": "2026-06-07T14:52:44.253Z",
+      "qualityWarnings": [],
+      "note": "Validation approval\nValidation manually sent record",
+      "createdAt": "2026-06-07T14:52:18.726Z",
+      "updatedAt": "2026-06-07T14:52:44.253Z"
+    }
+  ],
+  "summary": {
+    "pending_review": 37,
+    "approved": 0,
+    "needs_edit": 0,
+    "rejected": 0,
+    "sent": 1,
+    "archived": 0
+  }
+}

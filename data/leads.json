@@ -1,0 +1,955 @@
+[
+  {
+    "id": "sample-cloudcart",
+    "companyName": "CloudCart Demo",
+    "website": "https://cloudcart.example",
+    "industry": "SaaS e-commerce",
+    "source": "manual-sample",
+    "status": "new",
+    "fitNotes": "Subscription storefront with checkout and mobile purchase flows that would benefit from Playwright smoke coverage.",
+    "painPoints": [
+      "checkout regression risk",
+      "payment failures",
+      "mobile performance"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "nextAction": "Review public flows and approve a manual QA audit offer if fit is confirmed.",
+    "score": 8,
+    "createdAt": "2026-06-11T03:21:49.542Z",
+    "updatedAt": "2026-06-11T03:21:49.542Z"
+  },
+  {
+    "id": "sample-bookingflow-ai",
+    "companyName": "BookingFlow AI",
+    "website": "https://bookingflow-ai.example",
+    "industry": "AI product booking platform",
+    "source": "manual-sample",
+    "status": "new",
+    "fitNotes": "AI-assisted booking workflow with signup, onboarding, API integrations, and CI/CD release risk.",
+    "painPoints": [
+      "signup onboarding",
+      "API regression",
+      "CI/CD release confidence"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "nextAction": "Review signup and booking flows before proposing a Playwright starter pack.",
+    "score": 8,
+    "createdAt": "2026-06-11T03:21:49.544Z",
+    "updatedAt": "2026-06-11T03:21:49.544Z"
+  },
+  {
+    "id": "sample-northstar-fintech",
+    "companyName": "Northstar Fintech Sandbox",
+    "website": "https://northstar-fintech.example",
+    "industry": "fintech SaaS",
+    "source": "manual-sample",
+    "status": "new",
+    "fitNotes": "Financial dashboard with login, payment workflows, API dependencies, and high regression cost.",
+    "painPoints": [
+      "login reliability",
+      "payment regression",
+      "API test coverage"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "nextAction": "Prepare a focused audit angle around login, payments, and regression coverage.",
+    "score": 8,
+    "createdAt": "2026-06-11T03:21:49.544Z",
+    "updatedAt": "2026-06-11T03:21:49.544Z"
+  },
+  {
+    "id": "sample-launchlab-studio",
+    "companyName": "LaunchLab Studio",
+    "website": "https://launchlab-studio.example",
+    "industry": "software agency",
+    "source": "manual-sample",
+    "status": "new",
+    "fitNotes": "Agency partner potential with multiple client apps and white-label QA automation needs.",
+    "painPoints": [
+      "flaky tests",
+      "regression coverage",
+      "client portfolio QA support"
+    ],
+    "recommendedOffer": "agency-partner-retainer",
+    "nextAction": "Review agency fit and approve partner-retainer positioning before outreach.",
+    "score": 7,
+    "createdAt": "2026-06-11T03:21:49.544Z",
+    "updatedAt": "2026-06-11T03:21:49.544Z"
+  },
+  {
+    "id": "sample-local-directory",
+    "companyName": "Local Services Directory Demo",
+    "website": "",
+    "industry": "vague general local business directory",
+    "source": "manual-sample",
+    "status": "paused",
+    "fitNotes": "Poor fit sample included to verify scoring caps and not-fit handling.",
+    "painPoints": [
+      "unclear QA need"
+    ],
+    "recommendedOffer": "not-fit",
+    "nextAction": "Do not prioritize unless new software-product evidence appears.",
+    "score": 0,
+    "createdAt": "2026-06-11T03:21:49.544Z",
+    "updatedAt": "2026-06-11T03:21:49.544Z"
+  },
+  {
+    "id": "acme-saas-demo",
+    "companyName": "Acme SaaS Demo",
+    "website": "https://acme-saas-demo.example",
+    "industry": "SaaS",
+    "source": "Manual Research",
+    "status": "new",
+    "fitNotes": "Demo manually researched SaaS lead with onboarding and regression testing opportunity",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "regression testing opportunity"
+    ],
+    "recommendedOffer": "qa-audit",
+    "score": 6,
+    "createdAt": "2026-06-11T04:04:04.490Z",
+    "updatedAt": "2026-06-11T04:04:04.490Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "pushpress",
+    "companyName": "PushPress",
+    "website": "https://www.pushpress.com",
+    "industry": "Gym Management SaaS",
+    "source": "G2/manual research",
+    "status": "new",
+    "fitNotes": "Gym management SaaS with scheduling, memberships, payments, and class workflows. Potential QA opportunity around booking, checkout, member onboarding, mobile responsiveness, and regression coverage.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "checkout regression risk",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:03:47.737Z",
+    "updatedAt": "2026-06-11T05:03:47.737Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "teamup",
+    "companyName": "TeamUp",
+    "website": "https://goteamup.com",
+    "industry": "Gym Management SaaS",
+    "source": "G2/manual research",
+    "status": "new",
+    "fitNotes": "Fitness business management platform with booking, memberships, payments, and customer workflows. Potential QA opportunity around scheduling, payment flows, member onboarding, and regression testing.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk",
+      "regression testing opportunity"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:09:05.985Z",
+    "updatedAt": "2026-06-11T05:09:05.985Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "wodify",
+    "companyName": "Wodify",
+    "website": "https://www.wodify.com",
+    "industry": "Gym Management SaaS",
+    "source": "G2/manual research",
+    "status": "new",
+    "fitNotes": "Fitness and gym management software with class scheduling, memberships, athlete/member workflows, and payments. Potential QA opportunity around booking, mobile flows, checkout, and regression coverage.",
+    "painPoints": [
+      "checkout regression risk",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:09:31.344Z",
+    "updatedAt": "2026-06-11T05:09:31.344Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "propertyme",
+    "companyName": "PropertyMe",
+    "website": "https://www.propertyme.com.au",
+    "industry": "Property Management SaaS",
+    "source": "Capterra/manual research",
+    "status": "new",
+    "fitNotes": "Cloud property management software with trust accounting, inspections, maintenance, mobile app, and client access. Potential QA opportunity around tenant/client workflows, payments, maintenance requests, mobile responsiveness, and regression testing.",
+    "painPoints": [
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-audit",
+    "score": 6,
+    "createdAt": "2026-06-11T05:09:45.356Z",
+    "updatedAt": "2026-06-11T05:09:45.356Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "neetocal",
+    "companyName": "NeetoCal",
+    "website": "https://www.neeto.com/neetocal",
+    "industry": "Scheduling SaaS",
+    "source": "Product Hunt/manual research",
+    "status": "new",
+    "fitNotes": "Scheduling software with availability, calendar integrations, Stripe payments, cancellations, and appointment workflows. Potential QA opportunity around booking, payment, cancellation, calendar sync, and regression coverage.",
+    "painPoints": [
+      "payment flow risk",
+      "regression testing opportunity"
+    ],
+    "recommendedOffer": "playwright-starter-pack",
+    "score": 6,
+    "createdAt": "2026-06-11T05:10:02.305Z",
+    "updatedAt": "2026-06-11T05:10:02.305Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "zen-planner",
+    "companyName": "Zen Planner",
+    "website": "https://zenplanner.com",
+    "industry": "Gym Management SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Gym management software with memberships, scheduling, billing, payments, member app, staff workflows, and automation opportunities around onboarding, booking, payments, mobile, and regression coverage.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:23:36.061Z",
+    "updatedAt": "2026-06-11T05:23:36.061Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "mindbody",
+    "companyName": "Mindbody",
+    "website": "https://www.mindbodyonline.com",
+    "industry": "Wellness Booking SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Wellness and fitness business platform with booking, scheduling, payments, memberships, customer workflows, and mobile experiences. Potential QA opportunity around booking, checkout, onboarding, mobile, and regression coverage.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "checkout regression risk",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:23:44.341Z",
+    "updatedAt": "2026-06-11T05:23:44.341Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "vagaro",
+    "companyName": "Vagaro",
+    "website": "https://www.vagaro.com",
+    "industry": "Wellness Booking SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "All-in-one software for beauty, wellness, and fitness professionals with appointments, payments, marketing, and business workflows. Potential QA opportunity around booking, payments, mobile, checkout, and regression testing.",
+    "painPoints": [
+      "checkout regression risk",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:23:59.947Z",
+    "updatedAt": "2026-06-11T05:23:59.947Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "wellnessliving",
+    "companyName": "WellnessLiving",
+    "website": "https://www.wellnessliving.com",
+    "industry": "Wellness Booking SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Business management software for wellness and fitness businesses with online booking, scheduling, memberships, payments, mobile app, and customer workflows. Potential QA opportunity around booking, payment, mobile, onboarding, and regression coverage.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:24:07.417Z",
+    "updatedAt": "2026-06-11T05:24:07.417Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "abc-glofox",
+    "companyName": "ABC Glofox",
+    "website": "https://www.glofox.com",
+    "industry": "Gym Management SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Gym and fitness studio management software with scheduling, memberships, payments, app workflows, and business operations. Potential QA opportunity around booking, onboarding, checkout, mobile, and regression testing.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "checkout regression risk",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "agency-partner-retainer",
+    "score": 10,
+    "createdAt": "2026-06-11T05:24:28.769Z",
+    "updatedAt": "2026-06-11T05:24:28.769Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "pike13",
+    "companyName": "Pike13",
+    "website": "https://www.pike13.com",
+    "industry": "Fitness Scheduling SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Scheduling and client management software for fitness and service businesses. Potential QA opportunity around booking, scheduling, payments, customer onboarding, mobile responsiveness, and regression coverage.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:24:36.044Z",
+    "updatedAt": "2026-06-11T05:24:36.044Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "gymmaster",
+    "companyName": "GymMaster",
+    "website": "https://www.gymmaster.com",
+    "industry": "Gym Management SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Gym management software with member management, access control, billing, booking, mobile app, and operational workflows. Potential QA opportunity around membership flows, booking, billing, mobile, and regression testing.",
+    "painPoints": [
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "playwright-starter-pack",
+    "score": 7,
+    "createdAt": "2026-06-11T05:24:45.638Z",
+    "updatedAt": "2026-06-11T05:24:45.638Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "clubworx",
+    "companyName": "Clubworx",
+    "website": "https://www.clubworx.com",
+    "industry": "Gym Management SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Fitness business management software with member management, billing, scheduling, communication, and operational workflows. Potential QA opportunity around onboarding, booking, billing, mobile, and regression coverage.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:24:52.113Z",
+    "updatedAt": "2026-06-11T05:24:52.113Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "gymdesk",
+    "companyName": "Gymdesk",
+    "website": "https://gymdesk.com",
+    "industry": "Gym Management SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Gym management software for memberships, billing, class scheduling, attendance, communication, and martial arts/fitness workflows. Potential QA opportunity around booking, payments, onboarding, mobile, and regression testing.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:25:05.115Z",
+    "updatedAt": "2026-06-11T05:25:05.115Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "kicksite",
+    "companyName": "Kicksite",
+    "website": "https://kicksite.com",
+    "industry": "Martial Arts Management SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Martial arts management software with memberships, attendance, billing, scheduling, student workflows, and communication. Potential QA opportunity around member onboarding, billing, class scheduling, mobile, and regression coverage.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "playwright-starter-pack",
+    "score": 7,
+    "createdAt": "2026-06-11T05:26:41.583Z",
+    "updatedAt": "2026-06-11T05:26:41.583Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "mystudio",
+    "companyName": "MyStudio",
+    "website": "https://www.mystudio.io",
+    "industry": "Studio Management SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Studio management software for fitness, martial arts, events, memberships, payments, and mobile app workflows. Potential QA opportunity around checkout, booking, membership onboarding, mobile, and regression testing.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "checkout regression risk",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "agency-partner-retainer",
+    "score": 10,
+    "createdAt": "2026-06-11T05:26:55.677Z",
+    "updatedAt": "2026-06-11T05:26:55.677Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "momence",
+    "companyName": "Momence",
+    "website": "https://www.momence.com",
+    "industry": "Studio Management SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Studio management platform for classes, memberships, scheduling, payments, customer experiences, and business operations. Potential QA opportunity around booking, payments, onboarding, mobile, and regression coverage.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "agency-partner-retainer",
+    "score": 10,
+    "createdAt": "2026-06-11T05:27:03.743Z",
+    "updatedAt": "2026-06-11T05:27:03.743Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "arketa",
+    "companyName": "Arketa",
+    "website": "https://www.arketa.co",
+    "industry": "Wellness Business SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Wellness business platform for classes, appointments, memberships, video, payments, and customer workflows. Potential QA opportunity around booking, checkout, onboarding, video/customer flows, mobile, and regression coverage.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "checkout regression risk",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:27:08.995Z",
+    "updatedAt": "2026-06-11T05:27:08.995Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "fitli",
+    "companyName": "Fitli",
+    "website": "https://www.fitli.com",
+    "industry": "Fitness Scheduling SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Fitness scheduling and booking software with classes, appointments, payments, customers, and studio workflows. Potential QA opportunity around booking, payment, customer onboarding, mobile, and regression testing.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "agency-partner-retainer",
+    "score": 10,
+    "createdAt": "2026-06-11T05:27:14.377Z",
+    "updatedAt": "2026-06-11T05:27:14.377Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "bookee",
+    "companyName": "Bookee",
+    "website": "https://www.bookeeapp.com",
+    "industry": "Fitness Studio SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Fitness studio software with booking, memberships, payments, app workflows, and studio operations. Potential QA opportunity around booking, checkout, onboarding, mobile, and regression coverage.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "checkout regression risk",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "agency-partner-retainer",
+    "score": 10,
+    "createdAt": "2026-06-11T05:27:19.173Z",
+    "updatedAt": "2026-06-11T05:27:19.173Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "bsport",
+    "companyName": "Bsport",
+    "website": "https://pro.bsport.io",
+    "industry": "Boutique Fitness SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Boutique fitness and wellness management platform with booking, scheduling, payments, customer management, and studio workflows. Potential QA opportunity around booking, payment, onboarding, mobile, and regression testing.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "agency-partner-retainer",
+    "score": 10,
+    "createdAt": "2026-06-11T05:27:25.242Z",
+    "updatedAt": "2026-06-11T05:27:25.242Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "resnexus",
+    "companyName": "ResNexus",
+    "website": "https://www.resnexus.com",
+    "industry": "Booking Platform SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Property and hospitality booking software with reservations, booking engine, payments, guest workflows, and property management features. Potential QA opportunity around booking, checkout, payments, availability, mobile, and regression coverage.",
+    "painPoints": [
+      "checkout regression risk",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:27:37.450Z",
+    "updatedAt": "2026-06-11T05:27:37.450Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "hostaway",
+    "companyName": "Hostaway",
+    "website": "https://www.hostaway.com",
+    "industry": "Property Management SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Vacation rental property management platform with bookings, channel management, guest workflows, payments, calendar sync, and automation. Potential QA opportunity around booking, availability, calendar sync, payments, mobile, and regression testing.",
+    "painPoints": [
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "playwright-starter-pack",
+    "score": 7,
+    "createdAt": "2026-06-11T05:27:41.731Z",
+    "updatedAt": "2026-06-11T05:27:41.731Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "ownerrez",
+    "companyName": "OwnerRez",
+    "website": "https://www.ownerrez.com",
+    "industry": "Property Management SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Vacation rental management software with bookings, channel management, payments, guest communication, and property workflows. Potential QA opportunity around booking, checkout, payments, calendar sync, mobile, and regression coverage.",
+    "painPoints": [
+      "checkout regression risk",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:27:47.512Z",
+    "updatedAt": "2026-06-11T05:27:47.512Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "lodgify",
+    "companyName": "Lodgify",
+    "website": "https://www.lodgify.com",
+    "industry": "Property Management SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Vacation rental software with website builder, booking engine, channel manager, payments, guest workflows, and property operations. Potential QA opportunity around booking, checkout, payments, availability, mobile, and regression testing.",
+    "painPoints": [
+      "checkout regression risk",
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:27:52.875Z",
+    "updatedAt": "2026-06-11T05:27:52.875Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "cloudbeds",
+    "companyName": "Cloudbeds",
+    "website": "https://www.cloudbeds.com",
+    "industry": "Hospitality SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Hotel PMS, booking engine, payments, guest workflows, mobile, integrations, regression testing opportunities.",
+    "painPoints": [
+      "payment flow risk",
+      "regression testing opportunity",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "playwright-starter-pack",
+    "score": 7,
+    "createdAt": "2026-06-11T05:32:36.090Z",
+    "updatedAt": "2026-06-11T05:32:36.090Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "guesty",
+    "companyName": "Guesty",
+    "website": "https://www.guesty.com",
+    "industry": "Property Management SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Vacation rental platform, booking flows, payments, channel management, mobile app, automation opportunities.",
+    "painPoints": [
+      "payment flow risk",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "playwright-starter-pack",
+    "score": 6,
+    "createdAt": "2026-06-11T05:32:46.271Z",
+    "updatedAt": "2026-06-11T05:32:46.271Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "mews",
+    "companyName": "Mews",
+    "website": "https://www.mews.com",
+    "industry": "Hospitality SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Hotel operations platform, booking, guest journeys, payments, integrations, mobile workflows.",
+    "painPoints": [
+      "payment flow risk",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "playwright-starter-pack",
+    "score": 6,
+    "createdAt": "2026-06-11T05:32:52.351Z",
+    "updatedAt": "2026-06-11T05:32:52.351Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "little-hotelier",
+    "companyName": "Little Hotelier",
+    "website": "https://www.littlehotelier.com",
+    "industry": "Hospitality SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Small hotel booking and property management platform with reservations, payments, and guest workflows.",
+    "painPoints": [
+      "payment flow risk"
+    ],
+    "recommendedOffer": "qa-audit",
+    "score": 5,
+    "createdAt": "2026-06-11T05:32:58.518Z",
+    "updatedAt": "2026-06-11T05:32:58.518Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "preno",
+    "companyName": "Preno",
+    "website": "https://www.preno.com",
+    "industry": "Hospitality SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Cloud hotel management software with reservations, payments, reporting, and customer workflows.",
+    "painPoints": [
+      "payment flow risk"
+    ],
+    "recommendedOffer": "not-fit",
+    "score": 4,
+    "createdAt": "2026-06-11T05:33:04.860Z",
+    "updatedAt": "2026-06-11T05:33:04.860Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "zenoti",
+    "companyName": "Zenoti",
+    "website": "https://www.zenoti.com",
+    "industry": "Wellness SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Appointments, memberships, payments, customer experience, mobile workflows.",
+    "painPoints": [
+      "payment flow risk",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-audit",
+    "score": 5,
+    "createdAt": "2026-06-11T05:33:13.307Z",
+    "updatedAt": "2026-06-11T05:33:13.307Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "martialytics",
+    "companyName": "Martialytics",
+    "website": "https://martialytics.com",
+    "industry": "Martial Arts SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "School management, memberships, attendance, billing, onboarding, scheduling.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk"
+    ],
+    "recommendedOffer": "qa-audit",
+    "score": 6,
+    "createdAt": "2026-06-11T05:33:20.172Z",
+    "updatedAt": "2026-06-11T05:33:20.172Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "spark-membership",
+    "companyName": "Spark Membership",
+    "website": "https://sparkmembership.com",
+    "industry": "Martial Arts SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Member management, billing, scheduling, mobile workflows.",
+    "painPoints": [
+      "payment flow risk",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-audit",
+    "score": 5,
+    "createdAt": "2026-06-11T05:33:26.961Z",
+    "updatedAt": "2026-06-11T05:33:26.961Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "perfectgym",
+    "companyName": "PerfectGym",
+    "website": "https://www.perfectgym.com",
+    "industry": "Fitness SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Gym operations, memberships, payments, mobile app, booking workflows.",
+    "painPoints": [
+      "payment flow risk",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "playwright-starter-pack",
+    "score": 6,
+    "createdAt": "2026-06-11T05:33:34.167Z",
+    "updatedAt": "2026-06-11T05:33:34.167Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "virtuagym",
+    "companyName": "Virtuagym",
+    "website": "https://www.virtuagym.com",
+    "industry": "Fitness SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Fitness business platform, memberships, coaching, mobile experiences, billing.",
+    "painPoints": [
+      "payment flow risk",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "qa-audit",
+    "score": 5,
+    "createdAt": "2026-06-11T05:33:51.893Z",
+    "updatedAt": "2026-06-11T05:33:51.893Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "calendly",
+    "companyName": "Calendly",
+    "website": "https://calendly.com",
+    "industry": "Scheduling SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Scheduling workflows, calendar sync, payments, onboarding, integrations.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk"
+    ],
+    "recommendedOffer": "qa-audit",
+    "score": 6,
+    "createdAt": "2026-06-11T05:34:01.481Z",
+    "updatedAt": "2026-06-11T05:34:01.481Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "youcanbookme",
+    "companyName": "YouCanBookMe",
+    "website": "https://youcanbook.me",
+    "industry": "Scheduling SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Booking, integrations, calendars, notifications, payments.",
+    "painPoints": [
+      "payment flow risk"
+    ],
+    "recommendedOffer": "qa-audit",
+    "score": 5,
+    "createdAt": "2026-06-11T05:34:08.777Z",
+    "updatedAt": "2026-06-11T05:34:08.777Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "simplybook-me",
+    "companyName": "SimplyBook.me",
+    "website": "https://simplybook.me",
+    "industry": "Booking SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Appointment scheduling, payments, onboarding, customer workflows.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk"
+    ],
+    "recommendedOffer": "playwright-starter-pack",
+    "score": 7,
+    "createdAt": "2026-06-11T05:34:14.577Z",
+    "updatedAt": "2026-06-11T05:34:14.577Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "setmore",
+    "companyName": "Setmore",
+    "website": "https://www.setmore.com",
+    "industry": "Booking SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Appointments, payments, reminders, customer experience, mobile.",
+    "painPoints": [
+      "payment flow risk",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "playwright-starter-pack",
+    "score": 6,
+    "createdAt": "2026-06-11T05:34:21.530Z",
+    "updatedAt": "2026-06-11T05:34:21.530Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "acuity-scheduling",
+    "companyName": "Acuity Scheduling",
+    "website": "https://acuityscheduling.com",
+    "industry": "Scheduling SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Booking, payments, customer onboarding, integrations.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk"
+    ],
+    "recommendedOffer": "playwright-starter-pack",
+    "score": 7,
+    "createdAt": "2026-06-11T05:34:30.549Z",
+    "updatedAt": "2026-06-11T05:34:30.549Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "classpass",
+    "companyName": "ClassPass",
+    "website": "https://classpass.com",
+    "industry": "Fitness Marketplace",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Booking platform, payments, memberships, mobile app, scheduling and partner integrations.",
+    "painPoints": [
+      "payment flow risk",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "agency-partner-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:36:27.180Z",
+    "updatedAt": "2026-06-11T05:36:27.180Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "exercise-com",
+    "companyName": "Exercise.com",
+    "website": "https://www.exercise.com",
+    "industry": "Fitness SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Gym management, memberships, payments, mobile workflows, onboarding and reporting.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk",
+      "mobile flow review"
+    ],
+    "recommendedOffer": "playwright-starter-pack",
+    "score": 7,
+    "createdAt": "2026-06-11T05:36:32.487Z",
+    "updatedAt": "2026-06-11T05:36:32.487Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "clubready",
+    "companyName": "ClubReady",
+    "website": "https://www.clubready.com",
+    "industry": "Fitness SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Gym operations, CRM, memberships, payments, scheduling, onboarding and reporting workflows.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk"
+    ],
+    "recommendedOffer": "qa-audit",
+    "score": 6,
+    "createdAt": "2026-06-11T05:39:28.135Z",
+    "updatedAt": "2026-06-11T05:39:28.135Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "tidycal",
+    "companyName": "TidyCal",
+    "website": "https://tidycal.com",
+    "industry": "Scheduling SaaS",
+    "source": "Manual research",
+    "status": "new",
+    "fitNotes": "Scheduling, booking links, calendar workflows, payments, customer onboarding and regression testing opportunities.",
+    "painPoints": [
+      "signup/onboarding coverage",
+      "payment flow risk",
+      "regression testing opportunity"
+    ],
+    "recommendedOffer": "qa-automation-retainer",
+    "score": 8,
+    "createdAt": "2026-06-11T05:43:05.519Z",
+    "updatedAt": "2026-06-11T05:43:05.519Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  }
+]

@@ -48,6 +48,53 @@ npm run test:headed
 npm run report
 ```
 
+## QA Audit Runner
+
+```bash
+npm run audit -- --url https://example.com
+npm run audit:sample
+```
+
+Reports are written to `reports/latest` and remain local.
+
+## Lead Operator
+
+```bash
+npm run lead:daily
+npm run lead:auto
+npm run lead:update -- --id sample-lead --status contacted --note "Sent LinkedIn DM"
+npm run lead:audit -- --id sample-lead
+npm run lead:enrich -- --id sample-lead --email "sample@example.com"
+npm run lead:sent -- --id sample-lead --channel linkedin --note "Sent first DM"
+npm run lead:followups:due
+npm run lead:pipeline
+npm run lead:review -- --id sample-lead
+npm run lead:convert -- --id sample-lead --offer monthly_qa_maintenance --amount 1000 --note "Closed after audit call"
+npm run lead:close -- --id sample-lead-close --result lost --reason other --note "Close test"
+npm run revenue:summary
+npm run actions:cockpit
+npm run lead:optimize -- --id sample-lead --type linkedin_dm
+npm run message:optimize -- --file sales-marketing-engine/operator/approval-queue/lead-sample-lead-proposal.md --type follow_up
+npm run message:queue
+npm run message:review -- --file lead-sample-lead-optimized-linkedin_dm.md --status approved --note "Reviewed"
+npm run message:sent -- --file lead-sample-lead-optimized-linkedin_dm.md --channel linkedin --note "Sent manually"
+npm run sources:report
+npm run business:weekly
+npm run dashboard
+npm run dashboard:check
+npm run validate:business
+```
+
+The local dashboard runs at `http://localhost:4173` and only reads local generated files. The Action Cockpit page ranks the next human-reviewed revenue actions from `data/leads/action-cockpit.json` and `sales-marketing-engine/operator/generated/action-cockpit.md`.
+
+The lead operator stores local JSON data in `data/leads`, writes proposal drafts to `sales-marketing-engine/operator/approval-queue`, and writes daily, pipeline, revenue, weekly, and action cockpit reports to `sales-marketing-engine/operator/generated`. No outreach is sent automatically.
+
+AI-assisted message optimization is optional and disabled by default. Without `AI_COPY_ENABLED=true` and a local `OPENAI_API_KEY`, `lead:optimize` and `message:optimize` use deterministic fallback copy and still write review-only drafts to the approval queue.
+
+The Message Review Queue tracks pending, approved, needs-edit, rejected, sent, and archived local drafts in `data/leads/message-review-queue.json`. `message:sent` records a manual send in local outreach history when a lead ID is known; it does not send anything externally.
+
+Source quality reporting scores public and manual lead sources in `data/leads/source-quality.json` and writes `sales-marketing-engine/operator/generated/source-quality-report.md`. Use it to keep high-fit QA Automation sources and disable noisy ones.
+
 ## Test Behavior Without Environment Variables
 
 The sample tests are designed to skip until a real app or endpoint is configured. UI tests need `BASE_URL`, `TEST_USER_EMAIL`, and `TEST_USER_PASSWORD`. API tests need `API_BASE_URL`. AI tests need `AI_API_URL`. This keeps the public repo runnable without exposing client credentials or depending on external services.
