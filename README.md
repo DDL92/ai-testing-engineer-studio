@@ -65,6 +65,15 @@ npm run dashboard
 npm run revenue:visibility
 npm run client:ops
 npm run client:next-actions
+npm run client:delivery -- --id demo-retainer-client
+npm run client:evidence -- --id demo-retainer-client
+npm run client:delivery-report -- --id demo-retainer-client
+npm run client:update-draft -- --id demo-retainer-client
+npm run renewal:tracker
+npm run renewal:review -- --id demo-retainer-client
+npm run operator:daily
+npm run success:weekly
+npm run success:monthly
 ```
 
 Reports are written to `reports/latest` and remain local.
@@ -75,6 +84,10 @@ First client workflow assets are written to `output/client-workflows/{lead_id}` 
 Pipeline opportunity reports are written to `output/pipeline` and summarize local lead, artifact, contact review, follow-up, proposal, and client workflow readiness without external systems.
 The daily dashboard writes `output/dashboard/dashboard.md`, `output/dashboard/dashboard.html`, and `output/dashboard/revenue-visibility.md` as static local reports.
 Client operations reports are written to `output/client-ops` for daily priorities, next actions, readiness groups, reporting needs, and manual approval rules.
+Client delivery artifacts are written to `output/client-delivery/{client_id}` for delivery planning, evidence logs, QA checklists, weekly summaries, and client update drafts.
+Polished client reporting artifacts are written to `output/client-reporting/{client_id}` for executive summaries, weekly reports, monthly reports, value delivered summaries, renewal signals, and draft client updates. They are evidence-first, local-only, and require Daniel review before sending.
+Renewal and expansion reports are written to `output/renewals` for client health, renewal risk, expansion opportunities, renewal actions, and the renewal pipeline. They use local client data and generated artifacts only.
+The daily operator and success rhythm reports are written to `output/operator` as one local command center plus weekly and monthly reviews. They summarize pipeline, follow-ups, client health, renewals, expansion watchlists, and suggested human-approved commands.
 
 ## Lead Operator
 

@@ -775,3 +775,128 @@ npm run client:evidence -- --id client_id
 
 What not to build yet:
 Do not connect production systems, store credentials, upload private screenshots, send client messages, create invoices, connect payment tools, use CRMs, or automate client delivery without approval.
+
+Completion notes:
+
+- Added `npm run client:delivery -- --id client_id`.
+- Added `npm run client:evidence -- --id client_id`.
+- Delivery artifacts write to `output/client-delivery/{client_id}/`.
+- Generated delivery files include delivery plan, evidence log, QA checklist, weekly delivery summary, and client update draft.
+- Evidence logs do not invent evidence; missing evidence sections say `No evidence currently recorded.`
+- Delivery plans use local client data and detect local client workflow/report artifacts when present.
+- No APIs, browser automation, external services, credentials, production client systems, email sending, invoice generation, payment integrations, CRM integrations, or automated client communication were added.
+
+Sprint 30 should create Client Delivery Report Polish so local evidence logs, QA checklists, weekly summaries, and client update drafts can become cleaner client-ready reports after Daniel approval.
+
+## Sprint 30: Client Delivery Report Polish
+
+Goal:
+Improve client-facing report quality for approved delivery artifacts while preserving evidence-first claims and local-only safety boundaries.
+
+Why it matters:
+After delivery artifacts exist, Daniel needs a polished handoff layer that turns reviewed evidence and delivery notes into professional client updates without overclaiming results.
+
+Expected commands if relevant:
+
+```sh
+npm run client:delivery-report -- --id client_id
+npm run client:update-draft -- --id client_id
+```
+
+What not to build yet:
+Do not send reports automatically, upload files externally, connect client systems, store credentials, create invoices, connect payment tools, or claim results without reviewed evidence.
+
+Completion notes:
+
+- Added `npm run client:delivery-report -- --id client_id`.
+- Added `npm run client:update-draft -- --id client_id`.
+- Client reporting artifacts write to `output/client-reporting/{client_id}/`.
+- Generated reporting files include executive summary, weekly report, monthly report, value delivered summary, renewal signal, and client update draft.
+- Reports consume local client data plus local delivery artifacts and evidence logs only.
+- Missing evidence remains explicit as `No evidence currently recorded.`
+- Renewal signal is HIGH, MEDIUM, or LOW based only on local client status, fee, completed work, next steps, and evidence count.
+- Client update drafts include `DRAFT ONLY — REQUIRES DANIEL REVIEW BEFORE SENDING` and are not sent.
+- No APIs, scraping, browser automation, email, CRM, payment systems, invoices, credentials, external services, or client-system access were added.
+
+Sprint 31 should create Retainer Renewal + Expansion Tracker so active clients can be reviewed for renewal risk, approved expansion opportunities, next-month scope, and manual renewal conversation prep without sending messages or creating payment workflows.
+
+## Sprint 31: Retainer Renewal + Expansion Tracker
+
+Goal:
+Create a local tracker for retainer renewal readiness, expansion opportunities, risk signals, and next-month scope recommendations.
+
+Why it matters:
+After client reports are polished, Daniel needs a retention-focused workflow that turns evidence, risks, completed work, and recommendations into manual renewal and expansion prep.
+
+Expected commands if relevant:
+
+```sh
+npm run retainer:renewal -- --id client_id
+npm run client:expansion -- --id client_id
+```
+
+What not to build yet:
+Do not send renewal messages, create invoices, connect payment systems, sync CRMs, use external APIs, scrape, browse, automate calls, use credentials, or claim business impact without reviewed evidence.
+
+Completion notes:
+
+- Added `npm run renewal:tracker`.
+- Added `npm run renewal:review -- --id client_id`.
+- Renewal reports write to `output/renewals/`.
+- Generated reports include renewal pipeline, client health, renewal risk report, expansion opportunities, and renewal actions.
+- Client health is classified as GREEN, YELLOW, or RED using local active status, completed deliverables, evidence count, reporting activity, next actions, and follow-up state.
+- Missing evidence, reports, or activity are called out directly, with `Insufficient data available.` used where the local data is not enough.
+- Expansion paths are suggested only when local service type, completed work, risks, reports, or next actions justify review.
+- No revenue, client satisfaction, defects, business outcomes, retention probability, outreach, scheduling, email, CRM, invoices, payments, APIs, scraping, browser automation, credentials, client systems, or external databases were added.
+
+Sprint 32 should create Client Success Operating Rhythm so weekly and monthly retention work can be planned from renewal health, delivery reports, evidence gaps, and next approved actions without automating client communication.
+
+## Sprint 32: Client Success Operating Rhythm
+
+Goal:
+Create a local weekly/monthly client success planner that turns renewal health, reporting gaps, evidence gaps, and expansion opportunities into a repeatable retention routine.
+
+Why it matters:
+After renewal risk is visible, Daniel needs a lightweight operating rhythm that keeps active clients warm, evidence-backed, and ready for manual renewal conversations.
+
+Expected commands if relevant:
+
+```sh
+npm run success:weekly
+npm run success:monthly
+```
+
+What not to build yet:
+Do not send client updates, schedule meetings, connect calendars, use CRMs, create invoices, connect payment systems, scrape, browse, call APIs, use credentials, access client systems, or claim outcomes without evidence.
+
+Completion notes:
+
+- Added `npm run operator:daily`.
+- Added `npm run success:weekly`.
+- Added `npm run success:monthly`.
+- Operator reports write to `output/operator/`.
+- Daily command center summarizes revenue snapshot, top opportunities, follow-ups, client health, renewal watchlist, expansion watchlist, top actions, and suggested commands.
+- Weekly and monthly success reviews summarize local pipeline, lead, client, renewal, expansion, risk, and priority signals.
+- Daily priority scores use deterministic local weighting from opportunity score, pipeline stage, follow-up status, renewal health, and expansion potential.
+- Reports gracefully degrade when optional local report files are missing.
+- No APIs, scraping, browser automation, CRM, outreach automation, emails, calendars, payments, credentials, external databases, or client-system access were added.
+
+Sprint 33 should create Lead Discovery Automation Assistant so Daniel can generate semi-automated public-search guidance, manual search checklists, and reviewed lead intake candidates without scraping, APIs, or browser automation.
+
+## Sprint 33: Lead Discovery Automation Assistant
+
+Goal:
+Create a local assistant that guides manual public lead discovery and prepares reviewed lead intake candidates from Daniel-approved search criteria.
+
+Why it matters:
+After the daily operator focuses execution, Daniel needs a safer way to keep the pipeline supplied without aggressive scraping or paid lead databases.
+
+Expected commands if relevant:
+
+```sh
+npm run discovery:assistant
+npm run discovery:candidates
+```
+
+What not to build yet:
+Do not scrape, browse automatically, call APIs, enrich private contact data, send outreach, automate LinkedIn/email, connect CRMs, use paid lead databases, use credentials, or add external databases.

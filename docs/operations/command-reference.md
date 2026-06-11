@@ -272,6 +272,174 @@ Output file:
 Safety note:
 Local planning only. All outreach, follow-ups, calls, proposals, client reports, invoices, and delivery actions require Daniel approval before external use.
 
+## `npm run client:delivery`
+
+Purpose:
+Generate a local delivery packet for one existing client, including plan, evidence log, QA checklist, weekly summary, and client update draft.
+
+Example:
+
+```sh
+npm run client:delivery -- --id demo-retainer-client
+```
+
+Output files:
+`output/client-delivery/{client_id}/delivery-plan.md`
+`output/client-delivery/{client_id}/evidence-log.md`
+`output/client-delivery/{client_id}/qa-checklist.md`
+`output/client-delivery/{client_id}/weekly-delivery-summary.md`
+`output/client-delivery/{client_id}/client-update-draft.md`
+
+Safety note:
+Local delivery planning only. It does not use APIs, browser automation, external services, credentials, client systems, email, CRM, invoices, payment tools, or automated client communication.
+
+## `npm run client:evidence`
+
+Purpose:
+Generate or refresh only the local evidence log for one existing client.
+
+Example:
+
+```sh
+npm run client:evidence -- --id demo-retainer-client
+```
+
+Output file:
+`output/client-delivery/{client_id}/evidence-log.md`
+
+Safety note:
+Does not invent evidence. Missing evidence sections are explicitly marked `No evidence currently recorded.` Human approval is required before evidence is shared.
+
+## `npm run client:delivery-report`
+
+Purpose:
+Generate polished local client delivery reports from one existing client, local delivery artifacts, and the local evidence log.
+
+Example:
+
+```sh
+npm run client:delivery-report -- --id demo-retainer-client
+```
+
+Output files:
+`output/client-reporting/{client_id}/executive-summary.md`
+`output/client-reporting/{client_id}/weekly-report.md`
+`output/client-reporting/{client_id}/monthly-report.md`
+`output/client-reporting/{client_id}/value-delivered.md`
+`output/client-reporting/{client_id}/renewal-signal.md`
+
+Safety note:
+Evidence-first reporting only. It does not invent defects, bugs, test executions, coverage, screenshots, results, or revenue impact. It does not send reports, use APIs, scrape, automate browsers, connect email/CRM/payment systems, or access client systems.
+
+## `npm run client:update-draft`
+
+Purpose:
+Generate a client-facing update draft for Daniel review from local client data and local evidence.
+
+Example:
+
+```sh
+npm run client:update-draft -- --id demo-retainer-client
+```
+
+Output file:
+`output/client-reporting/{client_id}/client-update-draft.md`
+
+Safety note:
+Draft only. It is not sent anywhere and includes the required `DRAFT ONLY — REQUIRES DANIEL REVIEW BEFORE SENDING` approval banner.
+
+## `npm run renewal:tracker`
+
+Purpose:
+Generate the local retainer renewal and expansion tracker across all clients.
+
+Example:
+
+```sh
+npm run renewal:tracker
+```
+
+Output files:
+`output/renewals/renewal-pipeline.md`
+`output/renewals/client-health.md`
+`output/renewals/renewal-risk-report.md`
+`output/renewals/expansion-opportunities.md`
+`output/renewals/renewal-actions.md`
+
+Safety note:
+Uses local client data and local generated artifacts only. It does not invent revenue, client satisfaction, defects, business outcomes, or retention probability. It does not automate outreach, scheduling, email, CRM, invoices, payments, APIs, scraping, browser automation, credentials, client systems, or external databases.
+
+## `npm run renewal:review`
+
+Purpose:
+Refresh focused renewal health, risk, expansion, and action reports for one client.
+
+Example:
+
+```sh
+npm run renewal:review -- --id demo-retainer-client
+```
+
+Output files:
+`output/renewals/client-health.md`
+`output/renewals/renewal-risk-report.md`
+`output/renewals/expansion-opportunities.md`
+`output/renewals/renewal-actions.md`
+
+Safety note:
+Manual review only. The command recommends local actions for Daniel and does not send messages, schedule calls, connect CRMs, create invoices, process payments, scrape, browse, call APIs, or access client systems.
+
+## `npm run operator:daily`
+
+Purpose:
+Generate one local daily command center across revenue, opportunities, follow-ups, client health, renewals, expansion watchlist, and top actions.
+
+Example:
+
+```sh
+npm run operator:daily
+```
+
+Output file:
+`output/operator/daily-command-center.md`
+
+Safety note:
+Local prioritization only. It does not use APIs, scrape, automate browsers, connect CRMs, automate outreach, send emails, schedule calendar events, process payments, use credentials, or write external databases.
+
+## `npm run success:weekly`
+
+Purpose:
+Generate a local weekly client success and revenue review from existing Studio data and reports.
+
+Example:
+
+```sh
+npm run success:weekly
+```
+
+Output file:
+`output/operator/weekly-success-review.md`
+
+Safety note:
+Uses local files only and requires Daniel approval before outreach, follow-up, scheduling, proposal, renewal, expansion, invoice, or payment action.
+
+## `npm run success:monthly`
+
+Purpose:
+Generate a local monthly client success review covering revenue, client health, renewals, expansion opportunities, top opportunities, risks, and next-month priorities.
+
+Example:
+
+```sh
+npm run success:monthly
+```
+
+Output file:
+`output/operator/monthly-success-review.md`
+
+Safety note:
+Uses local files only. It does not claim outcomes, send messages, connect external systems, use credentials, or automate client communication.
+
 ## `npm run audit:site`
 
 Purpose:
