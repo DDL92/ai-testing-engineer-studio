@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: '0 14 * * *'
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   daily-lead-operator:
@@ -24,45 +27,48 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
-      - name: Validate business assets
-        run: npm run validate:business
+      - name: Test
+        run: npm test
 
-      - name: Run lead operator
+      - name: Run AI Studio OS operator
         run: |
-          echo "Running daily lead operator at 14:00 UTC schedule or manual dispatch."
-          npm run lead:auto
-          npm run lead:followups:due
-          npm run lead:pipeline
-          npm run lead:daily
-          npm run revenue:summary
-          npm run message:queue
-          npm run sources:report
-          npm run actions:cockpit
-          echo "AI copy optimizer is optional. Scheduled workflow does not call paid AI APIs by default."
-          echo "AI_COPY_ENABLED=${AI_COPY_ENABLED:-false}"
-          echo "Daily summary path: sales-marketing-engine/operator/generated/daily-lead-summary.md"
-          echo "Pipeline summary path: sales-marketing-engine/operator/generated/pipeline-summary.md"
-          echo "Revenue summary path: sales-marketing-engine/operator/generated/revenue-summary.md"
-          echo "Message review queue path: sales-marketing-engine/operator/generated/message-review-queue.md"
-          echo "Source quality path: sales-marketing-engine/operator/generated/source-quality-report.md"
-          echo "Action cockpit path: sales-marketing-engine/operator/generated/action-cockpit.md"
-          echo "Approval queue path: sales-marketing-engine/operator/approval-queue"
+          echo "Running AI Studio OS daily operator at 14:00 UTC schedule, manual dispatch, or temporary main push validation."
+          npm run operator:daily
+          npm run success:weekly
+          npm run success:monthly
+          npm run dashboard
+          npm run pipeline:opportunities
+          npm run client:ops
+          npm run renewal:tracker
+          echo "Scheduled workflow does not call paid AI APIs by default."
+          echo "No APIs, scraping, browser automation, CRM integrations, outreach automation, email, LinkedIn automation, payment systems, credentials, external databases, or client systems are used."
+          echo "Human approval remains required before any external action."
+          echo "Daily command center path: output/operator/daily-command-center.md"
+          echo "Weekly success review path: output/operator/weekly-success-review.md"
+          echo "Monthly success review path: output/operator/monthly-success-review.md"
+          echo "Dashboard path: output/dashboard/dashboard.md"
+          echo "Opportunity tracker path: output/pipeline/opportunity-tracker.md"
+          echo "Client ops path: output/client-ops/client-operations-center.md"
+          echo "Renewal tracker path: output/renewals/renewal-pipeline.md"
 
       - name: Upload lead artifacts
         uses: actions/upload-artifact@v4
         with:
           name: daily-lead-operator-artifacts
           path: |
-            data/leads/*.json
-            sales-marketing-engine/operator/generated/daily-lead-summary.md
-            sales-marketing-engine/operator/generated/pipeline-summary.md
-            sales-marketing-engine/operator/generated/revenue-summary.md
-            sales-marketing-engine/operator/generated/message-review-queue.md
-            data/leads/message-review-queue.json
-            sales-marketing-engine/operator/generated/source-quality-report.md
-            data/leads/source-quality.json
-            sales-marketing-engine/operator/generated/action-cockpit.md
-            data/leads/action-cockpit.json
-            sales-marketing-engine/operator/generated/lead-*-review.md
-            sales-marketing-engine/operator/approval-queue/*.md
+            output/operator/daily-command-center.md
+            output/operator/weekly-success-review.md
+            output/operator/monthly-success-review.md
+            output/dashboard/dashboard.md
+            output/dashboard/dashboard.html
+            output/pipeline/opportunity-tracker.md
+            output/pipeline/top-opportunities.md
+            output/pipeline/follow-up-needed.md
+            output/client-ops/client-operations-center.md
+            output/client-ops/client-readiness.md
+            output/renewals/renewal-pipeline.md
+            output/renewals/client-health.md
+            output/renewals/renewal-risk-report.md
+            output/renewals/expansion-opportunities.md
+            output/renewals/renewal-actions.md
           if-no-files-found: warn

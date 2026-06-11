@@ -36,6 +36,81 @@ Output file:
 Safety note:
 Use only manually researched public information. Do not scrape or add private data.
 
+## `npm run lead:discover:assistant`
+
+Purpose:
+Generate the local Lead Discovery Automation Assistant, 50-query manual search playbook, and lead approval checklist.
+
+Example:
+
+```sh
+npm run lead:discover:assistant
+```
+
+Output files:
+`output/lead-discovery-automation/discovery-assistant.md`
+`output/lead-discovery-automation/search-playbook.md`
+`output/lead-discovery-automation/lead-approval-checklist.md`
+
+Safety note:
+Public-search guidance only. It does not scrape, browse automatically, call APIs, invent companies, enrich contacts, send outreach, automate LinkedIn/email, connect a CRM, use payments, use credentials, or add leads without Daniel approval.
+
+## `npm run lead:candidate-queue`
+
+Purpose:
+Generate a blank manual-entry candidate queue template with current lead inventory, Tier A/B/C counts, top ICPs, and the approved `lead:add` command template.
+
+Example:
+
+```sh
+npm run lead:candidate-queue
+```
+
+Output file:
+`output/lead-discovery-automation/candidate-queue.md`
+
+Safety note:
+Manual-entry template only. Do not invent companies. Fill rows only after Daniel manually reviews public search results and approves each candidate.
+
+## `npm run lead:intake:approved`
+
+Purpose:
+Parse the manual candidate queue and generate approved, rejected, and summary intake reports without adding leads.
+
+Example:
+
+```sh
+npm run lead:intake:approved
+```
+
+Output files:
+`output/lead-intake/approved-candidates.md`
+`output/lead-intake/rejected-candidates.md`
+`output/lead-intake/intake-summary.md`
+
+Safety note:
+Report generation only. It does not execute `lead:add`, modify `data/leads.json`, scrape, browse, call APIs, automate outreach, connect CRMs, use credentials, or access external systems.
+
+## `npm run lead:intake:batch`
+
+Purpose:
+Generate copy/paste-ready `lead:add` command drafts for candidates that Daniel marked approved and that pass local duplicate/safety checks.
+
+Example:
+
+```sh
+npm run lead:intake:batch
+```
+
+Output files:
+`output/lead-intake/lead-add-command-batch.md`
+`output/lead-intake/approved-candidates.md`
+`output/lead-intake/rejected-candidates.md`
+`output/lead-intake/intake-summary.md`
+
+Safety note:
+Command batch only. Daniel must review and manually run any command. This command does not add leads, send outreach, scrape, browse, call APIs, enrich contacts, connect CRMs, use payments, use credentials, or access external systems.
+
 ## `npm run lead:research`
 
 Purpose:
@@ -110,6 +185,48 @@ Output files:
 
 Safety note:
 Uses local files only. It does not scrape, browse, call APIs, send email, automate LinkedIn, create CRM integrations, invent contacts, or invent audit findings. Human approval is required before outreach.
+
+## `npm run outreach:operating-pack`
+
+Purpose:
+Generate the Real Outreach Operating Pack with Commercial Mode filtering, Top 5 real outreach leads, manual contact research checklist, first-audit offer path, and excluded demo/sample lead report.
+
+Example:
+
+```sh
+npm run outreach:operating-pack
+```
+
+Output files:
+`output/outreach-operating/real-outreach-operating-pack.md`
+`output/outreach-operating/top-5-real-outreach.md`
+`output/outreach-operating/contact-research-checklist.md`
+`output/outreach-operating/first-audit-offer-path.md`
+`output/outreach-operating/excluded-demo-leads.md`
+
+Safety note:
+Commercial Mode excludes demo/sample, paused, lost, and not-fit leads. This command does not scrape, browse, call APIs, send outreach, automate email/LinkedIn, invent contacts, invent company facts, connect CRMs, use credentials, use payments, or access external systems.
+
+## `npm run outreach:first-audit-path`
+
+Purpose:
+Refresh the first-audit offer path and supporting real outreach operating files for the current Commercial Mode Top 5.
+
+Example:
+
+```sh
+npm run outreach:first-audit-path
+```
+
+Output files:
+`output/outreach-operating/first-audit-offer-path.md`
+`output/outreach-operating/real-outreach-operating-pack.md`
+`output/outreach-operating/top-5-real-outreach.md`
+`output/outreach-operating/contact-research-checklist.md`
+`output/outreach-operating/excluded-demo-leads.md`
+
+Safety note:
+Manual planning only. Daniel must approve before sending anything. It does not claim completed audits unless local audit packs exist, does not invent findings, and does not use external systems.
 
 ## `npm run contact:review`
 
@@ -201,6 +318,64 @@ Output files:
 
 Safety note:
 Reads local files only. It does not scrape, browse, call APIs, send outreach, automate LinkedIn/email, connect a CRM, use external databases, create invoices, or connect payment systems. Human approval remains required before external action.
+
+## `npm run pipeline:prioritize`
+
+Purpose:
+Generate the local Pipeline Auto-Prioritization Engine reports with deterministic priority scores, top revenue paths, top manual actions, and stalled opportunity detection.
+
+Example:
+
+```sh
+npm run pipeline:prioritize
+```
+
+Output files:
+`output/pipeline-prioritization/prioritized-pipeline.md`
+`output/pipeline-prioritization/top-10-revenue-opportunities.md`
+`output/pipeline-prioritization/top-5-actions.md`
+`output/pipeline-prioritization/stalled-opportunities.md`
+
+Safety note:
+Uses local Studio data only. It does not scrape, browse, call APIs, send outreach, automate LinkedIn/email, connect CRMs, use external databases, create invoices, use payments, use credentials, or treat opportunity value as booked revenue.
+
+## `npm run pipeline:next-actions`
+
+Purpose:
+Refresh the Top 5 manual pipeline actions and supporting prioritization reports from local lead, artifact, contact review, client, operator, renewal, and dashboard context.
+
+Example:
+
+```sh
+npm run pipeline:next-actions
+```
+
+Output files:
+`output/pipeline-prioritization/top-5-actions.md`
+`output/pipeline-prioritization/prioritized-pipeline.md`
+`output/pipeline-prioritization/top-10-revenue-opportunities.md`
+`output/pipeline-prioritization/stalled-opportunities.md`
+
+Safety note:
+Recommendation only. Daniel must approve before executing commands or taking external action. This command does not modify leads, send messages, scrape, browse, call APIs, connect CRMs, use credentials, or access external systems.
+
+## `npm run commercial:summary`
+
+Purpose:
+Generate the shared Commercial Mode summary and demo isolation report using the same filtering logic as revenue-facing dashboards and reports.
+
+Example:
+
+```sh
+npm run commercial:summary
+```
+
+Output files:
+`output/commercial-mode/demo-isolation-report.md`
+`output/commercial-mode/commercial-mode-summary.md`
+
+Safety note:
+Local deterministic filtering only. It does not delete demo data, mutate leads, scrape, browse, call APIs, automate outreach, connect CRMs, use payments, use credentials, or access external databases. Human approval remains required before action.
 
 ## `npm run dashboard`
 
@@ -549,7 +724,7 @@ Recommended actions require human review.
 ## `npm run mac:daily`
 
 Purpose:
-Refresh the daily plan, revenue summary, and daily briefing.
+Run the local Mac Daily Automation Runner. It refreshes the dashboard, daily operator, pipeline prioritization, client operations, renewal tracker, and Commercial Mode summary, then writes a consolidated daily summary, execution log, system health report, and action cockpit.
 
 Example:
 
@@ -557,11 +732,33 @@ Example:
 npm run mac:daily
 ```
 
-Output file:
-`output/daily/daily-briefing.md`
+Output files:
+`output/mac-daily/mac-daily-summary.md`
+`output/mac-daily/executed-reports.md`
+`output/mac-daily/system-health.md`
+`output/mac-daily/action-cockpit.md`
 
 Safety note:
-This is not launchd automation and does not send notifications or messages.
+Local-only deterministic reporting. It does not use APIs, scrape, browse, connect CRMs, send outreach, send email, automate LinkedIn, use payments, use credentials, or access external databases. Human approval remains required before external action.
+
+## `npm run mac:summary`
+
+Purpose:
+Refresh the Mac Daily summary, system health, and action cockpit from existing local outputs without rerunning the full report sequence.
+
+Example:
+
+```sh
+npm run mac:summary
+```
+
+Output files:
+`output/mac-daily/mac-daily-summary.md`
+`output/mac-daily/system-health.md`
+`output/mac-daily/action-cockpit.md`
+
+Safety note:
+Summary-only local reporting. It reads existing local data and generated output files only. It does not rerun reports, use APIs, scrape, browse, connect CRMs, send outreach, send email, automate LinkedIn, use payments, use credentials, or access external databases.
 
 ## `npm run cockpit`
 

@@ -1,11 +1,19 @@
 # Client Operations Center
 
-Generated: 2026-06-11T17:08:30.492Z
+Generated: 2026-06-11T22:18:24.217Z
+
+## Commercial Mode
+
+- Commercial Mode status: ON
+- Commercial leads: 43
+- Excluded demo leads: 8
+- Commercial opportunities: 43
+- Commercial next actions: 10
 
 ## Executive Summary
 
 - Active clients: 2
-- Active opportunities: 48
+- Active opportunities: 43
 - Follow-ups needing manual review: 1
 - Client-ready opportunities: 0
 - Pipeline report detected: yes
@@ -46,16 +54,14 @@ Generated: 2026-06-11T17:08:30.492Z
 
 ## Pipeline Health
 
-- Active opportunities: 48
+- Active opportunities: 43
 - Follow-ups: 1
 - Client-ready: 0
-- New leads needing research: 41
+- New leads needing research: 38
 
 ## Opportunities Closest To Revenue
 
 - PushPress: score 100, stage FOLLOW_UP, offer qa-automation-retainer; Monitor manually for follow-up on 2026-06-15.
-- BookingFlow AI: score 65, stage SOW_READY, offer qa-automation-retainer; Review SOW and pricing manually for BookingFlow AI.
-- Acme SaaS Demo: score 47, stage SOW_READY, offer qa-audit; Review SOW and pricing manually for Acme SaaS Demo.
 
 ## Follow-Ups
 
@@ -76,7 +82,6 @@ Generated: 2026-06-11T17:08:30.492Z
 
 ## Risks / Blockers
 
-- 3 lead(s) are paused or not-fit and should not receive outreach.
 - Follow-up dates require manual review before any message is sent.
 - Do not treat local opportunity scores as guaranteed revenue.
 

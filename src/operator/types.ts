@@ -55,6 +55,13 @@ export interface OperatorInput {
   leads: Lead[];
   clients: Client[];
   contactReviews: ContactReview[];
+  commercialMode?: {
+    enabled: boolean;
+    totalLeads: number;
+    commercialLeads: number;
+    excludedDemoLeads: number;
+    topCommercialCompanies: string[];
+  };
   opportunityTracker: OperatorSource;
   topOpportunities: OperatorSource;
   followUpNeeded: OperatorSource;

@@ -9,6 +9,12 @@ export function buildClientOpsCenter(input: ClientOpsInput): ClientOpsCenter {
 
   return {
     generatedAt: new Date().toISOString(),
+    commercialMode: {
+      enabled: true,
+      totalLeads: input.commercialMode?.totalLeads ?? input.leads.length,
+      commercialLeads: input.commercialMode?.commercialLeads ?? input.leads.length,
+      excludedDemoLeads: input.commercialMode?.excludedDemoLeads ?? 0,
+    },
     opportunities,
     clients: input.clients,
     actions,
@@ -22,6 +28,14 @@ export function renderClientOperationsCenter(center: ClientOpsCenter): string {
   return `# Client Operations Center
 
 Generated: ${center.generatedAt}
+
+## Commercial Mode
+
+- Commercial Mode status: ${center.commercialMode.enabled ? 'ON' : 'OFF'}
+- Commercial leads: ${center.commercialMode.commercialLeads}
+- Excluded demo leads: ${center.commercialMode.excludedDemoLeads}
+- Commercial opportunities: ${activeOpportunities(center.opportunities).length}
+- Commercial next actions: ${center.actions.length}
 
 ## Executive Summary
 
@@ -81,6 +95,9 @@ export function renderNextActions(center: ClientOpsCenter): string {
   return `# Client Next Actions
 
 Generated: ${center.generatedAt}
+
+Commercial Mode: ${center.commercialMode.enabled ? 'ON' : 'OFF'}
+Commercial next actions: ${center.actions.length}
 
 ${center.actions.length === 0 ? 'No client next actions found.' : center.actions.map(renderAction).join('\n\n')}
 

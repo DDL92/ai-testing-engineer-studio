@@ -1,6 +1,9 @@
 import fs = require('fs');
 import path = require('path');
 import { Client } from '../clientReports/types';
+import { buildCommercialModeSummary, filterCommercialContactReviews } from '../commercialMode/commercialModeRules';
+import { ContactReviewRecord } from '../contactReview/types';
+import { Lead as StudioLead } from '../leads/types';
 import { buildDailyCommandCenter } from './operatorRules';
 import { ContactReview, Lead, OperatorInput, OperatorSource } from './types';
 
@@ -19,12 +22,27 @@ function main(): void {
 
 function buildInput(): OperatorInput {
   const generatedAt = new Date().toISOString();
+  const leads = readJson<StudioLead[]>(path.join('data', 'leads.json'), []);
+  const contactReviews = readJson<ContactReviewRecord[]>(path.join('data', 'contact-reviews.json'), []);
+  const commercialSummary = buildCommercialModeSummary(leads);
+  const commercialContactReviews = filterCommercialContactReviews(contactReviews, commercialSummary.commercialLeads);
   return {
     generatedAt,
     today: generatedAt.slice(0, 10),
-    leads: readJson<Lead[]>(path.join('data', 'leads.json'), []),
+    leads: commercialSummary.commercialLeads as Lead[],
     clients: readJson<Client[]>(path.join('data', 'clients.json'), []),
-    contactReviews: readJson<ContactReview[]>(path.join('data', 'contact-reviews.json'), []),
+    contactReviews: commercialContactReviews as ContactReview[],
+    commercialMode: {
+      enabled: true,
+      totalLeads: leads.length,
+      commercialLeads: commercialSummary.commercialLeads.length,
+      excludedDemoLeads: commercialSummary.demoLeads.length,
+      topCommercialCompanies: commercialSummary.commercialLeads
+        .slice()
+        .sort((a, b) => b.score - a.score || a.companyName.localeCompare(b.companyName))
+        .slice(0, 5)
+        .map((lead) => lead.companyName),
+    },
     opportunityTracker: source('Opportunity tracker', path.join('output', 'pipeline', 'opportunity-tracker.md')),
     topOpportunities: source('Top opportunities', path.join('output', 'pipeline', 'top-opportunities.md')),
     followUpNeeded: source('Follow-up needed', path.join('output', 'pipeline', 'follow-up-needed.md')),

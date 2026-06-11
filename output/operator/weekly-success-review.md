@@ -1,17 +1,67 @@
 # Weekly Success Review
 
-Generated At: 2026-06-11T17:40:12.861Z
+Generated At: 2026-06-11T21:28:06.322Z
 
 ## Revenue Snapshot
 
 - Estimated MRR: $2,000
 - Active Clients: 2
 - Renewal watchlist: 2
-- Expansion watchlist: 4
+- Expansion watchlist: 1
 
 ## New Leads Added
 
-- Insufficient data available.
+- CloudCart Demo: 2026-06-11T03:21:49.542Z
+- BookingFlow AI: 2026-06-11T03:21:49.544Z
+- Northstar Fintech Sandbox: 2026-06-11T03:21:49.544Z
+- LaunchLab Studio: 2026-06-11T03:21:49.544Z
+- Local Services Directory Demo: 2026-06-11T03:21:49.544Z
+- Acme SaaS Demo: 2026-06-11T04:04:04.490Z
+- PushPress: 2026-06-11T05:03:47.737Z
+- TeamUp: 2026-06-11T05:09:05.985Z
+- Wodify: 2026-06-11T05:09:31.344Z
+- PropertyMe: 2026-06-11T05:09:45.356Z
+- NeetoCal: 2026-06-11T05:10:02.305Z
+- Zen Planner: 2026-06-11T05:23:36.061Z
+- Mindbody: 2026-06-11T05:23:44.341Z
+- Vagaro: 2026-06-11T05:23:59.947Z
+- WellnessLiving: 2026-06-11T05:24:07.417Z
+- ABC Glofox: 2026-06-11T05:24:28.769Z
+- Pike13: 2026-06-11T05:24:36.044Z
+- GymMaster: 2026-06-11T05:24:45.638Z
+- Clubworx: 2026-06-11T05:24:52.113Z
+- Gymdesk: 2026-06-11T05:25:05.115Z
+- Kicksite: 2026-06-11T05:26:41.583Z
+- MyStudio: 2026-06-11T05:26:55.677Z
+- Momence: 2026-06-11T05:27:03.743Z
+- Arketa: 2026-06-11T05:27:08.995Z
+- Fitli: 2026-06-11T05:27:14.377Z
+- Bookee: 2026-06-11T05:27:19.173Z
+- Bsport: 2026-06-11T05:27:25.242Z
+- ResNexus: 2026-06-11T05:27:37.450Z
+- Hostaway: 2026-06-11T05:27:41.731Z
+- OwnerRez: 2026-06-11T05:27:47.512Z
+- Lodgify: 2026-06-11T05:27:52.875Z
+- Cloudbeds: 2026-06-11T05:32:36.090Z
+- Guesty: 2026-06-11T05:32:46.271Z
+- Mews: 2026-06-11T05:32:52.351Z
+- Little Hotelier: 2026-06-11T05:32:58.518Z
+- Preno: 2026-06-11T05:33:04.860Z
+- Zenoti: 2026-06-11T05:33:13.307Z
+- Martialytics: 2026-06-11T05:33:20.172Z
+- Spark Membership: 2026-06-11T05:33:26.961Z
+- PerfectGym: 2026-06-11T05:33:34.167Z
+- Virtuagym: 2026-06-11T05:33:51.893Z
+- Calendly: 2026-06-11T05:34:01.481Z
+- YouCanBookMe: 2026-06-11T05:34:08.777Z
+- SimplyBook.me: 2026-06-11T05:34:14.577Z
+- Setmore: 2026-06-11T05:34:21.530Z
+- Acuity Scheduling: 2026-06-11T05:34:30.549Z
+- ClassPass: 2026-06-11T05:36:27.180Z
+- Exercise.com: 2026-06-11T05:36:32.487Z
+- ClubReady: 2026-06-11T05:39:28.135Z
+- TidyCal: 2026-06-11T05:43:05.519Z
+- Leonardo Zoho Creator Portal: 2026-06-11T17:05:11.627Z
 
 ## Pipeline Changes
 

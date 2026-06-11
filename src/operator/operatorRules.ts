@@ -20,12 +20,27 @@ export function buildDailyCommandCenter(input: OperatorInput): OperatorDocument 
   const health = healthCounts(renewals);
   const expansion = expansionWatchlist(input, renewals);
   const renewalWatch = renewals.filter((record) => record.health === 'YELLOW' || record.health === 'RED');
-  const actions = topActions(input, opportunities, followUps, renewalWatch, expansion).slice(0, 5);
+  const actions = topActions(
+    input,
+    opportunities,
+    followUps,
+    input.commercialMode?.enabled ? [] : renewalWatch,
+    input.commercialMode?.enabled ? [] : expansion,
+  ).slice(0, 5);
 
   return doc('daily-command-center.md', 'AI Studio Daily Command Center', [
     '# AI Studio Daily Command Center',
     '',
     `Generated At: ${input.generatedAt}`,
+    '',
+    '## Commercial Mode',
+    '',
+    bullets([
+      `Commercial Mode: ${input.commercialMode?.enabled ? 'ON' : 'OFF'}`,
+      `Commercial Leads: ${input.commercialMode?.commercialLeads ?? input.leads.length}`,
+      `Excluded Demo Leads: ${input.commercialMode?.excludedDemoLeads ?? 0}`,
+      `Commercial Top 5: ${input.commercialMode?.topCommercialCompanies.length ? input.commercialMode.topCommercialCompanies.join(', ') : insufficientData}`,
+    ]),
     '',
     '## Revenue Snapshot',
     '',
@@ -205,7 +220,9 @@ export function buildMonthlySuccessReview(input: OperatorInput): OperatorDocumen
 function topOpportunities(input: OperatorInput): OperatorOpportunity[] {
   const parsed = parseOpportunityTable(input.opportunityTracker.content, input.leads);
   if (parsed.length > 0) {
+    const commercialLeadIds = new Set(input.leads.map((lead) => lead.id));
     return parsed
+      .filter((opportunity) => commercialLeadIds.has(opportunity.leadId))
       .map((opportunity) => ({ ...opportunity, dailyPriorityScore: dailyPriorityScore(opportunity, input, false) }))
       .sort((a, b) => b.dailyPriorityScore - a.dailyPriorityScore || b.opportunityScore - a.opportunityScore);
   }

@@ -1,6 +1,6 @@
 # Client Readiness
 
-Generated: 2026-06-11T17:08:30.492Z
+Generated: 2026-06-11T22:18:24.217Z
 
 ## Ready For Outreach
 
@@ -16,8 +16,6 @@ Generated: 2026-06-11T17:08:30.492Z
 ## Ready For SOW
 
 - PushPress: score 100, stage FOLLOW_UP, offer qa-automation-retainer; Monitor manually for follow-up on 2026-06-15.
-- BookingFlow AI: score 65, stage SOW_READY, offer qa-automation-retainer; Review SOW and pricing manually for BookingFlow AI.
-- Acme SaaS Demo: score 47, stage SOW_READY, offer qa-audit; Review SOW and pricing manually for Acme SaaS Demo.
 
 ## Ready For Client Prep
 
@@ -33,14 +31,12 @@ Generated: 2026-06-11T17:08:30.492Z
 - MyStudio: score 65, stage NEW_LEAD, offer agency-partner-retainer; Generate research pack for MyStudio.
 - Arketa: score 55, stage NEW_LEAD, offer qa-automation-retainer; Generate research pack for Arketa.
 - ClassPass: score 55, stage NEW_LEAD, offer agency-partner-retainer; Generate research pack for ClassPass.
-- CloudCart Demo: score 55, stage NEW_LEAD, offer qa-automation-retainer; Generate research pack for CloudCart Demo.
 - Clubworx: score 55, stage NEW_LEAD, offer qa-automation-retainer; Generate research pack for Clubworx.
+- Gymdesk: score 55, stage NEW_LEAD, offer qa-automation-retainer; Generate research pack for Gymdesk.
 
 ## Should Pause
 
-- Preno: score 0, stage NEW_LEAD, offer not-fit; keep paused or review fit manually before any external action.
-- Leonardo Zoho Creator Portal: score 0, stage NEW_LEAD, offer not-fit; keep paused or review fit manually before any external action.
-- Local Services Directory Demo: score 0, stage PAUSED, offer not-fit; keep paused or review fit manually before any external action.
+- No additional pause recommendations generated.
 
 ## Manual Approval Rules
 

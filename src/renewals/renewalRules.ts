@@ -85,6 +85,7 @@ function renewalPipeline(records: RenewalClientRecord[]): RenewalDocument {
       `YELLOW: ${records.filter((record) => record.health === 'YELLOW').length}`,
       `RED: ${records.filter((record) => record.health === 'RED').length}`,
       'Monthly value is read from local client data only.',
+      'Commercial Mode: ON for revenue-facing reporting. Demo/sample lead filtering is handled before lead-based opportunity reports.',
     ]),
     '',
     '## Renewal Tracker',
@@ -190,6 +191,7 @@ function expansionOpportunities(records: RenewalClientRecord[], scope: string): 
       'Only discuss expansion after Daniel reviews scope, evidence, and client context.',
       'Do not claim business impact, ROI, satisfaction, or retention probability.',
       'No automated outreach, scheduling, CRM, invoices, payment systems, APIs, scraping, browser automation, or external databases are used.',
+      'Commercial Mode is ON for revenue-facing reporting; renewal records use local client data only.',
     ]),
   ]);
 }

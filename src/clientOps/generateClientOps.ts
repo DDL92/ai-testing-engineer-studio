@@ -1,6 +1,7 @@
 import fs = require('fs');
 import path = require('path');
 import { Client } from '../clientReports/types';
+import { buildCommercialModeSummary, filterCommercialContactReviews } from '../commercialMode/commercialModeRules';
 import { ContactReviewRecord } from '../contactReview/types';
 import { Lead } from '../leads/types';
 import { buildClientOpsCenter, renderClientOperationsCenter, renderClientReadiness } from './clientOpsRules';
@@ -11,10 +12,18 @@ const contactReviewsPath = path.join(process.cwd(), 'data', 'contact-reviews.jso
 const outputDir = path.join(process.cwd(), 'output', 'client-ops');
 
 function main(): void {
+  const leads = readJson<Lead[]>(leadsPath, []);
+  const contactReviews = readJson<ContactReviewRecord[]>(contactReviewsPath, []);
+  const commercialSummary = buildCommercialModeSummary(leads);
   const center = buildClientOpsCenter({
-    leads: readJson<Lead[]>(leadsPath, []),
+    leads: commercialSummary.commercialLeads,
     clients: readJson<Client[]>(clientsPath, []),
-    contactReviews: readJson<ContactReviewRecord[]>(contactReviewsPath, []),
+    contactReviews: filterCommercialContactReviews(contactReviews, commercialSummary.commercialLeads),
+    commercialMode: {
+      totalLeads: leads.length,
+      commercialLeads: commercialSummary.commercialLeads.length,
+      excludedDemoLeads: commercialSummary.demoLeads.length,
+    },
     pipelineMarkdownExists: exists(path.join('output', 'pipeline', 'opportunity-tracker.md')),
     topOpportunitiesMarkdownExists: exists(path.join('output', 'pipeline', 'top-opportunities.md')),
   });
@@ -28,6 +37,9 @@ function main(): void {
 
   console.log(`Client operations center generated: ${path.relative(process.cwd(), opsPath)}`);
   console.log(`Client readiness generated: ${path.relative(process.cwd(), readinessPath)}`);
+  console.log('Commercial Mode: ON');
+  console.log(`Commercial leads: ${commercialSummary.commercialLeads.length}`);
+  console.log(`Excluded demo leads: ${commercialSummary.demoLeads.length}`);
   console.log(`Top priority: ${center.actions[0]?.company ?? 'none'}`);
   console.log('No APIs, scraping, browsing, CRM integrations, outreach automation, email, LinkedIn, payments, invoices, external databases, or credentials were used.');
   console.log('Human approval remains required before external action.');

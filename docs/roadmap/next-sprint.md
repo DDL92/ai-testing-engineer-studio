@@ -894,9 +894,199 @@ After the daily operator focuses execution, Daniel needs a safer way to keep the
 Expected commands if relevant:
 
 ```sh
-npm run discovery:assistant
-npm run discovery:candidates
+npm run lead:discover:assistant
+npm run lead:candidate-queue
 ```
 
 What not to build yet:
 Do not scrape, browse automatically, call APIs, enrich private contact data, send outreach, automate LinkedIn/email, connect CRMs, use paid lead databases, use credentials, or add external databases.
+
+Completion notes:
+
+- Added `npm run lead:discover:assistant`.
+- Added `npm run lead:candidate-queue`.
+- Added `src/leadDiscoveryAutomation` with local-only rules, types, assistant generation, and candidate queue generation.
+- Generated `output/lead-discovery-automation/discovery-assistant.md`.
+- Generated `output/lead-discovery-automation/search-playbook.md` with 50 manual search queries across fitness SaaS, wellness SaaS, booking platforms, hospitality SaaS, property management SaaS, scheduling SaaS, SaaS agencies, HealthTech SaaS, and e-commerce platforms.
+- Generated `output/lead-discovery-automation/candidate-queue.md` as a blank manual-entry template with current total leads, Tier A/B/C counts, current top ICPs, approval fields, and the approved `lead:add` command template.
+- Generated `output/lead-discovery-automation/lead-approval-checklist.md` with required manual approval checks before adding any lead.
+- The assistant reads `data/leads.json`, `output/discovery/first-50-progress.md`, `output/operator/daily-command-center.md`, and `output/dashboard/dashboard.md` when available, and degrades gracefully when optional files are missing.
+- No companies are invented. No scraping, APIs, browser automation, CRM, outreach automation, email, LinkedIn automation, payments, credentials, external services, private data, or automatic lead additions were added.
+
+## Sprint 34: Lead Queue Builder + Approved Candidate Intake
+
+Goal:
+Convert approved candidate queue entries into structured `lead:add` command batches while still requiring Daniel approval.
+
+Why it matters:
+The discovery assistant creates safe manual search guidance, but Daniel still needs a controlled way to turn approved candidates into repeatable local intake commands without bypassing review.
+
+Expected commands if relevant:
+
+```sh
+npm run lead:intake:approved
+npm run lead:intake:batch
+```
+
+What not to build yet:
+Do not parse the open internet, scrape candidate data, call enrichment APIs, send outreach, automate LinkedIn/email, connect CRMs, use paid lead databases, store credentials, or automatically write approved candidates into `data/leads.json` without Daniel confirmation.
+
+Completion notes:
+
+- Added `npm run lead:intake:approved`.
+- Added `npm run lead:intake:batch`.
+- Added `src/leadIntake` with types, local Markdown queue parsing, approval/rejection rules, duplicate checks against `data/leads.json`, command batch rendering, and intake summaries.
+- Generated `output/lead-intake/approved-candidates.md`.
+- Generated `output/lead-intake/lead-add-command-batch.md`.
+- Generated `output/lead-intake/rejected-candidates.md`.
+- Generated `output/lead-intake/intake-summary.md`.
+- Approved candidates are included only when Daniel marks the queue row approved and local checks do not reject it as a duplicate, missing required data, low fit, outside ICP, or paused.
+- Command batches are copy/paste-ready only and use the existing `npm run lead:add -- --company ... --website ... --industry ... --source ... --notes ...` interface.
+- No lead data is modified. No commands are executed. No fake companies, scraping, browsing, APIs, CRM integrations, outreach automation, contact enrichment, payments, credentials, external systems, or automatic lead creation were added.
+
+## Sprint 35: Pipeline Auto-Prioritization Engine
+
+Goal:
+Prioritize local pipeline opportunities and generate next manual actions from approved leads, existing artifacts, opportunity score, follow-up state, and client readiness.
+
+Why it matters:
+Once approved candidates can become local leads, Daniel needs the system to rank which pipeline actions should happen next without automating outreach or touching external systems.
+
+Suggested commands:
+
+```sh
+npm run pipeline:prioritize
+npm run pipeline:next-actions
+```
+
+What not to build yet:
+Do not send outreach, automate LinkedIn/email, browse websites, scrape, call APIs, connect CRMs, create invoices, use credentials, access client systems, or auto-change lead status without Daniel approval.
+
+Completion notes:
+
+- Added `npm run pipeline:prioritize`.
+- Added `npm run pipeline:next-actions`.
+- Added `src/pipelinePrioritization` with types, deterministic priority scoring, artifact detection, revenue path mapping, stalled opportunity detection, top action generation, and local context summaries.
+- Generated `output/pipeline-prioritization/prioritized-pipeline.md`.
+- Generated `output/pipeline-prioritization/top-10-revenue-opportunities.md`.
+- Generated `output/pipeline-prioritization/top-5-actions.md`.
+- Generated `output/pipeline-prioritization/stalled-opportunities.md`.
+- Priority score uses lead score, tier, recommended offer, existing research pack, lead pack, audit pack, outreach pack, contact review, SOW, client workflow, follow-up status, and matched client signals when available.
+- Revenue paths use pricing ranges only and do not treat opportunity value as booked revenue.
+- Reports read local Studio data and optional generated reports when available, and degrade gracefully when optional files are missing.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, email, LinkedIn automation, payment systems, credentials, external databases, or automatic status changes were added.
+
+## Sprint 36: Real Outreach Operating Pack
+
+Goal:
+Turn prioritized Top 5 opportunities into a manual outreach execution pack with contact research instructions, approved messages, follow-up schedule, and first-audit offer path.
+
+Why it matters:
+After the pipeline is prioritized, Daniel needs a controlled manual execution pack that turns the highest-priority opportunities into reviewed outreach preparation without automating messages or contact collection.
+
+Suggested commands:
+
+```sh
+npm run outreach:operating-pack
+npm run outreach:first-audit-path
+```
+
+What not to build yet:
+Do not send outreach, automate LinkedIn/email, scrape contacts, browse websites automatically, call APIs, connect CRMs, create calendar events, create invoices, use payment systems, use credentials, or access external systems.
+
+Completion notes:
+
+- Added `npm run outreach:operating-pack`.
+- Added `npm run outreach:first-audit-path`.
+- Added `src/outreachOperating` with Commercial Mode filtering, deterministic outreach prioritization, asset detection, contact research checklist rendering, first-audit offer path rendering, and excluded demo/sample lead reporting.
+- Generated `output/outreach-operating/real-outreach-operating-pack.md`.
+- Generated `output/outreach-operating/top-5-real-outreach.md`.
+- Generated `output/outreach-operating/contact-research-checklist.md`.
+- Generated `output/outreach-operating/first-audit-offer-path.md`.
+- Generated `output/outreach-operating/excluded-demo-leads.md`.
+- Commercial Mode excludes sample IDs, `.example` websites, sample sources, Demo/Sandbox/Test company names, not-fit offers, paused leads, and lost leads.
+- Top 5 real outreach leads are selected from eligible commercial leads only and show available assets, missing assets, next action, and suggested command.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, email sending, LinkedIn automation, payment systems, credentials, external databases, invented contacts, invented URLs, invented company facts, or automated sending were added.
+
+## Sprint 37: Commercial Mode Dashboard + Demo Data Isolation
+
+Goal:
+Ensure all revenue-facing dashboards can toggle or default to commercial mode excluding demo/sample data.
+
+Why it matters:
+After Commercial Mode is available for outreach, revenue-facing dashboards and operator reports should avoid mixing demo/sample records with real commercial priorities unless Daniel explicitly opts into demo mode.
+
+Suggested commands:
+
+```sh
+npm run dashboard:commercial
+npm run operator:commercial
+```
+
+What not to build yet:
+Do not delete demo data, mutate existing lead records, connect external systems, browse, scrape, call APIs, automate outreach, send messages, use credentials, or hide records without a clear local report explaining what was filtered.
+
+Completion notes:
+
+- Added shared Commercial Mode helpers in `src/commercialMode`.
+- Added `isCommercialLead()` and `isDemoLead()` using deterministic local lead rules.
+- Added `npm run commercial:summary`.
+- Generated `output/commercial-mode/demo-isolation-report.md`.
+- Generated `output/commercial-mode/commercial-mode-summary.md`.
+- Updated dashboard generation to use Commercial Mode by default and generate `output/dashboard/commercial-dashboard.md`.
+- Updated revenue visibility to use Commercial Mode by default and generate `output/dashboard/commercial-revenue-visibility.md`.
+- Updated daily operator to show `Commercial Mode: ON`, commercial lead counts, excluded demo counts, and commercial Top 5 context.
+- Updated pipeline prioritization to use commercial leads by default and generate `output/pipeline-prioritization/commercial-prioritized-pipeline.md`.
+- Updated client operations to use commercial-filtered opportunities and display Commercial Mode status.
+- Added Commercial Mode language to renewal outputs while leaving client records intact.
+- Demo/sample data remains available for testing and is not deleted or mutated.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, payments, credentials, external databases, or automatic external actions were added.
+
+## Sprint 38: Mac Daily Automation Runner
+
+Goal:
+Allow the Studio to automatically generate dashboard, operator report, pipeline report, and renewal report from a single local command.
+
+Why it matters:
+After Commercial Mode is enforced across revenue-facing reports, Daniel needs one local daily command that refreshes the core commercial operating system without manually running each report.
+
+Suggested commands:
+
+```sh
+npm run mac:daily
+npm run mac:summary
+```
+
+What not to build yet:
+Do not run external automations, send messages, open browsers, scrape, call APIs, connect CRMs, create invoices, use payments, use credentials, or schedule operating-system jobs without explicit approval.
+
+Completion notes:
+
+- Added `npm run mac:daily`.
+- Added `npm run mac:summary`.
+- Added `src/macAutomation` with typed command execution results, deterministic local summary rules, system health checks, and summary-only generation.
+- `npm run mac:daily` runs the dashboard, daily operator, pipeline prioritization, client operations, renewal tracker, and Commercial Mode summary commands in sequence.
+- Generated `output/mac-daily/mac-daily-summary.md`.
+- Generated `output/mac-daily/executed-reports.md`.
+- Generated `output/mac-daily/system-health.md`.
+- Generated `output/mac-daily/action-cockpit.md`.
+- `npm run mac:summary` refreshes the summary, system health, and action cockpit from existing local data and report outputs without rerunning the daily command sequence.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, email sending, LinkedIn automation, payments, credentials, external databases, or operating-system scheduled jobs were added.
+
+## Sprint 39: Revenue Command Center
+
+Goal:
+Create a single revenue-focused local view that combines MRR, projected MRR, audit opportunities, retainer opportunities, renewal opportunities, and expansion opportunities.
+
+Why it matters:
+After the daily Mac runner reduces operating friction, Daniel needs one revenue-specific command center that separates current booked value from projected opportunity value and next manual revenue actions.
+
+Suggested commands:
+
+```sh
+npm run revenue:command-center
+npm run revenue:forecast
+```
+
+What not to build yet:
+Do not connect banks, payment processors, invoices, CRMs, external databases, APIs, scraping, browsing, outreach automation, email sending, LinkedIn automation, credentials, or revenue claims not backed by local data.

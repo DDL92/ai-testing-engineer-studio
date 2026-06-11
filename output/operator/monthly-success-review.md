@@ -1,6 +1,6 @@
 # Monthly Success Review
 
-Generated At: 2026-06-11T17:40:20.740Z
+Generated At: 2026-06-11T21:28:11.998Z
 
 ## Month Summary
 
@@ -28,9 +28,6 @@ Generated At: 2026-06-11T17:40:20.740Z
 ## Expansion Overview
 
 - Demo Retainer SaaS: QA Automation Retainer -> expanded retainer scope: review next-month scope only after current reporting and evidence are approved. (demo-retainer-client)
-- Demo Retainer SaaS: Only discuss expansion after Daniel reviews scope, evidence, and client context. (demo-retainer-client)
-- Demo Retainer SaaS: Do not claim business impact, ROI, satisfaction, or retention probability. (demo-retainer-client)
-- Demo Retainer SaaS: No automated outreach, scheduling, CRM, invoices, payment systems, APIs, scraping, browser automation, or external databases are used. (demo-retainer-client)
 
 ## Top Opportunities
 

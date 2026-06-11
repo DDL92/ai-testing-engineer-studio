@@ -2,7 +2,7 @@
 
 ## Scope
 
-- Focused client: demo-retainer-client
+- All local clients
 
 ## Recommended Actions
 
@@ -12,6 +12,13 @@
 - Review scope, missing activity, and risk status before renewal discussion.
 - Identify expansion path for Daniel review.
 - Schedule manual renewal/value review after reports are approved.
+
+### Demo Starter Marketplace
+
+- Prepare or refresh evidence log: npm run client:evidence -- --id demo-starter-client
+- Prepare delivery report: npm run client:delivery-report -- --id demo-starter-client
+- Review scope, missing activity, and risk status before renewal discussion.
+- Identify expansion path for Daniel review.
 
 ## Manual Approval Rules
 

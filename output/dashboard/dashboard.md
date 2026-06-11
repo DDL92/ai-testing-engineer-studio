@@ -3,7 +3,8 @@
 ## Executive Summary
 
 - Status: local-ready
-- Generated At: 2026-06-11T16:59:21.537Z
+- Commercial Mode: ON
+- Generated At: 2026-06-11T22:18:22.550Z
 
 ## Revenue Snapshot
 
@@ -14,24 +15,24 @@
 
 ## Lead Snapshot
 
-- Total Leads: 50
+- Total Leads: 43
 - Tier A: 1
-- Tier B: 9
-- Tier C: 38
+- Tier B: 8
+- Tier C: 34
 
 ## Pipeline Snapshot
 
-- NEW_LEAD: 42
+- NEW_LEAD: 38
 - RESEARCH_READY: 4
 - AUDIT_READY: 0
 - OUTREACH_READY: 0
 - CONTACT_REVIEW: 0
 - FOLLOW_UP: 1
 - DISCOVERY_CALL: 0
-- SOW_READY: 2
+- SOW_READY: 0
 - CLIENT_READY: 0
 - CLIENT: 0
-- PAUSED: 1
+- PAUSED: 0
 - LOST: 0
 
 ## Top Opportunities
@@ -45,9 +46,9 @@
 | Fitli | 65 | NEW_LEAD | agency-partner-retainer | Generate research pack for Fitli. |
 | Momence | 65 | NEW_LEAD | agency-partner-retainer | Generate research pack for Momence. |
 | MyStudio | 65 | NEW_LEAD | agency-partner-retainer | Generate research pack for MyStudio. |
-| BookingFlow AI | 65 | SOW_READY | qa-automation-retainer | Review SOW and pricing manually for BookingFlow AI. |
 | TeamUp | 60 | RESEARCH_READY | qa-automation-retainer | Run or review audit workflow for TeamUp. |
 | Wodify | 60 | RESEARCH_READY | qa-automation-retainer | Run or review audit workflow for Wodify. |
+| Arketa | 55 | NEW_LEAD | qa-automation-retainer | Generate research pack for Arketa. |
 
 ## Follow-Ups Needed
 
@@ -61,7 +62,7 @@
 ## System Health
 
 - Typecheck status: Not run by dashboard generator. Run npm run typecheck for current validation.
-- Pipeline status: Ready. 48 local opportunities loaded.
+- Pipeline status: Ready. 43 local opportunities loaded.
 - Readiness status: Readiness report detected.
 
 ## Safety Rules

@@ -73,6 +73,7 @@ export function renderDashboardMarkdown(data: DashboardData): string {
 ## Executive Summary
 
 - Status: ${data.status}
+- Commercial Mode: ON
 - Generated At: ${data.generatedAt}
 
 ## Revenue Snapshot
@@ -225,7 +226,7 @@ export function renderDashboardHtml(data: DashboardData): string {
     <header>
       <div>
         <h1>AI Studio OS Dashboard</h1>
-        <p class="muted">Generated ${escapeHtml(data.generatedAt)}. Local-only business status.</p>
+        <p class="muted">Generated ${escapeHtml(data.generatedAt)}. Commercial Mode: ON. Local-only business status.</p>
       </div>
       <span class="badge">${escapeHtml(data.status)}</span>
     </header>
@@ -269,6 +270,8 @@ export function renderRevenueVisibilityMarkdown(data: RevenueVisibilityData): st
   return `# Revenue Visibility
 
 Generated: ${data.generatedAt}
+
+Commercial Mode: ON
 
 ## Current Revenue
 

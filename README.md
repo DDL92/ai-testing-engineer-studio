@@ -54,15 +54,26 @@ npm run report
 npm run audit -- --url https://example.com
 npm run audit:sample
 npm run audit:site -- --url https://example.com
+npm run lead:discover:assistant
+npm run lead:candidate-queue
+npm run lead:intake:approved
+npm run lead:intake:batch
 npm run audit:pack -- --id pushpress
 npm run outreach:pack -- --id pushpress
+npm run outreach:operating-pack
+npm run outreach:first-audit-path
 npm run contact:review -- --id pushpress
 npm run contact:update -- --id pushpress --status prepared --channel linkedin
 npm run client:prep -- --id pushpress
 npm run client:onboard -- --id pushpress
 npm run pipeline:opportunities
+npm run pipeline:prioritize
+npm run pipeline:next-actions
+npm run commercial:summary
 npm run dashboard
 npm run revenue:visibility
+npm run mac:daily
+npm run mac:summary
 npm run client:ops
 npm run client:next-actions
 npm run client:delivery -- --id demo-retainer-client
@@ -79,15 +90,21 @@ npm run success:monthly
 Reports are written to `reports/latest` and remain local.
 Local audit pack sales drafts are written to `output/audit-packs/{lead_id}` and require human approval before client use.
 Manual outreach packs are written to `output/outreach-packs/{lead_id}`. They are review-only drafts and do not send messages, automate LinkedIn, call APIs, scrape, or update a CRM.
+Real outreach operating packs are written to `output/outreach-operating` with Commercial Mode enabled by default. They exclude demo/sample leads, do not invent contacts or company facts, and do not send messages, scrape, browse, call APIs, automate LinkedIn/email, connect CRMs, use credentials, or access external systems.
 Contact review records are stored in `data/contact-reviews.json` and rendered to `output/contact-reviews/{lead_id}`. They track manually reviewed contact and follow-up status only.
 First client workflow assets are written to `output/client-workflows/{lead_id}` for discovery prep, audit sale planning, onboarding, delivery, and retainer conversion. They do not send messages, create invoices, request stored credentials, or connect payment/CRM tools.
 Pipeline opportunity reports are written to `output/pipeline` and summarize local lead, artifact, contact review, follow-up, proposal, and client workflow readiness without external systems.
+Pipeline prioritization reports are written to `output/pipeline-prioritization` for prioritized opportunities, top 10 revenue paths, top 5 manual actions, and stalled opportunities. They use deterministic local scoring only and do not scrape, browse, call APIs, automate outreach, connect CRMs, use credentials, or treat opportunity value as booked revenue.
+Commercial Mode reports are written to `output/commercial-mode` for demo/sample isolation and commercial-only opportunity summaries. Revenue-facing reports use the shared Commercial Mode rules so demo/sample leads remain available for testing without distorting commercial reporting.
 The daily dashboard writes `output/dashboard/dashboard.md`, `output/dashboard/dashboard.html`, and `output/dashboard/revenue-visibility.md` as static local reports.
 Client operations reports are written to `output/client-ops` for daily priorities, next actions, readiness groups, reporting needs, and manual approval rules.
 Client delivery artifacts are written to `output/client-delivery/{client_id}` for delivery planning, evidence logs, QA checklists, weekly summaries, and client update drafts.
 Polished client reporting artifacts are written to `output/client-reporting/{client_id}` for executive summaries, weekly reports, monthly reports, value delivered summaries, renewal signals, and draft client updates. They are evidence-first, local-only, and require Daniel review before sending.
 Renewal and expansion reports are written to `output/renewals` for client health, renewal risk, expansion opportunities, renewal actions, and the renewal pipeline. They use local client data and generated artifacts only.
 The daily operator and success rhythm reports are written to `output/operator` as one local command center plus weekly and monthly reviews. They summarize pipeline, follow-ups, client health, renewals, expansion watchlists, and suggested human-approved commands.
+Mac Daily Automation reports are written to `output/mac-daily` for one-command local refreshes of dashboard, operator, pipeline prioritization, client operations, renewals, and Commercial Mode summaries. `npm run mac:summary` reads existing local outputs only and refreshes the consolidated daily summary, system health, and action cockpit without rerunning the full report sequence.
+Lead discovery automation reports are written to `output/lead-discovery-automation` for manual search guidance, a 50-query search playbook, a blank candidate queue template, and an approval checklist. They do not scrape, browse, call APIs, invent companies, automate outreach, connect CRMs, use credentials, or add leads without Daniel approval.
+Lead intake reports are written to `output/lead-intake` for approved candidates, rejected candidates, intake summaries, and copy/paste-ready `lead:add` command batches. They do not execute commands, modify `data/leads.json`, scrape, browse, call APIs, automate outreach, use CRMs, use credentials, or create leads without Daniel approval.
 
 ## Lead Operator
 

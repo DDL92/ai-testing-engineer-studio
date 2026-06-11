@@ -2,13 +2,14 @@
 
 ## Scope
 
-- Focused client: demo-retainer-client
+- All local clients
 
 ## Health Summary
 
 | Client | Health | Score | Deliverables | Evidence Count | Reports | Next Actions | Follow-Up Items |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Demo Retainer SaaS | YELLOW | 6 | 3 | 0 | 6 | 3 | 3 |
+| Demo Starter Marketplace | YELLOW | 6 | 2 | 0 | 0 | 2 | 2 |
 
 ## Classification Rules
 

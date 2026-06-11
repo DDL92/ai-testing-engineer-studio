@@ -7,6 +7,11 @@ export interface ClientOpsInput {
   leads: Lead[];
   clients: Client[];
   contactReviews: ContactReviewRecord[];
+  commercialMode?: {
+    totalLeads: number;
+    commercialLeads: number;
+    excludedDemoLeads: number;
+  };
   pipelineMarkdownExists: boolean;
   topOpportunitiesMarkdownExists: boolean;
 }
@@ -32,6 +37,12 @@ export interface ClientReadinessGroups {
 
 export interface ClientOpsCenter {
   generatedAt: string;
+  commercialMode: {
+    enabled: boolean;
+    totalLeads: number;
+    commercialLeads: number;
+    excludedDemoLeads: number;
+  };
   opportunities: OpportunityItem[];
   clients: Client[];
   actions: ClientOpsAction[];

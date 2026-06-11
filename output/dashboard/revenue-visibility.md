@@ -1,6 +1,8 @@
 # Revenue Visibility
 
-Generated: 2026-06-11T16:59:30.252Z
+Generated: 2026-06-11T22:07:22.380Z
+
+Commercial Mode: ON
 
 ## Current Revenue
 
@@ -15,7 +17,7 @@ Active clients:
 ## Opportunity Revenue
 
 - Tier A opportunity estimate: $1,500-$3,000
-- Tier B opportunity estimate: $13,500-$27,000
+- Tier B opportunity estimate: $12,000-$24,000
 - These are opportunity ranges from local pipeline items, not guaranteed revenue.
 
 ## Conversion Scenarios

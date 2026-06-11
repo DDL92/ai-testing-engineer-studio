@@ -8,6 +8,7 @@
 - YELLOW: 2
 - RED: 0
 - Monthly value is read from local client data only.
+- Commercial Mode: ON for revenue-facing reporting. Demo/sample lead filtering is handled before lead-based opportunity reports.
 
 ## Renewal Tracker
 
