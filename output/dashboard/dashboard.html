@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Studio OS Dashboard</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --text: #1c2530;
+      --muted: #5f6b7a;
+      --line: #d9dee7;
+      --accent: #0f766e;
+      --accent-soft: #d9f0ec;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 40px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+    h1, h2 { margin: 0; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 18px; margin-bottom: 12px; }
+    .muted { color: var(--muted); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    section, .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .metric strong {
+      display: block;
+      font-size: 24px;
+      margin-top: 4px;
+    }
+    .stack {
+      display: grid;
+      gap: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      padding: 9px 8px;
+      vertical-align: top;
+    }
+    th {
+      color: var(--muted);
+      font-weight: 700;
+      background: #fbfcfd;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    ul { margin: 0; padding-left: 18px; }
+    @media (max-width: 860px) {
+      header { display: block; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+    }
+    @media (max-width: 520px) {
+      main { width: min(100% - 20px, 1180px); padding-top: 16px; }
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>AI Studio OS Dashboard</h1>
+        <p class="muted">Generated 2026-06-11T16:59:21.537Z. Local-only business status.</p>
+      </div>
+      <span class="badge">local-ready</span>
+    </header>
+
+    <div class="grid">
+      <div class="metric"><span class="muted">Estimated MRR</span><strong>$2,000</strong></div>
+      <div class="metric"><span class="muted">Active Clients</span><strong>2</strong></div>
+      <div class="metric"><span class="muted">Tier A</span><strong>1</strong></div>
+      <div class="metric"><span class="muted">Follow-Ups</span><strong>1</strong></div>
+    </div>
+
+    <div class="stack">
+      <section>
+        <h2>Pipeline Snapshot</h2>
+        <table><thead><tr><th>Stage</th><th>Count</th></tr></thead><tbody><tr><td>NEW_LEAD</td><td>42</td></tr><tr><td>RESEARCH_READY</td><td>4</td></tr><tr><td>AUDIT_READY</td><td>0</td></tr><tr><td>OUTREACH_READY</td><td>0</td></tr><tr><td>CONTACT_REVIEW</td><td>0</td></tr><tr><td>FOLLOW_UP</td><td>1</td></tr><tr><td>DISCOVERY_CALL</td><td>0</td></tr><tr><td>SOW_READY</td><td>2</td></tr><tr><td>CLIENT_READY</td><td>0</td></tr><tr><td>CLIENT</td><td>0</td></tr><tr><td>PAUSED</td><td>1</td></tr><tr><td>LOST</td><td>0</td></tr></tbody></table>
+      </section>
+      <section>
+        <h2>Top Opportunities</h2>
+        <table><thead><tr><th>Company</th><th>Score</th><th>Stage</th><th>Offer</th><th>Next Action</th></tr></thead><tbody><tr><td>PushPress</td><td>100</td><td>FOLLOW_UP</td><td>qa-automation-retainer</td><td>Monitor manually for follow-up on 2026-06-15.</td></tr><tr><td>ABC Glofox</td><td>65</td><td>NEW_LEAD</td><td>agency-partner-retainer</td><td>Generate research pack for ABC Glofox.</td></tr><tr><td>Bookee</td><td>65</td><td>NEW_LEAD</td><td>agency-partner-retainer</td><td>Generate research pack for Bookee.</td></tr><tr><td>Bsport</td><td>65</td><td>NEW_LEAD</td><td>agency-partner-retainer</td><td>Generate research pack for Bsport.</td></tr><tr><td>Fitli</td><td>65</td><td>NEW_LEAD</td><td>agency-partner-retainer</td><td>Generate research pack for Fitli.</td></tr><tr><td>Momence</td><td>65</td><td>NEW_LEAD</td><td>agency-partner-retainer</td><td>Generate research pack for Momence.</td></tr><tr><td>MyStudio</td><td>65</td><td>NEW_LEAD</td><td>agency-partner-retainer</td><td>Generate research pack for MyStudio.</td></tr><tr><td>BookingFlow AI</td><td>65</td><td>SOW_READY</td><td>qa-automation-retainer</td><td>Review SOW and pricing manually for BookingFlow AI.</td></tr><tr><td>TeamUp</td><td>60</td><td>RESEARCH_READY</td><td>qa-automation-retainer</td><td>Run or review audit workflow for TeamUp.</td></tr><tr><td>Wodify</td><td>60</td><td>RESEARCH_READY</td><td>qa-automation-retainer</td><td>Run or review audit workflow for Wodify.</td></tr></tbody></table>
+      </section>
+      <section>
+        <h2>Immediate Actions</h2>
+        <ul><li>PushPress: Monitor manually for follow-up on 2026-06-15.</li><li>TeamUp: Run or review audit workflow for TeamUp.</li></ul>
+      </section>
+      <section>
+        <h2>System Health</h2>
+        <ul>
+          <li>Typecheck status: Not run by dashboard generator. Run npm run typecheck for current validation.</li>
+          <li>Pipeline status: Ready. 48 local opportunities loaded.</li>
+          <li>Readiness status: Readiness report detected.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

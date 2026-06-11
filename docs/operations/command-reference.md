@@ -88,6 +88,190 @@ Output file:
 Safety note:
 Prioritizes manual work. It does not send messages or connect a CRM.
 
+## `npm run outreach:pack`
+
+Purpose:
+Generate safe manual outreach assets from one qualified lead, using local research, audit pack, and audit report availability.
+
+Example:
+
+```sh
+npm run outreach:pack -- --id pushpress
+```
+
+Output files:
+`output/outreach-packs/{lead_id}/contact-strategy.md`
+`output/outreach-packs/{lead_id}/linkedin-message.md`
+`output/outreach-packs/{lead_id}/email-draft.md`
+`output/outreach-packs/{lead_id}/follow-up-1.md`
+`output/outreach-packs/{lead_id}/follow-up-2.md`
+`output/outreach-packs/{lead_id}/call-invite.md`
+`output/outreach-packs/{lead_id}/safety-checklist.md`
+
+Safety note:
+Uses local files only. It does not scrape, browse, call APIs, send email, automate LinkedIn, create CRM integrations, invent contacts, or invent audit findings. Human approval is required before outreach.
+
+## `npm run contact:review`
+
+Purpose:
+Create or refresh a local contact review report for one lead, including contact research status, outreach assets, approval checklist, follow-up plan, and safety rules.
+
+Example:
+
+```sh
+npm run contact:review -- --id pushpress
+```
+
+Output files:
+`data/contact-reviews.json`
+`output/contact-reviews/{lead_id}/contact-review.md`
+
+Safety note:
+Creates a local review record only. It does not invent contact information, scrape, browse, call APIs, send messages, automate LinkedIn, use credentials, or connect a CRM.
+
+## `npm run contact:update`
+
+Purpose:
+Update a local contact review record after Daniel manually verifies contact details, approves a message, sends manually, or chooses a follow-up date.
+
+Example:
+
+```sh
+npm run contact:update -- --id pushpress --status prepared --channel linkedin --contactName "Manual Placeholder" --contactRole "Head of Engineering" --contactUrl "https://linkedin.com/company/pushpress" --nextFollowUpDate "2026-06-15" --notes "Demo-only manual contact review placeholder, not sent."
+```
+
+Output file:
+`data/contact-reviews.json`
+
+Safety note:
+Updates local JSON only. It does not validate URLs externally, send messages, automate follow-ups, scrape contact data, call APIs, or sync a CRM.
+
+## `npm run client:prep`
+
+Purpose:
+Prepare discovery call and audit sale planning assets for an eligible lead using local lead data and available local workflow artifacts.
+
+Example:
+
+```sh
+npm run client:prep -- --id pushpress
+```
+
+Output files:
+`output/client-workflows/{lead_id}/discovery-call-prep.md`
+`output/client-workflows/{lead_id}/audit-sale-plan.md`
+
+Safety note:
+Local preparation only. It does not send outreach, automate calls, scrape, browse, call APIs, create invoices, create payment links, use credentials, or connect a CRM.
+
+## `npm run client:onboard`
+
+Purpose:
+Generate first-client onboarding, delivery, and retainer conversion planning assets for an eligible lead.
+
+Example:
+
+```sh
+npm run client:onboard -- --id pushpress
+```
+
+Output files:
+`output/client-workflows/{lead_id}/onboarding-checklist.md`
+`output/client-workflows/{lead_id}/delivery-plan.md`
+`output/client-workflows/{lead_id}/retainer-conversion-plan.md`
+
+Safety note:
+Local planning only. It does not request stored credentials, send messages, automate calls, create invoices, connect payment tools, or create CRM integrations.
+
+## `npm run pipeline:opportunities`
+
+Purpose:
+Generate a local commercial control center that ranks opportunities, summarizes pipeline stage counts, and highlights manual follow-ups.
+
+Example:
+
+```sh
+npm run pipeline:opportunities
+```
+
+Output files:
+`output/pipeline/opportunity-tracker.md`
+`output/pipeline/top-opportunities.md`
+`output/pipeline/follow-up-needed.md`
+
+Safety note:
+Reads local files only. It does not scrape, browse, call APIs, send outreach, automate LinkedIn/email, connect a CRM, use external databases, create invoices, or connect payment systems. Human approval remains required before external action.
+
+## `npm run dashboard`
+
+Purpose:
+Generate the daily local executive dashboard as markdown and static HTML.
+
+Example:
+
+```sh
+npm run dashboard
+```
+
+Output files:
+`output/dashboard/dashboard.md`
+`output/dashboard/dashboard.html`
+
+Safety note:
+Reads local JSON and generated artifacts only. It does not scrape, browse, call APIs, send outreach, automate LinkedIn/email, connect a CRM, create invoices, use payment systems, or use external databases.
+
+## `npm run revenue:visibility`
+
+Purpose:
+Generate a local revenue visibility report with current MRR, active clients, opportunity estimates, and conversion scenarios.
+
+Example:
+
+```sh
+npm run revenue:visibility
+```
+
+Output file:
+`output/dashboard/revenue-visibility.md`
+
+Safety note:
+Revenue opportunity values are estimates only, not booked revenue. This command does not connect payment tools, bank data, invoices, APIs, CRMs, scraping, browsing, or external databases.
+
+## `npm run client:ops`
+
+Purpose:
+Generate the local Client Operations Center for daily priorities, pipeline health, follow-ups, client prep, delivery prep, reporting needs, risks, and recommended commands.
+
+Example:
+
+```sh
+npm run client:ops
+```
+
+Output files:
+`output/client-ops/client-operations-center.md`
+`output/client-ops/client-readiness.md`
+
+Safety note:
+Reads local files only. It does not scrape, browse, call APIs, send outreach, automate LinkedIn/email, connect a CRM, create invoices, use payment systems, use credentials, or use external databases.
+
+## `npm run client:next-actions`
+
+Purpose:
+Generate a focused next-actions list for top opportunities with stage, score, reason, recommended command, and manual approval note.
+
+Example:
+
+```sh
+npm run client:next-actions
+```
+
+Output file:
+`output/client-ops/next-actions.md`
+
+Safety note:
+Local planning only. All outreach, follow-ups, calls, proposals, client reports, invoices, and delivery actions require Daniel approval before external use.
+
 ## `npm run audit:site`
 
 Purpose:
@@ -104,6 +288,27 @@ Output file:
 
 Safety note:
 Do not log in, submit forms, bypass auth, test payment flows, or use credentials.
+
+## `npm run audit:pack`
+
+Purpose:
+Transform an existing qualified lead into a sellable QA Audit Pack using local lead data, local research packs, and local audit outputs.
+
+Example:
+
+```sh
+npm run audit:pack -- --id pushpress
+```
+
+Output files:
+`output/audit-packs/{lead_id}/executive-summary.md`
+`output/audit-packs/{lead_id}/qa-risk-summary.md`
+`output/audit-packs/{lead_id}/playwright-opportunities.md`
+`output/audit-packs/{lead_id}/automation-roadmap.md`
+`output/audit-packs/{lead_id}/retainer-recommendation.md`
+
+Safety note:
+Uses local files only. It does not scrape, call APIs, browse, or send outreach. Human approval is required before any generated document is used client-side.
 
 ## `npm run sow:generate`
 

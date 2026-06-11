@@ -951,5 +951,22 @@
     "createdAt": "2026-06-11T05:43:05.519Z",
     "updatedAt": "2026-06-11T05:43:05.519Z",
     "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
+  },
+  {
+    "id": "leonardo-zoho-creator-portal",
+    "companyName": "Leonardo Zoho Creator Portal",
+    "website": "https://leonardo5105.zohocreatorportal.com",
+    "industry": "Business Application Platform",
+    "source": "Referral",
+    "status": "new",
+    "fitNotes": "Referral lead. Zoho Creator application with calendar, workflows, forms and business operations. Potential QA audit opportunity around user flows, permissions, calendar functionality and regression testing.",
+    "painPoints": [
+      "regression testing opportunity"
+    ],
+    "recommendedOffer": "not-fit",
+    "score": 3,
+    "createdAt": "2026-06-11T17:05:11.627Z",
+    "updatedAt": "2026-06-11T17:05:11.627Z",
+    "nextAction": "Review lead pack, confirm fit, and decide whether to prepare a QA audit angle."
   }
 ]

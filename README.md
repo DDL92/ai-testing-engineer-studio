@@ -53,9 +53,28 @@ npm run report
 ```bash
 npm run audit -- --url https://example.com
 npm run audit:sample
+npm run audit:site -- --url https://example.com
+npm run audit:pack -- --id pushpress
+npm run outreach:pack -- --id pushpress
+npm run contact:review -- --id pushpress
+npm run contact:update -- --id pushpress --status prepared --channel linkedin
+npm run client:prep -- --id pushpress
+npm run client:onboard -- --id pushpress
+npm run pipeline:opportunities
+npm run dashboard
+npm run revenue:visibility
+npm run client:ops
+npm run client:next-actions
 ```
 
 Reports are written to `reports/latest` and remain local.
+Local audit pack sales drafts are written to `output/audit-packs/{lead_id}` and require human approval before client use.
+Manual outreach packs are written to `output/outreach-packs/{lead_id}`. They are review-only drafts and do not send messages, automate LinkedIn, call APIs, scrape, or update a CRM.
+Contact review records are stored in `data/contact-reviews.json` and rendered to `output/contact-reviews/{lead_id}`. They track manually reviewed contact and follow-up status only.
+First client workflow assets are written to `output/client-workflows/{lead_id}` for discovery prep, audit sale planning, onboarding, delivery, and retainer conversion. They do not send messages, create invoices, request stored credentials, or connect payment/CRM tools.
+Pipeline opportunity reports are written to `output/pipeline` and summarize local lead, artifact, contact review, follow-up, proposal, and client workflow readiness without external systems.
+The daily dashboard writes `output/dashboard/dashboard.md`, `output/dashboard/dashboard.html`, and `output/dashboard/revenue-visibility.md` as static local reports.
+Client operations reports are written to `output/client-ops` for daily priorities, next actions, readiness groups, reporting needs, and manual approval rules.
 
 ## Lead Operator
 
@@ -85,7 +104,7 @@ npm run dashboard:check
 npm run validate:business
 ```
 
-The local dashboard runs at `http://localhost:4173` and only reads local generated files. The Action Cockpit page ranks the next human-reviewed revenue actions from `data/leads/action-cockpit.json` and `sales-marketing-engine/operator/generated/action-cockpit.md`.
+The local dashboard viewer can still be started with `npm run dashboard:dev` at `http://localhost:4173` and only reads local generated files. The Action Cockpit page ranks the next human-reviewed revenue actions from `data/leads/action-cockpit.json` and `sales-marketing-engine/operator/generated/action-cockpit.md`.
 
 The lead operator stores local JSON data in `data/leads`, writes proposal drafts to `sales-marketing-engine/operator/approval-queue`, and writes daily, pipeline, revenue, weekly, and action cockpit reports to `sales-marketing-engine/operator/generated`. No outreach is sent automatically.
 

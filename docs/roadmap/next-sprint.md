@@ -552,3 +552,226 @@ npm run discovery:queue
 
 What not to build yet:
 Do not scrape, browse automatically, use APIs, enrich contact data, auto-send messages, connect CRM tools, or create dashboards.
+
+Sprint 22 should create an Audit Pack Generator that turns a qualified lead, local research pack, and existing audit output into sellable QA audit pack documents.
+
+## Sprint 22: Audit Pack Generator
+
+Goal:
+Transform an existing qualified lead into a sellable QA Audit Pack.
+
+Why it matters:
+The system needs a local bridge from lead qualification and audit evidence into client-reviewable QA audit assets.
+
+Expected commands if relevant:
+
+```sh
+npm run audit:pack -- --id lead_id
+```
+
+What not to build yet:
+Do not scrape, call APIs, send outreach, browse, use credentials, or invent audit findings.
+
+Completion notes:
+
+- Added `npm run audit:pack -- --id lead_id`.
+- The command reads local lead data, detects local research packs, detects local audit reports, and writes five review-only audit pack documents under `output/audit-packs/{lead_id}/`.
+- Generated documents cover executive summary, QA risk summary, Playwright opportunities, automation roadmap, and retainer recommendation.
+- Paused, lost, not-fit, and low-score leads are blocked before generation.
+- No scraping, APIs, browsing, outreach, credentials, or client system access were added.
+
+Sprint 23 should create an Outreach Pack Generator so reviewed audit packs can become safe manual contact assets without automating messages.
+
+## Sprint 23: Outreach Pack Generator
+
+Goal:
+Turn a qualified lead, research pack, audit pack, and audit report availability into safe manual outreach drafts.
+
+Why it matters:
+Daniel needs approved outreach assets after an audit pack exists, but the system must not send messages, automate LinkedIn, or invent claims.
+
+Expected commands if relevant:
+
+```sh
+npm run outreach:pack -- --id lead_id
+```
+
+What not to build yet:
+Do not install packages, use APIs, scrape, browse, automate LinkedIn, send emails/messages, create CRM integrations, invent contacts, or invent audit findings.
+
+Completion notes:
+
+- Added `npm run outreach:pack -- --id lead_id`.
+- The command reads local lead data, detects local research packs, detects local audit packs, detects local audit reports, and writes outreach assets under `output/outreach-packs/{lead_id}/`.
+- Generated files include contact strategy, LinkedIn message, email draft, two follow-ups, call invite, and safety checklist.
+- Outreach copy uses deterministic offer and score logic, keeps tone short and no-pressure, and uses role types instead of invented people.
+- The generator blocks paused, lost, not-fit, and low-score leads.
+- No packages, APIs, scraping, browsing, email sending, LinkedIn automation, CRM integrations, credentials, invented contacts, or invented findings were added.
+
+Sprint 24 should create Contact Review + Follow-Up Tracker so manually found contacts and approved send/follow-up decisions can be tracked locally without automating outreach.
+
+## Sprint 24: Contact Review + Follow-Up Tracker
+
+Goal:
+Create a local review tracker for manually found contacts, approved outreach status, and follow-up dates.
+
+Why it matters:
+Once outreach packs exist, Daniel needs a safe way to remember which contact was reviewed, which message was approved, what was sent manually, and when to follow up.
+
+Expected commands if relevant:
+
+```sh
+npm run contact:review -- --id lead_id
+npm run followup:track -- --id lead_id
+```
+
+What not to build yet:
+Do not send messages, sync calendars, scrape contacts, enrich private data, automate LinkedIn/email, connect a CRM, or use external APIs.
+
+Completion notes:
+
+- Added `npm run contact:review -- --id lead_id`.
+- Added `npm run contact:update -- --id lead_id` for safe local updates to contact status, message status, channel, manually verified contact fields, follow-up date, and notes.
+- Added `data/contact-reviews.json` as the local contact review store.
+- Contact review reports write to `output/contact-reviews/{lead_id}/contact-review.md`.
+- Reports include lead summary, contact research status, target roles, current contact record, outreach asset availability, manual approval checklist, follow-up plan, recommended next action, and safety rules.
+- The update command preserves omitted fields and updates local JSON only.
+- Outreach queue integration with contact review status remains future work to avoid refactoring the existing queue path in this sprint.
+- No packages, APIs, scraping, browsing, credentials, automated LinkedIn/email, CRM integrations, invented contacts, or message sending were added.
+
+Sprint 25 should create the First Client Workflow so a won audit or starter engagement can move into local onboarding, delivery checklist, report generation, and retainer follow-up without using real client credentials by default.
+
+## Sprint 25: First Client Workflow
+
+Goal:
+Create a local workflow for onboarding the first paying QA audit or Playwright starter client from accepted scope through delivery and retainer follow-up.
+
+Why it matters:
+Once outreach and follow-up tracking produce a real opportunity, Daniel needs a repeatable delivery path that stays evidence-first and avoids leaking credentials or client data.
+
+Expected commands if relevant:
+
+```sh
+npm run client:prep -- --id lead_id
+npm run client:onboard -- --id lead_id
+```
+
+What not to build yet:
+Do not connect production client systems, store real credentials, upload sensitive screenshots, automate client communication, connect payment tools, or create a SaaS dashboard.
+
+Completion notes:
+
+- Added `npm run client:prep -- --id lead_id` for discovery call prep and audit sale planning.
+- Added `npm run client:onboard -- --id lead_id` for onboarding checklist, delivery plan, and retainer conversion planning.
+- Client workflow assets write to `output/client-workflows/{lead_id}/`.
+- Eligibility blocks paused, lost, not-fit, and score-below-6 leads.
+- Discovery prep includes practical QA risk, qualification, audit opportunity, retainer opportunity, red flags, call goals, and next-step options.
+- Onboarding and delivery plans avoid storing credentials and keep all client communication, invoicing, payment, and CRM work manual and outside the command.
+- No packages, APIs, scraping, browsing, outreach, invoices, payment integrations, credentials, CRM integrations, or call automation were added.
+
+Sprint 26 should create Pipeline Management + Opportunity Tracker so lead, contact, proposal, client workflow, and follow-up status can be summarized into one local opportunity view.
+
+## Sprint 26: Pipeline Management + Opportunity Tracker
+
+Goal:
+Create a local opportunity tracker that summarizes qualified leads, contact reviews, outreach status, proposal readiness, client workflow readiness, and follow-up timing.
+
+Why it matters:
+Daniel needs one local view of which opportunities are ready for outreach, discovery, audit sale, onboarding, delivery, retainer conversion, or follow-up.
+
+Expected commands if relevant:
+
+```sh
+npm run pipeline:opportunities
+```
+
+What not to build yet:
+Do not create a hosted CRM, sync external contacts, scrape, call APIs, automate outreach, create invoices, connect payment tools, or use private client credentials.
+
+Completion notes:
+
+- Added `npm run pipeline:opportunities`.
+- The command reads `data/leads.json`, `data/contact-reviews.json`, and local output folders for research packs, audit packs, outreach packs, SOWs, contact reviews, and client workflows.
+- Generated reports write to `output/pipeline/opportunity-tracker.md`, `output/pipeline/top-opportunities.md`, and `output/pipeline/follow-up-needed.md`.
+- Pipeline stages are inferred deterministically from local lead status, contact review status, follow-up dates, and artifact presence.
+- Opportunity scores use local lead score, offer fit, tier, and local artifact readiness only.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, email sending, LinkedIn automation, payment systems, or external databases were added.
+
+Sprint 27 should create Client Dashboard + Revenue Visibility so local pipeline, client workflow, revenue, and delivery status can be viewed together without creating a hosted SaaS or external integrations.
+
+## Sprint 27: Client Dashboard + Revenue Visibility
+
+Goal:
+Create a local dashboard/report view that combines opportunity pipeline, client workflow readiness, revenue summary, active clients, and next commercial actions.
+
+Why it matters:
+Daniel needs a single revenue visibility layer after the pipeline tracker exists, so daily decisions can connect lead work, client prep, active delivery, and retainer growth.
+
+Expected commands if relevant:
+
+```sh
+npm run dashboard
+npm run revenue:visibility
+```
+
+What not to build yet:
+Do not create hosted analytics, external databases, CRM integrations, payment integrations, invoice systems, scraping, outreach automation, or credentialed client connections.
+
+Completion notes:
+
+- Added `npm run dashboard` to generate `output/dashboard/dashboard.md` and `output/dashboard/dashboard.html`.
+- Added `npm run revenue:visibility` to generate `output/dashboard/revenue-visibility.md`.
+- Dashboard summarizes executive status, revenue snapshot, lead tiers, pipeline stages, top opportunities, follow-ups, immediate actions, and system health.
+- Static HTML dashboard uses plain HTML/CSS only with no JavaScript libraries, frameworks, CSS frameworks, APIs, or external assets.
+- Revenue visibility shows estimated MRR, active clients, Tier A/B opportunity estimates, and conservative/expected/optimistic retainer scenarios.
+- Existing local dashboard viewer remains available through `npm run dashboard:dev`.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, email sending, LinkedIn automation, payment systems, invoices, external databases, or credentialed client connections were added.
+
+Sprint 28 should create Client Operations Center so active client delivery, reports, risks, next actions, and retainer renewal work can be managed locally from one operations view.
+
+## Sprint 28: Client Operations Center
+
+Goal:
+Create a local client operations center for active clients, delivery status, report readiness, open risks, renewal opportunities, and next manual actions.
+
+Why it matters:
+Once the business dashboard exists, Daniel needs a focused delivery view for protecting active revenue and preparing client reports or renewal conversations.
+
+Expected commands if relevant:
+
+```sh
+npm run client:ops
+npm run client:next-actions
+```
+
+What not to build yet:
+Do not connect client systems, store credentials, upload sensitive screenshots, send client messages, create invoices, connect payment tools, use CRMs, or build a hosted SaaS dashboard.
+
+Completion notes:
+
+- Added `npm run client:ops` to generate `output/client-ops/client-operations-center.md` and `output/client-ops/client-readiness.md`.
+- Added `npm run client:next-actions` to generate `output/client-ops/next-actions.md`.
+- Client ops reads local leads, clients, contact reviews, pipeline reports, top-opportunity reports, and generated artifact folders.
+- Reports include operating priorities, pipeline health, opportunities closest to revenue, follow-ups, client prep, delivery prep, reporting needs, readiness groups, risks, recommended commands, and manual approval rules.
+- Recommendations use deterministic pipeline stage and opportunity score data only.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, email sending, LinkedIn automation, payment systems, invoice generation, external databases, credentials, or client-system access were added.
+
+Sprint 29 should create Client Delivery Engine so approved client work can move from onboarding into evidence collection, delivery artifacts, report readiness, and retainer renewal support while remaining local-first.
+
+## Sprint 29: Client Delivery Engine
+
+Goal:
+Create a local delivery engine for approved client engagements that organizes scope, evidence, delivery artifacts, report readiness, open risks, and renewal prompts.
+
+Why it matters:
+After the operations center identifies client work, Daniel needs a delivery path that protects active revenue and turns approved work into client-ready evidence without leaking credentials or sensitive data.
+
+Expected commands if relevant:
+
+```sh
+npm run client:delivery -- --id client_id
+npm run client:evidence -- --id client_id
+```
+
+What not to build yet:
+Do not connect production systems, store credentials, upload private screenshots, send client messages, create invoices, connect payment tools, use CRMs, or automate client delivery without approval.
