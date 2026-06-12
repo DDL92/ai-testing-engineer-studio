@@ -488,6 +488,123 @@ Output file:
 Safety note:
 Sales preparation only. It does not send messages, invent findings, guarantee outcomes, use APIs, scrape, browse, connect CRMs, automate outreach, use payment systems, or use credentials.
 
+## `npm run proposal:center`
+
+Purpose:
+Generate the Proposal Command Center with proposal-ready leads, audit offer candidates, starter pack candidates, retainer candidates, missing requirements, pricing recommendations, SOW readiness, and approval checks.
+
+Example:
+
+```sh
+npm run proposal:center
+```
+
+Output files:
+`output/proposal-center/proposal-command-center.md`
+`output/proposal-center/sow-readiness-report.md`
+`output/proposal-center/proposal-priority-list.md`
+`output/proposal-center/pricing-recommendations.md`
+`output/proposal-center/approval-checklist.md`
+
+Safety note:
+Local-only proposal preparation. It does not send proposals or SOWs, use APIs, scrape, browse, connect CRMs, automate outreach, send email, use payment systems, use credentials, invent clients, invent findings, or treat opportunities as booked revenue.
+
+## `npm run sow:center`
+
+Purpose:
+Refresh only the SOW readiness report for the Top 5 commercial leads.
+
+Example:
+
+```sh
+npm run sow:center
+```
+
+Output file:
+`output/proposal-center/sow-readiness-report.md`
+
+Safety note:
+Readiness reporting only. Daniel must approve scope, pricing, findings, assumptions, exclusions, and any client-facing use before sending a SOW.
+
+## `npm run outreach:execute-pack`
+
+Purpose:
+Generate the Real Outreach Execution Pack with final review-only message drafts, contact research plan, follow-up plan, first audit CTA, and approval checklist for the Top 5 commercial leads.
+
+Example:
+
+```sh
+npm run outreach:execute-pack
+```
+
+Output files:
+`output/outreach-execution/outreach-execution-pack.md`
+`output/outreach-execution/final-message-drafts.md`
+`output/outreach-execution/contact-research-plan.md`
+`output/outreach-execution/follow-up-plan.md`
+`output/outreach-execution/first-audit-cta.md`
+`output/outreach-execution/approval-checklist.md`
+
+Safety note:
+Manual outreach preparation only. It does not send messages, use APIs, scrape, browse, connect CRMs, send email, automate LinkedIn, automate outreach, use payments, use credentials, invent contacts, invent findings, or invent company facts.
+
+## `npm run outreach:follow-up-plan`
+
+Purpose:
+Refresh only the manual follow-up plan for the Top 5 commercial leads.
+
+Example:
+
+```sh
+npm run outreach:follow-up-plan
+```
+
+Output file:
+`output/outreach-execution/follow-up-plan.md`
+
+Safety note:
+Planning only. It does not schedule, send, automate, or update external systems. Daniel must manually approve, send, and record any follow-up.
+
+## `npm run first-audit:workflow`
+
+Purpose:
+Generate the First Audit Sale Workflow for positive replies, discovery call prep, audit scope confirmation, manual payment/invoice tracking boundaries, kickoff, delivery, reporting, and retainer upgrade path.
+
+Example:
+
+```sh
+npm run first-audit:workflow
+```
+
+Output files:
+`output/first-audit-workflow/first-audit-workflow.md`
+`output/first-audit-workflow/discovery-call-prep.md`
+`output/first-audit-workflow/audit-scope-confirmation.md`
+`output/first-audit-workflow/audit-kickoff-plan.md`
+`output/first-audit-workflow/audit-delivery-checklist.md`
+`output/first-audit-workflow/retainer-upgrade-path.md`
+`output/first-audit-workflow/approval-checklist.md`
+
+Safety note:
+Workflow preparation only. It does not process payments, generate invoices, send outreach, call APIs, scrape, browse, connect CRMs, use credentials, invent findings, invent defects, invent clients, or guarantee outcomes.
+
+## `npm run first-audit:kickoff`
+
+Purpose:
+Refresh only the audit kickoff plan for an approved first audit.
+
+Example:
+
+```sh
+npm run first-audit:kickoff
+```
+
+Output file:
+`output/first-audit-workflow/audit-kickoff-plan.md`
+
+Safety note:
+Kickoff planning only. Scope, approvals, and manual payment/invoice status must be reviewed outside this command before delivery begins.
+
 ## `npm run client:ops`
 
 Purpose:

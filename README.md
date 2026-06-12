@@ -76,6 +76,12 @@ npm run revenue:command-center
 npm run revenue:forecast
 npm run client-readiness:pack
 npm run first-audit:sales-pack
+npm run proposal:center
+npm run sow:center
+npm run outreach:execute-pack
+npm run outreach:follow-up-plan
+npm run first-audit:workflow
+npm run first-audit:kickoff
 npm run mac:daily
 npm run mac:summary
 npm run client:ops
@@ -103,6 +109,9 @@ Commercial Mode reports are written to `output/commercial-mode` for demo/sample 
 The daily dashboard writes `output/dashboard/dashboard.md`, `output/dashboard/dashboard.html`, and `output/dashboard/revenue-visibility.md` as static local reports.
 The Revenue Command Center writes `output/revenue-command-center` reports for booked MRR, speculative MRR forecasts, audit opportunities, retainer opportunities, renewal/expansion visibility, property-progress scenarios, and top manual revenue actions. It uses local Studio data only and does not treat opportunities as booked revenue.
 The Real Client Readiness Pack writes `output/real-client-readiness` reports for Top 5 commercial lead readiness, manual contact planning, outreach safety checks, first audit sales positioning, and SOW readiness. It does not invent contacts or findings and does not send outreach.
+The Proposal Command Center writes `output/proposal-center` reports for proposal-ready leads, SOW readiness, proposal priority, pricing recommendations, and approval checks. It is local-only and does not send proposals, invent findings, or treat opportunities as booked revenue.
+The Real Outreach Execution Pack writes `output/outreach-execution` reports for final message drafts, manual contact research, follow-up timing, first audit CTA, and approval checks. It does not send messages, invent contacts, invent findings, browse, scrape, automate outreach, or connect external systems.
+The First Audit Sale Workflow writes `output/first-audit-workflow` reports for positive-reply handling, discovery call prep, audit scope confirmation, kickoff, delivery, retainer upgrade path, and approval checks. It does not process payments, generate invoices, invent findings, or guarantee outcomes.
 Client operations reports are written to `output/client-ops` for daily priorities, next actions, readiness groups, reporting needs, and manual approval rules.
 Client delivery artifacts are written to `output/client-delivery/{client_id}` for delivery planning, evidence logs, QA checklists, weekly summaries, and client update drafts.
 Polished client reporting artifacts are written to `output/client-reporting/{client_id}` for executive summaries, weekly reports, monthly reports, value delivered summaries, renewal signals, and draft client updates. They are evidence-first, local-only, and require Daniel review before sending.

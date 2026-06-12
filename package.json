@@ -99,6 +99,12 @@
     "revenue:forecast": "tsx src/revenueCommandCenter/generateRevenueForecast.ts",
     "client-readiness:pack": "tsx src/clientReadiness/generateClientReadinessPack.ts",
     "first-audit:sales-pack": "tsx src/clientReadiness/generateFirstAuditSalesPack.ts",
+    "proposal:center": "tsx src/proposalCenter/generateProposalCenter.ts",
+    "sow:center": "tsx src/proposalCenter/generateSowCenter.ts",
+    "outreach:execute-pack": "tsx src/outreachExecution/generateOutreachExecutionPack.ts",
+    "outreach:follow-up-plan": "tsx src/outreachExecution/generateFollowUpPlan.ts",
+    "first-audit:workflow": "tsx src/firstAuditWorkflow/generateFirstAuditWorkflow.ts",
+    "first-audit:kickoff": "tsx src/firstAuditWorkflow/generateAuditKickoff.ts",
     "validate:business": "tsx apps/lead-operator/src/cli/validateBusiness.ts"
   },
   "devDependencies": {
