@@ -1,6 +1,6 @@
 # Unified QA Opportunity Summary
 
-Generated: 2026-06-12T20:23:30.878Z
+Generated: 2026-06-12T21:26:25.487Z
 
 ## Totals
 
