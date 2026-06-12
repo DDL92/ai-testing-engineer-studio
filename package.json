@@ -115,6 +115,8 @@
     "os:today": "node --import tsx src/operatorDashboard/generateTodayView.ts",
     "os:audit": "node --import tsx src/osStabilization/generateSystemAudit.ts",
     "os:health": "node --import tsx src/osStabilization/generateSystemHealth.ts",
+    "os:release-check": "node --import tsx src/releaseCandidate/generateReleaseCheck.ts",
+    "os:v1-report": "node --import tsx src/releaseCandidate/generateV1Report.ts",
     "validate:business": "tsx apps/lead-operator/src/cli/validateBusiness.ts"
   },
   "devDependencies": {

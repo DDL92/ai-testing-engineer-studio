@@ -1,6 +1,6 @@
 # Top 10 Revenue Opportunities
 
-Generated: 2026-06-12T15:47:43.583Z
+Generated: 2026-06-12T16:42:46.201Z
 
 Pricing ranges used:
 - QA Audit: $199-$500

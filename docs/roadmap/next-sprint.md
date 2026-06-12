@@ -1,5 +1,48 @@
 # Next Sprint Roadmap
 
+## Sprint 49: AI Studio OS v1.0 Candidate
+
+Goal:
+Prepare the official AI Studio OS v1.0 Candidate release package.
+
+Expected commands:
+
+```sh
+npm run os:release-check
+npm run os:v1-report
+```
+
+Completion notes:
+
+- Added `npm run os:release-check` for the v1.0 candidate release check.
+- Added `npm run os:v1-report` for the official v1.0 candidate report package.
+- Generated release package files under `output/v1-candidate`.
+- Included release score, release recommendation, architecture summary, command inventory, workflow inventory, revenue readiness, first-client readiness, known warnings, and roadmap after v1.
+- Revenue readiness uses existing Revenue Command Center rules and does not invent booked revenue.
+- First-client readiness analyzes local records for PushPress, TeamUp, Wodify, ABC Glofox, and Bookee without inventing missing leads.
+- No APIs, CRM, outreach automation, sending, payments, credentials, external databases, or external services were added.
+
+## Sprint 50: First Revenue Validation Pack
+
+Goal:
+Stop building infrastructure and focus on converting the first commercial lead into the first audit sale and first retainer opportunity.
+
+Expected commands:
+
+```sh
+npm run revenue:validate
+npm run first-client:path
+```
+
+What to build:
+
+- First-revenue validation report using local records only.
+- First-client conversion path focused on the strongest ready commercial lead.
+- Manual approval checklist for outreach, discovery, audit sale, and retainer follow-up.
+
+What not to build yet:
+Do not add new infrastructure, APIs, CRM integrations, outreach automation, payments, external databases, or broad dashboards before first revenue is validated.
+
 ## Sprint 1: Documentation Foundation
 
 Goal:

@@ -1,17 +1,17 @@
 # Mac Daily Executed Reports
 
-Generated At: 2026-06-12T15:47:44.585Z
+Generated At: 2026-06-12T16:42:46.783Z
 
 ## Command Results
 
 | Command Executed | Success/Failure | Timestamp | Generated Outputs |
 | --- | --- | --- | --- |
-| npm run dashboard | success | 2026-06-12T15:47:43.147Z | output/dashboard/dashboard.md<br>output/dashboard/dashboard.html<br>output/dashboard/commercial-dashboard.md |
-| npm run operator:daily | success | 2026-06-12T15:47:43.342Z | output/operator/daily-command-center.md |
-| npm run pipeline:prioritize | success | 2026-06-12T15:47:43.620Z | output/pipeline-prioritization/prioritized-pipeline.md<br>output/pipeline-prioritization/commercial-prioritized-pipeline.md<br>output/pipeline-prioritization/top-10-revenue-opportunities.md<br>output/pipeline-prioritization/top-5-actions.md<br>output/pipeline-prioritization/stalled-opportunities.md |
-| npm run client:ops | success | 2026-06-12T15:47:43.940Z | output/client-ops/client-operations-center.md<br>output/client-ops/client-readiness.md<br>output/client-ops/next-actions.md |
-| npm run renewal:tracker | success | 2026-06-12T15:47:44.236Z | output/renewals/renewal-pipeline.md<br>output/renewals/client-health.md<br>output/renewals/renewal-risk-report.md<br>output/renewals/expansion-opportunities.md<br>output/renewals/renewal-actions.md |
-| npm run commercial:summary | success | 2026-06-12T15:47:44.549Z | output/commercial-mode/demo-isolation-report.md<br>output/commercial-mode/commercial-mode-summary.md |
+| npm run dashboard | success | 2026-06-12T16:42:45.860Z | output/dashboard/dashboard.md<br>output/dashboard/dashboard.html<br>output/dashboard/commercial-dashboard.md |
+| npm run operator:daily | success | 2026-06-12T16:42:46.039Z | output/operator/daily-command-center.md |
+| npm run pipeline:prioritize | success | 2026-06-12T16:42:46.227Z | output/pipeline-prioritization/prioritized-pipeline.md<br>output/pipeline-prioritization/commercial-prioritized-pipeline.md<br>output/pipeline-prioritization/top-10-revenue-opportunities.md<br>output/pipeline-prioritization/top-5-actions.md<br>output/pipeline-prioritization/stalled-opportunities.md |
+| npm run client:ops | success | 2026-06-12T16:42:46.402Z | output/client-ops/client-operations-center.md<br>output/client-ops/client-readiness.md<br>output/client-ops/next-actions.md |
+| npm run renewal:tracker | success | 2026-06-12T16:42:46.587Z | output/renewals/renewal-pipeline.md<br>output/renewals/client-health.md<br>output/renewals/renewal-risk-report.md<br>output/renewals/expansion-opportunities.md<br>output/renewals/renewal-actions.md |
+| npm run commercial:summary | success | 2026-06-12T16:42:46.763Z | output/commercial-mode/demo-isolation-report.md<br>output/commercial-mode/commercial-mode-summary.md |
 
 ## Manual Approval Reminder
 

@@ -1,6 +1,6 @@
 # Revenue Center
 
-Generated: 2026-06-12T15:47:36.421Z
+Generated: 2026-06-12T16:42:27.968Z
 
 - Booked MRR: $0
 - Projected MRR: $1,500-$3,000/month

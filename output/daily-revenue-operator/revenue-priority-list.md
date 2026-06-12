@@ -1,5 +1,5 @@
 # Revenue Priority List
-Generated: 2026-06-12T15:47:36.482Z
+Generated: 2026-06-12T16:42:32.351Z
 | Rank | Company | Opportunity Type | Readiness | Revenue Potential | Next Step |
 | ---: | --- | --- | --- | --- | --- |
 | 1 | PushPress | QA Automation Retainer | High probability | $1,500-$3,000/month | Review follow-up context for PushPress before any manual action. |

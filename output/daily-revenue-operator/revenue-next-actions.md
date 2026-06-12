@@ -1,6 +1,6 @@
 # Revenue Next Actions
 
-Generated: 2026-06-12T15:47:36.482Z
+Generated: 2026-06-12T16:42:32.351Z
 
 Priority order: fastest revenue, highest probability, then highest MRR potential.
 

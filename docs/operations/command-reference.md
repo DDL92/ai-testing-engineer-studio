@@ -2,6 +2,48 @@
 
 All commands are local-first. None of these commands should send outreach, connect APIs, scrape websites, or use credentials.
 
+## `npm run os:release-check`
+
+Purpose:
+Generate the AI Studio OS v1.0 Candidate release check with PASS/WARNING/FAIL status across commands, reports, workflows, revenue consistency, documentation, and system health.
+
+Example:
+
+```sh
+npm run os:release-check
+```
+
+Output file:
+`output/v1-candidate/v1-release-check.md`
+
+Safety note:
+Local release audit only. It does not send outreach, call APIs, scrape, browse, connect a CRM, use payments, use credentials, or modify business data. Human approval is required before external action.
+
+## `npm run os:v1-report`
+
+Purpose:
+Generate the official AI Studio OS v1.0 Candidate release package, including release score, release recommendation, architecture summary, command inventory, workflow inventory, revenue readiness, first-client readiness, known warnings, and post-v1 roadmap.
+
+Example:
+
+```sh
+npm run os:v1-report
+```
+
+Output files:
+`output/v1-candidate/v1-release-check.md`
+`output/v1-candidate/v1-report.md`
+`output/v1-candidate/architecture-summary.md`
+`output/v1-candidate/command-inventory.md`
+`output/v1-candidate/workflow-inventory.md`
+`output/v1-candidate/revenue-readiness.md`
+`output/v1-candidate/first-client-readiness.md`
+`output/v1-candidate/known-warnings.md`
+`output/v1-candidate/roadmap-after-v1.md`
+
+Safety note:
+Local-only release reporting. It does not invent revenue, contacts, audit findings, proposal status, or client outcomes. It does not send outreach, call APIs, scrape, browse, connect external systems, process payments, or use credentials.
+
 ## `npm run leads:seed`
 
 Purpose:
