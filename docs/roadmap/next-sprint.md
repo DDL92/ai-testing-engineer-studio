@@ -1090,3 +1090,65 @@ npm run revenue:forecast
 
 What not to build yet:
 Do not connect banks, payment processors, invoices, CRMs, external databases, APIs, scraping, browsing, outreach automation, email sending, LinkedIn automation, credentials, or revenue claims not backed by local data.
+
+Completion notes:
+
+- Added `npm run revenue:command-center`.
+- Added `npm run revenue:forecast`.
+- Added `src/revenueCommandCenter` with typed local inputs, deterministic revenue scoring, forecast rendering, audit opportunity rendering, retainer opportunity rendering, renewal/expansion visibility, property-progress scenarios, and shared safety reminders.
+- Generated `output/revenue-command-center/revenue-command-center.md`.
+- Generated `output/revenue-command-center/mrr-forecast.md`.
+- Generated `output/revenue-command-center/audit-opportunities.md`.
+- Generated `output/revenue-command-center/retainer-opportunities.md`.
+- Generated `output/revenue-command-center/property-progress.md`.
+- Current booked MRR uses active local retainer clients only.
+- Pipeline potential and speculative forecasts are clearly separated from booked revenue.
+- Commercial Mode exclusions suppress demo/sample, paused, lost, and not-fit leads from revenue-facing opportunity scoring.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, email sending, LinkedIn automation, payment systems, credentials, external databases, invented clients, or invented booked revenue were added.
+
+## Sprint 40: Real Client Readiness Pack
+
+Goal:
+Prepare the highest-priority commercial leads for actual manual outreach, first audit sales, discovery calls, and SOW generation without sending anything.
+
+Why it matters:
+After revenue visibility exists, Daniel needs a practical readiness layer that turns commercial priorities into safe, reviewed next actions for real prospects.
+
+Suggested commands:
+
+```sh
+npm run client-readiness:pack
+npm run first-audit:sales-pack
+```
+
+What not to build yet:
+Do not send messages, automate outreach, browse, scrape, call APIs, connect CRMs, use email or LinkedIn automation, use payment systems, use credentials, invent contacts, invent names, or invent audit findings.
+
+Completion notes:
+
+- Added `npm run client-readiness:pack`.
+- Added `npm run first-audit:sales-pack`.
+- Added `src/clientReadiness` with typed local inputs, deterministic readiness scoring, asset detection, Top 5 contact planning, manual outreach checklist rendering, first audit sales pack rendering, and SOW readiness rendering.
+- Generated `output/real-client-readiness/real-client-readiness-pack.md`.
+- Generated `output/real-client-readiness/first-audit-sales-pack.md`.
+- Generated `output/real-client-readiness/top-5-contact-plan.md`.
+- Generated `output/real-client-readiness/manual-outreach-checklist.md`.
+- Generated `output/real-client-readiness/sow-readiness.md`.
+- Readiness score uses commercial eligibility, not-paused/not-lost status, lead score, revenue fit, retainer fit, outreach pack, audit pack, contact review, client workflow, SOW, and Top 5 outreach signals.
+- Contact names and audit findings are never invented.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, email sending, LinkedIn automation, payments, credentials, external databases, or automatic external actions were added.
+
+## Sprint 41: Proposal + SOW Command Center
+
+Goal:
+Generate proposal-ready and SOW-ready assets for approved opportunities.
+
+Suggested commands:
+
+```sh
+npm run proposal:center
+npm run sow:center
+```
+
+What not to build yet:
+Do not send proposals, create binding commitments, use e-signature tools, connect payment systems, use client credentials, or invent scope, pricing, findings, contacts, or approvals.

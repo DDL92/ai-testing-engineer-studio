@@ -412,6 +412,82 @@ Output file:
 Safety note:
 Revenue opportunity values are estimates only, not booked revenue. This command does not connect payment tools, bank data, invoices, APIs, CRMs, scraping, browsing, or external databases.
 
+## `npm run revenue:command-center`
+
+Purpose:
+Generate the local Revenue Command Center with booked MRR, speculative MRR forecasts, audit opportunities, retainer opportunities, renewal opportunities, expansion opportunities, property-progress scenarios, risks, and top manual revenue actions.
+
+Example:
+
+```sh
+npm run revenue:command-center
+```
+
+Output files:
+`output/revenue-command-center/revenue-command-center.md`
+`output/revenue-command-center/mrr-forecast.md`
+`output/revenue-command-center/audit-opportunities.md`
+`output/revenue-command-center/retainer-opportunities.md`
+`output/revenue-command-center/property-progress.md`
+
+Safety note:
+Uses local Studio data and generated reports only. It does not use APIs, scraping, browsing, CRMs, outreach automation, email, LinkedIn automation, payment systems, credentials, or external databases. Booked MRR comes only from active local retainer client records; opportunities and speculative forecasts are not booked revenue.
+
+## `npm run revenue:forecast`
+
+Purpose:
+Refresh only the MRR forecast report for 30-day, 60-day, 90-day, 180-day, and 12-month conservative, expected, and aggressive scenarios.
+
+Example:
+
+```sh
+npm run revenue:forecast
+```
+
+Output file:
+`output/revenue-command-center/mrr-forecast.md`
+
+Safety note:
+Speculative MRR is deterministic scenario math from local retainer opportunities and is not booked revenue. This command does not connect payment tools, invoices, APIs, CRMs, scraping, browsing, external databases, or credentials.
+
+## `npm run client-readiness:pack`
+
+Purpose:
+Generate the Real Client Readiness Pack for the current Top 5 commercial leads, including contact planning, manual outreach safety, first audit sales context, SOW readiness, risks, and suggested local commands.
+
+Example:
+
+```sh
+npm run client-readiness:pack
+```
+
+Output files:
+`output/real-client-readiness/real-client-readiness-pack.md`
+`output/real-client-readiness/first-audit-sales-pack.md`
+`output/real-client-readiness/top-5-contact-plan.md`
+`output/real-client-readiness/manual-outreach-checklist.md`
+`output/real-client-readiness/sow-readiness.md`
+
+Safety note:
+Local-only preparation. It does not send outreach, browse, scrape, call APIs, connect CRMs, use email or LinkedIn automation, use payments, use credentials, invent contacts, invent names, or invent audit findings. Human approval remains required before external action.
+
+## `npm run first-audit:sales-pack`
+
+Purpose:
+Refresh only the First Audit Sales Pack with the QA Audit offer, $199-$500 pricing, audit scope, discovery topics, deliverables, upgrade path, objection handling, follow-up plan, and approval checklist.
+
+Example:
+
+```sh
+npm run first-audit:sales-pack
+```
+
+Output file:
+`output/real-client-readiness/first-audit-sales-pack.md`
+
+Safety note:
+Sales preparation only. It does not send messages, invent findings, guarantee outcomes, use APIs, scrape, browse, connect CRMs, automate outreach, use payment systems, or use credentials.
+
 ## `npm run client:ops`
 
 Purpose:

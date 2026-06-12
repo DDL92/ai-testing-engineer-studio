@@ -72,6 +72,10 @@ npm run pipeline:next-actions
 npm run commercial:summary
 npm run dashboard
 npm run revenue:visibility
+npm run revenue:command-center
+npm run revenue:forecast
+npm run client-readiness:pack
+npm run first-audit:sales-pack
 npm run mac:daily
 npm run mac:summary
 npm run client:ops
@@ -97,6 +101,8 @@ Pipeline opportunity reports are written to `output/pipeline` and summarize loca
 Pipeline prioritization reports are written to `output/pipeline-prioritization` for prioritized opportunities, top 10 revenue paths, top 5 manual actions, and stalled opportunities. They use deterministic local scoring only and do not scrape, browse, call APIs, automate outreach, connect CRMs, use credentials, or treat opportunity value as booked revenue.
 Commercial Mode reports are written to `output/commercial-mode` for demo/sample isolation and commercial-only opportunity summaries. Revenue-facing reports use the shared Commercial Mode rules so demo/sample leads remain available for testing without distorting commercial reporting.
 The daily dashboard writes `output/dashboard/dashboard.md`, `output/dashboard/dashboard.html`, and `output/dashboard/revenue-visibility.md` as static local reports.
+The Revenue Command Center writes `output/revenue-command-center` reports for booked MRR, speculative MRR forecasts, audit opportunities, retainer opportunities, renewal/expansion visibility, property-progress scenarios, and top manual revenue actions. It uses local Studio data only and does not treat opportunities as booked revenue.
+The Real Client Readiness Pack writes `output/real-client-readiness` reports for Top 5 commercial lead readiness, manual contact planning, outreach safety checks, first audit sales positioning, and SOW readiness. It does not invent contacts or findings and does not send outreach.
 Client operations reports are written to `output/client-ops` for daily priorities, next actions, readiness groups, reporting needs, and manual approval rules.
 Client delivery artifacts are written to `output/client-delivery/{client_id}` for delivery planning, evidence logs, QA checklists, weekly summaries, and client update drafts.
 Polished client reporting artifacts are written to `output/client-reporting/{client_id}` for executive summaries, weekly reports, monthly reports, value delivered summaries, renewal signals, and draft client updates. They are evidence-first, local-only, and require Daniel review before sending.

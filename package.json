@@ -95,6 +95,10 @@
     "dashboard:dev": "tsx apps/dashboard-viewer/src/server.ts",
     "dashboard:check": "tsx apps/dashboard-viewer/src/server.ts --check",
     "revenue:visibility": "tsx src/dashboard/generateRevenueVisibility.ts",
+    "revenue:command-center": "tsx src/revenueCommandCenter/generateRevenueCommandCenter.ts",
+    "revenue:forecast": "tsx src/revenueCommandCenter/generateRevenueForecast.ts",
+    "client-readiness:pack": "tsx src/clientReadiness/generateClientReadinessPack.ts",
+    "first-audit:sales-pack": "tsx src/clientReadiness/generateFirstAuditSalesPack.ts",
     "validate:business": "tsx apps/lead-operator/src/cli/validateBusiness.ts"
   },
   "devDependencies": {
