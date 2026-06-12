@@ -1,6 +1,6 @@
 # Stalled Opportunities
 
-Generated: 2026-06-12T15:37:23.413Z
+Generated: 2026-06-12T15:47:43.583Z
 
 | Company | Stage | Priority Score | Stalled Reason | Suggested Command |
 | --- | --- | ---: | --- | --- |

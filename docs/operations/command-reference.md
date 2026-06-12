@@ -767,6 +767,47 @@ Output file:
 Safety note:
 Today view generation only. It recommends local next steps and does not approve, send, schedule, invoice, call APIs, connect CRMs, or update external systems.
 
+## `npm run os:audit`
+
+Purpose:
+Generate the Studio OS stabilization audit across commands, reports, workflows, revenue consistency, documentation coverage, system health, and v1.0 candidate readiness.
+
+Example:
+
+```sh
+npm run os:audit
+```
+
+Output files:
+`output/os-stabilization/system-audit.md`
+`output/os-stabilization/system-health.md`
+`output/os-stabilization/command-audit.md`
+`output/os-stabilization/report-audit.md`
+`output/os-stabilization/revenue-audit.md`
+`output/os-stabilization/workflow-audit.md`
+`output/os-stabilization/documentation-audit.md`
+`output/os-stabilization/stabilization-summary.md`
+
+Safety note:
+Audit-only local report generation. It does not modify business data, send outreach, auto-approve, schedule follow-ups, call APIs, connect CRMs, browse, scrape, use external databases, use credentials, create invoices, or process payments.
+
+## `npm run os:health`
+
+Purpose:
+Refresh only the Studio OS stabilization system health report.
+
+Example:
+
+```sh
+npm run os:health
+```
+
+Output file:
+`output/os-stabilization/system-health.md`
+
+Safety note:
+Health check only. It reads local files and generated reports without modifying business data or taking external action.
+
 ## `npm run client:ops`
 
 Purpose:

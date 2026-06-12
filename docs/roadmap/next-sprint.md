@@ -1255,7 +1255,7 @@ Completion notes:
 - Generated `output/mobile-command-center/revenue-mobile.md`.
 - Generated `output/mobile-command-center/client-status-mobile.md`.
 - Generated `output/mobile-command-center/followup-queue-mobile.md`.
-- Revenue uses local client records for booked MRR and only displays projected MRR when a local revenue report contains it.
+- Revenue values now come from Revenue Command Center output, with warnings when local client totals differ.
 - Follow-up queue is manual-only. Nothing is scheduled, sent, synced, or automated.
 - System Health uses local generated report availability only.
 - No UI framework, React, Next.js, APIs, external services, CRM integrations, outreach automation, external databases, credentials, PWA, mobile app, or web dashboard were added.
@@ -1365,6 +1365,37 @@ Suggested commands:
 ```sh
 npm run os:audit
 npm run os:health
+```
+
+What not to build yet:
+Do not add hosted services, external APIs, CRM integrations, outreach automation, sending workflows, paid tools, credential flows, invoice/payment automation, or external databases.
+
+Completion notes:
+
+- Added `npm run os:audit`.
+- Added `npm run os:health`.
+- Added `src/osStabilization` with typed local audit models, command audit, report audit, revenue audit, workflow audit, documentation audit, system health checks, stabilization summary, and deterministic v1.0 readiness scoring.
+- Generated `output/os-stabilization/system-audit.md`.
+- Generated `output/os-stabilization/system-health.md`.
+- Generated `output/os-stabilization/command-audit.md`.
+- Generated `output/os-stabilization/report-audit.md`.
+- Generated `output/os-stabilization/revenue-audit.md`.
+- Generated `output/os-stabilization/workflow-audit.md`.
+- Generated `output/os-stabilization/documentation-audit.md`.
+- Generated `output/os-stabilization/stabilization-summary.md`.
+- Audit is local-only and does not modify business data.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, email sending, LinkedIn automation, payments, credentials, invoices, external databases, or automatic external actions were added.
+
+## Sprint 49: AI Studio OS v1.0 Candidate
+
+Goal:
+Prepare the official v1.0 candidate release report including final architecture, command inventory, workflow inventory, revenue readiness, first-client readiness, and future roadmap.
+
+Suggested commands:
+
+```sh
+npm run os:release-check
+npm run os:v1-report
 ```
 
 What not to build yet:

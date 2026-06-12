@@ -113,6 +113,8 @@
     "cockpit:approve": "node --import tsx src/actionCockpit/generateApprovalQueue.ts",
     "os:dashboard": "node --import tsx src/operatorDashboard/generateOperatorDashboard.ts",
     "os:today": "node --import tsx src/operatorDashboard/generateTodayView.ts",
+    "os:audit": "node --import tsx src/osStabilization/generateSystemAudit.ts",
+    "os:health": "node --import tsx src/osStabilization/generateSystemHealth.ts",
     "validate:business": "tsx apps/lead-operator/src/cli/validateBusiness.ts"
   },
   "devDependencies": {

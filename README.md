@@ -90,6 +90,8 @@ npm run cockpit:daily
 npm run cockpit:approve
 npm run os:dashboard
 npm run os:today
+npm run os:audit
+npm run os:health
 npm run mac:daily
 npm run mac:summary
 npm run client:ops
@@ -124,6 +126,7 @@ The Mobile Command Center writes `output/mobile-command-center` reports for mobi
 The Daily Revenue Operator writes `output/daily-revenue-operator` reports for the daily revenue snapshot, next actions, priority list, risks, 30-minute focus, consistency audit, and approval checklist. Revenue Command Center is the source of truth for booked MRR; demo/sample/sandbox/test/example client records are excluded from booked revenue.
 The Action Cockpit v1 writes `output/action-cockpit` reports for one daily operating view: Top 3 actions, Top 5 opportunities, Revenue Command Center snapshot, client watchlist, manual follow-up watchlist, approval queue, local report health, and the next recommended command. It is local Markdown only and never auto-approves, sends outreach, connects CRMs, calls APIs, or uses external services.
 The Operator OS Dashboard writes `output/operator-os-dashboard` reports for the primary AI Studio OS homepage: executive summary, today view, opportunity center, revenue center, approval center, follow-up center, system status, and exact next command. It uses Revenue Command Center and Action Cockpit as sources of truth and remains local-only.
+The Studio OS Stabilization reports write `output/os-stabilization` audits for command consistency, report availability, revenue consistency, workflow completeness, documentation coverage, system health, and v1.0 candidate readiness. They are audit-only and do not modify business data.
 Client operations reports are written to `output/client-ops` for daily priorities, next actions, readiness groups, reporting needs, and manual approval rules.
 Client delivery artifacts are written to `output/client-delivery/{client_id}` for delivery planning, evidence logs, QA checklists, weekly summaries, and client update drafts.
 Polished client reporting artifacts are written to `output/client-reporting/{client_id}` for executive summaries, weekly reports, monthly reports, value delivered summaries, renewal signals, and draft client updates. They are evidence-first, local-only, and require Daniel review before sending.
