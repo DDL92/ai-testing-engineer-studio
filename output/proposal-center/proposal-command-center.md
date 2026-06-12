@@ -1,6 +1,6 @@
 # Proposal Command Center
 
-Generated: 2026-06-12T15:30:29.165Z
+Generated: 2026-06-12T17:23:55.450Z
 
 ## Executive Summary
 - Total leads reviewed: 51

@@ -1,0 +1,306 @@
+[
+  {
+    "pageType": "Homepage",
+    "requestedUrl": "https://goteamup.com/",
+    "finalUrl": "https://goteamup.com/",
+    "title": "#1 Fitness Management Software | TeamUp",
+    "httpStatus": 200,
+    "visibleCtaCount": 14,
+    "navigationLinks": [
+      "https://goteamup.com/",
+      "https://goteamup.com/product/group-fitness-software/",
+      "https://goteamup.com/product/gym-management-software/",
+      "https://goteamup.com/product/club-management-software/",
+      "https://goteamup.com/product/yoga-studio-software/",
+      "https://goteamup.com/product/bootcamp-software/",
+      "https://goteamup.com/product/small-group-pt-software/",
+      "https://goteamup.com/product/crossfit-software",
+      "https://goteamup.com/product/martial-arts-software/",
+      "https://goteamup.com/product/pole-studio-software/",
+      "https://goteamup.com/product/pilates-studio-management-software/",
+      "https://goteamup.com/product/personal-training-software/",
+      "https://goteamup.com/product/enterprise-solutions",
+      "https://goteamup.com/features/",
+      "https://goteamup.com/features/gym-crm-software",
+      "https://goteamup.com/features/online-payments",
+      "https://goteamup.com/features/memberships",
+      "https://goteamup.com/features/reporting",
+      "https://goteamup.com/features/gym-booking-software",
+      "https://goteamup.com/features/appointments",
+      "https://goteamup.com/features/online-classes",
+      "https://goteamup.com/features/on-demand",
+      "https://goteamup.com/features/children-family",
+      "https://goteamup.com/features/waivers-forms",
+      "https://goteamup.com/features/integrations-with-teamup"
+    ],
+    "consoleWarnings": [
+      "[.WebGL-0x1240319fc00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    ],
+    "consoleErrors": [],
+    "screenshotCapture": "data/evidence/playwright/screenshots/teamup-homepage.png",
+    "observations": [
+      "Public Homepage reviewed without form submission or account access.",
+      "HTTP response status observed: 200.",
+      "Visible CTA count observed: 14.",
+      "Navigation links observed: 25.",
+      "No console errors observed during passive page load.",
+      "Console warnings observed."
+    ],
+    "qaOpportunities": [],
+    "automationOpportunities": [
+      {
+        "type": "Potential Automation Opportunity",
+        "description": "Create future smoke coverage for public page load and navigation visibility.",
+        "evidence": "25 navigation link(s) and 14 CTA candidate(s) observed on https://goteamup.com/.",
+        "confidence": "Medium"
+      }
+    ],
+    "confidence": "High"
+  },
+  {
+    "pageType": "Public Contact Page",
+    "requestedUrl": "https://goteamup.com/company/contact",
+    "finalUrl": "https://goteamup.com/company/contact",
+    "title": "Contact Us | TeamUp",
+    "httpStatus": 200,
+    "visibleCtaCount": 6,
+    "navigationLinks": [
+      "https://goteamup.com/",
+      "https://goteamup.com/product/group-fitness-software/",
+      "https://goteamup.com/product/gym-management-software/",
+      "https://goteamup.com/product/club-management-software/",
+      "https://goteamup.com/product/yoga-studio-software/",
+      "https://goteamup.com/product/bootcamp-software/",
+      "https://goteamup.com/product/small-group-pt-software/",
+      "https://goteamup.com/product/crossfit-software",
+      "https://goteamup.com/product/martial-arts-software/",
+      "https://goteamup.com/product/pole-studio-software/",
+      "https://goteamup.com/product/pilates-studio-management-software/",
+      "https://goteamup.com/product/personal-training-software/",
+      "https://goteamup.com/product/enterprise-solutions",
+      "https://goteamup.com/features/",
+      "https://goteamup.com/features/gym-crm-software",
+      "https://goteamup.com/features/online-payments",
+      "https://goteamup.com/features/memberships",
+      "https://goteamup.com/features/reporting",
+      "https://goteamup.com/features/gym-booking-software",
+      "https://goteamup.com/features/appointments",
+      "https://goteamup.com/features/online-classes",
+      "https://goteamup.com/features/on-demand",
+      "https://goteamup.com/features/children-family",
+      "https://goteamup.com/features/waivers-forms",
+      "https://goteamup.com/features/integrations-with-teamup"
+    ],
+    "consoleWarnings": [],
+    "consoleErrors": [],
+    "screenshotCapture": "data/evidence/playwright/screenshots/teamup-public-contact-page.png",
+    "observations": [
+      "Public Public Contact Page reviewed without form submission or account access.",
+      "HTTP response status observed: 200.",
+      "Visible CTA count observed: 6.",
+      "Navigation links observed: 25.",
+      "No console errors observed during passive page load.",
+      "No console warnings observed during passive page load."
+    ],
+    "qaOpportunities": [],
+    "automationOpportunities": [
+      {
+        "type": "Potential Automation Opportunity",
+        "description": "Create future smoke coverage for public page load and navigation visibility.",
+        "evidence": "25 navigation link(s) and 6 CTA candidate(s) observed on https://goteamup.com/company/contact.",
+        "confidence": "Medium"
+      }
+    ],
+    "confidence": "High"
+  },
+  {
+    "pageType": "Pricing",
+    "requestedUrl": "https://goteamup.com/pricing/",
+    "finalUrl": "https://goteamup.com/pricing/",
+    "title": "TeamUp Pricing | Group fitness management software",
+    "httpStatus": 200,
+    "visibleCtaCount": 10,
+    "navigationLinks": [
+      "https://goteamup.com/",
+      "https://goteamup.com/product/group-fitness-software/",
+      "https://goteamup.com/product/gym-management-software/",
+      "https://goteamup.com/product/club-management-software/",
+      "https://goteamup.com/product/yoga-studio-software/",
+      "https://goteamup.com/product/bootcamp-software/",
+      "https://goteamup.com/product/small-group-pt-software/",
+      "https://goteamup.com/product/crossfit-software",
+      "https://goteamup.com/product/martial-arts-software/",
+      "https://goteamup.com/product/pole-studio-software/",
+      "https://goteamup.com/product/pilates-studio-management-software/",
+      "https://goteamup.com/product/personal-training-software/",
+      "https://goteamup.com/product/enterprise-solutions",
+      "https://goteamup.com/features/",
+      "https://goteamup.com/features/gym-crm-software",
+      "https://goteamup.com/features/online-payments",
+      "https://goteamup.com/features/memberships",
+      "https://goteamup.com/features/reporting",
+      "https://goteamup.com/features/gym-booking-software",
+      "https://goteamup.com/features/appointments",
+      "https://goteamup.com/features/online-classes",
+      "https://goteamup.com/features/on-demand",
+      "https://goteamup.com/features/children-family",
+      "https://goteamup.com/features/waivers-forms",
+      "https://goteamup.com/features/integrations-with-teamup"
+    ],
+    "consoleWarnings": [
+      "[quick-fetch] quickFetchScript was not included or running in Node.js environment. Falling back to stubbed implementation.",
+      "Hotjar not launching due to suspicious userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+      "Google tag AW-956514169 has already loaded. Ensure all Google tags are loaded after the Enzuzo cookie banner. See https://help.enzuzo.com/en/articles/9362733-resolve-google-tag-has-already-loaded-errors for more info."
+    ],
+    "consoleErrors": [],
+    "screenshotCapture": "data/evidence/playwright/screenshots/teamup-pricing.png",
+    "observations": [
+      "Public Pricing reviewed without form submission or account access.",
+      "HTTP response status observed: 200.",
+      "Visible CTA count observed: 10.",
+      "Navigation links observed: 25.",
+      "No console errors observed during passive page load.",
+      "Console warnings observed."
+    ],
+    "qaOpportunities": [],
+    "automationOpportunities": [
+      {
+        "type": "Potential Automation Opportunity",
+        "description": "Create future smoke coverage for public page load and navigation visibility.",
+        "evidence": "25 navigation link(s) and 10 CTA candidate(s) observed on https://goteamup.com/pricing/.",
+        "confidence": "Medium"
+      }
+    ],
+    "confidence": "High"
+  },
+  {
+    "pageType": "Public Marketing Pages",
+    "requestedUrl": "https://goteamup.com/features/gym-booking-software",
+    "finalUrl": "https://goteamup.com/features/gym-booking-software",
+    "title": "Gym Booking Software | Streamline your fitness Business with TeamUp",
+    "httpStatus": 200,
+    "visibleCtaCount": 10,
+    "navigationLinks": [
+      "https://goteamup.com/",
+      "https://goteamup.com/product/group-fitness-software/",
+      "https://goteamup.com/product/gym-management-software/",
+      "https://goteamup.com/product/club-management-software/",
+      "https://goteamup.com/product/yoga-studio-software/",
+      "https://goteamup.com/product/bootcamp-software/",
+      "https://goteamup.com/product/small-group-pt-software/",
+      "https://goteamup.com/product/crossfit-software",
+      "https://goteamup.com/product/martial-arts-software/",
+      "https://goteamup.com/product/pole-studio-software/",
+      "https://goteamup.com/product/pilates-studio-management-software/",
+      "https://goteamup.com/product/personal-training-software/",
+      "https://goteamup.com/product/enterprise-solutions",
+      "https://goteamup.com/features/",
+      "https://goteamup.com/features/gym-crm-software",
+      "https://goteamup.com/features/online-payments",
+      "https://goteamup.com/features/memberships",
+      "https://goteamup.com/features/reporting",
+      "https://goteamup.com/features/gym-booking-software",
+      "https://goteamup.com/features/appointments",
+      "https://goteamup.com/features/online-classes",
+      "https://goteamup.com/features/on-demand",
+      "https://goteamup.com/features/children-family",
+      "https://goteamup.com/features/waivers-forms",
+      "https://goteamup.com/features/integrations-with-teamup"
+    ],
+    "consoleWarnings": [
+      "Hotjar not launching due to suspicious userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+      "[quick-fetch] quickFetchScript was not included or running in Node.js environment. Falling back to stubbed implementation.",
+      "Google tag AW-956514169 has already loaded. Ensure all Google tags are loaded after the Enzuzo cookie banner. See https://help.enzuzo.com/en/articles/9362733-resolve-google-tag-has-already-loaded-errors for more info."
+    ],
+    "consoleErrors": [
+      "Access to XMLHttpRequest at 'https://tr.capterra.com/events/' from origin 'https://goteamup.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED"
+    ],
+    "screenshotCapture": "data/evidence/playwright/screenshots/teamup-public-marketing-pages.png",
+    "observations": [
+      "Public Public Marketing Pages reviewed without form submission or account access.",
+      "HTTP response status observed: 200.",
+      "Visible CTA count observed: 10.",
+      "Navigation links observed: 25.",
+      "Console errors observed.",
+      "Console warnings observed."
+    ],
+    "qaOpportunities": [
+      {
+        "type": "Potential QA Opportunity",
+        "description": "Review console errors observed during passive public page load.",
+        "evidence": "2 console error(s) observed on https://goteamup.com/features/gym-booking-software.",
+        "confidence": "Medium"
+      }
+    ],
+    "automationOpportunities": [
+      {
+        "type": "Potential Automation Opportunity",
+        "description": "Create future smoke coverage for public page load and navigation visibility.",
+        "evidence": "25 navigation link(s) and 10 CTA candidate(s) observed on https://goteamup.com/features/gym-booking-software.",
+        "confidence": "Medium"
+      }
+    ],
+    "confidence": "High"
+  },
+  {
+    "pageType": "Public Marketing Pages",
+    "requestedUrl": "https://goteamup.com/product/group-fitness-software/",
+    "finalUrl": "https://goteamup.com/product/group-fitness-software/",
+    "title": "Group Fitness Software | TeamUp",
+    "httpStatus": 200,
+    "visibleCtaCount": 9,
+    "navigationLinks": [
+      "https://goteamup.com/",
+      "https://goteamup.com/product/group-fitness-software/",
+      "https://goteamup.com/product/gym-management-software/",
+      "https://goteamup.com/product/club-management-software/",
+      "https://goteamup.com/product/yoga-studio-software/",
+      "https://goteamup.com/product/bootcamp-software/",
+      "https://goteamup.com/product/small-group-pt-software/",
+      "https://goteamup.com/product/crossfit-software",
+      "https://goteamup.com/product/martial-arts-software/",
+      "https://goteamup.com/product/pole-studio-software/",
+      "https://goteamup.com/product/pilates-studio-management-software/",
+      "https://goteamup.com/product/personal-training-software/",
+      "https://goteamup.com/product/enterprise-solutions",
+      "https://goteamup.com/features/",
+      "https://goteamup.com/features/gym-crm-software",
+      "https://goteamup.com/features/online-payments",
+      "https://goteamup.com/features/memberships",
+      "https://goteamup.com/features/reporting",
+      "https://goteamup.com/features/gym-booking-software",
+      "https://goteamup.com/features/appointments",
+      "https://goteamup.com/features/online-classes",
+      "https://goteamup.com/features/on-demand",
+      "https://goteamup.com/features/children-family",
+      "https://goteamup.com/features/waivers-forms",
+      "https://goteamup.com/features/integrations-with-teamup"
+    ],
+    "consoleWarnings": [
+      "[quick-fetch] quickFetchScript was not included or running in Node.js environment. Falling back to stubbed implementation.",
+      "Hotjar not launching due to suspicious userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+      "Google tag AW-956514169 has already loaded. Ensure all Google tags are loaded after the Enzuzo cookie banner. See https://help.enzuzo.com/en/articles/9362733-resolve-google-tag-has-already-loaded-errors for more info."
+    ],
+    "consoleErrors": [],
+    "screenshotCapture": "data/evidence/playwright/screenshots/teamup-public-marketing-pages.png",
+    "observations": [
+      "Public Public Marketing Pages reviewed without form submission or account access.",
+      "HTTP response status observed: 200.",
+      "Visible CTA count observed: 9.",
+      "Navigation links observed: 25.",
+      "No console errors observed during passive page load.",
+      "Console warnings observed."
+    ],
+    "qaOpportunities": [],
+    "automationOpportunities": [
+      {
+        "type": "Potential Automation Opportunity",
+        "description": "Create future smoke coverage for public page load and navigation visibility.",
+        "evidence": "25 navigation link(s) and 9 CTA candidate(s) observed on https://goteamup.com/product/group-fitness-software/.",
+        "confidence": "Medium"
+      }
+    ],
+    "confidence": "High"
+  }
+]

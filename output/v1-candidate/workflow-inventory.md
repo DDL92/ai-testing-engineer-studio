@@ -1,6 +1,6 @@
 # Workflow Inventory
 
-Generated: 2026-06-12T16:43:20.573Z
+Generated: 2026-06-12T17:07:28.252Z
 
 Lead -> Research -> Audit -> Outreach -> Proposal -> Discovery Call -> Audit Sale -> Delivery -> Retainer -> Renewal
 

@@ -1,0 +1,380 @@
+[
+  {
+    "companyId": "pushpress",
+    "companyName": "PushPress",
+    "complaints": [
+      {
+        "summary": "Local lead notes flag booking, checkout, onboarding, payment, mobile, and regression workflows as areas to review.",
+        "category": "booking",
+        "frequency": "unknown",
+        "businessImpact": "Potential lost bookings or support load if the workflow is unreliable.",
+        "confidence": "low",
+        "source": "data/leads.json local painPoints and fitNotes",
+        "status": "Not enough evidence yet",
+        "researchRequired": true
+      },
+      {
+        "summary": "Local lead notes flag payment and checkout flow risk as areas to review.",
+        "category": "payments",
+        "frequency": "unknown",
+        "businessImpact": "Potential revenue friction if payment or checkout regressions exist.",
+        "confidence": "low",
+        "source": "data/leads.json local painPoints",
+        "status": "Not enough evidence yet",
+        "researchRequired": true
+      }
+    ],
+    "patterns": [
+      "Potential high-value workflow cluster: booking, checkout, payment, onboarding, mobile.",
+      "Potential release-confidence angle from local regression testing opportunity notes."
+    ],
+    "qaRisks": [
+      {
+        "risk": "Booking and scheduling flow regression risk",
+        "category": "booking-risk",
+        "why": "Local lead notes include booking, scheduling, and class workflows as possible review areas."
+      },
+      {
+        "risk": "Payment and checkout regression risk",
+        "category": "payment-risk",
+        "why": "Payment and checkout workflows are listed as local QA opportunity signals."
+      },
+      {
+        "risk": "Mobile customer experience risk",
+        "category": "mobile-risk",
+        "why": "Mobile flow review is listed as a local QA opportunity signal."
+      }
+    ],
+    "automationOpportunities": [
+      {
+        "title": "Booking and class workflow smoke suite",
+        "coverage": [
+          "start booking journey",
+          "select class or appointment",
+          "validate schedule details",
+          "confirm booking handoff",
+          "mobile viewport smoke check"
+        ]
+      },
+      {
+        "title": "Payment and checkout smoke suite",
+        "coverage": [
+          "checkout entry",
+          "membership or payment path",
+          "error handling",
+          "confirmation state",
+          "basic regression coverage"
+        ]
+      }
+    ],
+    "auditAngles": [
+      {
+        "focus": "Booking and payment reliability",
+        "review": [
+          "booking journey",
+          "checkout path",
+          "onboarding flow",
+          "mobile responsiveness",
+          "release confidence"
+        ]
+      }
+    ],
+    "outreachAngles": [
+      {
+        "department": "Engineering",
+        "conversation": "How does the team maintain confidence around booking, checkout, and payment releases?"
+      },
+      {
+        "department": "Product",
+        "conversation": "How do you measure friction in booking, onboarding, and mobile workflows?"
+      },
+      {
+        "department": "Operations",
+        "conversation": "How much support volume comes from booking, checkout, or mobile workflow issues?"
+      }
+    ]
+  },
+  {
+    "companyId": "glofox",
+    "companyName": "Glofox / ABC Fitness",
+    "complaints": [
+      {
+        "summary": "Local lead notes flag signup, onboarding, checkout, payment, mobile, and regression workflows as areas to review.",
+        "category": "onboarding",
+        "frequency": "unknown",
+        "businessImpact": "Potential onboarding friction or support load if these flows are unreliable.",
+        "confidence": "low",
+        "source": "data/leads.json local painPoints and fitNotes",
+        "status": "Not enough evidence yet",
+        "researchRequired": true
+      },
+      {
+        "summary": "Local lead notes flag checkout and payment flow risk as areas to review.",
+        "category": "checkout",
+        "frequency": "unknown",
+        "businessImpact": "Potential revenue friction if checkout or payment regressions exist.",
+        "confidence": "low",
+        "source": "data/leads.json local painPoints",
+        "status": "Not enough evidence yet",
+        "researchRequired": true
+      }
+    ],
+    "patterns": [
+      "Potential customer journey cluster: signup, onboarding, checkout, payment, mobile.",
+      "Potential agency-partner-retainer angle from local recommended offer."
+    ],
+    "qaRisks": [
+      {
+        "risk": "Onboarding workflow regression risk",
+        "category": "onboarding-risk",
+        "why": "Signup and onboarding are listed as local QA opportunity signals."
+      },
+      {
+        "risk": "Payment and checkout regression risk",
+        "category": "payment-risk",
+        "why": "Payment and checkout workflows are listed as local QA opportunity signals."
+      },
+      {
+        "risk": "Release regression risk",
+        "category": "release-risk",
+        "why": "Regression testing opportunity is listed in local lead notes."
+      }
+    ],
+    "automationOpportunities": [
+      {
+        "title": "Signup and onboarding smoke suite",
+        "coverage": [
+          "start signup",
+          "complete required onboarding fields",
+          "validate handoff to core app",
+          "negative-path validation",
+          "mobile viewport smoke check"
+        ]
+      },
+      {
+        "title": "Checkout and payment workflow smoke suite",
+        "coverage": [
+          "start checkout",
+          "select membership or plan",
+          "payment path smoke check",
+          "confirmation state",
+          "basic regression coverage"
+        ]
+      }
+    ],
+    "auditAngles": [
+      {
+        "focus": "Onboarding and checkout confidence",
+        "review": [
+          "signup journey",
+          "onboarding workflow",
+          "checkout path",
+          "payment handoff",
+          "release confidence"
+        ]
+      }
+    ],
+    "outreachAngles": [
+      {
+        "department": "Engineering",
+        "conversation": "How does the team maintain confidence around onboarding, checkout, and payment releases?"
+      },
+      {
+        "department": "Product",
+        "conversation": "How do you measure customer friction in signup, onboarding, and checkout workflows?"
+      },
+      {
+        "department": "Operations",
+        "conversation": "How much support volume comes from onboarding, checkout, or payment workflow issues?"
+      }
+    ]
+  },
+  {
+    "companyId": "teamup",
+    "companyName": "TeamUp",
+    "complaints": [
+      {
+        "summary": "Local lead notes flag signup, onboarding, payment, booking, and regression workflows as areas to review.",
+        "category": "booking",
+        "frequency": "unknown",
+        "businessImpact": "Potential booking or member onboarding friction if these flows are unreliable.",
+        "confidence": "low",
+        "source": "data/leads.json local painPoints and fitNotes",
+        "status": "Not enough evidence yet",
+        "researchRequired": true
+      },
+      {
+        "summary": "Local lead notes flag payment flow risk as an area to review.",
+        "category": "payments",
+        "frequency": "unknown",
+        "businessImpact": "Potential revenue friction if payment regressions exist.",
+        "confidence": "low",
+        "source": "data/leads.json local painPoints",
+        "status": "Not enough evidence yet",
+        "researchRequired": true
+      }
+    ],
+    "patterns": [
+      "Potential workflow cluster: booking, memberships, payments, customer workflows.",
+      "Potential release-confidence angle from local regression testing opportunity notes."
+    ],
+    "qaRisks": [
+      {
+        "risk": "Booking workflow regression risk",
+        "category": "booking-risk",
+        "why": "Local lead notes include booking and customer workflows as possible review areas."
+      },
+      {
+        "risk": "Payment flow regression risk",
+        "category": "payment-risk",
+        "why": "Payment flow risk is listed as a local QA opportunity signal."
+      },
+      {
+        "risk": "Release regression risk",
+        "category": "release-risk",
+        "why": "Regression testing opportunity is listed in local lead notes."
+      }
+    ],
+    "automationOpportunities": [
+      {
+        "title": "Booking and membership smoke suite",
+        "coverage": [
+          "start booking journey",
+          "select class or membership path",
+          "validate scheduling handoff",
+          "confirm customer state",
+          "basic regression coverage"
+        ]
+      },
+      {
+        "title": "Payment workflow smoke suite",
+        "coverage": [
+          "enter payment path",
+          "validate required states",
+          "error handling",
+          "confirmation state"
+        ]
+      }
+    ],
+    "auditAngles": [
+      {
+        "focus": "Booking and payment release confidence",
+        "review": [
+          "booking journey",
+          "membership workflow",
+          "payment path",
+          "customer workflow",
+          "release confidence"
+        ]
+      }
+    ],
+    "outreachAngles": [
+      {
+        "department": "Engineering",
+        "conversation": "How does the team maintain confidence around booking, membership, and payment releases?"
+      },
+      {
+        "department": "Product",
+        "conversation": "How do you measure friction in booking and customer workflows?"
+      },
+      {
+        "department": "Operations",
+        "conversation": "How much support volume comes from booking, membership, or payment workflow issues?"
+      }
+    ]
+  },
+  {
+    "companyId": "wodify",
+    "companyName": "Wodify",
+    "complaints": [
+      {
+        "summary": "Local lead notes flag checkout, payment, mobile, scheduling, and regression workflows as areas to review.",
+        "category": "checkout",
+        "frequency": "unknown",
+        "businessImpact": "Potential revenue or member experience friction if checkout, payment, or mobile paths are unreliable.",
+        "confidence": "low",
+        "source": "data/leads.json local painPoints and fitNotes",
+        "status": "Not enough evidence yet",
+        "researchRequired": true
+      },
+      {
+        "summary": "Local lead notes flag mobile flow review as an area to review.",
+        "category": "mobile",
+        "frequency": "unknown",
+        "businessImpact": "Potential member experience friction if mobile workflows regress.",
+        "confidence": "low",
+        "source": "data/leads.json local painPoints",
+        "status": "Not enough evidence yet",
+        "researchRequired": true
+      }
+    ],
+    "patterns": [
+      "Potential workflow cluster: class scheduling, payments, athlete/member workflows, mobile.",
+      "Potential release-confidence angle from local regression testing opportunity notes."
+    ],
+    "qaRisks": [
+      {
+        "risk": "Payment and checkout regression risk",
+        "category": "payment-risk",
+        "why": "Checkout and payment workflows are listed as local QA opportunity signals."
+      },
+      {
+        "risk": "Mobile workflow regression risk",
+        "category": "mobile-risk",
+        "why": "Mobile flow review is listed as a local QA opportunity signal."
+      },
+      {
+        "risk": "Scheduling workflow regression risk",
+        "category": "booking-risk",
+        "why": "Local lead notes include class scheduling as a possible review area."
+      }
+    ],
+    "automationOpportunities": [
+      {
+        "title": "Payment and checkout smoke suite",
+        "coverage": [
+          "checkout entry",
+          "payment path",
+          "confirmation state",
+          "error handling",
+          "basic regression coverage"
+        ]
+      },
+      {
+        "title": "Mobile scheduling smoke suite",
+        "coverage": [
+          "mobile viewport scheduling path",
+          "class selection",
+          "member workflow handoff",
+          "confirmation state"
+        ]
+      }
+    ],
+    "auditAngles": [
+      {
+        "focus": "Payment, scheduling, and mobile reliability",
+        "review": [
+          "checkout journey",
+          "payment workflow",
+          "class scheduling path",
+          "mobile member workflow",
+          "release confidence"
+        ]
+      }
+    ],
+    "outreachAngles": [
+      {
+        "department": "Engineering",
+        "conversation": "How does the team maintain confidence around checkout, payment, scheduling, and mobile releases?"
+      },
+      {
+        "department": "Product",
+        "conversation": "How do you measure friction in mobile member and scheduling workflows?"
+      },
+      {
+        "department": "Operations",
+        "conversation": "How much support volume comes from checkout, payment, scheduling, or mobile workflow issues?"
+      }
+    ]
+  }
+]

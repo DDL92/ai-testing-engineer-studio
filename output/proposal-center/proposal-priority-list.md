@@ -1,6 +1,6 @@
 # Proposal Priority List
 
-Generated: 2026-06-12T15:30:29.165Z
+Generated: 2026-06-12T17:23:55.450Z
 
 Ranking factors: commercial lead, readiness score, audit pack exists, contact review exists, SOW readiness, revenue potential, and retainer fit.
 

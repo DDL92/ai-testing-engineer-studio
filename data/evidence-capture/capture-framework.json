@@ -1,0 +1,126 @@
+{
+  "frameworkName": "Evidence Capture Framework",
+  "status": "architecture-only",
+  "standardFields": [
+    "Evidence Type",
+    "Source",
+    "Company",
+    "URL",
+    "Timestamp",
+    "Confidence",
+    "Description",
+    "Supporting Files",
+    "Approval Status"
+  ],
+  "futureEvidenceTypes": [
+    {
+      "type": "playwright-evidence",
+      "source": "Playwright",
+      "status": "Not Yet Implemented",
+      "purpose": "Capture controlled functional flow evidence after human-approved scope exists.",
+      "futureUse": "Support QA Audit, Playwright Starter Pack, and retainer regression evidence.",
+      "implementationPriority": 1
+    },
+    {
+      "type": "screenshot-evidence",
+      "source": "Screenshots",
+      "status": "Not Yet Implemented",
+      "purpose": "Attach reviewed visual proof to observations and audit recommendations.",
+      "futureUse": "Support client-facing audit reports and proposal context.",
+      "implementationPriority": 2
+    },
+    {
+      "type": "lighthouse-evidence",
+      "source": "Lighthouse",
+      "status": "Not Yet Implemented",
+      "purpose": "Capture reviewed performance and accessibility snapshot data only after scope approval.",
+      "futureUse": "Support audit context and performance/accessibility opportunity discussion.",
+      "implementationPriority": 3
+    },
+    {
+      "type": "accessibility-evidence",
+      "source": "Accessibility",
+      "status": "Not Yet Implemented",
+      "purpose": "Capture reviewed accessibility observations without claiming compliance.",
+      "futureUse": "Support QA Audit accessibility opportunity sections.",
+      "implementationPriority": 4
+    },
+    {
+      "type": "performance-evidence",
+      "source": "Performance",
+      "status": "Not Yet Implemented",
+      "purpose": "Capture reviewed performance observations without inventing metrics.",
+      "futureUse": "Support audit recommendations and retainer monitoring opportunities.",
+      "implementationPriority": 5
+    },
+    {
+      "type": "console-evidence",
+      "source": "Console",
+      "status": "Not Yet Implemented",
+      "purpose": "Capture reviewed browser console observations from future approved runs.",
+      "futureUse": "Support technical QA triage and automation planning.",
+      "implementationPriority": 6
+    },
+    {
+      "type": "network-evidence",
+      "source": "Network",
+      "status": "Not Yet Implemented",
+      "purpose": "Capture reviewed network observations from future approved runs.",
+      "futureUse": "Support technical QA triage and release-risk discussion.",
+      "implementationPriority": 7
+    },
+    {
+      "type": "manual-review-evidence",
+      "source": "Manual QA Review",
+      "status": "Not Yet Implemented",
+      "purpose": "Store Daniel-approved manual QA observations in the same standard format.",
+      "futureUse": "Support QA Audit, proposal, and retainer context before automation exists.",
+      "implementationPriority": 8
+    }
+  ],
+  "storageArchitecture": [
+    {
+      "path": "data/evidence/playwright/",
+      "purpose": "Future reviewed Playwright evidence records."
+    },
+    {
+      "path": "data/evidence/lighthouse/",
+      "purpose": "Future reviewed Lighthouse evidence records."
+    },
+    {
+      "path": "data/evidence/screenshots/",
+      "purpose": "Future manually approved screenshot metadata."
+    },
+    {
+      "path": "data/evidence/accessibility/",
+      "purpose": "Future reviewed accessibility evidence records."
+    },
+    {
+      "path": "data/evidence/performance/",
+      "purpose": "Future reviewed performance evidence records."
+    },
+    {
+      "path": "data/evidence/manual/",
+      "purpose": "Future Daniel-approved manual QA observations."
+    }
+  ],
+  "readinessScoring": [
+    "Collection Readiness",
+    "Storage Readiness",
+    "Audit Readiness",
+    "Proposal Readiness",
+    "Retainer Readiness"
+  ],
+  "safetyRules": [
+    "Do not run Playwright.",
+    "Do not run Lighthouse.",
+    "Do not capture screenshots.",
+    "Do not perform accessibility scans.",
+    "Do not perform performance scans.",
+    "Do not use browser automation.",
+    "Do not use APIs.",
+    "Do not use credentials.",
+    "Do not use external databases.",
+    "Do not invent evidence, screenshots, metrics, results, findings, bugs, vulnerabilities, or incidents."
+  ]
+}

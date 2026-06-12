@@ -1,0 +1,244 @@
+[
+  {
+    "pageType": "Homepage",
+    "requestedUrl": "https://www.glofox.com/",
+    "finalUrl": "https://www.glofox.com/",
+    "title": "Welcome to Glofox: The #1 fitness management software",
+    "httpStatus": 200,
+    "visibleCtaCount": 21,
+    "navigationLinks": [
+      "https://www.glofox.com/contact-us/",
+      "https://www.glofox.com/",
+      "https://www.glofox.com/business-types/gym-management-software/",
+      "https://www.glofox.com/business-types/fitness-studio-software/",
+      "https://www.glofox.com/business-types/pt-studio-software/",
+      "https://www.glofox.com/business-types/boxing-studio-software/",
+      "https://www.glofox.com/business-types/yoga-studio-software/",
+      "https://www.glofox.com/business-types/pilates-software/",
+      "https://www.glofox.com/business-types/spin-cycle-software/",
+      "https://www.glofox.com/business-types/martial-arts-software/",
+      "https://www.glofox.com/business-types/wellness-software/",
+      "https://www.glofox.com/solutions/manage-my-business/",
+      "https://www.glofox.com/solutions/engage-my-members/",
+      "https://www.glofox.com/solutions/grow-my-business/",
+      "https://www.glofox.com/solutions/scale-my-business/",
+      "https://www.glofox.com/solutions/overview/",
+      "https://www.glofox.com/pricing/",
+      "https://www.glofox.com/blog/",
+      "https://www.glofox.com/resources/customer-stories/",
+      "https://www.glofox.com/resources/ebooks/",
+      "https://www.glofox.com/multi-location/",
+      "https://www.glofox.com/podcasts/",
+      "https://www.glofox.com/about/",
+      "https://www.glofox.com/faq/",
+      "https://www.glofox.com/legal/terms-of-use/"
+    ],
+    "consoleWarnings": [],
+    "consoleErrors": [],
+    "screenshotCapture": "data/evidence/playwright/screenshots/glofox-homepage.png",
+    "observations": [
+      "Public Homepage reviewed without form submission or account access.",
+      "HTTP response status observed: 200.",
+      "Visible CTA count observed: 21.",
+      "Navigation links observed: 25.",
+      "No console errors observed during passive page load.",
+      "No console warnings observed during passive page load."
+    ],
+    "qaOpportunities": [],
+    "automationOpportunities": [
+      {
+        "type": "Potential Automation Opportunity",
+        "description": "Create future smoke coverage for public page load and navigation visibility.",
+        "evidence": "25 navigation link(s) and 21 CTA candidate(s) observed on https://www.glofox.com/.",
+        "confidence": "Medium"
+      }
+    ],
+    "confidence": "High"
+  },
+  {
+    "pageType": "Public Demo Page",
+    "requestedUrl": "https://www.glofox.com/demo/",
+    "finalUrl": "https://www.glofox.com/demo/",
+    "title": "Book a Free ABC Glofox Demo | Gym Management Software",
+    "httpStatus": 200,
+    "visibleCtaCount": 0,
+    "navigationLinks": [],
+    "consoleWarnings": [],
+    "consoleErrors": [],
+    "screenshotCapture": "data/evidence/playwright/screenshots/glofox-public-demo-page.png",
+    "observations": [
+      "Public Public Demo Page reviewed without form submission or account access.",
+      "HTTP response status observed: 200.",
+      "Visible CTA count observed: 0.",
+      "Navigation links observed: 0.",
+      "No console errors observed during passive page load.",
+      "No console warnings observed during passive page load."
+    ],
+    "qaOpportunities": [
+      {
+        "type": "Potential UX Opportunity",
+        "description": "Review public page CTA clarity.",
+        "evidence": "No visible CTA buttons or CTA-style links were counted on https://www.glofox.com/demo/.",
+        "confidence": "Low"
+      }
+    ],
+    "automationOpportunities": [
+      {
+        "type": "Potential Automation Opportunity",
+        "description": "Create future smoke coverage for public page load and navigation visibility.",
+        "evidence": "0 navigation link(s) and 0 CTA candidate(s) observed on https://www.glofox.com/demo/.",
+        "confidence": "Medium"
+      }
+    ],
+    "confidence": "High"
+  },
+  {
+    "pageType": "Public Contact Page",
+    "requestedUrl": "https://www.glofox.com/contact-us/",
+    "finalUrl": "https://www.glofox.com/contact-us/",
+    "title": "Contact us | Glofox",
+    "httpStatus": 200,
+    "visibleCtaCount": 13,
+    "navigationLinks": [
+      "https://www.glofox.com/contact-us/",
+      "https://www.glofox.com/",
+      "https://www.glofox.com/business-types/gym-management-software/",
+      "https://www.glofox.com/business-types/fitness-studio-software/",
+      "https://www.glofox.com/business-types/pt-studio-software/",
+      "https://www.glofox.com/business-types/boxing-studio-software/",
+      "https://www.glofox.com/business-types/yoga-studio-software/",
+      "https://www.glofox.com/business-types/pilates-software/",
+      "https://www.glofox.com/business-types/spin-cycle-software/",
+      "https://www.glofox.com/business-types/martial-arts-software/",
+      "https://www.glofox.com/business-types/wellness-software/",
+      "https://www.glofox.com/solutions/manage-my-business/",
+      "https://www.glofox.com/solutions/engage-my-members/",
+      "https://www.glofox.com/solutions/grow-my-business/",
+      "https://www.glofox.com/solutions/scale-my-business/",
+      "https://www.glofox.com/solutions/overview/",
+      "https://www.glofox.com/pricing/",
+      "https://www.glofox.com/blog/",
+      "https://www.glofox.com/resources/customer-stories/",
+      "https://www.glofox.com/resources/ebooks/",
+      "https://www.glofox.com/multi-location/",
+      "https://www.glofox.com/podcasts/",
+      "https://www.glofox.com/about/",
+      "https://www.glofox.com/faq/",
+      "https://www.glofox.com/legal/terms-of-use/"
+    ],
+    "consoleWarnings": [],
+    "consoleErrors": [],
+    "screenshotCapture": "data/evidence/playwright/screenshots/glofox-public-contact-page.png",
+    "observations": [
+      "Public Public Contact Page reviewed without form submission or account access.",
+      "HTTP response status observed: 200.",
+      "Visible CTA count observed: 13.",
+      "Navigation links observed: 25.",
+      "No console errors observed during passive page load.",
+      "No console warnings observed during passive page load."
+    ],
+    "qaOpportunities": [],
+    "automationOpportunities": [
+      {
+        "type": "Potential Automation Opportunity",
+        "description": "Create future smoke coverage for public page load and navigation visibility.",
+        "evidence": "25 navigation link(s) and 13 CTA candidate(s) observed on https://www.glofox.com/contact-us/.",
+        "confidence": "Medium"
+      }
+    ],
+    "confidence": "High"
+  },
+  {
+    "pageType": "Pricing",
+    "requestedUrl": "https://www.glofox.com/pricing/",
+    "finalUrl": "https://www.glofox.com/pricing/",
+    "title": "Get a price quote | Glofox",
+    "httpStatus": 200,
+    "visibleCtaCount": 0,
+    "navigationLinks": [],
+    "consoleWarnings": [],
+    "consoleErrors": [],
+    "screenshotCapture": "data/evidence/playwright/screenshots/glofox-pricing.png",
+    "observations": [
+      "Public Pricing reviewed without form submission or account access.",
+      "HTTP response status observed: 200.",
+      "Visible CTA count observed: 0.",
+      "Navigation links observed: 0.",
+      "No console errors observed during passive page load.",
+      "No console warnings observed during passive page load."
+    ],
+    "qaOpportunities": [
+      {
+        "type": "Potential UX Opportunity",
+        "description": "Review public page CTA clarity.",
+        "evidence": "No visible CTA buttons or CTA-style links were counted on https://www.glofox.com/pricing/.",
+        "confidence": "Low"
+      }
+    ],
+    "automationOpportunities": [
+      {
+        "type": "Potential Automation Opportunity",
+        "description": "Create future smoke coverage for public page load and navigation visibility.",
+        "evidence": "0 navigation link(s) and 0 CTA candidate(s) observed on https://www.glofox.com/pricing/.",
+        "confidence": "Medium"
+      }
+    ],
+    "confidence": "High"
+  },
+  {
+    "pageType": "Public Marketing Pages",
+    "requestedUrl": "https://www.glofox.com/business-types/pilates-software/",
+    "finalUrl": "https://www.glofox.com/business-types/pilates-software/",
+    "title": "Pilates Studio Software | Glofox",
+    "httpStatus": 200,
+    "visibleCtaCount": 16,
+    "navigationLinks": [
+      "https://www.glofox.com/contact-us/",
+      "https://www.glofox.com/",
+      "https://www.glofox.com/business-types/pilates-software/",
+      "https://www.glofox.com/business-types/gym-management-software/",
+      "https://www.glofox.com/business-types/fitness-studio-software/",
+      "https://www.glofox.com/business-types/pt-studio-software/",
+      "https://www.glofox.com/business-types/boxing-studio-software/",
+      "https://www.glofox.com/business-types/yoga-studio-software/",
+      "https://www.glofox.com/business-types/spin-cycle-software/",
+      "https://www.glofox.com/business-types/martial-arts-software/",
+      "https://www.glofox.com/business-types/wellness-software/",
+      "https://www.glofox.com/solutions/manage-my-business/",
+      "https://www.glofox.com/solutions/engage-my-members/",
+      "https://www.glofox.com/solutions/grow-my-business/",
+      "https://www.glofox.com/solutions/scale-my-business/",
+      "https://www.glofox.com/solutions/overview/",
+      "https://www.glofox.com/pricing/",
+      "https://www.glofox.com/blog/",
+      "https://www.glofox.com/resources/customer-stories/",
+      "https://www.glofox.com/resources/ebooks/",
+      "https://www.glofox.com/multi-location/",
+      "https://www.glofox.com/podcasts/",
+      "https://www.glofox.com/about/",
+      "https://www.glofox.com/faq/",
+      "https://www.glofox.com/legal/terms-of-use/"
+    ],
+    "consoleWarnings": [],
+    "consoleErrors": [],
+    "screenshotCapture": "data/evidence/playwright/screenshots/glofox-public-marketing-pages.png",
+    "observations": [
+      "Public Public Marketing Pages reviewed without form submission or account access.",
+      "HTTP response status observed: 200.",
+      "Visible CTA count observed: 16.",
+      "Navigation links observed: 25.",
+      "No console errors observed during passive page load.",
+      "No console warnings observed during passive page load."
+    ],
+    "qaOpportunities": [],
+    "automationOpportunities": [
+      {
+        "type": "Potential Automation Opportunity",
+        "description": "Create future smoke coverage for public page load and navigation visibility.",
+        "evidence": "25 navigation link(s) and 16 CTA candidate(s) observed on https://www.glofox.com/business-types/pilates-software/.",
+        "confidence": "Medium"
+      }
+    ],
+    "confidence": "High"
+  }
+]

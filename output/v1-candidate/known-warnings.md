@@ -1,6 +1,6 @@
 # Known Warnings
 
-Generated: 2026-06-12T16:43:20.573Z
+Generated: 2026-06-12T17:07:28.252Z
 
 - Demo/sample client fee records exist and are excluded from booked revenue: 2.
 - Excluded non-commercial active client has local monthlyFee $2,000: Demo Retainer SaaS.
@@ -14,8 +14,6 @@ Generated: 2026-06-12T16:43:20.573Z
 - output/dashboard/dashboard.html: older dashboard surface may overlap with Operator OS Dashboard
 - output/dashboard/dashboard.md: older dashboard surface may overlap with Operator OS Dashboard
 - output/dashboard/revenue-visibility.md: revenue-like report should defer booked MRR to Revenue Command Center
-- output/metrics/revenue-summary.md: revenue-like report should defer booked MRR to Revenue Command Center
-- output/pipeline-prioritization/top-10-revenue-opportunities.md: revenue-like report should defer booked MRR to Revenue Command Center
 
 ## Handling
 - Do not remove overlapping commands during the v1.0 candidate package unless a replacement is already validated.

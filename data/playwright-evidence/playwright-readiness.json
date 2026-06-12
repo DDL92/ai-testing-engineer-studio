@@ -1,0 +1,65 @@
+{
+  "frameworkName": "Playwright Evidence Runner v1 Readiness",
+  "status": "planning-only",
+  "readinessCategories": [
+    {
+      "category": "Framework Readiness",
+      "value": "Partially Ready",
+      "reason": "Evidence Capture Framework and standard evidence contracts exist, but no runner is implemented."
+    },
+    {
+      "category": "Storage Readiness",
+      "value": "Partially Ready",
+      "reason": "Future Playwright storage folders are prepared, but no evidence files should exist yet."
+    },
+    {
+      "category": "Evidence Readiness",
+      "value": "Partially Ready",
+      "reason": "Existing evidence reports identify target readiness, but Playwright evidence has not been collected."
+    },
+    {
+      "category": "Audit Readiness",
+      "value": "Partially Ready",
+      "reason": "Audit packs and evidence summaries exist, but Playwright evidence is not available yet."
+    },
+    {
+      "category": "Execution Readiness",
+      "value": "Not Ready",
+      "reason": "No human-approved Playwright execution runner, target approval gate, or capture workflow exists yet."
+    }
+  ],
+  "futureEvidenceTypes": [
+    "homepage-evidence",
+    "navigation-evidence",
+    "form-evidence",
+    "cta-evidence",
+    "mobile-evidence",
+    "console-evidence",
+    "network-evidence",
+    "user-flow-evidence"
+  ],
+  "allowedFutureFlows": [
+    "Homepage",
+    "Navigation",
+    "Demo Request",
+    "Contact Form",
+    "Pricing",
+    "Booking",
+    "Scheduling",
+    "Signup",
+    "Onboarding"
+  ],
+  "futureExecutionCommand": "npm run evidence:playwright-run -- --company PushPress",
+  "safetyRules": [
+    "No login automation",
+    "No account creation",
+    "No payment flows",
+    "No authenticated areas",
+    "No scraping",
+    "No aggressive crawling",
+    "No rate abuse",
+    "No private data",
+    "No credentials",
+    "Human approval required"
+  ]
+}

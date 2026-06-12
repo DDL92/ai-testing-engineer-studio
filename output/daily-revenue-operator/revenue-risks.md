@@ -1,6 +1,6 @@
 # Revenue Risks
 
-Generated: 2026-06-12T16:42:32.351Z
+Generated: 2026-06-12T16:59:44.078Z
 
 | Category | Severity | Detail | Next Review |
 | --- | --- | --- | --- |

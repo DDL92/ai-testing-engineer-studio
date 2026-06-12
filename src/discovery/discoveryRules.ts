@@ -1,4 +1,8 @@
-import { DiscoveryIcp, DiscoverySource, HighProbabilityTarget, LeadDiscoveryReport } from './types';
+import fs = require('fs');
+import path = require('path');
+import { createBaseLeadId } from '../leads/leadId';
+import { scoreLead } from '../leads/leadScorer';
+import { DiscoveryIcp, DiscoverySeedCompany, DiscoverySource, DiscoveredLeadCandidate, HighProbabilityTarget, LeadDiscoveryEngineRun, LeadDiscoveryReport } from './types';
 
 export function buildLeadDiscoveryReport(): LeadDiscoveryReport {
   return {
@@ -46,6 +50,145 @@ export function buildLeadDiscoveryReport(): LeadDiscoveryReport {
       'Manual review is required before adding leads, preparing outreach, sending messages, generating proposals, or client communication.',
     ],
   };
+}
+
+export function buildLeadDiscoveryEngineRun(niche: string, limit = 10): LeadDiscoveryEngineRun {
+  const normalizedNiche = normalize(niche || 'qa automation saas');
+  const seeds = loadDiscoverySeeds();
+  const matchingSeeds = seeds
+    .map((seed) => ({ seed, relevance: relevanceScore(seed, normalizedNiche) }))
+    .filter((item) => item.relevance > 0)
+    .sort((a, b) => b.relevance - a.relevance || a.seed.companyName.localeCompare(b.seed.companyName))
+    .slice(0, limit)
+    .map((item) => item.seed);
+  const selectedSeeds = matchingSeeds.length > 0 ? matchingSeeds : seeds.slice(0, limit);
+  const candidates = selectedSeeds
+    .map((seed) => buildCandidate(seed, niche))
+    .sort((a, b) => b.score - a.score || a.companyName.localeCompare(b.companyName));
+
+  return {
+    generatedAt: new Date().toISOString(),
+    niche,
+    source: 'Local seed catalog only. No internet, APIs, scraping, browser automation, CRM, LinkedIn automation, or sending.',
+    candidates,
+    safetyRules: discoveryEngineSafetyRules(),
+    nextCommands: [
+      'Review data/leads/discovered-leads.json manually.',
+      'Promote approved candidates with npm run lead:add.',
+      'Generate a company pack with npm run lead:pack -- --company "Company Name".',
+      'Generate audit evidence only after Daniel approves a public URL and scope.',
+    ],
+  };
+}
+
+export function writeLeadDiscoveryEngineRun(run: LeadDiscoveryEngineRun): string {
+  const outputPath = path.join(process.cwd(), 'data', 'leads', 'discovered-leads.json');
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+  fs.writeFileSync(outputPath, `${JSON.stringify(run, null, 2)}\n`, 'utf8');
+  return outputPath;
+}
+
+export function renderLeadDiscoveryEngineRun(run: LeadDiscoveryEngineRun): string {
+  return [
+    '# Lead Discovery Engine v1',
+    '',
+    `Generated: ${run.generatedAt}`,
+    `Niche: ${run.niche}`,
+    '',
+    '## Current Boundary',
+    renderList([
+      run.source,
+      'Candidates are saved for human review; they are not automatically promoted into the active lead pipeline.',
+      'Human approval is required before adding leads, creating outreach, running audits, sending messages, or proposing work.',
+    ]),
+    '',
+    '## Discovered Companies',
+    renderCandidateTable(run.candidates),
+    '',
+    '## Revenue Focus',
+    renderList([
+      'Prioritize companies with public product workflows, checkout/payment-adjacent risk, booking/onboarding complexity, mobile risk, or frequent releases.',
+      'Use QA Audit as the first paid wedge, then convert evidence into a Playwright Starter Pack or QA Automation Retainer only when justified.',
+      'Do not treat discovered candidates as booked revenue.',
+    ]),
+    '',
+    '## Suggested Next Commands',
+    renderList(run.nextCommands.map((command) => command.startsWith('npm run') ? `\`${command}\`` : command)),
+    '',
+    '## Safety Rules',
+    renderList(run.safetyRules),
+    '',
+  ].join('\n');
+}
+
+function buildCandidate(seed: DiscoverySeedCompany, niche: string): DiscoveredLeadCandidate {
+  const score = scoreLead({
+    companyName: seed.companyName,
+    website: seed.website,
+    industry: seed.industry,
+    source: `Lead Discovery Engine v1 local seed: ${niche}`,
+    fitNotes: seed.fitNotes,
+    painPoints: seed.painPoints,
+    recommendedOffer: seed.suggestedOffer,
+  });
+
+  return {
+    id: createBaseLeadId(seed.companyName),
+    companyName: seed.companyName,
+    website: seed.website,
+    industry: seed.industry,
+    source: `Lead Discovery Engine v1 local seed: ${niche}`,
+    niche,
+    score: score.score,
+    recommendedOffer: score.recommendedOffer,
+    fitNotes: seed.fitNotes,
+    painPoints: seed.painPoints,
+    nextAction: `Human review ${seed.companyName}, then run npm run lead:pack -- --company "${seed.companyName}".`,
+    scoreReasons: score.reasons,
+  };
+}
+
+function loadDiscoverySeeds(): DiscoverySeedCompany[] {
+  const seedPath = path.join(process.cwd(), 'data', 'leads', 'discovery-seeds.json');
+  if (!fs.existsSync(seedPath)) return fallbackDiscoverySeeds();
+  const raw = fs.readFileSync(seedPath, 'utf8').trim();
+  if (!raw) return fallbackDiscoverySeeds();
+  return JSON.parse(raw) as DiscoverySeedCompany[];
+}
+
+function relevanceScore(seed: DiscoverySeedCompany, normalizedNiche: string): number {
+  const haystack = normalize([
+    seed.companyName,
+    seed.industry,
+    seed.fitNotes,
+    seed.painPoints.join(' '),
+    seed.niches.join(' '),
+  ].join(' '));
+  const tokens = normalizedNiche.split(' ').filter((token) => token.length >= 3);
+  const directNicheMatch = seed.niches.some((niche) => normalize(niche).includes(normalizedNiche) || normalizedNiche.includes(normalize(niche)));
+  return tokens.reduce((sum, token) => sum + (haystack.includes(token) ? 1 : 0), directNicheMatch ? 5 : 0);
+}
+
+function discoveryEngineSafetyRules(): string[] {
+  return [
+    'Local-first deterministic discovery only.',
+    'No paid APIs.',
+    'No LinkedIn automation.',
+    'No message sending.',
+    'No scraping behind logins.',
+    'No browser automation or external enrichment.',
+    'No invented contacts, findings, metrics, or revenue.',
+    'Human approval is required before promoting, contacting, auditing, proposing, or sending anything.',
+  ];
+}
+
+function renderCandidateTable(candidates: DiscoveredLeadCandidate[]): string {
+  if (candidates.length === 0) return 'No candidates found for this niche.';
+  return [
+    '| Company | Score | Offer | Website | QA Opportunity | Next Action |',
+    '| --- | ---: | --- | --- | --- | --- |',
+    ...candidates.map((candidate) => `| ${escapeTable(candidate.companyName)} | ${candidate.score}/10 | ${candidate.recommendedOffer} | ${escapeTable(candidate.website)} | ${escapeTable(candidate.painPoints.join(', '))} | ${escapeTable(candidate.nextAction)} |`),
+  ].join('\n');
 }
 
 function buildRecommendedIcps(): DiscoveryIcp[] {
@@ -175,4 +318,49 @@ function buildSearchQueries(): string[] {
     '"patient scheduling software"',
     '"client portal software" "SaaS"',
   ];
+}
+
+function fallbackDiscoverySeeds(): DiscoverySeedCompany[] {
+  return [
+    {
+      companyName: 'PushPress',
+      website: 'https://www.pushpress.com',
+      industry: 'Gym Management SaaS',
+      niches: ['gym management saas', 'fitness software', 'booking software'],
+      fitNotes: 'Gym management SaaS with scheduling, memberships, payments, and class workflows.',
+      painPoints: ['signup/onboarding coverage', 'checkout regression risk', 'payment flow risk', 'mobile flow review'],
+      suggestedOffer: 'qa-automation-retainer',
+    },
+    {
+      companyName: 'TeamUp',
+      website: 'https://goteamup.com',
+      industry: 'Gym Management SaaS',
+      niches: ['gym management saas', 'fitness software', 'booking software'],
+      fitNotes: 'Fitness business management platform with booking, memberships, payments, and customer workflows.',
+      painPoints: ['signup/onboarding coverage', 'payment flow risk', 'regression testing opportunity'],
+      suggestedOffer: 'qa-automation-retainer',
+    },
+    {
+      companyName: 'Wodify',
+      website: 'https://www.wodify.com',
+      industry: 'Gym Management SaaS',
+      niches: ['gym management saas', 'fitness software', 'booking software'],
+      fitNotes: 'Fitness and gym management software with class scheduling, memberships, member workflows, and payments.',
+      painPoints: ['checkout regression risk', 'payment flow risk', 'regression testing opportunity', 'mobile flow review'],
+      suggestedOffer: 'qa-automation-retainer',
+    },
+  ];
+}
+
+function normalize(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function escapeTable(value: string): string {
+  return value.replace(/\|/g, '\\|').replace(/\n/g, '<br>');
+}
+
+function renderList(items: string[]): string {
+  if (items.length === 0) return '- None.';
+  return items.map((item) => `- ${item}`).join('\n');
 }

@@ -1,0 +1,357 @@
+[
+  {
+    "companyId": "pushpress",
+    "companyName": "PushPress",
+    "url": "https://www.pushpress.com",
+    "industry": "Gym Management SaaS",
+    "score": 8,
+    "screenshotCapture": "Not Available",
+    "observations": [
+      {
+        "observation": "Public website URL is recorded for manual QA review.",
+        "category": "metadata",
+        "evidence": "data/leads.json records https://www.pushpress.com for PushPress.",
+        "confidence": "high",
+        "status": "Evidence available from local data",
+        "manualReviewRequired": false
+      },
+      {
+        "observation": "Booking, checkout, onboarding, payment, mobile, and regression workflows are local review signals.",
+        "category": "booking",
+        "evidence": "data/leads.json painPoints and fitNotes list booking, checkout, onboarding, payment, mobile, and regression review areas.",
+        "confidence": "medium",
+        "status": "Local lead-data signal only",
+        "manualReviewRequired": true
+      },
+      {
+        "observation": "Screenshot Capture: Not Available",
+        "category": "general",
+        "evidence": "No existing site-intelligence screenshot artifact is recorded for PushPress.",
+        "confidence": "high",
+        "status": "Not enough evidence",
+        "manualReviewRequired": true
+      }
+    ],
+    "findings": [
+      {
+        "finding": "Potential Test Coverage Opportunity: booking and checkout journey smoke coverage.",
+        "category": "user-flow",
+        "riskType": "Potential Test Coverage Opportunity",
+        "evidence": "Local lead data records booking, checkout, onboarding, payment, mobile, and regression as review areas.",
+        "confidence": "medium",
+        "recommendation": "Manually review public booking and checkout paths, then define Playwright smoke coverage only for observed flows."
+      },
+      {
+        "finding": "Potential UX Risk: lead-capture or demo path requires manual review.",
+        "category": "cta",
+        "riskType": "Potential UX Risk",
+        "evidence": "Channel research records demo request and website contact form paths as not identified yet.",
+        "confidence": "low",
+        "recommendation": "Manually inspect CTA clarity and form steps before making any UX claim."
+      }
+    ],
+    "uxOpportunities": [
+      {
+        "opportunity": "CTA clarity and lead capture review",
+        "category": "cta",
+        "evidence": "Channel research has no exact demo/contact URL recorded yet.",
+        "confidence": "low",
+        "recommendation": "Review primary CTA path, form friction, confirmation state, and mobile behavior manually."
+      },
+      {
+        "opportunity": "Mobile booking journey review",
+        "category": "mobile",
+        "evidence": "Local lead data includes mobile flow review and booking workflow signals.",
+        "confidence": "medium",
+        "recommendation": "Review key customer journeys at mobile viewport sizes before proposing automation."
+      }
+    ],
+    "automationOpportunities": [
+      {
+        "observation": "Booking and checkout workflow review signals exist in local data.",
+        "opportunity": "Smoke Test",
+        "coverage": [
+          "page load",
+          "primary CTA path",
+          "booking journey entry",
+          "checkout or payment handoff",
+          "mobile viewport smoke check",
+          "error and confirmation states after manual observation"
+        ]
+      }
+    ],
+    "auditRecommendations": [
+      {
+        "focus": "Lead capture, booking, checkout, and mobile release confidence",
+        "review": [
+          "public homepage and primary CTA",
+          "booking journey entry",
+          "checkout/payment handoff if public",
+          "mobile viewport journey",
+          "release confidence opportunities"
+        ]
+      }
+    ]
+  },
+  {
+    "companyId": "glofox",
+    "companyName": "Glofox / ABC Fitness",
+    "url": "https://www.glofox.com",
+    "industry": "Gym Management SaaS",
+    "score": 10,
+    "screenshotCapture": "Not Available",
+    "observations": [
+      {
+        "observation": "Public website URL is recorded for manual QA review.",
+        "category": "metadata",
+        "evidence": "data/leads.json records https://www.glofox.com for ABC Glofox.",
+        "confidence": "high",
+        "status": "Evidence available from local data",
+        "manualReviewRequired": false
+      },
+      {
+        "observation": "Signup, onboarding, checkout, payment, mobile, and regression workflows are local review signals.",
+        "category": "onboarding",
+        "evidence": "data/leads.json painPoints and fitNotes list signup/onboarding, checkout, payment, mobile, and regression review areas.",
+        "confidence": "medium",
+        "status": "Local lead-data signal only",
+        "manualReviewRequired": true
+      },
+      {
+        "observation": "Screenshot Capture: Not Available",
+        "category": "general",
+        "evidence": "No existing site-intelligence screenshot artifact is recorded for Glofox / ABC Fitness.",
+        "confidence": "high",
+        "status": "Not enough evidence",
+        "manualReviewRequired": true
+      }
+    ],
+    "findings": [
+      {
+        "finding": "Potential Test Coverage Opportunity: signup, onboarding, and checkout smoke coverage.",
+        "category": "onboarding",
+        "riskType": "Potential Test Coverage Opportunity",
+        "evidence": "Local lead data records signup/onboarding, checkout, payment, mobile, and regression as review areas.",
+        "confidence": "medium",
+        "recommendation": "Manually review public signup/demo paths, then define smoke coverage only for observed flows."
+      },
+      {
+        "finding": "Potential UX Risk: demo/contact path requires manual review.",
+        "category": "forms",
+        "riskType": "Potential UX Risk",
+        "evidence": "Channel research records demo request and website contact form paths as not identified yet.",
+        "confidence": "low",
+        "recommendation": "Manually inspect form length, required fields, error states, and confirmation behavior before making any UX claim."
+      }
+    ],
+    "uxOpportunities": [
+      {
+        "opportunity": "Onboarding and demo flow clarity review",
+        "category": "onboarding",
+        "evidence": "Local lead data includes signup/onboarding and checkout review signals.",
+        "confidence": "medium",
+        "recommendation": "Review signup/demo entry, form friction, and next-step clarity manually."
+      }
+    ],
+    "automationOpportunities": [
+      {
+        "observation": "Signup, onboarding, checkout, and payment workflow review signals exist in local data.",
+        "opportunity": "Smoke Test",
+        "coverage": [
+          "page load",
+          "primary CTA path",
+          "signup or demo entry",
+          "required field validation after manual observation",
+          "mobile viewport smoke check",
+          "confirmation state after manual observation"
+        ]
+      }
+    ],
+    "auditRecommendations": [
+      {
+        "focus": "Onboarding, checkout, and payment journey confidence",
+        "review": [
+          "public homepage and primary CTA",
+          "signup or demo flow",
+          "checkout/payment handoff if public",
+          "mobile viewport journey",
+          "release confidence opportunities"
+        ]
+      }
+    ]
+  },
+  {
+    "companyId": "teamup",
+    "companyName": "TeamUp",
+    "url": "https://goteamup.com",
+    "industry": "Gym Management SaaS",
+    "score": 8,
+    "screenshotCapture": "Not Available",
+    "observations": [
+      {
+        "observation": "Public website URL is recorded for manual QA review.",
+        "category": "metadata",
+        "evidence": "data/leads.json records https://goteamup.com for TeamUp.",
+        "confidence": "high",
+        "status": "Evidence available from local data",
+        "manualReviewRequired": false
+      },
+      {
+        "observation": "Signup, onboarding, payment, booking, and regression workflows are local review signals.",
+        "category": "booking",
+        "evidence": "data/leads.json painPoints and fitNotes list signup/onboarding, payment, booking, customer workflows, and regression review areas.",
+        "confidence": "medium",
+        "status": "Local lead-data signal only",
+        "manualReviewRequired": true
+      },
+      {
+        "observation": "Screenshot Capture: Not Available",
+        "category": "general",
+        "evidence": "No existing site-intelligence screenshot artifact is recorded for TeamUp.",
+        "confidence": "high",
+        "status": "Not enough evidence",
+        "manualReviewRequired": true
+      }
+    ],
+    "findings": [
+      {
+        "finding": "Potential Test Coverage Opportunity: booking, membership, and payment smoke coverage.",
+        "category": "booking",
+        "riskType": "Potential Test Coverage Opportunity",
+        "evidence": "Local lead data records booking, membership/customer workflows, payment, onboarding, and regression as review areas.",
+        "confidence": "medium",
+        "recommendation": "Manually review public booking or membership paths, then define Playwright smoke coverage only for observed flows."
+      },
+      {
+        "finding": "Potential Release Risk: payment and booking changes should have regression coverage if public flows exist.",
+        "category": "user-flow",
+        "riskType": "Potential Release Risk",
+        "evidence": "Local pain intelligence records payment and booking as potential QA risk areas from existing lead notes.",
+        "confidence": "medium",
+        "recommendation": "Use a manual audit to confirm public flow availability before recommending test implementation."
+      }
+    ],
+    "uxOpportunities": [
+      {
+        "opportunity": "Booking and membership journey complexity review",
+        "category": "user-flow",
+        "evidence": "Local lead data includes booking, membership/customer workflow, and payment review signals.",
+        "confidence": "medium",
+        "recommendation": "Review journey length, decision points, error handling, and mobile behavior manually."
+      }
+    ],
+    "automationOpportunities": [
+      {
+        "observation": "Booking, membership, and payment workflow review signals exist in local data.",
+        "opportunity": "Smoke Test",
+        "coverage": [
+          "page load",
+          "primary CTA path",
+          "booking or membership journey entry",
+          "payment handoff if public",
+          "mobile viewport smoke check",
+          "confirmation state after manual observation"
+        ]
+      }
+    ],
+    "auditRecommendations": [
+      {
+        "focus": "Booking, membership, payment, and release confidence",
+        "review": [
+          "public homepage and primary CTA",
+          "booking or membership journey",
+          "payment handoff if public",
+          "mobile viewport journey",
+          "release confidence opportunities"
+        ]
+      }
+    ]
+  },
+  {
+    "companyId": "wodify",
+    "companyName": "Wodify",
+    "url": "https://www.wodify.com",
+    "industry": "Gym Management SaaS",
+    "score": 8,
+    "screenshotCapture": "Not Available",
+    "observations": [
+      {
+        "observation": "Public website URL is recorded for manual QA review.",
+        "category": "metadata",
+        "evidence": "data/leads.json records https://www.wodify.com for Wodify.",
+        "confidence": "high",
+        "status": "Evidence available from local data",
+        "manualReviewRequired": false
+      },
+      {
+        "observation": "Checkout, payment, mobile, scheduling, and regression workflows are local review signals.",
+        "category": "checkout",
+        "evidence": "data/leads.json painPoints and fitNotes list checkout, payment, mobile, class scheduling, and regression review areas.",
+        "confidence": "medium",
+        "status": "Local lead-data signal only",
+        "manualReviewRequired": true
+      },
+      {
+        "observation": "Screenshot Capture: Not Available",
+        "category": "general",
+        "evidence": "No existing site-intelligence screenshot artifact is recorded for Wodify.",
+        "confidence": "high",
+        "status": "Not enough evidence",
+        "manualReviewRequired": true
+      }
+    ],
+    "findings": [
+      {
+        "finding": "Potential Test Coverage Opportunity: checkout, payment, scheduling, and mobile smoke coverage.",
+        "category": "checkout",
+        "riskType": "Potential Test Coverage Opportunity",
+        "evidence": "Local lead data records checkout, payment, scheduling, mobile, and regression as review areas.",
+        "confidence": "medium",
+        "recommendation": "Manually review public CTA, scheduling, checkout, and mobile paths before defining Playwright coverage."
+      },
+      {
+        "finding": "Potential UX Risk: mobile scheduling journey requires manual review.",
+        "category": "mobile",
+        "riskType": "Potential UX Risk",
+        "evidence": "Local pain intelligence records mobile scheduling as a possible review area from existing lead notes.",
+        "confidence": "medium",
+        "recommendation": "Review mobile journey complexity and confirmation states before making any UX claim."
+      }
+    ],
+    "uxOpportunities": [
+      {
+        "opportunity": "Mobile scheduling and checkout journey review",
+        "category": "mobile",
+        "evidence": "Local lead data includes mobile, scheduling, checkout, and payment review signals.",
+        "confidence": "medium",
+        "recommendation": "Review mobile responsiveness, journey length, form behavior, and confirmation states manually."
+      }
+    ],
+    "automationOpportunities": [
+      {
+        "observation": "Checkout, payment, scheduling, and mobile workflow review signals exist in local data.",
+        "opportunity": "Smoke Test",
+        "coverage": [
+          "page load",
+          "primary CTA path",
+          "scheduling journey entry",
+          "checkout/payment handoff if public",
+          "mobile viewport smoke check",
+          "confirmation state after manual observation"
+        ]
+      }
+    ],
+    "auditRecommendations": [
+      {
+        "focus": "Checkout, scheduling, mobile, and release confidence",
+        "review": [
+          "public homepage and primary CTA",
+          "scheduling journey entry",
+          "checkout/payment handoff if public",
+          "mobile viewport journey",
+          "release confidence opportunities"
+        ]
+      }
+    ]
+  }
+]

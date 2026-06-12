@@ -32,3 +32,37 @@ export interface LeadDiscoveryReport {
   suggestedNextCommands: string[];
   safetyRules: string[];
 }
+
+export interface DiscoverySeedCompany {
+  companyName: string;
+  website: string;
+  industry: string;
+  niches: string[];
+  fitNotes: string;
+  painPoints: string[];
+  suggestedOffer: 'qa-audit' | 'playwright-starter-pack' | 'qa-automation-retainer' | 'agency-partner-retainer';
+}
+
+export interface DiscoveredLeadCandidate {
+  id: string;
+  companyName: string;
+  website: string;
+  industry: string;
+  source: string;
+  niche: string;
+  score: number;
+  recommendedOffer: string;
+  fitNotes: string;
+  painPoints: string[];
+  nextAction: string;
+  scoreReasons: string[];
+}
+
+export interface LeadDiscoveryEngineRun {
+  generatedAt: string;
+  niche: string;
+  source: string;
+  candidates: DiscoveredLeadCandidate[];
+  safetyRules: string[];
+  nextCommands: string[];
+}

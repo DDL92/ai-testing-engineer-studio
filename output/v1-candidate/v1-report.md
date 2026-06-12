@@ -1,6 +1,6 @@
 # AI Studio OS v1.0 Candidate
 
-Generated: 2026-06-12T16:43:20.573Z
+Generated: 2026-06-12T17:07:28.252Z
 
 ## Executive Summary
 - Overall release score: 94/100
@@ -10,7 +10,7 @@ Generated: 2026-06-12T16:43:20.573Z
 - Commercial audit opportunities: 43
 - Commercial retainer opportunities: 22
 - Closest lead to first revenue: PushPress
-- Known warnings: 14
+- Known warnings: 12
 
 ## Architecture Summary
 | Layer | Purpose | Inputs | Outputs |
@@ -23,14 +23,14 @@ Generated: 2026-06-12T16:43:20.573Z
 | Dashboard Layer | Provide local command-center views for manual operating decisions. | Revenue Command Center<br>Action Cockpit<br>operator reports<br>mobile reports | Operator OS Dashboard<br>Mobile Command Center<br>legacy dashboard surfaces |
 
 ## Command Inventory
-- Lead: 37 commands (13 active, 0 legacy, 24 overlapping)
-- Revenue: 7 commands (7 active, 0 legacy, 0 overlapping)
+- Lead: 39 commands (15 active, 0 legacy, 24 overlapping)
+- Revenue: 8 commands (8 active, 0 legacy, 0 overlapping)
 - Client: 18 commands (9 active, 0 legacy, 9 overlapping)
 - Operations: 18 commands (8 active, 1 legacy, 9 overlapping)
 - Reporting: 5 commands (5 active, 0 legacy, 0 overlapping)
 - Dashboard: 4 commands (3 active, 1 legacy, 0 overlapping)
 - Mobile: 2 commands (2 active, 0 legacy, 0 overlapping)
-- System: 23 commands (23 active, 0 legacy, 0 overlapping)
+- System: 24 commands (24 active, 0 legacy, 0 overlapping)
 
 ## Workflow Inventory
 | Stage | Implemented | Supporting Reports | Supporting Commands | Missing |
@@ -77,8 +77,6 @@ Generated: 2026-06-12T16:43:20.573Z
 - output/dashboard/dashboard.html: older dashboard surface may overlap with Operator OS Dashboard
 - output/dashboard/dashboard.md: older dashboard surface may overlap with Operator OS Dashboard
 - output/dashboard/revenue-visibility.md: revenue-like report should defer booked MRR to Revenue Command Center
-- output/metrics/revenue-summary.md: revenue-like report should defer booked MRR to Revenue Command Center
-- output/pipeline-prioritization/top-10-revenue-opportunities.md: revenue-like report should defer booked MRR to Revenue Command Center
 
 ## Recommended Next Milestones
 - Sprint 50: First Revenue Validation Pack.

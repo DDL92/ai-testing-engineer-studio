@@ -1,20 +1,56 @@
 import fs = require('fs');
 import path = require('path');
-import { buildLeadDiscoveryReport } from './discoveryRules';
+import {
+  buildLeadDiscoveryEngineRun,
+  buildLeadDiscoveryReport,
+  renderLeadDiscoveryEngineRun,
+  writeLeadDiscoveryEngineRun,
+} from './discoveryRules';
 import { DiscoveryIcp, DiscoverySource, HighProbabilityTarget, LeadDiscoveryReport } from './types';
 
 const outputPath = path.join(process.cwd(), 'output', 'discovery', 'lead-discovery-report.md');
+const engineOutputDir = path.join(process.cwd(), 'output', 'leads');
 
 function main(): void {
+  const args = process.argv.slice(2);
+  const niche = parseValue(args, '--niche') ?? parseValue(args, '--industry') ?? args.find((arg) => !arg.startsWith('--')) ?? 'gym management SaaS';
+  const limitValue = parseValue(args, '--limit');
+  const limit = limitValue ? Number(limitValue) : 10;
   const report = buildLeadDiscoveryReport();
+  const engineRun = buildLeadDiscoveryEngineRun(niche, Number.isFinite(limit) ? limit : 10);
+  const dataPath = writeLeadDiscoveryEngineRun(engineRun);
+  const engineOutputPath = path.join(engineOutputDir, `lead-discovery-${slugify(niche)}.md`);
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+  fs.mkdirSync(engineOutputDir, { recursive: true });
   fs.writeFileSync(outputPath, renderReport(report), 'utf8');
+  fs.writeFileSync(engineOutputPath, renderLeadDiscoveryEngineRun(engineRun), 'utf8');
 
-  console.log(`Lead discovery report generated: ${path.relative(process.cwd(), outputPath)}`);
+  console.log(`Lead discovery engine report generated: ${path.relative(process.cwd(), engineOutputPath)}`);
+  console.log(`Discovered candidates saved: ${path.relative(process.cwd(), dataPath)}`);
+  console.log(`Lead discovery assistant generated: ${path.relative(process.cwd(), outputPath)}`);
+  console.log(`Niche: ${engineRun.niche}`);
+  console.log(`Candidates: ${engineRun.candidates.length}`);
   console.log(`Recommended ICPs: ${report.recommendedIcps.length}`);
   console.log(`Search queries: ${report.searchQueries.length}`);
-  console.log('No companies were generated. No scraping, APIs, browser automation, or outreach were used.');
+  console.log('Local seed catalog only. No scraping, APIs, browser automation, LinkedIn automation, CRM, paid services, or outreach sending were used.');
+  console.log('Human approval is required before promoting leads, contacting companies, running audits, or sending messages.');
+}
+
+function parseValue(args: string[], flag: string): string | undefined {
+  const index = args.indexOf(flag);
+  if (index >= 0) return args[index + 1];
+  const value = args.find((arg) => arg.startsWith(`${flag}=`));
+  if (value) return value.slice(flag.length + 1);
+  return undefined;
+}
+
+function slugify(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '') || 'niche';
 }
 
 function renderReport(report: LeadDiscoveryReport): string {

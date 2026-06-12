@@ -1,0 +1,18 @@
+# Research Gaps
+
+Generated: 2026-06-12T17:23:46.148Z
+
+| Company | Missing Data | Recommended Manual Research | Blocking Issues |
+| --- | --- | --- | --- |
+| PushPress | Approved contact status (current: not-researched)<br>Approved message status (current: prepared)<br>Manually verified non-placeholder contact details | Verify company website and product fit manually.<br>Verify a relevant public contact or role manually.<br>Review outreach draft for unsupported claims before approval.<br>Update contact review only after Daniel manually verifies contact details. | Contact not approved: not-researched.<br>Message not approved: prepared.<br>Contact record contains placeholder/demo values. |
+| TeamUp | Audit pack<br>Outreach pack<br>Contact review<br>Client workflow<br>SOW | Verify company website and product fit manually.<br>Verify a relevant public contact or role manually.<br>Review outreach draft for unsupported claims before approval.<br>Create local audit pack before claiming audit evidence.<br>Review pricing/SOW only after audit and contact readiness improve.<br>Update contact review only after Daniel manually verifies contact details. | Audit pack missing.<br>Outreach pack missing.<br>SOW/proposal draft missing.<br>Contact review missing. |
+| Wodify | Audit pack<br>Outreach pack<br>Contact review<br>Client workflow<br>SOW | Verify company website and product fit manually.<br>Verify a relevant public contact or role manually.<br>Review outreach draft for unsupported claims before approval.<br>Create local audit pack before claiming audit evidence.<br>Review pricing/SOW only after audit and contact readiness improve.<br>Update contact review only after Daniel manually verifies contact details. | Audit pack missing.<br>Outreach pack missing.<br>SOW/proposal draft missing.<br>Contact review missing. |
+| ABC Glofox | Research pack<br>Lead pack<br>Audit pack<br>Outreach pack<br>Contact review<br>Client workflow<br>SOW | Verify company website and product fit manually.<br>Verify a relevant public contact or role manually.<br>Review outreach draft for unsupported claims before approval.<br>Create local research pack before outreach review.<br>Create local audit pack before claiming audit evidence.<br>Review pricing/SOW only after audit and contact readiness improve.<br>Update contact review only after Daniel manually verifies contact details. | Research pack missing.<br>Audit pack missing.<br>Outreach pack missing.<br>SOW/proposal draft missing.<br>Contact review missing. |
+| Bookee | Research pack<br>Lead pack<br>Audit pack<br>Outreach pack<br>Contact review<br>Client workflow<br>SOW | Verify company website and product fit manually.<br>Verify a relevant public contact or role manually.<br>Review outreach draft for unsupported claims before approval.<br>Create local research pack before outreach review.<br>Create local audit pack before claiming audit evidence.<br>Review pricing/SOW only after audit and contact readiness improve.<br>Update contact review only after Daniel manually verifies contact details. | Research pack missing.<br>Audit pack missing.<br>Outreach pack missing.<br>SOW/proposal draft missing.<br>Contact review missing. |
+
+## Manual Approval Reminder
+- No outreach was sent by this review.
+- No emails, LinkedIn messages, contact-form messages, or follow-ups were sent.
+- No contacts, findings, metrics, company facts, revenue, or client outcomes were invented.
+- No APIs, scraping, browsing, CRM, outreach automation, payments, credentials, or external databases were used.
+- Daniel must approve the company, contact, message, pricing, discovery path, and follow-up plan before any manual send.

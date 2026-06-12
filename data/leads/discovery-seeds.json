@@ -1,0 +1,74 @@
+[
+  {
+    "companyName": "PushPress",
+    "website": "https://www.pushpress.com",
+    "industry": "Gym Management SaaS",
+    "niches": ["gym management saas", "fitness software", "booking software"],
+    "fitNotes": "Gym management SaaS with scheduling, memberships, payments, class workflows, and mobile/member experiences.",
+    "painPoints": ["signup/onboarding coverage", "checkout regression risk", "payment flow risk", "mobile flow review"],
+    "suggestedOffer": "qa-automation-retainer"
+  },
+  {
+    "companyName": "TeamUp",
+    "website": "https://goteamup.com",
+    "industry": "Gym Management SaaS",
+    "niches": ["gym management saas", "fitness software", "booking software"],
+    "fitNotes": "Fitness business management platform with booking, memberships, payments, customer workflows, and regression-sensitive release paths.",
+    "painPoints": ["signup/onboarding coverage", "payment flow risk", "regression testing opportunity"],
+    "suggestedOffer": "qa-automation-retainer"
+  },
+  {
+    "companyName": "Wodify",
+    "website": "https://www.wodify.com",
+    "industry": "Gym Management SaaS",
+    "niches": ["gym management saas", "fitness software", "booking software"],
+    "fitNotes": "Fitness and gym management software with class scheduling, memberships, athlete/member workflows, and payments.",
+    "painPoints": ["checkout regression risk", "payment flow risk", "regression testing opportunity", "mobile flow review"],
+    "suggestedOffer": "qa-automation-retainer"
+  },
+  {
+    "companyName": "Bookee",
+    "website": "https://www.bookeeapp.com",
+    "industry": "Fitness Studio SaaS",
+    "niches": ["fitness software", "booking software", "studio management saas"],
+    "fitNotes": "Studio management and booking software with class booking, payments, memberships, and customer workflows.",
+    "painPoints": ["signup/onboarding coverage", "checkout regression risk", "payment flow risk"],
+    "suggestedOffer": "agency-partner-retainer"
+  },
+  {
+    "companyName": "ABC Glofox",
+    "website": "https://www.glofox.com",
+    "industry": "Gym Management SaaS",
+    "niches": ["gym management saas", "fitness software", "booking software"],
+    "fitNotes": "Gym and studio management platform with member management, payments, booking, and mobile app workflows.",
+    "painPoints": ["signup/onboarding coverage", "checkout regression risk", "payment flow risk"],
+    "suggestedOffer": "agency-partner-retainer"
+  },
+  {
+    "companyName": "NeetoCal",
+    "website": "https://www.neeto.com/neetocal",
+    "industry": "Scheduling SaaS",
+    "niches": ["scheduling saas", "booking software", "calendar software"],
+    "fitNotes": "Scheduling software with availability, calendar integrations, Stripe payments, cancellations, and appointment workflows.",
+    "painPoints": ["payment flow risk", "regression testing opportunity", "calendar integration risk"],
+    "suggestedOffer": "playwright-starter-pack"
+  },
+  {
+    "companyName": "PropertyMe",
+    "website": "https://www.propertyme.com.au",
+    "industry": "Property Management SaaS",
+    "niches": ["property management saas", "client portal software", "workflow software"],
+    "fitNotes": "Cloud property management software with trust accounting, inspections, maintenance, mobile app, and client access.",
+    "painPoints": ["payment flow risk", "regression testing opportunity", "mobile flow review"],
+    "suggestedOffer": "qa-audit"
+  },
+  {
+    "companyName": "LaunchQA Studio",
+    "website": "https://launchqa-studio.example",
+    "industry": "Software Agency",
+    "niches": ["software agency", "digital product studio", "shopify agency"],
+    "fitNotes": "Sample agency lead for validating partner-retainer positioning across client launches and maintenance workflows.",
+    "painPoints": ["client portfolio QA support", "regression testing opportunity", "release confidence"],
+    "suggestedOffer": "agency-partner-retainer"
+  }
+]

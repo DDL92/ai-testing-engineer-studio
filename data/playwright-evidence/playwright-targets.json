@@ -1,0 +1,38 @@
+[
+  {
+    "companyId": "pushpress",
+    "companyName": "PushPress",
+    "priority": 1,
+    "recommendedFirstFlow": "Demo Request",
+    "reason": "Public flow with strong audit value and low execution risk.",
+    "researchGaps": []
+  },
+  {
+    "companyId": "teamup",
+    "companyName": "TeamUp",
+    "priority": 2,
+    "recommendedFirstFlow": "Booking",
+    "reason": "Booking and membership paths are strong audit candidates once public scope is manually approved.",
+    "researchGaps": []
+  },
+  {
+    "companyId": "glofox",
+    "companyName": "Glofox / ABC Fitness",
+    "priority": 3,
+    "recommendedFirstFlow": "Demo Request",
+    "reason": "Demo or signup entry can support audit planning without touching authenticated areas.",
+    "researchGaps": []
+  },
+  {
+    "companyId": "wodify",
+    "companyName": "Wodify",
+    "priority": 4,
+    "recommendedFirstFlow": "Scheduling",
+    "reason": "Scheduling and checkout signals exist, but contact evidence gaps should be resolved before execution.",
+    "researchGaps": [
+      "Missing Contact",
+      "Missing Product Contact",
+      "Missing Engineering Contact"
+    ]
+  }
+]

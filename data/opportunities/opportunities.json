@@ -1,0 +1,30 @@
+[
+  {
+    "companyId": "pushpress",
+    "companyName": "PushPress",
+    "status": "active",
+    "source": "Unified from local Studio intelligence only.",
+    "notes": "Use existing contact, channel, pain, and site intelligence records. Human approval required before outreach."
+  },
+  {
+    "companyId": "glofox",
+    "companyName": "Glofox / ABC Fitness",
+    "status": "active",
+    "source": "Unified from local Studio intelligence only.",
+    "notes": "Use existing contact, channel, pain, and site intelligence records. Human approval required before outreach."
+  },
+  {
+    "companyId": "teamup",
+    "companyName": "TeamUp",
+    "status": "active",
+    "source": "Unified from local Studio intelligence only.",
+    "notes": "Use existing contact, channel, pain, and site intelligence records. Human approval required before outreach."
+  },
+  {
+    "companyId": "wodify",
+    "companyName": "Wodify",
+    "status": "active",
+    "source": "Unified from local Studio intelligence only.",
+    "notes": "Use existing lead, channel, pain, and site intelligence records. Contact research is still required before person-specific outreach."
+  }
+]

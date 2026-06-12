@@ -1,12 +1,13 @@
 # Command Inventory
 
-Generated: 2026-06-12T16:43:20.573Z
+Generated: 2026-06-12T17:07:28.252Z
 
 ## Lead
 
 | Command | Purpose | Status | Note |
 | --- | --- | --- | --- |
 | `npm run commercial:summary` | Local project command. | active | none |
+| `npm run contact:decision` | Local project command. | active | none |
 | `npm run contact:review` | Local project command. | active | none |
 | `npm run contact:update` | Local project command. | active | none |
 | `npm run lead:add` | Lead management or lead operations. | overlapping | large command family (24 lead:* commands); review overlap manually; Keep only if this command serves a distinct workflow stage. |
@@ -40,6 +41,7 @@ Generated: 2026-06-12T16:43:20.573Z
 | `npm run outreach:operating-pack` | Manual outreach preparation. | active | none |
 | `npm run outreach:pack` | Manual outreach preparation. | active | none |
 | `npm run outreach:queue` | Manual outreach preparation. | active | none |
+| `npm run outreach:review` | Manual outreach preparation. | active | none |
 | `npm run pipeline:next-actions` | Local project command. | active | none |
 | `npm run pipeline:opportunities` | Local project command. | active | none |
 | `npm run pipeline:prioritize` | Local project command. | active | none |
@@ -54,6 +56,7 @@ Generated: 2026-06-12T16:43:20.573Z
 | `npm run revenue:forecast` | Revenue reporting or revenue operations. | active | none |
 | `npm run revenue:next-actions` | Revenue reporting or revenue operations. | active | none |
 | `npm run revenue:summary` | Revenue reporting or revenue operations. | active | none |
+| `npm run revenue:validate` | Revenue reporting or revenue operations. | active | none |
 | `npm run revenue:visibility` | Revenue reporting or revenue operations. | active | none |
 
 ## Client
@@ -136,6 +139,7 @@ Generated: 2026-06-12T16:43:20.573Z
 | `npm run audit:pack` | Audit evidence or audit pack workflow. | active | none |
 | `npm run audit:sample` | Audit evidence or audit pack workflow. | active | none |
 | `npm run audit:site` | Audit evidence or audit pack workflow. | active | none |
+| `npm run first-client:path` | Client operations, delivery, or reporting. | active | none |
 | `npm run message:optimize` | Local project command. | active | none |
 | `npm run message:queue` | Local project command. | active | none |
 | `npm run message:review` | Local project command. | active | none |

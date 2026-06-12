@@ -1,0 +1,130 @@
+[
+  {
+    "companyId": "pushpress",
+    "companyName": "PushPress",
+    "contacts": [
+      {
+        "name": "Dan Uyemura",
+        "role": "Founder / CEO",
+        "department": "founder",
+        "linkedinUrl": "",
+        "priority": 1,
+        "reason": "Founder/CEO contact from current manual outreach.",
+        "status": "invitation-sent",
+        "source": "manual outreach log",
+        "notes": "Seeded from Sprint 52 manual outreach context."
+      },
+      {
+        "name": "Chris McConachie",
+        "role": "Co-Founder / Product",
+        "department": "product",
+        "linkedinUrl": "",
+        "priority": 2,
+        "reason": "Co-founder/product contact from current manual outreach.",
+        "status": "message-sent",
+        "source": "manual outreach log",
+        "notes": "Seeded from Sprint 52 manual outreach context."
+      },
+      {
+        "name": "Nolan Parker",
+        "role": "Senior Product Manager",
+        "department": "product",
+        "linkedinUrl": "",
+        "priority": 3,
+        "reason": "Product contact from current manual outreach.",
+        "status": "invitation-sent",
+        "source": "manual outreach log",
+        "notes": "Seeded from Sprint 52 manual outreach context."
+      },
+      {
+        "name": "Kyle Bastien",
+        "role": "Senior Engineering Manager",
+        "department": "engineering",
+        "linkedinUrl": "",
+        "priority": 4,
+        "reason": "Engineering contact from current manual outreach.",
+        "status": "invitation-sent",
+        "source": "manual outreach log",
+        "notes": "Seeded from Sprint 52 manual outreach context."
+      },
+      {
+        "name": "Sean Duane",
+        "role": "Senior Engineering Manager",
+        "department": "engineering",
+        "linkedinUrl": "",
+        "priority": 5,
+        "reason": "Engineering contact from current manual outreach.",
+        "status": "invitation-sent",
+        "source": "manual outreach log",
+        "notes": "Seeded from Sprint 52 manual outreach context."
+      }
+    ]
+  },
+  {
+    "companyId": "glofox",
+    "companyName": "Glofox / ABC Fitness",
+    "contacts": [
+      {
+        "name": "Finn Hegarty",
+        "role": "Chief Product Officer / Co-Founder Glofox",
+        "department": "product",
+        "linkedinUrl": "",
+        "priority": 1,
+        "reason": "Product and co-founder contact from current manual outreach.",
+        "status": "invitation-sent",
+        "source": "manual outreach log",
+        "notes": "Seeded from Sprint 52 manual outreach context."
+      },
+      {
+        "name": "Timothy Fisher",
+        "role": "Engineering Manager",
+        "department": "engineering",
+        "linkedinUrl": "",
+        "priority": 2,
+        "reason": "Engineering contact from current manual outreach.",
+        "status": "invitation-sent",
+        "source": "manual outreach log",
+        "notes": "Seeded from Sprint 52 manual outreach context."
+      }
+    ]
+  },
+  {
+    "companyId": "teamup",
+    "companyName": "TeamUp",
+    "contacts": [
+      {
+        "name": "Tom Larsen",
+        "role": "Co-Founder / Product + Engineering",
+        "department": "founder",
+        "linkedinUrl": "",
+        "priority": 1,
+        "reason": "Co-founder contact with product and engineering relevance from current manual outreach.",
+        "status": "invitation-sent",
+        "source": "manual outreach log",
+        "notes": "Seeded from Sprint 52 manual outreach context."
+      },
+      {
+        "name": "Matt Pegler",
+        "role": "Founder / SVP Technology",
+        "department": "engineering",
+        "linkedinUrl": "",
+        "priority": 2,
+        "reason": "Founder and technology leader from current manual outreach.",
+        "status": "invitation-sent",
+        "source": "manual outreach log",
+        "notes": "Seeded from Sprint 52 manual outreach context."
+      },
+      {
+        "name": "Fiona Murphy",
+        "role": "Director of Product",
+        "department": "product",
+        "linkedinUrl": "",
+        "priority": 3,
+        "reason": "Product leader from current manual outreach.",
+        "status": "message-sent",
+        "source": "manual outreach log",
+        "notes": "Seeded from Sprint 52 manual outreach context."
+      }
+    ]
+  }
+]

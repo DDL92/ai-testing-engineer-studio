@@ -1,0 +1,42 @@
+{
+  "roadmapName": "Evidence Capture Roadmap",
+  "status": "architecture-only",
+  "recommendedNextSprint": "Sprint 60: Playwright Evidence Runner v1",
+  "priorities": [
+    {
+      "priority": 1,
+      "source": "Playwright",
+      "evidenceType": "playwright-evidence",
+      "why": "Functional flow evidence is the closest match to the Studio's Playwright-first QA service model.",
+      "status": "Not Yet Implemented"
+    },
+    {
+      "priority": 2,
+      "source": "Screenshots",
+      "evidenceType": "screenshot-evidence",
+      "why": "Reviewed screenshots make audit observations easier to verify and client-ready.",
+      "status": "Not Yet Implemented"
+    },
+    {
+      "priority": 3,
+      "source": "Lighthouse",
+      "evidenceType": "lighthouse-evidence",
+      "why": "Lighthouse can add low-cost performance and accessibility snapshots once capture rules are controlled.",
+      "status": "Not Yet Implemented"
+    },
+    {
+      "priority": 4,
+      "source": "Accessibility",
+      "evidenceType": "accessibility-evidence",
+      "why": "Accessibility observations can improve audit value when carefully framed as opportunities, not compliance claims.",
+      "status": "Not Yet Implemented"
+    },
+    {
+      "priority": 5,
+      "source": "Performance",
+      "evidenceType": "performance-evidence",
+      "why": "Performance evidence supports recurring monitoring and retainer conversations after functional evidence is stable.",
+      "status": "Not Yet Implemented"
+    }
+  ]
+}

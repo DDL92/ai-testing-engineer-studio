@@ -1,5 +1,332 @@
 # Next Sprint Roadmap
 
+## Sprint 61: Playwright Evidence Runner v2
+
+Goal:
+Execute the first controlled Playwright observations for AI Testing Engineer Studio using public pages only.
+
+Expected commands:
+
+```sh
+npm run evidence:playwright-run -- --company PushPress
+npm run evidence:playwright-run -- --company TeamUp
+npm run evidence:playwright-run -- --company Glofox
+npm run evidence:playwright-summary
+```
+
+Completion notes:
+
+- Added `src/playwrightEvidenceRunner` for controlled public-page passive observations.
+- Added `npm run evidence:playwright-run` for approved public-page evidence collection.
+- Added `npm run evidence:playwright-summary` for summary, findings, observations, and readiness reports.
+- Reports are generated under `output/playwright-runner`.
+- Local evidence records are written under `data/evidence/playwright/reports` and `data/evidence/playwright/observations`.
+- Optional screenshots are stored under `data/evidence/playwright/screenshots` when capture succeeds.
+- The runner limits observation to public pages, maximum 5 pages per company, and maximum 1 navigation depth.
+- No forms, logins, account creation, payment flows, bookings, authenticated areas, private dashboards, scraping, aggressive crawling, credentials, authenticated APIs, outreach, email, or messages are used.
+- Findings are framed as potential QA, UX, automation, or accessibility opportunities only.
+
+## Sprint 62: Client-Ready QA Audit Report Generator
+
+Goal:
+Transform Audit Packs, Evidence Engine outputs, and Playwright Evidence into professional client-facing QA Audit Reports that can support discovery calls, audit sales, and QA Automation retainers.
+
+Expected commands:
+
+```sh
+npm run audit:report -- --company PushPress
+npm run audit:report-portfolio
+```
+
+What to build:
+
+- Client-ready QA audit report generator.
+- Portfolio-level audit report readiness.
+- Evidence-backed report sections.
+- Playwright evidence integration.
+- Manual approval checklist before client use.
+
+What not to build yet:
+Do not send reports, create invoices, create contracts, use payment tools, claim unverified findings, invent metrics, access private systems, or bypass Daniel approval.
+
+## Sprint 56: Unified QA Opportunity Engine
+
+Goal:
+Create the first commercial decision layer by combining Lead Research, Channel Research, Pain Intelligence, and Site Intelligence into one local opportunity engine.
+
+Expected commands:
+
+```sh
+npm run opportunity:generate -- --company PushPress
+npm run opportunity:generate -- --company Glofox
+npm run opportunity:generate -- --company TeamUp
+npm run opportunity:generate -- --company Wodify
+npm run opportunity:summary
+```
+
+Completion notes:
+
+- Added `data/opportunities/opportunities.json` for active opportunity targets.
+- Added `npm run opportunity:generate` for company-level opportunity decisions.
+- Added `npm run opportunity:summary` for best opportunities, audit priorities, commercial priorities, outreach priorities, and portfolio summary reports.
+- Reports are generated under `output/opportunities`.
+- The engine uses approved pricing only: `QA Audit ($199-$500)`, `Playwright Starter Pack ($900-$1500)`, and `QA Automation Retainer ($1500-$3000/month)`.
+- No contacts, complaints, bugs, vulnerabilities, incidents, customer feedback, findings, metrics, or outreach actions are invented.
+
+## Sprint 55: Website QA Intelligence Engine
+
+Goal:
+Enable deterministic, evidence-based QA reviews of public website opportunities using local website URLs, approved lead notes, channel research, and pain intelligence without browser automation, scraping, credentials, security scanning, or invented findings.
+
+Expected commands:
+
+```sh
+npm run site:intelligence -- --company PushPress -- --url https://www.pushpress.com
+npm run site:intelligence -- --company Glofox -- --url https://www.glofox.com
+npm run site:intelligence -- --company TeamUp -- --url https://goteamup.com
+npm run site:intelligence -- --company Wodify -- --url https://www.wodify.com
+npm run site:summary
+```
+
+Completion notes:
+
+- Added local site intelligence data under `data/site-intelligence/site-intelligence.json`.
+- Added `npm run site:intelligence` for company-level website QA intelligence reports.
+- Added `npm run site:summary` for QA findings, UX opportunities, automation opportunities, audit recommendations, and site summary reports.
+- Reports are generated under `output/site-intelligence`.
+- Screenshot capture is documented as `Not Available`; no browser automation was added.
+- Findings are framed as potential QA, UX, release, automation, or test coverage opportunities only.
+- No bugs, vulnerabilities, incidents, outages, breaches, production failures, complaints, or customer findings are invented.
+
+## Sprint 56: Unified QA Opportunity Engine
+
+Goal:
+Combine Lead Research, Channel Research, Pain Intelligence, and Site Intelligence into one decision engine that produces the best audit angle, automation opportunity, outreach angle, proposal path, and first offer for each target company.
+
+Expected commands:
+
+```sh
+npm run opportunity:generate -- --company <company>
+npm run opportunity:summary
+```
+
+What to build:
+
+- Unified local opportunity profile per company.
+- Best audit angle.
+- Best automation opportunity.
+- Best outreach angle.
+- Best proposal path.
+- Best first offer.
+
+What not to build yet:
+Do not send outreach, automate LinkedIn/email, browse automatically, scrape, run security scans, use credentials, connect CRMs, use external databases, or invent findings.
+
+## Sprint 54: Customer Pain Intelligence Engine
+
+Goal:
+Transform existing local customer-pain signals into actionable QA opportunities, risk maps, automation ideas, audit angles, and outreach intelligence without scraping, APIs, credentials, external databases, or invented customer findings.
+
+Expected commands:
+
+```sh
+npm run pain:research -- --company PushPress
+npm run pain:research -- --company Glofox
+npm run pain:research -- --company TeamUp
+npm run pain:research -- --company Wodify
+npm run pain:summary
+```
+
+Completion notes:
+
+- Added local pain intelligence data under `data/pain-intelligence/pain-research.json`.
+- Added `npm run pain:research` for company-level pain research reports.
+- Added `npm run pain:summary` for customer complaint signals, QA risk map, solution recommendations, outreach angles, and summary reports.
+- Reports are generated under `output/pain-research`.
+- Pain language is intentionally conservative: potential QA risk, possible automation opportunity, and likely area to review.
+- No complaints, customer quotes, vulnerabilities, incidents, findings, or platform-failure claims are invented.
+
+## Sprint 55: Follow-Up Engine v2
+
+Goal:
+Use outreach tracking, contact research, and channel research to generate a daily follow-up action queue with human approval required before any outreach.
+
+Expected commands:
+
+```sh
+npm run followup:daily
+npm run followup:review
+```
+
+What to build:
+
+- Daily follow-up queue using local outreach status, contact status, channel plan, and pain intelligence.
+- Human approval checklist before any external action.
+- Review-only follow-up context, not send-ready automation.
+
+What not to build yet:
+Do not send outreach, automate LinkedIn/email, submit forms, connect CRMs, scrape, call APIs, use credentials, or use external databases.
+
+## Sprint 52: Lead Research + Outreach Tracking
+
+Goal:
+Turn manual outreach tracking for PushPress, Glofox / ABC Fitness, and TeamUp into a structured local system without adding dashboards, sending automation, scraping, APIs, CRM, credentials, or external databases.
+
+Expected commands:
+
+```sh
+npm run lead:research -- --company PushPress
+npm run lead:research -- --company Glofox
+npm run lead:research -- --company TeamUp
+npm run outreach:status
+npm run followup:queue
+```
+
+Completion notes:
+
+- Added local contact records in `data/contacts/contacts.json` for PushPress, Glofox / ABC Fitness, and TeamUp using only the manually provided people.
+- Added local outreach records in `data/outreach/outreach.json` seeded from `data/outreach/outreach-log.md` with 2026-06-12 touch dates.
+- Added contact research reports under `output/contact-research`.
+- Added outreach status, company status, contact status, pipeline summary, and follow-up queue reports under `output/outreach-tracking`.
+- Preserved human approval language and local-only operation. No outreach is sent, no contacts are invented, and no scraping, APIs, CRM, credentials, or external databases are used.
+- Future `day:plan` or Operator OS dashboard work can read these outputs, but no dashboard layer was added in Sprint 52.
+
+## Sprint 53: Multi-Channel Lead Research Pack
+
+Goal:
+For each lead, identify LinkedIn path, public email path, website contact path, review signals, careers signals, and recommended channel without scraping, APIs, credentials, automation, or external databases.
+
+Expected commands:
+
+```sh
+npm run lead:channels -- --company <company>
+npm run lead:channel-plan
+```
+
+What to build:
+
+- Local-only multi-channel research pack per company.
+- Deterministic channel plan that recommends the safest manual next path.
+- Clear gaps for missing channel evidence.
+
+What not to build yet:
+Do not scrape LinkedIn, browse automatically, use APIs, enrich private data, connect CRM/email tools, send messages, automate follow-ups, or add dashboards.
+
+Completion notes:
+
+- Added `npm run lead:channels -- --company <company>` for local multi-channel company research.
+- Added `npm run lead:channel-plan` for a prioritized local channel plan.
+- Added `data/channels/channels.json` to track channel type, URL, priority, and notes without storing credentials or enriched private data.
+- Generated reports under `output/channel-research`.
+- Blank URLs intentionally mean the exact public path has not been recorded and must be manually verified before use.
+- No contacts, emails, URLs, partnerships, communities, findings, or outreach actions are invented.
+
+## Sprint 54: Discovery Call Prep From Approved Channel Path
+
+Goal:
+Prepare discovery-call assets only after Daniel manually approves a company, channel path, and message angle from Sprint 53.
+
+Expected commands:
+
+```sh
+npm run discovery:prep -- --company <company>
+npm run discovery:followup-plan -- --company <company>
+```
+
+What to build:
+
+- Local discovery question set by company and channel.
+- Audit-scope confirmation checklist.
+- Post-call next-step options for QA Audit Pack, Playwright starter, or retainer.
+
+What not to build yet:
+Do not automate scheduling, send calendar invites, connect calls/CRM/email, process payments, scrape, browse automatically, or use credentials.
+
+## Sprint 51: First Outreach Execution Review
+
+Goal:
+Review the final PushPress outreach/contact path and prepare Daniel for the first real manual send without sending anything.
+
+Expected commands:
+
+```sh
+npm run outreach:review
+npm run contact:decision
+```
+
+Completion notes:
+
+- Added `npm run outreach:review` for the First Outreach Execution Review.
+- Added `npm run contact:decision` for the deterministic PushPress send/no-send decision.
+- Generated `output/outreach-review` reports for outreach review, PushPress review, contact decision, send readiness, Top 5 review, research gaps, and approval checklist.
+- Current deterministic contact decision is `NEEDS RESEARCH` because the PushPress contact record is not approved and the message is prepared but not approved.
+- Send readiness is generated as a local checklist and does not send, approve, enrich, scrape, browse, call APIs, connect a CRM, use credentials, or process payments.
+- No contacts, findings, metrics, revenue, company facts, or outreach actions were invented.
+
+## Deferred: First Discovery Call Preparation Pack
+
+Goal:
+Prepare Daniel to handle the first real discovery call for the first commercial lead.
+
+Expected commands:
+
+```sh
+npm run discovery:prep
+npm run discovery:simulate
+```
+
+What to build:
+
+- Discovery call prep for the first approved commercial lead.
+- Call question set, objection handling, audit-scope confirmation, and post-call next-step options.
+- Optional local-only simulation script that does not contact the lead or use external systems.
+
+What not to build yet:
+Do not send outreach, automate scheduling, connect calendars, connect CRMs, use call recording tools, process payments, or create broad new infrastructure.
+
+## Sprint 50: Release Cleanup + First Revenue Validation Pack
+
+Goal:
+Move AI Studio OS from v1.0 Candidate toward v1.0 stable readiness while shifting focus from infrastructure to first revenue validation.
+
+Expected commands:
+
+```sh
+npm run revenue:validate
+npm run first-client:path
+```
+
+Completion notes:
+
+- Added `npm run revenue:validate` for the First Revenue Validation Pack.
+- Added `npm run first-client:path` for the first-client path and PushPress-focused action plan.
+- Generated `output/first-revenue-validation` reports for revenue validation, first-client path, PushPress action plan, Top 5 commercial action plan, release cleanup, v1 score improvement, and approval checklist.
+- Kept booked revenue separate from pipeline opportunities and retained `$0` booked MRR until a real commercial client record exists.
+- Identified PushPress as the best first-client target from local readiness evidence.
+- Added release cleanup guidance for legacy dashboard/cockpit overlap, large command families, and demo/sample revenue exclusions without deleting commands.
+- No APIs, CRM, scraping, outreach automation, sending, payments, credentials, external databases, invented contacts, invented findings, or invented revenue were added.
+
+## Sprint 51: First Outreach Execution Review
+
+Goal:
+Review the final PushPress outreach/contact path and prepare Daniel for the first real manual send.
+
+Expected commands:
+
+```sh
+npm run outreach:review
+npm run contact:decision
+```
+
+What to build:
+
+- Final PushPress contact decision report.
+- Manual outreach review checklist.
+- Message approval, risk review, and follow-up decision workflow.
+
+What not to build yet:
+Do not send outreach, automate email/LinkedIn, connect a CRM, enrich contacts through external services, process payments, or create broad new infrastructure.
+
 ## Sprint 49: AI Studio OS v1.0 Candidate
 
 Goal:

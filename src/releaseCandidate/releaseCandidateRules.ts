@@ -606,7 +606,7 @@ function filterReleaseRelevantWarnings(warnings: string[]): string[] {
 }
 
 function isReleaseRelevantWarning(warning: string): boolean {
-  return !warning.includes('output/v1-candidate/');
+  return !warning.includes('output/v1-candidate/') && !warning.includes('output/first-revenue-validation/');
 }
 
 function findClosestLead(items: FirstClientReadinessItem[]): FirstClientReadinessItem | undefined {

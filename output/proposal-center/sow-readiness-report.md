@@ -1,6 +1,6 @@
 # SOW Readiness Report
 
-Generated: 2026-06-12T15:30:29.165Z
+Generated: 2026-06-12T17:23:55.450Z
 
 | Company | Readiness Status | Offer Type | Scope Clarity | Audit Evidence Status | Contact Status | Next Required Step | Suggested Command |
 | --- | --- | --- | --- | --- | --- | --- | --- |

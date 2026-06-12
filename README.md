@@ -58,6 +58,29 @@ npm run lead:discover:assistant
 npm run lead:candidate-queue
 npm run lead:intake:approved
 npm run lead:intake:batch
+npm run lead:discover -- --niche "gym management SaaS"
+npm run lead:pack -- --company PushPress
+npm run lead:research -- --company PushPress
+npm run lead:channels -- --company PushPress
+npm run lead:channel-plan
+npm run pain:research -- --company PushPress
+npm run pain:summary
+npm run site:intelligence -- --company PushPress -- --url https://www.pushpress.com
+npm run site:summary
+npm run opportunity:generate -- --company PushPress
+npm run opportunity:summary
+npm run audit:generate -- --company PushPress
+npm run audit:portfolio
+npm run evidence:collect -- --company PushPress
+npm run evidence:portfolio
+npm run evidence:capture-plan
+npm run evidence:roadmap
+npm run evidence:playwright-plan
+npm run evidence:playwright-readiness
+npm run evidence:playwright-run -- --company PushPress
+npm run evidence:playwright-summary
+npm run outreach:status
+npm run followup:queue
 npm run audit:pack -- --id pushpress
 npm run outreach:pack -- --id pushpress
 npm run outreach:operating-pack
@@ -80,12 +103,16 @@ npm run proposal:center
 npm run sow:center
 npm run outreach:execute-pack
 npm run outreach:follow-up-plan
+npm run outreach:review
+npm run contact:decision
 npm run first-audit:workflow
 npm run first-audit:kickoff
 npm run mobile:center
 npm run mobile:summary
 npm run revenue:daily
 npm run revenue:next-actions
+npm run revenue:validate
+npm run first-client:path
 npm run cockpit:daily
 npm run cockpit:approve
 npm run os:dashboard
@@ -130,6 +157,8 @@ The Action Cockpit v1 writes `output/action-cockpit` reports for one daily opera
 The Operator OS Dashboard writes `output/operator-os-dashboard` reports for the primary AI Studio OS homepage: executive summary, today view, opportunity center, revenue center, approval center, follow-up center, system status, and exact next command. It uses Revenue Command Center and Action Cockpit as sources of truth and remains local-only.
 The Studio OS Stabilization reports write `output/os-stabilization` audits for command consistency, report availability, revenue consistency, workflow completeness, documentation coverage, system health, and v1.0 candidate readiness. They are audit-only and do not modify business data.
 The AI Studio OS v1.0 Candidate reports write `output/v1-candidate` for release checks, the official v1 report, architecture summary, command inventory, workflow inventory, revenue readiness, first-client readiness, known warnings, and post-v1 roadmap. They are local-only, do not invent revenue, do not send outreach, do not connect external systems, and require human approval before any external action.
+The First Revenue Validation Pack writes `output/first-revenue-validation` for first revenue validation, first-client path, PushPress action plan, Top 5 commercial action plan, release cleanup plan, v1 score improvement plan, and approval checklist. It keeps booked revenue separate from opportunities, does not invent contacts or findings, does not send outreach, and requires Daniel approval before any external action.
+The First Outreach Execution Review writes `output/outreach-review` for PushPress and Top 5 pre-send review, deterministic contact decision, send readiness, research gaps, and approval checklist. It does not send outreach, invent contacts, invent findings, browse, scrape, call APIs, connect CRMs, or use external systems.
 Client operations reports are written to `output/client-ops` for daily priorities, next actions, readiness groups, reporting needs, and manual approval rules.
 Client delivery artifacts are written to `output/client-delivery/{client_id}` for delivery planning, evidence logs, QA checklists, weekly summaries, and client update drafts.
 Polished client reporting artifacts are written to `output/client-reporting/{client_id}` for executive summaries, weekly reports, monthly reports, value delivered summaries, renewal signals, and draft client updates. They are evidence-first, local-only, and require Daniel review before sending.
@@ -138,6 +167,17 @@ The daily operator and success rhythm reports are written to `output/operator` a
 Mac Daily Automation reports are written to `output/mac-daily` for one-command local refreshes of dashboard, operator, pipeline prioritization, client operations, renewals, and Commercial Mode summaries. `npm run mac:summary` reads existing local outputs only and refreshes the consolidated daily summary, system health, and action cockpit without rerunning the full report sequence.
 Lead discovery automation reports are written to `output/lead-discovery-automation` for manual search guidance, a 50-query search playbook, a blank candidate queue template, and an approval checklist. They do not scrape, browse, call APIs, invent companies, automate outreach, connect CRMs, use credentials, or add leads without Daniel approval.
 Lead intake reports are written to `output/lead-intake` for approved candidates, rejected candidates, intake summaries, and copy/paste-ready `lead:add` command batches. They do not execute commands, modify `data/leads.json`, scrape, browse, call APIs, automate outreach, use CRMs, use credentials, or create leads without Daniel approval.
+Lead Discovery Engine v1 uses the local seed catalog in `data/leads/discovery-seeds.json` to score niche-specific company candidates and writes review-only results to `data/leads/discovered-leads.json` and `output/leads`. It does not browse, scrape, call APIs, automate LinkedIn, send messages, or promote candidates without human approval.
+Lead research and outreach tracking use local records in `data/contacts/contacts.json` and `data/outreach/outreach.json`. `npm run lead:research -- --company PushPress`, `npm run outreach:status`, and `npm run followup:queue` write Markdown reports to `output/contact-research` and `output/outreach-tracking` without scraping, APIs, CRM, credentials, external databases, message sending, or automated follow-ups. Future `day:plan` or Operator OS dashboard work can integrate these outputs, but Sprint 52 intentionally keeps them as simple local reports.
+Multi-channel lead research uses local records in `data/channels/channels.json`, existing local lead data, and existing approved contact records. `npm run lead:channels -- --company PushPress` writes company channel research to `output/channel-research/{company_id}.md`, and `npm run lead:channel-plan` writes `output/channel-research/channel-plan.md`. Blank channel URLs mean the exact public path is not recorded yet and must be manually verified. These commands do not browse, scrape, automate LinkedIn, send forms/messages/emails, call APIs, connect CRMs, use credentials, or use external databases.
+Customer Pain Intelligence uses `data/pain-intelligence/pain-research.json` to turn existing local lead notes into potential QA risks, automation opportunities, audit angles, and outreach intelligence. `npm run pain:research -- --company PushPress` writes `output/pain-research/{company_id}-pain-research.md`, and `npm run pain:summary` writes customer complaint signals, QA risk maps, solution recommendations, outreach angles, and a summary under `output/pain-research`. It is not a security scanner, does not invent customer complaints, quotes, vulnerabilities, incidents, or findings, and does not scrape, call APIs, use credentials, use external databases, or send outreach.
+Website QA Intelligence uses `data/site-intelligence/site-intelligence.json` to turn existing local website URLs, lead notes, channel research, and pain intelligence into potential QA findings, UX opportunities, automation opportunities, and audit recommendations. `npm run site:intelligence -- --company PushPress -- --url https://www.pushpress.com` writes `output/site-intelligence/{company_id}-site-intelligence.md`, and `npm run site:summary` writes `qa-findings.md`, `ux-opportunities.md`, `automation-opportunities.md`, `audit-recommendations.md`, and `site-summary.md`. It does not browse, scrape, run browser automation, use screenshots, log in, use credentials, run security tests, claim vulnerabilities, or send outreach.
+The Unified QA Opportunity Engine uses `data/opportunities/opportunities.json` plus local contact, outreach, channel, pain, and site intelligence records to choose the best contact, channel, audit angle, automation opportunity, first offer, and retainer path. `npm run opportunity:generate -- --company PushPress` writes `output/opportunities/{company_id}-opportunity.md`, and `npm run opportunity:summary` writes best opportunities, commercial priorities, outreach priorities, audit priorities, and an opportunity summary under `output/opportunities`. It uses approved pricing only and does not invent contacts, complaints, bugs, vulnerabilities, incidents, customer feedback, metrics, or send outreach.
+The QA Audit Pack Engine uses `data/audit-packs/audit-packs.json` and Opportunity Engine outputs to create structured audit deliverables. `npm run audit:generate -- --company PushPress` writes `output/audit-packs/{company_id}-audit-pack.md`, and `npm run audit:portfolio` writes `audit-portfolio.md`, `audit-priorities.md`, `audit-delivery-roadmap.md`, and `retainer-opportunities.md`. It is not a proposal, invoice, contract, payment instruction, or consulting report generator; all outputs remain evidence-based, opportunity-based, and human-approved.
+The Evidence Collection Engine uses `data/evidence/evidence.json` plus existing Studio outputs from contact research, channel research, pain research, site intelligence, opportunities, and audit packs. `npm run evidence:collect -- --company PushPress` writes `output/evidence/{company_id}-evidence.md`, and `npm run evidence:portfolio` writes evidence portfolio, gaps, readiness, and priorities reports. It does not run browser automation, Playwright, Lighthouse, scans, APIs, scraping, screenshots, or credentials, and it does not invent evidence.
+The Evidence Capture Framework uses `data/evidence-capture/capture-framework.json` and `data/evidence-capture/capture-roadmap.json` to document future evidence source contracts, storage architecture, readiness scoring, and capture priorities. `npm run evidence:capture-plan` writes the capture plan, future evidence sources, and storage architecture reports under `output/evidence-capture`, and `npm run evidence:roadmap` writes the evidence roadmap and priority roadmap. It is architecture-only and does not collect evidence, run Playwright, run Lighthouse, capture screenshots, scan, browse, call APIs, use credentials, or create external data.
+The Playwright Evidence Framework uses `data/playwright-evidence/playwright-targets.json` and `data/playwright-evidence/playwright-readiness.json` to plan controlled future Playwright evidence collection. `npm run evidence:playwright-plan` writes the evidence plan, target priorities, and storage plan under `output/playwright-evidence`, and `npm run evidence:playwright-readiness` writes readiness and safety reports. It documents future execution only and does not run Playwright, crawl, capture screenshots, create traces, scrape, use credentials, call APIs, or collect evidence.
+The Playwright Evidence Runner performs controlled public-page passive observations only. `npm run evidence:playwright-run -- --company PushPress` writes company evidence to `output/playwright-runner/{company_id}-playwright-evidence.md` and local JSON records under `data/evidence/playwright/reports` and `data/evidence/playwright/observations`; optional screenshots are stored under `data/evidence/playwright/screenshots` when capture succeeds. `npm run evidence:playwright-summary` writes summary, findings, observations, and readiness reports under `output/playwright-runner`. It limits observation to public marketing pages, max 5 pages per company, max 1 navigation depth, and never submits forms, logs in, creates accounts, triggers payments/bookings, scrapes, crawls aggressively, uses credentials, sends outreach, or uses authenticated APIs.
 
 ## Lead Operator
 

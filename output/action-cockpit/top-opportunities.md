@@ -1,5 +1,5 @@
 # Top Opportunities
-Generated: 2026-06-12T16:42:38.096Z
+Generated: 2026-06-12T16:59:44.080Z
 | Rank | Company | Opportunity Type | Readiness | Next Step | Revenue Potential |
 | ---: | --- | --- | --- | --- | --- |
 | 1 | PushPress | QA Automation Retainer | High probability | Review follow-up context for PushPress before any manual action. | $1,500-$3,000/month |

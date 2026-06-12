@@ -1,0 +1,30 @@
+[
+  {
+    "companyId": "pushpress",
+    "companyName": "PushPress",
+    "status": "active",
+    "source": "Opportunity Engine output",
+    "notes": "Generate client-ready QA Audit Pack from local opportunity intelligence only."
+  },
+  {
+    "companyId": "glofox",
+    "companyName": "Glofox / ABC Fitness",
+    "status": "active",
+    "source": "Opportunity Engine output",
+    "notes": "Generate client-ready QA Audit Pack from local opportunity intelligence only."
+  },
+  {
+    "companyId": "teamup",
+    "companyName": "TeamUp",
+    "status": "active",
+    "source": "Opportunity Engine output",
+    "notes": "Generate client-ready QA Audit Pack from local opportunity intelligence only."
+  },
+  {
+    "companyId": "wodify",
+    "companyName": "Wodify",
+    "status": "active",
+    "source": "Opportunity Engine output",
+    "notes": "Generate client-ready QA Audit Pack from local opportunity intelligence only. Contact research is required before outreach."
+  }
+]

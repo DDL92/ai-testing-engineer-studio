@@ -2,6 +2,91 @@
 
 All commands are local-first. None of these commands should send outreach, connect APIs, scrape websites, or use credentials.
 
+## `npm run outreach:review`
+
+Purpose:
+Generate the First Outreach Execution Review for PushPress and the Top 5 commercial leads before any manual contact is sent.
+
+Example:
+
+```sh
+npm run outreach:review
+```
+
+Output files:
+`output/outreach-review/outreach-review.md`
+`output/outreach-review/pushpress-review.md`
+`output/outreach-review/contact-decision.md`
+`output/outreach-review/send-readiness.md`
+`output/outreach-review/top-5-review.md`
+`output/outreach-review/research-gaps.md`
+`output/outreach-review/approval-checklist.md`
+
+Safety note:
+Review-only. It does not send outreach, invent contacts, invent findings, call APIs, scrape, browse, automate email/LinkedIn, connect a CRM, use credentials, or process payments. Daniel approval remains required before any external action.
+
+## `npm run contact:decision`
+
+Purpose:
+Generate the deterministic PushPress contact decision: `SEND`, `NEEDS RESEARCH`, or `DO NOT SEND`.
+
+Example:
+
+```sh
+npm run contact:decision
+```
+
+Output files:
+`output/outreach-review/contact-decision.md`
+`output/outreach-review/send-readiness.md`
+`output/outreach-review/approval-checklist.md`
+
+Safety note:
+Decision support only. It does not send messages or approve contacts automatically. `SEND` requires manually approved contact and approved message status in local records.
+
+## `npm run revenue:validate`
+
+Purpose:
+Generate the First Revenue Validation Pack for moving from v1.0 candidate readiness into the first paid audit and first retainer validation path.
+
+Example:
+
+```sh
+npm run revenue:validate
+```
+
+Output files:
+`output/first-revenue-validation/revenue-validation-pack.md`
+`output/first-revenue-validation/first-client-path.md`
+`output/first-revenue-validation/pushpress-action-plan.md`
+`output/first-revenue-validation/top-5-commercial-action-plan.md`
+`output/first-revenue-validation/release-cleanup-plan.md`
+`output/first-revenue-validation/v1-score-improvement-plan.md`
+`output/first-revenue-validation/approval-checklist.md`
+
+Safety note:
+Local-only validation. It does not invent booked revenue, contacts, findings, proposal status, or client outcomes. It does not send outreach, call APIs, scrape, browse, connect external systems, process payments, or use credentials.
+
+## `npm run first-client:path`
+
+Purpose:
+Generate the first-client path and related first-revenue action plans, focused on PushPress, TeamUp, Wodify, ABC Glofox, and Bookee.
+
+Example:
+
+```sh
+npm run first-client:path
+```
+
+Output files:
+`output/first-revenue-validation/first-client-path.md`
+`output/first-revenue-validation/pushpress-action-plan.md`
+`output/first-revenue-validation/top-5-commercial-action-plan.md`
+`output/first-revenue-validation/approval-checklist.md`
+
+Safety note:
+Manual planning only. Daniel must approve company verification, contact verification, message copy, pricing, and follow-up before anything is sent. No CRM, outreach automation, email/LinkedIn sending, scraping, payments, credentials, or external databases are used.
+
 ## `npm run os:release-check`
 
 Purpose:
@@ -97,6 +182,25 @@ Output files:
 Safety note:
 Public-search guidance only. It does not scrape, browse automatically, call APIs, invent companies, enrich contacts, send outreach, automate LinkedIn/email, connect a CRM, use payments, use credentials, or add leads without Daniel approval.
 
+## `npm run lead:discover`
+
+Purpose:
+Run Lead Discovery Engine v1 for a niche using the local seed catalog only, score matching companies, and save review-only candidates.
+
+Example:
+
+```sh
+npm run lead:discover -- --niche "gym management SaaS"
+```
+
+Output files:
+`data/leads/discovered-leads.json`
+`output/leads/lead-discovery-{niche}.md`
+`output/discovery/lead-discovery-report.md`
+
+Safety note:
+Local deterministic discovery only. It does not browse, scrape, call APIs, automate LinkedIn, send messages, connect a CRM, enrich contacts, use credentials, or promote candidates into `data/leads.json` without human approval.
+
 ## `npm run lead:candidate-queue`
 
 Purpose:
@@ -156,37 +260,433 @@ Command batch only. Daniel must review and manually run any command. This comman
 ## `npm run lead:research`
 
 Purpose:
-Generate a structured research pack from one local lead.
+Generate a structured contact research report for one manually tracked company from `data/contacts/contacts.json`.
 
 Example:
 
 ```sh
-npm run lead:research -- --id acme-saas-demo
+npm run lead:research -- --company PushPress
+npm run lead:research -- --company Glofox
+npm run lead:research -- --company TeamUp
 ```
 
 Output file:
-`output/research/{lead_id}-research-pack.md`
+`output/contact-research/{company_id}-contact-research.md`
 
 Safety note:
-Uses local lead data only. No website inspection or external research is performed.
+Uses local contact data only. It does not invent contacts, scrape LinkedIn, browse automatically, call APIs, send outreach, connect a CRM, use credentials, or use external databases. Human approval is required before any external action.
+
+## `npm run lead:channels`
+
+Purpose:
+Generate a multi-channel lead research pack for one company from local lead data, `data/channels/channels.json`, and existing approved contact records.
+
+Example:
+
+```sh
+npm run lead:channels -- --company PushPress
+npm run lead:channels -- --company Glofox
+npm run lead:channels -- --company TeamUp
+```
+
+Output file:
+`output/channel-research/{company_id}.md`
+
+Safety note:
+Local channel research only. It does not browse, scrape, automate LinkedIn, submit website forms, send email/messages, call APIs, connect a CRM, use credentials, enrich private data, or use external databases. Blank URLs mean the exact public path is not recorded yet and must be manually verified before use.
+
+## `npm run lead:channel-plan`
+
+Purpose:
+Generate a prioritized multi-channel plan from local channel records.
+
+Example:
+
+```sh
+npm run lead:channel-plan
+```
+
+Output file:
+`output/channel-research/channel-plan.md`
+
+Safety note:
+Planning only. The command does not send outreach, generate submissions, automate LinkedIn, scrape, call APIs, use CRM data, use credentials, or use external databases. Human approval is required before any channel action.
+
+## `npm run pain:research`
+
+Purpose:
+Generate a customer pain intelligence report for one company from existing local lead notes and `data/pain-intelligence/pain-research.json`.
+
+Example:
+
+```sh
+npm run pain:research -- --company PushPress
+npm run pain:research -- --company Glofox
+npm run pain:research -- --company TeamUp
+npm run pain:research -- --company Wodify
+```
+
+Output file:
+`output/pain-research/{company_id}-pain-research.md`
+
+Safety note:
+Customer pain intelligence only. It is not a security scanner and does not perform vulnerability scanning. It does not scrape, browse, call APIs, use credentials, use external databases, send outreach, invent complaints, invent customer quotes, invent findings, invent incidents, or invent vulnerabilities. Potential risk language must stay clearly labeled until manually verified.
+
+## `npm run pain:summary`
+
+Purpose:
+Generate cross-company complaint-signal, QA-risk, solution, outreach-angle, and summary reports from local pain intelligence records.
+
+Example:
+
+```sh
+npm run pain:summary
+```
+
+Output files:
+`output/pain-research/customer-complaints.md`
+`output/pain-research/qa-risk-map.md`
+`output/pain-research/solution-recommendations.md`
+`output/pain-research/outreach-angles.md`
+`output/pain-research/pain-summary.md`
+
+Safety note:
+Summary reporting only. It does not validate public reviews, scrape websites, call APIs, enrich private data, use credentials, connect CRMs, use external databases, or send messages. Human approval is required before using any pain, audit, or outreach angle externally.
+
+## `npm run site:intelligence`
+
+Purpose:
+Generate deterministic website QA intelligence for one company from local site-intelligence records, existing approved lead data, channel research, and pain intelligence.
+
+Example:
+
+```sh
+npm run site:intelligence -- --company PushPress -- --url https://www.pushpress.com
+npm run site:intelligence -- --company Glofox -- --url https://www.glofox.com
+npm run site:intelligence -- --company TeamUp -- --url https://goteamup.com
+npm run site:intelligence -- --company Wodify -- --url https://www.wodify.com
+```
+
+Output file:
+`output/site-intelligence/{company_id}-site-intelligence.md`
+
+Safety note:
+Website QA intelligence only. It is not penetration testing, vulnerability scanning, or security testing. The command does not browse, scrape, run browser automation, log in, use credentials, use private data, claim confirmed bugs, claim vulnerabilities, claim outages, or send outreach. Screenshot capture is documented as not available unless a local screenshot artifact already exists.
+
+## `npm run site:summary`
+
+Purpose:
+Generate cross-company website QA findings, UX opportunities, automation opportunities, audit recommendations, and site summary reports.
+
+Example:
+
+```sh
+npm run site:summary
+```
+
+Output files:
+`output/site-intelligence/qa-findings.md`
+`output/site-intelligence/ux-opportunities.md`
+`output/site-intelligence/automation-opportunities.md`
+`output/site-intelligence/audit-recommendations.md`
+`output/site-intelligence/site-summary.md`
+
+Safety note:
+Summary reporting only. It does not collect live website evidence, run security scans, use credentials, scrape behind login, use private data, or send outreach. Human approval is required before using any finding, audit recommendation, or outreach intelligence externally.
+
+## `npm run opportunity:generate`
+
+Purpose:
+Generate a unified commercial QA opportunity decision report for one company using local lead research, channel research, pain intelligence, site intelligence, contacts, and outreach tracking.
+
+Example:
+
+```sh
+npm run opportunity:generate -- --company PushPress
+npm run opportunity:generate -- --company Glofox
+npm run opportunity:generate -- --company TeamUp
+npm run opportunity:generate -- --company Wodify
+```
+
+Output file:
+`output/opportunities/{company_id}-opportunity.md`
+
+Safety note:
+Decision support only. It does not send outreach, connect external systems, invent contacts, invent complaints, invent bugs, invent vulnerabilities, invent incidents, invent customer feedback, or invent metrics. It uses approved pricing only: `QA Audit ($199-$500)`, `Playwright Starter Pack ($900-$1500)`, and `QA Automation Retainer ($1500-$3000/month)`.
+
+## `npm run opportunity:summary`
+
+Purpose:
+Generate portfolio-level best opportunities, audit priorities, commercial priorities, outreach priorities, and unified opportunity summary reports.
+
+Example:
+
+```sh
+npm run opportunity:summary
+```
+
+Output files:
+`output/opportunities/best-opportunities.md`
+`output/opportunities/audit-priorities.md`
+`output/opportunities/commercial-priorities.md`
+`output/opportunities/outreach-priorities.md`
+`output/opportunities/opportunity-summary.md`
+
+Safety note:
+Local-only portfolio decision support. Human approval is required before outreach, proposal, audit, or retainer action.
+
+## `npm run audit:generate`
+
+Purpose:
+Generate a company QA Audit Pack from Opportunity Engine output and local Studio intelligence.
+
+Example:
+
+```sh
+npm run audit:generate -- --company PushPress
+npm run audit:generate -- --company Glofox
+npm run audit:generate -- --company TeamUp
+npm run audit:generate -- --company Wodify
+```
+
+Output file:
+`output/audit-packs/{company_id}-audit-pack.md`
+
+Safety note:
+QA Audit Pack only. It is not a consulting report, proposal, invoice, contract, or payment instruction generator. It does not send outreach or invent bugs, complaints, vulnerabilities, incidents, customer feedback, findings, or metrics. Approved pricing only: `QA Audit ($199-$500)`, `Playwright Starter Pack ($900-$1500)`, and `QA Automation Retainer ($1500-$3000/month)`.
+
+## `npm run audit:portfolio`
+
+Purpose:
+Generate portfolio audit prioritization, delivery roadmap, and retainer opportunity reports from local QA Audit Packs.
+
+Example:
+
+```sh
+npm run audit:portfolio
+```
+
+Output files:
+`output/audit-packs/audit-portfolio.md`
+`output/audit-packs/audit-priorities.md`
+`output/audit-packs/audit-delivery-roadmap.md`
+`output/audit-packs/retainer-opportunities.md`
+
+Safety note:
+Portfolio planning only. It does not send audit packs externally, generate contracts, generate invoices, create payment instructions, connect external systems, or bypass Daniel approval.
+
+## `npm run evidence:collect`
+
+Purpose:
+Collect and score local evidence readiness for one company using existing Studio outputs only.
+
+Example:
+
+```sh
+npm run evidence:collect -- --company PushPress
+npm run evidence:collect -- --company Glofox
+npm run evidence:collect -- --company TeamUp
+npm run evidence:collect -- --company Wodify
+```
+
+Output file:
+`output/evidence/{company_id}-evidence.md`
+
+Safety note:
+Evidence organization only. It does not run browser automation, Playwright, Lighthouse, scans, screenshots, APIs, scraping, credentials, or external databases. It does not invent bugs, vulnerabilities, incidents, outages, screenshots, customer quotes, complaints, findings, metrics, or evidence.
+
+## `npm run evidence:portfolio`
+
+Purpose:
+Generate portfolio-level evidence readiness, evidence gaps, evidence priorities, and research-needed summaries.
+
+Example:
+
+```sh
+npm run evidence:portfolio
+```
+
+Output files:
+`output/evidence/evidence-portfolio.md`
+`output/evidence/evidence-gaps.md`
+`output/evidence/evidence-readiness.md`
+`output/evidence/evidence-priorities.md`
+
+Safety note:
+Portfolio planning only. It reads local Studio data and generated outputs only, does not collect live evidence, and requires human approval before any client-facing use.
+
+## `npm run evidence:capture-plan`
+
+Purpose:
+Generate the architecture-only evidence capture plan, future evidence source report, and storage architecture report.
+
+Example:
+
+```sh
+npm run evidence:capture-plan
+```
+
+Output files:
+`output/evidence-capture/evidence-capture-plan.md`
+`output/evidence-capture/future-evidence-sources.md`
+`output/evidence-capture/evidence-storage-architecture.md`
+
+Safety note:
+Architecture planning only. It does not run Playwright, run Lighthouse, capture screenshots, perform scans, use browser automation, use APIs, use credentials, use external databases, or collect evidence.
+
+## `npm run evidence:roadmap`
+
+Purpose:
+Generate the future evidence roadmap and implementation priority roadmap.
+
+Example:
+
+```sh
+npm run evidence:roadmap
+```
+
+Output files:
+`output/evidence-capture/evidence-roadmap.md`
+`output/evidence-capture/evidence-priority-roadmap.md`
+
+Safety note:
+Roadmap generation only. It does not invent evidence, screenshots, metrics, results, findings, bugs, vulnerabilities, or incidents, and it preserves human approval before future evidence capture.
+
+## `npm run evidence:playwright-plan`
+
+Purpose:
+Generate the planning-only Playwright evidence strategy, target priorities, and storage plan.
+
+Example:
+
+```sh
+npm run evidence:playwright-plan
+```
+
+Output files:
+`output/playwright-evidence/playwright-evidence-plan.md`
+`output/playwright-evidence/playwright-target-priorities.md`
+`output/playwright-evidence/playwright-storage-plan.md`
+
+Safety note:
+Planning only. It does not execute Playwright, crawl websites, use browser automation, capture screenshots, create traces, scrape, use credentials, use APIs, or collect evidence.
+
+## `npm run evidence:playwright-readiness`
+
+Purpose:
+Generate Playwright framework readiness and safety rule reports before any future controlled execution sprint.
+
+Example:
+
+```sh
+npm run evidence:playwright-readiness
+```
+
+Output files:
+`output/playwright-evidence/playwright-readiness.md`
+`output/playwright-evidence/playwright-safety-rules.md`
+
+Safety note:
+Readiness reporting only. It documents the future `npm run evidence:playwright-run -- --company PushPress` command but does not implement or run it. Human approval remains required before any future public-page execution.
+
+## `npm run evidence:playwright-run`
+
+Purpose:
+Run controlled passive Playwright observations for one approved public company website.
+
+Example:
+
+```sh
+npm run evidence:playwright-run -- --company PushPress
+npm run evidence:playwright-run -- --company TeamUp
+npm run evidence:playwright-run -- --company Glofox
+```
+
+Output files:
+`output/playwright-runner/{company_id}-playwright-evidence.md`
+`data/evidence/playwright/reports/{company_id}-playwright-evidence.json`
+`data/evidence/playwright/observations/{company_id}-observations.json`
+`data/evidence/playwright/screenshots/{company_id}-{page_type}.png` when screenshot capture succeeds
+
+Safety note:
+Public-page passive observation only. Maximum 5 pages per company and maximum 1 navigation depth. It does not submit forms, log in, create accounts, trigger payments, trigger bookings, access authenticated/private areas, scrape, crawl aggressively, use credentials, use authenticated APIs, send outreach, send email, or send messages.
+
+## `npm run evidence:playwright-summary`
+
+Purpose:
+Summarize local Playwright evidence runner outputs for QA audit support.
+
+Example:
+
+```sh
+npm run evidence:playwright-summary
+```
+
+Output files:
+`output/playwright-runner/playwright-summary.md`
+`output/playwright-runner/playwright-findings.md`
+`output/playwright-runner/playwright-observations.md`
+`output/playwright-runner/playwright-readiness.md`
+
+Safety note:
+Reads local Playwright evidence records only. It does not run browser automation, collect new evidence, scrape, call APIs, use credentials, or claim confirmed bugs, vulnerabilities, incidents, or outages.
+
+## `npm run outreach:status`
+
+Purpose:
+Generate local outreach tracking status from `data/outreach/outreach.json`.
+
+Example:
+
+```sh
+npm run outreach:status
+```
+
+Output files:
+`output/outreach-tracking/outreach-status.md`
+`output/outreach-tracking/company-status.md`
+`output/outreach-tracking/contact-status.md`
+`output/outreach-tracking/pipeline-summary.md`
+
+Safety note:
+Tracking only. It does not send messages, automate follow-ups, scrape LinkedIn, call APIs, connect a CRM, use credentials, or use external databases.
+
+## `npm run followup:queue`
+
+Purpose:
+Generate the manual follow-up queue for message-sent records whose `nextFollowUpAt` date is today or earlier.
+
+Example:
+
+```sh
+npm run followup:queue
+```
+
+Output file:
+`output/outreach-tracking/followup-queue.md`
+
+Safety note:
+Invitation-sent records are excluded until connected, and the command does not generate or send actual follow-up messages. Daniel approval is required before any follow-up action.
 
 ## `npm run lead:pack`
 
 Purpose:
-Generate lead summary, scoring, outbound plan, message drafts, follow-up plan, and next commands.
+Generate lead summary, scoring, contact recommendations, outreach drafts, QA opportunity analysis, outbound plan, follow-up plan, and next commands.
 
 Example:
 
 ```sh
 npm run lead:pack -- --id acme-saas-demo
+npm run lead:pack -- --company PushPress
 ```
 
 Output files:
 `output/lead-packs/{lead_id}.md`
 `output/outbound/{lead_id}-outbound-plan.md`
+`output/leads/{lead_id}-lead-pack.md`
 
 Safety note:
-Drafts are manual-review only. No message is sent.
+Drafts are manual-review only. No message is sent. `--company` can read from approved local leads or the latest `data/leads/discovered-leads.json` candidates.
 
 ## `npm run outreach:queue`
 

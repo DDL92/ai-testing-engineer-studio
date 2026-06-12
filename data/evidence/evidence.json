@@ -1,0 +1,30 @@
+[
+  {
+    "companyId": "pushpress",
+    "companyName": "PushPress",
+    "status": "active",
+    "source": "Existing Studio intelligence outputs",
+    "notes": "Collect local evidence readiness for audit, proposal, and retainer support."
+  },
+  {
+    "companyId": "glofox",
+    "companyName": "Glofox / ABC Fitness",
+    "status": "active",
+    "source": "Existing Studio intelligence outputs",
+    "notes": "Collect local evidence readiness for audit, proposal, and retainer support."
+  },
+  {
+    "companyId": "teamup",
+    "companyName": "TeamUp",
+    "status": "active",
+    "source": "Existing Studio intelligence outputs",
+    "notes": "Collect local evidence readiness for audit, proposal, and retainer support."
+  },
+  {
+    "companyId": "wodify",
+    "companyName": "Wodify",
+    "status": "active",
+    "source": "Existing Studio intelligence outputs",
+    "notes": "Contact evidence is expected to remain a gap until manually researched and approved."
+  }
+]

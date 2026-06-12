@@ -1,6 +1,6 @@
 # Roadmap After v1
 
-Generated: 2026-06-12T16:43:20.573Z
+Generated: 2026-06-12T17:07:28.252Z
 
 ## Immediate Priority
 - Sprint 50: First Revenue Validation Pack.

@@ -1,0 +1,146 @@
+[
+  {
+    "company": "Wodify",
+    "companyId": "wodify",
+    "channel": "Demo Request",
+    "url": "",
+    "type": "demo-request",
+    "priority": 2,
+    "notes": "Exact public demo URL not recorded yet. Use the approved website in data/leads.json for manual verification before outreach."
+  },
+  {
+    "company": "Wodify",
+    "companyId": "wodify",
+    "channel": "Website Contact Form",
+    "url": "",
+    "type": "website-contact-form",
+    "priority": 3,
+    "notes": "Exact public contact form URL not recorded yet. Manual research required; do not scrape or automate."
+  },
+  {
+    "company": "Wodify",
+    "companyId": "wodify",
+    "channel": "LinkedIn",
+    "url": "",
+    "type": "linkedin",
+    "priority": 1,
+    "notes": "Company is approved in local lead data, but individual contacts are not identified in data/contacts/contacts.json."
+  },
+  {
+    "company": "Bookee",
+    "companyId": "bookee",
+    "channel": "LinkedIn",
+    "url": "",
+    "type": "linkedin",
+    "priority": 1,
+    "notes": "Company is approved in local lead data. Individual contacts are not identified in data/contacts/contacts.json."
+  },
+  {
+    "company": "Bookee",
+    "companyId": "bookee",
+    "channel": "Website Contact Form",
+    "url": "",
+    "type": "website-contact-form",
+    "priority": 2,
+    "notes": "Exact public contact form URL not recorded yet. Manual research required; do not scrape or automate."
+  },
+  {
+    "company": "Mindbody",
+    "companyId": "mindbody",
+    "channel": "Demo Request",
+    "url": "",
+    "type": "demo-request",
+    "priority": 1,
+    "notes": "Exact public demo URL not recorded yet. Use the approved website in data/leads.json for manual verification before outreach."
+  },
+  {
+    "company": "Mindbody",
+    "companyId": "mindbody",
+    "channel": "Product Contact",
+    "url": "",
+    "type": "product-contact",
+    "priority": 2,
+    "notes": "No individual product contact is recorded. Manual contact research required; do not invent names."
+  },
+  {
+    "company": "PushPress",
+    "companyId": "pushpress",
+    "channel": "LinkedIn",
+    "url": "",
+    "type": "linkedin",
+    "priority": 1,
+    "notes": "Use existing manually tracked contacts only. Do not automate LinkedIn."
+  },
+  {
+    "company": "PushPress",
+    "companyId": "pushpress",
+    "channel": "Demo Request",
+    "url": "",
+    "type": "demo-request",
+    "priority": 2,
+    "notes": "Exact public demo URL not recorded yet. Manual verification required before use."
+  },
+  {
+    "company": "PushPress",
+    "companyId": "pushpress",
+    "channel": "Website Contact Form",
+    "url": "",
+    "type": "website-contact-form",
+    "priority": 3,
+    "notes": "Exact public contact form URL not recorded yet. Manual verification required before use."
+  },
+  {
+    "company": "Glofox / ABC Fitness",
+    "companyId": "glofox",
+    "channel": "LinkedIn",
+    "url": "",
+    "type": "linkedin",
+    "priority": 1,
+    "notes": "Use existing manually tracked contacts only. Do not automate LinkedIn."
+  },
+  {
+    "company": "Glofox / ABC Fitness",
+    "companyId": "glofox",
+    "channel": "Website Contact Form",
+    "url": "",
+    "type": "website-contact-form",
+    "priority": 2,
+    "notes": "Exact public contact form URL not recorded yet. Manual verification required before use."
+  },
+  {
+    "company": "Glofox / ABC Fitness",
+    "companyId": "glofox",
+    "channel": "Demo Request",
+    "url": "",
+    "type": "demo-request",
+    "priority": 3,
+    "notes": "Exact public demo URL not recorded yet. Manual verification required before use."
+  },
+  {
+    "company": "TeamUp",
+    "companyId": "teamup",
+    "channel": "LinkedIn",
+    "url": "",
+    "type": "linkedin",
+    "priority": 1,
+    "notes": "Use existing manually tracked contacts only. Do not automate LinkedIn."
+  },
+  {
+    "company": "TeamUp",
+    "companyId": "teamup",
+    "channel": "Demo Request",
+    "url": "",
+    "type": "demo-request",
+    "priority": 2,
+    "notes": "Exact public demo URL not recorded yet. Manual verification required before use."
+  },
+  {
+    "company": "TeamUp",
+    "companyId": "teamup",
+    "channel": "Website Contact Form",
+    "url": "",
+    "type": "website-contact-form",
+    "priority": 3,
+    "notes": "Exact public contact form URL not recorded yet. Manual verification required before use."
+  }
+]
