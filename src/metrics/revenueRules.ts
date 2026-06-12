@@ -7,7 +7,7 @@ const clientServiceTypes: ClientServiceType[] = ['qa-audit', 'playwright-starter
 const clientStatuses: ClientStatus[] = ['active', 'paused', 'completed', 'at-risk'];
 
 export function buildRevenueSummary(leads: Lead[], clients: Client[]): RevenueSummary {
-  const activeClients = clients.filter((client) => client.status === 'active');
+  const activeClients = clients.filter((client) => client.status === 'active' && isCommercialClient(client));
   const topScoredLeads = topLeads(leads);
   const retainerOpportunities = topLeads(leads).filter((lead) => isRetainerOffer(lead.recommendedOffer));
 
@@ -45,6 +45,22 @@ function estimateMrr(activeClients: Client[]): number {
   return activeClients
     .filter((client) => client.serviceType === 'qa-automation-retainer' || client.serviceType === 'agency-partner-retainer')
     .reduce((total, client) => total + (client.monthlyFee || 0), 0);
+}
+
+function isCommercialClient(client: Client): boolean {
+  const id = client.id.toLowerCase();
+  const companyName = client.companyName.toLowerCase();
+  const website = client.website.toLowerCase();
+
+  return !(
+    id.startsWith('sample-')
+    || id.includes('demo')
+    || companyName.includes('demo')
+    || companyName.includes('sample')
+    || companyName.includes('sandbox')
+    || companyName.includes('test')
+    || website.includes('.example')
+  );
 }
 
 function sumLeadOpportunityRanges(leads: Lead[], cadence: CurrencyRange['cadence']): CurrencyRange {

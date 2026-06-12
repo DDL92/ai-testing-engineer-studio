@@ -1242,3 +1242,130 @@ npm run mobile:summary
 
 What not to build yet:
 Do not create a SaaS dashboard, mobile app install, push notifications, external hosting, paid services, APIs, CRM integrations, outreach automation, payment systems, or credential-based workflows.
+
+Completion notes:
+
+- Added `npm run mobile:center`.
+- Added `npm run mobile:summary`.
+- Added `src/mobileCommandCenter` with typed local inputs, deterministic mobile summary rules, local report group health, revenue snapshot rendering, client status rendering, manual follow-up queue rendering, and mobile-ready Markdown outputs.
+- Generated `output/mobile-command-center/mobile-command-center.md`.
+- Generated `output/mobile-command-center/mobile-summary.md`.
+- Generated `output/mobile-command-center/top-actions-mobile.md`.
+- Generated `output/mobile-command-center/top-opportunities-mobile.md`.
+- Generated `output/mobile-command-center/revenue-mobile.md`.
+- Generated `output/mobile-command-center/client-status-mobile.md`.
+- Generated `output/mobile-command-center/followup-queue-mobile.md`.
+- Revenue uses local client records for booked MRR and only displays projected MRR when a local revenue report contains it.
+- Follow-up queue is manual-only. Nothing is scheduled, sent, synced, or automated.
+- System Health uses local generated report availability only.
+- No UI framework, React, Next.js, APIs, external services, CRM integrations, outreach automation, external databases, credentials, PWA, mobile app, or web dashboard were added.
+
+## Sprint 45: Daily Revenue Operator
+
+Goal:
+Create a daily revenue operating layer that turns the Revenue Command Center, Mobile Command Center, proposals, outreach execution, client ops, and local lead/client data into a focused daily revenue plan.
+
+Suggested commands:
+
+```sh
+npm run revenue:daily
+npm run revenue:next-actions
+```
+
+What not to build yet:
+Do not connect payment systems, invoices, banks, CRMs, external databases, APIs, scraping, browsing, outreach automation, email/LinkedIn automation, push notifications, paid services, or credential-based workflows.
+
+Completion notes:
+
+- Added `npm run revenue:daily`.
+- Added `npm run revenue:next-actions`.
+- Added `src/dailyRevenueOperator` with typed local inputs, Revenue Command Center sourced revenue snapshot, top revenue opportunities, next action ranking, revenue risks, 30-minute focus, consistency audit, and approval checklist rendering.
+- Generated `output/daily-revenue-operator/daily-revenue-operator.md`.
+- Generated `output/daily-revenue-operator/revenue-next-actions.md`.
+- Generated `output/daily-revenue-operator/revenue-priority-list.md`.
+- Generated `output/daily-revenue-operator/revenue-risks.md`.
+- Generated `output/daily-revenue-operator/revenue-focus-today.md`.
+- Generated `output/daily-revenue-operator/revenue-consistency-report.md`.
+- Generated `output/daily-revenue-operator/approval-checklist.md`.
+- Mobile Command Center revenue values now come from Revenue Command Center output only and warn when local client totals differ.
+- Shared dashboard/Mac revenue summaries and operator MRR calculations now exclude demo, sample, sandbox, test, and `.example` client records from booked/estimated MRR.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, email sending, LinkedIn automation, payments, credentials, external databases, invented clients, invented revenue, or automatic external actions were added.
+
+## Sprint 46: Action Cockpit v1
+
+Goal:
+Create one single command center combining Mobile Command Center, Revenue Command Center, Daily Revenue Operator, Top Actions, Top Opportunities, and Approval Queue into one daily operating view.
+
+Suggested commands:
+
+```sh
+npm run cockpit:daily
+npm run cockpit:approve
+```
+
+What not to build yet:
+Do not send outreach, automate approvals, connect CRMs, call APIs, scrape, browse, use credentials, process payments, create invoices, use push notifications, or create external services.
+
+Completion notes:
+
+- Added `npm run cockpit:daily`.
+- Added `npm run cockpit:approve`.
+- Added `src/actionCockpit` with typed local inputs, unified action selection, Revenue Command Center sourced revenue snapshot, top opportunity ranking, approval queue generation, client watchlist, follow-up watchlist, report availability health, and exact next command recommendation.
+- Generated `output/action-cockpit/action-cockpit.md`.
+- Generated `output/action-cockpit/daily-focus.md`.
+- Generated `output/action-cockpit/top-opportunities.md`.
+- Generated `output/action-cockpit/approval-queue.md`.
+- Generated `output/action-cockpit/revenue-snapshot.md`.
+- Generated `output/action-cockpit/client-watchlist.md`.
+- Generated `output/action-cockpit/followup-watchlist.md`.
+- Generated `output/action-cockpit/system-health.md`.
+- Revenue snapshot uses Revenue Command Center as the source of truth.
+- Approval queue is human-review only and never auto-approves.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, email sending, LinkedIn automation, payments, credentials, external databases, invented revenue, or automatic external actions were added.
+
+## Sprint 47: Operator OS Dashboard v1
+
+Goal:
+Create the first true AI Studio OS homepage. One report should combine Action Cockpit, Revenue, Mobile, Opportunities, Follow-Ups, Approvals, and System Health into a single operating dashboard.
+
+Suggested commands:
+
+```sh
+npm run os:dashboard
+npm run os:today
+```
+
+What not to build yet:
+Do not create a hosted SaaS, external API, paid dashboard service, CRM integration, outreach automation, sending workflow, credential workflow, push notifications, invoice/payment automation, or external database.
+
+Completion notes:
+
+- Added `npm run os:dashboard`.
+- Added `npm run os:today`.
+- Added `src/operatorDashboard` with typed local inputs, primary dashboard rendering, 30-minute today view, executive summary, opportunity center, Revenue Command Center sourced revenue center, approval center, manual follow-up center, system status checks, and exact next command recommendation.
+- Generated `output/operator-os-dashboard/operator-dashboard.md`.
+- Generated `output/operator-os-dashboard/today-view.md`.
+- Generated `output/operator-os-dashboard/executive-summary.md`.
+- Generated `output/operator-os-dashboard/opportunity-center.md`.
+- Generated `output/operator-os-dashboard/revenue-center.md`.
+- Generated `output/operator-os-dashboard/approval-center.md`.
+- Generated `output/operator-os-dashboard/followup-center.md`.
+- Generated `output/operator-os-dashboard/system-status.md`.
+- Revenue source uses Revenue Command Center.
+- Operating priorities and approvals use Action Cockpit.
+- No APIs, scraping, browsing, CRM integrations, outreach automation, email sending, LinkedIn automation, payments, credentials, invoices, external databases, or automatic external actions were added.
+
+## Sprint 48: Studio OS v1.0 Stabilization
+
+Goal:
+Stabilize the local Studio OS now that the primary dashboard exists. Audit command consistency, generated report freshness, source-of-truth boundaries, missing output handling, and health checks before adding new surfaces.
+
+Suggested commands:
+
+```sh
+npm run os:audit
+npm run os:health
+```
+
+What not to build yet:
+Do not add hosted services, external APIs, CRM integrations, outreach automation, sending workflows, paid tools, credential flows, invoice/payment automation, or external databases.

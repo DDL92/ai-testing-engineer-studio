@@ -1,12 +1,12 @@
 # Commercial Dashboard
 
-Generated: 2026-06-12T07:28:23.137Z
+Generated: 2026-06-12T15:37:23.090Z
 
 ## Commercial Summary
 - Total leads: 51
 - Commercial leads: 43
 - Excluded demo leads: 8
-- Active clients: 2
+- Active clients: 0
 - Top commercial opportunities: 5
 
 ## Eligible Commercial Leads

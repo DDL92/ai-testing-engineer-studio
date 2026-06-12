@@ -82,6 +82,14 @@ npm run outreach:execute-pack
 npm run outreach:follow-up-plan
 npm run first-audit:workflow
 npm run first-audit:kickoff
+npm run mobile:center
+npm run mobile:summary
+npm run revenue:daily
+npm run revenue:next-actions
+npm run cockpit:daily
+npm run cockpit:approve
+npm run os:dashboard
+npm run os:today
 npm run mac:daily
 npm run mac:summary
 npm run client:ops
@@ -112,6 +120,10 @@ The Real Client Readiness Pack writes `output/real-client-readiness` reports for
 The Proposal Command Center writes `output/proposal-center` reports for proposal-ready leads, SOW readiness, proposal priority, pricing recommendations, and approval checks. It is local-only and does not send proposals, invent findings, or treat opportunities as booked revenue.
 The Real Outreach Execution Pack writes `output/outreach-execution` reports for final message drafts, manual contact research, follow-up timing, first audit CTA, and approval checks. It does not send messages, invent contacts, invent findings, browse, scrape, automate outreach, or connect external systems.
 The First Audit Sale Workflow writes `output/first-audit-workflow` reports for positive-reply handling, discovery call prep, audit scope confirmation, kickoff, delivery, retainer upgrade path, and approval checks. It does not process payments, generate invoices, invent findings, or guarantee outcomes.
+The Mobile Command Center writes `output/mobile-command-center` reports for mobile-ready Today, top actions, top opportunities, revenue snapshot, client status, manual follow-up queue, approvals needed, and local report health. It is Markdown-only foundation work for future dashboard/PWA/mobile surfaces and does not add APIs, React, Next.js, UI frameworks, CRM integrations, outreach automation, sending, external databases, or external services.
+The Daily Revenue Operator writes `output/daily-revenue-operator` reports for the daily revenue snapshot, next actions, priority list, risks, 30-minute focus, consistency audit, and approval checklist. Revenue Command Center is the source of truth for booked MRR; demo/sample/sandbox/test/example client records are excluded from booked revenue.
+The Action Cockpit v1 writes `output/action-cockpit` reports for one daily operating view: Top 3 actions, Top 5 opportunities, Revenue Command Center snapshot, client watchlist, manual follow-up watchlist, approval queue, local report health, and the next recommended command. It is local Markdown only and never auto-approves, sends outreach, connects CRMs, calls APIs, or uses external services.
+The Operator OS Dashboard writes `output/operator-os-dashboard` reports for the primary AI Studio OS homepage: executive summary, today view, opportunity center, revenue center, approval center, follow-up center, system status, and exact next command. It uses Revenue Command Center and Action Cockpit as sources of truth and remains local-only.
 Client operations reports are written to `output/client-ops` for daily priorities, next actions, readiness groups, reporting needs, and manual approval rules.
 Client delivery artifacts are written to `output/client-delivery/{client_id}` for delivery planning, evidence logs, QA checklists, weekly summaries, and client update drafts.
 Polished client reporting artifacts are written to `output/client-reporting/{client_id}` for executive summaries, weekly reports, monthly reports, value delivered summaries, renewal signals, and draft client updates. They are evidence-first, local-only, and require Daniel review before sending.

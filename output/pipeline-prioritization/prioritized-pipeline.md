@@ -1,6 +1,6 @@
 # Prioritized Pipeline
 
-Generated: 2026-06-12T07:28:23.547Z
+Generated: 2026-06-12T15:37:23.413Z
 
 ## Summary
 - Total leads reviewed: 43
@@ -15,7 +15,7 @@ Local context read:
 - Opportunity tracker: available (output/pipeline/opportunity-tracker.md). Summary: # Opportunity Tracker Generated: 2026-06-11T21:28:29.240Z ## Summary - Total Leads: 51
 - Top opportunities: available (output/pipeline/top-opportunities.md). Summary: # Top Opportunities ## 1. PushPress - Company: PushPress - Opportunity Score: 100
 - Client ops next actions: available (output/client-ops/next-actions.md). Summary: # Client Next Actions Generated: 2026-06-11T17:08:30.957Z ## 1. PushPress - Company: PushPress
-- Daily command center: available (output/operator/daily-command-center.md). Summary: # AI Studio Daily Command Center Generated At: 2026-06-12T07:28:23.337Z ## Commercial Mode - Commercial Mode: ON
+- Daily command center: available (output/operator/daily-command-center.md). Summary: # AI Studio Daily Command Center Generated At: 2026-06-12T15:37:23.252Z ## Commercial Mode - Commercial Mode: ON
 - Renewal client health: available (output/renewals/client-health.md). Summary: # Client Health ## Scope - All local clients ## Health Summary
 - Dashboard: available (output/dashboard/dashboard.md). Summary: # AI Studio OS Dashboard ## Executive Summary - Status: local-ready - Commercial Mode: ON
 

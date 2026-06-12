@@ -1,6 +1,6 @@
 # MRR Forecast
 
-Generated: 2026-06-12T07:28:50.943Z
+Generated: 2026-06-12T15:22:50.703Z
 
 ## Forecast Rules
 - Booked MRR uses active commercial retainer clients only: $0

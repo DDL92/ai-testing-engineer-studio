@@ -1,6 +1,6 @@
 # AI Studio Daily Summary
 
-Generated At: 2026-06-12T07:28:24.274Z
+Generated At: 2026-06-12T15:37:23.924Z
 
 ## Commercial Snapshot
 
@@ -16,7 +16,7 @@ Top Commercial Opportunities:
 
 ## Revenue Snapshot
 
-- Estimated MRR: $2,000
+- Estimated MRR: $0
 - Renewal Opportunities: 2
 - Expansion Opportunities: 2
 - Revenue values come from local client and lead files only. Opportunity values are not booked revenue.

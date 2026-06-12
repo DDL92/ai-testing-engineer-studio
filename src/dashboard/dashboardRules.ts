@@ -34,7 +34,7 @@ const offerRanges: Record<RecommendedOffer, { min: number; max: number; cadence:
 export function buildDashboardData(leads: Lead[], clients: Client[], contactReviews: ContactReviewRecord[]): DashboardData {
   const pipeline = buildOpportunityTracker(leads, contactReviews);
   const revenue = buildRevenueSummary(leads, clients);
-  const activeClients = clients.filter((client) => client.status === 'active');
+  const activeClients = clients.filter((client) => client.status === 'active' && isCommercialClient(client));
 
   return {
     generatedAt: new Date().toISOString(),
@@ -329,6 +329,22 @@ function buildRevenueScenarios(): RevenueScenario[] {
     { label: 'Expected', retainers: 3, monthlyRange: { min: 4500, max: 9000 } },
     { label: 'Optimistic', retainers: 5, monthlyRange: { min: 7500, max: 15000 } },
   ];
+}
+
+function isCommercialClient(client: Client): boolean {
+  const id = client.id.toLowerCase();
+  const companyName = client.companyName.toLowerCase();
+  const website = client.website.toLowerCase();
+
+  return !(
+    id.startsWith('sample-')
+    || id.includes('demo')
+    || companyName.includes('demo')
+    || companyName.includes('sample')
+    || companyName.includes('sandbox')
+    || companyName.includes('test')
+    || website.includes('.example')
+  );
 }
 
 function renderTopOpportunitiesTable(items: OpportunityItem[]): string {

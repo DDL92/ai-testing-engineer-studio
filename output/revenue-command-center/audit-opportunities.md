@@ -1,6 +1,6 @@
 # Audit Opportunities
 
-Generated: 2026-06-12T07:28:50.943Z
+Generated: 2026-06-12T15:22:50.703Z
 
 ## High Probability
 | Company | Lead Score | Industry | Reason | Estimated Audit Value Range | Next Action | Suggested Command |

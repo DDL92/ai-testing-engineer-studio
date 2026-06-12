@@ -605,6 +605,168 @@ Output file:
 Safety note:
 Kickoff planning only. Scope, approvals, and manual payment/invoice status must be reviewed outside this command before delivery begins.
 
+## `npm run mobile:center`
+
+Purpose:
+Generate the local Mobile Command Center foundation with Today, Top 5 Actions, Top 5 Opportunities, Revenue Snapshot, Client Status, manual Follow-Up Queue, Approvals Needed, and System Health.
+
+Example:
+
+```sh
+npm run mobile:center
+```
+
+Output files:
+`output/mobile-command-center/mobile-command-center.md`
+`output/mobile-command-center/mobile-summary.md`
+`output/mobile-command-center/top-actions-mobile.md`
+`output/mobile-command-center/top-opportunities-mobile.md`
+`output/mobile-command-center/revenue-mobile.md`
+`output/mobile-command-center/client-status-mobile.md`
+`output/mobile-command-center/followup-queue-mobile.md`
+
+Safety note:
+Local Markdown generation only. It does not create a web dashboard, PWA, mobile app, API, CRM integration, outreach automation, email/LinkedIn automation, external database, external service, or sending workflow. Human approval is required before every external action.
+
+## `npm run mobile:summary`
+
+Purpose:
+Refresh only the compact mobile summary from local data and existing local report outputs.
+
+Example:
+
+```sh
+npm run mobile:summary
+```
+
+Output file:
+`output/mobile-command-center/mobile-summary.md`
+
+Safety note:
+Summary-only local report generation. It does not schedule or send follow-ups, automate outreach, connect CRMs, call APIs, use external databases, or use credentials.
+
+## `npm run revenue:daily`
+
+Purpose:
+Generate the Daily Revenue Operator with Revenue Command Center sourced booked MRR, top revenue opportunities, revenue risks, renewal watch, proposal watch, client expansion watch, next actions, 30-minute focus, approval checklist, and revenue consistency report.
+
+Example:
+
+```sh
+npm run revenue:daily
+```
+
+Output files:
+`output/daily-revenue-operator/daily-revenue-operator.md`
+`output/daily-revenue-operator/revenue-next-actions.md`
+`output/daily-revenue-operator/revenue-priority-list.md`
+`output/daily-revenue-operator/revenue-risks.md`
+`output/daily-revenue-operator/revenue-focus-today.md`
+`output/daily-revenue-operator/revenue-consistency-report.md`
+`output/daily-revenue-operator/approval-checklist.md`
+
+Safety note:
+Local deterministic reporting only. Revenue Command Center is the booked MRR source of truth. It does not invent revenue, count demo/sample/sandbox/test client records as booked revenue, send outreach, call APIs, connect CRMs, use external databases, use credentials, create invoices, or process payments.
+
+## `npm run revenue:next-actions`
+
+Purpose:
+Refresh only the Revenue Next Actions report using the same Daily Revenue Operator rules.
+
+Example:
+
+```sh
+npm run revenue:next-actions
+```
+
+Output file:
+`output/daily-revenue-operator/revenue-next-actions.md`
+
+Safety note:
+Recommendation only. Daniel must approve before outreach, proposals, follow-ups, delivery changes, invoices, payments, or client-facing use.
+
+## `npm run cockpit:daily`
+
+Purpose:
+Generate Action Cockpit v1 as the unified daily operating screen across Revenue Command Center, Mobile Command Center, Daily Revenue Operator, Proposal Center, First Audit Workflow, Client Readiness, Client Ops, Renewals, and local follow-up context.
+
+Example:
+
+```sh
+npm run cockpit:daily
+```
+
+Output files:
+`output/action-cockpit/action-cockpit.md`
+`output/action-cockpit/daily-focus.md`
+`output/action-cockpit/top-opportunities.md`
+`output/action-cockpit/approval-queue.md`
+`output/action-cockpit/revenue-snapshot.md`
+`output/action-cockpit/client-watchlist.md`
+`output/action-cockpit/followup-watchlist.md`
+`output/action-cockpit/system-health.md`
+
+Safety note:
+Local deterministic reporting only. It does not auto-approve, send outreach, schedule follow-ups, call APIs, connect CRMs, browse, scrape, use external databases, use credentials, create invoices, or process payments. Human approval is required before every external action.
+
+## `npm run cockpit:approve`
+
+Purpose:
+Refresh only the local approval queue for manual review.
+
+Example:
+
+```sh
+npm run cockpit:approve
+```
+
+Output file:
+`output/action-cockpit/approval-queue.md`
+
+Safety note:
+Approval queue generation only. Never auto-approve. Daniel must manually review and approve any outreach, proposal, SOW, audit, onboarding, renewal, expansion, invoice, payment, or client-facing action.
+
+## `npm run os:dashboard`
+
+Purpose:
+Generate the Operator OS Dashboard v1 as the primary local operating dashboard across Action Cockpit, Revenue Command Center, Mobile Command Center, opportunities, follow-ups, approvals, clients, and report health.
+
+Example:
+
+```sh
+npm run os:dashboard
+```
+
+Output files:
+`output/operator-os-dashboard/operator-dashboard.md`
+`output/operator-os-dashboard/today-view.md`
+`output/operator-os-dashboard/executive-summary.md`
+`output/operator-os-dashboard/opportunity-center.md`
+`output/operator-os-dashboard/revenue-center.md`
+`output/operator-os-dashboard/approval-center.md`
+`output/operator-os-dashboard/followup-center.md`
+`output/operator-os-dashboard/system-status.md`
+
+Safety note:
+Local deterministic reporting only. It does not send outreach, auto-approve, schedule follow-ups, call APIs, connect CRMs, browse, scrape, use external databases, use credentials, create invoices, or process payments. Human approval remains required before external action.
+
+## `npm run os:today`
+
+Purpose:
+Refresh only the 30-minute Today View from the Operator OS Dashboard rules.
+
+Example:
+
+```sh
+npm run os:today
+```
+
+Output file:
+`output/operator-os-dashboard/today-view.md`
+
+Safety note:
+Today view generation only. It recommends local next steps and does not approve, send, schedule, invoice, call APIs, connect CRMs, or update external systems.
+
 ## `npm run client:ops`
 
 Purpose:

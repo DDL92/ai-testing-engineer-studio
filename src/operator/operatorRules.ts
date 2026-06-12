@@ -504,7 +504,26 @@ function nextMonthPriorities(input: OperatorInput, opportunities: OperatorOpport
 }
 
 function estimatedMrr(clients: Client[]): number {
-  return clients.filter((client) => client.status === 'active').reduce((sum, client) => sum + client.monthlyFee, 0);
+  return clients
+    .filter((client) => client.status === 'active' && isCommercialClient(client))
+    .filter((client) => client.serviceType === 'qa-automation-retainer' || client.serviceType === 'agency-partner-retainer')
+    .reduce((sum, client) => sum + client.monthlyFee, 0);
+}
+
+function isCommercialClient(client: Client): boolean {
+  const id = client.id.toLowerCase();
+  const companyName = client.companyName.toLowerCase();
+  const website = client.website.toLowerCase();
+
+  return !(
+    id.startsWith('sample-')
+    || id.includes('demo')
+    || companyName.includes('demo')
+    || companyName.includes('sample')
+    || companyName.includes('sandbox')
+    || companyName.includes('test')
+    || website.includes('.example')
+  );
 }
 
 function healthCounts(records: RenewalClient[]): Record<'GREEN' | 'YELLOW' | 'RED', number> {

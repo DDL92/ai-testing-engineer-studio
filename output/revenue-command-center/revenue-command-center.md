@@ -1,6 +1,6 @@
 # Revenue Command Center
 
-Generated: 2026-06-12T07:28:50.943Z
+Generated: 2026-06-12T15:22:50.703Z
 
 ## Executive Summary
 - Current booked MRR: $0
