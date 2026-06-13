@@ -2,7 +2,8 @@ import path = require('path');
 import { buildProposal, writeProposal } from './proposalRules';
 
 function main(): void {
-  const company = parseArg(process.argv.slice(2), '--company');
+  const args = process.argv.slice(2);
+  const company = parseArg(args, '--company') ?? parseArg(args, '--id');
 
   if (!company) {
     exitWithError('Missing required --company argument. Example: npm run sow:generate -- --company PushPress');

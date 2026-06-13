@@ -15,7 +15,7 @@ const requiredItems: ReadinessItem[] = [
   { label: 'Lead database', path: 'data/leads.json', required: true },
   { label: 'Client database', path: 'data/clients.json', required: true },
   { label: 'First 50 targets', path: 'data/first-50-targets.json', required: true },
-  { label: 'Day plan', path: 'output/day-plan.md', required: true },
+  { label: 'Day plan', path: 'output/daily-revenue/today-plan.md', required: true },
   { label: 'Revenue summary', path: 'output/metrics/revenue-summary.md', required: true },
   { label: 'Action cockpit', path: 'output/cockpit/action-cockpit.md', required: true },
 ];

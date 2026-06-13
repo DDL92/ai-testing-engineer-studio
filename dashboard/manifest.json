@@ -1,0 +1,22 @@
+{
+  "name": "AI Testing Engineer Studio Dashboard",
+  "short_name": "AI Studio",
+  "id": "/dashboard/",
+  "description": "Local read-only operating dashboard for AI Testing Engineer Studio.",
+  "start_url": "/dashboard/index.html",
+  "scope": "/dashboard/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "en-US",
+  "categories": ["business", "productivity"],
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

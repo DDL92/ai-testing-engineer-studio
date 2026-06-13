@@ -130,6 +130,7 @@ Expected commands:
 ```sh
 npm run day:plan
 npm run day:summary
+npm run week:review
 ```
 
 What to build:
@@ -142,6 +143,109 @@ What to build:
 
 What not to build yet:
 Do not send outreach, send proposals, automate follow-ups, connect CRMs, process payments, use credentials, invent contacts, or bypass Daniel approval.
+
+Completion notes:
+
+- Added `npm run day:plan`, `npm run day:summary`, and `npm run week:review`.
+- Added `src/dailyRevenueLoop` with typed local inputs, revenue-first action scoring, daily plan rendering, daily summary rendering, and weekly review rendering.
+- Added local state files under `data/daily-revenue`.
+- Generated `output/daily-revenue/today-plan.md`.
+- Generated `output/daily-revenue/today-summary.md`.
+- Generated `output/daily-revenue/week-review.md`.
+- Generated highest-priority actions, follow-up priorities, proposal priorities, audit priorities, and revenue opportunities.
+- The loop reads local outreach, contact, opportunity, unified audit, client audit, proposal, evidence, and outreach tracking outputs only.
+- No outreach, emails, proposals, invoices, payment links, calendar events, replies, meetings, revenue, or client interest are generated or inferred.
+
+## Sprint 67: PWA Dashboard Foundation
+
+Goal:
+Create the first mobile-friendly Studio dashboard showing leads, pipeline, follow-ups, audits, proposals, and revenue priorities from a phone or browser with minimal daily screen time.
+
+Expected commands:
+
+```sh
+npm run dashboard:generate
+npm run dashboard:preview
+npm run dashboard:build
+```
+
+What to build:
+
+- Static local dashboard generated from Daily Revenue Loop outputs.
+- Mobile-friendly Today view.
+- Pipeline, follow-up, audit, proposal, and revenue priority cards.
+- Preview command for local browser review.
+
+What not to build yet:
+Do not add paid hosting, external databases, CRM integrations, outreach sending, authentication, payment flows, or automatic external actions.
+
+Completion notes:
+
+- Added `npm run dashboard:generate`, `npm run dashboard:build`, and `npm run dashboard:preview`.
+- Added Sprint 67 PWA dashboard data builder under `src/dashboard`.
+- Added static mobile-first PWA frontend under `dashboard/` with `index.html`, `styles.css`, `app.js`, and `manifest.json`.
+- Added generated dashboard state under `data/dashboard/dashboard.json`.
+- Generated `output/dashboard/dashboard.json`, `output/dashboard/dashboard-summary.md`, and `output/dashboard/dashboard-health.md`.
+- Dashboard consumes Daily Revenue Loop, opportunity, audit, proposal, evidence, and outreach tracking outputs.
+- Dashboard is read-only and does not send outreach, send proposals, create invoices, create payments, modify data, use credentials, or call APIs.
+
+## Sprint 68: Mobile Command Center
+
+Goal:
+Allow Daniel to review follow-ups, audits, proposals, and revenue priorities directly from his phone with a lightweight approval workflow while traveling.
+
+Expected commands:
+
+```sh
+npm run mobile:review
+npm run mobile:summary
+npm run mobile:queue
+npm run dashboard:mobile
+```
+
+What to build:
+
+- Mobile review queue powered by Sprint 67 dashboard data.
+- Read-only review summaries for follow-ups, audits, proposals, and revenue priorities.
+- Local approval checklist records only after Daniel explicitly reviews.
+
+What not to build yet:
+Do not send outreach, send proposals, connect CRMs, create invoices, create payments, add authentication, expose public hosting, or automate external actions.
+
+Completion notes:
+
+- Added `npm run mobile:review`, `npm run mobile:summary`, and `npm run mobile:queue`.
+- Added `npm run dashboard:mobile` for local-network dashboard access on same-WiFi phones and browsers.
+- Added `src/mobileCommandCenter/mobileRules.ts`, `generateMobileReview.ts`, and `generateMobileQueue.ts`.
+- Updated Sprint 68 mobile summary generation to use the review-focused mobile package.
+- Added `data/mobile/mobile-state.json`.
+- Generated `output/mobile/mobile-review.md`, `mobile-summary.md`, `mobile-queue.md`, `mobile-priorities.md`, and `mobile-health.md`.
+- Enhanced the PWA dashboard with Review Center, Revenue Center, Action Queue, Audit Center, Proposal Center, and Follow-Up Center.
+- Added visible report and proposal links in the mobile dashboard.
+- No outreach, emails, proposals, invoices, payment requests, lead data changes, proposal data changes, public deployment, or external actions were added.
+
+## Sprint 69: Client Delivery Automation
+
+Goal:
+Prepare the delivery side of the business once the first paying client arrives.
+
+Expected commands:
+
+```sh
+npm run client:onboard
+npm run client:weekly-report
+npm run client:monthly-report
+```
+
+What to build:
+
+- First-client onboarding workflow.
+- Weekly client reporting workflow.
+- Monthly client reporting workflow.
+- Delivery checklists tied to approved scope and evidence.
+
+What not to build yet:
+Do not create invoices, collect payments, send reports automatically, use client credentials, access production client systems, or modify client data without explicit approval.
 
 ## Sprint 56: Unified QA Opportunity Engine
 
@@ -531,7 +635,7 @@ Completion notes:
 
 - Added `npm run day:plan` as a local deterministic planning command.
 - Added day plan rules under `src/dayPlan` that prioritize high-score leads, audit-ready leads, agency partner retainers, and QA automation retainers.
-- Generated `output/day-plan.md` with summary, top revenue actions, manual actions, safety rules, and suggested next commands.
+- Historical output was `output/day-plan.md`; Sprint 66 replaces the active daily plan output with `output/daily-revenue/today-plan.md`.
 - Lost, paused, and not-fit leads are excluded from revenue actions.
 - No outreach, scraping, external APIs, dashboards, credentials, or autonomous actions were added.
 
@@ -694,7 +798,7 @@ Do not install background agents, auto-send messages, or create risky unattended
 Completion notes:
 
 - Added `npm run mac:daily` as a local daily runner.
-- The runner refreshes `output/day-plan.md` and `output/metrics/revenue-summary.md` by calling the existing local commands.
+- The runner refreshes the current daily plan command and `output/metrics/revenue-summary.md` by calling the existing local commands. Sprint 66 daily plan output is `output/daily-revenue/today-plan.md`.
 - Added `output/daily/daily-briefing.md` with revenue focus, top actions, revenue snapshot, generated file paths, suggested manual actions, suggested commands, and safety rules.
 - No launchd automation, notifications, APIs, scraping, dashboards, credentials, or outreach were added.
 

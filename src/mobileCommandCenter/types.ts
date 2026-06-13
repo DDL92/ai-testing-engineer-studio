@@ -79,3 +79,41 @@ export interface MobileCommandCenterReport {
   reportGroups: MobileReportGroupHealth[];
   contextSources: MobileContextSource[];
 }
+
+export interface MobileState {
+  version: number;
+  mode: 'read-only-review';
+  lastGeneratedAt: string | null;
+  notes: string[];
+}
+
+export interface MobileLink {
+  label: string;
+  href: string;
+}
+
+export interface MobileReviewItem {
+  label: string;
+  value: string;
+  links: MobileLink[];
+}
+
+export interface MobileQueueItem {
+  priority: number;
+  title: string;
+  reason: string;
+  impact: string;
+  recommendedAction: string;
+}
+
+export interface MobileReviewPackage {
+  generatedAt: string;
+  mode: 'read-only-review';
+  reviewCenter: MobileReviewItem[];
+  revenueCenter: MobileReviewItem[];
+  actionQueue: MobileQueueItem[];
+  auditCenter: MobileReviewItem[];
+  proposalCenter: MobileReviewItem[];
+  followUpCenter: MobileReviewItem[];
+  safety: string[];
+}

@@ -1,0 +1,316 @@
+{
+  "generatedAt": "2026-06-13T04:30:33.281Z",
+  "mode": "read-only",
+  "today": {
+    "date": "2026-06-13",
+    "topActions": [
+      {
+        "priority": 1,
+        "title": "Review PushPress proposal package",
+        "whyItMatters": "A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.",
+        "estimatedImpact": "Reviewable path to QA Audit ($199-$500); no revenue is assumed.",
+        "nextStep": "Review output/proposals/pushpress-proposal.md and output/proposals/pushpress-proposal.pdf for scope, claims, and pricing before any external use."
+      },
+      {
+        "priority": 2,
+        "title": "Review TeamUp proposal package",
+        "whyItMatters": "A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.",
+        "estimatedImpact": "Reviewable path to Playwright Starter Pack ($900-$1500); no revenue is assumed.",
+        "nextStep": "Review output/proposals/teamup-proposal.md and output/proposals/teamup-proposal.pdf for scope, claims, and pricing before any external use."
+      },
+      {
+        "priority": 3,
+        "title": "Review Glofox / ABC Fitness proposal package",
+        "whyItMatters": "A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.",
+        "estimatedImpact": "Reviewable path to QA Audit ($199-$500); no revenue is assumed.",
+        "nextStep": "Review output/proposals/glofox-proposal.md and output/proposals/glofox-proposal.pdf for scope, claims, and pricing before any external use."
+      },
+      {
+        "priority": 4,
+        "title": "Close evidence gaps for Wodify",
+        "whyItMatters": "Evidence collection can unblock a paid audit or proposal path.",
+        "estimatedImpact": "Improves audit readiness; no revenue is counted until a paid engagement exists in local client data.",
+        "nextStep": "Review missing local evidence for Wodify: Lighthouse report missing, Playwright evidence missing, Client audit PDF missing."
+      },
+      {
+        "priority": 5,
+        "title": "Review upcoming follow-up timing for Chris McConachie",
+        "whyItMatters": "Scheduled follow-up context keeps active conversations from stalling while still respecting due dates.",
+        "estimatedImpact": "Reviewable path to QA Audit ($199-$500); no revenue is assumed.",
+        "nextStep": "Confirm whether the local follow-up date 2026-06-19 still makes sense for Chris McConachie. Do not send a message from this system."
+      }
+    ],
+    "revenuePriorities": [
+      "Review PushPress proposal package",
+      "Review TeamUp proposal package",
+      "Review Glofox / ABC Fitness proposal package"
+    ],
+    "followUpsDue": 0,
+    "proposalReviews": [
+      "PushPress",
+      "TeamUp",
+      "Glofox / ABC Fitness"
+    ]
+  },
+  "leads": {
+    "totalLeads": 4,
+    "topLeads": [
+      {
+        "companyId": "pushpress",
+        "companyName": "PushPress",
+        "score": 100,
+        "detail": "QA Audit ($199-$500)"
+      },
+      {
+        "companyId": "teamup",
+        "companyName": "TeamUp",
+        "score": 93,
+        "detail": "Playwright Starter Pack ($900-$1500)"
+      },
+      {
+        "companyId": "glofox",
+        "companyName": "Glofox / ABC Fitness",
+        "score": 90,
+        "detail": "QA Audit ($199-$500)"
+      },
+      {
+        "companyId": "wodify",
+        "companyName": "Wodify",
+        "score": 64,
+        "detail": "QA Audit ($199-$500)"
+      }
+    ],
+    "highestOpportunityScores": [
+      {
+        "companyId": "pushpress",
+        "companyName": "PushPress",
+        "score": 100,
+        "detail": "QA Audit ($199-$500)"
+      },
+      {
+        "companyId": "teamup",
+        "companyName": "TeamUp",
+        "score": 93,
+        "detail": "Playwright Starter Pack ($900-$1500)"
+      },
+      {
+        "companyId": "glofox",
+        "companyName": "Glofox / ABC Fitness",
+        "score": 90,
+        "detail": "QA Audit ($199-$500)"
+      },
+      {
+        "companyId": "wodify",
+        "companyName": "Wodify",
+        "score": 64,
+        "detail": "QA Audit ($199-$500)"
+      }
+    ]
+  },
+  "outreach": {
+    "invitationsSent": 8,
+    "messagesSent": 2,
+    "connected": 2,
+    "replies": 0,
+    "followUpsDue": 0
+  },
+  "audits": {
+    "auditReportsGenerated": 3,
+    "unifiedAudits": 3,
+    "evidenceAvailable": 10
+  },
+  "proposals": {
+    "proposalReady": [
+      "PushPress",
+      "TeamUp",
+      "Glofox / ABC Fitness"
+    ],
+    "needsReview": [
+      "PushPress: QA Audit ($199-$500)",
+      "TeamUp: Playwright Starter Pack ($900-$1500)",
+      "Glofox / ABC Fitness: QA Audit ($199-$500)"
+    ],
+    "retainerCandidates": [
+      "PushPress: QA Audit -> Starter Pack -> Retainer",
+      "TeamUp: QA Audit -> Starter Pack -> Retainer",
+      "Glofox / ABC Fitness: QA Audit -> Starter Pack -> Retainer"
+    ]
+  },
+  "revenue": {
+    "bestAuditOpportunity": "PushPress",
+    "bestStarterPackOpportunity": "TeamUp",
+    "bestRetainerOpportunity": "PushPress"
+  },
+  "systemHealth": {
+    "lastUpdate": "2026-06-13T04:30:33.281Z",
+    "leadResearchStatus": "7 research packs found",
+    "evidenceStatus": "10 evidence files found",
+    "proposalStatus": "3 proposal packages found",
+    "dashboardStatus": "Ready: static local PWA data generated"
+  },
+  "mobileCommandCenter": {
+    "reviewCenter": {
+      "auditsReady": 3,
+      "proposalsReady": 3,
+      "evidenceReady": 10,
+      "followUpsReady": 0
+    },
+    "revenueCenter": {
+      "bestAuditOpportunity": "PushPress",
+      "bestStarterPackOpportunity": "TeamUp",
+      "bestRetainerOpportunity": "PushPress",
+      "highestRevenuePriority": "Review PushPress proposal package"
+    },
+    "actionQueue": [
+      {
+        "priority": 1,
+        "title": "Review PushPress proposal package",
+        "whyItMatters": "A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.",
+        "estimatedImpact": "Reviewable path to QA Audit ($199-$500); no revenue is assumed.",
+        "nextStep": "Review output/proposals/pushpress-proposal.md and output/proposals/pushpress-proposal.pdf for scope, claims, and pricing before any external use."
+      },
+      {
+        "priority": 2,
+        "title": "Review TeamUp proposal package",
+        "whyItMatters": "A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.",
+        "estimatedImpact": "Reviewable path to Playwright Starter Pack ($900-$1500); no revenue is assumed.",
+        "nextStep": "Review output/proposals/teamup-proposal.md and output/proposals/teamup-proposal.pdf for scope, claims, and pricing before any external use."
+      },
+      {
+        "priority": 3,
+        "title": "Review Glofox / ABC Fitness proposal package",
+        "whyItMatters": "A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.",
+        "estimatedImpact": "Reviewable path to QA Audit ($199-$500); no revenue is assumed.",
+        "nextStep": "Review output/proposals/glofox-proposal.md and output/proposals/glofox-proposal.pdf for scope, claims, and pricing before any external use."
+      },
+      {
+        "priority": 4,
+        "title": "Close evidence gaps for Wodify",
+        "whyItMatters": "Evidence collection can unblock a paid audit or proposal path.",
+        "estimatedImpact": "Improves audit readiness; no revenue is counted until a paid engagement exists in local client data.",
+        "nextStep": "Review missing local evidence for Wodify: Lighthouse report missing, Playwright evidence missing, Client audit PDF missing."
+      },
+      {
+        "priority": 5,
+        "title": "Review upcoming follow-up timing for Chris McConachie",
+        "whyItMatters": "Scheduled follow-up context keeps active conversations from stalling while still respecting due dates.",
+        "estimatedImpact": "Reviewable path to QA Audit ($199-$500); no revenue is assumed.",
+        "nextStep": "Confirm whether the local follow-up date 2026-06-19 still makes sense for Chris McConachie. Do not send a message from this system."
+      }
+    ],
+    "auditCenter": {
+      "auditReportsAvailable": 6,
+      "unifiedAuditsAvailable": 3,
+      "evidenceAvailable": 10,
+      "auditReadiness": "3 unified audits and 6 client audit report files available",
+      "links": [
+        {
+          "label": "glofox-qa-audit-report.md",
+          "href": "../output/client-audit-reports/glofox-qa-audit-report.md"
+        },
+        {
+          "label": "glofox-qa-audit-report.pdf",
+          "href": "../output/client-audit-reports/glofox-qa-audit-report.pdf"
+        },
+        {
+          "label": "pushpress-qa-audit-report.md",
+          "href": "../output/client-audit-reports/pushpress-qa-audit-report.md"
+        },
+        {
+          "label": "pushpress-qa-audit-report.pdf",
+          "href": "../output/client-audit-reports/pushpress-qa-audit-report.pdf"
+        },
+        {
+          "label": "teamup-qa-audit-report.md",
+          "href": "../output/client-audit-reports/teamup-qa-audit-report.md"
+        },
+        {
+          "label": "teamup-qa-audit-report.pdf",
+          "href": "../output/client-audit-reports/teamup-qa-audit-report.pdf"
+        },
+        {
+          "label": "glofox-unified-audit.md",
+          "href": "../output/unified-audits/glofox-unified-audit.md"
+        },
+        {
+          "label": "pushpress-unified-audit.md",
+          "href": "../output/unified-audits/pushpress-unified-audit.md"
+        },
+        {
+          "label": "teamup-unified-audit.md",
+          "href": "../output/unified-audits/teamup-unified-audit.md"
+        },
+        {
+          "label": "glofox-evidence.md",
+          "href": "../output/evidence/glofox-evidence.md"
+        },
+        {
+          "label": "pushpress-evidence.md",
+          "href": "../output/evidence/pushpress-evidence.md"
+        },
+        {
+          "label": "teamup-evidence.md",
+          "href": "../output/evidence/teamup-evidence.md"
+        }
+      ]
+    },
+    "proposalCenter": {
+      "proposalPdfs": [
+        {
+          "label": "glofox-proposal.pdf",
+          "href": "../output/proposals/glofox-proposal.pdf"
+        },
+        {
+          "label": "pushpress-proposal.pdf",
+          "href": "../output/proposals/pushpress-proposal.pdf"
+        },
+        {
+          "label": "teamup-proposal.pdf",
+          "href": "../output/proposals/teamup-proposal.pdf"
+        }
+      ],
+      "proposalStatus": [
+        "PushPress: QA Audit ($199-$500)",
+        "TeamUp: Playwright Starter Pack ($900-$1500)",
+        "Glofox / ABC Fitness: QA Audit ($199-$500)"
+      ],
+      "retainerCandidates": [
+        "PushPress: QA Audit -> Starter Pack -> Retainer",
+        "TeamUp: QA Audit -> Starter Pack -> Retainer",
+        "Glofox / ABC Fitness: QA Audit -> Starter Pack -> Retainer"
+      ]
+    },
+    "followUpCenter": {
+      "followUpsDue": 0,
+      "outreachStatus": "10 outreach records, 2 messages sent, 2 connected",
+      "contactStatus": "10 contacts recorded",
+      "links": [
+        {
+          "label": "company-status.md",
+          "href": "../output/outreach-tracking/company-status.md"
+        },
+        {
+          "label": "contact-status.md",
+          "href": "../output/outreach-tracking/contact-status.md"
+        },
+        {
+          "label": "followup-queue.md",
+          "href": "../output/outreach-tracking/followup-queue.md"
+        },
+        {
+          "label": "outreach-status.md",
+          "href": "../output/outreach-tracking/outreach-status.md"
+        },
+        {
+          "label": "pipeline-summary.md",
+          "href": "../output/outreach-tracking/pipeline-summary.md"
+        }
+      ]
+    }
+  },
+  "safety": [
+    "Dashboard is read-only.",
+    "No outreach, emails, proposals, invoices, payments, data edits, APIs, credentials, or external actions are performed.",
+    "Opportunity rankings are planning signals only; no revenue is invented."
+  ]
+}

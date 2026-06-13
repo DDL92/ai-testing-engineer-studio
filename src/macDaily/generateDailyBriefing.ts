@@ -23,7 +23,7 @@ export function generateDailyBriefing(): DailyBriefing {
     topActions,
     revenueSummary,
     generatedFiles: [
-      { label: 'Daily plan', path: 'output/day-plan.md' },
+      { label: 'Daily plan', path: 'output/daily-revenue/today-plan.md' },
       { label: 'Revenue summary', path: 'output/metrics/revenue-summary.md' },
       { label: 'Daily briefing', path: 'output/daily/daily-briefing.md' },
     ],
@@ -68,7 +68,7 @@ function buildSuggestedCommands(topLeadId?: string): string[] {
     'npm run metrics:revenue',
     `npm run lead:pack -- --id ${leadId}`,
     'npm run audit:site -- --url https://example.com',
-    `npm run sow:generate -- --id ${leadId}`,
+    'npm run sow:generate -- --company PushPress',
   ];
 }
 

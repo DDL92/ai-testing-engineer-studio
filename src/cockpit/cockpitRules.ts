@@ -84,7 +84,7 @@ function nextManualActions(topLeads: Lead[], activeClients: Client[]): string[] 
 function existingOutputReferences(): GeneratedOutputReference[] {
   const candidates: GeneratedOutputReference[] = [
     { label: 'Daily briefing', path: 'output/daily/daily-briefing.md', type: 'file' },
-    { label: 'Day plan', path: 'output/day-plan.md', type: 'file' },
+    { label: 'Day plan', path: 'output/daily-revenue/today-plan.md', type: 'file' },
     { label: 'Revenue summary', path: 'output/metrics/revenue-summary.md', type: 'file' },
     { label: 'First 50 progress', path: 'output/discovery/first-50-progress.md', type: 'file' },
     { label: 'Lead packs', path: 'output/lead-packs', type: 'directory' },

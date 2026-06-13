@@ -1,0 +1,10 @@
+{
+  "generatedAt": "2026-06-13T04:30:33.281Z",
+  "mode": "read-only",
+  "source": "output/dashboard/dashboard.json",
+  "notes": [
+    "Dashboard is read-only.",
+    "No outreach, emails, proposals, invoices, payments, data edits, APIs, credentials, or external actions are performed.",
+    "Opportunity rankings are planning signals only; no revenue is invented."
+  ]
+}

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#020617">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AI Studio">
+  <title>AI Testing Engineer Studio</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">AI Testing Engineer Studio</p>
+        <h1>Command Center</h1>
+      </div>
+      <div class="status-pill" id="dashboardStatus">Loading</div>
+    </header>
+
+    <section class="hero-panel" aria-labelledby="todayTitle">
+      <div>
+        <p class="eyebrow">Today</p>
+        <h2 id="todayTitle">30-second operating view</h2>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <span class="metric-label">Follow-ups</span>
+          <strong id="followUpsDue">0</strong>
+        </div>
+        <div>
+          <span class="metric-label">Proposals</span>
+          <strong id="proposalCount">0</strong>
+        </div>
+        <div>
+          <span class="metric-label">Evidence</span>
+          <strong id="evidenceCount">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="topActionsTitle">
+      <div class="section-heading">
+        <h2 id="topActionsTitle">Top 5 Actions</h2>
+        <span id="lastUpdate" class="subtle">Not loaded</span>
+      </div>
+      <div class="action-list" id="topActions"></div>
+    </section>
+
+    <div class="dashboard-grid">
+      <section class="section" aria-labelledby="reviewCenterTitle">
+        <h2 id="reviewCenterTitle">Review Center</h2>
+        <div class="stats-grid" id="reviewCenterStats"></div>
+      </section>
+
+      <section class="section" aria-labelledby="revenueCenterTitle">
+        <h2 id="revenueCenterTitle">Revenue Center</h2>
+        <div class="stack" id="revenueCenterCards"></div>
+      </section>
+
+      <section class="section" aria-labelledby="mobileQueueTitle">
+        <h2 id="mobileQueueTitle">Action Queue</h2>
+        <div class="stack" id="mobileActionQueue"></div>
+      </section>
+
+      <section class="section" aria-labelledby="revenueTitle">
+        <h2 id="revenueTitle">Revenue</h2>
+        <div class="stack" id="revenueCards"></div>
+      </section>
+
+      <section class="section" aria-labelledby="leadsTitle">
+        <h2 id="leadsTitle">Leads</h2>
+        <div class="metric-row">
+          <span>Total Leads</span>
+          <strong id="totalLeads">0</strong>
+        </div>
+        <div class="stack" id="leadCards"></div>
+      </section>
+
+      <section class="section" aria-labelledby="outreachTitle">
+        <h2 id="outreachTitle">Outreach</h2>
+        <div class="stats-grid" id="outreachStats"></div>
+      </section>
+
+      <section class="section" aria-labelledby="auditsTitle">
+        <h2 id="auditsTitle">Audits</h2>
+        <div class="stats-grid" id="auditStats"></div>
+      </section>
+
+      <section class="section" aria-labelledby="auditCenterTitle">
+        <h2 id="auditCenterTitle">Audit Center</h2>
+        <div class="stack" id="auditCenterCards"></div>
+      </section>
+
+      <section class="section" aria-labelledby="proposalTitle">
+        <h2 id="proposalTitle">Proposals</h2>
+        <div class="stack" id="proposalCards"></div>
+      </section>
+
+      <section class="section" aria-labelledby="proposalCenterTitle">
+        <h2 id="proposalCenterTitle">Proposal Center</h2>
+        <div class="stack" id="proposalCenterCards"></div>
+      </section>
+
+      <section class="section" aria-labelledby="followUpCenterTitle">
+        <h2 id="followUpCenterTitle">Follow-Up Center</h2>
+        <div class="stack" id="followUpCenterCards"></div>
+      </section>
+
+      <section class="section" aria-labelledby="healthTitle">
+        <h2 id="healthTitle">System Health</h2>
+        <div class="stack" id="healthCards"></div>
+      </section>
+    </div>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>

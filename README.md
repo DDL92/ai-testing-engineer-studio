@@ -99,7 +99,9 @@ npm run pipeline:opportunities
 npm run pipeline:prioritize
 npm run pipeline:next-actions
 npm run commercial:summary
-npm run dashboard
+npm run dashboard:generate
+npm run dashboard:build
+npm run dashboard:preview
 npm run revenue:visibility
 npm run revenue:command-center
 npm run revenue:forecast
@@ -113,8 +115,10 @@ npm run outreach:review
 npm run contact:decision
 npm run first-audit:workflow
 npm run first-audit:kickoff
-npm run mobile:center
+npm run mobile:review
 npm run mobile:summary
+npm run mobile:queue
+npm run dashboard:mobile
 npm run revenue:daily
 npm run revenue:next-actions
 npm run revenue:validate
@@ -139,6 +143,9 @@ npm run renewal:tracker
 npm run renewal:review -- --id demo-retainer-client
 npm run sow:generate -- --company PushPress
 npm run sow:portfolio
+npm run day:plan
+npm run day:summary
+npm run week:review
 npm run operator:daily
 npm run success:weekly
 npm run success:monthly
@@ -153,13 +160,13 @@ First client workflow assets are written to `output/client-workflows/{lead_id}` 
 Pipeline opportunity reports are written to `output/pipeline` and summarize local lead, artifact, contact review, follow-up, proposal, and client workflow readiness without external systems.
 Pipeline prioritization reports are written to `output/pipeline-prioritization` for prioritized opportunities, top 10 revenue paths, top 5 manual actions, and stalled opportunities. They use deterministic local scoring only and do not scrape, browse, call APIs, automate outreach, connect CRMs, use credentials, or treat opportunity value as booked revenue.
 Commercial Mode reports are written to `output/commercial-mode` for demo/sample isolation and commercial-only opportunity summaries. Revenue-facing reports use the shared Commercial Mode rules so demo/sample leads remain available for testing without distorting commercial reporting.
-The daily dashboard writes `output/dashboard/dashboard.md`, `output/dashboard/dashboard.html`, and `output/dashboard/revenue-visibility.md` as static local reports.
+The PWA dashboard writes `output/dashboard/dashboard.json`, `output/dashboard/dashboard-summary.md`, `output/dashboard/dashboard-health.md`, and the static read-only app under `dashboard/`. `npm run dashboard:generate` refreshes local dashboard data, `npm run dashboard:build` verifies the static dashboard package, `npm run dashboard:preview` serves `dashboard/index.html` locally, and `npm run dashboard:mobile` exposes it on the local network for same-WiFi phone review. It reads local Studio outputs only and does not send outreach, send proposals, create invoices, create payments, modify data, call APIs, or use credentials.
 The Revenue Command Center writes `output/revenue-command-center` reports for booked MRR, speculative MRR forecasts, audit opportunities, retainer opportunities, renewal/expansion visibility, property-progress scenarios, and top manual revenue actions. It uses local Studio data only and does not treat opportunities as booked revenue.
 The Real Client Readiness Pack writes `output/real-client-readiness` reports for Top 5 commercial lead readiness, manual contact planning, outreach safety checks, first audit sales positioning, and SOW readiness. It does not invent contacts or findings and does not send outreach.
 The Proposal Command Center writes `output/proposal-center` reports for proposal-ready leads, SOW readiness, proposal priority, pricing recommendations, and approval checks. It is local-only and does not send proposals, invent findings, or treat opportunities as booked revenue.
 The Real Outreach Execution Pack writes `output/outreach-execution` reports for final message drafts, manual contact research, follow-up timing, first audit CTA, and approval checks. It does not send messages, invent contacts, invent findings, browse, scrape, automate outreach, or connect external systems.
 The First Audit Sale Workflow writes `output/first-audit-workflow` reports for positive-reply handling, discovery call prep, audit scope confirmation, kickoff, delivery, retainer upgrade path, and approval checks. It does not process payments, generate invoices, invent findings, or guarantee outcomes.
-The Mobile Command Center writes `output/mobile-command-center` reports for mobile-ready Today, top actions, top opportunities, revenue snapshot, client status, manual follow-up queue, approvals needed, and local report health. It is Markdown-only foundation work for future dashboard/PWA/mobile surfaces and does not add APIs, React, Next.js, UI frameworks, CRM integrations, outreach automation, sending, external databases, or external services.
+The Mobile Command Center writes `output/mobile` reports for mobile review, summary, action queue, priorities, and health. `npm run mobile:review`, `npm run mobile:summary`, and `npm run mobile:queue` consume the Daily Revenue Loop, dashboard data, opportunity engine, audit engine, proposal engine, evidence outputs, and outreach tracking. They are read-only, review-focused, approval-focused, and do not send outreach, send proposals, create invoices, create payments, modify lead data, or modify proposal data.
 The Daily Revenue Operator writes `output/daily-revenue-operator` reports for the daily revenue snapshot, next actions, priority list, risks, 30-minute focus, consistency audit, and approval checklist. Revenue Command Center is the source of truth for booked MRR; demo/sample/sandbox/test/example client records are excluded from booked revenue.
 The Action Cockpit v1 writes `output/action-cockpit` reports for one daily operating view: Top 3 actions, Top 5 opportunities, Revenue Command Center snapshot, client watchlist, manual follow-up watchlist, approval queue, local report health, and the next recommended command. It is local Markdown only and never auto-approves, sends outreach, connects CRMs, calls APIs, or uses external services.
 The Operator OS Dashboard writes `output/operator-os-dashboard` reports for the primary AI Studio OS homepage: executive summary, today view, opportunity center, revenue center, approval center, follow-up center, system status, and exact next command. It uses Revenue Command Center and Action Cockpit as sources of truth and remains local-only.
@@ -171,13 +178,14 @@ Client operations reports are written to `output/client-ops` for daily prioritie
 Client delivery artifacts are written to `output/client-delivery/{client_id}` for delivery planning, evidence logs, QA checklists, weekly summaries, and client update drafts.
 Polished client reporting artifacts are written to `output/client-reporting/{client_id}` for executive summaries, weekly reports, monthly reports, value delivered summaries, renewal signals, and draft client updates. They are evidence-first, local-only, and require Daniel review before sending.
 Proposal and SOW packages are written to `output/proposals`. `npm run sow:generate -- --company PushPress` creates a reviewable Markdown proposal and PDF using local Client Audit Report, Unified Audit, Opportunity, and Evidence outputs. `npm run sow:portfolio` writes proposal summary, priorities, and retainer candidates. These are not contracts, invoices, payment requests, sending tools, email tools, or outreach tools, and they do not invent findings, bugs, vulnerabilities, incidents, outages, customer quotes, or metrics.
+The Daily Revenue Loop writes `output/daily-revenue` reports for today's plan, today's summary, weekly review, highest-priority actions, follow-up priorities, proposal priorities, audit priorities, and revenue opportunities. `npm run day:plan`, `npm run day:summary`, and `npm run week:review` read local outreach, contact, opportunity, audit, proposal, evidence, and tracking outputs only. They do not send outreach, send proposals, create invoices, create payment links, create calendar events, invent replies, invent meetings, invent opportunities, invent revenue, or infer client interest.
 Renewal and expansion reports are written to `output/renewals` for client health, renewal risk, expansion opportunities, renewal actions, and the renewal pipeline. They use local client data and generated artifacts only.
 The daily operator and success rhythm reports are written to `output/operator` as one local command center plus weekly and monthly reviews. They summarize pipeline, follow-ups, client health, renewals, expansion watchlists, and suggested human-approved commands.
 Mac Daily Automation reports are written to `output/mac-daily` for one-command local refreshes of dashboard, operator, pipeline prioritization, client operations, renewals, and Commercial Mode summaries. `npm run mac:summary` reads existing local outputs only and refreshes the consolidated daily summary, system health, and action cockpit without rerunning the full report sequence.
 Lead discovery automation reports are written to `output/lead-discovery-automation` for manual search guidance, a 50-query search playbook, a blank candidate queue template, and an approval checklist. They do not scrape, browse, call APIs, invent companies, automate outreach, connect CRMs, use credentials, or add leads without Daniel approval.
 Lead intake reports are written to `output/lead-intake` for approved candidates, rejected candidates, intake summaries, and copy/paste-ready `lead:add` command batches. They do not execute commands, modify `data/leads.json`, scrape, browse, call APIs, automate outreach, use CRMs, use credentials, or create leads without Daniel approval.
 Lead Discovery Engine v1 uses the local seed catalog in `data/leads/discovery-seeds.json` to score niche-specific company candidates and writes review-only results to `data/leads/discovered-leads.json` and `output/leads`. It does not browse, scrape, call APIs, automate LinkedIn, send messages, or promote candidates without human approval.
-Lead research and outreach tracking use local records in `data/contacts/contacts.json` and `data/outreach/outreach.json`. `npm run lead:research -- --company PushPress`, `npm run outreach:status`, and `npm run followup:queue` write Markdown reports to `output/contact-research` and `output/outreach-tracking` without scraping, APIs, CRM, credentials, external databases, message sending, or automated follow-ups. Future `day:plan` or Operator OS dashboard work can integrate these outputs, but Sprint 52 intentionally keeps them as simple local reports.
+Lead research and outreach tracking use local records in `data/contacts/contacts.json` and `data/outreach/outreach.json`. `npm run lead:research -- --company PushPress`, `npm run outreach:status`, and `npm run followup:queue` write Markdown reports to `output/contact-research` and `output/outreach-tracking` without scraping, APIs, CRM, credentials, external databases, message sending, or automated follow-ups. Sprint 66 Daily Revenue Loop consumes these outputs for local planning only.
 Multi-channel lead research uses local records in `data/channels/channels.json`, existing local lead data, and existing approved contact records. `npm run lead:channels -- --company PushPress` writes company channel research to `output/channel-research/{company_id}.md`, and `npm run lead:channel-plan` writes `output/channel-research/channel-plan.md`. Blank channel URLs mean the exact public path is not recorded yet and must be manually verified. These commands do not browse, scrape, automate LinkedIn, send forms/messages/emails, call APIs, connect CRMs, use credentials, or use external databases.
 Customer Pain Intelligence uses `data/pain-intelligence/pain-research.json` to turn existing local lead notes into potential QA risks, automation opportunities, audit angles, and outreach intelligence. `npm run pain:research -- --company PushPress` writes `output/pain-research/{company_id}-pain-research.md`, and `npm run pain:summary` writes customer complaint signals, QA risk maps, solution recommendations, outreach angles, and a summary under `output/pain-research`. It is not a security scanner, does not invent customer complaints, quotes, vulnerabilities, incidents, or findings, and does not scrape, call APIs, use credentials, use external databases, or send outreach.
 Website QA Intelligence uses `data/site-intelligence/site-intelligence.json` to turn existing local website URLs, lead notes, channel research, and pain intelligence into potential QA findings, UX opportunities, automation opportunities, and audit recommendations. `npm run site:intelligence -- --company PushPress -- --url https://www.pushpress.com` writes `output/site-intelligence/{company_id}-site-intelligence.md`, and `npm run site:summary` writes `qa-findings.md`, `ux-opportunities.md`, `automation-opportunities.md`, `audit-recommendations.md`, and `site-summary.md`. It does not browse, scrape, run browser automation, use screenshots, log in, use credentials, run security tests, claim vulnerabilities, or send outreach.
@@ -214,7 +222,9 @@ npm run message:review -- --file lead-sample-lead-optimized-linkedin_dm.md --sta
 npm run message:sent -- --file lead-sample-lead-optimized-linkedin_dm.md --channel linkedin --note "Sent manually"
 npm run sources:report
 npm run business:weekly
-npm run dashboard
+npm run dashboard:generate
+npm run dashboard:build
+npm run dashboard:preview
 npm run dashboard:check
 npm run validate:business
 ```

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "mode": "local-review-only",
+  "weekStartsOn": "Monday",
+  "notes": [
+    "Weekly review summarizes local pipeline, proposal, audit, and evidence readiness only.",
+    "Human review is required before any external action."
+  ]
+}

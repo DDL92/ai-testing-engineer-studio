@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "mode": "local-review-only",
+  "lastGeneratedAt": null,
+  "notes": [
+    "Daily Revenue Loop reads local Studio data and generated reports only.",
+    "No outreach, proposals, invoices, payments, calendar events, or external actions are sent."
+  ]
+}

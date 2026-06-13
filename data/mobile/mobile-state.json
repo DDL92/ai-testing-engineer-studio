@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "mode": "read-only-review",
+  "lastGeneratedAt": "2026-06-13T04:30:06.917Z",
+  "notes": [
+    "Mobile Command Center is read-only and review-focused.",
+    "No outreach, emails, proposals, invoices, payments, lead data updates, or proposal data updates are sent or modified."
+  ]
+}

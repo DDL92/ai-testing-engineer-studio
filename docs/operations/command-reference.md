@@ -2,6 +2,62 @@
 
 All commands are local-first. None of these commands should send outreach, connect APIs, scrape websites, or use credentials.
 
+## `npm run day:plan`
+
+Purpose:
+Generate today's Daily Revenue Loop plan from local lead, outreach, contact, opportunity, audit, proposal, evidence, and outreach tracking outputs.
+
+Example:
+
+```sh
+npm run day:plan
+```
+
+Output files:
+`output/daily-revenue/today-plan.md`
+`output/daily-revenue/highest-priority-actions.md`
+`output/daily-revenue/followup-priorities.md`
+`output/daily-revenue/proposal-priorities.md`
+`output/daily-revenue/audit-priorities.md`
+`output/daily-revenue/revenue-opportunities.md`
+
+Safety note:
+Planning only. It does not send outreach, send emails, send proposals, send invoices, create payment links, create calendar events, auto-contact leads, invent replies, invent meetings, invent opportunities, invent revenue, or infer client interest.
+
+## `npm run day:summary`
+
+Purpose:
+Generate today's local activity summary from existing Studio data and generated files.
+
+Example:
+
+```sh
+npm run day:summary
+```
+
+Output file:
+`output/daily-revenue/today-summary.md`
+
+Safety note:
+Counts reflect current local files and JSON records. No conversations, revenue, meetings, or client interest are inferred.
+
+## `npm run week:review`
+
+Purpose:
+Generate a weekly revenue review with top opportunities, pipeline health, research gaps, evidence gaps, and next week priorities.
+
+Example:
+
+```sh
+npm run week:review
+```
+
+Output file:
+`output/daily-revenue/week-review.md`
+
+Safety note:
+Weekly planning only. It does not send outreach, send proposals, create invoices, use credentials, call APIs, or take external action.
+
 ## `npm run sow:generate`
 
 Purpose:
@@ -1089,23 +1145,64 @@ Output files:
 Safety note:
 Local deterministic filtering only. It does not delete demo data, mutate leads, scrape, browse, call APIs, automate outreach, connect CRMs, use payments, use credentials, or access external databases. Human approval remains required before action.
 
-## `npm run dashboard`
+## `npm run dashboard:generate`
 
 Purpose:
-Generate the daily local executive dashboard as markdown and static HTML.
+Generate the Sprint 67 read-only PWA dashboard data from Daily Revenue Loop, opportunity, audit, proposal, evidence, and outreach tracking outputs.
 
 Example:
 
 ```sh
-npm run dashboard
+npm run dashboard:generate
 ```
 
 Output files:
-`output/dashboard/dashboard.md`
-`output/dashboard/dashboard.html`
+`output/dashboard/dashboard.json`
+`output/dashboard/dashboard-summary.md`
+`output/dashboard/dashboard-health.md`
+`dashboard/dashboard.json`
+`data/dashboard/dashboard.json`
 
 Safety note:
-Reads local JSON and generated artifacts only. It does not scrape, browse, call APIs, send outreach, automate LinkedIn/email, connect a CRM, create invoices, use payment systems, or use external databases.
+Read-only dashboard generation. It does not send outreach, send emails, send proposals, create invoices, create payments, modify data, call APIs, use credentials, or take external action.
+
+## `npm run dashboard:build`
+
+Purpose:
+Build and verify the static local dashboard package under `dashboard/`.
+
+Example:
+
+```sh
+npm run dashboard:build
+```
+
+Output files:
+`dashboard/index.html`
+`dashboard/styles.css`
+`dashboard/app.js`
+`dashboard/manifest.json`
+`dashboard/dashboard.json`
+
+Safety note:
+Static local build only. No data is modified beyond generated dashboard artifacts.
+
+## `npm run dashboard:preview`
+
+Purpose:
+Serve the static dashboard locally for phone or browser review.
+
+Example:
+
+```sh
+npm run dashboard:preview
+```
+
+Preview URL:
+`http://127.0.0.1:4177/dashboard/index.html`
+
+Safety note:
+Local preview server only. It does not expose a SaaS, client portal, CRM, sending workflow, API integration, payment system, or external service.
 
 ## `npm run revenue:visibility`
 
@@ -1317,33 +1414,31 @@ Output file:
 Safety note:
 Kickoff planning only. Scope, approvals, and manual payment/invoice status must be reviewed outside this command before delivery begins.
 
-## `npm run mobile:center`
+## `npm run mobile:review`
 
 Purpose:
-Generate the local Mobile Command Center foundation with Today, Top 5 Actions, Top 5 Opportunities, Revenue Snapshot, Client Status, manual Follow-Up Queue, Approvals Needed, and System Health.
+Generate the Sprint 68 Mobile Command Center review package for audits, proposals, evidence, follow-ups, revenue priorities, and the Top 5 action queue.
 
 Example:
 
 ```sh
-npm run mobile:center
+npm run mobile:review
 ```
 
 Output files:
-`output/mobile-command-center/mobile-command-center.md`
-`output/mobile-command-center/mobile-summary.md`
-`output/mobile-command-center/top-actions-mobile.md`
-`output/mobile-command-center/top-opportunities-mobile.md`
-`output/mobile-command-center/revenue-mobile.md`
-`output/mobile-command-center/client-status-mobile.md`
-`output/mobile-command-center/followup-queue-mobile.md`
+`output/mobile/mobile-review.md`
+`output/mobile/mobile-summary.md`
+`output/mobile/mobile-queue.md`
+`output/mobile/mobile-priorities.md`
+`output/mobile/mobile-health.md`
 
 Safety note:
-Local Markdown generation only. It does not create a web dashboard, PWA, mobile app, API, CRM integration, outreach automation, email/LinkedIn automation, external database, external service, or sending workflow. Human approval is required before every external action.
+Read-only review package. It does not send outreach, send emails, send proposals, send invoices, create payment requests, modify lead data, modify proposal data, call APIs, use credentials, or take external action.
 
 ## `npm run mobile:summary`
 
 Purpose:
-Refresh only the compact mobile summary from local data and existing local report outputs.
+Refresh only the compact Sprint 68 mobile summary from dashboard and local Studio outputs.
 
 Example:
 
@@ -1352,10 +1447,44 @@ npm run mobile:summary
 ```
 
 Output file:
-`output/mobile-command-center/mobile-summary.md`
+`output/mobile/mobile-summary.md`
 
 Safety note:
-Summary-only local report generation. It does not schedule or send follow-ups, automate outreach, connect CRMs, call APIs, use external databases, or use credentials.
+Summary-only local report generation. It does not schedule or send follow-ups, automate outreach, send proposals, connect CRMs, call APIs, use external databases, use credentials, or modify data.
+
+## `npm run mobile:queue`
+
+Purpose:
+Generate the mobile action queue with Priority 1 through Priority 5, reason, impact, and recommended action.
+
+Example:
+
+```sh
+npm run mobile:queue
+```
+
+Output file:
+`output/mobile/mobile-queue.md`
+
+Safety note:
+Queue is review-only. It does not send messages, proposals, invoices, payments, or modify data.
+
+## `npm run dashboard:mobile`
+
+Purpose:
+Serve the PWA dashboard on the local network for same-WiFi iPhone, Android, or desktop browser review.
+
+Example:
+
+```sh
+npm run dashboard:mobile
+```
+
+Output:
+Prints local network URLs such as `http://192.168.x.x:4177/dashboard/index.html`.
+
+Safety note:
+Local network only. This is not public deployment, a client portal, CRM, SaaS, payment flow, or sending tool.
 
 ## `npm run revenue:daily`
 
@@ -1794,23 +1923,6 @@ Output file:
 
 Safety note:
 MRR uses local client data only. Lead opportunity values are estimates, not booked revenue.
-
-## `npm run day:plan`
-
-Purpose:
-Generate the daily plan from local lead data.
-
-Example:
-
-```sh
-npm run day:plan
-```
-
-Output file:
-`output/day-plan.md`
-
-Safety note:
-Recommended actions require human review.
 
 ## `npm run mac:daily`
 

@@ -7,6 +7,7 @@ import { buildOpportunityTracker } from '../pipeline/pipelineRules';
 import { OpportunityItem, OpportunityTracker, PipelineStage } from '../pipeline/types';
 import { ContactReviewRecord } from '../contactReview/types';
 import { DashboardData, RevenueScenario, RevenueVisibilityData } from './types';
+import { DashboardData as PwaDashboardData } from './dashboardDataBuilder';
 
 const stageOrder: PipelineStage[] = [
   'NEW_LEAD',
@@ -402,4 +403,86 @@ function escapeHtml(value: string): string {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+}
+
+export function renderPwaDashboardSummary(data: PwaDashboardData): string {
+  return `# PWA Dashboard Summary
+
+Generated: ${data.generatedAt}
+
+## Today
+
+- Top Actions: ${data.today.topActions.length}
+- Revenue Priorities: ${data.today.revenuePriorities.join(', ') || 'None'}
+- Follow-Ups Due: ${data.today.followUpsDue}
+- Proposal Reviews: ${data.today.proposalReviews.join(', ') || 'None'}
+
+## Leads
+
+- Total Leads: ${data.leads.totalLeads}
+- Top Leads: ${data.leads.topLeads.map((lead) => `${lead.companyName} (${lead.score}/100)`).join(', ') || 'None'}
+- Highest Opportunity Scores: ${data.leads.highestOpportunityScores.map((lead) => `${lead.companyName} (${lead.score}/100)`).join(', ') || 'None'}
+
+## Outreach
+
+- Invitations Sent: ${data.outreach.invitationsSent}
+- Messages Sent: ${data.outreach.messagesSent}
+- Connected: ${data.outreach.connected}
+- Replies: ${data.outreach.replies}
+- Follow-Ups Due: ${data.outreach.followUpsDue}
+
+## Audits
+
+- Audit Reports Generated: ${data.audits.auditReportsGenerated}
+- Unified Audits: ${data.audits.unifiedAudits}
+- Evidence Available: ${data.audits.evidenceAvailable}
+
+## Proposals
+
+- Proposal Ready: ${data.proposals.proposalReady.join(', ') || 'None'}
+- Needs Review: ${data.proposals.needsReview.join(', ') || 'None'}
+- Retainer Candidates: ${data.proposals.retainerCandidates.join(', ') || 'None'}
+
+## Revenue
+
+- Best Audit Opportunity: ${data.revenue.bestAuditOpportunity}
+- Best Starter Pack Opportunity: ${data.revenue.bestStarterPackOpportunity}
+- Best Retainer Opportunity: ${data.revenue.bestRetainerOpportunity}
+
+## Safety
+
+${data.safety.map((item) => `- ${item}`).join('\n')}
+`;
+}
+
+export function renderPwaDashboardHealth(data: PwaDashboardData): string {
+  const requiredFiles = [
+    'dashboard/index.html',
+    'dashboard/styles.css',
+    'dashboard/app.js',
+    'dashboard/manifest.json',
+    'dashboard/dashboard.json',
+    'output/dashboard/dashboard.json',
+  ];
+
+  return `# Dashboard Health
+
+Generated: ${data.generatedAt}
+
+## Status
+
+- Last Update: ${data.systemHealth.lastUpdate}
+- Lead Research Status: ${data.systemHealth.leadResearchStatus}
+- Evidence Status: ${data.systemHealth.evidenceStatus}
+- Proposal Status: ${data.systemHealth.proposalStatus}
+- Dashboard Status: ${data.systemHealth.dashboardStatus}
+
+## PWA Files
+
+${requiredFiles.map((filePath) => `- ${filePath}: ${fs.existsSync(path.join(process.cwd(), filePath)) ? 'Available' : 'Missing'}`).join('\n')}
+
+## Read-Only Rules
+
+${data.safety.map((item) => `- ${item}`).join('\n')}
+`;
 }
