@@ -94,7 +94,10 @@ npm run outreach:first-audit-path
 npm run contact:review -- --id pushpress
 npm run contact:update -- --id pushpress --status prepared --channel linkedin
 npm run client:prep -- --id pushpress
-npm run client:onboard -- --id pushpress
+npm run client:onboard -- --client pushpress
+npm run client:weekly-report -- --client pushpress
+npm run client:monthly-report -- --client pushpress
+npm run client:renewal-check -- --client pushpress
 npm run pipeline:opportunities
 npm run pipeline:prioritize
 npm run pipeline:next-actions
@@ -175,7 +178,7 @@ The AI Studio OS v1.0 Candidate reports write `output/v1-candidate` for release 
 The First Revenue Validation Pack writes `output/first-revenue-validation` for first revenue validation, first-client path, PushPress action plan, Top 5 commercial action plan, release cleanup plan, v1 score improvement plan, and approval checklist. It keeps booked revenue separate from opportunities, does not invent contacts or findings, does not send outreach, and requires Daniel approval before any external action.
 The First Outreach Execution Review writes `output/outreach-review` for PushPress and Top 5 pre-send review, deterministic contact decision, send readiness, research gaps, and approval checklist. It does not send outreach, invent contacts, invent findings, browse, scrape, call APIs, connect CRMs, or use external systems.
 Client operations reports are written to `output/client-ops` for daily priorities, next actions, readiness groups, reporting needs, and manual approval rules.
-Client delivery artifacts are written to `output/client-delivery/{client_id}` for delivery planning, evidence logs, QA checklists, weekly summaries, and client update drafts.
+Client delivery automation reports are written to `output/client-delivery` for onboarding, weekly reports, monthly reports, renewal review, client health, and retention. `npm run client:onboard -- --client pushpress`, `npm run client:weekly-report -- --client pushpress`, `npm run client:monthly-report -- --client pushpress`, and `npm run client:renewal-check -- --client pushpress` consume local audit reports, proposal outputs, evidence, Playwright evidence, Lighthouse evidence, and Daily Revenue Loop outputs. They do not send reports, send emails, create invoices, create contracts, create payment links, invent client feedback, invent client satisfaction, or invent delivered work.
 Polished client reporting artifacts are written to `output/client-reporting/{client_id}` for executive summaries, weekly reports, monthly reports, value delivered summaries, renewal signals, and draft client updates. They are evidence-first, local-only, and require Daniel review before sending.
 Proposal and SOW packages are written to `output/proposals`. `npm run sow:generate -- --company PushPress` creates a reviewable Markdown proposal and PDF using local Client Audit Report, Unified Audit, Opportunity, and Evidence outputs. `npm run sow:portfolio` writes proposal summary, priorities, and retainer candidates. These are not contracts, invoices, payment requests, sending tools, email tools, or outreach tools, and they do not invent findings, bugs, vulnerabilities, incidents, outages, customer quotes, or metrics.
 The Daily Revenue Loop writes `output/daily-revenue` reports for today's plan, today's summary, weekly review, highest-priority actions, follow-up priorities, proposal priorities, audit priorities, and revenue opportunities. `npm run day:plan`, `npm run day:summary`, and `npm run week:review` read local outreach, contact, opportunity, audit, proposal, evidence, and tracking outputs only. They do not send outreach, send proposals, create invoices, create payment links, create calendar events, invent replies, invent meetings, invent opportunities, invent revenue, or infer client interest.

@@ -1,0 +1,48 @@
+[
+  {
+    "clientId": "pushpress",
+    "clientName": "PushPress",
+    "website": "https://www.pushpress.com",
+    "status": "delivery-prep",
+    "startDate": "Review required before client use",
+    "engagementType": "QA Audit",
+    "scope": [
+      "Review generated QA audit evidence before any client-facing delivery.",
+      "Use public-page audit, proposal, Lighthouse, Playwright, and evidence artifacts already generated locally.",
+      "Keep authentication, payments, private client systems, and production credentials out of scope unless explicitly approved later."
+    ],
+    "deliverables": [
+      "Client onboarding checklist",
+      "Weekly QA delivery report draft",
+      "Monthly QA delivery report draft",
+      "Renewal and retention review draft"
+    ],
+    "reportingSchedule": "Weekly and monthly drafts for Daniel review only.",
+    "nextMilestone": "Review local audit, proposal, and evidence artifacts before any client delivery.",
+    "completedActivities": [],
+    "coverageAdded": [],
+    "observations": [
+      "Local audit, proposal, Lighthouse, Playwright, and evidence outputs are available for review.",
+      "No client feedback, satisfaction, approval, payment, or sent deliverable is recorded in local data."
+    ],
+    "nextWeekFocus": [
+      "Review generated audit report and proposal for scope accuracy.",
+      "Confirm which evidence can be used in a client-facing delivery package.",
+      "Keep all client communication manual and human-approved."
+    ],
+    "riskAreas": [
+      "Client approval is not recorded locally.",
+      "Payment status is not recorded locally.",
+      "Do not describe generated artifacts as sent or accepted by the client."
+    ],
+    "recommendations": [
+      "Use the generated audit and proposal files as review inputs only.",
+      "Confirm engagement scope before delivery work begins.",
+      "Prepare a narrow QA Audit delivery plan before any retainer discussion."
+    ],
+    "renewalNotes": [
+      "Retainer continuation should only be discussed after reviewed evidence and approved client scope exist.",
+      "Expansion should be limited to additional audit, additional coverage, automation expansion, or retainer continuation when supported by reviewed artifacts."
+    ]
+  }
+]

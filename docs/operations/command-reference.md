@@ -1052,21 +1052,72 @@ Local preparation only. It does not send outreach, automate calls, scrape, brows
 ## `npm run client:onboard`
 
 Purpose:
-Generate first-client onboarding, delivery, and retainer conversion planning assets for an eligible lead.
+Generate Sprint 69 client onboarding from local client delivery data and existing audit, proposal, evidence, Playwright, Lighthouse, and Daily Revenue Loop outputs.
 
 Example:
 
 ```sh
-npm run client:onboard -- --id pushpress
+npm run client:onboard -- --client pushpress
+```
+
+Output file:
+`output/client-delivery/client-onboarding.md`
+
+Safety note:
+Review-only onboarding. It does not send reports, send emails, create invoices, create contracts, create payment links, use credentials, access production client systems, invent client feedback, invent client satisfaction, or invent delivered work.
+
+## `npm run client:weekly-report`
+
+Purpose:
+Generate a weekly client report draft from local delivery data and generated evidence artifacts.
+
+Example:
+
+```sh
+npm run client:weekly-report -- --client pushpress
+```
+
+Output file:
+`output/client-delivery/weekly-report.md`
+
+Safety note:
+Review-only weekly report. It is not sent and does not invent delivered work, client feedback, client satisfaction, payment status, or acceptance.
+
+## `npm run client:monthly-report`
+
+Purpose:
+Generate a monthly client report draft with executive summary, local work evidence, automation progress, risks, and recommendations.
+
+Example:
+
+```sh
+npm run client:monthly-report -- --client pushpress
+```
+
+Output file:
+`output/client-delivery/monthly-report.md`
+
+Safety note:
+Review-only monthly report. No report, email, invoice, payment request, contract, or external action is sent.
+
+## `npm run client:renewal-check`
+
+Purpose:
+Generate renewal review, client health, and retention opportunity drafts based only on local project data.
+
+Example:
+
+```sh
+npm run client:renewal-check -- --client pushpress
 ```
 
 Output files:
-`output/client-workflows/{lead_id}/onboarding-checklist.md`
-`output/client-workflows/{lead_id}/delivery-plan.md`
-`output/client-workflows/{lead_id}/retainer-conversion-plan.md`
+`output/client-delivery/renewal-review.md`
+`output/client-delivery/client-health.md`
+`output/client-delivery/client-retention.md`
 
 Safety note:
-Local planning only. It does not request stored credentials, send messages, automate calls, create invoices, connect payment tools, or create CRM integrations.
+Renewal planning only. Health and renewal probability are local project-data signals, not client satisfaction or client intent.
 
 ## `npm run pipeline:opportunities`
 

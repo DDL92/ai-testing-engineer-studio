@@ -232,9 +232,10 @@ Prepare the delivery side of the business once the first paying client arrives.
 Expected commands:
 
 ```sh
-npm run client:onboard
-npm run client:weekly-report
-npm run client:monthly-report
+npm run client:onboard -- --client pushpress
+npm run client:weekly-report -- --client pushpress
+npm run client:monthly-report -- --client pushpress
+npm run client:renewal-check -- --client pushpress
 ```
 
 What to build:
@@ -246,6 +247,45 @@ What to build:
 
 What not to build yet:
 Do not create invoices, collect payments, send reports automatically, use client credentials, access production client systems, or modify client data without explicit approval.
+
+Completion notes:
+
+- Added `npm run client:onboard -- --client pushpress`.
+- Added `npm run client:weekly-report -- --client pushpress`.
+- Added `npm run client:monthly-report -- --client pushpress`.
+- Added `npm run client:renewal-check -- --client pushpress`.
+- Added `data/clients/clients.json` for local delivery-prep client records.
+- Added Sprint 69 delivery rules under `src/clientDelivery/clientRules.ts`.
+- Generated `output/client-delivery/client-onboarding.md`.
+- Generated `output/client-delivery/weekly-report.md`.
+- Generated `output/client-delivery/monthly-report.md`.
+- Generated `output/client-delivery/renewal-review.md`.
+- Generated `output/client-delivery/client-health.md`.
+- Generated `output/client-delivery/client-retention.md`.
+- Reports consume local audit, proposal, evidence, Playwright, Lighthouse, and Daily Revenue Loop artifacts.
+- No reports, emails, invoices, contracts, payment links, client feedback, client satisfaction, delivered work, or external actions were generated or inferred.
+
+## Sprint 70: Finance & Revenue Tracking
+
+Goal:
+Track MRR, revenue, audit sales, retainers, savings, and Surf / Train / Live progress.
+
+Expected commands:
+
+```sh
+npm run finance:monthly
+npm run finance:dashboard
+npm run finance:forecast
+```
+
+What to build:
+
+- Local monthly finance summary.
+- Local finance dashboard data.
+- Forecast based on booked revenue and clearly labeled opportunity ranges.
+
+What not to build yet:
+Do not connect banks, payment processors, accounting tools, invoices, external APIs, or infer booked revenue from opportunities.
 
 ## Sprint 56: Unified QA Opportunity Engine
 
