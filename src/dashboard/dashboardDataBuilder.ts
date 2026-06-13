@@ -15,6 +15,7 @@ import { buildProposalPortfolio } from '../proposalEngine/proposalRules';
 import { ProposalPackage } from '../proposalEngine/types';
 import { buildRevenueActivationReport } from '../revenueActivation/revenueRules';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
+import { readSnapshotState } from '../studioSnapshot/snapshotRules';
 import { buildUnifiedAuditPortfolio } from '../unifiedAuditGenerator/unifiedAuditRules';
 import { buildWinLossReport } from '../winLossEngine/winLossRules';
 
@@ -132,6 +133,13 @@ export interface DashboardWinLossIntelligence {
   topRecommendation: string;
 }
 
+export interface DashboardStudioSnapshot {
+  studioVersion: string;
+  snapshotStatus: string;
+  recoveryStatus: string;
+  lastSnapshot: string;
+}
+
 export interface DashboardData {
   generatedAt: string;
   mode: 'read-only';
@@ -182,6 +190,7 @@ export interface DashboardData {
   outcomeTracking: DashboardOutcomeTracking;
   followUpEngine: DashboardFollowUpEngine;
   winLossIntelligence: DashboardWinLossIntelligence;
+  studioSnapshot: DashboardStudioSnapshot;
   mobileCommandCenter: DashboardMobileCenter;
   safety: string[];
 }
@@ -211,6 +220,7 @@ export function buildPwaDashboardData(): DashboardData {
   const outcomeSummary = buildOutcomeSummary(loadOutcomes());
   const followUpReport = buildFollowUpOperatingReport();
   const winLossReport = buildWinLossReport();
+  const snapshotState = readSnapshotState();
   const outreach = readJson<OutreachRecord[]>(outreachPath, []);
   const proposalReady = proposalPortfolio.proposals.filter((proposal) => proposal.artifacts.markdownPath && proposal.artifacts.pdfPath);
   const topActions = dayPlan.topActions.map((action) => ({
@@ -337,6 +347,12 @@ export function buildPwaDashboardData(): DashboardData {
       bestSegment: winLossReport.hasEnoughData ? winLossReport.recommendations.highestConvertingSegment : 'Insufficient outcome history.',
       topLearning: winLossReport.hasEnoughData ? winLossReport.recommendations.topLearning : 'Insufficient outcome history.',
       topRecommendation: winLossReport.hasEnoughData ? winLossReport.recommendations.topRecommendation : 'Insufficient outcome history.',
+    },
+    studioSnapshot: {
+      studioVersion: snapshotState.version,
+      snapshotStatus: snapshotState.snapshotStatus,
+      recoveryStatus: snapshotState.recoveryStatus,
+      lastSnapshot: snapshotState.lastSnapshot,
     },
     mobileCommandCenter: {
       reviewCenter: {

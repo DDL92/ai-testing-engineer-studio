@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-13T20:13:12.758Z",
+  "generatedAt": "2026-06-13T20:50:06.016Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-13",
@@ -142,7 +142,7 @@
     "bestRetainerOpportunity": "PushPress"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-13T20:13:12.758Z",
+    "lastUpdate": "2026-06-13T20:50:06.016Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "10 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -201,6 +201,12 @@
     "bestSegment": "Insufficient outcome history.",
     "topLearning": "Insufficient outcome history.",
     "topRecommendation": "Insufficient outcome history."
+  },
+  "studioSnapshot": {
+    "studioVersion": "0.1.0",
+    "snapshotStatus": "Ready",
+    "recoveryStatus": "Ready",
+    "lastSnapshot": "2026-06-13T20:49:43.297Z"
   },
   "mobileCommandCenter": {
     "reviewCenter": {

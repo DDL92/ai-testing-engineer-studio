@@ -1,6 +1,6 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-13T20:13:12.758Z
+Generated: 2026-06-13T20:50:06.016Z
 
 ## Today
 
@@ -100,6 +100,13 @@ Generated: 2026-06-13T20:13:12.758Z
 - Best Segment: Insufficient outcome history.
 - Top Learning: Insufficient outcome history.
 - Top Recommendation: Insufficient outcome history.
+
+## Studio Snapshot
+
+- Studio Version: 0.1.0
+- Snapshot Status: Ready
+- Recovery Status: Ready
+- Last Snapshot: 2026-06-13T20:49:43.297Z
 
 ## Safety
 

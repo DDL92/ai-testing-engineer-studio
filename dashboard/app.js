@@ -30,6 +30,7 @@ function render(data) {
   renderOutcomeTracking(data.outcomeTracking);
   renderFollowUpEngine(data.followUpEngine);
   renderWinLossIntelligence(data.winLossIntelligence);
+  renderStudioSnapshot(data.studioSnapshot);
   renderStudio(data.studio);
   renderLeads(data.leads.highestOpportunityScores);
   renderOutreach(data.outreach);
@@ -140,6 +141,20 @@ function renderWinLossIntelligence(winLoss) {
     miniCard('Best Segment', winLoss.bestSegment),
     miniCard('Top Learning', winLoss.topLearning),
     miniCard('Top Recommendation', winLoss.topRecommendation),
+  ].join('');
+}
+
+function renderStudioSnapshot(snapshot) {
+  if (!snapshot) {
+    byId('snapshotCards').innerHTML = miniCard('Snapshot Status', 'Missing');
+    return;
+  }
+
+  byId('snapshotCards').innerHTML = [
+    miniCard('Studio Version', snapshot.studioVersion),
+    miniCard('Snapshot Status', snapshot.snapshotStatus),
+    miniCard('Recovery Status', snapshot.recoveryStatus),
+    miniCard('Last Snapshot', snapshot.lastSnapshot),
   ].join('');
 }
 

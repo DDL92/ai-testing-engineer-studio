@@ -1,10 +1,10 @@
 # Dashboard Health
 
-Generated: 2026-06-13T20:13:12.758Z
+Generated: 2026-06-13T20:50:06.016Z
 
 ## Status
 
-- Last Update: 2026-06-13T20:13:12.758Z
+- Last Update: 2026-06-13T20:50:06.016Z
 - Lead Research Status: 7 research packs found
 - Evidence Status: 10 evidence files found
 - Proposal Status: 3 proposal packages found
@@ -36,6 +36,10 @@ Generated: 2026-06-13T20:13:12.758Z
 - Best Offer: Insufficient outcome history.
 - Best Segment: Insufficient outcome history.
 - Top Recommendation: Insufficient outcome history.
+- Studio Version: 0.1.0
+- Snapshot Status: Ready
+- Recovery Status: Ready
+- Last Snapshot: 2026-06-13T20:49:43.297Z
 
 ## PWA Files
 

@@ -509,6 +509,13 @@ Generated: ${data.generatedAt}
 - Top Learning: ${data.winLossIntelligence.topLearning}
 - Top Recommendation: ${data.winLossIntelligence.topRecommendation}
 
+## Studio Snapshot
+
+- Studio Version: ${data.studioSnapshot.studioVersion}
+- Snapshot Status: ${data.studioSnapshot.snapshotStatus}
+- Recovery Status: ${data.studioSnapshot.recoveryStatus}
+- Last Snapshot: ${data.studioSnapshot.lastSnapshot}
+
 ## Safety
 
 ${data.safety.map((item) => `- ${item}`).join('\n')}
@@ -563,6 +570,10 @@ Generated: ${data.generatedAt}
 - Best Offer: ${data.winLossIntelligence.bestOffer}
 - Best Segment: ${data.winLossIntelligence.bestSegment}
 - Top Recommendation: ${data.winLossIntelligence.topRecommendation}
+- Studio Version: ${data.studioSnapshot.studioVersion}
+- Snapshot Status: ${data.studioSnapshot.snapshotStatus}
+- Recovery Status: ${data.studioSnapshot.recoveryStatus}
+- Last Snapshot: ${data.studioSnapshot.lastSnapshot}
 
 ## PWA Files
 

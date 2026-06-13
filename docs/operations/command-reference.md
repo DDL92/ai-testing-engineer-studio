@@ -2598,6 +2598,97 @@ Output file:
 Safety note:
 Output audit only. No files are sent externally.
 
+## `npm run studio:snapshot`
+
+Purpose:
+Generate the Studio snapshot, system map, operator guide, and Monday operator guide.
+
+Example:
+
+```sh
+npm run studio:snapshot
+```
+
+Output files:
+`output/studio-snapshot/studio-snapshot.md`
+`output/studio-snapshot/system-map.md`
+`output/studio-snapshot/operator-guide.md`
+`output/studio-snapshot/monday-operator-guide.md`
+
+Safety note:
+Read-only documentation only. It does not send outreach, modify finance records, or modify outcome records.
+
+## `npm run studio:architecture`
+
+Purpose:
+Generate the architecture summary with purpose, inputs, outputs, and commands for each major Studio module.
+
+Example:
+
+```sh
+npm run studio:architecture
+```
+
+Output file:
+`output/studio-snapshot/architecture-summary.md`
+
+Safety note:
+Documentation only.
+
+## `npm run studio:inventory`
+
+Purpose:
+Generate command, data source, and output source inventories.
+
+Example:
+
+```sh
+npm run studio:inventory
+```
+
+Output files:
+`output/studio-snapshot/all-commands.md`
+`output/studio-snapshot/all-data-sources.md`
+`output/studio-snapshot/all-output-sources.md`
+
+Safety note:
+Local filesystem inventory only.
+
+## `npm run studio:rebuild-guide`
+
+Purpose:
+Generate fresh-machine rebuild and disaster recovery instructions.
+
+Example:
+
+```sh
+npm run studio:rebuild-guide
+```
+
+Output files:
+`output/studio-snapshot/studio-rebuild-guide.md`
+`output/studio-snapshot/disaster-recovery-guide.md`
+
+Safety note:
+Guide generation only.
+
+## `npm run studio:recovery-check`
+
+Purpose:
+Validate required directories, data, outputs, commands, and dashboard assets for recovery readiness.
+
+Example:
+
+```sh
+npm run studio:recovery-check
+```
+
+Output file:
+`output/studio-snapshot/recovery-check.md`
+
+Safety note:
+Local recovery check only. No records or external systems are modified.
+
 ## `npm run cockpit`
 
 Purpose:

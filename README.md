@@ -134,6 +134,11 @@ npm run studio:hardening
 npm run studio:monday-checklist
 npm run studio:command-audit
 npm run studio:output-audit
+npm run studio:snapshot
+npm run studio:architecture
+npm run studio:inventory
+npm run studio:rebuild-guide
+npm run studio:recovery-check
 npm run finance:monthly
 npm run finance:dashboard
 npm run finance:forecast
@@ -204,6 +209,7 @@ The Outcome Tracking and Message Review Pack writes `output/outcomes` and `outpu
 The Follow-Up Operating System writes `output/followups` reports for queue categories, daily follow-up plan, priorities, review, and cadence. `npm run followup:queue`, `npm run followup:daily`, `npm run followup:priorities`, and `npm run followup:review` use Revenue Activation, Outcome Tracking, Message Review, Executive Layer, and Execution Pack outputs to tell Daniel who to review manually, when, and why. It never sends messages, sends emails, creates meetings, creates invoices, creates payments, claims revenue, integrates a CRM, or invents outcomes.
 The Win/Loss Intelligence Engine writes `output/winloss` reports for win/loss analysis, pattern analysis, opportunity insights, strategy recommendations, reply patterns, and offer performance. `npm run winloss:analysis`, `npm run winloss:patterns`, `npm run winloss:insights`, and `npm run winloss:strategy` learn only from manually recorded Outcome Tracking data. If there is not enough outcome history, reports say so instead of inventing patterns, replies, revenue, clients, or recommendations.
 The Studio Hardening layer writes `output/hardening` reports for Monday launch readiness, command wiring, output availability, stale reports, dashboard readiness, and PushPress first-client readiness. `npm run studio:hardening`, `npm run studio:monday-checklist`, `npm run studio:command-audit`, and `npm run studio:output-audit` are local audits only and do not send outreach, emails, proposals, invoices, payments, replies, or revenue claims.
+The Studio Snapshot and Disaster Recovery layer writes `output/studio-snapshot` reports for the full system snapshot, architecture summary, command inventory, data inventory, output inventory, system map, operator guides, rebuild guide, disaster recovery guide, and recovery check. `npm run studio:snapshot`, `npm run studio:architecture`, `npm run studio:inventory`, `npm run studio:rebuild-guide`, and `npm run studio:recovery-check` make Studio portable and recoverable without modifying finance records, outcome records, or taking external actions.
 The Finance Tracking layer reads `data/finance/finance.json` as the source of truth for booked money and writes `output/finance` reports for monthly finance, MRR tracking, finance dashboard, forecasts, revenue opportunities, savings planning, and property progress. It is local-only, uses approved offer ranges only, and does not process payments, generate invoices, create payment links, connect banks, call APIs, or treat lead candidates as booked revenue.
 The Real Client Readiness Pack writes `output/real-client-readiness` reports for Top 5 commercial lead readiness, manual contact planning, outreach safety checks, first audit sales positioning, and SOW readiness. It does not invent contacts or findings and does not send outreach.
 The Proposal Command Center writes `output/proposal-center` reports for proposal-ready leads, SOW readiness, proposal priority, pricing recommendations, and approval checks. It is local-only and does not send proposals, invent findings, or treat opportunities as booked revenue.
