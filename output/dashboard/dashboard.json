@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-13T14:06:11.431Z",
+  "generatedAt": "2026-06-13T20:04:11.313Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-13",
@@ -142,7 +142,7 @@
     "bestRetainerOpportunity": "PushPress"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-13T14:06:11.431Z",
+    "lastUpdate": "2026-06-13T20:04:11.313Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "10 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -167,6 +167,40 @@
     "topRevenueTarget": "PushPress",
     "topRevenueAction": "Move First Audit Sold forward",
     "topActivationScore": 98
+  },
+  "executionPack": {
+    "firstRevenueStatus": "PushPress: GO",
+    "goNoGo": "GO",
+    "remainingBlockers": 3,
+    "nextManualAction": "Review PushPress executive summary, audit package, and proposal package; then Daniel decides manually whether to move the first QA Audit offer forward.",
+    "estimatedRevenueValue": "$199-$500 potential first QA Audit value",
+    "estimatedConfidenceScore": 99
+  },
+  "outcomeTracking": {
+    "status": "No outcomes recorded yet.",
+    "messagesSent": 0,
+    "replies": 0,
+    "meetings": 0,
+    "proposals": 0,
+    "wins": 0,
+    "losses": 0,
+    "replyRate": "No outcomes recorded yet.",
+    "nextManualMessage": "No outcomes recorded yet. Review the PushPress message pack before any manual send."
+  },
+  "followUpEngine": {
+    "followUpQueue": 4,
+    "todaysFollowUps": 4,
+    "waitingResponses": 0,
+    "openOpportunities": 4,
+    "nextBestAction": "Review PushPress message pack and manually decide whether to send the LinkedIn short message from message pack."
+  },
+  "winLossIntelligence": {
+    "winRate": "Insufficient outcome history.",
+    "replyRate": "Insufficient outcome history.",
+    "bestOffer": "Insufficient outcome history.",
+    "bestSegment": "Insufficient outcome history.",
+    "topLearning": "Insufficient outcome history.",
+    "topRecommendation": "Insufficient outcome history."
   },
   "mobileCommandCenter": {
     "reviewCenter": {
@@ -301,7 +335,7 @@
       ]
     },
     "followUpCenter": {
-      "followUpsDue": 0,
+      "followUpsDue": 4,
       "outreachStatus": "10 outreach records, 2 messages sent, 2 connected",
       "contactStatus": "10 contacts recorded",
       "links": [

@@ -1,5 +1,44 @@
 # Next Sprint Roadmap
 
+## Sprint 77: Win/Loss Intelligence Engine
+
+Goal:
+Create a local-only win/loss intelligence engine that learns from real outcomes recorded in Outcome Tracking.
+
+Commands:
+
+```sh
+npm run winloss:analysis
+npm run winloss:patterns
+npm run winloss:insights
+npm run winloss:strategy
+```
+
+Completion notes:
+
+- Added `src/winLossEngine` with metrics, pattern detection, opportunity insights, strategy recommendations, reply patterns, and offer performance reports.
+- Generated reports under `output/winloss`.
+- Dashboard now shows Win Rate, Reply Rate, Best Offer, Best Segment, Top Learning, and Top Recommendation.
+- Pattern detection uses manually recorded Outcome Tracking data only.
+- If insufficient outcome history exists, reports say `Not enough outcome data available.` or `Insufficient outcome history.`
+- No outreach, emails, meetings, revenue, clients, replies, outcomes, or patterns are invented.
+
+## Sprint 78 Recommendation: Outcome Recording Assistant
+
+Goal:
+Make it easier for Daniel to record what happened after a manual send without creating a CRM or automation layer.
+
+Suggested commands:
+
+```sh
+npm run outcome:record
+npm run outcome:next
+npm run outcome:cleanup
+```
+
+What not to build yet:
+Do not send messages, automate LinkedIn/email, create meetings, create invoices, create payments, claim revenue, or infer client interest.
+
 ## Sprint 61: Playwright Evidence Runner v2
 
 Goal:

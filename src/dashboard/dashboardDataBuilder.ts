@@ -8,11 +8,15 @@ import {
 } from '../dailyRevenueLoop/dailyLoopRules';
 import { buildOpportunitySummary } from '../opportunityEngine/opportunityEngineRules';
 import { OpportunityReport } from '../opportunityEngine/types';
+import { buildFirstRevenueExecutionPack } from '../executionPack/generateFirstRevenueChecklist';
+import { buildFollowUpOperatingReport } from '../followUpEngine/followUpRules';
+import { buildOutcomeSummary, loadOutcomes } from '../outcomeTracking/outcomeRules';
 import { buildProposalPortfolio } from '../proposalEngine/proposalRules';
 import { ProposalPackage } from '../proposalEngine/types';
 import { buildRevenueActivationReport } from '../revenueActivation/revenueRules';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
 import { buildUnifiedAuditPortfolio } from '../unifiedAuditGenerator/unifiedAuditRules';
+import { buildWinLossReport } from '../winLossEngine/winLossRules';
 
 export interface DashboardActionCard {
   priority: number;
@@ -90,6 +94,44 @@ export interface DashboardRevenueActivation {
   topActivationScore: number;
 }
 
+export interface DashboardExecutionPack {
+  firstRevenueStatus: string;
+  goNoGo: string;
+  remainingBlockers: number;
+  nextManualAction: string;
+  estimatedRevenueValue: string;
+  estimatedConfidenceScore: number;
+}
+
+export interface DashboardOutcomeTracking {
+  status: string;
+  messagesSent: number;
+  replies: number;
+  meetings: number;
+  proposals: number;
+  wins: number;
+  losses: number;
+  replyRate: string;
+  nextManualMessage: string;
+}
+
+export interface DashboardFollowUpEngine {
+  followUpQueue: number;
+  todaysFollowUps: number;
+  waitingResponses: number;
+  openOpportunities: number;
+  nextBestAction: string;
+}
+
+export interface DashboardWinLossIntelligence {
+  winRate: string;
+  replyRate: string;
+  bestOffer: string;
+  bestSegment: string;
+  topLearning: string;
+  topRecommendation: string;
+}
+
 export interface DashboardData {
   generatedAt: string;
   mode: 'read-only';
@@ -136,6 +178,10 @@ export interface DashboardData {
   };
   studio: DashboardStudioStatus;
   revenueActivation: DashboardRevenueActivation;
+  executionPack: DashboardExecutionPack;
+  outcomeTracking: DashboardOutcomeTracking;
+  followUpEngine: DashboardFollowUpEngine;
+  winLossIntelligence: DashboardWinLossIntelligence;
   mobileCommandCenter: DashboardMobileCenter;
   safety: string[];
 }
@@ -161,6 +207,10 @@ export function buildPwaDashboardData(): DashboardData {
   const proposalPortfolio = buildProposalPortfolio();
   const studioReport = buildStudioConsolidationReport();
   const revenueActivationReport = buildRevenueActivationReport();
+  const executionPack = buildFirstRevenueExecutionPack();
+  const outcomeSummary = buildOutcomeSummary(loadOutcomes());
+  const followUpReport = buildFollowUpOperatingReport();
+  const winLossReport = buildWinLossReport();
   const outreach = readJson<OutreachRecord[]>(outreachPath, []);
   const proposalReady = proposalPortfolio.proposals.filter((proposal) => proposal.artifacts.markdownPath && proposal.artifacts.pdfPath);
   const topActions = dayPlan.topActions.map((action) => ({
@@ -254,6 +304,40 @@ export function buildPwaDashboardData(): DashboardData {
       topRevenueAction: revenueActivationReport.focusActions[0]?.title ?? 'Review revenue focus',
       topActivationScore: revenueActivationReport.pipeline[0]?.activationScore ?? 0,
     },
+    executionPack: {
+      firstRevenueStatus: `${executionPack.topTarget.companyName}: ${executionPack.recommendation}`,
+      goNoGo: executionPack.recommendation,
+      remainingBlockers: executionPack.remainingBlockers.length,
+      nextManualAction: executionPack.manualNextAction,
+      estimatedRevenueValue: executionPack.estimatedRevenueValue,
+      estimatedConfidenceScore: executionPack.estimatedConfidenceScore,
+    },
+    outcomeTracking: {
+      status: outcomeSummary.hasOutcomes ? `${outcomeSummary.totalRecords} outcome record(s)` : 'No outcomes recorded yet.',
+      messagesSent: outcomeSummary.messagesSent,
+      replies: outcomeSummary.replies,
+      meetings: outcomeSummary.meetings,
+      proposals: outcomeSummary.proposals,
+      wins: outcomeSummary.wins,
+      losses: outcomeSummary.losses,
+      replyRate: outcomeSummary.replyRate,
+      nextManualMessage: outcomeSummary.nextManualMessage,
+    },
+    followUpEngine: {
+      followUpQueue: followUpReport.dashboard.followUpQueue,
+      todaysFollowUps: followUpReport.dashboard.todaysFollowUps,
+      waitingResponses: followUpReport.dashboard.waitingResponses,
+      openOpportunities: followUpReport.dashboard.openOpportunities,
+      nextBestAction: followUpReport.dashboard.nextBestAction,
+    },
+    winLossIntelligence: {
+      winRate: winLossReport.hasEnoughData ? winLossReport.metrics.closeRate : 'Insufficient outcome history.',
+      replyRate: winLossReport.hasEnoughData ? winLossReport.metrics.replyRate : 'Insufficient outcome history.',
+      bestOffer: winLossReport.hasEnoughData ? winLossReport.recommendations.highestConvertingOffer : 'Insufficient outcome history.',
+      bestSegment: winLossReport.hasEnoughData ? winLossReport.recommendations.highestConvertingSegment : 'Insufficient outcome history.',
+      topLearning: winLossReport.hasEnoughData ? winLossReport.recommendations.topLearning : 'Insufficient outcome history.',
+      topRecommendation: winLossReport.hasEnoughData ? winLossReport.recommendations.topRecommendation : 'Insufficient outcome history.',
+    },
     mobileCommandCenter: {
       reviewCenter: {
         auditsReady: auditPortfolio.reports.length,
@@ -281,7 +365,7 @@ export function buildPwaDashboardData(): DashboardData {
         retainerCandidates: retainerCandidates(proposalPortfolio.proposals),
       },
       followUpCenter: {
-        followUpsDue: dayPlan.followUpsDue,
+        followUpsDue: followUpReport.dashboard.todaysFollowUps,
         outreachStatus: `${outreach.length} outreach records, ${outreach.filter((record) => record.status === 'message-sent').length} messages sent, ${outreach.filter((record) => record.status === 'connected').length} connected`,
         contactStatus: `${input.contacts.reduce((sum, group) => sum + group.contacts.length, 0)} contacts recorded`,
         links: followUpLinks,

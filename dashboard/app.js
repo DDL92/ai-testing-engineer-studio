@@ -26,6 +26,10 @@ function render(data) {
   renderActions(data.today.topActions);
   renderRevenue(data.revenue);
   renderRevenueActivation(data.revenueActivation);
+  renderExecutionPack(data.executionPack);
+  renderOutcomeTracking(data.outcomeTracking);
+  renderFollowUpEngine(data.followUpEngine);
+  renderWinLossIntelligence(data.winLossIntelligence);
   renderStudio(data.studio);
   renderLeads(data.leads.highestOpportunityScores);
   renderOutreach(data.outreach);
@@ -70,6 +74,72 @@ function renderRevenueActivation(activation) {
     miniCard('First Retainer Goal', activation.firstRetainerGoal),
     miniCard('Top Revenue Target', `${activation.topRevenueTarget} (${activation.topActivationScore}/100)`),
     miniCard('Top Revenue Action', activation.topRevenueAction),
+  ].join('');
+}
+
+function renderExecutionPack(execution) {
+  if (!execution) {
+    byId('executionCards').innerHTML = miniCard('First Revenue Status', 'Not loaded');
+    return;
+  }
+
+  byId('executionCards').innerHTML = [
+    miniCard('First Revenue Status', execution.firstRevenueStatus),
+    miniCard('Go / No Go', execution.goNoGo),
+    miniCard('Remaining Blockers', execution.remainingBlockers),
+    miniCard('Next Manual Action', execution.nextManualAction),
+    miniCard('Estimated Value', execution.estimatedRevenueValue),
+    miniCard('Confidence', `${execution.estimatedConfidenceScore}/100`),
+  ].join('');
+}
+
+function renderOutcomeTracking(outcomes) {
+  if (!outcomes) {
+    byId('outcomeTrackingCards').innerHTML = miniCard('Outcome Tracking', 'No outcomes recorded yet.');
+    return;
+  }
+
+  byId('outcomeTrackingCards').innerHTML = [
+    miniCard('Outcome Tracking', outcomes.status),
+    miniCard('Messages Sent', outcomes.messagesSent),
+    miniCard('Replies', outcomes.replies),
+    miniCard('Meetings', outcomes.meetings),
+    miniCard('Proposals', outcomes.proposals),
+    miniCard('Wins', outcomes.wins),
+    miniCard('Losses', outcomes.losses),
+    miniCard('Reply Rate', outcomes.replyRate),
+    miniCard('Next Manual Message', outcomes.nextManualMessage),
+  ].join('');
+}
+
+function renderFollowUpEngine(followUps) {
+  if (!followUps) {
+    byId('followUpOperatingCards').innerHTML = miniCard('Follow-Up Queue', 'Not loaded');
+    return;
+  }
+
+  byId('followUpOperatingCards').innerHTML = [
+    miniCard('Follow-Up Queue', followUps.followUpQueue),
+    miniCard("Today's Follow-Ups", followUps.todaysFollowUps),
+    miniCard('Waiting Responses', followUps.waitingResponses),
+    miniCard('Open Opportunities', followUps.openOpportunities),
+    miniCard('Next Best Action', followUps.nextBestAction),
+  ].join('');
+}
+
+function renderWinLossIntelligence(winLoss) {
+  if (!winLoss) {
+    byId('winLossCards').innerHTML = miniCard('Win Rate', 'Insufficient outcome history.');
+    return;
+  }
+
+  byId('winLossCards').innerHTML = [
+    miniCard('Win Rate', winLoss.winRate),
+    miniCard('Reply Rate', winLoss.replyRate),
+    miniCard('Best Offer', winLoss.bestOffer),
+    miniCard('Best Segment', winLoss.bestSegment),
+    miniCard('Top Learning', winLoss.topLearning),
+    miniCard('Top Recommendation', winLoss.topRecommendation),
   ].join('');
 }
 

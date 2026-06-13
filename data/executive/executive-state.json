@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-13T00:00:00.000Z",
+  "audience": [
+    "CEO",
+    "Founder",
+    "Product Director",
+    "Operations Director",
+    "Gym Software Executive"
+  ],
+  "approvedEngagements": [
+    "QA Audit ($199-$500)",
+    "Playwright Starter Pack ($900-$1500)",
+    "QA Automation Retainer ($1500-$3000/month)"
+  ],
+  "notes": [
+    "Translate QA findings into business language.",
+    "Use potential, possible, may indicate, and could increase risk when uncertainty exists."
+  ]
+}

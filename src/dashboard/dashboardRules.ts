@@ -471,6 +471,44 @@ Generated: ${data.generatedAt}
 - Top Revenue Action: ${data.revenueActivation.topRevenueAction}
 - Top Activation Score: ${data.revenueActivation.topActivationScore}/100
 
+## First Revenue Execution
+
+- First Revenue Status: ${data.executionPack.firstRevenueStatus}
+- Go / No Go: ${data.executionPack.goNoGo}
+- Remaining Blockers: ${data.executionPack.remainingBlockers}
+- Next Manual Action: ${data.executionPack.nextManualAction}
+- Estimated Revenue Value: ${data.executionPack.estimatedRevenueValue}
+- Estimated Confidence Score: ${data.executionPack.estimatedConfidenceScore}/100
+
+## Outcome Tracking
+
+- Outcome Tracking: ${data.outcomeTracking.status}
+- Messages Sent: ${data.outcomeTracking.messagesSent}
+- Replies: ${data.outcomeTracking.replies}
+- Meetings: ${data.outcomeTracking.meetings}
+- Proposals: ${data.outcomeTracking.proposals}
+- Wins: ${data.outcomeTracking.wins}
+- Losses: ${data.outcomeTracking.losses}
+- Reply Rate: ${data.outcomeTracking.replyRate}
+- Next Manual Message: ${data.outcomeTracking.nextManualMessage}
+
+## Follow-Up Operating System
+
+- Follow-Up Queue: ${data.followUpEngine.followUpQueue}
+- Today's Follow-Ups: ${data.followUpEngine.todaysFollowUps}
+- Waiting Responses: ${data.followUpEngine.waitingResponses}
+- Open Opportunities: ${data.followUpEngine.openOpportunities}
+- Next Best Action: ${data.followUpEngine.nextBestAction}
+
+## Win/Loss Intelligence
+
+- Win Rate: ${data.winLossIntelligence.winRate}
+- Reply Rate: ${data.winLossIntelligence.replyRate}
+- Best Offer: ${data.winLossIntelligence.bestOffer}
+- Best Segment: ${data.winLossIntelligence.bestSegment}
+- Top Learning: ${data.winLossIntelligence.topLearning}
+- Top Recommendation: ${data.winLossIntelligence.topRecommendation}
+
 ## Safety
 
 ${data.safety.map((item) => `- ${item}`).join('\n')}
@@ -506,6 +544,25 @@ Generated: ${data.generatedAt}
 - Revenue Activation: ${data.revenueActivation.revenueActivation}
 - Top Revenue Target: ${data.revenueActivation.topRevenueTarget}
 - Top Activation Score: ${data.revenueActivation.topActivationScore}/100
+- First Revenue Status: ${data.executionPack.firstRevenueStatus}
+- Go / No Go: ${data.executionPack.goNoGo}
+- Remaining Blockers: ${data.executionPack.remainingBlockers}
+- Outcome Tracking: ${data.outcomeTracking.status}
+- Messages Sent: ${data.outcomeTracking.messagesSent}
+- Replies: ${data.outcomeTracking.replies}
+- Meetings: ${data.outcomeTracking.meetings}
+- Proposals: ${data.outcomeTracking.proposals}
+- Wins: ${data.outcomeTracking.wins}
+- Losses: ${data.outcomeTracking.losses}
+- Reply Rate: ${data.outcomeTracking.replyRate}
+- Follow-Up Queue: ${data.followUpEngine.followUpQueue}
+- Today's Follow-Ups: ${data.followUpEngine.todaysFollowUps}
+- Waiting Responses: ${data.followUpEngine.waitingResponses}
+- Open Opportunities: ${data.followUpEngine.openOpportunities}
+- Win Rate: ${data.winLossIntelligence.winRate}
+- Best Offer: ${data.winLossIntelligence.bestOffer}
+- Best Segment: ${data.winLossIntelligence.bestSegment}
+- Top Recommendation: ${data.winLossIntelligence.topRecommendation}
 
 ## PWA Files
 

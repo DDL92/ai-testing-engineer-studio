@@ -2205,6 +2205,329 @@ Output files:
 Safety note:
 Uses only local evidence. It does not send outreach, emails, proposals, invoices, payments, client updates, call APIs, scrape, browse, connect external systems, invent revenue, invent clients, or invent results.
 
+## `npm run executive:summary`
+
+Purpose:
+Generate a business-readable executive summary for one company using existing Opportunity Engine, Audit Pack, Evidence, Playwright, Lighthouse, Unified Audit, Proposal, and Revenue Activation outputs.
+
+Example:
+
+```sh
+npm run executive:summary -- --company PushPress
+```
+
+Output file:
+`output/executive/{company_id}-executive-summary.md`
+
+Safety note:
+Executive summaries translate existing QA evidence into business language. They do not invent revenue, customers, conversions, bugs, outages, incidents, vulnerabilities, lost sales, churn, customer complaints, customer quotes, outreach, proposals, invoices, or payments.
+
+## `npm run executive:portfolio`
+
+Purpose:
+Generate portfolio-level executive business risk, priorities, roadmap, readiness, ranking, and company executive summaries.
+
+Example:
+
+```sh
+npm run executive:portfolio
+```
+
+Output files:
+`output/executive/pushpress-executive-summary.md`
+`output/executive/teamup-executive-summary.md`
+`output/executive/glofox-executive-summary.md`
+`output/executive/business-risk.md`
+`output/executive/executive-priorities.md`
+`output/executive/executive-roadmap.md`
+`output/executive/executive-portfolio.md`
+`output/executive/executive-readiness.md`
+
+Safety note:
+Portfolio reports are local-only and review-only. They use potential, possible, may indicate, and could increase risk language where uncertainty exists and require human approval before external use.
+
+## `npm run execute:first-client`
+
+Purpose:
+Generate the First Revenue Execution Pack for the current top target, including first-client checklist, first-revenue checklist, and manual execution plan.
+
+Example:
+
+```sh
+npm run execute:first-client
+```
+
+Output files:
+`output/execution/first-client-checklist.md`
+`output/execution/first-revenue-checklist.md`
+`output/execution/manual-execution-plan.md`
+
+Safety note:
+GO means ready for Daniel's manual review, not permission to send. This command never sends outreach, sends emails, creates invoices, creates payments, creates meetings, or claims revenue.
+
+## `npm run execute:decision-board`
+
+Purpose:
+Generate a GO / NO GO decision board with exact reasons, remaining blockers, manual next action, time to execute, estimated value, and confidence score.
+
+Example:
+
+```sh
+npm run execute:decision-board
+```
+
+Output file:
+`output/execution/decision-board.md`
+
+Safety note:
+Decision support only. Revenue value is an approved offer range, not booked revenue. Human approval remains required before external action.
+
+## `npm run execute:outreach-review`
+
+Purpose:
+Generate an outreach readiness review for the current top target without generating or sending a message.
+
+Example:
+
+```sh
+npm run execute:outreach-review
+```
+
+Output file:
+`output/execution/outreach-review.md`
+
+Safety note:
+Review-only. It never sends outreach, emails, meeting invites, proposals, invoices, or payment links, and it does not infer replies, interest, meetings, clients, or revenue.
+
+## `npm run outcome:add`
+
+Purpose:
+Initialize the local outcome store or append an explicit Daniel-entered manual outcome record.
+
+Example:
+
+```sh
+npm run outcome:add -- --company PushPress --contact "Manual Contact" --channel linkedin --date 2026-06-13 --action-type manual_dm --message-sent true --response-status sent --next-action "Wait for reply"
+```
+
+Data file:
+`data/outcomes/outcomes.json`
+
+Safety note:
+Manual outcome tracking only. It never sends messages, emails, proposals, meetings, invoices, payments, replies, interest, or revenue.
+
+## `npm run outcome:dashboard`
+
+Purpose:
+Generate local outcome dashboard reports for pipeline status, response rates, and revenue by source.
+
+Example:
+
+```sh
+npm run outcome:dashboard
+```
+
+Output files:
+`output/outcomes/pipeline-status.md`
+`output/outcomes/response-rates.md`
+`output/outcomes/revenue-by-source.md`
+
+Safety note:
+Uses only manually recorded local outcomes. If no outcomes exist, reports say `No outcomes recorded yet.`
+
+## `npm run outcome:review`
+
+Purpose:
+Generate win-loss and lessons-learned reports from manually recorded outcomes.
+
+Example:
+
+```sh
+npm run outcome:review
+```
+
+Output files:
+`output/outcomes/win-loss-analysis.md`
+`output/outcomes/lessons-learned.md`
+
+Safety note:
+No replies, client interest, revenue, wins, losses, or meetings are inferred.
+
+## `npm run message:review`
+
+Purpose:
+Generate a safety and readiness review for manual PushPress message drafts.
+
+Example:
+
+```sh
+npm run message:review -- --company PushPress
+```
+
+Output files:
+`output/messages/pushpress-message-review.md`
+`output/messages/message-priorities.md`
+
+Safety note:
+Manual review only. It does not send LinkedIn messages, emails, proposals, meeting invites, invoices, payment links, or claims.
+
+## `npm run message:pack`
+
+Purpose:
+Generate concise manual-review message drafts for LinkedIn, email, follow-up, executive angle, audit offer angle, and interested-reply handling.
+
+Example:
+
+```sh
+npm run message:pack -- --company PushPress
+```
+
+Output files:
+`output/messages/pushpress-message-pack.md`
+`output/messages/approved-manual-messages.md`
+
+Safety note:
+Drafts use public-page QA review language and potential/may indicate framing. Nothing is sent or approved for external use until Daniel manually reviews it.
+
+## `npm run followup:queue`
+
+Purpose:
+Generate the local Follow-Up Operating System queue with categories for first message, follow-up, waiting response, proposal review, paused, closed won, and closed lost.
+
+Example:
+
+```sh
+npm run followup:queue
+```
+
+Output files:
+`output/followups/followup-queue.md`
+`output/followups/followup-cadence.md`
+
+Safety note:
+Planning only. It does not send messages, emails, proposals, meeting invites, invoices, payment links, or outcomes.
+
+## `npm run followup:daily`
+
+Purpose:
+Generate today's Top 5 manual follow-ups with reason, suggested message type, priority score, and expected next step.
+
+Example:
+
+```sh
+npm run followup:daily
+```
+
+Output file:
+`output/followups/daily-followup-plan.md`
+
+Safety note:
+Manual review only. Suggested message type is not a sent message and does not imply client interest.
+
+## `npm run followup:priorities`
+
+Purpose:
+Generate ranked follow-up priorities and dashboard summary counts.
+
+Example:
+
+```sh
+npm run followup:priorities
+```
+
+Output file:
+`output/followups/followup-priorities.md`
+
+Safety note:
+Uses local Revenue Activation, Outcome Tracking, Message Review, Executive Layer, and Execution Pack outputs only.
+
+## `npm run followup:review`
+
+Purpose:
+Generate the follow-up review layer: what is stuck, what is moving, what needs Daniel attention, biggest opportunity, and biggest risk.
+
+Example:
+
+```sh
+npm run followup:review
+```
+
+Output file:
+`output/followups/followup-review.md`
+
+Safety note:
+Does not invent replies, meetings, proposals, revenue, client interest, wins, losses, or outcomes.
+
+## `npm run winloss:analysis`
+
+Purpose:
+Generate local win/loss metrics from manually recorded Outcome Tracking data.
+
+Example:
+
+```sh
+npm run winloss:analysis
+```
+
+Output files:
+`output/winloss/win-loss-analysis.md`
+`output/winloss/offer-performance.md`
+
+Safety note:
+If there is insufficient outcome data, the report says so. It does not invent outcomes, replies, meetings, revenue, clients, wins, or losses.
+
+## `npm run winloss:patterns`
+
+Purpose:
+Generate supported local pattern analysis and reply patterns.
+
+Example:
+
+```sh
+npm run winloss:patterns
+```
+
+Output files:
+`output/winloss/pattern-analysis.md`
+`output/winloss/reply-patterns.md`
+
+Safety note:
+Only patterns supported by local outcomes are reported.
+
+## `npm run winloss:insights`
+
+Purpose:
+Generate opportunity insights such as highest converting segment, highest converting offer, most promising target profile, and biggest weakness.
+
+Example:
+
+```sh
+npm run winloss:insights
+```
+
+Output file:
+`output/winloss/opportunity-insights.md`
+
+Safety note:
+No revenue, clients, replies, meetings, or interest are inferred.
+
+## `npm run winloss:strategy`
+
+Purpose:
+Generate strategy recommendations from real local outcomes.
+
+Example:
+
+```sh
+npm run winloss:strategy
+```
+
+Output file:
+`output/winloss/strategy-recommendations.md`
+
+Safety note:
+Recommendations are evidence-based and local-only. Human approval remains required before any external action.
+
 ## `npm run cockpit`
 
 Purpose:

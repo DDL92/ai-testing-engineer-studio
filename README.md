@@ -112,6 +112,24 @@ npm run revenue:targets
 npm run revenue:pipeline
 npm run revenue:focus
 npm run revenue:score
+npm run executive:summary -- --company PushPress
+npm run executive:portfolio
+npm run execute:first-client
+npm run execute:decision-board
+npm run execute:outreach-review
+npm run outcome:add
+npm run outcome:dashboard
+npm run outcome:review
+npm run message:review -- --company PushPress
+npm run message:pack -- --company PushPress
+npm run followup:queue
+npm run followup:daily
+npm run followup:priorities
+npm run followup:review
+npm run winloss:analysis
+npm run winloss:patterns
+npm run winloss:insights
+npm run winloss:strategy
 npm run finance:monthly
 npm run finance:dashboard
 npm run finance:forecast
@@ -176,6 +194,11 @@ Commercial Mode reports are written to `output/commercial-mode` for demo/sample 
 The PWA dashboard writes `output/dashboard/dashboard.json`, `output/dashboard/dashboard-summary.md`, `output/dashboard/dashboard-health.md`, and the static read-only app under `dashboard/`. `npm run dashboard:generate` refreshes local dashboard data, `npm run dashboard:build` verifies the static dashboard package, `npm run dashboard:preview` serves `dashboard/index.html` locally, and `npm run dashboard:mobile` exposes it on the local network for same-WiFi phone review. It reads local Studio outputs only and does not send outreach, send proposals, create invoices, create payments, modify data, call APIs, or use credentials.
 The Revenue Command Center writes `output/revenue-command-center` reports for booked MRR, speculative MRR forecasts, audit opportunities, retainer opportunities, renewal/expansion visibility, property-progress scenarios, and top manual revenue actions. It uses local Studio data only and does not treat opportunities as booked revenue.
 The Revenue Activation Engine writes `output/revenue` reports for first-audit targets, ranked revenue pipeline, 30-minute revenue focus, scoring, first-client planning, and first-retainer planning. `npm run revenue:targets`, `npm run revenue:pipeline`, `npm run revenue:focus`, and `npm run revenue:score` use local Studio evidence only and do not send outreach, send proposals, create invoices, invent meetings, invent replies, invent revenue, or infer client interest.
+The Executive Business Layer writes `output/executive` reports that translate QA evidence into business language for founders, executives, product leaders, and operations leaders. `npm run executive:summary -- --company PushPress` creates a company executive summary, and `npm run executive:portfolio` creates portfolio-level business risk, priorities, roadmap, readiness, and executive ranking reports. It does not invent revenue, customers, bugs, outages, incidents, vulnerabilities, lost sales, churn, complaints, or quotes.
+The First Revenue Execution Pack writes `output/execution` reports for GO/NO GO review, first-client readiness, first-revenue checklist, outreach review, decision board, and a manual execution plan. `npm run execute:first-client`, `npm run execute:decision-board`, and `npm run execute:outreach-review` support Daniel's manual decision only and never send outreach, emails, invoices, payments, meetings, or revenue claims.
+The Outcome Tracking and Message Review Pack writes `output/outcomes` and `output/messages` reports for manually recorded outcomes, response rates, win-loss learning, safe PushPress message drafts, and message priorities. `npm run outcome:add` records only explicit Daniel-entered outcomes, `npm run outcome:dashboard` and `npm run outcome:review` summarize local outcome data, and `npm run message:review -- --company PushPress` plus `npm run message:pack -- --company PushPress` generate concise manual-review drafts. These commands never send messages, send emails, create meetings, send proposals, create invoices, create payments, invent replies, invent revenue, or infer client interest.
+The Follow-Up Operating System writes `output/followups` reports for queue categories, daily follow-up plan, priorities, review, and cadence. `npm run followup:queue`, `npm run followup:daily`, `npm run followup:priorities`, and `npm run followup:review` use Revenue Activation, Outcome Tracking, Message Review, Executive Layer, and Execution Pack outputs to tell Daniel who to review manually, when, and why. It never sends messages, sends emails, creates meetings, creates invoices, creates payments, claims revenue, integrates a CRM, or invents outcomes.
+The Win/Loss Intelligence Engine writes `output/winloss` reports for win/loss analysis, pattern analysis, opportunity insights, strategy recommendations, reply patterns, and offer performance. `npm run winloss:analysis`, `npm run winloss:patterns`, `npm run winloss:insights`, and `npm run winloss:strategy` learn only from manually recorded Outcome Tracking data. If there is not enough outcome history, reports say so instead of inventing patterns, replies, revenue, clients, or recommendations.
 The Finance Tracking layer reads `data/finance/finance.json` as the source of truth for booked money and writes `output/finance` reports for monthly finance, MRR tracking, finance dashboard, forecasts, revenue opportunities, savings planning, and property progress. It is local-only, uses approved offer ranges only, and does not process payments, generate invoices, create payment links, connect banks, call APIs, or treat lead candidates as booked revenue.
 The Real Client Readiness Pack writes `output/real-client-readiness` reports for Top 5 commercial lead readiness, manual contact planning, outreach safety checks, first audit sales positioning, and SOW readiness. It does not invent contacts or findings and does not send outreach.
 The Proposal Command Center writes `output/proposal-center` reports for proposal-ready leads, SOW readiness, proposal priority, pricing recommendations, and approval checks. It is local-only and does not send proposals, invent findings, or treat opportunities as booked revenue.
@@ -234,7 +257,8 @@ npm run actions:cockpit
 npm run lead:optimize -- --id sample-lead --type linkedin_dm
 npm run message:optimize -- --file sales-marketing-engine/operator/approval-queue/lead-sample-lead-proposal.md --type follow_up
 npm run message:queue
-npm run message:review -- --file lead-sample-lead-optimized-linkedin_dm.md --status approved --note "Reviewed"
+npm run message:review -- --company PushPress
+npm run message:pack -- --company PushPress
 npm run message:sent -- --file lead-sample-lead-optimized-linkedin_dm.md --channel linkedin --note "Sent manually"
 npm run sources:report
 npm run business:weekly
