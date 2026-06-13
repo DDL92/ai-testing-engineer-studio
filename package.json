@@ -162,6 +162,9 @@
     "os:health": "node --import tsx src/osStabilization/generateSystemHealth.ts",
     "os:release-check": "node --import tsx src/releaseCandidate/generateReleaseCheck.ts",
     "os:v1-report": "node --import tsx src/releaseCandidate/generateV1Report.ts",
+    "studio:health": "node --import tsx src/studioConsolidation/generateStudioHealth.ts",
+    "studio:summary": "node --import tsx src/studioConsolidation/generateStudioSummary.ts",
+    "studio:release-check": "node --import tsx src/studioConsolidation/generateReleaseCheck.ts",
     "validate:business": "tsx apps/lead-operator/src/cli/validateBusiness.ts"
   },
   "devDependencies": {

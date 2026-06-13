@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-13T00:00:00.000Z",
+  "releaseName": "Sprint 71 Studio Consolidation",
+  "dailyOperatorEnabled": true,
+  "mobileDashboardEnabled": true,
+  "notes": [
+    "Local-first Studio consolidation state.",
+    "No sending, payments, external integrations, or client system access enabled."
+  ]
+}

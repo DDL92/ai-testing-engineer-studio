@@ -137,6 +137,9 @@ npm run os:audit
 npm run os:health
 npm run os:release-check
 npm run os:v1-report
+npm run studio:health
+npm run studio:summary
+npm run studio:release-check
 npm run mac:daily
 npm run mac:summary
 npm run client:ops
@@ -179,6 +182,7 @@ The Action Cockpit v1 writes `output/action-cockpit` reports for one daily opera
 The Operator OS Dashboard writes `output/operator-os-dashboard` reports for the primary AI Studio OS homepage: executive summary, today view, opportunity center, revenue center, approval center, follow-up center, system status, and exact next command. It uses Revenue Command Center and Action Cockpit as sources of truth and remains local-only.
 The Studio OS Stabilization reports write `output/os-stabilization` audits for command consistency, report availability, revenue consistency, workflow completeness, documentation coverage, system health, and v1.0 candidate readiness. They are audit-only and do not modify business data.
 The AI Studio OS v1.0 Candidate reports write `output/v1-candidate` for release checks, the official v1 report, architecture summary, command inventory, workflow inventory, revenue readiness, first-client readiness, known warnings, and post-v1 roadmap. They are local-only, do not invent revenue, do not send outreach, do not connect external systems, and require human approval before any external action.
+The Studio Consolidation reports write `output/studio` for Sprint 71 health, summary, release check, command status, system readiness, and daily operation readiness. `npm run studio:health`, `npm run studio:summary`, and `npm run studio:release-check` verify local modules, commands, dashboard assets, mobile PWA readiness, revenue readiness, and daily operating cadence without sending outreach, creating invoices, processing payments, inventing clients, or inventing revenue.
 The First Revenue Validation Pack writes `output/first-revenue-validation` for first revenue validation, first-client path, PushPress action plan, Top 5 commercial action plan, release cleanup plan, v1 score improvement plan, and approval checklist. It keeps booked revenue separate from opportunities, does not invent contacts or findings, does not send outreach, and requires Daniel approval before any external action.
 The First Outreach Execution Review writes `output/outreach-review` for PushPress and Top 5 pre-send review, deterministic contact decision, send readiness, research gaps, and approval checklist. It does not send outreach, invent contacts, invent findings, browse, scrape, call APIs, connect CRMs, or use external systems.
 Client operations reports are written to `output/client-ops` for daily priorities, next actions, readiness groups, reporting needs, and manual approval rules.

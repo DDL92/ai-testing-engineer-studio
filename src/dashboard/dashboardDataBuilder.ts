@@ -10,6 +10,7 @@ import { buildOpportunitySummary } from '../opportunityEngine/opportunityEngineR
 import { OpportunityReport } from '../opportunityEngine/types';
 import { buildProposalPortfolio } from '../proposalEngine/proposalRules';
 import { ProposalPackage } from '../proposalEngine/types';
+import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
 import { buildUnifiedAuditPortfolio } from '../unifiedAuditGenerator/unifiedAuditRules';
 
 export interface DashboardActionCard {
@@ -66,6 +67,19 @@ export interface DashboardMobileCenter {
   };
 }
 
+export interface DashboardStudioStatus {
+  studioHealth: string;
+  releaseReadiness: string;
+  systemStatus: string;
+  criticalIssues: number;
+  warnings: number;
+  currentMrr: number;
+  readyForOutreach: string;
+  readyForAuditSales: string;
+  readyForRetainers: string;
+  readyForClientDelivery: string;
+}
+
 export interface DashboardData {
   generatedAt: string;
   mode: 'read-only';
@@ -110,6 +124,7 @@ export interface DashboardData {
     proposalStatus: string;
     dashboardStatus: string;
   };
+  studio: DashboardStudioStatus;
   mobileCommandCenter: DashboardMobileCenter;
   safety: string[];
 }
@@ -133,6 +148,7 @@ export function buildPwaDashboardData(): DashboardData {
   const opportunitySummary = buildOpportunitySummary();
   const auditPortfolio = buildUnifiedAuditPortfolio();
   const proposalPortfolio = buildProposalPortfolio();
+  const studioReport = buildStudioConsolidationReport();
   const outreach = readJson<OutreachRecord[]>(outreachPath, []);
   const proposalReady = proposalPortfolio.proposals.filter((proposal) => proposal.artifacts.markdownPath && proposal.artifacts.pdfPath);
   const topActions = dayPlan.topActions.map((action) => ({
@@ -206,6 +222,18 @@ export function buildPwaDashboardData(): DashboardData {
       proposalStatus: `${daySummary.metrics.proposalsGenerated} proposal packages found`,
       dashboardStatus: 'Ready: static local PWA data generated',
     },
+    studio: {
+      studioHealth: overallStudioHealth(studioReport.modules.map((module) => module.status)),
+      releaseReadiness: releaseReadinessLabel(studioReport),
+      systemStatus: studioReport.dailyOperation.canRunDaily,
+      criticalIssues: studioReport.releaseReadiness.criticalIssues.length,
+      warnings: studioReport.releaseReadiness.warnings.length,
+      currentMrr: studioReport.revenueReadiness.currentMrr,
+      readyForOutreach: studioReport.releaseReadiness.readyForOutreach,
+      readyForAuditSales: studioReport.releaseReadiness.readyForAuditSales,
+      readyForRetainers: studioReport.releaseReadiness.readyForRetainers,
+      readyForClientDelivery: studioReport.releaseReadiness.readyForClientDelivery,
+    },
     mobileCommandCenter: {
       reviewCenter: {
         auditsReady: auditPortfolio.reports.length,
@@ -245,6 +273,18 @@ export function buildPwaDashboardData(): DashboardData {
       'Opportunity rankings are planning signals only; no revenue is invented.',
     ],
   };
+}
+
+function overallStudioHealth(statuses: string[]): string {
+  if (statuses.includes('Not Ready')) return 'Not Ready';
+  if (statuses.includes('Warning')) return 'Warning';
+  return 'Healthy';
+}
+
+function releaseReadinessLabel(data: ReturnType<typeof buildStudioConsolidationReport>): string {
+  if (data.releaseReadiness.criticalIssues.length > 0) return 'Not Ready';
+  if (data.releaseReadiness.warnings.length > 0) return 'Needs Review';
+  return 'Ready';
 }
 
 export function writeDashboardData(data: DashboardData): string[] {

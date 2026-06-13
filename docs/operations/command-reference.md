@@ -2074,6 +2074,64 @@ Output files:
 Safety note:
 Summary-only local reporting. It reads existing local data and generated output files only. It does not rerun reports, use APIs, scrape, browse, connect CRMs, send outreach, send email, automate LinkedIn, use payments, use credentials, or access external databases.
 
+## `npm run studio:health`
+
+Purpose:
+Generate Sprint 71 Studio Health checks across lead research, contact research, outreach tracking, opportunity, audit, evidence, proposal, daily revenue, client delivery, finance, dashboard, and mobile command center modules.
+
+Example:
+
+```sh
+npm run studio:health
+```
+
+Output files:
+`output/studio/studio-health.md`
+`output/studio/command-status.md`
+`output/studio/system-readiness.md`
+
+Safety note:
+Local file and command validation only. It does not send outreach, send emails, send proposals, create invoices, create payments, call APIs, scrape, browse, use credentials, invent clients, invent results, or invent revenue.
+
+## `npm run studio:summary`
+
+Purpose:
+Generate a consolidated Studio operating summary with revenue readiness, daily/weekly/monthly command cadence, daily operation readiness, and the Sprint 72 recommendation.
+
+Example:
+
+```sh
+npm run studio:summary
+```
+
+Output files:
+`output/studio/studio-summary.md`
+`output/studio/daily-operation-readiness.md`
+`output/studio/system-readiness.md`
+
+Safety note:
+Review-only local reporting. Current MRR comes from local finance data only; candidates, forecasts, and pipeline estimates are not booked revenue.
+
+## `npm run studio:release-check`
+
+Purpose:
+Generate the Sprint 71 release check with critical issues, warnings, recommendations, and readiness for outreach, audit sales, retainers, and client delivery.
+
+Example:
+
+```sh
+npm run studio:release-check
+```
+
+Output files:
+`output/studio/release-check.md`
+`output/studio/system-readiness.md`
+`output/studio/daily-operation-readiness.md`
+`output/studio/command-status.md`
+
+Safety note:
+Uses only local evidence. It does not send outreach, emails, proposals, invoices, payments, client updates, call APIs, scrape, browse, connect external systems, invent revenue, invent clients, or invent results.
+
 ## `npm run cockpit`
 
 Purpose:

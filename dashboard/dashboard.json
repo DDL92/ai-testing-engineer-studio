@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-13T04:49:51.935Z",
+  "generatedAt": "2026-06-13T13:54:42.293Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-13",
@@ -142,11 +142,23 @@
     "bestRetainerOpportunity": "PushPress"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-13T04:49:51.935Z",
+    "lastUpdate": "2026-06-13T13:54:42.293Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "10 evidence files found",
     "proposalStatus": "3 proposal packages found",
     "dashboardStatus": "Ready: static local PWA data generated"
+  },
+  "studio": {
+    "studioHealth": "Healthy",
+    "releaseReadiness": "Needs Review",
+    "systemStatus": "Ready",
+    "criticalIssues": 0,
+    "warnings": 1,
+    "currentMrr": 0,
+    "readyForOutreach": "Ready",
+    "readyForAuditSales": "Ready",
+    "readyForRetainers": "Ready",
+    "readyForClientDelivery": "Ready"
   },
   "mobileCommandCenter": {
     "reviewCenter": {

@@ -449,6 +449,19 @@ Generated: ${data.generatedAt}
 - Best Starter Pack Opportunity: ${data.revenue.bestStarterPackOpportunity}
 - Best Retainer Opportunity: ${data.revenue.bestRetainerOpportunity}
 
+## Studio Consolidation
+
+- Studio Health: ${data.studio.studioHealth}
+- Release Readiness: ${data.studio.releaseReadiness}
+- System Status: ${data.studio.systemStatus}
+- Critical Issues: ${data.studio.criticalIssues}
+- Warnings: ${data.studio.warnings}
+- Current MRR: ${formatCurrency(data.studio.currentMrr)}
+- Ready For Outreach: ${data.studio.readyForOutreach}
+- Ready For Audit Sales: ${data.studio.readyForAuditSales}
+- Ready For Retainers: ${data.studio.readyForRetainers}
+- Ready For Client Delivery: ${data.studio.readyForClientDelivery}
+
 ## Safety
 
 ${data.safety.map((item) => `- ${item}`).join('\n')}
@@ -476,6 +489,11 @@ Generated: ${data.generatedAt}
 - Evidence Status: ${data.systemHealth.evidenceStatus}
 - Proposal Status: ${data.systemHealth.proposalStatus}
 - Dashboard Status: ${data.systemHealth.dashboardStatus}
+- Studio Health: ${data.studio.studioHealth}
+- Release Readiness: ${data.studio.releaseReadiness}
+- System Status: ${data.studio.systemStatus}
+- Critical Issues: ${data.studio.criticalIssues}
+- Warnings: ${data.studio.warnings}
 
 ## PWA Files
 

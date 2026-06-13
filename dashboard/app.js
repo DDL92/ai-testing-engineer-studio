@@ -25,6 +25,7 @@ function render(data) {
 
   renderActions(data.today.topActions);
   renderRevenue(data.revenue);
+  renderStudio(data.studio);
   renderLeads(data.leads.highestOpportunityScores);
   renderOutreach(data.outreach);
   renderAudits(data.audits);
@@ -54,6 +55,30 @@ function renderRevenue(revenue) {
     ['Best Retainer', revenue.bestRetainerOpportunity],
   ];
   byId('revenueCards').innerHTML = items.map(([label, value]) => miniCard(label, value)).join('');
+}
+
+function renderStudio(studio) {
+  if (!studio) {
+    byId('studioCards').innerHTML = miniCard('Studio Health', 'Not loaded');
+    byId('releaseCards').innerHTML = miniCard('Release Readiness', 'Not loaded');
+    return;
+  }
+
+  byId('studioCards').innerHTML = [
+    miniCard('Studio Health', studio.studioHealth),
+    miniCard('System Status', studio.systemStatus),
+    miniCard('Current MRR', `$${Number(studio.currentMrr || 0).toLocaleString('en-US')}`),
+    miniCard('Warnings', studio.warnings),
+  ].join('');
+
+  byId('releaseCards').innerHTML = [
+    miniCard('Release Readiness', studio.releaseReadiness),
+    miniCard('Critical Issues', studio.criticalIssues),
+    miniCard('Ready For Outreach', studio.readyForOutreach),
+    miniCard('Ready For Audit Sales', studio.readyForAuditSales),
+    miniCard('Ready For Retainers', studio.readyForRetainers),
+    miniCard('Ready For Client Delivery', studio.readyForClientDelivery),
+  ].join('');
 }
 
 function renderLeads(leads) {
