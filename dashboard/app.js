@@ -25,6 +25,7 @@ function render(data) {
 
   renderActions(data.today.topActions);
   renderRevenue(data.revenue);
+  renderRevenueActivation(data.revenueActivation);
   renderStudio(data.studio);
   renderLeads(data.leads.highestOpportunityScores);
   renderOutreach(data.outreach);
@@ -55,6 +56,21 @@ function renderRevenue(revenue) {
     ['Best Retainer', revenue.bestRetainerOpportunity],
   ];
   byId('revenueCards').innerHTML = items.map(([label, value]) => miniCard(label, value)).join('');
+}
+
+function renderRevenueActivation(activation) {
+  if (!activation) {
+    byId('activationCards').innerHTML = miniCard('Revenue Activation', 'Not loaded');
+    return;
+  }
+
+  byId('activationCards').innerHTML = [
+    miniCard('Revenue Activation', activation.revenueActivation),
+    miniCard('First Client Goal', activation.firstClientGoal),
+    miniCard('First Retainer Goal', activation.firstRetainerGoal),
+    miniCard('Top Revenue Target', `${activation.topRevenueTarget} (${activation.topActivationScore}/100)`),
+    miniCard('Top Revenue Action', activation.topRevenueAction),
+  ].join('');
 }
 
 function renderStudio(studio) {

@@ -10,6 +10,7 @@ import { buildOpportunitySummary } from '../opportunityEngine/opportunityEngineR
 import { OpportunityReport } from '../opportunityEngine/types';
 import { buildProposalPortfolio } from '../proposalEngine/proposalRules';
 import { ProposalPackage } from '../proposalEngine/types';
+import { buildRevenueActivationReport } from '../revenueActivation/revenueRules';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
 import { buildUnifiedAuditPortfolio } from '../unifiedAuditGenerator/unifiedAuditRules';
 
@@ -80,6 +81,15 @@ export interface DashboardStudioStatus {
   readyForClientDelivery: string;
 }
 
+export interface DashboardRevenueActivation {
+  revenueActivation: string;
+  firstClientGoal: string;
+  firstRetainerGoal: string;
+  topRevenueTarget: string;
+  topRevenueAction: string;
+  topActivationScore: number;
+}
+
 export interface DashboardData {
   generatedAt: string;
   mode: 'read-only';
@@ -125,6 +135,7 @@ export interface DashboardData {
     dashboardStatus: string;
   };
   studio: DashboardStudioStatus;
+  revenueActivation: DashboardRevenueActivation;
   mobileCommandCenter: DashboardMobileCenter;
   safety: string[];
 }
@@ -149,6 +160,7 @@ export function buildPwaDashboardData(): DashboardData {
   const auditPortfolio = buildUnifiedAuditPortfolio();
   const proposalPortfolio = buildProposalPortfolio();
   const studioReport = buildStudioConsolidationReport();
+  const revenueActivationReport = buildRevenueActivationReport();
   const outreach = readJson<OutreachRecord[]>(outreachPath, []);
   const proposalReady = proposalPortfolio.proposals.filter((proposal) => proposal.artifacts.markdownPath && proposal.artifacts.pdfPath);
   const topActions = dayPlan.topActions.map((action) => ({
@@ -233,6 +245,14 @@ export function buildPwaDashboardData(): DashboardData {
       readyForAuditSales: studioReport.releaseReadiness.readyForAuditSales,
       readyForRetainers: studioReport.releaseReadiness.readyForRetainers,
       readyForClientDelivery: studioReport.releaseReadiness.readyForClientDelivery,
+    },
+    revenueActivation: {
+      revenueActivation: revenueActivationReport.targets.find((target) => target.status === 'Current Focus')?.title ?? 'First Audit Sold',
+      firstClientGoal: revenueActivationReport.firstClientPlan.bestCompany,
+      firstRetainerGoal: revenueActivationReport.firstRetainerPlan.mostLikelyRetainerCandidate,
+      topRevenueTarget: revenueActivationReport.pipeline[0]?.companyName ?? 'No target found',
+      topRevenueAction: revenueActivationReport.focusActions[0]?.title ?? 'Review revenue focus',
+      topActivationScore: revenueActivationReport.pipeline[0]?.activationScore ?? 0,
     },
     mobileCommandCenter: {
       reviewCenter: {

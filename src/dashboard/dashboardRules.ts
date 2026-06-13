@@ -462,6 +462,15 @@ Generated: ${data.generatedAt}
 - Ready For Retainers: ${data.studio.readyForRetainers}
 - Ready For Client Delivery: ${data.studio.readyForClientDelivery}
 
+## Revenue Activation
+
+- Revenue Activation: ${data.revenueActivation.revenueActivation}
+- First Client Goal: ${data.revenueActivation.firstClientGoal}
+- First Retainer Goal: ${data.revenueActivation.firstRetainerGoal}
+- Top Revenue Target: ${data.revenueActivation.topRevenueTarget}
+- Top Revenue Action: ${data.revenueActivation.topRevenueAction}
+- Top Activation Score: ${data.revenueActivation.topActivationScore}/100
+
 ## Safety
 
 ${data.safety.map((item) => `- ${item}`).join('\n')}
@@ -494,6 +503,9 @@ Generated: ${data.generatedAt}
 - System Status: ${data.studio.systemStatus}
 - Critical Issues: ${data.studio.criticalIssues}
 - Warnings: ${data.studio.warnings}
+- Revenue Activation: ${data.revenueActivation.revenueActivation}
+- Top Revenue Target: ${data.revenueActivation.topRevenueTarget}
+- Top Activation Score: ${data.revenueActivation.topActivationScore}/100
 
 ## PWA Files
 

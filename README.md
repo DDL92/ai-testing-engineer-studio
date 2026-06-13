@@ -108,6 +108,10 @@ npm run dashboard:preview
 npm run revenue:visibility
 npm run revenue:command-center
 npm run revenue:forecast
+npm run revenue:targets
+npm run revenue:pipeline
+npm run revenue:focus
+npm run revenue:score
 npm run finance:monthly
 npm run finance:dashboard
 npm run finance:forecast
@@ -171,6 +175,7 @@ Pipeline prioritization reports are written to `output/pipeline-prioritization` 
 Commercial Mode reports are written to `output/commercial-mode` for demo/sample isolation and commercial-only opportunity summaries. Revenue-facing reports use the shared Commercial Mode rules so demo/sample leads remain available for testing without distorting commercial reporting.
 The PWA dashboard writes `output/dashboard/dashboard.json`, `output/dashboard/dashboard-summary.md`, `output/dashboard/dashboard-health.md`, and the static read-only app under `dashboard/`. `npm run dashboard:generate` refreshes local dashboard data, `npm run dashboard:build` verifies the static dashboard package, `npm run dashboard:preview` serves `dashboard/index.html` locally, and `npm run dashboard:mobile` exposes it on the local network for same-WiFi phone review. It reads local Studio outputs only and does not send outreach, send proposals, create invoices, create payments, modify data, call APIs, or use credentials.
 The Revenue Command Center writes `output/revenue-command-center` reports for booked MRR, speculative MRR forecasts, audit opportunities, retainer opportunities, renewal/expansion visibility, property-progress scenarios, and top manual revenue actions. It uses local Studio data only and does not treat opportunities as booked revenue.
+The Revenue Activation Engine writes `output/revenue` reports for first-audit targets, ranked revenue pipeline, 30-minute revenue focus, scoring, first-client planning, and first-retainer planning. `npm run revenue:targets`, `npm run revenue:pipeline`, `npm run revenue:focus`, and `npm run revenue:score` use local Studio evidence only and do not send outreach, send proposals, create invoices, invent meetings, invent replies, invent revenue, or infer client interest.
 The Finance Tracking layer reads `data/finance/finance.json` as the source of truth for booked money and writes `output/finance` reports for monthly finance, MRR tracking, finance dashboard, forecasts, revenue opportunities, savings planning, and property progress. It is local-only, uses approved offer ranges only, and does not process payments, generate invoices, create payment links, connect banks, call APIs, or treat lead candidates as booked revenue.
 The Real Client Readiness Pack writes `output/real-client-readiness` reports for Top 5 commercial lead readiness, manual contact planning, outreach safety checks, first audit sales positioning, and SOW readiness. It does not invent contacts or findings and does not send outreach.
 The Proposal Command Center writes `output/proposal-center` reports for proposal-ready leads, SOW readiness, proposal priority, pricing recommendations, and approval checks. It is local-only and does not send proposals, invent findings, or treat opportunities as booked revenue.

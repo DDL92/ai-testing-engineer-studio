@@ -1370,6 +1370,79 @@ Output files:
 Safety note:
 Forecasts are planning math only. They do not claim revenue exists unless it is stored in `data/finance/finance.json`, and they do not connect payment tools, invoices, APIs, CRMs, scraping, browsing, external databases, banks, or credentials.
 
+## `npm run revenue:targets`
+
+Purpose:
+Generate Sprint 72 revenue targets for First Audit Sold, First Starter Pack Sold, First Retainer Sold, and $3,000 MRR.
+
+Example:
+
+```sh
+npm run revenue:targets
+```
+
+Output files:
+`output/revenue/revenue-targets.md`
+`output/revenue/first-client-plan.md`
+
+Safety note:
+Revenue targets use local finance and Studio readiness data only. They do not send outreach, send emails, send proposals, create invoices, create payments, invent meetings, invent replies, invent revenue, or infer client interest.
+
+## `npm run revenue:pipeline`
+
+Purpose:
+Rank PushPress, TeamUp, Glofox, and Wodify by opportunity score, evidence readiness, proposal readiness, contact readiness, and audit readiness.
+
+Example:
+
+```sh
+npm run revenue:pipeline
+```
+
+Output files:
+`output/revenue/revenue-pipeline.md`
+`output/revenue/first-retainer-plan.md`
+
+Safety note:
+Pipeline scores are readiness scores, not booked revenue or client interest. Human approval is required before external action.
+
+## `npm run revenue:focus`
+
+Purpose:
+Answer the daily execution question: if Daniel only had 30 minutes today, what should he do to move toward the first paying client?
+
+Example:
+
+```sh
+npm run revenue:focus
+```
+
+Output files:
+`output/revenue/revenue-focus.md`
+`output/revenue/first-client-plan.md`
+`output/revenue/first-retainer-plan.md`
+
+Safety note:
+Focus actions are planning only. This command does not send outreach, follow-ups, proposals, invoices, payments, or client updates.
+
+## `npm run revenue:score`
+
+Purpose:
+Generate the detailed revenue activation scorecard for the four current target companies.
+
+Example:
+
+```sh
+npm run revenue:score
+```
+
+Output files:
+`output/revenue/revenue-score.md`
+`output/revenue/revenue-pipeline.md`
+
+Safety note:
+Scores use local Studio evidence only and do not invent meetings, replies, revenue, client commitments, or results.
+
 ## `npm run client-readiness:pack`
 
 Purpose:

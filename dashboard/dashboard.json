@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-13T13:54:42.293Z",
+  "generatedAt": "2026-06-13T14:06:11.431Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-13",
@@ -142,7 +142,7 @@
     "bestRetainerOpportunity": "PushPress"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-13T13:54:42.293Z",
+    "lastUpdate": "2026-06-13T14:06:11.431Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "10 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -159,6 +159,14 @@
     "readyForAuditSales": "Ready",
     "readyForRetainers": "Ready",
     "readyForClientDelivery": "Ready"
+  },
+  "revenueActivation": {
+    "revenueActivation": "First Audit Sold",
+    "firstClientGoal": "PushPress",
+    "firstRetainerGoal": "PushPress",
+    "topRevenueTarget": "PushPress",
+    "topRevenueAction": "Move First Audit Sold forward",
+    "topActivationScore": 98
   },
   "mobileCommandCenter": {
     "reviewCenter": {

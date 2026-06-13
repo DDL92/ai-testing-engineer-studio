@@ -1,6 +1,6 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-13T13:54:42.293Z
+Generated: 2026-06-13T14:06:11.431Z
 
 ## Today
 
@@ -53,6 +53,15 @@ Generated: 2026-06-13T13:54:42.293Z
 - Ready For Audit Sales: Ready
 - Ready For Retainers: Ready
 - Ready For Client Delivery: Ready
+
+## Revenue Activation
+
+- Revenue Activation: First Audit Sold
+- First Client Goal: PushPress
+- First Retainer Goal: PushPress
+- Top Revenue Target: PushPress
+- Top Revenue Action: Move First Audit Sold forward
+- Top Activation Score: 98/100
 
 ## Safety
 

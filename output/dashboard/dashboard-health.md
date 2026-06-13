@@ -1,10 +1,10 @@
 # Dashboard Health
 
-Generated: 2026-06-13T13:54:42.293Z
+Generated: 2026-06-13T14:06:11.431Z
 
 ## Status
 
-- Last Update: 2026-06-13T13:54:42.293Z
+- Last Update: 2026-06-13T14:06:11.431Z
 - Lead Research Status: 7 research packs found
 - Evidence Status: 10 evidence files found
 - Proposal Status: 3 proposal packages found
@@ -14,6 +14,9 @@ Generated: 2026-06-13T13:54:42.293Z
 - System Status: Ready
 - Critical Issues: 0
 - Warnings: 1
+- Revenue Activation: First Audit Sold
+- Top Revenue Target: PushPress
+- Top Activation Score: 98/100
 
 ## PWA Files
 
