@@ -524,6 +524,14 @@ Generated: ${data.generatedAt}
 - Fastest Revenue Path: ${data.leadIntelligence.fastestRevenuePath}
 - Recommended Next Action: ${data.leadIntelligence.recommendedNextAction}
 
+## Operator Mode
+
+- Top Lead: ${data.operatorMode.topLead}
+- Top Offer: ${data.operatorMode.topOffer}
+- Top Action: ${data.operatorMode.topAction}
+- Studio Status: ${data.operatorMode.studioStatus}
+- Today At A Glance: ${data.operatorMode.todayAtAGlance}
+
 ## Safety
 
 ${data.safety.map((item) => `- ${item}`).join('\n')}
@@ -585,6 +593,8 @@ Generated: ${data.generatedAt}
 - Best Lead: ${data.leadIntelligence.bestLead}
 - Best Offer: ${data.leadIntelligence.bestOffer}
 - Highest Opportunity Score: ${data.leadIntelligence.highestOpportunityScore}/100
+- Operator Top Action: ${data.operatorMode.topAction}
+- Operator Studio Status: ${data.operatorMode.studioStatus}
 
 ## PWA Files
 

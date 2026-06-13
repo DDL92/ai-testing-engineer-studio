@@ -27,6 +27,7 @@ function render(data) {
   renderRevenue(data.revenue);
   renderRevenueActivation(data.revenueActivation);
   renderLeadIntelligence(data.leadIntelligence);
+  renderOperatorMode(data.operatorMode);
   renderExecutionPack(data.executionPack);
   renderOutcomeTracking(data.outcomeTracking);
   renderFollowUpEngine(data.followUpEngine);
@@ -91,6 +92,21 @@ function renderLeadIntelligence(intelligence) {
     miniCard('Highest Opportunity Score', `${intelligence.highestOpportunityScore}/100`),
     miniCard('Fastest Revenue Path', intelligence.fastestRevenuePath),
     miniCard('Recommended Next Action', intelligence.recommendedNextAction),
+  ].join('');
+}
+
+function renderOperatorMode(operatorMode) {
+  if (!operatorMode) {
+    byId('operatorModeCards').innerHTML = miniCard('Top Lead', 'Not loaded');
+    return;
+  }
+
+  byId('operatorModeCards').innerHTML = [
+    miniCard('Top Lead', operatorMode.topLead),
+    miniCard('Top Offer', operatorMode.topOffer),
+    miniCard('Top Action', operatorMode.topAction),
+    miniCard('Studio Status', operatorMode.studioStatus),
+    miniCard('Today At A Glance', operatorMode.todayAtAGlance),
   ].join('');
 }
 

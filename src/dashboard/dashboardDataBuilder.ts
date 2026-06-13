@@ -7,6 +7,7 @@ import {
   loadDailyRevenueLoopInput,
 } from '../dailyRevenueLoop/dailyLoopRules';
 import { buildLeadIntelligenceReport } from '../leadIntelligence/leadRules';
+import { buildOperatorUxSummary } from '../operatorUx/uxRules';
 import { buildOpportunitySummary } from '../opportunityEngine/opportunityEngineRules';
 import { OpportunityReport } from '../opportunityEngine/types';
 import { buildFirstRevenueExecutionPack } from '../executionPack/generateFirstRevenueChecklist';
@@ -149,6 +150,14 @@ export interface DashboardLeadIntelligence {
   recommendedNextAction: string;
 }
 
+export interface DashboardOperatorMode {
+  topLead: string;
+  topOffer: string;
+  topAction: string;
+  studioStatus: string;
+  todayAtAGlance: string;
+}
+
 export interface DashboardData {
   generatedAt: string;
   mode: 'read-only';
@@ -201,6 +210,7 @@ export interface DashboardData {
   winLossIntelligence: DashboardWinLossIntelligence;
   studioSnapshot: DashboardStudioSnapshot;
   leadIntelligence: DashboardLeadIntelligence;
+  operatorMode: DashboardOperatorMode;
   mobileCommandCenter: DashboardMobileCenter;
   safety: string[];
 }
@@ -233,6 +243,7 @@ export function buildPwaDashboardData(): DashboardData {
   const snapshotState = readSnapshotState();
   const leadIntelligenceReport = buildLeadIntelligenceReport();
   const topLead = leadIntelligenceReport.leads[0];
+  const operatorSummary = buildOperatorUxSummary();
   const outreach = readJson<OutreachRecord[]>(outreachPath, []);
   const proposalReady = proposalPortfolio.proposals.filter((proposal) => proposal.artifacts.markdownPath && proposal.artifacts.pdfPath);
   const topActions = dayPlan.topActions.map((action) => ({
@@ -372,6 +383,13 @@ export function buildPwaDashboardData(): DashboardData {
       highestOpportunityScore: topLead?.overallScore ?? 0,
       fastestRevenuePath: topLead?.fastestRevenuePath ?? 'No local revenue path found',
       recommendedNextAction: topLead ? `${topLead.recommendedActionType} - ${topLead.recommendedNextAction}` : 'No local next action found',
+    },
+    operatorMode: {
+      topLead: operatorSummary.topLead,
+      topOffer: operatorSummary.topOffer,
+      topAction: operatorSummary.topAction,
+      studioStatus: operatorSummary.studioStatus,
+      todayAtAGlance: operatorSummary.todayAtAGlance.join(' | '),
     },
     mobileCommandCenter: {
       reviewCenter: {

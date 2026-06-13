@@ -1,6 +1,6 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-13T20:58:44.244Z
+Generated: 2026-06-13T21:20:24.593Z
 
 ## Today
 
@@ -115,6 +115,14 @@ Generated: 2026-06-13T20:58:44.244Z
 - Highest Opportunity Score: 99/100
 - Fastest Revenue Path: Review first-client package and manually decide SEND / WAIT / REWRITE for the QA Audit offer.
 - Recommended Next Action: REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE.
+
+## Operator Mode
+
+- Top Lead: PushPress
+- Top Offer: QA Audit ($199-$500)
+- Top Action: REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE.
+- Studio Status: Healthy
+- Today At A Glance: Top Lead: PushPress | Offer: QA Audit ($199-$500) | Action: REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE. | MRR: $0 | Studio Health: Healthy | Release Readiness: Warning
 
 ## Safety
 

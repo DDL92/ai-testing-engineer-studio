@@ -2759,6 +2759,75 @@ Output file:
 Safety note:
 Local recovery check only. No records or external systems are modified.
 
+## `npm run studio:launch-status`
+
+Purpose:
+Generate launch status and today-at-a-glance summaries for daily operator use.
+
+Example:
+
+```sh
+npm run studio:launch-status
+```
+
+Output files:
+`output/operator/launch-status.md`
+`output/operator/today-at-a-glance.md`
+
+Safety note:
+Usability summary only. It does not send outreach, emails, create meetings, create invoices, create payments, create revenue, or create outcomes.
+
+## `npm run studio:cockpit`
+
+Purpose:
+Generate the single-page Operator Cockpit with top lead, top offer, revenue opportunity, next manual action, blockers, and warnings.
+
+Example:
+
+```sh
+npm run studio:cockpit
+```
+
+Output file:
+`output/operator/operator-cockpit.md`
+
+Safety note:
+Read-only cockpit. No workflow or business logic changes are made.
+
+## `npm run studio:quick-actions`
+
+Purpose:
+Generate the short list of the most important daily commands.
+
+Example:
+
+```sh
+npm run studio:quick-actions
+```
+
+Output file:
+`output/operator/quick-actions.md`
+
+Safety note:
+Commands are listed for Daniel to run manually. No external action is performed.
+
+## `npm run studio:highlights`
+
+Purpose:
+Generate concise system highlights for daily status review.
+
+Example:
+
+```sh
+npm run studio:highlights
+```
+
+Output file:
+`output/operator/system-highlights.md`
+
+Safety note:
+Highlights are local summaries only.
+
 ## `npm run cockpit`
 
 Purpose:
