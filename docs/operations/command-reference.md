@@ -1310,6 +1310,66 @@ Output file:
 Safety note:
 Speculative MRR is deterministic scenario math from local retainer opportunities and is not booked revenue. This command does not connect payment tools, invoices, APIs, CRMs, scraping, browsing, external databases, or credentials.
 
+## `npm run finance:monthly`
+
+Purpose:
+Generate the local monthly finance package from `data/finance/finance.json`, including current MRR, target progress, one-time revenue, operating cost, net monthly profit, MRR tracker, and local revenue opportunities.
+
+Example:
+
+```sh
+npm run finance:monthly
+```
+
+Output files:
+`output/finance/monthly-finance.md`
+`output/finance/mrr-tracker.md`
+`output/finance/revenue-opportunities.md`
+
+Safety note:
+Booked revenue is counted only from local finance records with status `booked` or `received`. This command does not process payments, send invoices, create payment links, connect Stripe, connect PayPal, connect banks, call APIs, scrape, browse, use credentials, or treat lead candidates as booked revenue.
+
+## `npm run finance:dashboard`
+
+Purpose:
+Generate the local finance dashboard with current MRR, target MRR progress, best revenue opportunity, retainer candidates, audit candidates, monthly forecast, savings forecast, and property progress.
+
+Example:
+
+```sh
+npm run finance:dashboard
+```
+
+Output files:
+`output/finance/finance-dashboard.md`
+`output/finance/monthly-finance.md`
+`output/finance/mrr-tracker.md`
+`output/finance/revenue-opportunities.md`
+`output/finance/savings-plan.md`
+`output/finance/property-progress.md`
+
+Safety note:
+Dashboard opportunities are local lead candidates only. The dashboard does not invent revenue, process payments, create invoices, create payment links, call APIs, scrape, browse, connect financial systems, use credentials, or move money.
+
+## `npm run finance:forecast`
+
+Purpose:
+Generate local conservative, base case, and aggressive finance forecasts using approved offer ranges only.
+
+Example:
+
+```sh
+npm run finance:forecast
+```
+
+Output files:
+`output/finance/finance-forecast.md`
+`output/finance/savings-plan.md`
+`output/finance/property-progress.md`
+
+Safety note:
+Forecasts are planning math only. They do not claim revenue exists unless it is stored in `data/finance/finance.json`, and they do not connect payment tools, invoices, APIs, CRMs, scraping, browsing, external databases, banks, or credentials.
+
 ## `npm run client-readiness:pack`
 
 Purpose:

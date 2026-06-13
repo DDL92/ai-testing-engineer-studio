@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-13T00:00:00.000Z",
+  "targets": {
+    "targetMrr": 3000,
+    "nextTargetMrr": 5000,
+    "longTermTargetMrr": 10000,
+    "monthlyPersonalLivingCost": {
+      "min": 1000,
+      "max": 1500
+    },
+    "preferredClientModel": "3-5 clients at $1,500-$3,000/month",
+    "surfTrainLiveTargetFund": 100000
+  },
+  "costProfile": {
+    "monthlyOperatingCost": 0,
+    "currentSavings": 0
+  },
+  "revenueActivity": []
+}
