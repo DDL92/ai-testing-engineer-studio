@@ -55,7 +55,7 @@ Use this when Daniel has time for deeper revenue work.
 6. Run `npm run lead:pack -- --id lead_id`.
 7. Manually research the contact and confirm fit.
 8. If appropriate, run `npm run audit:site -- --url https://example.com`.
-9. If qualified, run `npm run sow:generate -- --id lead_id`.
+9. If qualified and audit evidence exists, run `npm run sow:generate -- --company CompanyName`.
 10. Update lead status, follow-up date, or notes manually in local data.
 
 Output goal:

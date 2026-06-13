@@ -1,5 +1,6 @@
 import fs = require('fs');
 import path = require('path');
+import { loadLighthouseReport } from '../lighthouseEvidence/lighthouseRules';
 import { buildOpportunity } from '../opportunityEngine/opportunityEngineRules';
 import {
   AuditPack,
@@ -273,6 +274,7 @@ function buildPotentialRisks(opportunity: AuditPack['opportunity']): AuditPackRi
       confidence,
       recommendation: 'Review release-sensitive flows and confirm risk with Daniel before outreach or proposal use.',
     },
+    ...buildLighthousePotentialRisks(opportunity.companyId),
   ];
 }
 
@@ -283,12 +285,26 @@ function buildSourceFiles(opportunity: AuditPack['opportunity']): AuditSourceFil
     ['Channel Research', `output/channel-research/${opportunity.companyId}.md`],
     ['Pain Intelligence', `output/pain-research/${opportunity.companyId}-pain-research.md`],
     ['Site Intelligence', `output/site-intelligence/${opportunity.companyId}-site-intelligence.md`],
+    ['Lighthouse Evidence', `output/lighthouse/${opportunity.companyId}-lighthouse.md`],
   ] as const;
 
   return files.map(([label, relativePath]) => ({
     label,
     path: relativePath,
     available: fs.existsSync(path.join(process.cwd(), relativePath)),
+  }));
+}
+
+function buildLighthousePotentialRisks(companyId: string): AuditPackRisk[] {
+  const report = loadLighthouseReport(companyId);
+  if (!report) return [];
+
+  return report.opportunities.map((opportunity) => ({
+    type: opportunity.type,
+    risk: opportunity.description,
+    evidence: `${opportunity.evidence} Source: ${report.markdownReportPath}.`,
+    confidence: opportunity.confidence,
+    recommendation: 'Validate with manual review before presenting externally; frame as a potential quality opportunity, not a confirmed issue.',
   }));
 }
 
@@ -511,6 +527,7 @@ function safetyNotes(): string[] {
     'Do not invent bugs, complaints, vulnerabilities, incidents, customer feedback, findings, or metrics.',
     'Use approved pricing only: QA Audit ($199-$500), Playwright Starter Pack ($900-$1500), QA Automation Retainer ($1500-$3000/month).',
     'All outputs remain evidence-based, opportunity-based, and human-approved.',
+    'Lighthouse evidence, when present, is public-homepage quality evidence only and is not vulnerability scanning.',
     'Daniel approval is required before client use.',
   ];
 }

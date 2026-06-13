@@ -3,6 +3,7 @@ import { CompanyContactRecord } from '../leadResearch/types';
 import { OpportunityReport } from '../opportunityEngine/types';
 import { PainResearchRecord } from '../painIntelligence/types';
 import { SiteIntelligenceRecord } from '../siteIntelligence/types';
+import { LighthouseEvidenceReport } from '../lighthouseEvidence/types';
 
 export type EvidenceCategory =
   | 'contact-evidence'
@@ -12,6 +13,7 @@ export type EvidenceCategory =
   | 'qa-opportunity'
   | 'ux-opportunity'
   | 'automation-opportunity'
+  | 'lighthouse-evidence'
   | 'audit-opportunity'
   | 'commercial-opportunity'
   | 'research-gap';
@@ -32,6 +34,7 @@ export type EvidenceGap =
   | 'Missing Engineering Contact'
   | 'Missing Channel'
   | 'Missing Site Evidence'
+  | 'Missing Lighthouse Evidence'
   | 'Missing Opportunity Evidence'
   | 'Missing Audit Evidence';
 
@@ -61,7 +64,7 @@ export interface EvidenceItem {
 
 export interface FutureEvidenceSlot {
   type: FutureEvidenceType;
-  status: 'Not Implemented';
+  status: 'Implemented' | 'Not Implemented';
   notes: string;
 }
 
@@ -70,6 +73,7 @@ export interface EvidenceCoverage {
   channelCoverage: number;
   painCoverage: number;
   siteCoverage: number;
+  lighthouseCoverage: number;
   opportunityCoverage: number;
   auditCoverage: number;
 }
@@ -80,6 +84,7 @@ export interface EvidenceInputBundle {
   channels: ChannelRecord[];
   pain?: PainResearchRecord;
   site?: SiteIntelligenceRecord;
+  lighthouse?: LighthouseEvidenceReport;
   opportunity?: OpportunityReport;
   outputFiles: EvidenceOutputFile[];
 }

@@ -26,28 +26,122 @@ Completion notes:
 - No forms, logins, account creation, payment flows, bookings, authenticated areas, private dashboards, scraping, aggressive crawling, credentials, authenticated APIs, outreach, email, or messages are used.
 - Findings are framed as potential QA, UX, automation, or accessibility opportunities only.
 
-## Sprint 62: Client-Ready QA Audit Report Generator
+## Sprint 62: Lighthouse Evidence Engine
 
 Goal:
-Transform Audit Packs, Evidence Engine outputs, and Playwright Evidence into professional client-facing QA Audit Reports that can support discovery calls, audit sales, and QA Automation retainers.
+Add objective Lighthouse evidence for public homepage quality metrics.
 
 Expected commands:
 
 ```sh
-npm run audit:report -- --company PushPress
-npm run audit:report-portfolio
+npm run evidence:lighthouse -- --company PushPress -- --url https://www.pushpress.com
+npm run evidence:lighthouse -- --company TeamUp -- --url https://goteamup.com
+npm run evidence:lighthouse -- --company Glofox -- --url https://www.glofox.com
+npm run evidence:lighthouse-summary
+```
+
+Completion notes:
+
+- Added `src/lighthouseEvidence` for real Lighthouse collection.
+- Added `npm run evidence:lighthouse` for one public homepage URL per company.
+- Added `npm run evidence:lighthouse-summary` for portfolio summary, priorities, and comparison.
+- Reports are generated under `output/lighthouse`.
+- Structured evidence is stored under `data/evidence/lighthouse/reports`.
+- Raw Lighthouse JSON and HTML reports are stored under `data/evidence/lighthouse/raw`.
+- Captures only Performance, Accessibility, Best Practices, and SEO scores.
+- Integrates Lighthouse availability into Evidence Engine and Opportunity Engine.
+- Audit Pack Engine consumes local Lighthouse opportunities when evidence exists.
+- No authentication, login, account creation, form submission, payment submission, aggressive crawling, credentials, vulnerability scanning, or penetration testing is used.
+
+## Sprint 63: Unified Audit Generator
+
+Goal:
+Combine Audit Pack, Playwright Evidence, Lighthouse Evidence, and Opportunity Engine outputs into one professional audit report ready for client delivery.
+
+Expected commands:
+
+```sh
+npm run audit:unified -- --company PushPress
+npm run audit:unified-summary
 ```
 
 What to build:
 
-- Client-ready QA audit report generator.
-- Portfolio-level audit report readiness.
-- Evidence-backed report sections.
-- Playwright evidence integration.
-- Manual approval checklist before client use.
+- Unified company audit report.
+- Portfolio-level unified audit summary.
+- Evidence-backed sections from Audit Pack, Playwright Evidence, Lighthouse Evidence, and Opportunity Engine.
+- Manual approval checklist before client delivery.
+- Clear separation between potential opportunities and confirmed findings.
 
 What not to build yet:
 Do not send reports, create invoices, create contracts, use payment tools, claim unverified findings, invent metrics, access private systems, or bypass Daniel approval.
+
+## Sprint 64: Client-Ready PDF Audit Generator
+
+Goal:
+Transform Unified Audits into professional client-facing PDF reports ready for discovery calls, audit sales, and QA Automation retainers.
+
+Expected commands:
+
+```sh
+npm run audit:pdf -- --company PushPress
+npm run audit:pdf-portfolio
+```
+
+What to build:
+
+- PDF rendering from unified audit Markdown.
+- Portfolio-level PDF generation.
+- Professional client-ready layout.
+- Manual approval checklist before sending.
+
+What not to build yet:
+Do not send PDFs, create contracts, create invoices, process payments, claim unverified findings, invent metrics, access private systems, or bypass Daniel approval.
+
+## Sprint 65: Proposal & SOW Generator
+
+Goal:
+Convert Client Audit Reports into client-ready Statements of Work and engagement proposals that support QA Audits, Playwright Starter Packs, and QA Automation Retainers.
+
+Expected commands:
+
+```sh
+npm run sow:generate -- --company PushPress
+npm run sow:portfolio
+```
+
+What to build:
+
+- SOW generation from approved client audit reports.
+- Portfolio-level SOW readiness.
+- Proposal-ready engagement scope.
+- Manual approval checklist before sending.
+
+What not to build yet:
+Do not send proposals, create invoices, process payments, auto-contact prospects, use credentials, invent findings, or bypass Daniel approval.
+
+## Sprint 66: Daily Revenue Loop
+
+Goal:
+Turn Studio into a daily operating system that tells Daniel exactly who to contact, who to follow up with, which audit to generate, which proposal to review, and which opportunity has the highest revenue potential.
+
+Expected commands:
+
+```sh
+npm run day:plan
+npm run day:summary
+```
+
+What to build:
+
+- Daily ranked action plan.
+- Proposal review queue.
+- Audit generation recommendations.
+- Follow-up and contact priorities from existing local outputs.
+- Revenue potential summary.
+
+What not to build yet:
+Do not send outreach, send proposals, automate follow-ups, connect CRMs, process payments, use credentials, invent contacts, or bypass Daniel approval.
 
 ## Sprint 56: Unified QA Opportunity Engine
 
@@ -516,9 +610,9 @@ Do not send proposals automatically, create e-signature integrations, or make bi
 
 Completion notes:
 
-- Added `npm run sow:generate -- --id lead_id` as a local Proposal/SOW draft generator.
+- Added the original lead-id based local Proposal/SOW draft generator. Sprint 65 replaces the active npm command with `npm run sow:generate -- --company PushPress`.
 - Added SOW rules under `src/sow` for executive summary, QA opportunity, recommended offer, scope, deliverables, timeline, pricing, assumptions, exclusions, client responsibilities, success criteria, next step, and safety review.
-- Generated drafts write to `output/sows/{lead_id}-sow.md`.
+- Current Sprint 65 proposal packages write to `output/proposals/{company}-proposal.md` and `output/proposals/{company}-proposal.pdf`.
 - Included three standard pricing options: QA Audit, Playwright Starter Pack, and QA Automation Retainer.
 - SOW drafts use cautious language, avoid invented audit findings, avoid fake client data, and require manual approval before sending.
 
@@ -778,7 +872,7 @@ Daniel needs proposal drafts that are fast to review, commercially clear, bounde
 Expected commands if relevant:
 
 ```sh
-npm run sow:generate -- --id lead_id
+npm run sow:generate -- --company PushPress
 ```
 
 What not to build yet:

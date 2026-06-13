@@ -1,0 +1,23 @@
+[
+  {
+    "companyId": "pushpress",
+    "companyName": "PushPress",
+    "status": "active",
+    "source": "Unified Audit Generator",
+    "notes": "Generate client-ready Markdown, HTML, and PDF audit report from local unified audit evidence."
+  },
+  {
+    "companyId": "teamup",
+    "companyName": "TeamUp",
+    "status": "active",
+    "source": "Unified Audit Generator",
+    "notes": "Generate client-ready Markdown, HTML, and PDF audit report from local unified audit evidence."
+  },
+  {
+    "companyId": "glofox",
+    "companyName": "Glofox / ABC Fitness",
+    "status": "active",
+    "source": "Unified Audit Generator",
+    "notes": "Generate client-ready Markdown, HTML, and PDF audit report from local unified audit evidence."
+  }
+]

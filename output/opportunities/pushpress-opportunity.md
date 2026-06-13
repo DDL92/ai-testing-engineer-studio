@@ -3,7 +3,7 @@
 ## Decision Summary
 
 - Opportunity category: checkout-quality
-- Confidence Score: 94/100
+- Confidence Score: 100/100
 - Research Required: No
 - Best First Offer: QA Audit ($199-$500)
 - Retainer Path: Start with a paid QA Audit, convert validated workflow risk into a Playwright Starter Pack, then propose QA Automation Retainer ($1500-$3000/month) only after evidence and fit are confirmed.
@@ -14,6 +14,7 @@
 - Channel Research: available
 - Pain Intelligence: available
 - Site Intelligence: available
+- Lighthouse Evidence: available
 
 ## Best Contact
 
@@ -54,7 +55,7 @@
 
 ## Commercial Reason
 
-- checkout-quality is the strongest current category because the local intelligence shows 5 approved contact records, 3 channel records, 3 pain-intelligence QA risk signals, 2 site-intelligence potential findings.
+- checkout-quality is the strongest current category because the local intelligence shows 5 approved contact records, 3 channel records, 3 pain-intelligence QA risk signals, 2 site-intelligence potential findings, Lighthouse homepage evidence is available.
 
 ## Outreach Priorities
 

@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TeamUp QA Audit Report</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1b2430;
+      --muted: #586174;
+      --line: #d8dee8;
+      --panel: #f6f8fb;
+      --accent: #1769aa;
+      --accent-soft: #e9f2fb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #ffffff;
+      font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+    main {
+      width: min(980px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 44px 0 64px;
+    }
+    .cover {
+      border-bottom: 3px solid var(--accent);
+      padding: 28px 0 34px;
+      margin-bottom: 28px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 36px;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 32px 0 12px;
+      font-size: 20px;
+      line-height: 1.25;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
+    }
+    h3 {
+      margin: 20px 0 8px;
+      font-size: 15px;
+      color: var(--accent);
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0 0 18px;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 18px;
+      margin-top: 18px;
+      color: var(--muted);
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 12px 14px;
+      border-radius: 6px;
+    }
+    .metric strong {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+    .metric span {
+      display: block;
+      margin-top: 4px;
+      font-size: 17px;
+      font-weight: 650;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 18px;
+      table-layout: fixed;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      vertical-align: top;
+      word-break: break-word;
+    }
+    th {
+      background: var(--accent-soft);
+      text-align: left;
+      color: #143d63;
+    }
+    ul, ol {
+      padding-left: 22px;
+      margin: 8px 0 18px;
+    }
+    li { margin: 4px 0; }
+    .opportunity {
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      padding: 10px 12px;
+      margin: 10px 0;
+      page-break-inside: avoid;
+    }
+    .opportunity p {
+      margin: 4px 0;
+    }
+    .disclaimer {
+      background: #fff8e6;
+      border: 1px solid #efd79c;
+      padding: 12px 14px;
+      border-radius: 6px;
+    }
+    @media print {
+      main {
+        width: auto;
+        margin: 0;
+        padding: 24px;
+      }
+      .opportunity, .metric, table {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <section class="cover">
+    <h1>TeamUp</h1>
+    <p class="subtitle">QA Audit Report</p>
+    <div class="meta">
+      <div><strong>Generated Date:</strong> 2026-06-13</div>
+      <div><strong>Prepared By:</strong> AI Testing Engineer Studio</div>
+      <div><strong>Prepared For:</strong> Manual Review</div>
+      <div><strong>Report Type:</strong> Public evidence review</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Executive Summary</h2>
+    <div class="summary">
+      <div class="metric"><strong>Company</strong><span>TeamUp</span></div>
+      <div class="metric"><strong>Opportunity Score</strong><span>93/100</span></div>
+      <div class="metric"><strong>Evidence Readiness</strong><span>95/100</span></div>
+      <div class="metric"><strong>Recommended Service</strong><span>Playwright Starter Pack ($900-$1500)</span></div>
+    </div>
+    <p><strong>Recommended Next Action:</strong> Review Fiona Murphy and the LinkedIn path manually, then approve or reject a QA Audit outreach angle before any external action.</p>
+  </section>
+
+  <section>
+    <h2>Lighthouse Evidence</h2>
+    <table><tbody><tr><th>Performance</th><td>52/100</td></tr>
+<tr><th>Accessibility</th><td>87/100</td></tr>
+<tr><th>Best Practices</th><td>54/100</td></tr>
+<tr><th>SEO</th><td>92/100</td></tr></tbody></table>
+  </section>
+
+  <section>
+    <h2>Playwright Evidence</h2>
+    <table><tbody><tr><th>Pages Reviewed</th><td>5</td></tr>
+<tr><th>Screenshots Captured</th><td>5</td></tr>
+<tr><th>Console Observations</th><td>12</td></tr>
+<tr><th>Observed Public Flows</th><td>Homepage, Public Contact Page, Pricing, Public Marketing Pages</td></tr></tbody></table>
+  </section>
+
+  <section>
+    <h2>Potential Opportunities</h2>
+    <div class="opportunity">
+      <p><strong>Potential Automation Opportunity</strong></p>
+      <p>Create future smoke coverage for public page load and navigation visibility.</p>
+      <p><strong>Evidence:</strong> 25 navigation link(s) and 14 CTA candidate(s) observed on https://goteamup.com/.</p>
+      <p><strong>Confidence:</strong> Medium</p>
+    </div>
+<div class="opportunity">
+      <p><strong>Potential Automation Opportunity</strong></p>
+      <p>Create future smoke coverage for public page load and navigation visibility.</p>
+      <p><strong>Evidence:</strong> 25 navigation link(s) and 6 CTA candidate(s) observed on https://goteamup.com/company/contact.</p>
+      <p><strong>Confidence:</strong> Medium</p>
+    </div>
+<div class="opportunity">
+      <p><strong>Potential Automation Opportunity</strong></p>
+      <p>Create future smoke coverage for public page load and navigation visibility.</p>
+      <p><strong>Evidence:</strong> 25 navigation link(s) and 10 CTA candidate(s) observed on https://goteamup.com/pricing/.</p>
+      <p><strong>Confidence:</strong> Medium</p>
+    </div>
+<div class="opportunity">
+      <p><strong>Potential QA Opportunity</strong></p>
+      <p>Review console errors observed during passive public page load.</p>
+      <p><strong>Evidence:</strong> 2 console error(s) observed on https://goteamup.com/features/gym-booking-software.</p>
+      <p><strong>Confidence:</strong> Medium</p>
+    </div>
+<div class="opportunity">
+      <p><strong>Potential Automation Opportunity</strong></p>
+      <p>Create future smoke coverage for public page load and navigation visibility.</p>
+      <p><strong>Evidence:</strong> 25 navigation link(s) and 10 CTA candidate(s) observed on https://goteamup.com/features/gym-booking-software.</p>
+      <p><strong>Confidence:</strong> Medium</p>
+    </div>
+<div class="opportunity">
+      <p><strong>Potential Automation Opportunity</strong></p>
+      <p>Create future smoke coverage for public page load and navigation visibility.</p>
+      <p><strong>Evidence:</strong> 25 navigation link(s) and 9 CTA candidate(s) observed on https://goteamup.com/product/group-fitness-software/.</p>
+      <p><strong>Confidence:</strong> Medium</p>
+    </div>
+<div class="opportunity">
+      <p><strong>Potential Performance Opportunity</strong></p>
+      <p>Review performance improvements for the public homepage.</p>
+      <p><strong>Evidence:</strong> TeamUp Performance Lighthouse score was 52/100 on the public homepage.</p>
+      <p><strong>Confidence:</strong> Medium</p>
+    </div>
+<div class="opportunity">
+      <p><strong>Potential Accessibility Opportunity</strong></p>
+      <p>Review accessibility improvements for the public homepage.</p>
+      <p><strong>Evidence:</strong> TeamUp Accessibility Lighthouse score was 87/100 on the public homepage.</p>
+      <p><strong>Confidence:</strong> Low</p>
+    </div>
+<div class="opportunity">
+      <p><strong>Potential QA Opportunity</strong></p>
+      <p>Booking, membership, payment, and release confidence</p>
+      <p><strong>Evidence:</strong> Derived from Opportunity Engine recommended scope: public homepage and primary CTA; booking or membership journey; payment handoff if public; mobile viewport journey; release confidence opportunities.</p>
+      <p><strong>Confidence:</strong> High</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Recommended Coverage</h2>
+    <h3>Smoke Coverage</h3>
+    <ul><li>Homepage</li>
+<li>Public Contact Page</li>
+<li>Pricing</li>
+<li>Public Marketing Pages</li>
+<li>page load</li>
+<li>primary CTA path</li>
+<li>booking or membership journey entry</li>
+<li>payment handoff if public</li></ul>
+    <h3>Regression Coverage</h3>
+    <ul><li>page load regression check</li>
+<li>primary CTA path regression check</li>
+<li>booking or membership journey entry regression check</li>
+<li>payment handoff if public regression check</li>
+<li>mobile viewport smoke check regression check</li>
+<li>confirmation state after manual observation regression check</li>
+<li>public navigation regression check</li></ul>
+    <h3>Critical Path Coverage</h3>
+    <ul><li>public homepage and primary CTA</li>
+<li>booking or membership journey</li>
+<li>payment handoff if public</li>
+<li>mobile viewport journey</li>
+<li>release confidence opportunities</li>
+<li>Homepage</li>
+<li>Navigation</li></ul>
+  </section>
+
+  <section>
+    <h2>Recommended Engagement</h2>
+    <p>Playwright Starter Pack ($900-$1500)</p>
+    <h3>Upgrade Path</h3>
+    <ul><li>QA Audit</li>
+<li>Playwright Starter Pack</li>
+<li>QA Automation Retainer</li></ul>
+  </section>
+
+  <section>
+    <h2>Discovery Call Questions</h2>
+    <ol>
+      <li>Product: Which checkout-quality workflows create the most customer friction today?</li>
+<li>Engineering: How does the team maintain release confidence around Booking, membership, payment, and release confidence?</li>
+<li>QA: What automated coverage exists today, and where is it unreliable or missing?</li>
+<li>Release Process: Which release paths need the most manual regression checking?</li>
+<li>Risk Areas: If Daniel reviewed Playwright Smoke Test, what would make the audit useful within the first engagement?</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Disclaimer</h2>
+    <div class="disclaimer">
+      <p>This report is based on publicly observable information and collected evidence.</p>
+<p>Potential opportunities are observations only.</p>
+<p>No bugs, vulnerabilities, incidents, outages, or customer-impact statements should be inferred unless independently validated.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

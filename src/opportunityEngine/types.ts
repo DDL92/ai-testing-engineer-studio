@@ -49,6 +49,7 @@ export interface IntelligenceAvailability {
   channelResearch: boolean;
   painIntelligence: boolean;
   siteIntelligence: boolean;
+  lighthouseEvidence: boolean;
 }
 
 export interface OpportunityInputBundle {

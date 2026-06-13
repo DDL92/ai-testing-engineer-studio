@@ -2,6 +2,7 @@ import fs = require('fs');
 import path = require('path');
 import { ChannelRecord } from '../channelResearch/types';
 import { CompanyContactRecord } from '../leadResearch/types';
+import { loadLighthouseReport } from '../lighthouseEvidence/lighthouseRules';
 import { buildOpportunity } from '../opportunityEngine/opportunityEngineRules';
 import { PainResearchRecord } from '../painIntelligence/types';
 import { SiteIntelligenceRecord } from '../siteIntelligence/types';
@@ -39,6 +40,7 @@ export function buildEvidenceReport(company: string): EvidenceReport {
     channelCoverage: scoreChannelCoverage(bundle),
     painCoverage: scorePainCoverage(bundle),
     siteCoverage: scoreSiteCoverage(bundle),
+    lighthouseCoverage: scoreLighthouseCoverage(bundle),
     opportunityCoverage: scoreOutput('Opportunity Engine', bundle.outputFiles),
     auditCoverage: scoreOutput('QA Audit Pack', bundle.outputFiles),
   };
@@ -125,6 +127,7 @@ ${bullets([
 | Channel Coverage | ${report.coverage.channelCoverage}/100 |
 | Pain Coverage | ${report.coverage.painCoverage}/100 |
 | Site Coverage | ${report.coverage.siteCoverage}/100 |
+| Lighthouse Coverage | ${report.coverage.lighthouseCoverage}/100 |
 | Opportunity Coverage | ${report.coverage.opportunityCoverage}/100 |
 | Audit Coverage | ${report.coverage.auditCoverage}/100 |
 
@@ -206,9 +209,9 @@ ${bullets(safetyNotes())}
 export function renderEvidenceReadiness(portfolio: EvidencePortfolio): string {
   return `# Evidence Readiness
 
-| Company | Readiness | Confidence | Contact | Channel | Pain | Site | Opportunity | Audit |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-${portfolio.priorities.map((report) => `| ${report.companyName} | ${report.readinessScore}/100 | ${report.confidence} | ${report.coverage.contactCoverage} | ${report.coverage.channelCoverage} | ${report.coverage.painCoverage} | ${report.coverage.siteCoverage} | ${report.coverage.opportunityCoverage} | ${report.coverage.auditCoverage} |`).join('\n')}
+| Company | Readiness | Confidence | Contact | Channel | Pain | Site | Lighthouse | Opportunity | Audit |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+${portfolio.priorities.map((report) => `| ${report.companyName} | ${report.readinessScore}/100 | ${report.confidence} | ${report.coverage.contactCoverage} | ${report.coverage.channelCoverage} | ${report.coverage.painCoverage} | ${report.coverage.siteCoverage} | ${report.coverage.lighthouseCoverage} | ${report.coverage.opportunityCoverage} | ${report.coverage.auditCoverage} |`).join('\n')}
 
 ## Safety Notes
 
@@ -249,6 +252,7 @@ function buildInputBundle(company: string): EvidenceInputBundle {
     channels: readJson<ChannelRecord[]>(channelsPath, []).filter((record) => record.companyId === target.companyId),
     pain: readJson<PainResearchRecord[]>(painPath, []).find((record) => record.companyId === target.companyId),
     site: readJson<SiteIntelligenceRecord[]>(sitePath, []).find((record) => record.companyId === target.companyId),
+    lighthouse: loadLighthouseReport(target.companyId),
     opportunity,
     outputFiles: buildOutputFiles(target.companyId),
   };
@@ -340,6 +344,16 @@ function buildEvidenceItems(bundle: EvidenceInputBundle): EvidenceItem[] {
     }
   }
 
+  if (bundle.lighthouse) {
+    items.push(item(
+      'lighthouse-evidence',
+      `Lighthouse homepage scores recorded: Performance ${scoreLabel(bundle.lighthouse.scores.performance)}, Accessibility ${scoreLabel(bundle.lighthouse.scores.accessibility)}, Best Practices ${scoreLabel(bundle.lighthouse.scores.bestPractices)}, SEO ${scoreLabel(bundle.lighthouse.scores.seo)}.`,
+      sourceFor('Lighthouse Evidence', bundle.outputFiles, 'data/evidence/lighthouse/reports'),
+      bundle.lighthouse.opportunities.length > 0 ? 'Medium' : 'High',
+      ['QA Audit', 'Proposal Support'],
+    ));
+  }
+
   if (bundle.opportunity) {
     items.push(item(
       'audit-opportunity',
@@ -381,6 +395,7 @@ function buildEvidenceGaps(bundle: EvidenceInputBundle): EvidenceGap[] {
   if (!hasEngineering) gaps.push('Missing Engineering Contact');
   if (bundle.channels.length === 0 || !fileAvailable('Channel Research', bundle.outputFiles)) gaps.push('Missing Channel');
   if (!bundle.site || !fileAvailable('Site Intelligence', bundle.outputFiles)) gaps.push('Missing Site Evidence');
+  if (!bundle.lighthouse || !fileAvailable('Lighthouse Evidence', bundle.outputFiles)) gaps.push('Missing Lighthouse Evidence');
   if (!bundle.opportunity || !fileAvailable('Opportunity Engine', bundle.outputFiles)) gaps.push('Missing Opportunity Evidence');
   if (!fileAvailable('QA Audit Pack', bundle.outputFiles)) gaps.push('Missing Audit Evidence');
 
@@ -393,6 +408,7 @@ function buildOutputFiles(companyId: string): EvidenceOutputFile[] {
     ['Channel Research', `output/channel-research/${companyId}.md`],
     ['Pain Intelligence', `output/pain-research/${companyId}-pain-research.md`],
     ['Site Intelligence', `output/site-intelligence/${companyId}-site-intelligence.md`],
+    ['Lighthouse Evidence', `output/lighthouse/${companyId}-lighthouse.md`],
     ['Opportunity Engine', `output/opportunities/${companyId}-opportunity.md`],
     ['QA Audit Pack', `output/audit-packs/${companyId}-audit-pack.md`],
   ] as const;
@@ -438,6 +454,12 @@ function scoreSiteCoverage(bundle: EvidenceInputBundle): number {
   return Math.min(100, 15 + observationScore + findingScore + screenshotScore + automationScore);
 }
 
+function scoreLighthouseCoverage(bundle: EvidenceInputBundle): number {
+  if (!bundle.lighthouse || !fileAvailable('Lighthouse Evidence', bundle.outputFiles)) return 0;
+  const availableScores = Object.values(bundle.lighthouse.scores).filter((score) => score !== null).length;
+  return Math.min(100, availableScores * 25);
+}
+
 function scoreOutput(label: string, outputFiles: EvidenceOutputFile[]): number {
   return fileAvailable(label, outputFiles) ? 100 : 0;
 }
@@ -445,6 +467,7 @@ function scoreOutput(label: string, outputFiles: EvidenceOutputFile[]): number {
 function recommendedNextAction(bundle: EvidenceInputBundle, gaps: EvidenceGap[], readinessScore: number): string {
   if (gaps.includes('Missing Contact')) return 'Manually research and approve at least one contact before outreach or proposal use.';
   if (gaps.includes('Missing Product Contact') || gaps.includes('Missing Engineering Contact')) return 'Manually verify product and engineering contact coverage before client-facing use.';
+  if (gaps.includes('Missing Lighthouse Evidence')) return `Run npm run evidence:lighthouse -- --company "${bundle.target.companyName}" -- --url <public-homepage-url> before final audit packaging.`;
   if (gaps.includes('Missing Audit Evidence')) return `Run npm run audit:generate -- --company "${bundle.target.companyName}" before using this evidence externally.`;
   if (readinessScore >= 90) return 'Review evidence and approval checklist before using for discovery or QA Audit positioning.';
   return 'Review remaining gaps and confirm evidence manually before any external action.';
@@ -453,14 +476,14 @@ function recommendedNextAction(bundle: EvidenceInputBundle, gaps: EvidenceGap[],
 function futureEvidenceSlots(): FutureEvidenceSlot[] {
   return [
     ['playwright-evidence', 'Future slot for reviewed Playwright execution evidence.'],
-    ['lighthouse-evidence', 'Future slot for reviewed Lighthouse snapshot evidence.'],
+    ['lighthouse-evidence', 'Implemented source for reviewed Lighthouse homepage evidence.'],
     ['screenshot', 'Future slot for manually approved screenshot evidence.'],
     ['accessibility-scan', 'Future slot for reviewed accessibility scan evidence.'],
     ['performance-snapshot', 'Future slot for reviewed performance snapshot evidence.'],
     ['manual-qa-observation', 'Future slot for manually recorded QA observations.'],
   ].map(([type, notes]) => ({
     type: type as FutureEvidenceSlot['type'],
-    status: 'Not Implemented',
+    status: type === 'lighthouse-evidence' ? 'Implemented' : 'Not Implemented',
     notes,
   }));
 }
@@ -514,6 +537,11 @@ function fromLowerConfidence(confidence: string): EvidenceConfidence {
   if (confidence === 'high') return 'High';
   if (confidence === 'medium') return 'Medium';
   return 'Low';
+}
+
+function scoreLabel(score: number | null): string {
+  if (score === null) return 'Not Available';
+  return `${Math.round(score * 100)}/100`;
 }
 
 function sortEvidencePriority(left: EvidenceReport, right: EvidenceReport): number {

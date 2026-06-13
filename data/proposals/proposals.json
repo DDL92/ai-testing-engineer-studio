@@ -1,0 +1,23 @@
+[
+  {
+    "companyId": "pushpress",
+    "companyName": "PushPress",
+    "status": "active",
+    "source": "Client Audit Report Generator",
+    "notes": "Generate reviewable proposal and SOW package from local client audit evidence."
+  },
+  {
+    "companyId": "teamup",
+    "companyName": "TeamUp",
+    "status": "active",
+    "source": "Client Audit Report Generator",
+    "notes": "Generate reviewable proposal and SOW package from local client audit evidence."
+  },
+  {
+    "companyId": "glofox",
+    "companyName": "Glofox / ABC Fitness",
+    "status": "active",
+    "source": "Client Audit Report Generator",
+    "notes": "Generate reviewable proposal and SOW package from local client audit evidence."
+  }
+]

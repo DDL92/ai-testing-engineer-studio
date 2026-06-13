@@ -13,7 +13,11 @@ export type PotentialRiskType =
   | 'Potential UX Risk'
   | 'Potential Release Risk'
   | 'Potential Test Coverage Gap'
-  | 'Potential Automation Opportunity';
+  | 'Potential Automation Opportunity'
+  | 'Potential Performance Opportunity'
+  | 'Potential Accessibility Opportunity'
+  | 'Potential SEO Opportunity'
+  | 'Potential Best Practice Opportunity';
 
 export interface AuditPackRisk {
   type: PotentialRiskType;

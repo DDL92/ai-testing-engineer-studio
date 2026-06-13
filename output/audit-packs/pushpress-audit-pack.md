@@ -3,7 +3,7 @@
 ## Executive Summary
 
 - Company: PushPress
-- Opportunity Score: 94/100
+- Opportunity Score: 100/100
 - Confidence: High
 - Recommended First Service: QA Audit ($199-$500)
 - Research Required: No
@@ -15,6 +15,7 @@
 - Channel Research: Available - output/channel-research/pushpress.md
 - Pain Intelligence: Available - output/pain-research/pushpress-pain-research.md
 - Site Intelligence: Available - output/site-intelligence/pushpress-site-intelligence.md
+- Lighthouse Evidence: Available - output/lighthouse/pushpress-lighthouse.md
 
 ## Potential QA Risks
 
@@ -35,9 +36,23 @@
 ### Potential Release Risk
 
 - Risk: checkout-quality release confidence opportunity
-- Evidence: Opportunity category checkout-quality and confidence score 94/100 are recorded locally.
+- Evidence: Opportunity category checkout-quality and confidence score 100/100 are recorded locally.
 - Confidence: High
 - Recommendation: Review release-sensitive flows and confirm risk with Daniel before outreach or proposal use.
+
+### Potential Performance Opportunity
+
+- Risk: Review performance improvements for the public homepage.
+- Evidence: PushPress Performance Lighthouse score was 49/100 on the public homepage. Source: output/lighthouse/pushpress-lighthouse.md.
+- Confidence: High
+- Recommendation: Validate with manual review before presenting externally; frame as a potential quality opportunity, not a confirmed issue.
+
+### Potential Best Practice Opportunity
+
+- Risk: Review best practices improvements for the public homepage.
+- Evidence: PushPress Best Practices Lighthouse score was 58/100 on the public homepage. Source: output/lighthouse/pushpress-lighthouse.md.
+- Confidence: Medium
+- Recommendation: Validate with manual review before presenting externally; frame as a potential quality opportunity, not a confirmed issue.
 
 ## Observed Opportunities
 
@@ -158,4 +173,5 @@
 - Do not invent bugs, complaints, vulnerabilities, incidents, customer feedback, findings, or metrics.
 - Use approved pricing only: QA Audit ($199-$500), Playwright Starter Pack ($900-$1500), QA Automation Retainer ($1500-$3000/month).
 - All outputs remain evidence-based, opportunity-based, and human-approved.
+- Lighthouse evidence, when present, is public-homepage quality evidence only and is not vulnerability scanning.
 - Daniel approval is required before client use.

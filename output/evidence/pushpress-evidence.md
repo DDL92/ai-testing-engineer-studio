@@ -3,7 +3,7 @@
 ## Executive Summary
 
 - Company: PushPress
-- Evidence Readiness: 94/100
+- Evidence Readiness: 95/100
 - Confidence: High
 - Gap Count: 0
 - Recommended Next Action: Review evidence and approval checklist before using for discovery or QA Audit positioning.
@@ -16,6 +16,7 @@
 | Channel Coverage | 85/100 |
 | Pain Coverage | 90/100 |
 | Site Coverage | 90/100 |
+| Lighthouse Coverage | 100/100 |
 | Opportunity Coverage | 100/100 |
 | Audit Coverage | 100/100 |
 
@@ -225,6 +226,23 @@ Medium
 Supports:
 Playwright Starter Pack, QA Automation Retainer
 
+### lighthouse-evidence
+
+Category:
+lighthouse-evidence
+
+Description:
+Lighthouse homepage scores recorded: Performance 49/100, Accessibility 96/100, Best Practices 58/100, SEO 92/100.
+
+Source:
+output/lighthouse/pushpress-lighthouse.md
+
+Confidence:
+Medium
+
+Supports:
+QA Audit, Proposal Support
+
 ### audit-opportunity
 
 Category:
@@ -269,6 +287,7 @@ Proposal Support, QA Automation Retainer
 - Channel Research: Available - output/channel-research/pushpress.md
 - Pain Intelligence: Available - output/pain-research/pushpress-pain-research.md
 - Site Intelligence: Available - output/site-intelligence/pushpress-site-intelligence.md
+- Lighthouse Evidence: Available - output/lighthouse/pushpress-lighthouse.md
 - Opportunity Engine: Available - output/opportunities/pushpress-opportunity.md
 - QA Audit Pack: Available - output/audit-packs/pushpress-audit-pack.md
 
@@ -281,8 +300,8 @@ Proposal Support, QA Automation Retainer
 
 ### lighthouse-evidence
 
-- Status: Not Implemented
-- Notes: Future slot for reviewed Lighthouse snapshot evidence.
+- Status: Implemented
+- Notes: Implemented source for reviewed Lighthouse homepage evidence.
 
 ### screenshot
 

@@ -46,6 +46,10 @@
     "opportunity:summary": "node --import tsx src/opportunityEngine/generateOpportunitySummary.ts",
     "audit:generate": "node --import tsx src/auditPackEngine/generateAuditPack.ts",
     "audit:portfolio": "node --import tsx src/auditPackEngine/generateAuditPortfolio.ts",
+    "audit:unified": "node --import tsx src/unifiedAuditGenerator/generateUnifiedAudit.ts",
+    "audit:unified-summary": "node --import tsx src/unifiedAuditGenerator/generateUnifiedAuditSummary.ts",
+    "audit:pdf": "node --import tsx src/clientAuditReports/generateClientAuditReport.ts",
+    "audit:pdf-portfolio": "node --import tsx src/clientAuditReports/generateClientAuditPortfolio.ts",
     "evidence:collect": "node --import tsx src/evidenceEngine/generateEvidence.ts",
     "evidence:portfolio": "node --import tsx src/evidenceEngine/generateEvidencePortfolio.ts",
     "evidence:capture-plan": "node --import tsx src/evidenceCaptureFramework/generateCapturePlan.ts",
@@ -54,6 +58,8 @@
     "evidence:playwright-readiness": "node --import tsx src/playwrightEvidenceFramework/generatePlaywrightReadiness.ts",
     "evidence:playwright-run": "node --import tsx src/playwrightEvidenceRunner/runPlaywrightEvidence.ts",
     "evidence:playwright-summary": "node --import tsx src/playwrightEvidenceRunner/generatePlaywrightSummary.ts",
+    "evidence:lighthouse": "node --import tsx src/lighthouseEvidence/runLighthouseEvidence.ts",
+    "evidence:lighthouse-summary": "node --import tsx src/lighthouseEvidence/generateLighthouseSummary.ts",
     "audit:pack": "tsx src/auditPack/generateAuditPack.ts",
     "outreach:pack": "tsx src/outreachPack/generateOutreachPack.ts",
     "outreach:operating-pack": "tsx src/outreachOperating/generateOutreachOperatingPack.ts",
@@ -76,7 +82,8 @@
     "renewal:review": "tsx src/renewals/generateClientHealth.ts",
     "success:weekly": "tsx src/operator/generateWeeklySuccess.ts",
     "success:monthly": "tsx src/operator/generateMonthlySuccess.ts",
-    "sow:generate": "tsx src/sow/generateSow.ts",
+    "sow:generate": "node --import tsx src/proposalEngine/generateProposal.ts",
+    "sow:portfolio": "node --import tsx src/proposalEngine/generatePortfolio.ts",
     "client:report": "tsx src/clientReports/generateClientReport.ts",
     "metrics:revenue": "tsx src/metrics/generateRevenueSummary.ts",
     "mac:daily": "node --import tsx src/macAutomation/generateMacDaily.ts",
@@ -146,6 +153,7 @@
   "devDependencies": {
     "@playwright/test": "^1.46.0",
     "@types/node": "^25.9.3",
+    "lighthouse": "^13.4.0",
     "tsx": "^4.19.2",
     "typescript": "^5.5.0"
   }

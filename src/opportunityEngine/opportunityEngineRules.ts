@@ -4,6 +4,7 @@ import { ChannelRecord } from '../channelResearch/types';
 import { CompanyContactRecord, ContactRecord } from '../leadResearch/types';
 import { listLeads } from '../leads/leadStore';
 import { Lead } from '../leads/types';
+import { lighthouseReportExists } from '../lighthouseEvidence/lighthouseRules';
 import { PainResearchRecord } from '../painIntelligence/types';
 import { SiteIntelligenceRecord } from '../siteIntelligence/types';
 import {
@@ -281,8 +282,9 @@ function calculateConfidence(bundle: OpportunityInputBundle): number {
   const channelCoverage = bundle.channels.length ? Math.min(25, 10 + bundle.channels.length * 4) : 0;
   const painCoverage = bundle.pain ? Math.min(25, 10 + bundle.pain.qaRisks.length * 3 + bundle.pain.automationOpportunities.length * 2) : 0;
   const siteCoverage = bundle.site ? Math.min(25, 10 + bundle.site.findings.length * 3 + bundle.site.automationOpportunities.length * 3) : 0;
+  const lighthouseCoverage = bundle.availability.lighthouseEvidence ? 10 : 0;
 
-  return Math.min(100, contactCoverage + connectedBonus + channelCoverage + painCoverage + siteCoverage);
+  return Math.min(100, contactCoverage + connectedBonus + channelCoverage + painCoverage + siteCoverage + lighthouseCoverage);
 }
 
 function buildOutreachPriorities(bundle: OpportunityInputBundle): OutreachPriority[] {
@@ -316,6 +318,7 @@ function buildCommercialReason(bundle: OpportunityInputBundle, category: Opportu
     bundle.channels.length ? `${bundle.channels.length} channel records` : 'channel research still required',
     bundle.pain ? `${bundle.pain.qaRisks.length} pain-intelligence QA risk signals` : 'pain intelligence missing',
     bundle.site ? `${bundle.site.findings.length} site-intelligence potential findings` : 'site intelligence missing',
+    bundle.availability.lighthouseEvidence ? 'Lighthouse homepage evidence is available' : 'Lighthouse evidence missing',
   ];
 
   return `${category} is the strongest current category because the local intelligence shows ${parts.join(', ')}.`;
@@ -341,6 +344,7 @@ function buildAvailability(companyId: string): IntelligenceAvailability {
     channelResearch: fs.existsSync(path.join(process.cwd(), 'output', 'channel-research', `${companyId}.md`)),
     painIntelligence: fs.existsSync(path.join(process.cwd(), 'output', 'pain-research', `${companyId}-pain-research.md`)),
     siteIntelligence: fs.existsSync(path.join(process.cwd(), 'output', 'site-intelligence', `${companyId}-site-intelligence.md`)),
+    lighthouseEvidence: lighthouseReportExists(companyId),
   };
 }
 
@@ -364,6 +368,7 @@ ${bullets([
     `Channel Research: ${report.availability.channelResearch ? 'available' : 'missing'}`,
     `Pain Intelligence: ${report.availability.painIntelligence ? 'available' : 'missing'}`,
     `Site Intelligence: ${report.availability.siteIntelligence ? 'available' : 'missing'}`,
+    `Lighthouse Evidence: ${report.availability.lighthouseEvidence ? 'available' : 'missing'}`,
   ])}
 
 ## Best Contact

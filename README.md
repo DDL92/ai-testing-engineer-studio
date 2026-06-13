@@ -71,6 +71,10 @@ npm run opportunity:generate -- --company PushPress
 npm run opportunity:summary
 npm run audit:generate -- --company PushPress
 npm run audit:portfolio
+npm run audit:unified -- --company PushPress
+npm run audit:unified-summary
+npm run audit:pdf -- --company PushPress
+npm run audit:pdf-portfolio
 npm run evidence:collect -- --company PushPress
 npm run evidence:portfolio
 npm run evidence:capture-plan
@@ -79,6 +83,8 @@ npm run evidence:playwright-plan
 npm run evidence:playwright-readiness
 npm run evidence:playwright-run -- --company PushPress
 npm run evidence:playwright-summary
+npm run evidence:lighthouse -- --company PushPress -- --url https://www.pushpress.com
+npm run evidence:lighthouse-summary
 npm run outreach:status
 npm run followup:queue
 npm run audit:pack -- --id pushpress
@@ -131,6 +137,8 @@ npm run client:delivery-report -- --id demo-retainer-client
 npm run client:update-draft -- --id demo-retainer-client
 npm run renewal:tracker
 npm run renewal:review -- --id demo-retainer-client
+npm run sow:generate -- --company PushPress
+npm run sow:portfolio
 npm run operator:daily
 npm run success:weekly
 npm run success:monthly
@@ -162,6 +170,7 @@ The First Outreach Execution Review writes `output/outreach-review` for PushPres
 Client operations reports are written to `output/client-ops` for daily priorities, next actions, readiness groups, reporting needs, and manual approval rules.
 Client delivery artifacts are written to `output/client-delivery/{client_id}` for delivery planning, evidence logs, QA checklists, weekly summaries, and client update drafts.
 Polished client reporting artifacts are written to `output/client-reporting/{client_id}` for executive summaries, weekly reports, monthly reports, value delivered summaries, renewal signals, and draft client updates. They are evidence-first, local-only, and require Daniel review before sending.
+Proposal and SOW packages are written to `output/proposals`. `npm run sow:generate -- --company PushPress` creates a reviewable Markdown proposal and PDF using local Client Audit Report, Unified Audit, Opportunity, and Evidence outputs. `npm run sow:portfolio` writes proposal summary, priorities, and retainer candidates. These are not contracts, invoices, payment requests, sending tools, email tools, or outreach tools, and they do not invent findings, bugs, vulnerabilities, incidents, outages, customer quotes, or metrics.
 Renewal and expansion reports are written to `output/renewals` for client health, renewal risk, expansion opportunities, renewal actions, and the renewal pipeline. They use local client data and generated artifacts only.
 The daily operator and success rhythm reports are written to `output/operator` as one local command center plus weekly and monthly reviews. They summarize pipeline, follow-ups, client health, renewals, expansion watchlists, and suggested human-approved commands.
 Mac Daily Automation reports are written to `output/mac-daily` for one-command local refreshes of dashboard, operator, pipeline prioritization, client operations, renewals, and Commercial Mode summaries. `npm run mac:summary` reads existing local outputs only and refreshes the consolidated daily summary, system health, and action cockpit without rerunning the full report sequence.
@@ -174,10 +183,13 @@ Customer Pain Intelligence uses `data/pain-intelligence/pain-research.json` to t
 Website QA Intelligence uses `data/site-intelligence/site-intelligence.json` to turn existing local website URLs, lead notes, channel research, and pain intelligence into potential QA findings, UX opportunities, automation opportunities, and audit recommendations. `npm run site:intelligence -- --company PushPress -- --url https://www.pushpress.com` writes `output/site-intelligence/{company_id}-site-intelligence.md`, and `npm run site:summary` writes `qa-findings.md`, `ux-opportunities.md`, `automation-opportunities.md`, `audit-recommendations.md`, and `site-summary.md`. It does not browse, scrape, run browser automation, use screenshots, log in, use credentials, run security tests, claim vulnerabilities, or send outreach.
 The Unified QA Opportunity Engine uses `data/opportunities/opportunities.json` plus local contact, outreach, channel, pain, and site intelligence records to choose the best contact, channel, audit angle, automation opportunity, first offer, and retainer path. `npm run opportunity:generate -- --company PushPress` writes `output/opportunities/{company_id}-opportunity.md`, and `npm run opportunity:summary` writes best opportunities, commercial priorities, outreach priorities, audit priorities, and an opportunity summary under `output/opportunities`. It uses approved pricing only and does not invent contacts, complaints, bugs, vulnerabilities, incidents, customer feedback, metrics, or send outreach.
 The QA Audit Pack Engine uses `data/audit-packs/audit-packs.json` and Opportunity Engine outputs to create structured audit deliverables. `npm run audit:generate -- --company PushPress` writes `output/audit-packs/{company_id}-audit-pack.md`, and `npm run audit:portfolio` writes `audit-portfolio.md`, `audit-priorities.md`, `audit-delivery-roadmap.md`, and `retainer-opportunities.md`. It is not a proposal, invoice, contract, payment instruction, or consulting report generator; all outputs remain evidence-based, opportunity-based, and human-approved.
+The Unified Audit Generator uses `data/unified-audits/unified-audits.json` plus existing Opportunity Engine, Audit Pack, Evidence Engine, Playwright Evidence, and Lighthouse Evidence outputs to create one professional audit report per company. `npm run audit:unified -- --company PushPress` writes `output/unified-audits/{company_id}-unified-audit.md`, and `npm run audit:unified-summary` writes `audit-summary.md`, `audit-priorities.md`, `audit-comparison.md`, and `audit-readiness.md`. It is not a proposal, contract, invoice, payment request, or outreach tool; it does not invent bugs, vulnerabilities, incidents, outages, complaints, customer quotes, findings, or metrics.
+The Client Audit Report Generator uses `data/client-audit-reports/reports.json` plus Unified Audit reports and evidence outputs to generate client-ready Markdown, HTML, and PDF reports. `npm run audit:pdf -- --company PushPress` writes `output/client-audit-reports/{company_id}-qa-audit-report.md`, `.html`, and `.pdf`, and `npm run audit:pdf-portfolio` writes `portfolio-summary.md` and `report-readiness.md`. It uses ReportLab for PDF generation and remains a report generator only: no proposals, contracts, invoices, payment requests, outreach, sending, invented findings, vulnerabilities, incidents, outages, complaints, customer quotes, or invented metrics.
 The Evidence Collection Engine uses `data/evidence/evidence.json` plus existing Studio outputs from contact research, channel research, pain research, site intelligence, opportunities, and audit packs. `npm run evidence:collect -- --company PushPress` writes `output/evidence/{company_id}-evidence.md`, and `npm run evidence:portfolio` writes evidence portfolio, gaps, readiness, and priorities reports. It does not run browser automation, Playwright, Lighthouse, scans, APIs, scraping, screenshots, or credentials, and it does not invent evidence.
 The Evidence Capture Framework uses `data/evidence-capture/capture-framework.json` and `data/evidence-capture/capture-roadmap.json` to document future evidence source contracts, storage architecture, readiness scoring, and capture priorities. `npm run evidence:capture-plan` writes the capture plan, future evidence sources, and storage architecture reports under `output/evidence-capture`, and `npm run evidence:roadmap` writes the evidence roadmap and priority roadmap. It is architecture-only and does not collect evidence, run Playwright, run Lighthouse, capture screenshots, scan, browse, call APIs, use credentials, or create external data.
 The Playwright Evidence Framework uses `data/playwright-evidence/playwright-targets.json` and `data/playwright-evidence/playwright-readiness.json` to plan controlled future Playwright evidence collection. `npm run evidence:playwright-plan` writes the evidence plan, target priorities, and storage plan under `output/playwright-evidence`, and `npm run evidence:playwright-readiness` writes readiness and safety reports. It documents future execution only and does not run Playwright, crawl, capture screenshots, create traces, scrape, use credentials, call APIs, or collect evidence.
 The Playwright Evidence Runner performs controlled public-page passive observations only. `npm run evidence:playwright-run -- --company PushPress` writes company evidence to `output/playwright-runner/{company_id}-playwright-evidence.md` and local JSON records under `data/evidence/playwright/reports` and `data/evidence/playwright/observations`; optional screenshots are stored under `data/evidence/playwright/screenshots` when capture succeeds. `npm run evidence:playwright-summary` writes summary, findings, observations, and readiness reports under `output/playwright-runner`. It limits observation to public marketing pages, max 5 pages per company, max 1 navigation depth, and never submits forms, logs in, creates accounts, triggers payments/bookings, scrapes, crawls aggressively, uses credentials, sends outreach, or uses authenticated APIs.
+The Lighthouse Evidence Engine runs objective homepage-only Lighthouse collection for public URLs. `npm run evidence:lighthouse -- --company PushPress -- --url https://www.pushpress.com` writes Markdown to `output/lighthouse/{company_id}-lighthouse.md`, structured evidence to `data/evidence/lighthouse/reports`, and raw Lighthouse JSON/HTML to `data/evidence/lighthouse/raw`. `npm run evidence:lighthouse-summary` writes `lighthouse-summary.md`, `lighthouse-priorities.md`, and `lighthouse-comparison.md` under `output/lighthouse`. It captures only Performance, Accessibility, Best Practices, and SEO scores; it does not authenticate, create accounts, submit forms/payments, crawl aggressively, use credentials, perform vulnerability scanning, or run penetration testing.
 
 ## Lead Operator
 

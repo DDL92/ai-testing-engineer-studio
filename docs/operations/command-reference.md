@@ -2,6 +2,176 @@
 
 All commands are local-first. None of these commands should send outreach, connect APIs, scrape websites, or use credentials.
 
+## `npm run sow:generate`
+
+Purpose:
+Generate a reviewable proposal and SOW package in Markdown and PDF from the local client audit report and evidence.
+
+Example:
+
+```sh
+npm run sow:generate -- --company PushPress
+```
+
+Output files:
+`output/proposals/{company_id}-proposal.md`
+`output/proposals/{company_id}-proposal.pdf`
+
+Inputs:
+`output/client-audit-reports`
+`output/unified-audits`
+`output/opportunities`
+`output/evidence`
+
+Safety note:
+Review-only proposal and SOW package. It does not generate contracts, invoices, payment requests, send proposals, send emails, send outreach, use credentials, invent findings, invent bugs, invent vulnerabilities, invent incidents, invent outages, invent customer quotes, or invent metrics. Daniel approval is required before external use.
+
+## `npm run sow:portfolio`
+
+Purpose:
+Generate portfolio-level proposal summary, proposal priorities, and retainer candidate reports.
+
+Example:
+
+```sh
+npm run sow:portfolio
+```
+
+Output files:
+`output/proposals/proposal-summary.md`
+`output/proposals/proposal-priorities.md`
+`output/proposals/retainer-candidates.md`
+
+Safety note:
+Local summary only. It reads generated proposal packages and does not send proposals, emails, outreach, contracts, invoices, payment requests, or external communications.
+
+## `npm run audit:pdf`
+
+Purpose:
+Generate a client-ready QA Audit Report in Markdown, HTML, and PDF from the local Unified Audit evidence.
+
+Example:
+
+```sh
+npm run audit:pdf -- --company PushPress
+```
+
+Output files:
+`output/client-audit-reports/{company_id}-qa-audit-report.md`
+`output/client-audit-reports/{company_id}-qa-audit-report.html`
+`output/client-audit-reports/{company_id}-qa-audit-report.pdf`
+
+Inputs:
+`output/unified-audits`
+`output/playwright-runner`
+`output/lighthouse`
+`output/opportunities`
+`output/evidence`
+
+Safety note:
+Client audit report only. It does not generate proposals, contracts, invoices, payment requests, outreach, confirmed bugs, confirmed vulnerabilities, confirmed outages, invented findings, invented complaints, invented customer quotes, or invented metrics. Daniel approval is required before sending or external use.
+
+## `npm run audit:pdf-portfolio`
+
+Purpose:
+Generate portfolio-level client audit report summary and readiness files.
+
+Example:
+
+```sh
+npm run audit:pdf-portfolio
+```
+
+Output files:
+`output/client-audit-reports/portfolio-summary.md`
+`output/client-audit-reports/report-readiness.md`
+
+Safety note:
+Local summary only. It reads generated client audit artifacts and does not send reports, browse, scan, authenticate, generate proposals, use credentials, or invent findings.
+
+## `npm run audit:unified`
+
+Purpose:
+Generate one professional unified QA audit report for a company from existing local Studio evidence.
+
+Example:
+
+```sh
+npm run audit:unified -- --company PushPress
+```
+
+Output file:
+`output/unified-audits/{company_id}-unified-audit.md`
+
+Inputs:
+`output/opportunities`
+`output/audit-packs`
+`output/evidence`
+`output/playwright-runner`
+`output/lighthouse`
+
+Safety note:
+Unified audit report only. It does not generate proposals, contracts, invoices, payment requests, outreach, confirmed bugs, confirmed vulnerabilities, confirmed outages, invented findings, invented complaints, invented customer quotes, or invented metrics. Daniel approval is required before external use.
+
+## `npm run audit:unified-summary`
+
+Purpose:
+Generate portfolio-level unified audit summary, priorities, comparison, and readiness reports.
+
+Example:
+
+```sh
+npm run audit:unified-summary
+```
+
+Output files:
+`output/unified-audits/audit-summary.md`
+`output/unified-audits/audit-priorities.md`
+`output/unified-audits/audit-comparison.md`
+`output/unified-audits/audit-readiness.md`
+
+Safety note:
+Local summary only. It reads existing local audit and evidence outputs and does not browse, scan, authenticate, send outreach, generate proposals, use credentials, or invent findings.
+
+## `npm run evidence:lighthouse`
+
+Purpose:
+Collect objective Lighthouse evidence for one public homepage URL.
+
+Example:
+
+```sh
+npm run evidence:lighthouse -- --company PushPress -- --url https://www.pushpress.com
+```
+
+Output files:
+`output/lighthouse/{company_id}-lighthouse.md`
+`data/evidence/lighthouse/reports/{company_id}-lighthouse-evidence.json`
+`data/evidence/lighthouse/raw/{company_id}-lighthouse-lhr.json`
+`data/evidence/lighthouse/raw/{company_id}-lighthouse.html`
+
+Safety note:
+Homepage-only public evidence. It captures only Performance, Accessibility, Best Practices, and SEO scores. It does not authenticate, log in, create accounts, submit forms, submit payments, crawl aggressively, use credentials, run vulnerability scans, or perform penetration testing.
+
+## `npm run evidence:lighthouse-summary`
+
+Purpose:
+Generate portfolio summaries from existing local Lighthouse evidence without rerunning Lighthouse.
+
+Example:
+
+```sh
+npm run evidence:lighthouse-summary
+```
+
+Output files:
+`output/lighthouse/lighthouse-summary.md`
+`output/lighthouse/lighthouse-priorities.md`
+`output/lighthouse/lighthouse-comparison.md`
+
+Safety note:
+Local summary only. It reads `data/evidence/lighthouse/reports` and does not browse, scan, authenticate, use credentials, or contact websites.
+
 ## `npm run outreach:review`
 
 Purpose:
@@ -1590,23 +1760,6 @@ Output files:
 
 Safety note:
 Uses local files only. It does not scrape, call APIs, browse, or send outreach. Human approval is required before any generated document is used client-side.
-
-## `npm run sow:generate`
-
-Purpose:
-Generate a Proposal/SOW draft from local lead data.
-
-Example:
-
-```sh
-npm run sow:generate -- --id acme-saas-demo
-```
-
-Output file:
-`output/sows/{lead_id}-sow.md`
-
-Safety note:
-Proposal is a draft. Daniel must review pricing, scope, and claims before sending manually.
 
 ## `npm run client:report`
 

@@ -1,6 +1,6 @@
 # End-To-End Demo Flow
 
-This flow uses the existing `acme-saas-demo` lead and `https://example.com` for a safe public audit target.
+This flow uses the existing `acme-saas-demo` lead and `https://example.com` for a safe public audit target. Proposal generation now uses Sprint 65 company-level audit evidence; the example proposal command below uses PushPress because generated unified/client audit evidence exists for that company.
 
 ## Commands
 
@@ -8,7 +8,7 @@ This flow uses the existing `acme-saas-demo` lead and `https://example.com` for 
 npm run lead:research -- --id acme-saas-demo
 npm run lead:pack -- --id acme-saas-demo
 npm run audit:site -- --url https://example.com
-npm run sow:generate -- --id acme-saas-demo
+npm run sow:generate -- --company PushPress
 npm run outreach:queue
 npm run metrics:revenue
 npm run mac:daily
@@ -32,8 +32,9 @@ Audit report:
 Audit screenshot evidence:
 `output/audits/example-com/homepage.png`
 
-SOW draft:
-`output/sows/acme-saas-demo-sow.md`
+Proposal/SOW package:
+`output/proposals/pushpress-proposal.md`
+`output/proposals/pushpress-proposal.pdf`
 
 Outreach queue:
 `output/outreach/outreach-queue.md`
@@ -53,7 +54,7 @@ Action cockpit:
 2. Read the lead pack and outbound plan.
 3. Confirm the message draft is accurate and does not invent facts.
 4. Review the audit report and screenshot evidence.
-5. Review the SOW draft for price, scope, assumptions, and out-of-scope items.
+5. Review the proposal/SOW package for price, scope, assumptions, and out-of-scope items.
 6. Use the outreach queue to decide the next manual action.
 7. Use the cockpit for the current daily view.
 
