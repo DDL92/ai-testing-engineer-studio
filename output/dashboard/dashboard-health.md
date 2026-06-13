@@ -1,10 +1,10 @@
 # Dashboard Health
 
-Generated: 2026-06-13T20:50:06.016Z
+Generated: 2026-06-13T20:58:44.244Z
 
 ## Status
 
-- Last Update: 2026-06-13T20:50:06.016Z
+- Last Update: 2026-06-13T20:58:44.244Z
 - Lead Research Status: 7 research packs found
 - Evidence Status: 10 evidence files found
 - Proposal Status: 3 proposal packages found
@@ -40,6 +40,9 @@ Generated: 2026-06-13T20:50:06.016Z
 - Snapshot Status: Ready
 - Recovery Status: Ready
 - Last Snapshot: 2026-06-13T20:49:43.297Z
+- Best Lead: PushPress
+- Best Offer: QA Audit ($199-$500)
+- Highest Opportunity Score: 99/100
 
 ## PWA Files
 

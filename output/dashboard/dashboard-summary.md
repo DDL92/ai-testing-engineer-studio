@@ -1,6 +1,6 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-13T20:50:06.016Z
+Generated: 2026-06-13T20:58:44.244Z
 
 ## Today
 
@@ -107,6 +107,14 @@ Generated: 2026-06-13T20:50:06.016Z
 - Snapshot Status: Ready
 - Recovery Status: Ready
 - Last Snapshot: 2026-06-13T20:49:43.297Z
+
+## Lead Intelligence
+
+- Best Lead: PushPress
+- Best Offer: QA Audit ($199-$500)
+- Highest Opportunity Score: 99/100
+- Fastest Revenue Path: Review first-client package and manually decide SEND / WAIT / REWRITE for the QA Audit offer.
+- Recommended Next Action: REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE.
 
 ## Safety
 

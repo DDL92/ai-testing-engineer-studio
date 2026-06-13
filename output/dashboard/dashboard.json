@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-13T20:50:06.016Z",
+  "generatedAt": "2026-06-13T20:58:44.244Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-13",
@@ -142,7 +142,7 @@
     "bestRetainerOpportunity": "PushPress"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-13T20:50:06.016Z",
+    "lastUpdate": "2026-06-13T20:58:44.244Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "10 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -207,6 +207,13 @@
     "snapshotStatus": "Ready",
     "recoveryStatus": "Ready",
     "lastSnapshot": "2026-06-13T20:49:43.297Z"
+  },
+  "leadIntelligence": {
+    "bestLead": "PushPress",
+    "bestOffer": "QA Audit ($199-$500)",
+    "highestOpportunityScore": 99,
+    "fastestRevenuePath": "Review first-client package and manually decide SEND / WAIT / REWRITE for the QA Audit offer.",
+    "recommendedNextAction": "REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE."
   },
   "mobileCommandCenter": {
     "reviewCenter": {

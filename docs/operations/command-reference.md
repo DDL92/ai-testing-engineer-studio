@@ -538,6 +538,76 @@ Output file:
 Safety note:
 Planning only. The command does not send outreach, generate submissions, automate LinkedIn, scrape, call APIs, use CRM data, use credentials, or use external databases. Human approval is required before any channel action.
 
+## `npm run lead:intelligence`
+
+Purpose:
+Generate the lead intelligence overview, best offers, and revenue priorities from local Studio data.
+
+Example:
+
+```sh
+npm run lead:intelligence
+```
+
+Output files:
+`output/leads/lead-intelligence.md`
+`output/leads/best-offers.md`
+`output/leads/revenue-priorities.md`
+
+Safety note:
+Local intelligence only. It does not generate outreach, emails, LinkedIn messages, meetings, revenue claims, outcomes, or client interest.
+
+## `npm run lead:ranking`
+
+Purpose:
+Rank all known local leads by transparent readiness and opportunity scoring.
+
+Example:
+
+```sh
+npm run lead:ranking
+```
+
+Output file:
+`output/leads/lead-ranking.md`
+
+Safety note:
+Ranking is a planning signal only and does not assume conversion.
+
+## `npm run lead:opportunities`
+
+Purpose:
+Generate cautious opportunity analysis for strongest candidate, fastest revenue path, best QA Audit candidate, starter-pack candidate, and future retainer candidate.
+
+Example:
+
+```sh
+npm run lead:opportunities
+```
+
+Output file:
+`output/leads/high-probability-opportunities.md`
+
+Safety note:
+Uses only local evidence and never assumes replies, meetings, clients, or revenue.
+
+## `npm run lead:next-actions`
+
+Purpose:
+Generate per-lead manual next actions with recommended offer, reason, action type, and estimated manual effort.
+
+Example:
+
+```sh
+npm run lead:next-actions
+```
+
+Output file:
+`output/leads/next-actions.md`
+
+Safety note:
+No outreach, meetings, external tasks, or messages are created.
+
 ## `npm run pain:research`
 
 Purpose:

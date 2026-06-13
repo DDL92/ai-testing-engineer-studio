@@ -516,6 +516,14 @@ Generated: ${data.generatedAt}
 - Recovery Status: ${data.studioSnapshot.recoveryStatus}
 - Last Snapshot: ${data.studioSnapshot.lastSnapshot}
 
+## Lead Intelligence
+
+- Best Lead: ${data.leadIntelligence.bestLead}
+- Best Offer: ${data.leadIntelligence.bestOffer}
+- Highest Opportunity Score: ${data.leadIntelligence.highestOpportunityScore}/100
+- Fastest Revenue Path: ${data.leadIntelligence.fastestRevenuePath}
+- Recommended Next Action: ${data.leadIntelligence.recommendedNextAction}
+
 ## Safety
 
 ${data.safety.map((item) => `- ${item}`).join('\n')}
@@ -574,6 +582,9 @@ Generated: ${data.generatedAt}
 - Snapshot Status: ${data.studioSnapshot.snapshotStatus}
 - Recovery Status: ${data.studioSnapshot.recoveryStatus}
 - Last Snapshot: ${data.studioSnapshot.lastSnapshot}
+- Best Lead: ${data.leadIntelligence.bestLead}
+- Best Offer: ${data.leadIntelligence.bestOffer}
+- Highest Opportunity Score: ${data.leadIntelligence.highestOpportunityScore}/100
 
 ## PWA Files
 

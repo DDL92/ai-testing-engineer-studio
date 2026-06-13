@@ -6,6 +6,7 @@ import {
   buildWeeklyRevenueReview,
   loadDailyRevenueLoopInput,
 } from '../dailyRevenueLoop/dailyLoopRules';
+import { buildLeadIntelligenceReport } from '../leadIntelligence/leadRules';
 import { buildOpportunitySummary } from '../opportunityEngine/opportunityEngineRules';
 import { OpportunityReport } from '../opportunityEngine/types';
 import { buildFirstRevenueExecutionPack } from '../executionPack/generateFirstRevenueChecklist';
@@ -140,6 +141,14 @@ export interface DashboardStudioSnapshot {
   lastSnapshot: string;
 }
 
+export interface DashboardLeadIntelligence {
+  bestLead: string;
+  bestOffer: string;
+  highestOpportunityScore: number;
+  fastestRevenuePath: string;
+  recommendedNextAction: string;
+}
+
 export interface DashboardData {
   generatedAt: string;
   mode: 'read-only';
@@ -191,6 +200,7 @@ export interface DashboardData {
   followUpEngine: DashboardFollowUpEngine;
   winLossIntelligence: DashboardWinLossIntelligence;
   studioSnapshot: DashboardStudioSnapshot;
+  leadIntelligence: DashboardLeadIntelligence;
   mobileCommandCenter: DashboardMobileCenter;
   safety: string[];
 }
@@ -221,6 +231,8 @@ export function buildPwaDashboardData(): DashboardData {
   const followUpReport = buildFollowUpOperatingReport();
   const winLossReport = buildWinLossReport();
   const snapshotState = readSnapshotState();
+  const leadIntelligenceReport = buildLeadIntelligenceReport();
+  const topLead = leadIntelligenceReport.leads[0];
   const outreach = readJson<OutreachRecord[]>(outreachPath, []);
   const proposalReady = proposalPortfolio.proposals.filter((proposal) => proposal.artifacts.markdownPath && proposal.artifacts.pdfPath);
   const topActions = dayPlan.topActions.map((action) => ({
@@ -353,6 +365,13 @@ export function buildPwaDashboardData(): DashboardData {
       snapshotStatus: snapshotState.snapshotStatus,
       recoveryStatus: snapshotState.recoveryStatus,
       lastSnapshot: snapshotState.lastSnapshot,
+    },
+    leadIntelligence: {
+      bestLead: topLead?.companyName ?? 'No lead found',
+      bestOffer: topLead?.recommendedOffer ?? 'No offer found',
+      highestOpportunityScore: topLead?.overallScore ?? 0,
+      fastestRevenuePath: topLead?.fastestRevenuePath ?? 'No local revenue path found',
+      recommendedNextAction: topLead ? `${topLead.recommendedActionType} - ${topLead.recommendedNextAction}` : 'No local next action found',
     },
     mobileCommandCenter: {
       reviewCenter: {

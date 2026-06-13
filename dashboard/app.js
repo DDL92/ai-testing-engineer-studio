@@ -26,6 +26,7 @@ function render(data) {
   renderActions(data.today.topActions);
   renderRevenue(data.revenue);
   renderRevenueActivation(data.revenueActivation);
+  renderLeadIntelligence(data.leadIntelligence);
   renderExecutionPack(data.executionPack);
   renderOutcomeTracking(data.outcomeTracking);
   renderFollowUpEngine(data.followUpEngine);
@@ -75,6 +76,21 @@ function renderRevenueActivation(activation) {
     miniCard('First Retainer Goal', activation.firstRetainerGoal),
     miniCard('Top Revenue Target', `${activation.topRevenueTarget} (${activation.topActivationScore}/100)`),
     miniCard('Top Revenue Action', activation.topRevenueAction),
+  ].join('');
+}
+
+function renderLeadIntelligence(intelligence) {
+  if (!intelligence) {
+    byId('leadIntelligenceCards').innerHTML = miniCard('Best Lead', 'Not loaded');
+    return;
+  }
+
+  byId('leadIntelligenceCards').innerHTML = [
+    miniCard('Best Lead', intelligence.bestLead),
+    miniCard('Best Offer', intelligence.bestOffer),
+    miniCard('Highest Opportunity Score', `${intelligence.highestOpportunityScore}/100`),
+    miniCard('Fastest Revenue Path', intelligence.fastestRevenuePath),
+    miniCard('Recommended Next Action', intelligence.recommendedNextAction),
   ].join('');
 }
 

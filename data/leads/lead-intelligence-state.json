@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-13T00:00:00.000Z",
+  "scoringNotes": [
+    "Use local Studio outputs only.",
+    "Treat rankings as planning signals, not proof of buyer interest.",
+    "Do not count estimates, proposals, candidates, or plans as revenue."
+  ],
+  "safetyRules": [
+    "No outreach generated.",
+    "No emails generated.",
+    "No LinkedIn messages generated.",
+    "No meetings created.",
+    "No revenue claimed.",
+    "No client interest assumed.",
+    "Human approval required before any external action."
+  ]
+}
