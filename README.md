@@ -130,6 +130,10 @@ npm run winloss:analysis
 npm run winloss:patterns
 npm run winloss:insights
 npm run winloss:strategy
+npm run studio:hardening
+npm run studio:monday-checklist
+npm run studio:command-audit
+npm run studio:output-audit
 npm run finance:monthly
 npm run finance:dashboard
 npm run finance:forecast
@@ -199,6 +203,7 @@ The First Revenue Execution Pack writes `output/execution` reports for GO/NO GO 
 The Outcome Tracking and Message Review Pack writes `output/outcomes` and `output/messages` reports for manually recorded outcomes, response rates, win-loss learning, safe PushPress message drafts, and message priorities. `npm run outcome:add` records only explicit Daniel-entered outcomes, `npm run outcome:dashboard` and `npm run outcome:review` summarize local outcome data, and `npm run message:review -- --company PushPress` plus `npm run message:pack -- --company PushPress` generate concise manual-review drafts. These commands never send messages, send emails, create meetings, send proposals, create invoices, create payments, invent replies, invent revenue, or infer client interest.
 The Follow-Up Operating System writes `output/followups` reports for queue categories, daily follow-up plan, priorities, review, and cadence. `npm run followup:queue`, `npm run followup:daily`, `npm run followup:priorities`, and `npm run followup:review` use Revenue Activation, Outcome Tracking, Message Review, Executive Layer, and Execution Pack outputs to tell Daniel who to review manually, when, and why. It never sends messages, sends emails, creates meetings, creates invoices, creates payments, claims revenue, integrates a CRM, or invents outcomes.
 The Win/Loss Intelligence Engine writes `output/winloss` reports for win/loss analysis, pattern analysis, opportunity insights, strategy recommendations, reply patterns, and offer performance. `npm run winloss:analysis`, `npm run winloss:patterns`, `npm run winloss:insights`, and `npm run winloss:strategy` learn only from manually recorded Outcome Tracking data. If there is not enough outcome history, reports say so instead of inventing patterns, replies, revenue, clients, or recommendations.
+The Studio Hardening layer writes `output/hardening` reports for Monday launch readiness, command wiring, output availability, stale reports, dashboard readiness, and PushPress first-client readiness. `npm run studio:hardening`, `npm run studio:monday-checklist`, `npm run studio:command-audit`, and `npm run studio:output-audit` are local audits only and do not send outreach, emails, proposals, invoices, payments, replies, or revenue claims.
 The Finance Tracking layer reads `data/finance/finance.json` as the source of truth for booked money and writes `output/finance` reports for monthly finance, MRR tracking, finance dashboard, forecasts, revenue opportunities, savings planning, and property progress. It is local-only, uses approved offer ranges only, and does not process payments, generate invoices, create payment links, connect banks, call APIs, or treat lead candidates as booked revenue.
 The Real Client Readiness Pack writes `output/real-client-readiness` reports for Top 5 commercial lead readiness, manual contact planning, outreach safety checks, first audit sales positioning, and SOW readiness. It does not invent contacts or findings and does not send outreach.
 The Proposal Command Center writes `output/proposal-center` reports for proposal-ready leads, SOW readiness, proposal priority, pricing recommendations, and approval checks. It is local-only and does not send proposals, invent findings, or treat opportunities as booked revenue.

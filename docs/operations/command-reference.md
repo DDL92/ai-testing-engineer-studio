@@ -2528,6 +2528,76 @@ Output file:
 Safety note:
 Recommendations are evidence-based and local-only. Human approval remains required before any external action.
 
+## `npm run studio:hardening`
+
+Purpose:
+Generate Monday launch hardening reports for command reliability, output availability, dashboard readiness, PushPress readiness, and launch warnings.
+
+Example:
+
+```sh
+npm run studio:hardening
+```
+
+Output files:
+`output/hardening/hardening-report.md`
+`output/hardening/pushpress-readiness.md`
+`output/hardening/dashboard-readiness.md`
+
+Safety note:
+Local readiness audit only. It does not send outreach, emails, proposals, invoices, payments, replies, or revenue claims.
+
+## `npm run studio:monday-checklist`
+
+Purpose:
+Generate Daniel's Monday execution checklist for the first-client push.
+
+Example:
+
+```sh
+npm run studio:monday-checklist
+```
+
+Output file:
+`output/hardening/monday-launch-checklist.md`
+
+Safety note:
+SEND / WAIT / REWRITE remains a manual Daniel decision.
+
+## `npm run studio:command-audit`
+
+Purpose:
+Verify major npm command wiring and local source targets.
+
+Example:
+
+```sh
+npm run studio:command-audit
+```
+
+Output file:
+`output/hardening/command-audit.md`
+
+Safety note:
+This checks package script configuration. Runtime validation is handled by explicit validation commands.
+
+## `npm run studio:output-audit`
+
+Purpose:
+Detect missing or stale launch-critical generated reports.
+
+Example:
+
+```sh
+npm run studio:output-audit
+```
+
+Output file:
+`output/hardening/output-audit.md`
+
+Safety note:
+Output audit only. No files are sent externally.
+
 ## `npm run cockpit`
 
 Purpose:
