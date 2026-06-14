@@ -158,8 +158,18 @@ export interface MobileCommandCenterSummary {
   learningReplyRate: string;
   learningBestOffer: string;
   learningBestLeadType: string;
+  adaptiveLearningInfluence: string;
+  adaptiveBestCategory: string;
+  adaptiveBestOffer: string;
+  adaptiveRecommendation: string;
   nextRevenueAction: string;
   executionPriority: string;
+  commercialTarget: string;
+  commercialOffer: string;
+  commercialPotentialValue: string;
+  commercialPriority: string;
+  commercialDecision: string;
+  commercialAction: string;
   safetyRules: string[];
 }
 

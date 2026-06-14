@@ -410,6 +410,13 @@ export function renderPwaDashboardSummary(data: PwaDashboardData): string {
 
 Generated: ${data.generatedAt}
 
+## Commercial UX
+
+- Today Focus: ${data.commercialUx.todayFocus}
+- Revenue Hero: ${data.commercialUx.revenueHero}
+- Potential Value: ${data.commercialUx.potentialValue}
+- Next Action: ${data.commercialUx.nextAction}
+
 ## Today
 
 - Top Actions: ${data.today.topActions.length}
@@ -499,6 +506,13 @@ Generated: ${data.generatedAt}
 - Proposal Rate: ${data.outcomeLearning.proposalRate}
 - Win Rate: ${data.outcomeLearning.winRate}
 - Top Performing Offer: ${data.outcomeLearning.topPerformingOffer}
+
+## Adaptive Revenue
+
+- Adaptive Learning Status: ${data.adaptiveRevenue.adaptiveLearningStatus}
+- Best Performing Category: ${data.adaptiveRevenue.bestPerformingCategory}
+- Best Performing Offer: ${data.adaptiveRevenue.bestPerformingOffer}
+- Learning Influence: ${data.adaptiveRevenue.learningInfluence}
 
 ## Follow-Up Operating System
 

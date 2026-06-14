@@ -1,6 +1,6 @@
 import fs = require('fs');
 import path = require('path');
-import { historicalPerformanceForLead } from '../outcomeLearning/learningRules';
+import { adaptiveSignalForLead } from '../adaptiveRevenue/adaptiveRules';
 import { buildLeadQualificationReport } from '../webLeadQualification/normalizationRules';
 import { NormalizedWebLead, RecommendedQualifiedOffer } from '../webLeadQualification/types';
 import { buildPainMiningReport } from '../webPainMining/painMiningRules';
@@ -206,10 +206,12 @@ function rankUnifiedTopLeads(leads: NormalizedWebLead[], painSignals: { companyN
 function buildUnifiedTopLead(lead: NormalizedWebLead, rank: number, painSignals: { companyName: string; category: string }[]): UnifiedTopLead {
   const painSignalRelevance = painSignals.some((signal) => normalizeKey(signal.companyName) === normalizeKey(lead.normalizedName)) ? 100 : 35;
   const offerFitScore = offerFit(lead.recommendedOffer);
-  const historicalPerformance = historicalPerformanceForLead({
+  const adaptivePerformance = adaptiveSignalForLead({
     companyName: lead.normalizedName,
     category: lead.category,
     recommendedOffer: lead.recommendedOffer,
+    qualificationScore: lead.qualificationScore,
+    qaOpportunityScore: lead.qaOpportunityScore,
   });
   const baseSelectionScore = Math.round(
     lead.qualificationScore * 0.45
@@ -217,8 +219,8 @@ function buildUnifiedTopLead(lead: NormalizedWebLead, rank: number, painSignals:
     + painSignalRelevance * 0.1
     + offerFitScore * 0.1,
   );
-  const selectionScore = historicalPerformance.hasOutcomes
-    ? Math.round(baseSelectionScore * 0.95 + historicalPerformance.score * 0.05)
+  const selectionScore = adaptivePerformance.influence > 0
+    ? Math.round(baseSelectionScore * ((100 - adaptivePerformance.influence) / 100) + adaptivePerformance.score * (adaptivePerformance.influence / 100))
     : baseSelectionScore;
   const executionPriority = executionPriorityFor(lead);
   const nextRevenueAction = `Review ${lead.normalizedName} message pack and public evidence; decide manually whether to prepare a QA Audit offer.`;
@@ -233,7 +235,7 @@ function buildUnifiedTopLead(lead: NormalizedWebLead, rank: number, painSignals:
     qaOpportunityScore: lead.qaOpportunityScore,
     painSignalRelevance,
     offerFitScore,
-    historicalPerformanceScore: historicalPerformance.score,
+    historicalPerformanceScore: adaptivePerformance.score,
     selectionScore,
     recommendedOffer: lead.recommendedOffer,
     executionPriority,
@@ -244,7 +246,7 @@ function buildUnifiedTopLead(lead: NormalizedWebLead, rank: number, painSignals:
       `QA opportunity score ${lead.qaOpportunityScore}/100`,
       `Pain signal relevance ${painSignalRelevance}/100`,
       `Offer fit ${offerFitScore}/100`,
-      historicalPerformance.reason,
+      adaptivePerformance.reason,
       `Final selection score ${selectionScore}/100`,
     ],
     sourceLead: lead,

@@ -1,6 +1,8 @@
 import fs = require('fs');
 import path = require('path');
+import { buildAdaptiveRevenueReport } from '../adaptiveRevenue/adaptiveRules';
 import { buildRunnerDashboard } from '../autonomousRunner/runnerRules';
+import { buildCommercialUxView } from '../commercialUx/commercialUxRules';
 import { buildPwaDashboardData, DashboardLink } from '../dashboard/dashboardDataBuilder';
 import { buildFirstRevenueExecutionPack } from '../executionPack/generateFirstRevenueChecklist';
 import { buildFinanceReport, loadFinanceInput } from '../financeTracking/financeRules';
@@ -54,6 +56,7 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
   const outcomeRecords = loadOutcomes();
   const outcomes = buildOutcomeSummary(outcomeRecords);
   const learning = buildOutcomeLearningAnalysis();
+  const adaptive = buildAdaptiveRevenueReport();
   const manualFollowUps = readJson<{ status?: string }[]>(path.join(process.cwd(), 'data', 'followups', 'followups.json'), []);
   const studio = buildStudioConsolidationReport();
   const webDiscovery = buildWebLeadDiscoveryReport();
@@ -61,6 +64,7 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
   const painMining = buildPainMiningReport();
   const runner = buildRunnerDashboard();
   const topLeadAudit = buildTopLeadAuditDashboard();
+  const commercialUx = buildCommercialUxView();
   const today = new Date().toISOString().slice(0, 10);
   const todaysWebLeads = webDiscovery.leads.filter((item) => item.discoveryDate === today);
   const todaysPainSignals = painMining.signals.filter((item) => item.date === today);
@@ -138,8 +142,18 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     learningReplyRate: learning.hasOutcomes ? `${learning.overall.replyRate}%` : 'No outcomes recorded yet.',
     learningBestOffer: learning.topPerformingOffer,
     learningBestLeadType: learning.topPerformingCategory,
+    adaptiveLearningInfluence: `${adaptive.weights.learningWeight}%`,
+    adaptiveBestCategory: adaptive.bestPerformingCategory,
+    adaptiveBestOffer: adaptive.bestPerformingOffer,
+    adaptiveRecommendation: adaptive.adaptiveRecommendation,
     nextRevenueAction: revenueTruth.nextAction,
     executionPriority: revenueTruth.executionPriority,
+    commercialTarget: commercialUx.today.topLead,
+    commercialOffer: commercialUx.today.offerLabel,
+    commercialPotentialValue: commercialUx.today.potentialValue,
+    commercialPriority: commercialUx.today.executionPriority,
+    commercialDecision: commercialUx.today.revenueDecision,
+    commercialAction: commercialUx.today.nextAction,
     safetyRules: sprint82Safety,
   };
 }
@@ -189,63 +203,39 @@ export function writeSprint82MobileSummary(summary: MobileCommandCenterSummary):
 
 export function renderMobileTodayView(summary: MobileCommandCenterSummary): string {
   return [
-    '# Today View',
+    '# Revenue Command Center',
     '',
     `Generated: ${summary.generatedAt}`,
     '',
-    '## What should Daniel do right now?',
+    '## TODAY',
     '',
-    `Top Lead:\n${summary.topLead}`,
+    renderSimpleLines([
+      `Target: ${summary.commercialTarget}`,
+      `Offer: ${summary.commercialOffer}`,
+      `Potential Value: ${summary.commercialPotentialValue}`,
+      `Priority: ${summary.commercialPriority}`,
+      `Decision: ${summary.commercialDecision}`,
+    ]),
     '',
-    `Top Offer:\n${summary.topOffer}`,
+    '## NEXT ACTION',
     '',
-    `Top Action:\n${summary.topAction}`,
+    summary.commercialAction,
     '',
-    `Today\'s Discovered Leads:\n${summary.todaysDiscoveredLeads}`,
+    '## DISCOVERY SNAPSHOT',
     '',
-    `Top Pain Signal:\n${summary.topPainSignal}`,
+    renderSimpleLines([
+      `New Leads Today: ${summary.newLeadsToday}`,
+      `New Pain Signals: ${summary.newPainSignals}`,
+      `Qualified Leads: ${summary.topQualifiedLeads}`,
+    ]),
     '',
-    `Best Opportunity:\n${summary.bestOpportunity}`,
+    '## SYSTEM HEALTH',
     '',
-    `Best Qualified Lead:\n${summary.bestQualifiedLead}`,
-    '',
-    `Top 3 Qualified Leads:\n${summary.topQualifiedLeads}`,
-    '',
-    `Best Offer:\n${summary.bestQualifiedOffer}`,
-    '',
-    `Highest QA Opportunity:\n${summary.highestQaOpportunity}`,
-    '',
-    `Last Refresh:\n${summary.lastRefresh}`,
-    '',
-    `New Leads Today:\n${summary.newLeadsToday}`,
-    '',
-    `New Pain Signals:\n${summary.newPainSignals}`,
-    '',
-    `Top Qualified Lead:\n${summary.topQualifiedLead}`,
-    '',
-    `Today\'s Recommended Action:\n${summary.todaysRecommendedAction}`,
-    '',
-      `Current Top Lead:\n${summary.currentTopLead}`,
-    '',
-    `Audit Status:\n${summary.auditStatus}`,
-    '',
-    `Execution Readiness:\n${summary.topLeadExecutionReadiness}`,
-    '',
-    `Learning Status:\n${summary.learningStatus}`,
-    '',
-    `Reply Rate:\n${summary.learningReplyRate}`,
-    '',
-    `Best Offer:\n${summary.learningBestOffer}`,
-    '',
-    `Best Lead Type:\n${summary.learningBestLeadType}`,
-    '',
-    `Next Revenue Action:\n${summary.nextRevenueAction}`,
-    '',
-    `Execution Priority:\n${summary.executionPriority}`,
-    '',
-    `Estimated Time:\n${summary.estimatedTime}`,
-    '',
-    `Decision Needed:\n${summary.decisionNeeded}`,
+    renderSimpleLines([
+      `Last Refresh: ${summary.lastRefresh}`,
+      `Studio Health: ${summary.studioHealth}`,
+      `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
+    ]),
     '',
     '## Safety Rules',
     bullets(summary.safetyRules),
@@ -308,6 +298,10 @@ export function renderMobilePipelineView(summary: MobileCommandCenterSummary): s
       `Reply Rate: ${summary.learningReplyRate}`,
       `Best Offer: ${summary.learningBestOffer}`,
       `Best Lead Type: ${summary.learningBestLeadType}`,
+      `Learning Influence: ${summary.adaptiveLearningInfluence}`,
+      `Best Category: ${summary.adaptiveBestCategory}`,
+      `Best Offer: ${summary.adaptiveBestOffer}`,
+      `Adaptive Recommendation: ${summary.adaptiveRecommendation}`,
       `Recommended Offer: ${summary.topOffer}`,
       `Next Revenue Action: ${summary.nextRevenueAction}`,
       `Execution Priority: ${summary.executionPriority}`,
@@ -350,6 +344,10 @@ export function renderMobileActionCenter(summary: MobileCommandCenterSummary, ac
       `Reply Rate: ${summary.learningReplyRate}`,
       `Best Offer: ${summary.learningBestOffer}`,
       `Best Lead Type: ${summary.learningBestLeadType}`,
+      `Learning Influence: ${summary.adaptiveLearningInfluence}`,
+      `Best Category: ${summary.adaptiveBestCategory}`,
+      `Best Offer: ${summary.adaptiveBestOffer}`,
+      `Adaptive Recommendation: ${summary.adaptiveRecommendation}`,
       `Recommended Offer: ${summary.topOffer}`,
       `Next Revenue Action: ${summary.nextRevenueAction}`,
       `Execution Priority: ${summary.executionPriority}`,
@@ -373,9 +371,41 @@ export function renderMobileActionCenter(summary: MobileCommandCenterSummary, ac
 
 export function renderSprint82MobileSummary(summary: MobileCommandCenterSummary): string {
   return [
-    '# Mobile Summary',
+    '# Revenue Command Center',
     '',
     `Generated: ${summary.generatedAt}`,
+    '',
+    '## TODAY',
+    '',
+    renderSimpleLines([
+      `Target: ${summary.commercialTarget}`,
+      `Offer: ${summary.commercialOffer}`,
+      `Potential Value: ${summary.commercialPotentialValue}`,
+      `Priority: ${summary.commercialPriority}`,
+      `Decision: ${summary.commercialDecision}`,
+    ]),
+    '',
+    '## NEXT ACTION',
+    '',
+    summary.commercialAction,
+    '',
+    '## DISCOVERY SNAPSHOT',
+    '',
+    renderSimpleLines([
+      `New Leads Today: ${summary.newLeadsToday}`,
+      `New Pain Signals: ${summary.newPainSignals}`,
+      `Qualified Leads: ${summary.topQualifiedLeads}`,
+    ]),
+    '',
+    '## SYSTEM HEALTH',
+    '',
+    renderSimpleLines([
+      `Last Refresh: ${summary.lastRefresh}`,
+      `Studio Health: ${summary.studioHealth}`,
+      `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
+    ]),
+    '',
+    '## Below The Fold',
     '',
     renderSimpleLines([
       `Best Lead: ${summary.topLead}`,
@@ -400,6 +430,10 @@ export function renderSprint82MobileSummary(summary: MobileCommandCenterSummary)
       `Reply Rate: ${summary.learningReplyRate}`,
       `Best Offer: ${summary.learningBestOffer}`,
       `Best Lead Type: ${summary.learningBestLeadType}`,
+      `Learning Influence: ${summary.adaptiveLearningInfluence}`,
+      `Best Category: ${summary.adaptiveBestCategory}`,
+      `Best Offer: ${summary.adaptiveBestOffer}`,
+      `Adaptive Recommendation: ${summary.adaptiveRecommendation}`,
       `Recommended Offer: ${summary.topOffer}`,
       `Next Revenue Action: ${summary.nextRevenueAction}`,
       `Execution Priority: ${summary.executionPriority}`,

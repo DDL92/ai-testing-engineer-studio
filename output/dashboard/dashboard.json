@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-14T06:04:26.937Z",
+  "generatedAt": "2026-06-14T06:22:11.008Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-14",
@@ -91,7 +91,7 @@
     "bestRetainerOpportunity": "Appointy"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-14T06:04:26.937Z",
+    "lastUpdate": "2026-06-14T06:22:11.008Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "10 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -143,6 +143,12 @@
     "winRate": "No outcomes recorded yet.",
     "topPerformingOffer": "Insufficient outcome history."
   },
+  "adaptiveRevenue": {
+    "adaptiveLearningStatus": "Insufficient History",
+    "bestPerformingCategory": "Insufficient outcome history.",
+    "bestPerformingOffer": "Insufficient outcome history.",
+    "learningInfluence": "0%"
+  },
   "followUpEngine": {
     "followUpQueue": 29,
     "todaysFollowUps": 5,
@@ -190,6 +196,11 @@
     "replyRate": "No outcomes recorded yet.",
     "bestOffer": "Insufficient outcome history.",
     "bestLeadType": "Insufficient outcome history.",
+    "adaptiveLearningStatus": "Insufficient History",
+    "adaptiveLearningInfluence": "0%",
+    "adaptiveBestCategory": "Insufficient outcome history.",
+    "adaptiveBestOffer": "Insufficient outcome history.",
+    "adaptiveRecommendation": "Insufficient outcome history. Keep using existing Revenue Intelligence ranking until real outcomes are recorded.",
     "todayAtAGlance": "Top Lead: Appointy | Top Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
   },
   "dailyLeadDiscovery": {
@@ -238,6 +249,16 @@
     "evidenceStatus": "Ready",
     "proposalStatus": "Ready",
     "executionReadiness": "GO"
+  },
+  "commercialUx": {
+    "todayFocus": "Appointy - QA Automation Retainer - HIGH",
+    "revenueHero": "Appointy: GO",
+    "potentialValue": "$1,500-$3,000/month",
+    "nextAction": "Review Appointy package and decide: SEND / WAIT / REWRITE.",
+    "target": "Appointy",
+    "offer": "QA Automation Retainer",
+    "priority": "HIGH",
+    "decision": "GO"
   },
   "mobileCommandCenter": {
     "reviewCenter": {

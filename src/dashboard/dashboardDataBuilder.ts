@@ -1,5 +1,6 @@
 import fs = require('fs');
 import path = require('path');
+import { buildAdaptiveRevenueDashboard, buildAdaptiveRevenueReport } from '../adaptiveRevenue/adaptiveRules';
 import {
   buildDailyRevenuePlan,
   buildDailyRevenueSummary,
@@ -7,6 +8,7 @@ import {
   loadDailyRevenueLoopInput,
 } from '../dailyRevenueLoop/dailyLoopRules';
 import { buildRunnerDashboard } from '../autonomousRunner/runnerRules';
+import { buildCommercialUxDashboard } from '../commercialUx/commercialUxRules';
 import { buildDailyLeadDiscoveryDashboard } from '../dailyLeadDiscovery/discoveryRules';
 import { buildLeadIntelligenceReport } from '../leadIntelligence/leadRules';
 import { buildOperatorUxSummary } from '../operatorUx/uxRules';
@@ -135,6 +137,13 @@ export interface DashboardOutcomeLearning {
   topPerformingOffer: string;
 }
 
+export interface DashboardAdaptiveRevenue {
+  adaptiveLearningStatus: string;
+  bestPerformingCategory: string;
+  bestPerformingOffer: string;
+  learningInfluence: string;
+}
+
 export interface DashboardFollowUpEngine {
   followUpQueue: number;
   todaysFollowUps: number;
@@ -188,6 +197,11 @@ export interface DashboardMobileCommandCenterSummary {
   replyRate: string;
   bestOffer: string;
   bestLeadType: string;
+  adaptiveLearningStatus: string;
+  adaptiveLearningInfluence: string;
+  adaptiveBestCategory: string;
+  adaptiveBestOffer: string;
+  adaptiveRecommendation: string;
 }
 
 export interface DashboardDailyLeadDiscovery {
@@ -243,6 +257,17 @@ export interface DashboardTopLeadAudit {
   executionReadiness: string;
 }
 
+export interface DashboardCommercialUx {
+  todayFocus: string;
+  revenueHero: string;
+  potentialValue: string;
+  nextAction: string;
+  target: string;
+  offer: string;
+  priority: string;
+  decision: string;
+}
+
 export interface DashboardData {
   generatedAt: string;
   mode: 'read-only';
@@ -292,6 +317,7 @@ export interface DashboardData {
   executionPack: DashboardExecutionPack;
   outcomeTracking: DashboardOutcomeTracking;
   outcomeLearning: DashboardOutcomeLearning;
+  adaptiveRevenue: DashboardAdaptiveRevenue;
   followUpEngine: DashboardFollowUpEngine;
   winLossIntelligence: DashboardWinLossIntelligence;
   studioSnapshot: DashboardStudioSnapshot;
@@ -304,6 +330,7 @@ export interface DashboardData {
   autonomousRunner: DashboardAutonomousRunner;
   revenueIntelligence: DashboardRevenueIntelligence;
   topLeadAudit: DashboardTopLeadAudit;
+  commercialUx: DashboardCommercialUx;
   mobileCommandCenter: DashboardMobileCenter;
   safety: string[];
 }
@@ -332,6 +359,8 @@ export function buildPwaDashboardData(): DashboardData {
   const executionPack = buildFirstRevenueExecutionPack();
   const outcomeSummary = buildOutcomeSummary(loadOutcomes());
   const outcomeLearning = buildOutcomeLearningDashboard();
+  const adaptiveRevenue = buildAdaptiveRevenueDashboard();
+  const adaptiveRevenueReport = buildAdaptiveRevenueReport();
   const followUpReport = buildFollowUpOperatingReport();
   const winLossReport = buildWinLossReport();
   const snapshotState = readSnapshotState();
@@ -344,6 +373,7 @@ export function buildPwaDashboardData(): DashboardData {
   const leadQualificationDashboard = buildLeadQualificationDashboard();
   const autonomousRunnerDashboard = buildRunnerDashboard();
   const topLeadAuditDashboard = buildTopLeadAuditDashboard();
+  const commercialUx = buildCommercialUxDashboard();
   const painMiningReport = buildPainMiningReport();
   const painMiningDashboard = buildPainMiningDashboard();
   const topLead = leadIntelligenceReport.leads[0];
@@ -459,6 +489,7 @@ export function buildPwaDashboardData(): DashboardData {
       nextManualMessage: `No outcomes recorded yet. Review the ${dashboardTopLeadName} message pack before any manual send.`,
     },
     outcomeLearning,
+    adaptiveRevenue,
     followUpEngine: {
       followUpQueue: followUpReport.dashboard.followUpQueue,
       todaysFollowUps: followUpReport.dashboard.todaysFollowUps,
@@ -510,6 +541,11 @@ export function buildPwaDashboardData(): DashboardData {
       replyRate: outcomeLearning.replyRate,
       bestOffer: outcomeLearning.topPerformingOffer,
       bestLeadType: buildOutcomeLearningAnalysis().topPerformingCategory,
+      adaptiveLearningStatus: adaptiveRevenue.adaptiveLearningStatus,
+      adaptiveLearningInfluence: adaptiveRevenue.learningInfluence,
+      adaptiveBestCategory: adaptiveRevenue.bestPerformingCategory,
+      adaptiveBestOffer: adaptiveRevenue.bestPerformingOffer,
+      adaptiveRecommendation: adaptiveRevenueReport.adaptiveRecommendation,
       todayAtAGlance: [
         `Top Lead: ${dashboardTopLeadName}`,
         `Top Offer: ${dashboardTopOffer}`,
@@ -534,6 +570,7 @@ export function buildPwaDashboardData(): DashboardData {
     autonomousRunner: autonomousRunnerDashboard,
     revenueIntelligence: revenueIntelligenceDashboard,
     topLeadAudit: topLeadAuditDashboard,
+    commercialUx,
     mobileCommandCenter: {
       reviewCenter: {
         auditsReady: auditPortfolio.reports.length,

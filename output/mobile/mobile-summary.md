@@ -1,6 +1,32 @@
-# Mobile Summary
+# Revenue Command Center
 
-Generated: 2026-06-14T06:04:27.076Z
+Generated: 2026-06-14T06:22:11.934Z
+
+## TODAY
+
+- Target: Appointy
+- Offer: QA Automation Retainer
+- Potential Value: $1,500-$3,000/month
+- Priority: HIGH
+- Decision: GO
+
+## NEXT ACTION
+
+Review Appointy package and decide: SEND / WAIT / REWRITE.
+
+## DISCOVERY SNAPSHOT
+
+- New Leads Today: 30
+- New Pain Signals: 54
+- Qualified Leads: Appointy, Setmore, SuperSaaS
+
+## SYSTEM HEALTH
+
+- Last Refresh: 2026-06-14T01:53:03.396Z
+- Studio Health: Healthy
+- Execution Readiness: GO
+
+## Below The Fold
 
 - Best Lead: Appointy
 - Best Offer: QA Automation Retainer ($1500-$3000/month)
@@ -24,6 +50,10 @@ Generated: 2026-06-14T06:04:27.076Z
 - Reply Rate: No outcomes recorded yet.
 - Best Offer: Insufficient outcome history.
 - Best Lead Type: Insufficient outcome history.
+- Learning Influence: 0%
+- Best Category: Insufficient outcome history.
+- Best Offer: Insufficient outcome history.
+- Adaptive Recommendation: Insufficient outcome history. Keep using existing Revenue Intelligence ranking until real outcomes are recorded.
 - Recommended Offer: QA Automation Retainer ($1500-$3000/month)
 - Next Revenue Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Execution Priority: HIGH

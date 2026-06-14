@@ -21,30 +21,39 @@
       <div class="status-pill" id="dashboardStatus">Loading</div>
     </header>
 
-    <section class="hero-panel" aria-labelledby="todayTitle">
+    <section class="hero-panel revenue-hero-panel" aria-labelledby="todayTitle">
       <div>
         <p class="eyebrow">Today</p>
-        <h2 id="todayTitle">30-second operating view</h2>
+        <h2 id="todayTitle">Revenue Command Center</h2>
+        <p class="hero-action" id="heroNextAction">Loading action</p>
       </div>
-      <div class="hero-grid">
+      <div class="hero-grid revenue-hero-grid">
         <div>
-          <span class="metric-label">Follow-ups</span>
-          <strong id="followUpsDue">0</strong>
+          <span class="metric-label">Target</span>
+          <strong id="heroTarget">Loading</strong>
         </div>
         <div>
-          <span class="metric-label">Proposals</span>
-          <strong id="proposalCount">0</strong>
+          <span class="metric-label">Offer</span>
+          <strong id="heroOffer">Loading</strong>
         </div>
         <div>
-          <span class="metric-label">Evidence</span>
-          <strong id="evidenceCount">0</strong>
+          <span class="metric-label">Potential Value</span>
+          <strong id="heroValue">Loading</strong>
+        </div>
+        <div>
+          <span class="metric-label">Priority</span>
+          <strong id="heroPriority">Loading</strong>
+        </div>
+        <div>
+          <span class="metric-label">Decision</span>
+          <strong id="heroDecision">Loading</strong>
         </div>
       </div>
     </section>
 
     <section class="section" aria-labelledby="topActionsTitle">
       <div class="section-heading">
-        <h2 id="topActionsTitle">Top 5 Actions</h2>
+        <h2 id="topActionsTitle">Supporting Actions</h2>
         <span id="lastUpdate" class="subtle">Not loaded</span>
       </div>
       <div class="action-list" id="topActions"></div>

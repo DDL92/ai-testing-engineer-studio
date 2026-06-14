@@ -60,6 +60,10 @@ function renderLegacyDashboardMarkdown(data: ReturnType<typeof buildPwaDashboard
     '',
     '## Revenue Intelligence Source Of Truth',
     renderList([
+      `Today Focus: ${data.commercialUx.todayFocus}`,
+      `Revenue Hero: ${data.commercialUx.revenueHero}`,
+      `Potential Value: ${data.commercialUx.potentialValue}`,
+      `Next Action: ${data.commercialUx.nextAction}`,
       `Top Lead: ${data.revenueIntelligence.currentTopLead}`,
       `Recommended Offer: ${data.revenueIntelligence.recommendedOffer}`,
       `Revenue Target: ${data.revenueIntelligence.revenueTarget}`,
@@ -74,6 +78,10 @@ function renderLegacyDashboardMarkdown(data: ReturnType<typeof buildPwaDashboard
       `Proposal Rate: ${data.outcomeLearning.proposalRate}`,
       `Win Rate: ${data.outcomeLearning.winRate}`,
       `Top Performing Offer: ${data.outcomeLearning.topPerformingOffer}`,
+      `Adaptive Learning Status: ${data.adaptiveRevenue.adaptiveLearningStatus}`,
+      `Best Performing Category: ${data.adaptiveRevenue.bestPerformingCategory}`,
+      `Best Performing Offer: ${data.adaptiveRevenue.bestPerformingOffer}`,
+      `Learning Influence: ${data.adaptiveRevenue.learningInfluence}`,
     ]),
     '',
     '## Today',
@@ -96,6 +104,10 @@ function renderLegacyDashboardMarkdown(data: ReturnType<typeof buildPwaDashboard
 function renderLegacyDashboardHtml(data: ReturnType<typeof buildPwaDashboardData>): string {
   const topAction = data.today.topActions[0];
   const rows = [
+    ['Today Focus', data.commercialUx.todayFocus],
+    ['Revenue Hero', data.commercialUx.revenueHero],
+    ['Potential Value', data.commercialUx.potentialValue],
+    ['Next Action', data.commercialUx.nextAction],
     ['Top Lead', data.revenueIntelligence.currentTopLead],
     ['Recommended Offer', data.revenueIntelligence.recommendedOffer],
     ['Revenue Target', data.revenueIntelligence.revenueTarget],
@@ -110,6 +122,10 @@ function renderLegacyDashboardHtml(data: ReturnType<typeof buildPwaDashboardData
     ['Proposal Rate', data.outcomeLearning.proposalRate],
     ['Win Rate', data.outcomeLearning.winRate],
     ['Top Performing Offer', data.outcomeLearning.topPerformingOffer],
+    ['Adaptive Learning Status', data.adaptiveRevenue.adaptiveLearningStatus],
+    ['Best Performing Category', data.adaptiveRevenue.bestPerformingCategory],
+    ['Best Performing Offer', data.adaptiveRevenue.bestPerformingOffer],
+    ['Learning Influence', data.adaptiveRevenue.learningInfluence],
     ['Top Action', topAction?.title ?? 'No action found'],
   ];
 

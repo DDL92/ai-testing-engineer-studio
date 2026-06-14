@@ -1,6 +1,13 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-14T06:04:26.937Z
+Generated: 2026-06-14T06:22:11.008Z
+
+## Commercial UX
+
+- Today Focus: Appointy - QA Automation Retainer - HIGH
+- Revenue Hero: Appointy: GO
+- Potential Value: $1,500-$3,000/month
+- Next Action: Review Appointy package and decide: SEND / WAIT / REWRITE.
 
 ## Today
 
@@ -91,6 +98,13 @@ Generated: 2026-06-14T06:04:26.937Z
 - Proposal Rate: No outcomes recorded yet.
 - Win Rate: No outcomes recorded yet.
 - Top Performing Offer: Insufficient outcome history.
+
+## Adaptive Revenue
+
+- Adaptive Learning Status: Insufficient History
+- Best Performing Category: Insufficient outcome history.
+- Best Performing Offer: Insufficient outcome history.
+- Learning Influence: 0%
 
 ## Follow-Up Operating System
 

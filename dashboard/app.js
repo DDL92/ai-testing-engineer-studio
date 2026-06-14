@@ -18,11 +18,9 @@ async function loadDashboard() {
 function render(data) {
   setText('dashboardStatus', data.mode === 'read-only' ? 'Read Only' : 'Review');
   setText('lastUpdate', compactDate(data.generatedAt));
-  setText('followUpsDue', data.today.followUpsDue);
-  setText('proposalCount', data.today.proposalReviews.length);
-  setText('evidenceCount', data.audits.evidenceAvailable);
   setText('totalLeads', data.leads.totalLeads);
 
+  renderCommercialUx(data.commercialUx);
   renderActions(data.today.topActions);
   renderRevenue(data.revenue);
   renderRevenueActivation(data.revenueActivation);
@@ -46,6 +44,25 @@ function render(data) {
   renderProposals(data.proposals);
   renderMobileCenters(data.mobileCommandCenter);
   renderHealth(data.systemHealth);
+}
+
+function renderCommercialUx(commercial) {
+  if (!commercial) {
+    setText('heroTarget', 'Not loaded');
+    setText('heroOffer', 'Not loaded');
+    setText('heroValue', 'Not loaded');
+    setText('heroPriority', 'Not loaded');
+    setText('heroDecision', 'Not loaded');
+    setText('heroNextAction', 'Commercial UX data not loaded.');
+    return;
+  }
+
+  setText('heroTarget', commercial.target);
+  setText('heroOffer', commercial.offer);
+  setText('heroValue', commercial.potentialValue);
+  setText('heroPriority', commercial.priority);
+  setText('heroDecision', commercial.decision);
+  setText('heroNextAction', commercial.nextAction);
 }
 
 function renderActions(actions) {
@@ -455,7 +472,9 @@ function compactDate(value) {
 }
 
 function setText(id, value) {
-  byId(id).textContent = text(value);
+  const element = document.getElementById(id);
+  if (!element) return;
+  element.textContent = text(value);
 }
 
 function byId(id) {
