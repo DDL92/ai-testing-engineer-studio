@@ -69,6 +69,11 @@ function renderLegacyDashboardMarkdown(data: ReturnType<typeof buildPwaDashboard
       `Evidence Status: ${data.topLeadAudit.evidenceStatus}`,
       `Proposal Status: ${data.topLeadAudit.proposalStatus}`,
       `Execution Readiness: ${data.topLeadAudit.executionReadiness}`,
+      `Outcomes Recorded: ${data.outcomeLearning.outcomesRecorded}`,
+      `Reply Rate: ${data.outcomeLearning.replyRate}`,
+      `Proposal Rate: ${data.outcomeLearning.proposalRate}`,
+      `Win Rate: ${data.outcomeLearning.winRate}`,
+      `Top Performing Offer: ${data.outcomeLearning.topPerformingOffer}`,
     ]),
     '',
     '## Today',
@@ -100,6 +105,11 @@ function renderLegacyDashboardHtml(data: ReturnType<typeof buildPwaDashboardData
     ['Evidence Status', data.topLeadAudit.evidenceStatus],
     ['Proposal Status', data.topLeadAudit.proposalStatus],
     ['Execution Readiness', data.topLeadAudit.executionReadiness],
+    ['Outcomes Recorded', String(data.outcomeLearning.outcomesRecorded)],
+    ['Reply Rate', data.outcomeLearning.replyRate],
+    ['Proposal Rate', data.outcomeLearning.proposalRate],
+    ['Win Rate', data.outcomeLearning.winRate],
+    ['Top Performing Offer', data.outcomeLearning.topPerformingOffer],
     ['Top Action', topAction?.title ?? 'No action found'],
   ];
 

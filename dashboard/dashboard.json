@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-14T05:50:59.176Z",
+  "generatedAt": "2026-06-14T06:04:26.937Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-14",
@@ -91,7 +91,7 @@
     "bestRetainerOpportunity": "Appointy"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-14T05:50:59.176Z",
+    "lastUpdate": "2026-06-14T06:04:26.937Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "10 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -136,6 +136,13 @@
     "replyRate": "No outcomes recorded yet.",
     "nextManualMessage": "No outcomes recorded yet. Review the Appointy message pack before any manual send."
   },
+  "outcomeLearning": {
+    "outcomesRecorded": 0,
+    "replyRate": "No outcomes recorded yet.",
+    "proposalRate": "No outcomes recorded yet.",
+    "winRate": "No outcomes recorded yet.",
+    "topPerformingOffer": "Insufficient outcome history."
+  },
   "followUpEngine": {
     "followUpQueue": 29,
     "todaysFollowUps": 5,
@@ -179,6 +186,10 @@
     "openOpportunities": 29,
     "studioStatus": "Healthy",
     "revenueStatus": "Current MRR: $0",
+    "learningStatus": "No outcomes recorded yet.",
+    "replyRate": "No outcomes recorded yet.",
+    "bestOffer": "Insufficient outcome history.",
+    "bestLeadType": "Insufficient outcome history.",
     "todayAtAGlance": "Top Lead: Appointy | Top Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
   },
   "dailyLeadDiscovery": {

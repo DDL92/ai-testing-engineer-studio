@@ -154,6 +154,10 @@ export interface MobileCommandCenterSummary {
   auditStatus: string;
   topLeadAuditStatus: string;
   topLeadExecutionReadiness: string;
+  learningStatus: string;
+  learningReplyRate: string;
+  learningBestOffer: string;
+  learningBestLeadType: string;
   nextRevenueAction: string;
   executionPriority: string;
   safetyRules: string[];

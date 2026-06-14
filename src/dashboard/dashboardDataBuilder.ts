@@ -12,6 +12,7 @@ import { buildLeadIntelligenceReport } from '../leadIntelligence/leadRules';
 import { buildOperatorUxSummary } from '../operatorUx/uxRules';
 import { buildOpportunitySummary } from '../opportunityEngine/opportunityEngineRules';
 import { OpportunityReport } from '../opportunityEngine/types';
+import { buildOutcomeLearningAnalysis, buildOutcomeLearningDashboard } from '../outcomeLearning/learningRules';
 import { buildFirstRevenueExecutionPack } from '../executionPack/generateFirstRevenueChecklist';
 import { buildFollowUpOperatingReport } from '../followUpEngine/followUpRules';
 import { buildOutcomeSummary, loadOutcomes } from '../outcomeTracking/outcomeRules';
@@ -126,6 +127,14 @@ export interface DashboardOutcomeTracking {
   nextManualMessage: string;
 }
 
+export interface DashboardOutcomeLearning {
+  outcomesRecorded: number;
+  replyRate: string;
+  proposalRate: string;
+  winRate: string;
+  topPerformingOffer: string;
+}
+
 export interface DashboardFollowUpEngine {
   followUpQueue: number;
   todaysFollowUps: number;
@@ -175,6 +184,10 @@ export interface DashboardMobileCommandCenterSummary {
   studioStatus: string;
   revenueStatus: string;
   todayAtAGlance: string;
+  learningStatus: string;
+  replyRate: string;
+  bestOffer: string;
+  bestLeadType: string;
 }
 
 export interface DashboardDailyLeadDiscovery {
@@ -278,6 +291,7 @@ export interface DashboardData {
   revenueActivation: DashboardRevenueActivation;
   executionPack: DashboardExecutionPack;
   outcomeTracking: DashboardOutcomeTracking;
+  outcomeLearning: DashboardOutcomeLearning;
   followUpEngine: DashboardFollowUpEngine;
   winLossIntelligence: DashboardWinLossIntelligence;
   studioSnapshot: DashboardStudioSnapshot;
@@ -317,6 +331,7 @@ export function buildPwaDashboardData(): DashboardData {
   const revenueActivationReport = buildRevenueActivationReport();
   const executionPack = buildFirstRevenueExecutionPack();
   const outcomeSummary = buildOutcomeSummary(loadOutcomes());
+  const outcomeLearning = buildOutcomeLearningDashboard();
   const followUpReport = buildFollowUpOperatingReport();
   const winLossReport = buildWinLossReport();
   const snapshotState = readSnapshotState();
@@ -443,6 +458,7 @@ export function buildPwaDashboardData(): DashboardData {
       replyRate: outcomeSummary.replyRate,
       nextManualMessage: `No outcomes recorded yet. Review the ${dashboardTopLeadName} message pack before any manual send.`,
     },
+    outcomeLearning,
     followUpEngine: {
       followUpQueue: followUpReport.dashboard.followUpQueue,
       todaysFollowUps: followUpReport.dashboard.todaysFollowUps,
@@ -490,6 +506,10 @@ export function buildPwaDashboardData(): DashboardData {
       openOpportunities: followUpReport.dashboard.openOpportunities,
       studioStatus: operatorSummary.studioStatus,
       revenueStatus: `Current MRR: $${studioReport.revenueReadiness.currentMrr.toLocaleString('en-US')}`,
+      learningStatus: outcomeLearning.outcomesRecorded > 0 ? `${outcomeLearning.outcomesRecorded} outcome(s) recorded` : 'No outcomes recorded yet.',
+      replyRate: outcomeLearning.replyRate,
+      bestOffer: outcomeLearning.topPerformingOffer,
+      bestLeadType: buildOutcomeLearningAnalysis().topPerformingCategory,
       todayAtAGlance: [
         `Top Lead: ${dashboardTopLeadName}`,
         `Top Offer: ${dashboardTopOffer}`,

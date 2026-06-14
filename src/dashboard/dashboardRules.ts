@@ -492,6 +492,14 @@ Generated: ${data.generatedAt}
 - Reply Rate: ${data.outcomeTracking.replyRate}
 - Next Manual Message: ${data.outcomeTracking.nextManualMessage}
 
+## Outcome Learning
+
+- Outcomes Recorded: ${data.outcomeLearning.outcomesRecorded}
+- Reply Rate: ${data.outcomeLearning.replyRate}
+- Proposal Rate: ${data.outcomeLearning.proposalRate}
+- Win Rate: ${data.outcomeLearning.winRate}
+- Top Performing Offer: ${data.outcomeLearning.topPerformingOffer}
+
 ## Follow-Up Operating System
 
 - Follow-Up Queue: ${data.followUpEngine.followUpQueue}

@@ -1,5 +1,6 @@
 import fs = require('fs');
 import path = require('path');
+import { historicalPerformanceForLead } from '../outcomeLearning/learningRules';
 import { buildLeadQualificationReport } from '../webLeadQualification/normalizationRules';
 import { NormalizedWebLead, RecommendedQualifiedOffer } from '../webLeadQualification/types';
 import { buildPainMiningReport } from '../webPainMining/painMiningRules';
@@ -25,8 +26,8 @@ const safetyRules = [
 export function buildRevenueIntelligenceReport(): RevenueIntelligenceReport {
   const qualification = buildLeadQualificationReport();
   const pain = buildPainMiningReport();
-  const topQualifiedLead = qualification.topQualifiedLeads[0];
-  const topLead = topQualifiedLead ? buildUnifiedTopLead(topQualifiedLead, 1, pain.signals) : null;
+  const rankedLeads = rankUnifiedTopLeads(qualification.topQualifiedLeads, pain.signals);
+  const topLead = rankedLeads[0] ?? null;
   const decision = buildDecision(topLead);
 
   return {
@@ -56,7 +57,7 @@ export function buildRevenueIntelligenceDashboard(): RevenueIntelligenceDashboar
 export function buildUnifiedTopLeads(): UnifiedTopLead[] {
   const qualification = buildLeadQualificationReport();
   const painSignals = buildPainMiningReport().signals;
-  return qualification.topQualifiedLeads.map((lead, index) => buildUnifiedTopLead(lead, index + 1, painSignals));
+  return rankUnifiedTopLeads(qualification.topQualifiedLeads, painSignals);
 }
 
 export function writeTopLeadOutput(report: RevenueIntelligenceReport): string[] {
@@ -99,6 +100,7 @@ export function renderTopLead(report: RevenueIntelligenceReport): string {
       'QA Opportunity Score',
       'Pain Signal Relevance',
       'Offer Fit',
+      'Historical Performance Signal (5% initial weight when real outcomes exist)',
     ]),
     '',
     '## Safety Rules',
@@ -178,6 +180,7 @@ export function renderRevenueUnificationReport(report: RevenueIntelligenceReport
       `Qualification score: ${report.topLead?.qualificationScore ?? 0}/100`,
       `QA opportunity score: ${report.topLead?.qaOpportunityScore ?? 0}/100`,
       `Offer recommendation: ${report.topLead?.recommendedOffer ?? 'No offer selected'}`,
+      `Historical performance score: ${report.topLead?.historicalPerformanceScore ?? 0}/100`,
       `Revenue action recommendation: ${report.topLead?.nextRevenueAction ?? 'Refresh qualified ranking.'}`,
     ]),
     '',
@@ -193,9 +196,30 @@ export function renderRevenueUnificationReport(report: RevenueIntelligenceReport
   ].join('\n');
 }
 
+function rankUnifiedTopLeads(leads: NormalizedWebLead[], painSignals: { companyName: string; category: string }[]): UnifiedTopLead[] {
+  return leads
+    .map((lead, index) => buildUnifiedTopLead(lead, index + 1, painSignals))
+    .sort((left, right) => right.selectionScore - left.selectionScore || left.rank - right.rank || left.companyName.localeCompare(right.companyName))
+    .map((lead, index) => ({ ...lead, rank: index + 1 }));
+}
+
 function buildUnifiedTopLead(lead: NormalizedWebLead, rank: number, painSignals: { companyName: string; category: string }[]): UnifiedTopLead {
   const painSignalRelevance = painSignals.some((signal) => normalizeKey(signal.companyName) === normalizeKey(lead.normalizedName)) ? 100 : 35;
   const offerFitScore = offerFit(lead.recommendedOffer);
+  const historicalPerformance = historicalPerformanceForLead({
+    companyName: lead.normalizedName,
+    category: lead.category,
+    recommendedOffer: lead.recommendedOffer,
+  });
+  const baseSelectionScore = Math.round(
+    lead.qualificationScore * 0.45
+    + lead.qaOpportunityScore * 0.35
+    + painSignalRelevance * 0.1
+    + offerFitScore * 0.1,
+  );
+  const selectionScore = historicalPerformance.hasOutcomes
+    ? Math.round(baseSelectionScore * 0.95 + historicalPerformance.score * 0.05)
+    : baseSelectionScore;
   const executionPriority = executionPriorityFor(lead);
   const nextRevenueAction = `Review ${lead.normalizedName} message pack and public evidence; decide manually whether to prepare a QA Audit offer.`;
 
@@ -209,6 +233,8 @@ function buildUnifiedTopLead(lead: NormalizedWebLead, rank: number, painSignals:
     qaOpportunityScore: lead.qaOpportunityScore,
     painSignalRelevance,
     offerFitScore,
+    historicalPerformanceScore: historicalPerformance.score,
+    selectionScore,
     recommendedOffer: lead.recommendedOffer,
     executionPriority,
     nextRevenueAction,
@@ -218,6 +244,8 @@ function buildUnifiedTopLead(lead: NormalizedWebLead, rank: number, painSignals:
       `QA opportunity score ${lead.qaOpportunityScore}/100`,
       `Pain signal relevance ${painSignalRelevance}/100`,
       `Offer fit ${offerFitScore}/100`,
+      historicalPerformance.reason,
+      `Final selection score ${selectionScore}/100`,
     ],
     sourceLead: lead,
   };
@@ -292,6 +320,8 @@ function renderTopLeadBullets(lead: UnifiedTopLead): string {
     `QA opportunity score: ${lead.qaOpportunityScore}/100`,
     `Pain signal relevance: ${lead.painSignalRelevance}/100`,
     `Offer fit: ${lead.offerFitScore}/100`,
+    `Historical performance score: ${lead.historicalPerformanceScore}/100`,
+    `Final selection score: ${lead.selectionScore}/100`,
     `Recommended offer: ${lead.recommendedOffer}`,
     `Next revenue action: ${lead.nextRevenueAction}`,
   ]);

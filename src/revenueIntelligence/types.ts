@@ -10,6 +10,8 @@ export interface UnifiedTopLead {
   qaOpportunityScore: number;
   painSignalRelevance: number;
   offerFitScore: number;
+  historicalPerformanceScore: number;
+  selectionScore: number;
   recommendedOffer: RecommendedQualifiedOffer;
   executionPriority: string;
   nextRevenueAction: string;

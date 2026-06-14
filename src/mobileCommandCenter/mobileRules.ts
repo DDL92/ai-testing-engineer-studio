@@ -5,6 +5,7 @@ import { buildPwaDashboardData, DashboardLink } from '../dashboard/dashboardData
 import { buildFirstRevenueExecutionPack } from '../executionPack/generateFirstRevenueChecklist';
 import { buildFinanceReport, loadFinanceInput } from '../financeTracking/financeRules';
 import { buildLeadIntelligenceReport } from '../leadIntelligence/leadRules';
+import { buildOutcomeLearningAnalysis } from '../outcomeLearning/learningRules';
 import { buildOutcomeSummary, loadOutcomes } from '../outcomeTracking/outcomeRules';
 import { buildRevenueActivationReport } from '../revenueActivation/revenueRules';
 import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
@@ -52,6 +53,7 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
   const finance = buildFinanceReport(loadFinanceInput());
   const outcomeRecords = loadOutcomes();
   const outcomes = buildOutcomeSummary(outcomeRecords);
+  const learning = buildOutcomeLearningAnalysis();
   const manualFollowUps = readJson<{ status?: string }[]>(path.join(process.cwd(), 'data', 'followups', 'followups.json'), []);
   const studio = buildStudioConsolidationReport();
   const webDiscovery = buildWebLeadDiscoveryReport();
@@ -132,6 +134,10 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     auditStatus: topLeadAudit.topLeadAuditStatus,
     topLeadAuditStatus: topLeadAudit.topLeadAuditStatus,
     topLeadExecutionReadiness: topLeadAudit.executionReadiness,
+    learningStatus: learning.hasOutcomes ? `${learning.totalOutcomes} outcome(s) recorded` : 'No outcomes recorded yet.',
+    learningReplyRate: learning.hasOutcomes ? `${learning.overall.replyRate}%` : 'No outcomes recorded yet.',
+    learningBestOffer: learning.topPerformingOffer,
+    learningBestLeadType: learning.topPerformingCategory,
     nextRevenueAction: revenueTruth.nextAction,
     executionPriority: revenueTruth.executionPriority,
     safetyRules: sprint82Safety,
@@ -225,6 +231,14 @@ export function renderMobileTodayView(summary: MobileCommandCenterSummary): stri
     '',
     `Execution Readiness:\n${summary.topLeadExecutionReadiness}`,
     '',
+    `Learning Status:\n${summary.learningStatus}`,
+    '',
+    `Reply Rate:\n${summary.learningReplyRate}`,
+    '',
+    `Best Offer:\n${summary.learningBestOffer}`,
+    '',
+    `Best Lead Type:\n${summary.learningBestLeadType}`,
+    '',
     `Next Revenue Action:\n${summary.nextRevenueAction}`,
     '',
     `Execution Priority:\n${summary.executionPriority}`,
@@ -290,6 +304,10 @@ export function renderMobilePipelineView(summary: MobileCommandCenterSummary): s
       `Current Top Lead: ${summary.currentTopLead}`,
       `Audit Status: ${summary.auditStatus}`,
       `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
+      `Learning Status: ${summary.learningStatus}`,
+      `Reply Rate: ${summary.learningReplyRate}`,
+      `Best Offer: ${summary.learningBestOffer}`,
+      `Best Lead Type: ${summary.learningBestLeadType}`,
       `Recommended Offer: ${summary.topOffer}`,
       `Next Revenue Action: ${summary.nextRevenueAction}`,
       `Execution Priority: ${summary.executionPriority}`,
@@ -328,6 +346,10 @@ export function renderMobileActionCenter(summary: MobileCommandCenterSummary, ac
       `Current Top Lead: ${summary.currentTopLead}`,
       `Audit Status: ${summary.auditStatus}`,
       `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
+      `Learning Status: ${summary.learningStatus}`,
+      `Reply Rate: ${summary.learningReplyRate}`,
+      `Best Offer: ${summary.learningBestOffer}`,
+      `Best Lead Type: ${summary.learningBestLeadType}`,
       `Recommended Offer: ${summary.topOffer}`,
       `Next Revenue Action: ${summary.nextRevenueAction}`,
       `Execution Priority: ${summary.executionPriority}`,
@@ -374,6 +396,10 @@ export function renderSprint82MobileSummary(summary: MobileCommandCenterSummary)
       `Current Top Lead: ${summary.currentTopLead}`,
       `Audit Status: ${summary.auditStatus}`,
       `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
+      `Learning Status: ${summary.learningStatus}`,
+      `Reply Rate: ${summary.learningReplyRate}`,
+      `Best Offer: ${summary.learningBestOffer}`,
+      `Best Lead Type: ${summary.learningBestLeadType}`,
       `Recommended Offer: ${summary.topOffer}`,
       `Next Revenue Action: ${summary.nextRevenueAction}`,
       `Execution Priority: ${summary.executionPriority}`,

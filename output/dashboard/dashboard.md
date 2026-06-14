@@ -1,6 +1,6 @@
 # Studio Dashboard
 
-Generated: 2026-06-14T05:50:59.176Z
+Generated: 2026-06-14T06:04:26.937Z
 
 ## Revenue Intelligence Source Of Truth
 - Top Lead: Appointy
@@ -12,6 +12,11 @@ Generated: 2026-06-14T05:50:59.176Z
 - Evidence Status: Ready
 - Proposal Status: Ready
 - Execution Readiness: GO
+- Outcomes Recorded: 0
+- Reply Rate: No outcomes recorded yet.
+- Proposal Rate: No outcomes recorded yet.
+- Win Rate: No outcomes recorded yet.
+- Top Performing Offer: Insufficient outcome history.
 
 ## Today
 - Top Action: Review Appointy package
