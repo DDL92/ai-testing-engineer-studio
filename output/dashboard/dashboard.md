@@ -1,6 +1,6 @@
 # Studio Dashboard
 
-Generated: 2026-06-14T16:34:37.327Z
+Generated: 2026-06-14T22:16:17.823Z
 
 ## Revenue Intelligence Source Of Truth
 - Today Focus: Appointy - QA Automation Retainer - HIGH
@@ -8,13 +8,17 @@ Generated: 2026-06-14T16:34:37.327Z
 - Potential Value: $1,500-$3,000/month
 - Next Action: Review Appointy package and decide: SEND / WAIT / REWRITE.
 - Top Lead: Appointy
+- Actionable Lead: Setmore
+- Commercial Readiness: 86/100
+- Evidence Blockers: Appointy: Page evidence is WARNING. | Appointy: Evidence status is NOT READY. | ShapeNet Software: Evidence status is NOT READY.
+- Rotation Status: ACTIONABLE_LEAD_FOUND
 - Recommended Offer: QA Automation Retainer ($1500-$3000/month)
 - Revenue Target: First paid client
 - Execution Priority: HIGH
 - Next Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
-- Top Lead Audit Status: Ready
-- Evidence Status: Missing
-- Proposal Status: Ready
+- Top Lead Audit Status: Missing
+- Evidence Status: Ready
+- Proposal Status: Missing
 - Execution Readiness: NO GO
 - Evidence Engine Status: NOT READY
 - Lighthouse Status: PASS
@@ -33,7 +37,7 @@ Generated: 2026-06-14T16:34:37.327Z
 ## Today
 - Top Action: Review Appointy package
 - Why: Revenue Intelligence is the source of truth. Current decision: GO.
-- Next Step: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+- Next Step: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
 ## Safety
 - Read-only dashboard.

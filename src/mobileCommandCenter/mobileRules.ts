@@ -87,6 +87,7 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     : 'Current MRR: $0';
   const topAction = revenueTruth.nextAction || (topLead ? mobileActionFor(topLead.companyName, execution.recommendation) : 'Run npm run lead:intelligence to refresh lead focus.');
   const topLeadName = revenueTruth.topLead;
+  const actionableLeadName = revenueTruth.actionableLead;
   const topOffer = revenueTruth.recommendedOffer;
   const studioStatus = studioHealth === 'Healthy'
     ? 'Healthy'
@@ -95,6 +96,8 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
   return {
     generatedAt: new Date().toISOString(),
     topLead: topLeadName,
+    actionableLead: actionableLeadName,
+    commercialReadiness: revenueTruth.commercialReadiness,
     topOffer,
     topAction,
     estimatedTime: execution.recommendation === 'GO' ? '20 minutes' : '30-60 minutes',
@@ -105,6 +108,8 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     revenueStatus,
     todayAtAGlance: [
       `Top Lead: ${topLeadName}`,
+      `Actionable Lead: ${actionableLeadName}`,
+      `Commercial Readiness: ${revenueTruth.commercialReadiness}`,
       `Top Offer: ${topOffer}`,
       `Action: ${topAction}`,
       `MRR: ${formatCurrency(finance.currentMrr)}`,
@@ -308,6 +313,8 @@ export function renderMobilePipelineView(summary: MobileCommandCenterSummary): s
     '',
     renderSimpleLines([
       `Top Lead: ${summary.topLead}`,
+      `Actionable Lead: ${summary.actionableLead}`,
+      `Commercial Readiness: ${summary.commercialReadiness}`,
       `Top Offer: ${summary.topOffer}`,
       `Follow Ups Waiting: ${summary.followUpsWaiting}`,
       `Open Opportunities: ${summary.openOpportunities}`,
@@ -324,6 +331,8 @@ export function renderMobilePipelineView(summary: MobileCommandCenterSummary): s
       `Top Qualified Lead: ${summary.topQualifiedLead}`,
       `Today\'s Recommended Action: ${summary.todaysRecommendedAction}`,
       `Current Top Lead: ${summary.currentTopLead}`,
+      `Actionable Lead: ${summary.actionableLead}`,
+      `Commercial Readiness: ${summary.commercialReadiness}`,
       `Audit Status: ${summary.auditStatus}`,
       `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
       `Learning Status: ${summary.learningStatus}`,
@@ -441,6 +450,8 @@ export function renderSprint82MobileSummary(summary: MobileCommandCenterSummary)
     '',
     renderSimpleLines([
       `Best Lead: ${summary.topLead}`,
+      `Actionable Lead: ${summary.actionableLead}`,
+      `Commercial Readiness: ${summary.commercialReadiness}`,
       `Best Offer: ${summary.topOffer}`,
       `Best Action: ${summary.bestAction}`,
       `Today\'s Discovered Leads: ${summary.todaysDiscoveredLeads}`,
@@ -456,6 +467,8 @@ export function renderSprint82MobileSummary(summary: MobileCommandCenterSummary)
       `Top Qualified Lead: ${summary.topQualifiedLead}`,
       `Today\'s Recommended Action: ${summary.todaysRecommendedAction}`,
       `Current Top Lead: ${summary.currentTopLead}`,
+      `Actionable Lead: ${summary.actionableLead}`,
+      `Commercial Readiness: ${summary.commercialReadiness}`,
       `Audit Status: ${summary.auditStatus}`,
       `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
       `Learning Status: ${summary.learningStatus}`,
@@ -507,6 +520,8 @@ export function buildMobileReviewPackage(): MobileReviewPackage {
       item('Testing Status', dashboard.testing.testingStatus),
       item('Quality Gate Status', dashboard.testing.qualityGateStatus),
       item('CI Status', dashboard.testing.ciStatus),
+      item('Actionable Lead', dashboard.revenueIntelligence.actionableLead),
+      item('Commercial Readiness', dashboard.revenueIntelligence.commercialReadiness),
       item('Intelligence Status', dashboard.webIntelligence.intelligenceQuality),
       item('Company Confidence', dashboard.webIntelligence.companyConfidence),
       item('Evidence Confidence', dashboard.webIntelligence.evidenceConfidence),
@@ -628,6 +643,8 @@ ${bullets([
     `Testing Status: ${valueFor(review.reviewCenter, 'Testing Status')}`,
     `Quality Gate Status: ${valueFor(review.reviewCenter, 'Quality Gate Status')}`,
     `CI Status: ${valueFor(review.reviewCenter, 'CI Status')}`,
+    `Actionable Lead: ${valueFor(review.reviewCenter, 'Actionable Lead')}`,
+    `Commercial Readiness: ${valueFor(review.reviewCenter, 'Commercial Readiness')}`,
     `Intelligence Status: ${valueFor(review.reviewCenter, 'Intelligence Status')}`,
     `Company Confidence: ${valueFor(review.reviewCenter, 'Company Confidence')}`,
     `Evidence Confidence: ${valueFor(review.reviewCenter, 'Evidence Confidence')}`,

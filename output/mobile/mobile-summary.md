@@ -1,6 +1,6 @@
 # Revenue Command Center
 
-Generated: 2026-06-14T16:33:54.528Z
+Generated: 2026-06-14T22:16:18.519Z
 
 ## TODAY
 
@@ -29,8 +29,10 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 ## Below The Fold
 
 - Best Lead: Appointy
+- Actionable Lead: Setmore
+- Commercial Readiness: 86/100
 - Best Offer: QA Automation Retainer ($1500-$3000/month)
-- Best Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+- Best Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Today's Discovered Leads: Fitness Studio and Gym Scheduling Software - Appointy, Gym Management Software - GymMaster Member Management, Online booking software for gyms and fitness studios - SuperSaaS
 - Top Pain Signal: Potential recurring pain signal: mobile app for Gym Software Market
 - Best Opportunity: Fitness Studio and Gym Scheduling Software - Appointy (99/100)
@@ -42,9 +44,11 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 - New Leads Today: 30
 - New Pain Signals: 54
 - Top Qualified Lead: Appointy
-- Today's Recommended Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+- Today's Recommended Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Current Top Lead: Appointy
-- Audit Status: Ready
+- Actionable Lead: Setmore
+- Commercial Readiness: 86/100
+- Audit Status: Missing
 - Execution Readiness: NO GO
 - Learning Status: No outcomes recorded yet.
 - Reply Rate: No outcomes recorded yet.
@@ -55,7 +59,7 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 - Best Offer: Insufficient outcome history.
 - Adaptive Recommendation: Insufficient outcome history. Keep using existing Revenue Intelligence ranking until real outcomes are recorded.
 - Recommended Offer: QA Automation Retainer ($1500-$3000/month)
-- Next Revenue Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+- Next Revenue Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Execution Priority: HIGH
 - Studio Health: Healthy
 - Runtime Health: Runtime data needs cleanup
@@ -71,7 +75,7 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 - Readiness Status: NOT READY
 - Lighthouse Status: PASS
 - Revenue Health: Current MRR: $0
-- Next Manual Step: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+- Next Manual Step: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
 ## Safety Rules
 - No outreach generated or sent.

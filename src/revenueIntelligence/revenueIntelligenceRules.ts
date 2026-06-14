@@ -1,6 +1,7 @@
 import fs = require('fs');
 import path = require('path');
 import { adaptiveSignalForLead } from '../adaptiveRevenue/adaptiveRules';
+import { buildLeadRotationDecision } from '../leadRotation/rotationRules';
 import { buildLeadQualificationReport } from '../webLeadQualification/normalizationRules';
 import { NormalizedWebLead, RecommendedQualifiedOffer } from '../webLeadQualification/types';
 import { buildPainMiningReport } from '../webPainMining/painMiningRules';
@@ -28,28 +29,38 @@ export function buildRevenueIntelligenceReport(): RevenueIntelligenceReport {
   const pain = buildPainMiningReport();
   const rankedLeads = rankUnifiedTopLeads(qualification.topQualifiedLeads, pain.signals);
   const topLead = rankedLeads[0] ?? null;
+  const rotation = buildLeadRotationDecision();
+  const actionableLead = rotation.actionableLead;
   const decision = buildDecision(topLead);
 
   return {
     generatedAt: new Date().toISOString(),
     previousTopLead: readPreviousRevenueFocusLead(),
     topLead,
+    actionableLead,
     decision,
     unifiedRecommendation: topLead
-      ? `${topLead.companyName} is the unified top lead. Recommended offer: ${topLead.recommendedOffer}.`
+      ? `${topLead.companyName} is the top ranked lead. ${actionableLead?.companyName ?? 'No lead'} is the current actionable lead from rotation.`
       : 'No unified top lead is available. Refresh qualified ranking first.',
-    executionPriority: topLead?.executionPriority ?? 'Refresh Lead Qualification and Qualified Ranking.',
+    executionPriority: actionableLead
+      ? `Review ${actionableLead.companyName} message pack and public evidence; decide manually whether to prepare a QA Audit offer.`
+      : topLead?.executionPriority ?? 'Refresh Lead Qualification and Qualified Ranking.',
     safetyRules,
   };
 }
 
 export function buildRevenueIntelligenceDashboard(): RevenueIntelligenceDashboard {
   const report = buildRevenueIntelligenceReport();
+  const rotation = buildLeadRotationDecision();
   return {
     revenueIntelligenceStatus: report.topLead ? 'Unified' : 'Needs Review',
     currentTopLead: report.topLead?.companyName ?? 'No unified top lead',
+    actionableLead: report.actionableLead?.companyName ?? 'No actionable lead',
+    commercialReadiness: report.actionableLead ? `${report.actionableLead.commercialReadinessScore}/100` : 'Not Available',
+    evidenceBlockers: rotation.evidenceBlockers.slice(0, 3).join(' | ') || 'None',
+    rotationStatus: rotation.rotationStatus,
     revenueTarget: report.topLead ? 'First paid client' : 'Refresh qualified ranking',
-    recommendedOffer: report.topLead?.recommendedOffer ?? 'No offer selected',
+    recommendedOffer: report.actionableLead?.recommendedOffer ?? report.topLead?.recommendedOffer ?? 'No offer selected',
     executionPriority: dashboardPriority(report.decision.status),
   };
 }
@@ -136,9 +147,11 @@ export function renderUnifiedRecommendation(report: RevenueIntelligenceReport): 
     report.unifiedRecommendation,
     '',
     report.topLead ? renderList([
-      `Current Top Lead: ${report.topLead.companyName}`,
-      `Recommended Offer: ${report.topLead.recommendedOffer}`,
-      `Next Revenue Action: ${report.topLead.nextRevenueAction}`,
+      `Top Ranked Lead: ${report.topLead.companyName}`,
+      `Actionable Lead: ${report.actionableLead?.companyName ?? 'No actionable lead'}`,
+      `Recommended Offer: ${report.actionableLead?.recommendedOffer ?? report.topLead.recommendedOffer}`,
+      `Commercial Readiness: ${report.actionableLead ? `${report.actionableLead.commercialReadinessScore}/100` : 'Not Available'}`,
+      `Next Revenue Action: ${report.actionableLead ? `Review ${report.actionableLead.companyName} message pack and public evidence; decide manually whether to prepare a QA Audit offer.` : report.topLead.nextRevenueAction}`,
       `Execution Priority: ${report.topLead.executionPriority}`,
     ]) : '- No recommendation available.',
     '',
@@ -155,10 +168,11 @@ export function renderExecutionPriority(report: RevenueIntelligenceReport): stri
     `Generated: ${report.generatedAt}`,
     '',
     report.topLead ? renderList([
-      `Lead: ${report.topLead.companyName}`,
+      `Top Ranked Lead: ${report.topLead.companyName}`,
+      `Actionable Lead: ${report.actionableLead?.companyName ?? 'No actionable lead'}`,
       `Priority: ${report.topLead.executionPriority}`,
-      `Recommended offer: ${report.topLead.recommendedOffer}`,
-      `Next revenue action: ${report.topLead.nextRevenueAction}`,
+      `Recommended offer: ${report.actionableLead?.recommendedOffer ?? report.topLead.recommendedOffer}`,
+      `Next revenue action: ${report.actionableLead ? `Review ${report.actionableLead.companyName} message pack and public evidence; decide manually whether to prepare a QA Audit offer.` : report.topLead.nextRevenueAction}`,
     ]) : '- Refresh qualified ranking before choosing a lead.',
     '',
     '## Safety Rules',
@@ -176,6 +190,8 @@ export function renderRevenueUnificationReport(report: RevenueIntelligenceReport
     renderList([
       `Previous top lead: ${report.previousTopLead}`,
       `New top lead: ${report.topLead?.companyName ?? 'No top lead found'}`,
+      `Actionable lead: ${report.actionableLead?.companyName ?? 'No actionable lead'}`,
+      `Actionable commercial readiness: ${report.actionableLead ? `${report.actionableLead.commercialReadinessScore}/100` : 'Not Available'}`,
       `Why selected: ${report.topLead?.whySelected.join('; ') ?? 'No qualified ranking available.'}`,
       `Qualification score: ${report.topLead?.qualificationScore ?? 0}/100`,
       `QA opportunity score: ${report.topLead?.qaOpportunityScore ?? 0}/100`,

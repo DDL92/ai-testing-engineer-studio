@@ -554,6 +554,14 @@ Generated: ${data.generatedAt}
 - Studio Status: ${data.operatorMode.studioStatus}
 - Today At A Glance: ${data.operatorMode.todayAtAGlance}
 
+## Lead Rotation
+
+- Top Ranked Lead: ${data.revenueIntelligence.currentTopLead}
+- Actionable Lead: ${data.revenueIntelligence.actionableLead}
+- Commercial Readiness: ${data.revenueIntelligence.commercialReadiness}
+- Evidence Blockers: ${data.revenueIntelligence.evidenceBlockers}
+- Rotation Status: ${data.revenueIntelligence.rotationStatus}
+
 ## Top Lead Audit
 
 - Top Lead Audit Status: ${data.topLeadAudit.topLeadAuditStatus}

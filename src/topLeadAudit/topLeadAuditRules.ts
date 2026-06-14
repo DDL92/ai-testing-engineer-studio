@@ -1,8 +1,8 @@
 import fs = require('fs');
 import path = require('path');
 import { buildEvidenceReadinessDecision } from '../evidenceEngine/evidenceRules';
+import { buildLeadRotationDecision } from '../leadRotation/rotationRules';
 import { buildMessageReview, writeMessagePack } from '../messageReview/messageRules';
-import { buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIntelligenceRules';
 import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import { buildPainMiningReport } from '../webPainMining/painMiningRules';
 import {
@@ -24,8 +24,8 @@ const safetyRules = [
 
 export function buildTopLeadAuditPackage(): TopLeadAuditPackage {
   const source = getRevenueSourceOfTruth();
-  const revenue = buildRevenueIntelligenceReport();
-  const topLead = revenue.topLead;
+  const rotation = buildLeadRotationDecision();
+  const topLead = rotation.actionableLead;
 
   if (!topLead) {
     const generatedAt = new Date().toISOString();
@@ -44,9 +44,9 @@ export function buildTopLeadAuditPackage(): TopLeadAuditPackage {
       painSignalRelevance: 0,
       offerFitScore: 0,
       evidenceItems: [{ label: 'Revenue Intelligence', value: 'No unified top lead found.', source: 'Revenue Intelligence' }],
-      topBusinessRisks: ['No top lead is available. Refresh Lead Qualification and Revenue Intelligence.'],
-      topPriorities: ['Run npm run web:qualified-ranking and npm run revenue:top-lead.'],
-      proposalScope: ['No proposal scope is available until a top lead exists.'],
+      topBusinessRisks: ['No actionable lead is available. Refresh Lead Qualification, Evidence Engine, and Lead Rotation.'],
+      topPriorities: ['Run npm run lead:rotation and review output/lead-rotation/rotation-decision.md.'],
+      proposalScope: ['No proposal scope is available until an actionable lead exists.'],
       readinessChecks: [] as TopLeadAuditReadinessCheck[],
       goNoGo: 'NO GO' as const,
       remainingBlockers: ['Revenue Intelligence has no unified top lead.'],
@@ -58,13 +58,14 @@ export function buildTopLeadAuditPackage(): TopLeadAuditPackage {
   const painSignals = buildPainMiningReport().signals.filter((signal) => normalizeKey(signal.companyName) === normalizeKey(topLead.companyName));
   const lead = topLead.sourceLead;
   const evidenceItems: TopLeadAuditEvidenceItem[] = [
-    { label: 'Revenue Intelligence Top Lead', value: topLead.companyName, source: 'Revenue Intelligence' },
+    { label: 'Top Ranked Lead', value: rotation.topRankedLead?.companyName ?? 'No top ranked lead', source: 'Lead Rotation' },
+    { label: 'Actionable Lead', value: topLead.companyName, source: 'Lead Rotation' },
     { label: 'Website', value: topLead.website || 'No website recorded.', source: 'Qualified Ranking' },
     { label: 'Category', value: topLead.category, source: 'Lead Qualification' },
     { label: 'Qualification Score', value: `${topLead.qualificationScore}/100`, source: 'Lead Qualification' },
     { label: 'QA Opportunity Score', value: `${topLead.qaOpportunityScore}/100`, source: 'Lead Qualification' },
-    { label: 'Pain Signal Relevance', value: `${topLead.painSignalRelevance}/100`, source: 'Revenue Intelligence' },
-    { label: 'Offer Fit', value: `${topLead.offerFitScore}/100`, source: 'Revenue Intelligence' },
+    { label: 'Pain Confidence', value: `${topLead.painConfidence}/100`, source: 'Lead Rotation' },
+    { label: 'Commercial Readiness', value: `${topLead.commercialReadinessScore}/100`, source: 'Lead Rotation' },
     { label: 'Source Query', value: lead.query || 'No query recorded.', source: 'Web Lead Discovery' },
     { label: 'Source Title', value: lead.sourceTitle || lead.rawName || 'No source title recorded.', source: 'Web Lead Discovery' },
     { label: 'Public Notes', value: lead.notes || 'No notes recorded.', source: 'Web Lead Discovery' },
@@ -82,15 +83,15 @@ export function buildTopLeadAuditPackage(): TopLeadAuditPackage {
     website: topLead.website,
     category: topLead.category,
     recommendedOffer: topLead.recommendedOffer,
-    revenueDecision: source.revenueDecision,
+    revenueDecision: rotation.rotationStatus,
     executionPriority: source.executionPriority,
-    nextRevenueAction: source.nextAction,
+    nextRevenueAction: `Review ${topLead.companyName} message pack and public evidence; decide manually whether to prepare a QA Audit offer.`,
     qualificationScore: topLead.qualificationScore,
     qaOpportunityScore: topLead.qaOpportunityScore,
-    painSignalRelevance: topLead.painSignalRelevance,
-    offerFitScore: topLead.offerFitScore,
+    painSignalRelevance: topLead.painConfidence,
+    offerFitScore: topLead.commercialReadinessScore,
     evidenceItems,
-    topBusinessRisks: buildBusinessRisks(topLead.companyName, topLead.qaOpportunityScore, topLead.painSignalRelevance, painSignals.map((signal) => signal.category)),
+    topBusinessRisks: buildBusinessRisks(topLead.companyName, topLead.qaOpportunityScore, topLead.painConfidence, painSignals.map((signal) => signal.category)),
     topPriorities: buildPriorities(topLead.companyName, topLead.recommendedOffer),
     proposalScope: buildProposalScope(topLead.companyName, topLead.recommendedOffer),
     readinessChecks: [] as TopLeadAuditReadinessCheck[],
@@ -345,8 +346,15 @@ export function renderTopLeadReadiness(audit: TopLeadAuditPackage): string {
 }
 
 function buildReadinessChecks(companyName: string, companyId: string): TopLeadAuditReadinessCheck[] {
-  const evidenceDecision = buildEvidenceReadinessDecision();
-  const evidenceStatus: TopLeadAuditReadinessCheck['status'] = evidenceDecision.goNoGo === 'GO' ? 'Ready' : evidenceDecision.goNoGo === 'PARTIAL' ? 'Partial' : 'Missing';
+  const rotation = buildLeadRotationDecision();
+  const actionable = rotation.actionableLead;
+  const fallbackEvidenceDecision = buildEvidenceReadinessDecision();
+  const evidenceStatus: TopLeadAuditReadinessCheck['status'] = actionable?.companyName === companyName
+    ? actionable.readiness === 'READY' ? 'Ready' : actionable.readiness === 'PARTIAL' ? 'Partial' : 'Missing'
+    : fallbackEvidenceDecision.goNoGo === 'GO' ? 'Ready' : fallbackEvidenceDecision.goNoGo === 'PARTIAL' ? 'Partial' : 'Missing';
+  const evidenceDescription = actionable?.companyName === companyName
+    ? `Lead rotation readiness is ${actionable.readiness}; evidence ${actionable.evidenceStatus}, commercial score ${actionable.commercialReadinessScore}/100.`
+    : `Evidence readiness is ${fallbackEvidenceDecision.status}; page ${fallbackEvidenceDecision.pageStatus}, screenshots ${fallbackEvidenceDecision.screenshotStatus}, lighthouse ${fallbackEvidenceDecision.lighthouseStatus}.`;
   const checks: Array<[string, string]> = [
     ['Audit Package', path.join(outputRoot, 'top-lead-audit.md')],
     ['Executive Summary', path.join(outputRoot, 'top-lead-executive-summary.md')],
@@ -368,8 +376,8 @@ function buildReadinessChecks(companyName: string, companyId: string): TopLeadAu
     {
       label: 'Evidence Collection',
       status: evidenceStatus,
-      evidence: `Evidence readiness is ${evidenceDecision.status}; page ${evidenceDecision.pageStatus}, screenshots ${evidenceDecision.screenshotStatus}, lighthouse ${evidenceDecision.lighthouseStatus}.`,
-      path: 'output/evidence/evidence-readiness.md',
+      evidence: evidenceDescription,
+      path: actionable?.companyName === companyName ? 'output/lead-rotation/rotation-decision.md' : 'output/evidence/evidence-readiness.md',
     },
     ...artifactChecks,
   ];

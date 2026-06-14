@@ -2,6 +2,9 @@ import { buildRevenueIntelligenceReport } from './revenueIntelligenceRules';
 
 export interface RevenueSourceOfTruth {
   topLead: string;
+  topRankedLead: string;
+  actionableLead: string;
+  commercialReadiness: string;
   recommendedOffer: string;
   revenueDecision: string;
   executionPriority: 'HIGH' | 'MEDIUM' | 'LOW';
@@ -17,11 +20,16 @@ export function getRevenueSourceOfTruth(): RevenueSourceOfTruth {
 
   return {
     topLead: topLead?.companyName ?? 'No unified top lead',
-    recommendedOffer: topLead?.recommendedOffer ?? 'No offer selected',
+    topRankedLead: topLead?.companyName ?? 'No unified top lead',
+    actionableLead: report.actionableLead?.companyName ?? 'No actionable lead',
+    commercialReadiness: report.actionableLead ? `${report.actionableLead.commercialReadinessScore}/100` : 'Not Available',
+    recommendedOffer: report.actionableLead?.recommendedOffer ?? topLead?.recommendedOffer ?? 'No offer selected',
     revenueDecision: report.decision.status,
     executionPriority: priorityLabel(report.decision.status),
     executionPriorityDetail: report.executionPriority,
-    nextAction: topLead?.nextRevenueAction ?? report.decision.manualAction,
+    nextAction: report.actionableLead
+      ? `Review ${report.actionableLead.companyName} message pack and public evidence; decide manually whether to prepare a QA Audit offer.`
+      : topLead?.nextRevenueAction ?? report.decision.manualAction,
     lastUpdated: report.generatedAt,
     warnings: [
       ...report.safetyRules,

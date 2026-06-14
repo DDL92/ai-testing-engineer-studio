@@ -56,7 +56,7 @@
     "safety": "Manual-review only. No messages were sent."
   },
   "appointy": {
-    "updatedAt": "2026-06-14T16:34:39.107Z",
+    "updatedAt": "2026-06-14T22:16:19.516Z",
     "companyName": "Appointy",
     "drafts": [
       {
@@ -84,6 +84,62 @@
         "type": "follow_up",
         "label": "Short Follow-Up",
         "body": "Hi [Name], quick follow-up. I had a few public-page observations on potential performance and release-confidence areas for Appointy. Worth sending the short summary for manual review?",
+        "wordLimit": 60,
+        "wordCount": 26
+      },
+      {
+        "type": "interested_reply",
+        "label": "If They Reply Interested",
+        "body": "Thanks, [Name]. I can share a concise QA Audit summary based on public-page observations only. It will frame items as potential areas to review, not confirmed defects. If it looks useful, the paid QA Audit is $199-$500 and includes prioritized findings and next steps.",
+        "wordLimit": 90,
+        "wordCount": 44
+      },
+      {
+        "type": "executive_angle",
+        "label": "Executive Angle",
+        "body": "For an executive review, the angle is release confidence: public-page performance and QA signals may indicate areas worth reviewing before they affect demo trust or buyer confidence.",
+        "wordLimit": 75,
+        "wordCount": 27
+      },
+      {
+        "type": "audit_offer_angle",
+        "label": "Audit Offer Angle",
+        "body": "Offer a focused QA Audit: public-page observations, prioritized business risks, and practical next steps for $199-$500. No claim of a full audit until Daniel is engaged.",
+        "wordLimit": 75,
+        "wordCount": 26
+      }
+    ],
+    "safety": "Manual-review only. No messages were sent."
+  },
+  "setmore": {
+    "updatedAt": "2026-06-14T22:14:36.816Z",
+    "companyName": "Setmore",
+    "drafts": [
+      {
+        "type": "linkedin_short",
+        "label": "LinkedIn Short Message",
+        "body": "I did a lightweight public-page QA review of Setmore and noticed potential performance and release-confidence areas worth reviewing. Open to a short summary?",
+        "wordLimit": 35,
+        "wordCount": 23
+      },
+      {
+        "type": "linkedin_normal",
+        "label": "LinkedIn Normal Message",
+        "body": "Hi [Name], I did a lightweight public-page QA review of Setmore and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help gym software teams turn those observations into a concise QA audit and practical next steps. Would it be useful if I sent the short summary for manual review?",
+        "wordLimit": 75,
+        "wordCount": 55
+      },
+      {
+        "type": "email",
+        "label": "Email Version",
+        "body": "Subject: Lightweight QA observations for Setmore\n\nHi [Name],\n\nI did a lightweight public-page QA review of Setmore and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help gym software teams translate public-page observations into a concise QA audit with prioritized next steps. If helpful, I can send a short summary for manual review. No pressure either way.\n\nDaniel",
+        "wordLimit": 120,
+        "wordCount": 64
+      },
+      {
+        "type": "follow_up",
+        "label": "Short Follow-Up",
+        "body": "Hi [Name], quick follow-up. I had a few public-page observations on potential performance and release-confidence areas for Setmore. Worth sending the short summary for manual review?",
         "wordLimit": 60,
         "wordCount": 26
       },

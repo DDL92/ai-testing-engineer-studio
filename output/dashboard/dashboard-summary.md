@@ -1,6 +1,6 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-14T16:34:37.327Z
+Generated: 2026-06-14T22:16:17.823Z
 
 ## Commercial UX
 
@@ -67,7 +67,7 @@ Generated: 2026-06-14T16:34:37.327Z
 - First Client Goal: Appointy
 - First Retainer Goal: Appointy
 - Top Revenue Target: Appointy
-- Top Revenue Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+- Top Revenue Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Top Activation Score: 62/100
 
 ## First Revenue Execution
@@ -142,15 +142,23 @@ Generated: 2026-06-14T16:34:37.327Z
 
 - Top Lead: Appointy
 - Top Offer: QA Automation Retainer ($1500-$3000/month)
-- Top Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+- Top Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Studio Status: Healthy
-- Today At A Glance: Top Lead: Appointy | Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+- Today At A Glance: Top Lead: Appointy | Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+
+## Lead Rotation
+
+- Top Ranked Lead: Appointy
+- Actionable Lead: Setmore
+- Commercial Readiness: 86/100
+- Evidence Blockers: Appointy: Page evidence is WARNING. | Appointy: Evidence status is NOT READY. | ShapeNet Software: Evidence status is NOT READY.
+- Rotation Status: ACTIONABLE_LEAD_FOUND
 
 ## Top Lead Audit
 
-- Top Lead Audit Status: Ready
-- Evidence Status: Missing
-- Proposal Status: Ready
+- Top Lead Audit Status: Missing
+- Evidence Status: Ready
+- Proposal Status: Missing
 - Execution Readiness: NO GO
 
 ## Evidence Engine

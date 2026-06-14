@@ -1,4 +1,5 @@
 import { NormalizedWebLead, RecommendedQualifiedOffer } from '../webLeadQualification/types';
+import { LeadRotationCandidate } from '../leadRotation/types';
 
 export interface UnifiedTopLead {
   rank: number;
@@ -29,6 +30,7 @@ export interface RevenueIntelligenceReport {
   generatedAt: string;
   previousTopLead: string;
   topLead: UnifiedTopLead | null;
+  actionableLead: LeadRotationCandidate | null;
   decision: RevenueDecision;
   unifiedRecommendation: string;
   executionPriority: string;
@@ -38,6 +40,10 @@ export interface RevenueIntelligenceReport {
 export interface RevenueIntelligenceDashboard {
   revenueIntelligenceStatus: string;
   currentTopLead: string;
+  actionableLead: string;
+  commercialReadiness: string;
+  evidenceBlockers: string;
+  rotationStatus: string;
   revenueTarget: string;
   recommendedOffer: string;
   executionPriority: string;

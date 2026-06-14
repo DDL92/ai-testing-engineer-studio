@@ -251,6 +251,10 @@ export interface DashboardAutonomousRunner {
 export interface DashboardRevenueIntelligence {
   revenueIntelligenceStatus: string;
   currentTopLead: string;
+  actionableLead: string;
+  commercialReadiness: string;
+  evidenceBlockers: string;
+  rotationStatus: string;
   revenueTarget: string;
   recommendedOffer: string;
   executionPriority: string;

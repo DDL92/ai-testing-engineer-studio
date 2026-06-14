@@ -121,6 +121,8 @@ export interface MobileReviewPackage {
 export interface MobileCommandCenterSummary {
   generatedAt: string;
   topLead: string;
+  actionableLead: string;
+  commercialReadiness: string;
   topOffer: string;
   topAction: string;
   estimatedTime: string;

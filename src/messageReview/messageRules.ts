@@ -19,12 +19,13 @@ const safetyRules = [
 export function buildMessageReview(company: string): MessageReviewReport {
   ensureMessageStore();
   const revenueIntelligence = buildRevenueIntelligenceReport();
-  const selectedCompany = revenueIntelligence.topLead?.companyName ?? company;
+  const defaultCompany = revenueIntelligence.actionableLead?.companyName ?? revenueIntelligence.topLead?.companyName ?? company;
+  const selectedCompany = company && company !== 'No unified top lead' ? company : defaultCompany;
   const executionPack = buildFirstRevenueExecutionPack();
   const executive = safeExecutiveCompanyReport(selectedCompany);
   const companyName = executive?.companyName ?? selectedCompany;
   const companyId = executive?.companyId ?? slug(selectedCompany);
-  const executiveRecommendation = executive?.executiveRecommendation ?? revenueIntelligence.topLead?.recommendedOffer ?? 'QA Audit ($199-$500)';
+  const executiveRecommendation = executive?.executiveRecommendation ?? revenueIntelligence.actionableLead?.recommendedOffer ?? revenueIntelligence.topLead?.recommendedOffer ?? 'QA Audit ($199-$500)';
   const drafts = buildDrafts(companyName);
 
   return {
@@ -36,8 +37,9 @@ export function buildMessageReview(company: string): MessageReviewReport {
       : executiveRecommendation,
     goNoGo: executionPack.topTarget.companyName === companyName ? executionPack.recommendation : 'Needs Review',
     evidenceBasis: [
-      company && company !== selectedCompany ? `Requested company ignored for unification: ${company}` : `Requested company: ${company}`,
-      `Revenue Intelligence top lead: ${selectedCompany}`,
+      `Requested company: ${company || 'default actionable lead'}`,
+      `Revenue Intelligence top ranked lead: ${revenueIntelligence.topLead?.companyName ?? 'No top ranked lead'}`,
+      `Lead Rotation actionable lead: ${revenueIntelligence.actionableLead?.companyName ?? 'No actionable lead'}`,
       `Current top target: ${executionPack.topTarget.companyName}`,
       `Execution recommendation: ${executionPack.recommendation}`,
       `Executive recommendation: ${executiveRecommendation}`,

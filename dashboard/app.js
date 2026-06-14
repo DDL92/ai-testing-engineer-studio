@@ -196,7 +196,11 @@ function renderRevenueIntelligence(intelligence) {
 
   byId('revenueIntelligenceCards').innerHTML = [
     miniCard('Revenue Intelligence Status', intelligence.revenueIntelligenceStatus),
-    miniCard('Current Top Lead', intelligence.currentTopLead),
+    miniCard('Top Ranked Lead', intelligence.currentTopLead),
+    miniCard('Actionable Lead', intelligence.actionableLead),
+    miniCard('Commercial Readiness', intelligence.commercialReadiness),
+    miniCard('Evidence Blockers', intelligence.evidenceBlockers),
+    miniCard('Rotation Status', intelligence.rotationStatus),
     miniCard('Revenue Target', intelligence.revenueTarget),
     miniCard('Recommended Offer', intelligence.recommendedOffer),
     miniCard('Execution Priority', intelligence.executionPriority),

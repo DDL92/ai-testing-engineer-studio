@@ -1,10 +1,10 @@
 # Dashboard Health
 
-Generated: 2026-06-14T16:34:37.327Z
+Generated: 2026-06-14T22:16:17.823Z
 
 ## Status
 
-- Last Update: 2026-06-14T16:34:37.327Z
+- Last Update: 2026-06-14T22:16:17.823Z
 - Lead Research Status: 7 research packs found
 - Evidence Status: 16 evidence files found
 - Proposal Status: 3 proposal packages found
@@ -43,7 +43,7 @@ Generated: 2026-06-14T16:34:37.327Z
 - Best Lead: Appointy
 - Best Offer: QA Automation Retainer ($1500-$3000/month)
 - Highest Opportunity Score: 84/100
-- Operator Top Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+- Operator Top Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Operator Studio Status: Healthy
 
 ## PWA Files

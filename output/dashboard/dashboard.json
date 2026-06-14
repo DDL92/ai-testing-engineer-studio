@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-14T16:34:37.327Z",
+  "generatedAt": "2026-06-14T22:16:17.823Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-14",
@@ -8,8 +8,8 @@
         "priority": 1,
         "title": "Review Appointy package",
         "whyItMatters": "Revenue Intelligence is the source of truth. Current decision: GO.",
-        "estimatedImpact": "Review evidence and position a scoped QA Audit as the first paid step toward a retainer path.",
-        "nextStep": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
+        "estimatedImpact": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
+        "nextStep": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
       },
       {
         "priority": 2,
@@ -91,7 +91,7 @@
     "bestRetainerOpportunity": "Appointy"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-14T16:34:37.327Z",
+    "lastUpdate": "2026-06-14T22:16:17.823Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "16 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -114,7 +114,7 @@
     "firstClientGoal": "Appointy",
     "firstRetainerGoal": "Appointy",
     "topRevenueTarget": "Appointy",
-    "topRevenueAction": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
+    "topRevenueAction": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
     "topActivationScore": 62
   },
   "executionPack": {
@@ -180,14 +180,14 @@
   "operatorMode": {
     "topLead": "Appointy",
     "topOffer": "QA Automation Retainer ($1500-$3000/month)",
-    "topAction": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
+    "topAction": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
     "studioStatus": "Healthy",
-    "todayAtAGlance": "Top Lead: Appointy | Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
+    "todayAtAGlance": "Top Lead: Appointy | Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
   },
   "mobileCommandCenterSummary": {
     "topLead": "Appointy",
     "topOffer": "QA Automation Retainer ($1500-$3000/month)",
-    "topAction": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
+    "topAction": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
     "followUpsWaiting": 0,
     "openOpportunities": 29,
     "studioStatus": "Healthy",
@@ -203,7 +203,7 @@
     "adaptiveRecommendation": "Insufficient outcome history. Keep using existing Revenue Intelligence ranking until real outcomes are recorded.",
     "runtimeHealth": "Runtime data needs cleanup",
     "architectureStatus": "Needs consolidation",
-    "todayAtAGlance": "Top Lead: Appointy | Top Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
+    "todayAtAGlance": "Top Lead: Appointy | Top Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
   },
   "dailyLeadDiscovery": {
     "newLeadsToday": 0,
@@ -242,14 +242,18 @@
   "revenueIntelligence": {
     "revenueIntelligenceStatus": "Unified",
     "currentTopLead": "Appointy",
+    "actionableLead": "Setmore",
+    "commercialReadiness": "86/100",
+    "evidenceBlockers": "Appointy: Page evidence is WARNING. | Appointy: Evidence status is NOT READY. | ShapeNet Software: Evidence status is NOT READY.",
+    "rotationStatus": "ACTIONABLE_LEAD_FOUND",
     "revenueTarget": "First paid client",
     "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
     "executionPriority": "HIGH"
   },
   "topLeadAudit": {
-    "topLeadAuditStatus": "Ready",
-    "evidenceStatus": "Missing",
-    "proposalStatus": "Ready",
+    "topLeadAuditStatus": "Missing",
+    "evidenceStatus": "Ready",
+    "proposalStatus": "Missing",
     "executionReadiness": "NO GO"
   },
   "evidenceEngine": {
@@ -275,12 +279,12 @@
     "architectureStatus": "Needs consolidation",
     "commandHealth": "Command surface is too broad",
     "runtimeHealth": "Runtime data needs cleanup",
-    "consolidationProgress": "14 future official commands recommended; 92 deprecation candidates identified.",
-    "commandsAudited": 275,
-    "duplicateCommandGroups": 1,
+    "consolidationProgress": "14 future official commands recommended; 93 deprecation candidates identified.",
+    "commandsAudited": 279,
+    "duplicateCommandGroups": 2,
     "legacyCommands": 22,
-    "candidateDeprecations": 92,
-    "runtimeFiles": 642,
+    "candidateDeprecations": 93,
+    "runtimeFiles": 648,
     "duplicateRuntimeCandidates": 39,
     "sourceOfTruthAuthorities": 5
   },
@@ -314,15 +318,15 @@
       "bestAuditOpportunity": "Appointy",
       "bestStarterPackOpportunity": "Appointy",
       "bestRetainerOpportunity": "Appointy",
-      "highestRevenuePriority": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
+      "highestRevenuePriority": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
     },
     "actionQueue": [
       {
         "priority": 1,
         "title": "Review Appointy package",
         "whyItMatters": "Revenue Intelligence is the source of truth. Current decision: GO.",
-        "estimatedImpact": "Review evidence and position a scoped QA Audit as the first paid step toward a retainer path.",
-        "nextStep": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
+        "estimatedImpact": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
+        "nextStep": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
       },
       {
         "priority": 2,

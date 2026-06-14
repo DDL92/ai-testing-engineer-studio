@@ -18,7 +18,8 @@ function readCompanyArg(): string {
   const companyFlagIndex = args.indexOf('--company');
   const company = companyFlagIndex >= 0 ? args[companyFlagIndex + 1] : undefined;
 
-  return company || buildRevenueIntelligenceReport().topLead?.companyName || 'No unified top lead';
+  const report = buildRevenueIntelligenceReport();
+  return company || report.actionableLead?.companyName || report.topLead?.companyName || 'No unified top lead';
 }
 
 main();
