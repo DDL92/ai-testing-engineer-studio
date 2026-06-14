@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "lastRunAt": "2026-06-14T01:52:57.908Z",
+  "status": "Results available",
+  "provider": {
+    "provider": "tavily",
+    "apiKeyEnv": "WEB_SEARCH_API_KEY",
+    "endpoint": null,
+    "enabled": false
+  },
+  "notes": [
+    "Fallback mode generates search queries and manual research tasks.",
+    "Future provider adapters can write reviewed public results into discovered-web-leads.json."
+  ],
+  "safetyRules": [
+    "Use public web discovery only.",
+    "Do not scrape LinkedIn.",
+    "Do not scrape behind login.",
+    "Do not bypass rate limits.",
+    "Do not send outreach, emails, CRM updates, proposals, meetings, invoices, or payments.",
+    "Do not invent leads, complaints, quotes, bugs, vulnerabilities, outcomes, or revenue.",
+    "Human approval is required before promoting, contacting, auditing, proposing, or sending anything."
+  ]
+}

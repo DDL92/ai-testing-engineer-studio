@@ -1,0 +1,243 @@
+{
+  "generatedAt": "2026-06-14T00:33:21.760Z",
+  "leads": [
+    {
+      "id": "abc-glofox",
+      "companyName": "ABC Glofox",
+      "website": "https://www.glofox.com",
+      "industry": "Gym Management SaaS",
+      "sourceId": "local-seed-catalog",
+      "sourceName": "Local Discovery Seed Catalog",
+      "sourcePath": "data/leads/discovery-seeds.json",
+      "discoveredAt": "2026-06-14T00:31:56.397Z",
+      "firstSeenAt": "2026-06-14T00:31:56.397Z",
+      "lastSeenAt": "2026-06-14T00:33:21.760Z",
+      "isNewToday": false,
+      "alreadyKnown": true,
+      "score": 10,
+      "recommendedOffer": "agency-partner-retainer",
+      "fitNotes": "Gym and studio management platform with member management, payments, booking, and mobile app workflows.",
+      "painPoints": [
+        "signup/onboarding coverage",
+        "checkout regression risk",
+        "payment flow risk"
+      ],
+      "scoreReasons": [
+        "+1.5 Has a website to review",
+        "+2.5 Strong QA-fit industry: saas, booking",
+        "+4 Relevant QA pain points: checkout, signup, payment, onboarding, regression, mobile",
+        "+1.5 Agency or partner retainer potential"
+      ],
+      "recommendedAction": "Already known in Studio. Keep current workflow; do not duplicate ABC Glofox.",
+      "warnings": [
+        "Already known in current Studio data.",
+        "Review-only candidate. No outreach has been generated or sent."
+      ]
+    },
+    {
+      "id": "bookee",
+      "companyName": "Bookee",
+      "website": "https://www.bookeeapp.com",
+      "industry": "Fitness Studio SaaS",
+      "sourceId": "local-seed-catalog",
+      "sourceName": "Local Discovery Seed Catalog",
+      "sourcePath": "data/leads/discovery-seeds.json",
+      "discoveredAt": "2026-06-14T00:31:56.397Z",
+      "firstSeenAt": "2026-06-14T00:31:56.397Z",
+      "lastSeenAt": "2026-06-14T00:33:21.760Z",
+      "isNewToday": false,
+      "alreadyKnown": true,
+      "score": 10,
+      "recommendedOffer": "agency-partner-retainer",
+      "fitNotes": "Studio management and booking software with class booking, payments, memberships, and customer workflows.",
+      "painPoints": [
+        "signup/onboarding coverage",
+        "checkout regression risk",
+        "payment flow risk"
+      ],
+      "scoreReasons": [
+        "+1.5 Has a website to review",
+        "+2.5 Strong QA-fit industry: saas, booking",
+        "+4 Relevant QA pain points: checkout, signup, payment, onboarding, regression",
+        "+1.5 Agency or partner retainer potential"
+      ],
+      "recommendedAction": "Already known in Studio. Keep current workflow; do not duplicate Bookee.",
+      "warnings": [
+        "Already known in current Studio data.",
+        "Review-only candidate. No outreach has been generated or sent."
+      ]
+    },
+    {
+      "id": "teamup",
+      "companyName": "TeamUp",
+      "website": "https://goteamup.com",
+      "industry": "Gym Management SaaS",
+      "sourceId": "local-seed-catalog",
+      "sourceName": "Local Discovery Seed Catalog",
+      "sourcePath": "data/leads/discovery-seeds.json",
+      "discoveredAt": "2026-06-14T00:31:56.397Z",
+      "firstSeenAt": "2026-06-14T00:31:56.397Z",
+      "lastSeenAt": "2026-06-14T00:33:21.760Z",
+      "isNewToday": false,
+      "alreadyKnown": true,
+      "score": 8,
+      "recommendedOffer": "qa-automation-retainer",
+      "fitNotes": "Fitness business management platform with booking, memberships, payments, customer workflows, and regression-sensitive release paths.",
+      "painPoints": [
+        "signup/onboarding coverage",
+        "payment flow risk",
+        "regression testing opportunity"
+      ],
+      "scoreReasons": [
+        "+1.5 Has a website to review",
+        "+2.5 Strong QA-fit industry: saas, booking",
+        "+4 Relevant QA pain points: signup, payment, onboarding, regression"
+      ],
+      "recommendedAction": "Already known in Studio. Keep current workflow; do not duplicate TeamUp.",
+      "warnings": [
+        "Already known in current Studio data.",
+        "Review-only candidate. No outreach has been generated or sent."
+      ]
+    },
+    {
+      "id": "pushpress",
+      "companyName": "PushPress",
+      "website": "https://www.pushpress.com",
+      "industry": "Gym Management SaaS",
+      "sourceId": "local-seed-catalog",
+      "sourceName": "Local Discovery Seed Catalog",
+      "sourcePath": "data/leads/discovery-seeds.json",
+      "discoveredAt": "2026-06-14T00:31:56.397Z",
+      "firstSeenAt": "2026-06-14T00:31:56.397Z",
+      "lastSeenAt": "2026-06-14T00:33:21.760Z",
+      "isNewToday": false,
+      "alreadyKnown": true,
+      "score": 7,
+      "recommendedOffer": "playwright-starter-pack",
+      "fitNotes": "Gym management SaaS with scheduling, memberships, payments, class workflows, and mobile/member experiences.",
+      "painPoints": [
+        "signup/onboarding coverage",
+        "checkout regression risk",
+        "payment flow risk",
+        "mobile flow review"
+      ],
+      "scoreReasons": [
+        "+1.5 Has a website to review",
+        "+1.25 Strong QA-fit industry: saas",
+        "+4 Relevant QA pain points: checkout, signup, payment, onboarding, regression, mobile"
+      ],
+      "recommendedAction": "Already known in Studio. Keep current workflow; do not duplicate PushPress.",
+      "warnings": [
+        "Already known in current Studio data.",
+        "Review-only candidate. No outreach has been generated or sent."
+      ]
+    },
+    {
+      "id": "wodify",
+      "companyName": "Wodify",
+      "website": "https://www.wodify.com",
+      "industry": "Gym Management SaaS",
+      "sourceId": "local-seed-catalog",
+      "sourceName": "Local Discovery Seed Catalog",
+      "sourcePath": "data/leads/discovery-seeds.json",
+      "discoveredAt": "2026-06-14T00:31:56.397Z",
+      "firstSeenAt": "2026-06-14T00:31:56.397Z",
+      "lastSeenAt": "2026-06-14T00:33:21.760Z",
+      "isNewToday": false,
+      "alreadyKnown": true,
+      "score": 7,
+      "recommendedOffer": "playwright-starter-pack",
+      "fitNotes": "Fitness and gym management software with class scheduling, memberships, athlete/member workflows, and payments.",
+      "painPoints": [
+        "checkout regression risk",
+        "payment flow risk",
+        "regression testing opportunity",
+        "mobile flow review"
+      ],
+      "scoreReasons": [
+        "+1.5 Has a website to review",
+        "+1.25 Strong QA-fit industry: saas",
+        "+4 Relevant QA pain points: checkout, payment, regression, mobile"
+      ],
+      "recommendedAction": "Already known in Studio. Keep current workflow; do not duplicate Wodify.",
+      "warnings": [
+        "Already known in current Studio data.",
+        "Review-only candidate. No outreach has been generated or sent."
+      ]
+    },
+    {
+      "id": "propertyme",
+      "companyName": "PropertyMe",
+      "website": "https://www.propertyme.com.au",
+      "industry": "Property Management SaaS",
+      "sourceId": "local-seed-catalog",
+      "sourceName": "Local Discovery Seed Catalog",
+      "sourcePath": "data/leads/discovery-seeds.json",
+      "discoveredAt": "2026-06-14T00:31:56.397Z",
+      "firstSeenAt": "2026-06-14T00:31:56.397Z",
+      "lastSeenAt": "2026-06-14T00:33:21.760Z",
+      "isNewToday": false,
+      "alreadyKnown": true,
+      "score": 6,
+      "recommendedOffer": "qa-audit",
+      "fitNotes": "Cloud property management software with trust accounting, inspections, maintenance, mobile app, and client access.",
+      "painPoints": [
+        "payment flow risk",
+        "regression testing opportunity",
+        "mobile flow review"
+      ],
+      "scoreReasons": [
+        "+1.5 Has a website to review",
+        "+1.25 Strong QA-fit industry: saas",
+        "+3 Relevant QA pain points: payment, regression, mobile"
+      ],
+      "recommendedAction": "Already known in Studio. Keep current workflow; do not duplicate PropertyMe.",
+      "warnings": [
+        "Already known in current Studio data.",
+        "Review-only candidate. No outreach has been generated or sent."
+      ]
+    },
+    {
+      "id": "neetocal",
+      "companyName": "NeetoCal",
+      "website": "https://www.neeto.com/neetocal",
+      "industry": "Scheduling SaaS",
+      "sourceId": "local-seed-catalog",
+      "sourceName": "Local Discovery Seed Catalog",
+      "sourcePath": "data/leads/discovery-seeds.json",
+      "discoveredAt": "2026-06-14T00:31:56.397Z",
+      "firstSeenAt": "2026-06-14T00:31:56.397Z",
+      "lastSeenAt": "2026-06-14T00:33:21.760Z",
+      "isNewToday": false,
+      "alreadyKnown": true,
+      "score": 5,
+      "recommendedOffer": "qa-audit",
+      "fitNotes": "Scheduling software with availability, calendar integrations, Stripe payments, cancellations, and appointment workflows.",
+      "painPoints": [
+        "payment flow risk",
+        "regression testing opportunity",
+        "calendar integration risk"
+      ],
+      "scoreReasons": [
+        "+1.5 Has a website to review",
+        "+1.25 Strong QA-fit industry: saas",
+        "+2 Relevant QA pain points: payment, regression"
+      ],
+      "recommendedAction": "Already known in Studio. Keep current workflow; do not duplicate NeetoCal.",
+      "warnings": [
+        "Already known in current Studio data.",
+        "Review-only candidate. No outreach has been generated or sent."
+      ]
+    }
+  ],
+  "safetyRules": [
+    "Local-first lead discovery only.",
+    "No LinkedIn scraping.",
+    "No login scraping.",
+    "No paid APIs.",
+    "No aggressive crawling.",
+    "No outreach, emails, CRM updates, meetings, invoices, payments, or external actions are performed.",
+    "No outcomes, replies, clients, meetings, proposals, wins, losses, revenue, or client interest are invented.",
+    "Human approval is required before promoting, contacting, auditing, proposing, or sending anything."
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "mode": "local-only-human-approved",
+  "schedule": {
+    "weekdays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "time": "07:00",
+    "timezone": "America/Costa_Rica"
+  },
+  "sequence": [
+    {
+      "script": "web:lead-discovery",
+      "description": "Refresh public Tavily lead discovery.",
+      "phase": "discovery"
+    },
+    {
+      "script": "web:pain-mining",
+      "description": "Refresh public Tavily pain signals.",
+      "phase": "discovery"
+    },
+    {
+      "script": "web:lead-normalize",
+      "description": "Normalize raw web lead titles into company records.",
+      "phase": "qualification"
+    },
+    {
+      "script": "web:lead-classify",
+      "description": "Classify normalized leads by SaaS category.",
+      "phase": "qualification"
+    },
+    {
+      "script": "web:lead-qualify",
+      "description": "Score normalized leads for qualification.",
+      "phase": "qualification"
+    },
+    {
+      "script": "web:qualified-ranking",
+      "description": "Generate final qualified web lead ranking.",
+      "phase": "qualification"
+    },
+    {
+      "script": "revenue:focus",
+      "description": "Refresh the first-revenue focus report.",
+      "phase": "revenue"
+    },
+    {
+      "script": "day:plan",
+      "description": "Refresh the daily revenue operating plan.",
+      "phase": "planning"
+    },
+    {
+      "script": "dashboard:generate",
+      "description": "Regenerate the read-only dashboard data.",
+      "phase": "dashboard"
+    },
+    {
+      "script": "mobile:summary",
+      "description": "Regenerate the mobile command center summary.",
+      "phase": "mobile"
+    }
+  ],
+  "safetyRules": [
+    "No outreach is sent.",
+    "No emails or LinkedIn messages are sent.",
+    "No CRM records, meetings, invoices, payments, revenue, or client activity are created.",
+    "Only existing local Studio commands are executed.",
+    "Human approval is required before any external business action."
+  ],
+  "updatedAt": "2026-06-14T01:53:25.694Z"
+}

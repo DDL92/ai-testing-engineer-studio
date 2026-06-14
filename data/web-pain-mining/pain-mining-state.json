@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "lastRunAt": "2026-06-14T01:53:00.427Z",
+  "status": "Signals available",
+  "apiKeyEnv": "WEB_SEARCH_API_KEY",
+  "notes": [
+    "Fallback mode generates public search queries only.",
+    "Pain signals must be manually reviewed before use."
+  ],
+  "safetyRules": [
+    "Use cautious language only.",
+    "Do not invent complaints, customer quotes, bugs, vulnerabilities, outages, incidents, lost revenue, churn, or customer sentiment.",
+    "Do not scrape LinkedIn, private communities, login-only pages, or pages that disallow automated access.",
+    "Do not send outreach, emails, CRM updates, proposals, meetings, invoices, or payments.",
+    "Human approval is required before using any pain signal in client-facing material."
+  ]
+}

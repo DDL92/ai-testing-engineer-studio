@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-13T21:20:24.593Z",
+  "generatedAt": "2026-06-14T01:53:15.282Z",
   "mode": "read-only",
   "today": {
-    "date": "2026-06-13",
+    "date": "2026-06-14",
     "topActions": [
       {
         "priority": 1,
@@ -142,7 +142,7 @@
     "bestRetainerOpportunity": "PushPress"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-13T21:20:24.593Z",
+    "lastUpdate": "2026-06-14T01:53:15.282Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "10 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -221,6 +221,50 @@
     "topAction": "REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE.",
     "studioStatus": "Healthy",
     "todayAtAGlance": "Top Lead: PushPress | Offer: QA Audit ($199-$500) | Action: REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE. | MRR: $0 | Studio Health: Healthy | Release Readiness: Warning"
+  },
+  "mobileCommandCenterSummary": {
+    "topLead": "PushPress",
+    "topOffer": "QA Audit ($199-$500)",
+    "topAction": "Review PushPress message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually.",
+    "followUpsWaiting": 0,
+    "openOpportunities": 4,
+    "studioStatus": "Healthy",
+    "revenueStatus": "Current MRR: $0",
+    "todayAtAGlance": "Top Lead: PushPress | Top Offer: QA Audit ($199-$500) | Action: Review PushPress message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually."
+  },
+  "dailyLeadDiscovery": {
+    "newLeadsToday": 0,
+    "topNewLead": "No new leads found",
+    "topFiveLeads": "ABC Glofox, Bookee, TeamUp, PushPress, Wodify",
+    "bestOffer": "Agency Partner Retainer ($1500-$3000/month)",
+    "recommendedNextAction": "No new approved-source leads found. Top known candidate is ABC Glofox; keep the current Studio workflow and add more approved local sources if Daniel wants fresh candidates."
+  },
+  "webDiscovery": {
+    "newWebLeads": 30,
+    "topWebLead": "Fitness Studio and Gym Scheduling Software - Appointy",
+    "topPainSignal": "Potential recurring pain signal: mobile app",
+    "bestNewQaOpportunity": "Fitness Studio and Gym Scheduling Software - Appointy: QA Automation Retainer candidate",
+    "recommendedResearchAction": "Human review Fitness Studio and Gym Scheduling Software - Appointy; confirm public evidence before adding to active lead workflow.",
+    "newLeadsToday": 30,
+    "newPainSignals": 54,
+    "topOpportunity": "Fitness Studio and Gym Scheduling Software - Appointy (99/100)",
+    "bestNewLead": "Fitness Studio and Gym Scheduling Software - Appointy",
+    "leadSource": "https://www.appointy.com/fitness-class-scheduling-software",
+    "discoveryDate": "2026-06-14"
+  },
+  "leadQualification": {
+    "bestQualifiedLead": "Appointy",
+    "bestCategory": "Scheduling SaaS",
+    "highestQaOpportunity": "Setmore (84/100)",
+    "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
+    "qualifiedLeadsCount": 29
+  },
+  "autonomousRunner": {
+    "autonomousRunnerStatus": "Last run completed",
+    "lastSuccessfulRun": "2026-06-14T01:53:03.396Z",
+    "nextScheduledRun": "2026-06-15T13:00:00.000Z (07:00 America/Costa_Rica)",
+    "runnerHealth": "Healthy",
+    "dailyRefreshStatus": "Refresh sequence complete"
   },
   "mobileCommandCenter": {
     "reviewCenter": {

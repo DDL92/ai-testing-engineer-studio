@@ -1,7 +1,19 @@
 import fs = require('fs');
 import path = require('path');
+import { buildRunnerDashboard } from '../autonomousRunner/runnerRules';
 import { buildPwaDashboardData, DashboardLink } from '../dashboard/dashboardDataBuilder';
+import { buildFirstRevenueExecutionPack } from '../executionPack/generateFirstRevenueChecklist';
+import { buildFinanceReport, loadFinanceInput } from '../financeTracking/financeRules';
+import { buildLeadIntelligenceReport } from '../leadIntelligence/leadRules';
+import { buildOutcomeSummary, loadOutcomes } from '../outcomeTracking/outcomeRules';
+import { buildRevenueActivationReport } from '../revenueActivation/revenueRules';
+import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
+import { buildWebLeadDiscoveryReport } from '../webLeadDiscovery/webDiscoveryRules';
+import { buildLeadQualificationReport } from '../webLeadQualification/normalizationRules';
+import { buildPainMiningReport } from '../webPainMining/painMiningRules';
 import {
+  MobileActionCenterItem,
+  MobileCommandCenterSummary,
   MobileLink,
   MobileQueueItem,
   MobileReviewItem,
@@ -18,6 +30,327 @@ const safety = [
   'Approval focused.',
   'No outreach, emails, proposals, invoices, payment requests, lead data changes, proposal data changes, APIs, credentials, or external actions are performed.',
 ];
+
+const sprint82Safety = [
+  'No outreach generated or sent.',
+  'No emails generated or sent.',
+  'No LinkedIn messages generated or sent.',
+  'No meetings created.',
+  'No invoices or payments created.',
+  'No revenue claimed.',
+  'No client interest, replies, meetings, proposals, wins, losses, or outcomes are assumed.',
+  'Human approval is required before any external action.',
+];
+
+export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
+  const lead = buildLeadIntelligenceReport();
+  const revenue = buildRevenueActivationReport();
+  const execution = buildFirstRevenueExecutionPack();
+  const finance = buildFinanceReport(loadFinanceInput());
+  const outcomeRecords = loadOutcomes();
+  const outcomes = buildOutcomeSummary(outcomeRecords);
+  const manualFollowUps = readJson<{ status?: string }[]>(path.join(process.cwd(), 'data', 'followups', 'followups.json'), []);
+  const studio = buildStudioConsolidationReport();
+  const webDiscovery = buildWebLeadDiscoveryReport();
+  const leadQualification = buildLeadQualificationReport();
+  const painMining = buildPainMiningReport();
+  const runner = buildRunnerDashboard();
+  const today = new Date().toISOString().slice(0, 10);
+  const todaysWebLeads = webDiscovery.leads.filter((item) => item.discoveryDate === today);
+  const todaysPainSignals = painMining.signals.filter((item) => item.date === today);
+  const bestQualifiedLead = leadQualification.topQualifiedLeads[0];
+  const highestQaOpportunity = [...leadQualification.topQualifiedLeads].sort((left, right) => right.qaOpportunityScore - left.qaOpportunityScore || right.qualificationScore - left.qualificationScore)[0];
+  const topLead = lead.leads[0];
+  const studioHealth = studio.modules.some((module) => module.status === 'Not Ready')
+    ? 'Not Ready'
+    : studio.modules.some((module) => module.status === 'Warning') ? 'Warning' : 'Healthy';
+  const revenueStatus = finance.currentMrr > 0
+    ? `Current MRR: ${formatCurrency(finance.currentMrr)} from local finance data.`
+    : 'Current MRR: $0';
+  const topAction = topLead
+    ? mobileActionFor(topLead.companyName, execution.recommendation)
+    : 'Run npm run lead:intelligence to refresh lead focus.';
+  const topLeadName = topLead?.companyName ?? execution.topTarget.companyName;
+  const topOffer = topLead?.recommendedOffer ?? execution.topTarget.bestOffer;
+  const studioStatus = studioHealth === 'Healthy'
+    ? 'Healthy'
+    : studioHealth === 'Warning' ? 'Operational with warnings' : 'Needs Review';
+
+  return {
+    generatedAt: new Date().toISOString(),
+    topLead: topLeadName,
+    topOffer,
+    topAction,
+    estimatedTime: execution.recommendation === 'GO' ? '20 minutes' : '30-60 minutes',
+    decisionNeeded: execution.recommendation === 'GO' ? 'SEND / WAIT / REWRITE' : 'RESOLVE BLOCKERS / WAIT / REWRITE',
+    followUpsWaiting: outcomeRecords.filter((record) => record.response_status === 'sent' || record.response_status === 'no_reply').length,
+    openOpportunities: Math.max(revenue.pipeline.length, manualFollowUps.filter((item) => item.status !== 'Closed Won' && item.status !== 'Closed Lost' && item.status !== 'Paused').length),
+    studioStatus,
+    revenueStatus,
+    todayAtAGlance: [
+      `Top Lead: ${topLeadName}`,
+      `Top Offer: ${topOffer}`,
+      `Action: ${topAction}`,
+      `MRR: ${formatCurrency(finance.currentMrr)}`,
+      `Studio Health: ${studioHealth}`,
+    ].join(' | '),
+    currentMrr: finance.currentMrr,
+    firstClientStatus: `${execution.topTarget.companyName}: ${execution.recommendation}`,
+    revenueActivationReadiness: revenue.pipeline[0]
+      ? `${revenue.pipeline[0].companyName} activation score ${revenue.pipeline[0].activationScore}/100`
+      : 'No revenue activation target found',
+    bestAction: topAction,
+    studioHealth,
+    revenueHealth: revenueStatus,
+    nextManualStep: execution.manualNextAction,
+    outcomeStatus: outcomes.hasOutcomes ? `${outcomes.totalRecords} outcome record(s)` : 'No outcomes recorded yet.',
+    todaysDiscoveredLeads: todaysWebLeads.length > 0
+      ? todaysWebLeads.slice(0, 3).map((item) => item.companyName).join(', ')
+      : 'No web leads discovered today.',
+    topPainSignal: painMining.topSignal
+      ? `Potential recurring pain signal: ${painMining.topSignal.category} for ${painMining.topSignal.companyName}`
+      : 'No pain signals recorded.',
+    bestOpportunity: webDiscovery.topLead
+      ? `${webDiscovery.topLead.companyName} (${webDiscovery.topLead.score}/100)`
+      : 'No web opportunity recorded.',
+    bestQualifiedLead: bestQualifiedLead?.normalizedName ?? 'No qualified web lead.',
+    topQualifiedLeads: leadQualification.topQualifiedLeads.length > 0
+      ? leadQualification.topQualifiedLeads.slice(0, 3).map((item) => item.normalizedName).join(', ')
+      : 'No qualified web leads.',
+    bestQualifiedOffer: bestQualifiedLead?.recommendedOffer ?? 'No qualified offer.',
+    highestQaOpportunity: highestQaOpportunity
+      ? `${highestQaOpportunity.normalizedName} (${highestQaOpportunity.qaOpportunityScore}/100)`
+      : 'No QA opportunity scored.',
+    lastRefresh: runner.lastSuccessfulRun,
+    newLeadsToday: String(todaysWebLeads.length),
+    newPainSignals: String(todaysPainSignals.length),
+    topQualifiedLead: bestQualifiedLead?.normalizedName ?? 'No qualified web lead.',
+    todaysRecommendedAction: topAction,
+    safetyRules: sprint82Safety,
+  };
+}
+
+export function buildMobileActionCenter(summary = buildMobileCommandCenterSummary()): MobileActionCenterItem[] {
+  return [
+    {
+      priority: 1,
+      action: summary.topAction,
+      why: `${summary.topLead} is the current best lead from local Studio data. Best qualified web lead: ${summary.bestQualifiedLead}. Highest QA opportunity: ${summary.highestQaOpportunity}.`,
+      manualStep: summary.nextManualStep,
+    },
+    {
+      priority: 2,
+      action: 'Review revenue focus and daily plan.',
+      why: `Keeps the first-client workflow aligned before any manual external action. Top pain signal: ${summary.topPainSignal}.`,
+      manualStep: 'Run npm run revenue:focus and npm run day:plan, then compare with the mobile Today View.',
+    },
+    {
+      priority: 3,
+      action: 'Record only real outcomes after manual action.',
+      why: summary.outcomeStatus,
+      manualStep: 'If Daniel manually sends a message outside Studio, record the actual result with npm run outcome:add.',
+    },
+  ];
+}
+
+export function writeMobileTodayView(summary: MobileCommandCenterSummary): string {
+  return writeOutput('today.md', renderMobileTodayView(summary));
+}
+
+export function writeMobileRevenueView(summary: MobileCommandCenterSummary): string {
+  return writeOutput('revenue.md', renderMobileRevenueView(summary));
+}
+
+export function writeMobilePipelineView(summary: MobileCommandCenterSummary): string {
+  return writeOutput('pipeline.md', renderMobilePipelineView(summary));
+}
+
+export function writeMobileActionCenter(summary: MobileCommandCenterSummary): string {
+  return writeOutput('action-center.md', renderMobileActionCenter(summary, buildMobileActionCenter(summary)));
+}
+
+export function writeSprint82MobileSummary(summary: MobileCommandCenterSummary): string {
+  return writeOutput('mobile-summary.md', renderSprint82MobileSummary(summary));
+}
+
+export function renderMobileTodayView(summary: MobileCommandCenterSummary): string {
+  return [
+    '# Today View',
+    '',
+    `Generated: ${summary.generatedAt}`,
+    '',
+    '## What should Daniel do right now?',
+    '',
+    `Top Lead:\n${summary.topLead}`,
+    '',
+    `Top Offer:\n${summary.topOffer}`,
+    '',
+    `Top Action:\n${summary.topAction}`,
+    '',
+    `Today\'s Discovered Leads:\n${summary.todaysDiscoveredLeads}`,
+    '',
+    `Top Pain Signal:\n${summary.topPainSignal}`,
+    '',
+    `Best Opportunity:\n${summary.bestOpportunity}`,
+    '',
+    `Best Qualified Lead:\n${summary.bestQualifiedLead}`,
+    '',
+    `Top 3 Qualified Leads:\n${summary.topQualifiedLeads}`,
+    '',
+    `Best Offer:\n${summary.bestQualifiedOffer}`,
+    '',
+    `Highest QA Opportunity:\n${summary.highestQaOpportunity}`,
+    '',
+    `Last Refresh:\n${summary.lastRefresh}`,
+    '',
+    `New Leads Today:\n${summary.newLeadsToday}`,
+    '',
+    `New Pain Signals:\n${summary.newPainSignals}`,
+    '',
+    `Top Qualified Lead:\n${summary.topQualifiedLead}`,
+    '',
+    `Today\'s Recommended Action:\n${summary.todaysRecommendedAction}`,
+    '',
+    `Estimated Time:\n${summary.estimatedTime}`,
+    '',
+    `Decision Needed:\n${summary.decisionNeeded}`,
+    '',
+    '## Safety Rules',
+    bullets(summary.safetyRules),
+    '',
+  ].join('\n');
+}
+
+export function renderMobileRevenueView(summary: MobileCommandCenterSummary): string {
+  return [
+    '# Revenue View',
+    '',
+    `Generated: ${summary.generatedAt}`,
+    '',
+    renderSimpleLines([
+      `Current MRR: ${formatCurrency(summary.currentMrr)}`,
+      `Revenue Status: ${summary.revenueStatus}`,
+      `First Client Status: ${summary.firstClientStatus}`,
+      `Revenue Activation Readiness: ${summary.revenueActivationReadiness}`,
+    ]),
+    '',
+    '## Boundary',
+    bullets([
+      'Future revenue is not estimated here.',
+      'Offer ranges, pipeline, and recommendations are not booked revenue.',
+    ]),
+    '',
+    '## Safety Rules',
+    bullets(summary.safetyRules),
+    '',
+  ].join('\n');
+}
+
+export function renderMobilePipelineView(summary: MobileCommandCenterSummary): string {
+  return [
+    '# Pipeline View',
+    '',
+    `Generated: ${summary.generatedAt}`,
+    '',
+    renderSimpleLines([
+      `Top Lead: ${summary.topLead}`,
+      `Top Offer: ${summary.topOffer}`,
+      `Follow Ups Waiting: ${summary.followUpsWaiting}`,
+      `Open Opportunities: ${summary.openOpportunities}`,
+      `Today\'s Discovered Leads: ${summary.todaysDiscoveredLeads}`,
+      `Top Pain Signal: ${summary.topPainSignal}`,
+      `Best Opportunity: ${summary.bestOpportunity}`,
+      `Best Qualified Lead: ${summary.bestQualifiedLead}`,
+      `Top 3 Qualified Leads: ${summary.topQualifiedLeads}`,
+      `Best Offer: ${summary.bestQualifiedOffer}`,
+      `Highest QA Opportunity: ${summary.highestQaOpportunity}`,
+      `Last Refresh: ${summary.lastRefresh}`,
+      `New Leads Today: ${summary.newLeadsToday}`,
+      `New Pain Signals: ${summary.newPainSignals}`,
+      `Top Qualified Lead: ${summary.topQualifiedLead}`,
+      `Today\'s Recommended Action: ${summary.todaysRecommendedAction}`,
+      `Outcome Status: ${summary.outcomeStatus}`,
+      `Next Manual Step: ${summary.nextManualStep}`,
+    ]),
+    '',
+    '## Notes',
+    bullets([
+      'Pipeline view uses existing lead, follow-up, and outcome data only.',
+      'No replies, meetings, proposals, wins, losses, or revenue are inferred.',
+    ]),
+    '',
+    '## Safety Rules',
+    bullets(summary.safetyRules),
+    '',
+  ].join('\n');
+}
+
+export function renderMobileActionCenter(summary: MobileCommandCenterSummary, actions: MobileActionCenterItem[]): string {
+  return [
+    '# Action Center',
+    '',
+    `Generated: ${summary.generatedAt}`,
+    '',
+    renderSimpleLines([
+      `Best Qualified Lead: ${summary.bestQualifiedLead}`,
+      `Top 3 Qualified Leads: ${summary.topQualifiedLeads}`,
+      `Best Offer: ${summary.bestQualifiedOffer}`,
+      `Highest QA Opportunity: ${summary.highestQaOpportunity}`,
+      `Last Refresh: ${summary.lastRefresh}`,
+      `New Leads Today: ${summary.newLeadsToday}`,
+      `New Pain Signals: ${summary.newPainSignals}`,
+      `Top Qualified Lead: ${summary.topQualifiedLead}`,
+      `Today\'s Recommended Action: ${summary.todaysRecommendedAction}`,
+    ]),
+    '',
+    ...actions.slice(0, 3).flatMap((action) => [
+      `## Priority #${action.priority}`,
+      '',
+      renderSimpleLines([
+        `Action: ${action.action}`,
+        `Why: ${action.why}`,
+        `Manual Step: ${action.manualStep}`,
+      ]),
+      '',
+    ]),
+    '## Safety Rules',
+    bullets(summary.safetyRules),
+    '',
+  ].join('\n');
+}
+
+export function renderSprint82MobileSummary(summary: MobileCommandCenterSummary): string {
+  return [
+    '# Mobile Summary',
+    '',
+    `Generated: ${summary.generatedAt}`,
+    '',
+    renderSimpleLines([
+      `Best Lead: ${summary.topLead}`,
+      `Best Offer: ${summary.topOffer}`,
+      `Best Action: ${summary.bestAction}`,
+      `Today\'s Discovered Leads: ${summary.todaysDiscoveredLeads}`,
+      `Top Pain Signal: ${summary.topPainSignal}`,
+      `Best Opportunity: ${summary.bestOpportunity}`,
+      `Best Qualified Lead: ${summary.bestQualifiedLead}`,
+      `Top 3 Qualified Leads: ${summary.topQualifiedLeads}`,
+      `Best Offer: ${summary.bestQualifiedOffer}`,
+      `Highest QA Opportunity: ${summary.highestQaOpportunity}`,
+      `Last Refresh: ${summary.lastRefresh}`,
+      `New Leads Today: ${summary.newLeadsToday}`,
+      `New Pain Signals: ${summary.newPainSignals}`,
+      `Top Qualified Lead: ${summary.topQualifiedLead}`,
+      `Today\'s Recommended Action: ${summary.todaysRecommendedAction}`,
+      `Studio Health: ${summary.studioHealth}`,
+      `Revenue Health: ${summary.revenueHealth}`,
+      `Next Manual Step: ${summary.nextManualStep}`,
+    ]),
+    '',
+    '## Safety Rules',
+    bullets(summary.safetyRules),
+    '',
+  ].join('\n');
+}
 
 export function buildMobileReviewPackage(): MobileReviewPackage {
   const dashboard = buildPwaDashboardData();
@@ -265,4 +598,20 @@ function readJson<T>(filePath: string, fallback: T): T {
 
 function bullets(items: string[]): string {
   return items.map((item) => `- ${item}`).join('\n');
+}
+
+function renderSimpleLines(lines: string[]): string {
+  return lines.map((line) => `- ${line}`).join('\n');
+}
+
+function formatCurrency(value: number): string {
+  return `$${value.toLocaleString('en-US')}`;
+}
+
+function mobileActionFor(companyName: string, recommendation: string): string {
+  if (recommendation === 'GO') {
+    return `Review ${companyName} message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually.`;
+  }
+
+  return `Resolve ${companyName} first-client readiness blockers before any manual outreach decision.`;
 }

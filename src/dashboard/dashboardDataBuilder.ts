@@ -6,6 +6,8 @@ import {
   buildWeeklyRevenueReview,
   loadDailyRevenueLoopInput,
 } from '../dailyRevenueLoop/dailyLoopRules';
+import { buildRunnerDashboard } from '../autonomousRunner/runnerRules';
+import { buildDailyLeadDiscoveryDashboard } from '../dailyLeadDiscovery/discoveryRules';
 import { buildLeadIntelligenceReport } from '../leadIntelligence/leadRules';
 import { buildOperatorUxSummary } from '../operatorUx/uxRules';
 import { buildOpportunitySummary } from '../opportunityEngine/opportunityEngineRules';
@@ -19,6 +21,9 @@ import { buildRevenueActivationReport } from '../revenueActivation/revenueRules'
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
 import { readSnapshotState } from '../studioSnapshot/snapshotRules';
 import { buildUnifiedAuditPortfolio } from '../unifiedAuditGenerator/unifiedAuditRules';
+import { buildWebDiscoveryDashboard } from '../webLeadDiscovery/webDiscoveryRules';
+import { buildLeadQualificationDashboard } from '../webLeadQualification/normalizationRules';
+import { buildPainMiningDashboard, buildPainMiningReport } from '../webPainMining/painMiningRules';
 import { buildWinLossReport } from '../winLossEngine/winLossRules';
 
 export interface DashboardActionCard {
@@ -158,6 +163,55 @@ export interface DashboardOperatorMode {
   todayAtAGlance: string;
 }
 
+export interface DashboardMobileCommandCenterSummary {
+  topLead: string;
+  topOffer: string;
+  topAction: string;
+  followUpsWaiting: number;
+  openOpportunities: number;
+  studioStatus: string;
+  revenueStatus: string;
+  todayAtAGlance: string;
+}
+
+export interface DashboardDailyLeadDiscovery {
+  newLeadsToday: number;
+  topNewLead: string;
+  topFiveLeads: string;
+  bestOffer: string;
+  recommendedNextAction: string;
+}
+
+export interface DashboardWebDiscovery {
+  newWebLeads: number;
+  topWebLead: string;
+  topPainSignal: string;
+  bestNewQaOpportunity: string;
+  recommendedResearchAction: string;
+  newLeadsToday: number;
+  newPainSignals: number;
+  topOpportunity: string;
+  bestNewLead: string;
+  leadSource: string;
+  discoveryDate: string;
+}
+
+export interface DashboardLeadQualification {
+  bestQualifiedLead: string;
+  bestCategory: string;
+  highestQaOpportunity: string;
+  recommendedOffer: string;
+  qualifiedLeadsCount: number;
+}
+
+export interface DashboardAutonomousRunner {
+  autonomousRunnerStatus: string;
+  lastSuccessfulRun: string;
+  nextScheduledRun: string;
+  runnerHealth: string;
+  dailyRefreshStatus: string;
+}
+
 export interface DashboardData {
   generatedAt: string;
   mode: 'read-only';
@@ -211,6 +265,11 @@ export interface DashboardData {
   studioSnapshot: DashboardStudioSnapshot;
   leadIntelligence: DashboardLeadIntelligence;
   operatorMode: DashboardOperatorMode;
+  mobileCommandCenterSummary: DashboardMobileCommandCenterSummary;
+  dailyLeadDiscovery: DashboardDailyLeadDiscovery;
+  webDiscovery: DashboardWebDiscovery;
+  leadQualification: DashboardLeadQualification;
+  autonomousRunner: DashboardAutonomousRunner;
   mobileCommandCenter: DashboardMobileCenter;
   safety: string[];
 }
@@ -242,8 +301,17 @@ export function buildPwaDashboardData(): DashboardData {
   const winLossReport = buildWinLossReport();
   const snapshotState = readSnapshotState();
   const leadIntelligenceReport = buildLeadIntelligenceReport();
+  const dailyLeadDiscovery = buildDailyLeadDiscoveryDashboard();
+  const webDiscoveryLeadDashboard = buildWebDiscoveryDashboard();
+  const leadQualificationDashboard = buildLeadQualificationDashboard();
+  const autonomousRunnerDashboard = buildRunnerDashboard();
+  const painMiningReport = buildPainMiningReport();
+  const painMiningDashboard = buildPainMiningDashboard();
   const topLead = leadIntelligenceReport.leads[0];
   const operatorSummary = buildOperatorUxSummary();
+  const mobileTopAction = topLead
+    ? `Review ${topLead.companyName} message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually.`
+    : operatorSummary.topAction;
   const outreach = readJson<OutreachRecord[]>(outreachPath, []);
   const proposalReady = proposalPortfolio.proposals.filter((proposal) => proposal.artifacts.markdownPath && proposal.artifacts.pdfPath);
   const topActions = dayPlan.topActions.map((action) => ({
@@ -391,6 +459,36 @@ export function buildPwaDashboardData(): DashboardData {
       studioStatus: operatorSummary.studioStatus,
       todayAtAGlance: operatorSummary.todayAtAGlance.join(' | '),
     },
+    mobileCommandCenterSummary: {
+      topLead: topLead?.companyName ?? operatorSummary.topLead,
+      topOffer: topLead?.recommendedOffer ?? operatorSummary.topOffer,
+      topAction: mobileTopAction,
+      followUpsWaiting: followUpReport.dashboard.waitingResponses,
+      openOpportunities: followUpReport.dashboard.openOpportunities,
+      studioStatus: operatorSummary.studioStatus,
+      revenueStatus: `Current MRR: $${studioReport.revenueReadiness.currentMrr.toLocaleString('en-US')}`,
+      todayAtAGlance: [
+        `Top Lead: ${topLead?.companyName ?? operatorSummary.topLead}`,
+        `Top Offer: ${topLead?.recommendedOffer ?? operatorSummary.topOffer}`,
+        `Action: ${mobileTopAction}`,
+      ].join(' | '),
+    },
+    dailyLeadDiscovery,
+    webDiscovery: {
+      newWebLeads: webDiscoveryLeadDashboard.newWebLeads,
+      topWebLead: webDiscoveryLeadDashboard.topWebLead,
+      topPainSignal: painMiningDashboard.topPainSignal,
+      bestNewQaOpportunity: webDiscoveryLeadDashboard.bestNewQaOpportunity,
+      recommendedResearchAction: webDiscoveryLeadDashboard.recommendedResearchAction,
+      newLeadsToday: webDiscoveryLeadDashboard.newLeadsToday,
+      newPainSignals: painMiningReport.signals.filter((signal) => signal.date === input.today).length,
+      topOpportunity: webDiscoveryLeadDashboard.topOpportunity,
+      bestNewLead: webDiscoveryLeadDashboard.bestNewLead,
+      leadSource: webDiscoveryLeadDashboard.leadSource,
+      discoveryDate: webDiscoveryLeadDashboard.discoveryDate,
+    },
+    leadQualification: leadQualificationDashboard,
+    autonomousRunner: autonomousRunnerDashboard,
     mobileCommandCenter: {
       reviewCenter: {
         auditsReady: auditPortfolio.reports.length,

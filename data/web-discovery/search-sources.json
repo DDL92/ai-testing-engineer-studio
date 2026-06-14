@@ -1,0 +1,242 @@
+[
+  {
+    "id": "gym-management-software",
+    "niche": "gym management software",
+    "enabled": true,
+    "queryTemplates": [
+      "\"gym management software\" \"demo\" \"pricing\"",
+      "\"gym management software\" \"customer reviews\"",
+      "\"gym management software\" \"alternatives\" \"features\"",
+      "\"gym management software\" \"booking\" \"payments\"",
+      "\"gym management software\" \"mobile app\" \"reviews\""
+    ],
+    "allowedSources": [
+      "public websites",
+      "public review pages",
+      "public directories",
+      "public comparison pages"
+    ],
+    "disallowedSources": [
+      "LinkedIn",
+      "login-only pages",
+      "private communities",
+      "paid databases"
+    ]
+  },
+  {
+    "id": "fitness-studio-software",
+    "niche": "fitness studio software",
+    "enabled": true,
+    "queryTemplates": [
+      "\"fitness studio software\" \"demo\" \"pricing\"",
+      "\"fitness studio software\" \"customer reviews\"",
+      "\"fitness studio software\" \"alternatives\" \"features\"",
+      "\"fitness studio software\" \"booking\" \"payments\"",
+      "\"fitness studio software\" \"mobile app\" \"reviews\""
+    ],
+    "allowedSources": [
+      "public websites",
+      "public review pages",
+      "public directories",
+      "public comparison pages"
+    ],
+    "disallowedSources": [
+      "LinkedIn",
+      "login-only pages",
+      "private communities",
+      "paid databases"
+    ]
+  },
+  {
+    "id": "martial-arts-school-software",
+    "niche": "martial arts school software",
+    "enabled": true,
+    "queryTemplates": [
+      "\"martial arts school software\" \"demo\" \"pricing\"",
+      "\"martial arts school software\" \"customer reviews\"",
+      "\"martial arts school software\" \"alternatives\" \"features\"",
+      "\"martial arts school software\" \"booking\" \"payments\"",
+      "\"martial arts school software\" \"mobile app\" \"reviews\""
+    ],
+    "allowedSources": [
+      "public websites",
+      "public review pages",
+      "public directories",
+      "public comparison pages"
+    ],
+    "disallowedSources": [
+      "LinkedIn",
+      "login-only pages",
+      "private communities",
+      "paid databases"
+    ]
+  },
+  {
+    "id": "booking-software-for-gyms",
+    "niche": "booking software for gyms",
+    "enabled": true,
+    "queryTemplates": [
+      "\"booking software for gyms\" \"demo\" \"pricing\"",
+      "\"booking software for gyms\" \"customer reviews\"",
+      "\"booking software for gyms\" \"alternatives\" \"features\"",
+      "\"booking software for gyms\" \"booking\" \"payments\"",
+      "\"booking software for gyms\" \"mobile app\" \"reviews\""
+    ],
+    "allowedSources": [
+      "public websites",
+      "public review pages",
+      "public directories",
+      "public comparison pages"
+    ],
+    "disallowedSources": [
+      "LinkedIn",
+      "login-only pages",
+      "private communities",
+      "paid databases"
+    ]
+  },
+  {
+    "id": "class-scheduling-saas",
+    "niche": "class scheduling SaaS",
+    "enabled": true,
+    "queryTemplates": [
+      "\"class scheduling SaaS\" \"demo\" \"pricing\"",
+      "\"class scheduling SaaS\" \"customer reviews\"",
+      "\"class scheduling SaaS\" \"alternatives\" \"features\"",
+      "\"class scheduling SaaS\" \"booking\" \"payments\"",
+      "\"class scheduling SaaS\" \"mobile app\" \"reviews\""
+    ],
+    "allowedSources": [
+      "public websites",
+      "public review pages",
+      "public directories",
+      "public comparison pages"
+    ],
+    "disallowedSources": [
+      "LinkedIn",
+      "login-only pages",
+      "private communities",
+      "paid databases"
+    ]
+  },
+  {
+    "id": "membership-management-software",
+    "niche": "membership management software",
+    "enabled": true,
+    "queryTemplates": [
+      "\"membership management software\" \"demo\" \"pricing\"",
+      "\"membership management software\" \"customer reviews\"",
+      "\"membership management software\" \"alternatives\" \"features\"",
+      "\"membership management software\" \"booking\" \"payments\"",
+      "\"membership management software\" \"mobile app\" \"reviews\""
+    ],
+    "allowedSources": [
+      "public websites",
+      "public review pages",
+      "public directories",
+      "public comparison pages"
+    ],
+    "disallowedSources": [
+      "LinkedIn",
+      "login-only pages",
+      "private communities",
+      "paid databases"
+    ]
+  },
+  {
+    "id": "wellness-studio-software",
+    "niche": "wellness studio software",
+    "enabled": true,
+    "queryTemplates": [
+      "\"wellness studio software\" \"demo\" \"pricing\"",
+      "\"wellness studio software\" \"customer reviews\"",
+      "\"wellness studio software\" \"alternatives\" \"features\"",
+      "\"wellness studio software\" \"booking\" \"payments\"",
+      "\"wellness studio software\" \"mobile app\" \"reviews\""
+    ],
+    "allowedSources": [
+      "public websites",
+      "public review pages",
+      "public directories",
+      "public comparison pages"
+    ],
+    "disallowedSources": [
+      "LinkedIn",
+      "login-only pages",
+      "private communities",
+      "paid databases"
+    ]
+  },
+  {
+    "id": "yoga-studio-software",
+    "niche": "yoga studio software",
+    "enabled": true,
+    "queryTemplates": [
+      "\"yoga studio software\" \"demo\" \"pricing\"",
+      "\"yoga studio software\" \"customer reviews\"",
+      "\"yoga studio software\" \"alternatives\" \"features\"",
+      "\"yoga studio software\" \"booking\" \"payments\"",
+      "\"yoga studio software\" \"mobile app\" \"reviews\""
+    ],
+    "allowedSources": [
+      "public websites",
+      "public review pages",
+      "public directories",
+      "public comparison pages"
+    ],
+    "disallowedSources": [
+      "LinkedIn",
+      "login-only pages",
+      "private communities",
+      "paid databases"
+    ]
+  },
+  {
+    "id": "crossfit-gym-software",
+    "niche": "CrossFit gym software",
+    "enabled": true,
+    "queryTemplates": [
+      "\"CrossFit gym software\" \"demo\" \"pricing\"",
+      "\"CrossFit gym software\" \"customer reviews\"",
+      "\"CrossFit gym software\" \"alternatives\" \"features\"",
+      "\"CrossFit gym software\" \"booking\" \"payments\"",
+      "\"CrossFit gym software\" \"mobile app\" \"reviews\""
+    ],
+    "allowedSources": [
+      "public websites",
+      "public review pages",
+      "public directories",
+      "public comparison pages"
+    ],
+    "disallowedSources": [
+      "LinkedIn",
+      "login-only pages",
+      "private communities",
+      "paid databases"
+    ]
+  },
+  {
+    "id": "personal-training-studio-software",
+    "niche": "personal training studio software",
+    "enabled": true,
+    "queryTemplates": [
+      "\"personal training studio software\" \"demo\" \"pricing\"",
+      "\"personal training studio software\" \"customer reviews\"",
+      "\"personal training studio software\" \"alternatives\" \"features\"",
+      "\"personal training studio software\" \"booking\" \"payments\"",
+      "\"personal training studio software\" \"mobile app\" \"reviews\""
+    ],
+    "allowedSources": [
+      "public websites",
+      "public review pages",
+      "public directories",
+      "public comparison pages"
+    ],
+    "disallowedSources": [
+      "LinkedIn",
+      "login-only pages",
+      "private communities",
+      "paid databases"
+    ]
+  }
+]

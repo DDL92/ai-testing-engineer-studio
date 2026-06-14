@@ -117,3 +117,45 @@ export interface MobileReviewPackage {
   followUpCenter: MobileReviewItem[];
   safety: string[];
 }
+
+export interface MobileCommandCenterSummary {
+  generatedAt: string;
+  topLead: string;
+  topOffer: string;
+  topAction: string;
+  estimatedTime: string;
+  decisionNeeded: string;
+  followUpsWaiting: number;
+  openOpportunities: number;
+  studioStatus: string;
+  revenueStatus: string;
+  todayAtAGlance: string;
+  currentMrr: number;
+  firstClientStatus: string;
+  revenueActivationReadiness: string;
+  bestAction: string;
+  studioHealth: string;
+  revenueHealth: string;
+  nextManualStep: string;
+  outcomeStatus: string;
+  todaysDiscoveredLeads: string;
+  topPainSignal: string;
+  bestOpportunity: string;
+  bestQualifiedLead: string;
+  topQualifiedLeads: string;
+  bestQualifiedOffer: string;
+  highestQaOpportunity: string;
+  lastRefresh: string;
+  newLeadsToday: string;
+  newPainSignals: string;
+  topQualifiedLead: string;
+  todaysRecommendedAction: string;
+  safetyRules: string[];
+}
+
+export interface MobileActionCenterItem {
+  priority: 1 | 2 | 3;
+  action: string;
+  why: string;
+  manualStep: string;
+}

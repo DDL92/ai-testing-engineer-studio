@@ -1,0 +1,131 @@
+{
+  "runId": "runner-2026-06-14T01-52-56-415Z",
+  "mode": "test",
+  "startedAt": "2026-06-14T01:52:56.415Z",
+  "finishedAt": "2026-06-14T01:53:03.396Z",
+  "durationMs": 6981,
+  "success": true,
+  "commandsExecuted": [
+    {
+      "script": "web:lead-discovery",
+      "description": "Refresh public Tavily lead discovery.",
+      "phase": "discovery",
+      "status": "success",
+      "exitCode": 0,
+      "startedAt": "2026-06-14T01:52:56.415Z",
+      "finishedAt": "2026-06-14T01:52:57.921Z",
+      "durationMs": 1506,
+      "outputTail": "> ai-testing-engineer-studio@0.1.0 web:lead-discovery\n> node --import tsx src/webLeadDiscovery/runWebLeadDiscovery.ts\n\nWeb lead discovery generated.\n- output/web-discovery/discovered-web-leads.md\n- output/web-discovery/web-discovery-summary.md\nRecorded web leads: 30\nStatus: Results available\nManual approval required. No leads were invented or contacted.",
+      "errorTail": ""
+    },
+    {
+      "script": "web:pain-mining",
+      "description": "Refresh public Tavily pain signals.",
+      "phase": "discovery",
+      "status": "success",
+      "exitCode": 0,
+      "startedAt": "2026-06-14T01:52:57.921Z",
+      "finishedAt": "2026-06-14T01:53:00.449Z",
+      "durationMs": 2528,
+      "outputTail": "> ai-testing-engineer-studio@0.1.0 web:pain-mining\n> node --import tsx src/webPainMining/runPainMining.ts\n\nPain mining report generated.\n- output/web-pain-mining/pain-signals.md\nPain signals recorded: 54\nOnly locally recorded public signals are reported. No complaints or quotes were invented.",
+      "errorTail": ""
+    },
+    {
+      "script": "web:lead-normalize",
+      "description": "Normalize raw web lead titles into company records.",
+      "phase": "qualification",
+      "status": "success",
+      "exitCode": 0,
+      "startedAt": "2026-06-14T01:53:00.449Z",
+      "finishedAt": "2026-06-14T01:53:00.700Z",
+      "durationMs": 251,
+      "outputTail": "> ai-testing-engineer-studio@0.1.0 web:lead-normalize\n> node --import tsx src/webLeadQualification/generateNormalizedLeads.ts\n\nNormalized web leads generated.\n- data/web-discovery/normalized-leads.json\nNormalized leads: 29\nDuplicates removed: 1",
+      "errorTail": ""
+    },
+    {
+      "script": "web:lead-classify",
+      "description": "Classify normalized leads by SaaS category.",
+      "phase": "qualification",
+      "status": "success",
+      "exitCode": 0,
+      "startedAt": "2026-06-14T01:53:00.700Z",
+      "finishedAt": "2026-06-14T01:53:00.963Z",
+      "durationMs": 263,
+      "outputTail": "> ai-testing-engineer-studio@0.1.0 web:lead-classify\n> node --import tsx src/webLeadQualification/generateLeadClassification.ts\n\nLead classification generated.\n- output/lead-qualification/lead-classification.md\nBest category: Scheduling SaaS",
+      "errorTail": ""
+    },
+    {
+      "script": "web:lead-qualify",
+      "description": "Score normalized leads for qualification.",
+      "phase": "qualification",
+      "status": "success",
+      "exitCode": 0,
+      "startedAt": "2026-06-14T01:53:00.963Z",
+      "finishedAt": "2026-06-14T01:53:01.226Z",
+      "durationMs": 263,
+      "outputTail": "> ai-testing-engineer-studio@0.1.0 web:lead-qualify\n> node --import tsx src/webLeadQualification/generateLeadQualification.ts\n\nLead qualification generated.\n- output/lead-qualification/lead-qualification.md\nBest qualified lead: Appointy",
+      "errorTail": ""
+    },
+    {
+      "script": "web:qualified-ranking",
+      "description": "Generate final qualified web lead ranking.",
+      "phase": "qualification",
+      "status": "success",
+      "exitCode": 0,
+      "startedAt": "2026-06-14T01:53:01.226Z",
+      "finishedAt": "2026-06-14T01:53:01.518Z",
+      "durationMs": 292,
+      "outputTail": "> ai-testing-engineer-studio@0.1.0 web:qualified-ranking\n> node --import tsx src/webLeadQualification/generateQualifiedRanking.ts\n\nQualified web lead ranking generated.\n- output/lead-qualification/qualified-ranking.md\n- output/lead-qualification/recommended-offers.md\nTop qualified lead: Appointy\nBest offer: QA Automation Retainer ($1500-$3000/month)",
+      "errorTail": ""
+    },
+    {
+      "script": "revenue:focus",
+      "description": "Refresh the first-revenue focus report.",
+      "phase": "revenue",
+      "status": "success",
+      "exitCode": 0,
+      "startedAt": "2026-06-14T01:53:01.518Z",
+      "finishedAt": "2026-06-14T01:53:01.846Z",
+      "durationMs": 328,
+      "outputTail": "> ai-testing-engineer-studio@0.1.0 revenue:focus\n> node --import tsx src/revenueActivation/generateRevenueFocus.ts\n\nRevenue focus generated.\n- output/revenue/revenue-focus.md\n- output/revenue/first-client-plan.md\n- output/revenue/first-retainer-plan.md\nPriority 1: Move First Audit Sold forward - PushPress\n30-minute focus is planning only. Human approval is required before external action.",
+      "errorTail": ""
+    },
+    {
+      "script": "day:plan",
+      "description": "Refresh the daily revenue operating plan.",
+      "phase": "planning",
+      "status": "success",
+      "exitCode": 0,
+      "startedAt": "2026-06-14T01:53:01.846Z",
+      "finishedAt": "2026-06-14T01:53:02.192Z",
+      "durationMs": 346,
+      "outputTail": "> ai-testing-engineer-studio@0.1.0 day:plan\n> node --import tsx src/dailyRevenueLoop/generateDayPlan.ts\n\nDaily revenue plan generated: output/daily-revenue/today-plan.md, output/daily-revenue/highest-priority-actions.md, output/daily-revenue/followup-priorities.md, output/daily-revenue/proposal-priorities.md, output/daily-revenue/audit-priorities.md, output/daily-revenue/revenue-opportunities.md\nActive leads: 4\nTop actions: 5\nPlanning only. No outreach, emails, proposals, invoices, payment links, calendar events, or external actions were sent.",
+      "errorTail": ""
+    },
+    {
+      "script": "dashboard:generate",
+      "description": "Regenerate the read-only dashboard data.",
+      "phase": "dashboard",
+      "status": "success",
+      "exitCode": 0,
+      "startedAt": "2026-06-14T01:53:02.192Z",
+      "finishedAt": "2026-06-14T01:53:03.082Z",
+      "durationMs": 890,
+      "outputTail": "> ai-testing-engineer-studio@0.1.0 dashboard:generate\n> node --import tsx src/dashboard/generateDashboard.ts\n\nDashboard generated:\n- output/dashboard/dashboard.json\n- dashboard/dashboard.json\n- data/dashboard/dashboard.json\n- output/dashboard/dashboard-summary.md\n- output/dashboard/dashboard-health.md\nRead-only PWA dashboard. No outreach, emails, proposals, invoices, payments, data edits, or external actions were performed.",
+      "errorTail": ""
+    },
+    {
+      "script": "mobile:summary",
+      "description": "Regenerate the mobile command center summary.",
+      "phase": "mobile",
+      "status": "success",
+      "exitCode": 0,
+      "startedAt": "2026-06-14T01:53:03.082Z",
+      "finishedAt": "2026-06-14T01:53:03.396Z",
+      "durationMs": 314,
+      "outputTail": "> ai-testing-engineer-studio@0.1.0 mobile:summary\n> node --import tsx src/mobileCommandCenter/generateMobileSummary.ts\n\nMobile summary generated: output/mobile/mobile-summary.md\nBest Lead: PushPress\nBest Action: Review PushPress message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually.\nRevenue Health: Current MRR: $0\nSummary is read-only. No outreach, emails, LinkedIn messages, proposals, invoices, payments, outcomes, revenue, or external actions were performed.",
+      "errorTail": ""
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "id": "local-seed-catalog",
+    "name": "Local Discovery Seed Catalog",
+    "type": "local_seed_catalog",
+    "enabled": true,
+    "path": "data/leads/discovery-seeds.json",
+    "description": "Curated local candidate catalog maintained by Daniel or prior approved Studio runs.",
+    "allowNetwork": false,
+    "requiresLogin": false,
+    "approvedForDailyRun": true
+  },
+  {
+    "id": "existing-discovered-leads",
+    "name": "Existing Local Discovered Leads",
+    "type": "local_discovered_leads",
+    "enabled": true,
+    "path": "data/leads/discovered-leads.json",
+    "description": "Prior local discovery engine output; used only as local review memory.",
+    "allowNetwork": false,
+    "requiresLogin": false,
+    "approvedForDailyRun": true
+  }
+]

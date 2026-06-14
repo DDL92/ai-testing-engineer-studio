@@ -19,3 +19,4 @@ sales-marketing-engine/operator/generated/*
 !sales-marketing-engine/operator/generated/.gitkeep
 sales-marketing-engine/operator/approval-queue/*
 !sales-marketing-engine/operator/approval-queue/.gitkeep
+.env.local

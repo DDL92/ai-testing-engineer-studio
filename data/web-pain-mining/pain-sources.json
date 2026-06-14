@@ -1,0 +1,282 @@
+[
+  {
+    "id": "booking",
+    "name": "booking",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"booking\" \"reviews\"",
+      "\"fitness studio software\" \"booking\" \"reviews\"",
+      "\"martial arts school software\" \"booking\" \"reviews\"",
+      "\"booking software for gyms\" \"booking\" \"reviews\"",
+      "\"class scheduling SaaS\" \"booking\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "scheduling",
+    "name": "scheduling",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"scheduling\" \"reviews\"",
+      "\"fitness studio software\" \"scheduling\" \"reviews\"",
+      "\"martial arts school software\" \"scheduling\" \"reviews\"",
+      "\"booking software for gyms\" \"scheduling\" \"reviews\"",
+      "\"class scheduling SaaS\" \"scheduling\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "payments",
+    "name": "payments",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"payments\" \"reviews\"",
+      "\"fitness studio software\" \"payments\" \"reviews\"",
+      "\"martial arts school software\" \"payments\" \"reviews\"",
+      "\"booking software for gyms\" \"payments\" \"reviews\"",
+      "\"class scheduling SaaS\" \"payments\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "checkout",
+    "name": "checkout",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"checkout\" \"reviews\"",
+      "\"fitness studio software\" \"checkout\" \"reviews\"",
+      "\"martial arts school software\" \"checkout\" \"reviews\"",
+      "\"booking software for gyms\" \"checkout\" \"reviews\"",
+      "\"class scheduling SaaS\" \"checkout\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "signup",
+    "name": "signup",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"signup\" \"reviews\"",
+      "\"fitness studio software\" \"signup\" \"reviews\"",
+      "\"martial arts school software\" \"signup\" \"reviews\"",
+      "\"booking software for gyms\" \"signup\" \"reviews\"",
+      "\"class scheduling SaaS\" \"signup\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "onboarding",
+    "name": "onboarding",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"onboarding\" \"reviews\"",
+      "\"fitness studio software\" \"onboarding\" \"reviews\"",
+      "\"martial arts school software\" \"onboarding\" \"reviews\"",
+      "\"booking software for gyms\" \"onboarding\" \"reviews\"",
+      "\"class scheduling SaaS\" \"onboarding\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "mobile-app",
+    "name": "mobile app",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"mobile app\" \"reviews\"",
+      "\"fitness studio software\" \"mobile app\" \"reviews\"",
+      "\"martial arts school software\" \"mobile app\" \"reviews\"",
+      "\"booking software for gyms\" \"mobile app\" \"reviews\"",
+      "\"class scheduling SaaS\" \"mobile app\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "notifications",
+    "name": "notifications",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"notifications\" \"reviews\"",
+      "\"fitness studio software\" \"notifications\" \"reviews\"",
+      "\"martial arts school software\" \"notifications\" \"reviews\"",
+      "\"booking software for gyms\" \"notifications\" \"reviews\"",
+      "\"class scheduling SaaS\" \"notifications\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "integrations",
+    "name": "integrations",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"integrations\" \"reviews\"",
+      "\"fitness studio software\" \"integrations\" \"reviews\"",
+      "\"martial arts school software\" \"integrations\" \"reviews\"",
+      "\"booking software for gyms\" \"integrations\" \"reviews\"",
+      "\"class scheduling SaaS\" \"integrations\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "reporting",
+    "name": "reporting",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"reporting\" \"reviews\"",
+      "\"fitness studio software\" \"reporting\" \"reviews\"",
+      "\"martial arts school software\" \"reporting\" \"reviews\"",
+      "\"booking software for gyms\" \"reporting\" \"reviews\"",
+      "\"class scheduling SaaS\" \"reporting\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "performance",
+    "name": "performance",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"performance\" \"reviews\"",
+      "\"fitness studio software\" \"performance\" \"reviews\"",
+      "\"martial arts school software\" \"performance\" \"reviews\"",
+      "\"booking software for gyms\" \"performance\" \"reviews\"",
+      "\"class scheduling SaaS\" \"performance\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "support",
+    "name": "support",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"support\" \"reviews\"",
+      "\"fitness studio software\" \"support\" \"reviews\"",
+      "\"martial arts school software\" \"support\" \"reviews\"",
+      "\"booking software for gyms\" \"support\" \"reviews\"",
+      "\"class scheduling SaaS\" \"support\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "regression",
+    "name": "regression",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"regression\" \"reviews\"",
+      "\"fitness studio software\" \"regression\" \"reviews\"",
+      "\"martial arts school software\" \"regression\" \"reviews\"",
+      "\"booking software for gyms\" \"regression\" \"reviews\"",
+      "\"class scheduling SaaS\" \"regression\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  },
+  {
+    "id": "ux-friction",
+    "name": "UX friction",
+    "enabled": true,
+    "sourceType": "search_query",
+    "queryTemplates": [
+      "\"gym management software\" \"UX friction\" \"reviews\"",
+      "\"fitness studio software\" \"UX friction\" \"reviews\"",
+      "\"martial arts school software\" \"UX friction\" \"reviews\"",
+      "\"booking software for gyms\" \"UX friction\" \"reviews\"",
+      "\"class scheduling SaaS\" \"UX friction\" \"reviews\""
+    ],
+    "allowedUse": "Public review/search pages only; manual review required.",
+    "disallowedUse": [
+      "LinkedIn",
+      "private groups",
+      "login-only pages",
+      "copied customer quotes without approval"
+    ]
+  }
+]

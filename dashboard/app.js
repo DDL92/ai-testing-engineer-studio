@@ -27,7 +27,12 @@ function render(data) {
   renderRevenue(data.revenue);
   renderRevenueActivation(data.revenueActivation);
   renderLeadIntelligence(data.leadIntelligence);
+  renderDailyLeadDiscovery(data.dailyLeadDiscovery);
+  renderWebDiscovery(data.webDiscovery);
+  renderLeadQualification(data.leadQualification);
+  renderAutonomousRunner(data.autonomousRunner);
   renderOperatorMode(data.operatorMode);
+  renderMobileCommandCenterSummary(data.mobileCommandCenterSummary);
   renderExecutionPack(data.executionPack);
   renderOutcomeTracking(data.outcomeTracking);
   renderFollowUpEngine(data.followUpEngine);
@@ -95,6 +100,72 @@ function renderLeadIntelligence(intelligence) {
   ].join('');
 }
 
+function renderDailyLeadDiscovery(discovery) {
+  if (!discovery) {
+    byId('dailyLeadDiscoveryCards').innerHTML = miniCard('New Leads Today', 'Not loaded');
+    return;
+  }
+
+  byId('dailyLeadDiscoveryCards').innerHTML = [
+    miniCard('New Leads Today', discovery.newLeadsToday),
+    miniCard('Top New Lead', discovery.topNewLead),
+    miniCard('Top 5 Leads', discovery.topFiveLeads),
+    miniCard('Best Offer', discovery.bestOffer),
+    miniCard('Recommended Next Action', discovery.recommendedNextAction),
+  ].join('');
+}
+
+function renderWebDiscovery(discovery) {
+  if (!discovery) {
+    byId('webDiscoveryCards').innerHTML = miniCard('New Web Leads', 'Not loaded');
+    return;
+  }
+
+  byId('webDiscoveryCards').innerHTML = [
+    miniCard('New Leads Today', discovery.newLeadsToday),
+    miniCard('New Pain Signals', discovery.newPainSignals),
+    miniCard('Top Opportunity', discovery.topOpportunity),
+    miniCard('Best New Lead', discovery.bestNewLead),
+    miniCard('Lead Source', discovery.leadSource),
+    miniCard('Discovery Date', discovery.discoveryDate),
+    miniCard('New Web Leads', discovery.newWebLeads),
+    miniCard('Top Web Lead', discovery.topWebLead),
+    miniCard('Top Pain Signal', discovery.topPainSignal),
+    miniCard('Best New QA Opportunity', discovery.bestNewQaOpportunity),
+    miniCard('Recommended Research Action', discovery.recommendedResearchAction),
+  ].join('');
+}
+
+function renderLeadQualification(qualification) {
+  if (!qualification) {
+    byId('leadQualificationCards').innerHTML = miniCard('Best Qualified Lead', 'Not loaded');
+    return;
+  }
+
+  byId('leadQualificationCards').innerHTML = [
+    miniCard('Best Qualified Lead', qualification.bestQualifiedLead),
+    miniCard('Best Category', qualification.bestCategory),
+    miniCard('Highest QA Opportunity', qualification.highestQaOpportunity),
+    miniCard('Recommended Offer', qualification.recommendedOffer),
+    miniCard('Qualified Leads Count', qualification.qualifiedLeadsCount),
+  ].join('');
+}
+
+function renderAutonomousRunner(runner) {
+  if (!runner) {
+    byId('autonomousRunnerCards').innerHTML = miniCard('Autonomous Runner Status', 'Not loaded');
+    return;
+  }
+
+  byId('autonomousRunnerCards').innerHTML = [
+    miniCard('Autonomous Runner Status', runner.autonomousRunnerStatus),
+    miniCard('Last Successful Run', runner.lastSuccessfulRun),
+    miniCard('Next Scheduled Run', runner.nextScheduledRun),
+    miniCard('Runner Health', runner.runnerHealth),
+    miniCard('Daily Refresh Status', runner.dailyRefreshStatus),
+  ].join('');
+}
+
 function renderOperatorMode(operatorMode) {
   if (!operatorMode) {
     byId('operatorModeCards').innerHTML = miniCard('Top Lead', 'Not loaded');
@@ -107,6 +178,24 @@ function renderOperatorMode(operatorMode) {
     miniCard('Top Action', operatorMode.topAction),
     miniCard('Studio Status', operatorMode.studioStatus),
     miniCard('Today At A Glance', operatorMode.todayAtAGlance),
+  ].join('');
+}
+
+function renderMobileCommandCenterSummary(mobile) {
+  if (!mobile) {
+    byId('mobileCommandCenterCards').innerHTML = miniCard('Top Lead', 'Not loaded');
+    return;
+  }
+
+  byId('mobileCommandCenterCards').innerHTML = [
+    miniCard('Top Lead', mobile.topLead),
+    miniCard('Top Offer', mobile.topOffer),
+    miniCard('Top Action', mobile.topAction),
+    miniCard('Follow Ups Waiting', mobile.followUpsWaiting),
+    miniCard('Open Opportunities', mobile.openOpportunities),
+    miniCard('Studio Status', mobile.studioStatus),
+    miniCard('Revenue Status', mobile.revenueStatus),
+    miniCard('Today At A Glance', mobile.todayAtAGlance),
   ].join('');
 }
 
