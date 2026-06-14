@@ -1,17 +1,17 @@
 # Today View
 
-Generated: 2026-06-14T01:53:25.584Z
+Generated: 2026-06-14T02:12:38.877Z
 
 ## What should Daniel do right now?
 
 Top Lead:
-PushPress
+Appointy
 
 Top Offer:
-QA Audit ($199-$500)
+QA Automation Retainer ($1500-$3000/month)
 
 Top Action:
-Review PushPress message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually.
+Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
 Today's Discovered Leads:
 Fitness Studio and Gym Scheduling Software - Appointy, Gym Management Software - GymMaster Member Management, Online booking software for gyms and fitness studios - SuperSaaS
@@ -47,13 +47,22 @@ Top Qualified Lead:
 Appointy
 
 Today's Recommended Action:
-Review PushPress message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually.
+Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+
+Current Top Lead:
+Appointy
+
+Next Revenue Action:
+Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+
+Execution Priority:
+Review evidence and position a scoped QA Audit as the first paid step toward a retainer path.
 
 Estimated Time:
-20 minutes
+30-60 minutes
 
 Decision Needed:
-SEND / WAIT / REWRITE
+RESOLVE BLOCKERS / WAIT / REWRITE
 
 ## Safety Rules
 - No outreach generated or sent.

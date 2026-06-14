@@ -46,8 +46,10 @@ export function buildFirstRevenueExecutionPack(): FirstRevenueExecutionPack {
     throw new Error('No top revenue target found. Run npm run revenue:pipeline first.');
   }
 
-  const executive = buildExecutiveCompanyReport(topTarget.companyName);
-  const readinessChecks = buildReadinessChecks(topTarget, executive.companyId);
+  const executive = safeExecutiveCompanyReport(topTarget.companyName);
+  const companyId = executive?.companyId ?? topTarget.companyId;
+  const executiveRecommendation = executive?.executiveRecommendation ?? topTarget.bestOffer;
+  const readinessChecks = buildReadinessChecks(topTarget, companyId);
   const requiredReady = readinessChecks.every((check) => check.status === 'Ready');
   const estimatedConfidenceScore = calculateConfidence(topTarget, readinessChecks);
   const recommendation: GoNoGoRecommendation = requiredReady && estimatedConfidenceScore >= 80 ? 'GO' : 'NO GO';
@@ -57,7 +59,7 @@ export function buildFirstRevenueExecutionPack(): FirstRevenueExecutionPack {
     generatedAt: new Date().toISOString(),
     topTarget,
     recommendation,
-    exactReasons: buildReasons(topTarget, readinessChecks, executive.executiveRecommendation),
+    exactReasons: buildReasons(topTarget, readinessChecks, executiveRecommendation),
     remainingBlockers,
     manualNextAction: buildManualNextAction(topTarget, recommendation),
     timeToExecute: recommendation === 'GO' ? '30 minutes for manual review and decision prep' : '30-60 minutes to resolve readiness blockers',
@@ -66,6 +68,18 @@ export function buildFirstRevenueExecutionPack(): FirstRevenueExecutionPack {
     readinessChecks,
     safetyRules,
   };
+}
+
+function safeExecutiveCompanyReport(companyName: string): { companyId: string; executiveRecommendation: string } | null {
+  try {
+    const executive = buildExecutiveCompanyReport(companyName);
+    return {
+      companyId: executive.companyId,
+      executiveRecommendation: executive.executiveRecommendation,
+    };
+  } catch {
+    return null;
+  }
 }
 
 export function writeFirstClientChecklist(pack: FirstRevenueExecutionPack): string[] {

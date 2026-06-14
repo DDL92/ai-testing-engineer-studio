@@ -7,6 +7,7 @@ import { buildFinanceReport, loadFinanceInput } from '../financeTracking/finance
 import { buildLeadIntelligenceReport } from '../leadIntelligence/leadRules';
 import { buildOutcomeSummary, loadOutcomes } from '../outcomeTracking/outcomeRules';
 import { buildRevenueActivationReport } from '../revenueActivation/revenueRules';
+import { buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIntelligenceRules';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
 import { buildWebLeadDiscoveryReport } from '../webLeadDiscovery/webDiscoveryRules';
 import { buildLeadQualificationReport } from '../webLeadQualification/normalizationRules';
@@ -44,6 +45,7 @@ const sprint82Safety = [
 
 export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
   const lead = buildLeadIntelligenceReport();
+  const revenueIntelligence = buildRevenueIntelligenceReport();
   const revenue = buildRevenueActivationReport();
   const execution = buildFirstRevenueExecutionPack();
   const finance = buildFinanceReport(loadFinanceInput());
@@ -61,17 +63,20 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
   const bestQualifiedLead = leadQualification.topQualifiedLeads[0];
   const highestQaOpportunity = [...leadQualification.topQualifiedLeads].sort((left, right) => right.qaOpportunityScore - left.qaOpportunityScore || right.qualificationScore - left.qualificationScore)[0];
   const topLead = lead.leads[0];
+  const unifiedTopLead = revenueIntelligence.topLead;
   const studioHealth = studio.modules.some((module) => module.status === 'Not Ready')
     ? 'Not Ready'
     : studio.modules.some((module) => module.status === 'Warning') ? 'Warning' : 'Healthy';
   const revenueStatus = finance.currentMrr > 0
     ? `Current MRR: ${formatCurrency(finance.currentMrr)} from local finance data.`
     : 'Current MRR: $0';
-  const topAction = topLead
-    ? mobileActionFor(topLead.companyName, execution.recommendation)
+  const topAction = unifiedTopLead
+    ? unifiedTopLead.nextRevenueAction
+    : topLead
+      ? mobileActionFor(topLead.companyName, execution.recommendation)
     : 'Run npm run lead:intelligence to refresh lead focus.';
-  const topLeadName = topLead?.companyName ?? execution.topTarget.companyName;
-  const topOffer = topLead?.recommendedOffer ?? execution.topTarget.bestOffer;
+  const topLeadName = unifiedTopLead?.companyName ?? topLead?.companyName ?? execution.topTarget.companyName;
+  const topOffer = unifiedTopLead?.recommendedOffer ?? topLead?.recommendedOffer ?? execution.topTarget.bestOffer;
   const studioStatus = studioHealth === 'Healthy'
     ? 'Healthy'
     : studioHealth === 'Warning' ? 'Operational with warnings' : 'Needs Review';
@@ -126,6 +131,9 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     newPainSignals: String(todaysPainSignals.length),
     topQualifiedLead: bestQualifiedLead?.normalizedName ?? 'No qualified web lead.',
     todaysRecommendedAction: topAction,
+    currentTopLead: topLeadName,
+    nextRevenueAction: unifiedTopLead?.nextRevenueAction ?? topAction,
+    executionPriority: unifiedTopLead?.executionPriority ?? 'Review current revenue focus before any manual external action.',
     safetyRules: sprint82Safety,
   };
 }
@@ -211,6 +219,12 @@ export function renderMobileTodayView(summary: MobileCommandCenterSummary): stri
     '',
     `Today\'s Recommended Action:\n${summary.todaysRecommendedAction}`,
     '',
+    `Current Top Lead:\n${summary.currentTopLead}`,
+    '',
+    `Next Revenue Action:\n${summary.nextRevenueAction}`,
+    '',
+    `Execution Priority:\n${summary.executionPriority}`,
+    '',
     `Estimated Time:\n${summary.estimatedTime}`,
     '',
     `Decision Needed:\n${summary.decisionNeeded}`,
@@ -269,6 +283,10 @@ export function renderMobilePipelineView(summary: MobileCommandCenterSummary): s
       `New Pain Signals: ${summary.newPainSignals}`,
       `Top Qualified Lead: ${summary.topQualifiedLead}`,
       `Today\'s Recommended Action: ${summary.todaysRecommendedAction}`,
+      `Current Top Lead: ${summary.currentTopLead}`,
+      `Recommended Offer: ${summary.topOffer}`,
+      `Next Revenue Action: ${summary.nextRevenueAction}`,
+      `Execution Priority: ${summary.executionPriority}`,
       `Outcome Status: ${summary.outcomeStatus}`,
       `Next Manual Step: ${summary.nextManualStep}`,
     ]),
@@ -301,6 +319,10 @@ export function renderMobileActionCenter(summary: MobileCommandCenterSummary, ac
       `New Pain Signals: ${summary.newPainSignals}`,
       `Top Qualified Lead: ${summary.topQualifiedLead}`,
       `Today\'s Recommended Action: ${summary.todaysRecommendedAction}`,
+      `Current Top Lead: ${summary.currentTopLead}`,
+      `Recommended Offer: ${summary.topOffer}`,
+      `Next Revenue Action: ${summary.nextRevenueAction}`,
+      `Execution Priority: ${summary.executionPriority}`,
     ]),
     '',
     ...actions.slice(0, 3).flatMap((action) => [
@@ -341,6 +363,10 @@ export function renderSprint82MobileSummary(summary: MobileCommandCenterSummary)
       `New Pain Signals: ${summary.newPainSignals}`,
       `Top Qualified Lead: ${summary.topQualifiedLead}`,
       `Today\'s Recommended Action: ${summary.todaysRecommendedAction}`,
+      `Current Top Lead: ${summary.currentTopLead}`,
+      `Recommended Offer: ${summary.topOffer}`,
+      `Next Revenue Action: ${summary.nextRevenueAction}`,
+      `Execution Priority: ${summary.executionPriority}`,
       `Studio Health: ${summary.studioHealth}`,
       `Revenue Health: ${summary.revenueHealth}`,
       `Next Manual Step: ${summary.nextManualStep}`,

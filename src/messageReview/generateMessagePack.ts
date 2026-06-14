@@ -1,5 +1,6 @@
 import path = require('path');
 import { buildMessageReview, writeMessagePack } from './messageRules';
+import { buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIntelligenceRules';
 
 function main(): void {
   const company = readCompanyArg();
@@ -17,11 +18,7 @@ function readCompanyArg(): string {
   const companyFlagIndex = args.indexOf('--company');
   const company = companyFlagIndex >= 0 ? args[companyFlagIndex + 1] : undefined;
 
-  if (!company) {
-    throw new Error('Missing required argument: --company <company>');
-  }
-
-  return company;
+  return company || buildRevenueIntelligenceReport().topLead?.companyName || 'No unified top lead';
 }
 
 main();

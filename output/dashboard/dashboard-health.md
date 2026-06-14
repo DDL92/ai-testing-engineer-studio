@@ -1,10 +1,10 @@
 # Dashboard Health
 
-Generated: 2026-06-14T01:53:15.282Z
+Generated: 2026-06-14T02:13:38.807Z
 
 ## Status
 
-- Last Update: 2026-06-14T01:53:15.282Z
+- Last Update: 2026-06-14T02:13:38.807Z
 - Lead Research Status: 7 research packs found
 - Evidence Status: 10 evidence files found
 - Proposal Status: 3 proposal packages found
@@ -15,11 +15,11 @@ Generated: 2026-06-14T01:53:15.282Z
 - Critical Issues: 0
 - Warnings: 1
 - Revenue Activation: First Audit Sold
-- Top Revenue Target: PushPress
-- Top Activation Score: 98/100
-- First Revenue Status: PushPress: GO
-- Go / No Go: GO
-- Remaining Blockers: 3
+- Top Revenue Target: Appointy
+- Top Activation Score: 62/100
+- First Revenue Status: Appointy: NO GO
+- Go / No Go: NO GO
+- Remaining Blockers: 4
 - Outcome Tracking: No outcomes recorded yet.
 - Messages Sent: 0
 - Replies: 0
@@ -28,10 +28,10 @@ Generated: 2026-06-14T01:53:15.282Z
 - Wins: 0
 - Losses: 0
 - Reply Rate: No outcomes recorded yet.
-- Follow-Up Queue: 4
-- Today's Follow-Ups: 4
+- Follow-Up Queue: 29
+- Today's Follow-Ups: 5
 - Waiting Responses: 0
-- Open Opportunities: 4
+- Open Opportunities: 29
 - Win Rate: Insufficient outcome history.
 - Best Offer: Insufficient outcome history.
 - Best Segment: Insufficient outcome history.
@@ -40,10 +40,10 @@ Generated: 2026-06-14T01:53:15.282Z
 - Snapshot Status: Ready
 - Recovery Status: Ready
 - Last Snapshot: 2026-06-13T20:49:43.297Z
-- Best Lead: PushPress
-- Best Offer: QA Audit ($199-$500)
-- Highest Opportunity Score: 99/100
-- Operator Top Action: REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE.
+- Best Lead: Appointy
+- Best Offer: QA Automation Retainer ($1500-$3000/month)
+- Highest Opportunity Score: 84/100
+- Operator Top Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Operator Studio Status: Healthy
 
 ## PWA Files

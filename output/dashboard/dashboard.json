@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-14T01:53:15.282Z",
+  "generatedAt": "2026-06-14T02:13:38.807Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-14",
@@ -142,7 +142,7 @@
     "bestRetainerOpportunity": "PushPress"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-14T01:53:15.282Z",
+    "lastUpdate": "2026-06-14T02:13:38.807Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "10 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -162,19 +162,19 @@
   },
   "revenueActivation": {
     "revenueActivation": "First Audit Sold",
-    "firstClientGoal": "PushPress",
-    "firstRetainerGoal": "PushPress",
-    "topRevenueTarget": "PushPress",
+    "firstClientGoal": "Appointy",
+    "firstRetainerGoal": "Appointy",
+    "topRevenueTarget": "Appointy",
     "topRevenueAction": "Move First Audit Sold forward",
-    "topActivationScore": 98
+    "topActivationScore": 62
   },
   "executionPack": {
-    "firstRevenueStatus": "PushPress: GO",
-    "goNoGo": "GO",
-    "remainingBlockers": 3,
-    "nextManualAction": "Review PushPress executive summary, audit package, and proposal package; then Daniel decides manually whether to move the first QA Audit offer forward.",
+    "firstRevenueStatus": "Appointy: NO GO",
+    "goNoGo": "NO GO",
+    "remainingBlockers": 4,
+    "nextManualAction": "Resolve the readiness blockers for Appointy, then rerun npm run execute:first-client.",
     "estimatedRevenueValue": "$199-$500 potential first QA Audit value",
-    "estimatedConfidenceScore": 99
+    "estimatedConfidenceScore": 49
   },
   "outcomeTracking": {
     "status": "No outcomes recorded yet.",
@@ -188,11 +188,11 @@
     "nextManualMessage": "No outcomes recorded yet. Review the PushPress message pack before any manual send."
   },
   "followUpEngine": {
-    "followUpQueue": 4,
-    "todaysFollowUps": 4,
+    "followUpQueue": 29,
+    "todaysFollowUps": 5,
     "waitingResponses": 0,
-    "openOpportunities": 4,
-    "nextBestAction": "Review PushPress message pack and manually decide whether to send the LinkedIn short message from message pack."
+    "openOpportunities": 29,
+    "nextBestAction": "Review Appointy message pack and manually decide whether to send the LinkedIn short message from message pack."
   },
   "winLossIntelligence": {
     "winRate": "Insufficient outcome history.",
@@ -209,28 +209,28 @@
     "lastSnapshot": "2026-06-13T20:49:43.297Z"
   },
   "leadIntelligence": {
-    "bestLead": "PushPress",
-    "bestOffer": "QA Audit ($199-$500)",
-    "highestOpportunityScore": 99,
-    "fastestRevenuePath": "Review first-client package and manually decide SEND / WAIT / REWRITE for the QA Audit offer.",
-    "recommendedNextAction": "REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE."
+    "bestLead": "Appointy",
+    "bestOffer": "QA Automation Retainer ($1500-$3000/month)",
+    "highestOpportunityScore": 84,
+    "fastestRevenuePath": "Qualified Ranking -> Revenue Intelligence -> Manual review",
+    "recommendedNextAction": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
   },
   "operatorMode": {
-    "topLead": "PushPress",
-    "topOffer": "QA Audit ($199-$500)",
-    "topAction": "REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE.",
+    "topLead": "Appointy",
+    "topOffer": "QA Automation Retainer ($1500-$3000/month)",
+    "topAction": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
     "studioStatus": "Healthy",
-    "todayAtAGlance": "Top Lead: PushPress | Offer: QA Audit ($199-$500) | Action: REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE. | MRR: $0 | Studio Health: Healthy | Release Readiness: Warning"
+    "todayAtAGlance": "Top Lead: Appointy | Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
   },
   "mobileCommandCenterSummary": {
-    "topLead": "PushPress",
-    "topOffer": "QA Audit ($199-$500)",
-    "topAction": "Review PushPress message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually.",
+    "topLead": "Appointy",
+    "topOffer": "QA Automation Retainer ($1500-$3000/month)",
+    "topAction": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
     "followUpsWaiting": 0,
-    "openOpportunities": 4,
+    "openOpportunities": 29,
     "studioStatus": "Healthy",
     "revenueStatus": "Current MRR: $0",
-    "todayAtAGlance": "Top Lead: PushPress | Top Offer: QA Audit ($199-$500) | Action: Review PushPress message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually."
+    "todayAtAGlance": "Top Lead: Appointy | Top Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
   },
   "dailyLeadDiscovery": {
     "newLeadsToday": 0,
@@ -265,6 +265,13 @@
     "nextScheduledRun": "2026-06-15T13:00:00.000Z (07:00 America/Costa_Rica)",
     "runnerHealth": "Healthy",
     "dailyRefreshStatus": "Refresh sequence complete"
+  },
+  "revenueIntelligence": {
+    "revenueIntelligenceStatus": "Unified",
+    "currentTopLead": "Appointy",
+    "revenueTarget": "First paid client",
+    "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
+    "executionPriority": "Review evidence and position a scoped QA Audit as the first paid step toward a retainer path."
   },
   "mobileCommandCenter": {
     "reviewCenter": {
@@ -399,7 +406,7 @@
       ]
     },
     "followUpCenter": {
-      "followUpsDue": 4,
+      "followUpsDue": 5,
       "outreachStatus": "10 outreach records, 2 messages sent, 2 connected",
       "contactStatus": "10 contacts recorded",
       "links": [

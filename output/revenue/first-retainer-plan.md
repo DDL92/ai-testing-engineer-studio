@@ -1,15 +1,19 @@
 # First Retainer Plan
 
-Generated: 2026-06-14T01:53:01.774Z
+Generated: 2026-06-14T02:13:17.745Z
 
-- Most likely retainer candidate: PushPress
+- Most likely retainer candidate: Appointy
 - Recommended path: QA Audit -> Playwright Starter Pack -> QA Automation Retainer
-- Next action: Use the first audit to identify a bounded starter pack path for PushPress; do not pitch retainer before value is validated.
+- Next action: Use the first audit to identify a bounded starter pack path for Appointy; do not pitch retainer before value is validated.
 
 ## Expected Blockers
 - First paid audit is not recorded in local finance data yet.
 - Starter pack value is not validated with a paying client yet.
 - Retainer interest must not be inferred until Daniel has an approved client conversation or local booked revenue record.
+- Proposal package is not fully generated locally.
+- Contact path needs manual review before outreach.
+- Audit/evidence package needs review before commercial use.
+- No active proposal target exists for this company.
 
 ## Safety Rules
 - Revenue planning only.

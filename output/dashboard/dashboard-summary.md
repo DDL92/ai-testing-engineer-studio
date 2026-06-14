@@ -1,6 +1,6 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-14T01:53:15.282Z
+Generated: 2026-06-14T02:13:38.807Z
 
 ## Today
 
@@ -57,20 +57,20 @@ Generated: 2026-06-14T01:53:15.282Z
 ## Revenue Activation
 
 - Revenue Activation: First Audit Sold
-- First Client Goal: PushPress
-- First Retainer Goal: PushPress
-- Top Revenue Target: PushPress
+- First Client Goal: Appointy
+- First Retainer Goal: Appointy
+- Top Revenue Target: Appointy
 - Top Revenue Action: Move First Audit Sold forward
-- Top Activation Score: 98/100
+- Top Activation Score: 62/100
 
 ## First Revenue Execution
 
-- First Revenue Status: PushPress: GO
-- Go / No Go: GO
-- Remaining Blockers: 3
-- Next Manual Action: Review PushPress executive summary, audit package, and proposal package; then Daniel decides manually whether to move the first QA Audit offer forward.
+- First Revenue Status: Appointy: NO GO
+- Go / No Go: NO GO
+- Remaining Blockers: 4
+- Next Manual Action: Resolve the readiness blockers for Appointy, then rerun npm run execute:first-client.
 - Estimated Revenue Value: $199-$500 potential first QA Audit value
-- Estimated Confidence Score: 99/100
+- Estimated Confidence Score: 49/100
 
 ## Outcome Tracking
 
@@ -86,11 +86,11 @@ Generated: 2026-06-14T01:53:15.282Z
 
 ## Follow-Up Operating System
 
-- Follow-Up Queue: 4
-- Today's Follow-Ups: 4
+- Follow-Up Queue: 29
+- Today's Follow-Ups: 5
 - Waiting Responses: 0
-- Open Opportunities: 4
-- Next Best Action: Review PushPress message pack and manually decide whether to send the LinkedIn short message from message pack.
+- Open Opportunities: 29
+- Next Best Action: Review Appointy message pack and manually decide whether to send the LinkedIn short message from message pack.
 
 ## Win/Loss Intelligence
 
@@ -110,19 +110,19 @@ Generated: 2026-06-14T01:53:15.282Z
 
 ## Lead Intelligence
 
-- Best Lead: PushPress
-- Best Offer: QA Audit ($199-$500)
-- Highest Opportunity Score: 99/100
-- Fastest Revenue Path: Review first-client package and manually decide SEND / WAIT / REWRITE for the QA Audit offer.
-- Recommended Next Action: REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE.
+- Best Lead: Appointy
+- Best Offer: QA Automation Retainer ($1500-$3000/month)
+- Highest Opportunity Score: 84/100
+- Fastest Revenue Path: Qualified Ranking -> Revenue Intelligence -> Manual review
+- Recommended Next Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
 ## Operator Mode
 
-- Top Lead: PushPress
-- Top Offer: QA Audit ($199-$500)
-- Top Action: REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE.
+- Top Lead: Appointy
+- Top Offer: QA Automation Retainer ($1500-$3000/month)
+- Top Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Studio Status: Healthy
-- Today At A Glance: Top Lead: PushPress | Offer: QA Audit ($199-$500) | Action: REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE. | MRR: $0 | Studio Health: Healthy | Release Readiness: Warning
+- Today At A Glance: Top Lead: Appointy | Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
 ## Safety
 

@@ -6,6 +6,7 @@ import { ApprovedFirstOffer, OpportunityReport } from '../opportunityEngine/type
 import { buildOpportunitySummary } from '../opportunityEngine/opportunityEngineRules';
 import { buildProposalPortfolio } from '../proposalEngine/proposalRules';
 import { ProposalPackage } from '../proposalEngine/types';
+import { buildUnifiedTopLeads } from '../revenueIntelligence/revenueIntelligenceRules';
 import {
   FirstClientPlan,
   FirstRetainerPlan,
@@ -17,7 +18,7 @@ import {
 } from './types';
 
 const outputRoot = path.join(process.cwd(), 'output', 'revenue');
-const targetCompanyIds = ['pushpress', 'teamup', 'glofox', 'wodify'];
+const fallbackTargetCompanyIds = ['pushpress', 'teamup', 'glofox', 'wodify'];
 
 const safetyRules = [
   'Revenue planning only.',
@@ -105,7 +106,7 @@ export function renderRevenuePipeline(report: RevenueActivationReport): string {
     '',
     `Generated: ${report.generatedAt}`,
     '',
-    'Ranked targets: PushPress, TeamUp, Glofox, Wodify.',
+    'Ranked targets come from Qualified Ranking first. Legacy local targets are fallback only.',
     '',
     renderPipelineTable(report.pipeline),
     '',
@@ -210,7 +211,49 @@ export function renderFirstRetainerPlan(report: RevenueActivationReport): string
 }
 
 function buildPipeline(opportunities: OpportunityReport[], proposals: ProposalPackage[]): RevenueActivationScore[] {
-  return targetCompanyIds
+  const unifiedLeads = buildUnifiedTopLeads();
+  if (unifiedLeads.length > 0) {
+    return unifiedLeads
+      .map((lead) => {
+        const proposal = proposals.find((item) => normalizedId(item.companyId) === normalizedId(lead.companyId));
+        const proposalReadiness = proposal ? readinessFromFiles([proposal.artifacts.markdownPath, proposal.artifacts.pdfPath]) : 0;
+        const contactReadiness = 50;
+        const auditReadiness = auditReadinessFor(lead.companyId);
+        const evidenceReadiness = Math.round((lead.qualificationScore + lead.qaOpportunityScore) / 2);
+        const opportunityScore = Math.round(
+          lead.qualificationScore * 0.45
+          + lead.qaOpportunityScore * 0.35
+          + lead.painSignalRelevance * 0.1
+          + lead.offerFitScore * 0.1,
+        );
+        const activationScore = Math.round(
+          opportunityScore * 0.45
+          + evidenceReadiness * 0.25
+          + proposalReadiness * 0.1
+          + contactReadiness * 0.1
+          + auditReadiness * 0.1,
+        );
+        const blockers = buildBlockers(proposalReadiness, contactReadiness, auditReadiness, proposal);
+
+        return {
+          companyId: lead.companyId,
+          companyName: lead.companyName,
+          opportunityScore,
+          evidenceReadiness,
+          proposalReadiness,
+          contactReadiness,
+          auditReadiness,
+          activationScore,
+          bestContact: 'Manual contact review required',
+          bestOffer: lead.recommendedOffer,
+          nextAction: lead.nextRevenueAction,
+          why: lead.whySelected.join('; '),
+          blockers,
+        };
+      });
+  }
+
+  return fallbackTargetCompanyIds
     .map((companyId) => {
       const opportunity = opportunities.find((item) => normalizedId(item.companyId) === companyId);
       if (!opportunity) return undefined;
@@ -344,11 +387,7 @@ function buildFirstClientPlan(pipeline: RevenueActivationScore[], targets: Reven
 }
 
 function buildFirstRetainerPlan(pipeline: RevenueActivationScore[]): FirstRetainerPlan {
-  const candidate = [...pipeline].sort((left, right) => {
-    const leftScore = left.activationScore + left.evidenceReadiness + left.proposalReadiness;
-    const rightScore = right.activationScore + right.evidenceReadiness + right.proposalReadiness;
-    return rightScore - leftScore || left.companyName.localeCompare(right.companyName);
-  })[0];
+  const candidate = pipeline[0];
 
   return {
     mostLikelyRetainerCandidate: candidate?.companyName ?? 'No local retainer candidate found',

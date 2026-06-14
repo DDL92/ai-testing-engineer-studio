@@ -150,6 +150,9 @@ export interface MobileCommandCenterSummary {
   newPainSignals: string;
   topQualifiedLead: string;
   todaysRecommendedAction: string;
+  currentTopLead: string;
+  nextRevenueAction: string;
+  executionPriority: string;
   safetyRules: string[];
 }
 

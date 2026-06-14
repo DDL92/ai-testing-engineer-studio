@@ -1,6 +1,6 @@
 # Message Priorities
 
-Generated: 2026-06-13T19:43:45.382Z
+Generated: 2026-06-14T02:12:08.636Z
 
 - Review LinkedIn short message first for a low-friction manual DM.
 - Use email only if Daniel has a manually verified email contact.
@@ -8,7 +8,7 @@ Generated: 2026-06-13T19:43:45.382Z
 - If interested, keep the response scoped to a paid QA Audit and avoid claiming confirmed defects.
 
 ## Next Manual Message
-Review the LinkedIn short message for PushPress. Send nothing from Studio.
+Review the LinkedIn short message for Appointy. Send nothing from Studio.
 
 ## Safety Rules
 - Manual-only message review.

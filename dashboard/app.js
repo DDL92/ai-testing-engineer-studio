@@ -31,6 +31,7 @@ function render(data) {
   renderWebDiscovery(data.webDiscovery);
   renderLeadQualification(data.leadQualification);
   renderAutonomousRunner(data.autonomousRunner);
+  renderRevenueIntelligence(data.revenueIntelligence);
   renderOperatorMode(data.operatorMode);
   renderMobileCommandCenterSummary(data.mobileCommandCenterSummary);
   renderExecutionPack(data.executionPack);
@@ -163,6 +164,21 @@ function renderAutonomousRunner(runner) {
     miniCard('Next Scheduled Run', runner.nextScheduledRun),
     miniCard('Runner Health', runner.runnerHealth),
     miniCard('Daily Refresh Status', runner.dailyRefreshStatus),
+  ].join('');
+}
+
+function renderRevenueIntelligence(intelligence) {
+  if (!intelligence) {
+    byId('revenueIntelligenceCards').innerHTML = miniCard('Revenue Intelligence Status', 'Not loaded');
+    return;
+  }
+
+  byId('revenueIntelligenceCards').innerHTML = [
+    miniCard('Revenue Intelligence Status', intelligence.revenueIntelligenceStatus),
+    miniCard('Current Top Lead', intelligence.currentTopLead),
+    miniCard('Revenue Target', intelligence.revenueTarget),
+    miniCard('Recommended Offer', intelligence.recommendedOffer),
+    miniCard('Execution Priority', intelligence.executionPriority),
   ].join('');
 }
 

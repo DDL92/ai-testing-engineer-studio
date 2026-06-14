@@ -1,33 +1,33 @@
 # Revenue Focus
 
-Generated: 2026-06-14T01:53:01.774Z
+Generated: 2026-06-14T02:13:17.745Z
 
 If Daniel only had 30 minutes today:
 
 ## Priority 1
 - Action: Move First Audit Sold forward
-- Company: PushPress
-- Reason: PushPress has the highest activation score (98/100) and the strongest current path to revenue.
-- Suggested command: npm run sow:generate -- --company PushPress
+- Company: Appointy
+- Reason: Appointy has the highest activation score (62/100) and the strongest current path to revenue.
+- Suggested command: npm run sow:generate -- --company Appointy
 - Boundary: Review and decide manually. Do not send the proposal or outreach automatically.
 
 ## Priority 2
 - Action: Review first-client plan
-- Company: PushPress
-- Reason: Confirm best contact, offer, and next action for PushPress.
+- Company: Appointy
+- Reason: Confirm best contact, offer, and next action for Appointy.
 - Suggested command: npm run revenue:targets
 - Boundary: Planning only. Human approval required before external communication.
 
 ## Priority 3
 - Action: Keep backup revenue path warm
-- Company: TeamUp
-- Reason: TeamUp is the next strongest ranked candidate if the top path stalls.
+- Company: Setmore
+- Reason: Setmore is the next strongest ranked candidate if the top path stalls.
 - Suggested command: npm run revenue:pipeline
 - Boundary: Review only. Do not infer client interest or send follow-up.
 
 ## Highest Probability Answer
-- Move First Audit Sold forward for PushPress.
-- PushPress has the highest activation score (98/100) and the strongest current path to revenue.
+- Move First Audit Sold forward for Appointy.
+- Appointy has the highest activation score (62/100) and the strongest current path to revenue.
 
 ## Safety Rules
 - Revenue planning only.

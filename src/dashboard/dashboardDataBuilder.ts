@@ -18,6 +18,7 @@ import { buildOutcomeSummary, loadOutcomes } from '../outcomeTracking/outcomeRul
 import { buildProposalPortfolio } from '../proposalEngine/proposalRules';
 import { ProposalPackage } from '../proposalEngine/types';
 import { buildRevenueActivationReport } from '../revenueActivation/revenueRules';
+import { buildRevenueIntelligenceDashboard, buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIntelligenceRules';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
 import { readSnapshotState } from '../studioSnapshot/snapshotRules';
 import { buildUnifiedAuditPortfolio } from '../unifiedAuditGenerator/unifiedAuditRules';
@@ -212,6 +213,14 @@ export interface DashboardAutonomousRunner {
   dailyRefreshStatus: string;
 }
 
+export interface DashboardRevenueIntelligence {
+  revenueIntelligenceStatus: string;
+  currentTopLead: string;
+  revenueTarget: string;
+  recommendedOffer: string;
+  executionPriority: string;
+}
+
 export interface DashboardData {
   generatedAt: string;
   mode: 'read-only';
@@ -270,6 +279,7 @@ export interface DashboardData {
   webDiscovery: DashboardWebDiscovery;
   leadQualification: DashboardLeadQualification;
   autonomousRunner: DashboardAutonomousRunner;
+  revenueIntelligence: DashboardRevenueIntelligence;
   mobileCommandCenter: DashboardMobileCenter;
   safety: string[];
 }
@@ -301,6 +311,8 @@ export function buildPwaDashboardData(): DashboardData {
   const winLossReport = buildWinLossReport();
   const snapshotState = readSnapshotState();
   const leadIntelligenceReport = buildLeadIntelligenceReport();
+  const revenueIntelligenceReport = buildRevenueIntelligenceReport();
+  const revenueIntelligenceDashboard = buildRevenueIntelligenceDashboard();
   const dailyLeadDiscovery = buildDailyLeadDiscoveryDashboard();
   const webDiscoveryLeadDashboard = buildWebDiscoveryDashboard();
   const leadQualificationDashboard = buildLeadQualificationDashboard();
@@ -308,9 +320,14 @@ export function buildPwaDashboardData(): DashboardData {
   const painMiningReport = buildPainMiningReport();
   const painMiningDashboard = buildPainMiningDashboard();
   const topLead = leadIntelligenceReport.leads[0];
+  const unifiedTopLead = revenueIntelligenceReport.topLead;
   const operatorSummary = buildOperatorUxSummary();
-  const mobileTopAction = topLead
-    ? `Review ${topLead.companyName} message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually.`
+  const dashboardTopLeadName = unifiedTopLead?.companyName ?? topLead?.companyName ?? operatorSummary.topLead;
+  const dashboardTopOffer = unifiedTopLead?.recommendedOffer ?? topLead?.recommendedOffer ?? operatorSummary.topOffer;
+  const mobileTopAction = unifiedTopLead
+    ? unifiedTopLead.nextRevenueAction
+    : topLead
+      ? `Review ${topLead.companyName} message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually.`
     : operatorSummary.topAction;
   const outreach = readJson<OutreachRecord[]>(outreachPath, []);
   const proposalReady = proposalPortfolio.proposals.filter((proposal) => proposal.artifacts.markdownPath && proposal.artifacts.pdfPath);
@@ -446,30 +463,34 @@ export function buildPwaDashboardData(): DashboardData {
       lastSnapshot: snapshotState.lastSnapshot,
     },
     leadIntelligence: {
-      bestLead: topLead?.companyName ?? 'No lead found',
-      bestOffer: topLead?.recommendedOffer ?? 'No offer found',
-      highestOpportunityScore: topLead?.overallScore ?? 0,
-      fastestRevenuePath: topLead?.fastestRevenuePath ?? 'No local revenue path found',
-      recommendedNextAction: topLead ? `${topLead.recommendedActionType} - ${topLead.recommendedNextAction}` : 'No local next action found',
+      bestLead: dashboardTopLeadName,
+      bestOffer: dashboardTopOffer,
+      highestOpportunityScore: unifiedTopLead?.qualificationScore ?? topLead?.overallScore ?? 0,
+      fastestRevenuePath: unifiedTopLead ? 'Qualified Ranking -> Revenue Intelligence -> Manual review' : topLead?.fastestRevenuePath ?? 'No local revenue path found',
+      recommendedNextAction: unifiedTopLead?.nextRevenueAction ?? (topLead ? `${topLead.recommendedActionType} - ${topLead.recommendedNextAction}` : 'No local next action found'),
     },
     operatorMode: {
-      topLead: operatorSummary.topLead,
-      topOffer: operatorSummary.topOffer,
-      topAction: operatorSummary.topAction,
+      topLead: dashboardTopLeadName,
+      topOffer: dashboardTopOffer,
+      topAction: mobileTopAction,
       studioStatus: operatorSummary.studioStatus,
-      todayAtAGlance: operatorSummary.todayAtAGlance.join(' | '),
+      todayAtAGlance: [
+        `Top Lead: ${dashboardTopLeadName}`,
+        `Offer: ${dashboardTopOffer}`,
+        `Action: ${mobileTopAction}`,
+      ].join(' | '),
     },
     mobileCommandCenterSummary: {
-      topLead: topLead?.companyName ?? operatorSummary.topLead,
-      topOffer: topLead?.recommendedOffer ?? operatorSummary.topOffer,
+      topLead: dashboardTopLeadName,
+      topOffer: dashboardTopOffer,
       topAction: mobileTopAction,
       followUpsWaiting: followUpReport.dashboard.waitingResponses,
       openOpportunities: followUpReport.dashboard.openOpportunities,
       studioStatus: operatorSummary.studioStatus,
       revenueStatus: `Current MRR: $${studioReport.revenueReadiness.currentMrr.toLocaleString('en-US')}`,
       todayAtAGlance: [
-        `Top Lead: ${topLead?.companyName ?? operatorSummary.topLead}`,
-        `Top Offer: ${topLead?.recommendedOffer ?? operatorSummary.topOffer}`,
+        `Top Lead: ${dashboardTopLeadName}`,
+        `Top Offer: ${dashboardTopOffer}`,
         `Action: ${mobileTopAction}`,
       ].join(' | '),
     },
@@ -489,6 +510,7 @@ export function buildPwaDashboardData(): DashboardData {
     },
     leadQualification: leadQualificationDashboard,
     autonomousRunner: autonomousRunnerDashboard,
+    revenueIntelligence: revenueIntelligenceDashboard,
     mobileCommandCenter: {
       reviewCenter: {
         auditsReady: auditPortfolio.reports.length,

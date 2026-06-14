@@ -1,11 +1,11 @@
 # Pipeline View
 
-Generated: 2026-06-14T01:53:25.581Z
+Generated: 2026-06-14T02:12:38.864Z
 
-- Top Lead: PushPress
-- Top Offer: QA Audit ($199-$500)
+- Top Lead: Appointy
+- Top Offer: QA Automation Retainer ($1500-$3000/month)
 - Follow Ups Waiting: 0
-- Open Opportunities: 4
+- Open Opportunities: 29
 - Today's Discovered Leads: Fitness Studio and Gym Scheduling Software - Appointy, Gym Management Software - GymMaster Member Management, Online booking software for gyms and fitness studios - SuperSaaS
 - Top Pain Signal: Potential recurring pain signal: mobile app for Gym Software Market
 - Best Opportunity: Fitness Studio and Gym Scheduling Software - Appointy (99/100)
@@ -17,9 +17,13 @@ Generated: 2026-06-14T01:53:25.581Z
 - New Leads Today: 30
 - New Pain Signals: 54
 - Top Qualified Lead: Appointy
-- Today's Recommended Action: Review PushPress message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually.
+- Today's Recommended Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+- Current Top Lead: Appointy
+- Recommended Offer: QA Automation Retainer ($1500-$3000/month)
+- Next Revenue Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+- Execution Priority: Review evidence and position a scoped QA Audit as the first paid step toward a retainer path.
 - Outcome Status: No outcomes recorded yet.
-- Next Manual Step: Review PushPress executive summary, audit package, and proposal package; then Daniel decides manually whether to move the first QA Audit offer forward.
+- Next Manual Step: Resolve the readiness blockers for Appointy, then rerun npm run execute:first-client.
 
 ## Notes
 - Pipeline view uses existing lead, follow-up, and outcome data only.

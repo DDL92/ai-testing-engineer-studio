@@ -2,6 +2,7 @@ import fs = require('fs');
 import path = require('path');
 import { buildFirstRevenueExecutionPack } from '../executionPack/generateFirstRevenueChecklist';
 import { buildExecutiveCompanyReport } from '../executiveLayer/executiveRules';
+import { buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIntelligenceRules';
 import { MessageDraft, MessageReviewReport } from './types';
 
 const dataPath = path.join(process.cwd(), 'data', 'messages', 'message-drafts.json');
@@ -17,24 +18,31 @@ const safetyRules = [
 
 export function buildMessageReview(company: string): MessageReviewReport {
   ensureMessageStore();
+  const revenueIntelligence = buildRevenueIntelligenceReport();
+  const selectedCompany = revenueIntelligence.topLead?.companyName ?? company;
   const executionPack = buildFirstRevenueExecutionPack();
-  const executive = buildExecutiveCompanyReport(company);
-  const drafts = buildDrafts(executive.companyName);
+  const executive = safeExecutiveCompanyReport(selectedCompany);
+  const companyName = executive?.companyName ?? selectedCompany;
+  const companyId = executive?.companyId ?? slug(selectedCompany);
+  const executiveRecommendation = executive?.executiveRecommendation ?? revenueIntelligence.topLead?.recommendedOffer ?? 'QA Audit ($199-$500)';
+  const drafts = buildDrafts(companyName);
 
   return {
     generatedAt: new Date().toISOString(),
-    companyId: executive.companyId,
-    companyName: executive.companyName,
-    currentOffer: executionPack.topTarget.companyName === executive.companyName
+    companyId,
+    companyName,
+    currentOffer: executionPack.topTarget.companyName === companyName
       ? executionPack.topTarget.bestOffer
-      : executive.executiveRecommendation,
-    goNoGo: executionPack.topTarget.companyName === executive.companyName ? executionPack.recommendation : 'Needs Review',
+      : executiveRecommendation,
+    goNoGo: executionPack.topTarget.companyName === companyName ? executionPack.recommendation : 'Needs Review',
     evidenceBasis: [
+      company && company !== selectedCompany ? `Requested company ignored for unification: ${company}` : `Requested company: ${company}`,
+      `Revenue Intelligence top lead: ${selectedCompany}`,
       `Current top target: ${executionPack.topTarget.companyName}`,
       `Execution recommendation: ${executionPack.recommendation}`,
-      `Executive recommendation: ${executive.executiveRecommendation}`,
-      `Release confidence: ${executive.releaseConfidence}/100`,
-      `Business risk level: ${executive.businessRiskLevel}`,
+      `Executive recommendation: ${executiveRecommendation}`,
+      executive ? `Release confidence: ${executive.releaseConfidence}/100` : 'Release confidence: Not available for this web-qualified lead yet.',
+      executive ? `Business risk level: ${executive.businessRiskLevel}` : 'Business risk level: Not available for this web-qualified lead yet.',
       'Language must describe a lightweight public-page QA review only.',
     ],
     drafts,
@@ -46,6 +54,14 @@ export function buildMessageReview(company: string): MessageReviewReport {
     ],
     safetyRules,
   };
+}
+
+function safeExecutiveCompanyReport(companyName: string): ReturnType<typeof buildExecutiveCompanyReport> | null {
+  try {
+    return buildExecutiveCompanyReport(companyName);
+  } catch {
+    return null;
+  }
 }
 
 export function writeMessageReview(report: MessageReviewReport): string[] {
@@ -90,7 +106,7 @@ export function renderMessageReview(report: MessageReviewReport): string {
 
 export function renderMessagePack(report: MessageReviewReport): string {
   return [
-    '# PushPress Message Pack',
+    `# ${report.companyName} Message Pack`,
     '',
     `Generated: ${report.generatedAt}`,
     '',
@@ -124,7 +140,7 @@ export function renderMessagePriorities(report: MessageReviewReport): string {
     renderList(report.priorities),
     '',
     '## Next Manual Message',
-    'Review the LinkedIn short message for PushPress. Send nothing from Studio.',
+    `Review the LinkedIn short message for ${report.companyName}. Send nothing from Studio.`,
     '',
     '## Safety Rules',
     renderList(report.safetyRules),
