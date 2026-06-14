@@ -1,6 +1,6 @@
 # Revenue Intelligence Top Lead
 
-Generated: 2026-06-14T02:12:29.911Z
+Generated: 2026-06-14T05:37:47.855Z
 
 - Current Top Lead: Appointy
 - Category: Scheduling SaaS

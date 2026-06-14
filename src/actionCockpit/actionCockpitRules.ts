@@ -1,6 +1,7 @@
 import fs = require('fs');
 import path = require('path');
 import { Client } from '../clientReports/types';
+import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import { buildRevenueCommandCenterReport, loadRevenueCommandCenterInput } from '../revenueCommandCenter/revenueRules';
 import { CurrencyRange, RevenueCommandCenterReport, RevenuePriorityOpportunity, RetainerOpportunity } from '../revenueCommandCenter/types';
 import {
@@ -336,10 +337,20 @@ function buildRevenueSnapshot(revenueReport: RevenueCommandCenterReport): Cockpi
 }
 
 function buildTopOpportunities(revenueReport: RevenueCommandCenterReport): CockpitOpportunity[] {
+  const source = getRevenueSourceOfTruth();
   const retainerItems = revenueReport.retainerOpportunities.map(toOpportunity);
   const auditItems = revenueReport.auditOpportunities.map(toOpportunity);
+  const unifiedOpportunity: CockpitOpportunity = {
+    company: source.topLead,
+    opportunityType: source.recommendedOffer,
+    readiness: `Revenue decision: ${source.revenueDecision}; priority: ${source.executionPriority}`,
+    nextStep: source.nextAction,
+    revenuePotential: source.recommendedOffer,
+    command: 'npm run revenue:recommendation',
+    score: 1000,
+  };
 
-  return [...retainerItems, ...auditItems]
+  return [unifiedOpportunity, ...retainerItems, ...auditItems]
     .sort((a, b) => b.score - a.score || a.company.localeCompare(b.company))
     .filter(uniqueCompany)
     .slice(0, 10);
@@ -370,6 +381,14 @@ function toOpportunity(opportunity: RetainerOpportunity | RevenuePriorityOpportu
 }
 
 function buildTopActions(revenueReport: RevenueCommandCenterReport, opportunities: CockpitOpportunity[]): CockpitAction[] {
+  const source = getRevenueSourceOfTruth();
+  const unifiedAction: CockpitAction = {
+    title: `Review ${source.topLead} package`,
+    reason: `Revenue Intelligence source of truth: ${source.revenueDecision}; ${source.executionPriorityDetail}`,
+    expectedOutcome: 'Move the unified top lead forward through manual review only.',
+    command: 'npm run revenue:recommendation',
+    approvalRequired: 'Daniel approval required before any external action. No outreach is sent.',
+  };
   const revenueActions = revenueReport.topRevenueActions.map((action) => ({
     title: action.title,
     reason: action.reason,
@@ -385,7 +404,7 @@ function buildTopActions(revenueReport: RevenueCommandCenterReport, opportunitie
     approvalRequired: 'Daniel approval required before outreach, proposal, follow-up, SOW, or client-facing use.',
   }));
 
-  return [...revenueActions, ...opportunityActions].filter(uniqueAction).slice(0, 6);
+  return [unifiedAction, ...revenueActions, ...opportunityActions].filter(uniqueAction).slice(0, 6);
 }
 
 function buildApprovalQueue(

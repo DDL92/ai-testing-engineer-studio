@@ -1,17 +1,18 @@
 # Audit Opportunities
 
-Generated: 2026-06-12T15:22:50.703Z
+Generated: 2026-06-14T05:28:41.005Z
 
 ## High Probability
 | Company | Lead Score | Industry | Reason | Estimated Audit Value Range | Next Action | Suggested Command |
 | --- | ---: | --- | --- | --- | --- | --- |
+| Appointy | 10 | Revenue Intelligence | Revenue Intelligence source of truth. Review evidence and position a scoped QA Audit as the first paid step toward a retainer path. | $199-$500 | Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer. | `npm run revenue:recommendation` |
 | PushPress | 8 | Gym Management SaaS | lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists; audit pack exists; outreach pack exists; contact review exists; SOW exists; client workflow exists; follow-up signal exists | $199-$500 | Review follow-up context for PushPress before any manual action. | `npm run contact:review -- --id pushpress` |
+| ABC Glofox | 10 | Gym Management SaaS | lead score 10/10; offer boost 18; top 5 outreach lead; lead pack exists | $199-$500 | Generate audit pack for ABC Glofox. | `npm run audit:pack -- --id abc-glofox` |
+| Bookee | 10 | Fitness Studio SaaS | lead score 10/10; offer boost 18; top 5 outreach lead; lead pack exists | $199-$500 | Generate audit pack for Bookee. | `npm run audit:pack -- --id bookee` |
 
 ## Medium Probability
 | Company | Lead Score | Industry | Reason | Estimated Audit Value Range | Next Action | Suggested Command |
 | --- | ---: | --- | --- | --- | --- | --- |
-| ABC Glofox | 10 | Gym Management SaaS | lead score 10/10; offer boost 18; top 5 outreach lead | $199-$500 | Generate research pack for ABC Glofox. | `npm run lead:research -- --id abc-glofox` |
-| Bookee | 10 | Fitness Studio SaaS | lead score 10/10; offer boost 18; top 5 outreach lead | $199-$500 | Generate research pack for Bookee. | `npm run lead:research -- --id bookee` |
 | TeamUp | 8 | Gym Management SaaS | lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists | $199-$500 | Generate audit pack for TeamUp. | `npm run audit:pack -- --id teamup` |
 | Wodify | 8 | Gym Management SaaS | lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists | $199-$500 | Generate audit pack for Wodify. | `npm run audit:pack -- --id wodify` |
 | Bsport | 10 | Boutique Fitness SaaS | lead score 10/10; offer boost 18 | $199-$500 | Generate research pack for Bsport. | `npm run lead:research -- --id bsport` |

@@ -6,6 +6,9 @@ Started: 2026-06-14T01:52:56.415Z
 Finished: 2026-06-14T01:53:03.396Z
 Duration: 7.0s
 Status: Success
+Revenue Intelligence Top Lead: Appointy
+Recommended Offer: QA Automation Retainer ($1500-$3000/month)
+Next Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
 ## Commands Executed
 | # | Command | Status | Duration |

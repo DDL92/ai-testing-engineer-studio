@@ -1,6 +1,6 @@
 # Lead Execution Priority
 
-Generated: 2026-06-14T02:12:29.917Z
+Generated: 2026-06-14T05:37:55.110Z
 
 - Lead: Appointy
 - Priority: Review evidence and position a scoped QA Audit as the first paid step toward a retainer path.

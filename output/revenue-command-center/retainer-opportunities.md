@@ -1,12 +1,13 @@
 # Retainer Opportunities
 
-Generated: 2026-06-12T15:22:50.703Z
+Generated: 2026-06-14T05:28:41.005Z
 
 | Company | Retainer Type | Estimated Monthly Range | Priority | Why It May Fit | Next Action | Suggested Command |
 | --- | --- | --- | --- | --- | --- | --- |
+| Appointy | QA Automation Retainer | $1,500-$3,000 | High probability | Revenue Intelligence source of truth. Review evidence and position a scoped QA Audit as the first paid step toward a retainer path. | Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer. | `npm run revenue:recommendation` |
 | PushPress | QA Automation Retainer | $1,500-$3,000 | High probability | lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists; audit pack exists; outreach pack exists; contact review exists; SOW exists; client workflow exists; follow-up signal exists | Review follow-up context for PushPress before any manual action. | `npm run contact:review -- --id pushpress` |
-| ABC Glofox | Agency Partner Retainer | $1,500-$3,000 | Medium probability | lead score 10/10; offer boost 18; top 5 outreach lead | Generate research pack for ABC Glofox. | `npm run lead:research -- --id abc-glofox` |
-| Bookee | Agency Partner Retainer | $1,500-$3,000 | Medium probability | lead score 10/10; offer boost 18; top 5 outreach lead | Generate research pack for Bookee. | `npm run lead:research -- --id bookee` |
+| ABC Glofox | Agency Partner Retainer | $1,500-$3,000 | High probability | lead score 10/10; offer boost 18; top 5 outreach lead; lead pack exists | Generate audit pack for ABC Glofox. | `npm run audit:pack -- --id abc-glofox` |
+| Bookee | Agency Partner Retainer | $1,500-$3,000 | High probability | lead score 10/10; offer boost 18; top 5 outreach lead; lead pack exists | Generate audit pack for Bookee. | `npm run audit:pack -- --id bookee` |
 | TeamUp | QA Automation Retainer | $1,500-$3,000 | Medium probability | lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists | Generate audit pack for TeamUp. | `npm run audit:pack -- --id teamup` |
 | Wodify | QA Automation Retainer | $1,500-$3,000 | Medium probability | lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists | Generate audit pack for Wodify. | `npm run audit:pack -- --id wodify` |
 | Bsport | Agency Partner Retainer | $1,500-$3,000 | Medium probability | lead score 10/10; offer boost 18 | Generate research pack for Bsport. | `npm run lead:research -- --id bsport` |

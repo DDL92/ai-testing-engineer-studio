@@ -1,6 +1,6 @@
 # MRR Forecast
 
-Generated: 2026-06-12T15:22:50.703Z
+Generated: 2026-06-14T05:28:41.005Z
 
 ## Forecast Rules
 - Booked MRR uses active commercial retainer clients only: $0
@@ -20,28 +20,28 @@ Generated: 2026-06-12T15:22:50.703Z
 - Excluded demo/sample client records: 2
 
 ## Estimated Pipeline Potential
-- Retainer pipeline potential: $33,000-$66,000/month
-- Audit pipeline potential: $8,557-$21,500
+- Retainer pipeline potential: $34,500-$69,000/month
+- Audit pipeline potential: $8,756-$22,000
 - Pipeline potential remains unbooked until manually closed and recorded locally.
 
 ## Speculative Forecast
 | Window | Scenario | Booked MRR | Estimated Pipeline Potential | Speculative Additional MRR | Speculative Projected MRR | Notes |
 | --- | --- | ---: | --- | --- | --- | --- |
-| 30 days | conservative | $0 | $33,000-$66,000/month | $0-$0/month | $0-$0/month | 0 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 30 days | expected | $0 | $33,000-$66,000/month | $0-$0/month | $0-$0/month | 0 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 30 days | aggressive | $0 | $33,000-$66,000/month | $1,500-$3,000/month | $1,500-$3,000/month | 1 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 60 days | conservative | $0 | $33,000-$66,000/month | $0-$0/month | $0-$0/month | 0 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 60 days | expected | $0 | $33,000-$66,000/month | $1,500-$3,000/month | $1,500-$3,000/month | 1 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 60 days | aggressive | $0 | $33,000-$66,000/month | $3,000-$6,000/month | $3,000-$6,000/month | 2 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 90 days | conservative | $0 | $33,000-$66,000/month | $1,500-$3,000/month | $1,500-$3,000/month | 1 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 90 days | expected | $0 | $33,000-$66,000/month | $1,500-$3,000/month | $1,500-$3,000/month | 1 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 90 days | aggressive | $0 | $33,000-$66,000/month | $4,500-$9,000/month | $4,500-$9,000/month | 3 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 180 days | conservative | $0 | $33,000-$66,000/month | $1,500-$3,000/month | $1,500-$3,000/month | 1 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 180 days | expected | $0 | $33,000-$66,000/month | $3,000-$6,000/month | $3,000-$6,000/month | 2 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 180 days | aggressive | $0 | $33,000-$66,000/month | $6,000-$12,000/month | $6,000-$12,000/month | 4 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 12 months | conservative | $0 | $33,000-$66,000/month | $3,000-$6,000/month | $3,000-$6,000/month | 2 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 12 months | expected | $0 | $33,000-$66,000/month | $4,500-$9,000/month | $4,500-$9,000/month | 3 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
-| 12 months | aggressive | $0 | $33,000-$66,000/month | $7,500-$15,000/month | $7,500-$15,000/month | 5 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 30 days | conservative | $0 | $34,500-$69,000/month | $0-$0/month | $0-$0/month | 0 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 30 days | expected | $0 | $34,500-$69,000/month | $0-$0/month | $0-$0/month | 0 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 30 days | aggressive | $0 | $34,500-$69,000/month | $1,500-$3,000/month | $1,500-$3,000/month | 1 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 60 days | conservative | $0 | $34,500-$69,000/month | $0-$0/month | $0-$0/month | 0 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 60 days | expected | $0 | $34,500-$69,000/month | $1,500-$3,000/month | $1,500-$3,000/month | 1 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 60 days | aggressive | $0 | $34,500-$69,000/month | $3,000-$6,000/month | $3,000-$6,000/month | 2 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 90 days | conservative | $0 | $34,500-$69,000/month | $1,500-$3,000/month | $1,500-$3,000/month | 1 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 90 days | expected | $0 | $34,500-$69,000/month | $1,500-$3,000/month | $1,500-$3,000/month | 1 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 90 days | aggressive | $0 | $34,500-$69,000/month | $4,500-$9,000/month | $4,500-$9,000/month | 3 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 180 days | conservative | $0 | $34,500-$69,000/month | $1,500-$3,000/month | $1,500-$3,000/month | 1 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 180 days | expected | $0 | $34,500-$69,000/month | $3,000-$6,000/month | $3,000-$6,000/month | 2 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 180 days | aggressive | $0 | $34,500-$69,000/month | $6,000-$12,000/month | $6,000-$12,000/month | 4 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 12 months | conservative | $0 | $34,500-$69,000/month | $3,000-$6,000/month | $3,000-$6,000/month | 2 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 12 months | expected | $0 | $34,500-$69,000/month | $4,500-$9,000/month | $4,500-$9,000/month | 3 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
+| 12 months | aggressive | $0 | $34,500-$69,000/month | $7,500-$15,000/month | $7,500-$15,000/month | 5 hypothetical retainer conversion(s) from local opportunity list. Not booked revenue. |
 
 ## Notes
 - 30/60/90/180-day and 12-month windows are deterministic scenario windows, not guarantees.

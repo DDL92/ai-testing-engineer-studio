@@ -8,38 +8,17 @@
 
 ### Priority 1
 
-- Action: Review PushPress proposal package
-- Why it matters: A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.
-- Estimated impact: Reviewable path to QA Audit ($199-$500); no revenue is assumed.
-- Recommended next step: Review output/proposals/pushpress-proposal.md and output/proposals/pushpress-proposal.pdf for scope, claims, and pricing before any external use.
+- Action: Review Appointy package
+- Why it matters: Revenue Intelligence is the source of truth. Decision: GO.
+- Estimated impact: Review evidence and position a scoped QA Audit as the first paid step toward a retainer path.
+- Recommended next step: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
 ### Priority 2
 
-- Action: Review TeamUp proposal package
-- Why it matters: A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.
-- Estimated impact: Reviewable path to Playwright Starter Pack ($900-$1500); no revenue is assumed.
-- Recommended next step: Review output/proposals/teamup-proposal.md and output/proposals/teamup-proposal.pdf for scope, claims, and pricing before any external use.
-
-### Priority 3
-
-- Action: Review Glofox / ABC Fitness proposal package
-- Why it matters: A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.
-- Estimated impact: Reviewable path to QA Audit ($199-$500); no revenue is assumed.
-- Recommended next step: Review output/proposals/glofox-proposal.md and output/proposals/glofox-proposal.pdf for scope, claims, and pricing before any external use.
-
-### Priority 4
-
-- Action: Close evidence gaps for Wodify
-- Why it matters: Evidence collection can unblock a paid audit or proposal path.
-- Estimated impact: Improves audit readiness; no revenue is counted until a paid engagement exists in local client data.
-- Recommended next step: Review missing local evidence for Wodify: Lighthouse report missing, Playwright evidence missing, Client audit PDF missing.
-
-### Priority 5
-
-- Action: Review upcoming follow-up timing for Chris McConachie
-- Why it matters: Scheduled follow-up context keeps active conversations from stalling while still respecting due dates.
-- Estimated impact: Reviewable path to QA Audit ($199-$500); no revenue is assumed.
-- Recommended next step: Confirm whether the local follow-up date 2026-06-19 still makes sense for Chris McConachie. Do not send a message from this system.
+- Action: Review source-of-truth consistency
+- Why it matters: PushPress suppressed because Revenue Intelligence top lead is Appointy. TeamUp suppressed because Revenue Intelligence top lead is Appointy. Glofox / ABC Fitness suppressed because Revenue Intelligence top lead is Appointy.
+- Estimated impact: Keeps daily plan aligned to Appointy.
+- Recommended next step: Use Revenue Intelligence as the only commercial decision source.
 
 ## Revenue Rule
 

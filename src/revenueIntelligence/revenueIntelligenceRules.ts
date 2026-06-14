@@ -49,7 +49,7 @@ export function buildRevenueIntelligenceDashboard(): RevenueIntelligenceDashboar
     currentTopLead: report.topLead?.companyName ?? 'No unified top lead',
     revenueTarget: report.topLead ? 'First paid client' : 'Refresh qualified ranking',
     recommendedOffer: report.topLead?.recommendedOffer ?? 'No offer selected',
-    executionPriority: report.executionPriority,
+    executionPriority: dashboardPriority(report.decision.status),
   };
 }
 
@@ -245,6 +245,12 @@ function buildDecision(topLead: UnifiedTopLead | null): RevenueDecision {
     reason: `${topLead.companyName} is rank #1 but needs manual review before external use.`,
     manualAction: topLead.nextRevenueAction,
   };
+}
+
+function dashboardPriority(decision: RevenueDecision['status']): string {
+  if (decision === 'GO') return 'HIGH';
+  if (decision === 'REVIEW') return 'MEDIUM';
+  return 'LOW';
 }
 
 function executionPriorityFor(lead: NormalizedWebLead): string {

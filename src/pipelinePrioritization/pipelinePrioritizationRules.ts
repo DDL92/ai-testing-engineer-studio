@@ -3,6 +3,7 @@ import path = require('path');
 import { Client } from '../clientReports/types';
 import { ContactReviewRecord } from '../contactReview/types';
 import { Lead, RecommendedOffer } from '../leads/types';
+import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import {
   LocalContextSource,
   OfferPricingRanges,
@@ -30,10 +31,13 @@ const manualApprovalReminder = [
 ];
 
 export function buildPipelinePrioritizationReport(input: PipelinePriorityInput): PipelinePrioritizationReport {
+  const source = getRevenueSourceOfTruth();
   const contactReviewByLeadId = new Map(input.contactReviews.map((review) => [review.leadId, review]));
-  const opportunities = input.leads
+  const legacyOpportunities = input.leads
     .map((lead) => buildOpportunity(lead, contactReviewByLeadId.get(lead.id), findClientForLead(lead, input.clients), input.today))
     .sort(sortOpportunities);
+  const sourceOpportunity = buildSourcePriorityOpportunity(source);
+  const opportunities = [sourceOpportunity, ...legacyOpportunities.filter((opportunity) => opportunity.lead.companyName !== source.topLead)];
 
   const actionable = opportunities.filter((opportunity) => opportunity.lead.status !== 'lost');
 
@@ -56,6 +60,47 @@ export function buildPipelinePrioritizationReport(input: PipelinePriorityInput):
     topActions: buildTopActions(actionable).slice(0, 5),
     stalledOpportunities: opportunities.filter((opportunity) => opportunity.stalledReasons.length > 0),
     contextSources: input.contextSources,
+  };
+}
+
+function buildSourcePriorityOpportunity(source: ReturnType<typeof getRevenueSourceOfTruth>): PrioritizedOpportunity {
+  const lead: Lead = {
+    id: slug(source.topLead),
+    companyName: source.topLead,
+    website: '',
+    industry: 'Revenue Intelligence',
+    source: 'Revenue Intelligence source of truth',
+    status: 'reviewing',
+    fitNotes: source.executionPriorityDetail,
+    painPoints: [],
+    recommendedOffer: offerKey(source.recommendedOffer),
+    score: 10,
+    createdAt: source.lastUpdated,
+    updatedAt: source.lastUpdated,
+    nextAction: source.nextAction,
+  };
+
+  return {
+    lead,
+    artifacts: {
+      researchPack: false,
+      leadPack: false,
+      auditPack: false,
+      outreachPack: false,
+      contactReview: false,
+      sow: false,
+      clientWorkflow: false,
+    },
+    stage: 'NEW_LEAD',
+    tier: 'A',
+    priorityScore: 1000,
+    revenuePath: source.recommendedOffer,
+    pricingRange: source.recommendedOffer,
+    whyItMatters: `Revenue Intelligence source of truth. ${source.executionPriorityDetail}`,
+    nextAction: source.nextAction,
+    suggestedCommand: 'npm run revenue:recommendation',
+    stalledReasons: [],
+    scoreReasons: ['Revenue Intelligence source of truth', `Decision: ${source.revenueDecision}`],
   };
 }
 
@@ -569,6 +614,17 @@ function renderContextSources(sources: LocalContextSource[]): string {
 
 function renderList(items: string[]): string {
   return items.map((item) => `- ${item}`).join('\n');
+}
+
+function offerKey(offer: string): RecommendedOffer {
+  if (offer.includes('Retainer')) return 'qa-automation-retainer';
+  if (offer.includes('Starter')) return 'playwright-starter-pack';
+  if (offer.includes('Audit')) return 'qa-audit';
+  return 'qa-audit';
+}
+
+function slug(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'lead';
 }
 
 function escapeTable(value: string): string {

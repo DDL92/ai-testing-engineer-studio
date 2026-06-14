@@ -1,13 +1,13 @@
 # Revenue Targets
 
-Generated: 2026-06-13T14:06:02.837Z
+Generated: 2026-06-14T05:32:41.360Z
 
 ## Target 1
 First Audit Sold
 
 - Status: Current Focus
 - Current value: Not recorded yet
-- Next action: Best current candidate: PushPress
+- Next action: Best current candidate: Appointy
 
 ## Target 2
 First Starter Pack Sold

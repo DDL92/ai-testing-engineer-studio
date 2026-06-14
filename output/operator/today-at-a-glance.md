@@ -1,10 +1,10 @@
 # Today At A Glance
 
-Generated: 2026-06-13T21:04:27.722Z
+Generated: 2026-06-14T05:28:49.723Z
 
-- Top Lead: PushPress
-- Offer: QA Audit ($199-$500)
-- Action: REVIEW - Review PushPress message pack, executive summary, audit PDF, and proposal PDF; Daniel manually decides SEND / WAIT / REWRITE.
+- Top Lead: Appointy
+- Offer: QA Automation Retainer ($1500-$3000/month)
+- Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - MRR: $0
 - Studio Health: Healthy
 - Release Readiness: Warning

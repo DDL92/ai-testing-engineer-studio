@@ -1,6 +1,6 @@
 # AI Studio Daily Command Center
 
-Generated At: 2026-06-12T16:42:46.016Z
+Generated At: 2026-06-14T05:37:10.539Z
 
 ## Commercial Mode
 
@@ -20,6 +20,7 @@ Generated At: 2026-06-12T16:42:46.016Z
 
 | Company | Opportunity Score | Stage | Next Action | Daily Priority Score |
 | --- | --- | --- | --- | --- |
+| Appointy | 1000 | NEW_LEAD | Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer. | 1000 |
 | PushPress | 100 | FOLLOW_UP | Monitor manually for follow-up on 2026-06-15. | 95 |
 | TeamUp | 60 | RESEARCH_READY | Run or review audit workflow for TeamUp. | 43 |
 | Wodify | 60 | RESEARCH_READY | Run or review audit workflow for Wodify. | 43 |
@@ -29,7 +30,6 @@ Generated At: 2026-06-12T16:42:46.016Z
 | Fitli | 65 | NEW_LEAD | Generate research pack for Fitli. | 41 |
 | Momence | 65 | NEW_LEAD | Generate research pack for Momence. | 41 |
 | MyStudio | 65 | NEW_LEAD | Generate research pack for MyStudio. | 41 |
-| Arketa | 55 | NEW_LEAD | Generate research pack for Arketa. | 35 |
 
 ## Follow-Ups
 
@@ -54,19 +54,19 @@ Generated At: 2026-06-12T16:42:46.016Z
 
 ## Top 5 Actions Today
 
-1. Review follow-up for PushPress - FOLLOW_UP, opportunity score 100
-2. Generate audit pack for TeamUp - RESEARCH_READY, opportunity score 60
-3. Generate audit pack for Wodify - RESEARCH_READY, opportunity score 60
-4. Generate research pack for ABC Glofox - NEW_LEAD, opportunity score 65
-5. Generate research pack for Bookee - NEW_LEAD, opportunity score 65
+1. Review Appointy package - Revenue Intelligence source of truth: HIGH.
+2. Generate research pack for Appointy - NEW_LEAD, opportunity score 1000
+3. Review follow-up for PushPress - FOLLOW_UP, opportunity score 100
+4. Generate audit pack for TeamUp - RESEARCH_READY, opportunity score 60
+5. Generate audit pack for Wodify - RESEARCH_READY, opportunity score 60
 
 ## Suggested Commands
 
+- npm run revenue:recommendation
+- npm run lead:research -- --id appointy
 - npm run contact:review -- --id pushpress
 - npm run audit:pack -- --id teamup
 - npm run audit:pack -- --id wodify
-- npm run lead:research -- --id abc-glofox
-- npm run lead:research -- --id bookee
 
 ## Human Approval Reminder
 

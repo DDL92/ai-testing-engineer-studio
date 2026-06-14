@@ -1,12 +1,12 @@
 # Revenue Command Center
 
-Generated: 2026-06-12T15:22:50.703Z
+Generated: 2026-06-14T05:28:41.005Z
 
 ## Executive Summary
 - Current booked MRR: $0
 - Expected speculative projected MRR, 90-day view: $1,500-$3,000/month
-- Audit opportunities reviewed: 43
-- Retainer opportunities reviewed: 22
+- Audit opportunities reviewed: 44
+- Retainer opportunities reviewed: 23
 - Renewal opportunities reviewed: 0
 - Expansion opportunities reviewed: 0
 - Excluded demo/sample client records: 2
@@ -27,9 +27,10 @@ Other active client work:
 ## Commercial Pipeline
 | Company | Revenue Score | Probability | Offer | Audit Range | Monthly Range | Next Action |
 | --- | ---: | --- | --- | --- | --- | --- |
+| Appointy | 1000 | High probability | qa-automation-retainer | $199-$500 | $1,500-$3,000 | Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer. |
 | PushPress | 100 | High probability | qa-automation-retainer | $199-$500 | $1,500-$3,000 | Review follow-up context for PushPress before any manual action. |
-| ABC Glofox | 78 | Medium probability | agency-partner-retainer | $199-$500 | $1,500-$3,000 | Generate research pack for ABC Glofox. |
-| Bookee | 78 | Medium probability | agency-partner-retainer | $199-$500 | $1,500-$3,000 | Generate research pack for Bookee. |
+| ABC Glofox | 83 | High probability | agency-partner-retainer | $199-$500 | $1,500-$3,000 | Generate audit pack for ABC Glofox. |
+| Bookee | 83 | High probability | agency-partner-retainer | $199-$500 | $1,500-$3,000 | Generate audit pack for Bookee. |
 | TeamUp | 77 | Medium probability | qa-automation-retainer | $199-$500 | $1,500-$3,000 | Generate audit pack for TeamUp. |
 | Wodify | 77 | Medium probability | qa-automation-retainer | $199-$500 | $1,500-$3,000 | Generate audit pack for Wodify. |
 | Bsport | 68 | Medium probability | agency-partner-retainer | $199-$500 | $1,500-$3,000 | Generate research pack for Bsport. |
@@ -38,28 +39,28 @@ Other active client work:
 | MyStudio | 68 | Medium probability | agency-partner-retainer | $199-$500 | $1,500-$3,000 | Generate research pack for MyStudio. |
 | Arketa | 58 | Medium probability | qa-automation-retainer | $199-$500 | $1,500-$3,000 | Generate research pack for Arketa. |
 | ClassPass | 58 | Medium probability | agency-partner-retainer | $199-$500 | $1,500-$3,000 | Generate research pack for ClassPass. |
-| Clubworx | 58 | Medium probability | qa-automation-retainer | $199-$500 | $1,500-$3,000 | Generate research pack for Clubworx. |
 
 ## Audit Opportunities
 | Company | Lead Score | Industry | Reason | Estimated Audit Value Range | Next Action | Suggested Command |
 | --- | ---: | --- | --- | --- | --- | --- |
+| Appointy | 10 | Revenue Intelligence | Revenue Intelligence source of truth. Review evidence and position a scoped QA Audit as the first paid step toward a retainer path. | $199-$500 | Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer. | `npm run revenue:recommendation` |
 | PushPress | 8 | Gym Management SaaS | lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists; audit pack exists; outreach pack exists; contact review exists; SOW exists; client workflow exists; follow-up signal exists | $199-$500 | Review follow-up context for PushPress before any manual action. | `npm run contact:review -- --id pushpress` |
-| ABC Glofox | 10 | Gym Management SaaS | lead score 10/10; offer boost 18; top 5 outreach lead | $199-$500 | Generate research pack for ABC Glofox. | `npm run lead:research -- --id abc-glofox` |
-| Bookee | 10 | Fitness Studio SaaS | lead score 10/10; offer boost 18; top 5 outreach lead | $199-$500 | Generate research pack for Bookee. | `npm run lead:research -- --id bookee` |
+| ABC Glofox | 10 | Gym Management SaaS | lead score 10/10; offer boost 18; top 5 outreach lead; lead pack exists | $199-$500 | Generate audit pack for ABC Glofox. | `npm run audit:pack -- --id abc-glofox` |
+| Bookee | 10 | Fitness Studio SaaS | lead score 10/10; offer boost 18; top 5 outreach lead; lead pack exists | $199-$500 | Generate audit pack for Bookee. | `npm run audit:pack -- --id bookee` |
 | TeamUp | 8 | Gym Management SaaS | lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists | $199-$500 | Generate audit pack for TeamUp. | `npm run audit:pack -- --id teamup` |
 | Wodify | 8 | Gym Management SaaS | lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists | $199-$500 | Generate audit pack for Wodify. | `npm run audit:pack -- --id wodify` |
 | Bsport | 10 | Boutique Fitness SaaS | lead score 10/10; offer boost 18 | $199-$500 | Generate research pack for Bsport. | `npm run lead:research -- --id bsport` |
 | Fitli | 10 | Fitness Scheduling SaaS | lead score 10/10; offer boost 18 | $199-$500 | Generate research pack for Fitli. | `npm run lead:research -- --id fitli` |
 | Momence | 10 | Studio Management SaaS | lead score 10/10; offer boost 18 | $199-$500 | Generate research pack for Momence. | `npm run lead:research -- --id momence` |
 | MyStudio | 10 | Studio Management SaaS | lead score 10/10; offer boost 18 | $199-$500 | Generate research pack for MyStudio. | `npm run lead:research -- --id mystudio` |
-| Arketa | 8 | Wellness Business SaaS | lead score 8/10; offer boost 18 | $199-$500 | Generate research pack for Arketa. | `npm run lead:research -- --id arketa` |
 
 ## Retainer Opportunities
 | Company | Retainer Type | Estimated Monthly Range | Priority | Why It May Fit | Next Action | Suggested Command |
 | --- | --- | --- | --- | --- | --- | --- |
+| Appointy | QA Automation Retainer | $1,500-$3,000 | High probability | Revenue Intelligence source of truth. Review evidence and position a scoped QA Audit as the first paid step toward a retainer path. | Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer. | `npm run revenue:recommendation` |
 | PushPress | QA Automation Retainer | $1,500-$3,000 | High probability | lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists; audit pack exists; outreach pack exists; contact review exists; SOW exists; client workflow exists; follow-up signal exists | Review follow-up context for PushPress before any manual action. | `npm run contact:review -- --id pushpress` |
-| ABC Glofox | Agency Partner Retainer | $1,500-$3,000 | Medium probability | lead score 10/10; offer boost 18; top 5 outreach lead | Generate research pack for ABC Glofox. | `npm run lead:research -- --id abc-glofox` |
-| Bookee | Agency Partner Retainer | $1,500-$3,000 | Medium probability | lead score 10/10; offer boost 18; top 5 outreach lead | Generate research pack for Bookee. | `npm run lead:research -- --id bookee` |
+| ABC Glofox | Agency Partner Retainer | $1,500-$3,000 | High probability | lead score 10/10; offer boost 18; top 5 outreach lead; lead pack exists | Generate audit pack for ABC Glofox. | `npm run audit:pack -- --id abc-glofox` |
+| Bookee | Agency Partner Retainer | $1,500-$3,000 | High probability | lead score 10/10; offer boost 18; top 5 outreach lead; lead pack exists | Generate audit pack for Bookee. | `npm run audit:pack -- --id bookee` |
 | TeamUp | QA Automation Retainer | $1,500-$3,000 | Medium probability | lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists | Generate audit pack for TeamUp. | `npm run audit:pack -- --id teamup` |
 | Wodify | QA Automation Retainer | $1,500-$3,000 | Medium probability | lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists | Generate audit pack for Wodify. | `npm run audit:pack -- --id wodify` |
 | Bsport | Agency Partner Retainer | $1,500-$3,000 | Medium probability | lead score 10/10; offer boost 18 | Generate research pack for Bsport. | `npm run lead:research -- --id bsport` |
@@ -87,22 +88,25 @@ No renewal opportunities detected from active commercial local retainer clients.
 No expansion opportunities detected from active local clients.
 
 ## Top Revenue Actions
-- 1. Review follow-up path: PushPress
+- 1. Review Appointy package
+  - Reason: Revenue Intelligence source of truth. Decision: GO. Review evidence and position a scoped QA Audit as the first paid step toward a retainer path.
+  - Suggested command: `npm run revenue:recommendation`
+- 2. Review follow-up path: PushPress
   - Reason: lead score 8/10; offer boost 18; top 5 outreach lead; research pack exists; lead pack exists; audit pack exists; outreach pack exists; contact review exists; SOW exists; client workflow exists; follow-up signal exists
   - Suggested command: `npm run contact:review -- --id pushpress`
-- 2. Move retainer opportunity: ABC Glofox
-  - Reason: ABC Glofox has revenue priority 78/100.
-  - Suggested command: `npm run lead:research -- --id abc-glofox`
-- 3. Advance audit path: Bookee
+- 3. Move retainer opportunity: Appointy
+  - Reason: Appointy has revenue priority 1000/100.
+  - Suggested command: `npm run revenue:recommendation`
+- 4. Advance audit path: ABC Glofox
   - Reason: Audit range is $199-$500 and can support a manually approved next step.
-  - Suggested command: `npm run lead:research -- --id bookee`
-- 4. Refresh commercial pipeline
+  - Suggested command: `npm run audit:pack -- --id abc-glofox`
+- 5. Refresh commercial pipeline
   - Reason: Revenue action quality depends on the current local pipeline and dashboard files.
   - Suggested command: `npm run pipeline:prioritize`
 
 ## Revenue Risks
 - No active commercial retainer clients are recorded locally, so booked MRR is currently $0.
-- 43 commercial opportunity record(s) still require manual approval before action.
+- 44 commercial opportunity record(s) still require manual approval before action.
 - Opportunity ranges can overstate revenue if treated as booked. Keep booked MRR separate.
 - Client renewal and expansion signals require evidence review before any client-facing conversation.
 - Demo/sample client records are excluded from booked MRR to avoid invented revenue.

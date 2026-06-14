@@ -1,5 +1,6 @@
 import fs = require('fs');
 import path = require('path');
+import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import { OutcomeRecord, OutcomeStatus, OutcomeSummary } from './types';
 
 export const allowedOutcomeStatuses: OutcomeStatus[] = [
@@ -53,6 +54,7 @@ export function addOutcomeRecord(record: OutcomeRecord): OutcomeRecord[] {
 }
 
 export function buildOutcomeSummary(records = loadOutcomes()): OutcomeSummary {
+  const revenueTruth = getRevenueSourceOfTruth();
   const messagesSent = records.filter((record) => record.message_sent || record.response_status !== 'not_sent').length;
   const replies = records.filter((record) => record.response_status === 'replied').length;
   const meetings = records.filter((record) => record.meeting_status === 'meeting_booked').length;
@@ -76,7 +78,7 @@ export function buildOutcomeSummary(records = loadOutcomes()): OutcomeSummary {
     revenueRecorded,
     nextManualMessage: records.length > 0
       ? nextActionFromRecords(records)
-      : 'No outcomes recorded yet. Review the PushPress message pack before any manual send.',
+      : `No outcomes recorded yet. Review the ${revenueTruth.topLead} message pack before any manual send.`,
     hasOutcomes: records.length > 0,
     safetyRules,
   };

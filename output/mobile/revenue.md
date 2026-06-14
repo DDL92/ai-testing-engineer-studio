@@ -1,11 +1,11 @@
 # Revenue View
 
-Generated: 2026-06-14T00:26:46.703Z
+Generated: 2026-06-14T05:32:18.450Z
 
 - Current MRR: $0
 - Revenue Status: Current MRR: $0
-- First Client Status: PushPress: GO
-- Revenue Activation Readiness: PushPress activation score 98/100
+- First Client Status: Appointy: GO
+- Revenue Activation Readiness: Appointy activation score 62/100
 
 ## Boundary
 - Future revenue is not estimated here.

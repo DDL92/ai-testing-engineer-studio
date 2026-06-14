@@ -1,13 +1,13 @@
 # Weekly Success Review
 
-Generated At: 2026-06-11T21:28:06.322Z
+Generated At: 2026-06-14T05:37:16.204Z
 
 ## Revenue Snapshot
 
-- Estimated MRR: $2,000
+- Estimated MRR: $0
 - Active Clients: 2
 - Renewal watchlist: 2
-- Expansion watchlist: 1
+- Expansion watchlist: 2
 
 ## New Leads Added
 
@@ -65,7 +65,7 @@ Generated At: 2026-06-11T21:28:06.322Z
 
 ## Pipeline Changes
 
-- NEW_LEAD: 42
+- NEW_LEAD: 43
 - RESEARCH_READY: 4
 - AUDIT_READY: 0
 - OUTREACH_READY: 0
@@ -80,11 +80,11 @@ Generated At: 2026-06-11T21:28:06.322Z
 
 ## New Opportunities
 
+- Appointy: NEW_LEAD, score 1000
 - PushPress: FOLLOW_UP, score 100
 - BookingFlow AI: SOW_READY, score 65
 - TeamUp: RESEARCH_READY, score 60
 - Wodify: RESEARCH_READY, score 60
-- ABC Glofox: NEW_LEAD, score 65
 
 ## Client Activity
 
@@ -104,11 +104,11 @@ Generated At: 2026-06-11T21:28:06.322Z
 
 ## Recommended Focus
 
+- Review Appointy package: npm run revenue:recommendation
+- Generate research pack for Appointy: npm run lead:research -- --id appointy
 - Review follow-up for PushPress: npm run contact:review -- --id pushpress
 - Review renewal status for demo-retainer-client: npm run renewal:review -- --id demo-retainer-client
 - Review renewal status for demo-starter-client: npm run renewal:review -- --id demo-starter-client
-- Review expansion path for demo-retainer-client: npm run renewal:review -- --id demo-retainer-client
-- Review SOW for BookingFlow AI: npm run sow:generate -- --id sample-bookingflow-ai
 
 ## Human Approval Reminder
 

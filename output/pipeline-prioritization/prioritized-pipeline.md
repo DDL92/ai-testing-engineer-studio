@@ -1,12 +1,12 @@
 # Prioritized Pipeline
 
-Generated: 2026-06-12T16:42:46.201Z
+Generated: 2026-06-14T05:28:49.406Z
 
 ## Summary
 - Total leads reviewed: 43
-- Total prioritized records: 43
-- Tier A opportunities: 3
-- Tier B opportunities: 21
+- Total prioritized records: 44
+- Tier A opportunities: 6
+- Tier B opportunities: 19
 - Tier C / low priority: 19
 - Ready now: 1
 - Stalled opportunities: 42
@@ -29,15 +29,16 @@ Local context read:
 ## Tier A Opportunities
 | Company | Lead Score | Priority Score | Tier | Stage | Offer | Next Action | Suggested Command |
 | --- | ---: | ---: | --- | --- | --- | --- | --- |
+| Appointy | 10 | 1000 | A | NEW_LEAD | qa-automation-retainer | Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer. | `npm run revenue:recommendation` |
 | PushPress | 8 | 100 | A | FOLLOW_UP | qa-automation-retainer | Review follow-up context for PushPress before any manual action. | `npm run contact:review -- --id pushpress` |
+| ABC Glofox | 10 | 89 | A | LEAD_PACK_READY | agency-partner-retainer | Generate audit pack for ABC Glofox. | `npm run audit:pack -- --id abc-glofox` |
+| Bookee | 10 | 89 | A | LEAD_PACK_READY | agency-partner-retainer | Generate audit pack for Bookee. | `npm run audit:pack -- --id bookee` |
 | TeamUp | 8 | 83 | A | LEAD_PACK_READY | qa-automation-retainer | Generate audit pack for TeamUp. | `npm run audit:pack -- --id teamup` |
 | Wodify | 8 | 83 | A | LEAD_PACK_READY | qa-automation-retainer | Generate audit pack for Wodify. | `npm run audit:pack -- --id wodify` |
 
 ## Tier B Opportunities
 | Company | Lead Score | Priority Score | Tier | Stage | Offer | Next Action | Suggested Command |
 | --- | ---: | ---: | --- | --- | --- | --- | --- |
-| ABC Glofox | 10 | 76 | B | NEW_LEAD | agency-partner-retainer | Generate research pack for ABC Glofox. | `npm run lead:research -- --id abc-glofox` |
-| Bookee | 10 | 76 | B | NEW_LEAD | agency-partner-retainer | Generate research pack for Bookee. | `npm run lead:research -- --id bookee` |
 | Bsport | 10 | 76 | B | NEW_LEAD | agency-partner-retainer | Generate research pack for Bsport. | `npm run lead:research -- --id bsport` |
 | Fitli | 10 | 76 | B | NEW_LEAD | agency-partner-retainer | Generate research pack for Fitli. | `npm run lead:research -- --id fitli` |
 | Momence | 10 | 76 | B | NEW_LEAD | agency-partner-retainer | Generate research pack for Momence. | `npm run lead:research -- --id momence` |
@@ -89,8 +90,9 @@ Local context read:
 ## Needs Research
 | Company | Lead Score | Priority Score | Tier | Stage | Offer | Next Action | Suggested Command |
 | --- | ---: | ---: | --- | --- | --- | --- | --- |
-| ABC Glofox | 10 | 76 | B | NEW_LEAD | agency-partner-retainer | Generate research pack for ABC Glofox. | `npm run lead:research -- --id abc-glofox` |
-| Bookee | 10 | 76 | B | NEW_LEAD | agency-partner-retainer | Generate research pack for Bookee. | `npm run lead:research -- --id bookee` |
+| Appointy | 10 | 1000 | A | NEW_LEAD | qa-automation-retainer | Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer. | `npm run revenue:recommendation` |
+| ABC Glofox | 10 | 89 | A | LEAD_PACK_READY | agency-partner-retainer | Generate audit pack for ABC Glofox. | `npm run audit:pack -- --id abc-glofox` |
+| Bookee | 10 | 89 | A | LEAD_PACK_READY | agency-partner-retainer | Generate audit pack for Bookee. | `npm run audit:pack -- --id bookee` |
 | Bsport | 10 | 76 | B | NEW_LEAD | agency-partner-retainer | Generate research pack for Bsport. | `npm run lead:research -- --id bsport` |
 | Fitli | 10 | 76 | B | NEW_LEAD | agency-partner-retainer | Generate research pack for Fitli. | `npm run lead:research -- --id fitli` |
 | Momence | 10 | 76 | B | NEW_LEAD | agency-partner-retainer | Generate research pack for Momence. | `npm run lead:research -- --id momence` |
@@ -131,6 +133,8 @@ Local context read:
 ## Needs Audit Pack
 | Company | Lead Score | Priority Score | Tier | Stage | Offer | Next Action | Suggested Command |
 | --- | ---: | ---: | --- | --- | --- | --- | --- |
+| ABC Glofox | 10 | 89 | A | LEAD_PACK_READY | agency-partner-retainer | Generate audit pack for ABC Glofox. | `npm run audit:pack -- --id abc-glofox` |
+| Bookee | 10 | 89 | A | LEAD_PACK_READY | agency-partner-retainer | Generate audit pack for Bookee. | `npm run audit:pack -- --id bookee` |
 | TeamUp | 8 | 83 | A | LEAD_PACK_READY | qa-automation-retainer | Generate audit pack for TeamUp. | `npm run audit:pack -- --id teamup` |
 | Wodify | 8 | 83 | A | LEAD_PACK_READY | qa-automation-retainer | Generate audit pack for Wodify. | `npm run audit:pack -- --id wodify` |
 | NeetoCal | 6 | 63 | B | LEAD_PACK_READY | playwright-starter-pack | Generate audit pack for NeetoCal. | `npm run audit:pack -- --id neetocal` |

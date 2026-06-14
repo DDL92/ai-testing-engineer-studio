@@ -1,6 +1,6 @@
 # Today View
 
-Generated: 2026-06-14T02:12:38.877Z
+Generated: 2026-06-14T05:28:58.480Z
 
 ## What should Daniel do right now?
 
@@ -56,7 +56,7 @@ Next Revenue Action:
 Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
 Execution Priority:
-Review evidence and position a scoped QA Audit as the first paid step toward a retainer path.
+HIGH
 
 Estimated Time:
 30-60 minutes

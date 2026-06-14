@@ -1,13 +1,13 @@
 # Stalled Opportunities
 
-Generated: 2026-06-12T16:42:46.201Z
+Generated: 2026-06-14T05:28:49.406Z
 
 | Company | Stage | Priority Score | Stalled Reason | Suggested Command |
 | --- | --- | ---: | --- | --- |
+| ABC Glofox | LEAD_PACK_READY | 89 | New lead without research pack; Lead pack exists but no audit pack | `npm run audit:pack -- --id abc-glofox` |
+| Bookee | LEAD_PACK_READY | 89 | New lead without research pack; Lead pack exists but no audit pack | `npm run audit:pack -- --id bookee` |
 | TeamUp | LEAD_PACK_READY | 83 | Lead pack exists but no audit pack | `npm run audit:pack -- --id teamup` |
 | Wodify | LEAD_PACK_READY | 83 | Lead pack exists but no audit pack | `npm run audit:pack -- --id wodify` |
-| ABC Glofox | NEW_LEAD | 76 | New lead without research pack | `npm run lead:research -- --id abc-glofox` |
-| Bookee | NEW_LEAD | 76 | New lead without research pack | `npm run lead:research -- --id bookee` |
 | Bsport | NEW_LEAD | 76 | New lead without research pack | `npm run lead:research -- --id bsport` |
 | Fitli | NEW_LEAD | 76 | New lead without research pack | `npm run lead:research -- --id fitli` |
 | Momence | NEW_LEAD | 76 | New lead without research pack | `npm run lead:research -- --id momence` |

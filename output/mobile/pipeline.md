@@ -1,6 +1,6 @@
 # Pipeline View
 
-Generated: 2026-06-14T02:12:38.864Z
+Generated: 2026-06-14T05:28:58.530Z
 
 - Top Lead: Appointy
 - Top Offer: QA Automation Retainer ($1500-$3000/month)
@@ -21,9 +21,9 @@ Generated: 2026-06-14T02:12:38.864Z
 - Current Top Lead: Appointy
 - Recommended Offer: QA Automation Retainer ($1500-$3000/month)
 - Next Revenue Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
-- Execution Priority: Review evidence and position a scoped QA Audit as the first paid step toward a retainer path.
+- Execution Priority: HIGH
 - Outcome Status: No outcomes recorded yet.
-- Next Manual Step: Resolve the readiness blockers for Appointy, then rerun npm run execute:first-client.
+- Next Manual Step: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
 ## Notes
 - Pipeline view uses existing lead, follow-up, and outcome data only.

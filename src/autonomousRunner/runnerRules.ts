@@ -2,6 +2,7 @@ import childProcess = require('child_process');
 import fs = require('fs');
 import path = require('path');
 import { getTavilyRuntimeConfig } from '../integrations/tavily/tavilyClient';
+import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import {
   RunnerCommandDefinition,
   RunnerCommandResult,
@@ -150,6 +151,7 @@ export function writeLaunchdConfig(): string[] {
 }
 
 export function buildRunnerDashboard(): RunnerDashboardSummary {
+  const source = getRevenueSourceOfTruth();
   const health = buildRunnerHealth();
   const lastSuccessfulRun = health.lastRun?.success ? health.lastRun.finishedAt : 'No successful run recorded';
   const failedCommands = health.lastRun?.commandsExecuted.filter((command) => command.status === 'failed') ?? [];
@@ -159,7 +161,7 @@ export function buildRunnerDashboard(): RunnerDashboardSummary {
     lastSuccessfulRun,
     nextScheduledRun: health.nextScheduledRun,
     runnerHealth: health.status,
-    dailyRefreshStatus: failedCommands.length > 0 ? `${failedCommands.length} command(s) need review` : health.lastRun ? 'Refresh sequence complete' : 'Waiting for first run',
+    dailyRefreshStatus: failedCommands.length > 0 ? `${failedCommands.length} command(s) need review` : health.lastRun ? `Refresh sequence complete. Top lead: ${source.topLead}.` : `Waiting for first run. Top lead: ${source.topLead}.`,
   };
 }
 
@@ -290,11 +292,16 @@ function renderDailyExecutionFlow(plan: RunnerPlan): string {
 }
 
 function renderRunnerSummary(lastRun: RunnerLastRun | null): string {
+  const source = getRevenueSourceOfTruth();
   if (!lastRun) {
     return [
       '# Autonomous Runner Summary',
       '',
       'No runner execution has been recorded yet.',
+      '',
+      `Revenue Intelligence Top Lead: ${source.topLead}`,
+      `Recommended Offer: ${source.recommendedOffer}`,
+      `Next Action: ${source.nextAction}`,
       '',
       'Run `npm run runner:test` to execute the daily refresh sequence once.',
       '',
@@ -310,6 +317,9 @@ function renderRunnerSummary(lastRun: RunnerLastRun | null): string {
     `Finished: ${lastRun.finishedAt}`,
     `Duration: ${formatDuration(lastRun.durationMs)}`,
     `Status: ${lastRun.success ? 'Success' : 'Needs Review'}`,
+    `Revenue Intelligence Top Lead: ${source.topLead}`,
+    `Recommended Offer: ${source.recommendedOffer}`,
+    `Next Action: ${source.nextAction}`,
     '',
     '## Commands Executed',
     '| # | Command | Status | Duration |',

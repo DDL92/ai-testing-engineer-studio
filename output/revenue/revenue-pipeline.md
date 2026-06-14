@@ -1,6 +1,6 @@
 # Revenue Pipeline
 
-Generated: 2026-06-14T02:12:08.556Z
+Generated: 2026-06-14T05:32:41.373Z
 
 Ranked targets come from Qualified Ranking first. Legacy local targets are fallback only.
 

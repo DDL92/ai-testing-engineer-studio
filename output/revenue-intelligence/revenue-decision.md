@@ -1,6 +1,6 @@
 # Revenue Decision
 
-Generated: 2026-06-14T02:12:29.907Z
+Generated: 2026-06-14T05:37:47.855Z
 
 - Decision: GO
 - Reason: Appointy is rank #1 with strong qualification and QA opportunity scores.

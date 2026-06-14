@@ -1,4 +1,5 @@
 import { Client } from '../clientReports/types';
+import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import {
   ClientHealth,
   ContactReview,
@@ -218,16 +219,27 @@ export function buildMonthlySuccessReview(input: OperatorInput): OperatorDocumen
 }
 
 function topOpportunities(input: OperatorInput): OperatorOpportunity[] {
+  const source = getRevenueSourceOfTruth();
+  const sourceOpportunity: OperatorOpportunity = {
+    company: source.topLead,
+    leadId: slug(source.topLead),
+    opportunityScore: 1000,
+    stage: 'NEW_LEAD',
+    offer: source.recommendedOffer,
+    nextAction: source.nextAction,
+    dailyPriorityScore: 1000,
+  };
   const parsed = parseOpportunityTable(input.opportunityTracker.content, input.leads);
   if (parsed.length > 0) {
     const commercialLeadIds = new Set(input.leads.map((lead) => lead.id));
-    return parsed
+    const legacy = parsed
       .filter((opportunity) => commercialLeadIds.has(opportunity.leadId))
       .map((opportunity) => ({ ...opportunity, dailyPriorityScore: dailyPriorityScore(opportunity, input, false) }))
       .sort((a, b) => b.dailyPriorityScore - a.dailyPriorityScore || b.opportunityScore - a.opportunityScore);
+    return [sourceOpportunity, ...legacy.filter((opportunity) => opportunity.company !== source.topLead)];
   }
 
-  return input.leads
+  const fallback = input.leads
     .filter((lead) => lead.status !== 'paused' && lead.status !== 'lost' && lead.recommendedOffer !== 'not-fit')
     .map((lead) => {
       const opportunity: OperatorOpportunity = {
@@ -242,6 +254,7 @@ function topOpportunities(input: OperatorInput): OperatorOpportunity[] {
       return { ...opportunity, dailyPriorityScore: dailyPriorityScore(opportunity, input, false) };
     })
     .sort((a, b) => b.dailyPriorityScore - a.dailyPriorityScore || b.opportunityScore - a.opportunityScore);
+  return [sourceOpportunity, ...fallback.filter((opportunity) => opportunity.company !== source.topLead)];
 }
 
 function dailyPriorityScore(opportunity: OperatorOpportunity, input: OperatorInput, hasExpansionPotential: boolean): number {
@@ -340,7 +353,13 @@ function topActions(
   renewalWatch: RenewalClient[],
   expansion: string[],
 ): OperatorAction[] {
-  const actions: OperatorAction[] = [];
+  const source = getRevenueSourceOfTruth();
+  const actions: OperatorAction[] = [{
+    label: `Review ${source.topLead} package`,
+    command: 'npm run revenue:recommendation',
+    score: 1000,
+    reason: `Revenue Intelligence source of truth: ${source.executionPriority}.`,
+  }];
 
   for (const review of [...followUps.overdue, ...followUps.due]) {
     actions.push({

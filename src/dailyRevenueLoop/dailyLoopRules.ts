@@ -6,6 +6,7 @@ import { buildOpportunitySummary } from '../opportunityEngine/opportunityEngineR
 import { OpportunityReport } from '../opportunityEngine/types';
 import { buildProposalPortfolio } from '../proposalEngine/proposalRules';
 import { ProposalPackage } from '../proposalEngine/types';
+import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import { buildUnifiedAuditPortfolio } from '../unifiedAuditGenerator/unifiedAuditRules';
 import { UnifiedAuditReport } from '../unifiedAuditGenerator/types';
 import {
@@ -69,7 +70,7 @@ export function loadDailyRevenueLoopInput(): DailyRevenueLoopInput {
 }
 
 export function buildDailyRevenuePlan(input: DailyRevenueLoopInput): DailyRevenuePlan {
-  const topActions = buildTopActions(input.profiles, input.today, 5);
+  const topActions = unifiedDailyActions(buildTopActions(input.profiles, input.today, 5));
 
   return {
     generatedAt: input.generatedAt,
@@ -116,8 +117,46 @@ export function buildWeeklyRevenueReview(input: DailyRevenueLoopInput): WeeklyRe
     },
     researchGaps,
     evidenceGaps,
-    nextWeekPriorities: buildTopActions(input.profiles, input.today, 5),
+    nextWeekPriorities: unifiedDailyActions(buildTopActions(input.profiles, input.today, 5)),
   };
+}
+
+function unifiedDailyActions(legacyActions: DailyRevenueAction[]): DailyRevenueAction[] {
+  const source = getRevenueSourceOfTruth();
+  const warnings = legacyActions
+    .filter((action) => action.companyName !== source.topLead)
+    .slice(0, 3)
+    .map((action) => `${action.companyName} suppressed because Revenue Intelligence top lead is ${source.topLead}.`);
+
+  const actions: DailyRevenueAction[] = [
+    {
+      priority: 1,
+      type: 'review-audit',
+      companyId: slug(source.topLead),
+      companyName: source.topLead,
+      title: `Review ${source.topLead} package`,
+      whyItMatters: `Revenue Intelligence is the source of truth. Decision: ${source.revenueDecision}.`,
+      estimatedImpact: source.executionPriorityDetail,
+      recommendedNextStep: source.nextAction,
+      score: 2000,
+    },
+    {
+      priority: 2,
+      type: 'research-lead',
+      companyId: slug(source.topLead),
+      companyName: source.topLead,
+      title: 'Review source-of-truth consistency',
+      whyItMatters: warnings.length > 0 ? warnings.join(' ') : 'No conflicting legacy daily actions detected.',
+      estimatedImpact: `Keeps daily plan aligned to ${source.topLead}.`,
+      recommendedNextStep: 'Use Revenue Intelligence as the only commercial decision source.',
+      score: 1990,
+    },
+    ...legacyActions
+      .filter((action) => action.companyName === source.topLead)
+      .map((action, index) => ({ ...action, priority: index + 3 })),
+  ];
+
+  return actions.slice(0, 5).map((action, index) => ({ ...action, priority: index + 1 }));
 }
 
 export function writeDailyPlanOutputs(plan: DailyRevenuePlan): string[] {
@@ -754,6 +793,10 @@ function localDate(date: Date): string {
 
 function bullets(items: string[]): string {
   return items.map((item) => `- ${item}`).join('\n');
+}
+
+function slug(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'lead';
 }
 
 function yesNo(value: boolean): 'Yes' | 'No' {

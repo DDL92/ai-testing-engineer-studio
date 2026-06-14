@@ -1,49 +1,34 @@
 {
-  "generatedAt": "2026-06-14T02:13:38.807Z",
+  "generatedAt": "2026-06-14T05:37:55.263Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-14",
     "topActions": [
       {
         "priority": 1,
-        "title": "Review PushPress proposal package",
-        "whyItMatters": "A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.",
-        "estimatedImpact": "Reviewable path to QA Audit ($199-$500); no revenue is assumed.",
-        "nextStep": "Review output/proposals/pushpress-proposal.md and output/proposals/pushpress-proposal.pdf for scope, claims, and pricing before any external use."
+        "title": "Review Appointy package",
+        "whyItMatters": "Revenue Intelligence is the source of truth. Current decision: GO.",
+        "estimatedImpact": "Review evidence and position a scoped QA Audit as the first paid step toward a retainer path.",
+        "nextStep": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
       },
       {
         "priority": 2,
-        "title": "Review TeamUp proposal package",
-        "whyItMatters": "A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.",
-        "estimatedImpact": "Reviewable path to Playwright Starter Pack ($900-$1500); no revenue is assumed.",
-        "nextStep": "Review output/proposals/teamup-proposal.md and output/proposals/teamup-proposal.pdf for scope, claims, and pricing before any external use."
+        "title": "Confirm Appointy readiness",
+        "whyItMatters": "Keeps daily execution aligned with the unified top lead instead of legacy lead queues.",
+        "estimatedImpact": "Recommended offer: QA Automation Retainer ($1500-$3000/month).",
+        "nextStep": "Review Revenue Intelligence, message pack, evidence, and readiness blockers manually."
       },
       {
         "priority": 3,
-        "title": "Review Glofox / ABC Fitness proposal package",
-        "whyItMatters": "A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.",
-        "estimatedImpact": "Reviewable path to QA Audit ($199-$500); no revenue is assumed.",
-        "nextStep": "Review output/proposals/glofox-proposal.md and output/proposals/glofox-proposal.pdf for scope, claims, and pricing before any external use."
-      },
-      {
-        "priority": 4,
-        "title": "Close evidence gaps for Wodify",
-        "whyItMatters": "Evidence collection can unblock a paid audit or proposal path.",
-        "estimatedImpact": "Improves audit readiness; no revenue is counted until a paid engagement exists in local client data.",
-        "nextStep": "Review missing local evidence for Wodify: Lighthouse report missing, Playwright evidence missing, Client audit PDF missing."
-      },
-      {
-        "priority": 5,
-        "title": "Review upcoming follow-up timing for Chris McConachie",
-        "whyItMatters": "Scheduled follow-up context keeps active conversations from stalling while still respecting due dates.",
-        "estimatedImpact": "Reviewable path to QA Audit ($199-$500); no revenue is assumed.",
-        "nextStep": "Confirm whether the local follow-up date 2026-06-19 still makes sense for Chris McConachie. Do not send a message from this system."
+        "title": "Review consistency warnings",
+        "whyItMatters": "No legacy top-lead conflicts detected in daily plan input.",
+        "estimatedImpact": "Prevents PushPress or other legacy leads from becoming the visible revenue priority.",
+        "nextStep": "Use Revenue Intelligence as the only source for commercial decisions."
       }
     ],
     "revenuePriorities": [
-      "Review PushPress proposal package",
-      "Review TeamUp proposal package",
-      "Review Glofox / ABC Fitness proposal package"
+      "Review Appointy package",
+      "Review source-of-truth consistency"
     ],
     "followUpsDue": 0,
     "proposalReviews": [
@@ -56,54 +41,18 @@
     "totalLeads": 4,
     "topLeads": [
       {
-        "companyId": "pushpress",
-        "companyName": "PushPress",
+        "companyId": "appointy",
+        "companyName": "Appointy",
         "score": 100,
-        "detail": "QA Audit ($199-$500)"
-      },
-      {
-        "companyId": "teamup",
-        "companyName": "TeamUp",
-        "score": 93,
-        "detail": "Playwright Starter Pack ($900-$1500)"
-      },
-      {
-        "companyId": "glofox",
-        "companyName": "Glofox / ABC Fitness",
-        "score": 90,
-        "detail": "QA Audit ($199-$500)"
-      },
-      {
-        "companyId": "wodify",
-        "companyName": "Wodify",
-        "score": 64,
-        "detail": "QA Audit ($199-$500)"
+        "detail": "QA Automation Retainer ($1500-$3000/month)"
       }
     ],
     "highestOpportunityScores": [
       {
-        "companyId": "pushpress",
-        "companyName": "PushPress",
+        "companyId": "appointy",
+        "companyName": "Appointy",
         "score": 100,
-        "detail": "QA Audit ($199-$500)"
-      },
-      {
-        "companyId": "teamup",
-        "companyName": "TeamUp",
-        "score": 93,
-        "detail": "Playwright Starter Pack ($900-$1500)"
-      },
-      {
-        "companyId": "glofox",
-        "companyName": "Glofox / ABC Fitness",
-        "score": 90,
-        "detail": "QA Audit ($199-$500)"
-      },
-      {
-        "companyId": "wodify",
-        "companyName": "Wodify",
-        "score": 64,
-        "detail": "QA Audit ($199-$500)"
+        "detail": "QA Automation Retainer ($1500-$3000/month)"
       }
     ]
   },
@@ -137,12 +86,12 @@
     ]
   },
   "revenue": {
-    "bestAuditOpportunity": "PushPress",
-    "bestStarterPackOpportunity": "TeamUp",
-    "bestRetainerOpportunity": "PushPress"
+    "bestAuditOpportunity": "Appointy",
+    "bestStarterPackOpportunity": "Appointy",
+    "bestRetainerOpportunity": "Appointy"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-14T02:13:38.807Z",
+    "lastUpdate": "2026-06-14T05:37:55.263Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "10 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -165,7 +114,7 @@
     "firstClientGoal": "Appointy",
     "firstRetainerGoal": "Appointy",
     "topRevenueTarget": "Appointy",
-    "topRevenueAction": "Move First Audit Sold forward",
+    "topRevenueAction": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
     "topActivationScore": 62
   },
   "executionPack": {
@@ -185,7 +134,7 @@
     "wins": 0,
     "losses": 0,
     "replyRate": "No outcomes recorded yet.",
-    "nextManualMessage": "No outcomes recorded yet. Review the PushPress message pack before any manual send."
+    "nextManualMessage": "No outcomes recorded yet. Review the Appointy message pack before any manual send."
   },
   "followUpEngine": {
     "followUpQueue": 29,
@@ -264,14 +213,14 @@
     "lastSuccessfulRun": "2026-06-14T01:53:03.396Z",
     "nextScheduledRun": "2026-06-15T13:00:00.000Z (07:00 America/Costa_Rica)",
     "runnerHealth": "Healthy",
-    "dailyRefreshStatus": "Refresh sequence complete"
+    "dailyRefreshStatus": "Refresh sequence complete. Top lead: Appointy."
   },
   "revenueIntelligence": {
     "revenueIntelligenceStatus": "Unified",
     "currentTopLead": "Appointy",
     "revenueTarget": "First paid client",
     "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
-    "executionPriority": "Review evidence and position a scoped QA Audit as the first paid step toward a retainer path."
+    "executionPriority": "HIGH"
   },
   "mobileCommandCenter": {
     "reviewCenter": {
@@ -281,46 +230,32 @@
       "followUpsReady": 0
     },
     "revenueCenter": {
-      "bestAuditOpportunity": "PushPress",
-      "bestStarterPackOpportunity": "TeamUp",
-      "bestRetainerOpportunity": "PushPress",
-      "highestRevenuePriority": "Review PushPress proposal package"
+      "bestAuditOpportunity": "Appointy",
+      "bestStarterPackOpportunity": "Appointy",
+      "bestRetainerOpportunity": "Appointy",
+      "highestRevenuePriority": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
     },
     "actionQueue": [
       {
         "priority": 1,
-        "title": "Review PushPress proposal package",
-        "whyItMatters": "A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.",
-        "estimatedImpact": "Reviewable path to QA Audit ($199-$500); no revenue is assumed.",
-        "nextStep": "Review output/proposals/pushpress-proposal.md and output/proposals/pushpress-proposal.pdf for scope, claims, and pricing before any external use."
+        "title": "Review Appointy package",
+        "whyItMatters": "Revenue Intelligence is the source of truth. Current decision: GO.",
+        "estimatedImpact": "Review evidence and position a scoped QA Audit as the first paid step toward a retainer path.",
+        "nextStep": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
       },
       {
         "priority": 2,
-        "title": "Review TeamUp proposal package",
-        "whyItMatters": "A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.",
-        "estimatedImpact": "Reviewable path to Playwright Starter Pack ($900-$1500); no revenue is assumed.",
-        "nextStep": "Review output/proposals/teamup-proposal.md and output/proposals/teamup-proposal.pdf for scope, claims, and pricing before any external use."
+        "title": "Confirm Appointy readiness",
+        "whyItMatters": "Keeps daily execution aligned with the unified top lead instead of legacy lead queues.",
+        "estimatedImpact": "Recommended offer: QA Automation Retainer ($1500-$3000/month).",
+        "nextStep": "Review Revenue Intelligence, message pack, evidence, and readiness blockers manually."
       },
       {
         "priority": 3,
-        "title": "Review Glofox / ABC Fitness proposal package",
-        "whyItMatters": "A generated proposal is closer to revenue than more research, as long as evidence and scope are reviewed manually.",
-        "estimatedImpact": "Reviewable path to QA Audit ($199-$500); no revenue is assumed.",
-        "nextStep": "Review output/proposals/glofox-proposal.md and output/proposals/glofox-proposal.pdf for scope, claims, and pricing before any external use."
-      },
-      {
-        "priority": 4,
-        "title": "Close evidence gaps for Wodify",
-        "whyItMatters": "Evidence collection can unblock a paid audit or proposal path.",
-        "estimatedImpact": "Improves audit readiness; no revenue is counted until a paid engagement exists in local client data.",
-        "nextStep": "Review missing local evidence for Wodify: Lighthouse report missing, Playwright evidence missing, Client audit PDF missing."
-      },
-      {
-        "priority": 5,
-        "title": "Review upcoming follow-up timing for Chris McConachie",
-        "whyItMatters": "Scheduled follow-up context keeps active conversations from stalling while still respecting due dates.",
-        "estimatedImpact": "Reviewable path to QA Audit ($199-$500); no revenue is assumed.",
-        "nextStep": "Confirm whether the local follow-up date 2026-06-19 still makes sense for Chris McConachie. Do not send a message from this system."
+        "title": "Review consistency warnings",
+        "whyItMatters": "No legacy top-lead conflicts detected in daily plan input.",
+        "estimatedImpact": "Prevents PushPress or other legacy leads from becoming the visible revenue priority.",
+        "nextStep": "Use Revenue Intelligence as the only source for commercial decisions."
       }
     ],
     "auditCenter": {

@@ -4,6 +4,7 @@ import { Client } from '../clientReports/types';
 import { buildCommercialModeSummary, getDemoLeadReasons } from '../commercialMode/commercialModeRules';
 import { ContactReviewRecord } from '../contactReview/types';
 import { Lead, RecommendedOffer } from '../leads/types';
+import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import {
   CurrencyRange,
   ExpansionOpportunity,
@@ -74,14 +75,18 @@ export function loadRevenueCommandCenterInput(): RevenueCommandCenterInput {
 }
 
 export function buildRevenueCommandCenterReport(input: RevenueCommandCenterInput): RevenueCommandCenterReport {
+  const source = getRevenueSourceOfTruth();
   const commercialSummary = buildCommercialModeSummary(input.leads);
   const commercialLeadIds = new Set(commercialSummary.commercialLeads.map((lead) => lead.id));
   const commercialContactReviews = input.contactReviews.filter((review) => commercialLeadIds.has(review.leadId));
   const topOutreachLeadIds = parseTopOutreachLeadIds(input.contextSources);
   const contactReviewByLeadId = new Map(commercialContactReviews.map((review) => [review.leadId, review]));
-  const opportunities = commercialSummary.commercialLeads
+  const legacyOpportunities = commercialSummary.commercialLeads
     .map((lead) => buildRevenueOpportunity(lead, contactReviewByLeadId.get(lead.id), topOutreachLeadIds))
     .filter((opportunity) => opportunity.revenuePriorityScore > 0)
+    .sort(sortRevenueOpportunities);
+  const opportunities = [buildSourceOfTruthOpportunity(source), ...legacyOpportunities]
+    .filter(uniqueRevenueOpportunity)
     .sort(sortRevenueOpportunities);
   const commercialClients = input.clients.filter(isCommercialClient);
   const excludedClientRecords = input.clients.filter((client) => !isCommercialClient(client));
@@ -380,6 +385,39 @@ function inactiveOpportunity(
   };
 }
 
+function buildSourceOfTruthOpportunity(source: ReturnType<typeof getRevenueSourceOfTruth>): RevenuePriorityOpportunity {
+  const lead: Lead = {
+    id: slugify(source.topLead),
+    companyName: source.topLead,
+    website: '',
+    industry: 'Revenue Intelligence',
+    source: 'Revenue Intelligence source of truth',
+    status: 'reviewing',
+    fitNotes: source.executionPriorityDetail,
+    painPoints: [],
+    recommendedOffer: recommendedOfferKey(source.recommendedOffer),
+    score: 10,
+    createdAt: source.lastUpdated,
+    updatedAt: source.lastUpdated,
+    nextAction: source.nextAction,
+    qualificationSummary: `Revenue decision: ${source.revenueDecision}; execution priority: ${source.executionPriority}.`,
+  };
+
+  return {
+    lead,
+    artifacts: detectArtifacts(lead.id, false, false),
+    revenuePriorityScore: 1000,
+    probability: source.revenueDecision === 'GO' ? 'High probability' : source.revenueDecision === 'REVIEW' ? 'Medium probability' : 'Low probability',
+    recommendedOffer: lead.recommendedOffer,
+    estimatedAuditValueRange: auditRange,
+    estimatedMonthlyRange: monthlyRangeFor(lead.recommendedOffer),
+    reason: `Revenue Intelligence source of truth. ${source.executionPriorityDetail}`,
+    scoreReasons: ['Revenue Intelligence source of truth', `Top lead: ${source.topLead}`, `Decision: ${source.revenueDecision}`],
+    nextAction: source.nextAction,
+    suggestedCommand: 'npm run revenue:recommendation',
+  };
+}
+
 function scoreRevenueOpportunity(
   lead: Lead,
   contactReview: ContactReviewRecord | undefined,
@@ -528,7 +566,13 @@ function buildTopRevenueActions(
   renewalOpportunities: RenewalOpportunity[],
   expansionOpportunities: ExpansionOpportunity[],
 ): RevenueAction[] {
-  const actions: RevenueAction[] = [];
+  const source = getRevenueSourceOfTruth();
+  const actions: RevenueAction[] = [{
+    priority: 1,
+    title: `Review ${source.topLead} package`,
+    reason: `Revenue Intelligence source of truth. Decision: ${source.revenueDecision}. ${source.executionPriorityDetail}`,
+    suggestedCommand: 'npm run revenue:recommendation',
+  }];
   const activeRetainer = activeRetainerClients[0];
   const followUp = opportunities.find((opportunity) => opportunity.contactReview?.nextFollowUpDate || opportunity.contactReview?.messageStatus === 'follow-up-needed');
   const topRetainer = opportunities.find((opportunity) => opportunity.estimatedMonthlyRange.max > 0 && opportunity.lead.id !== followUp?.lead.id);
@@ -870,6 +914,26 @@ function formatGap(currentMrr: number, targetMin: number, targetMax: number): st
 function monthlyRangeFor(offer: RecommendedOffer): CurrencyRange {
   const range = offerRanges[offer];
   return range.cadence === 'monthly' ? range : zeroMonthlyRange;
+}
+
+function recommendedOfferKey(offer: string): RecommendedOffer {
+  if (offer.includes('Retainer')) return 'qa-automation-retainer';
+  if (offer.includes('Starter')) return 'playwright-starter-pack';
+  if (offer.includes('Audit')) return 'qa-audit';
+  return 'qa-audit';
+}
+
+function uniqueRevenueOpportunity(opportunity: RevenuePriorityOpportunity, index: number, items: RevenuePriorityOpportunity[]): boolean {
+  const key = normalizeKey(opportunity.lead.companyName);
+  return items.findIndex((item) => normalizeKey(item.lead.companyName) === key) === index;
+}
+
+function normalizeKey(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, '');
+}
+
+function slugify(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'lead';
 }
 
 function offerRevenueBoost(offer: RecommendedOffer): number {

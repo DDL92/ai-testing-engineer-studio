@@ -1,24 +1,25 @@
 # Operator Cockpit
 
-Generated: 2026-06-13T21:04:31.944Z
+Generated: 2026-06-14T05:31:07.946Z
 
 ## Focus Now
-- Top Lead: PushPress
-- Top Offer: QA Audit ($199-$500)
-- Top Revenue Opportunity: PushPress (98/100)
-- Next Manual Action: Review PushPress executive summary, audit package, and proposal package; then Daniel decides manually whether to move the first QA Audit offer forward.
+- Top Lead: Appointy
+- Top Offer: QA Automation Retainer ($1500-$3000/month)
+- Top Revenue Opportunity: Appointy (62/100)
+- Next Manual Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
 ## Current Blockers
-- Daniel approval is still required before any external action.
-- No revenue should be claimed until a booked or received finance record exists locally.
-- No outreach, email, invoice, payment, or meeting is created by this pack.
+- Audit package readiness: Missing. Audit readiness score from Revenue Activation: 0/100.
+- Proposal readiness: Missing. Proposal readiness score from Revenue Activation: 0/100.
+- Executive summary readiness: Missing. Expected executive summary: output/executive/appointy-executive-summary.md.
+- Evidence readiness: Needs Review. Evidence readiness score from Revenue Activation: 83/100.
 
 ## Important Warnings
 - MRR is $0 from local finance data; do not claim revenue.
 - Current MRR is $0 from local finance data. This is valid if no booked finance records exist.
 
 ## What To Ignore
-- Do not chase lower-ranked leads before PushPress review is complete.
+- Do not chase lower-ranked leads before Appointy review is complete.
 - Do not interpret missing outcomes as negative signal.
 - Do not treat opportunity scores as revenue.
 

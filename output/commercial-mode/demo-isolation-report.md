@@ -1,6 +1,6 @@
 # Demo Isolation Report
 
-Generated: 2026-06-12T16:42:46.744Z
+Generated: 2026-06-14T05:28:49.359Z
 
 ## Total Leads
 51

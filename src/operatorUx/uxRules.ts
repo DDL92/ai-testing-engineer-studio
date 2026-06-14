@@ -5,6 +5,7 @@ import { buildFinanceReport, loadFinanceInput } from '../financeTracking/finance
 import { buildFollowUpOperatingReport } from '../followUpEngine/followUpRules';
 import { buildLeadIntelligenceReport } from '../leadIntelligence/leadRules';
 import { buildRevenueActivationReport } from '../revenueActivation/revenueRules';
+import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
 import { readSnapshotState } from '../studioSnapshot/snapshotRules';
 import { OperatorQuickAction, OperatorUxSummary } from './types';
@@ -25,6 +26,7 @@ const safetyRules = [
 export function buildOperatorUxSummary(): OperatorUxSummary {
   const leadReport = buildLeadIntelligenceReport();
   const topLead = leadReport.leads[0];
+  const revenueTruth = getRevenueSourceOfTruth();
   const revenueActivation = buildRevenueActivationReport();
   const executionPack = buildFirstRevenueExecutionPack();
   const followUp = buildFollowUpOperatingReport();
@@ -37,29 +39,27 @@ export function buildOperatorUxSummary(): OperatorUxSummary {
   const studioStatus = studio.modules.some((item) => item.status === 'Not Ready')
     ? 'Needs Review'
     : studio.modules.some((item) => item.status === 'Warning') ? 'Operational with warnings' : 'Healthy';
-  const topAction = topLead
-    ? `${topLead.recommendedActionType} - ${topLead.recommendedNextAction}`
-    : 'Run lead:intelligence to refresh lead focus.';
+  const topAction = revenueTruth.nextAction;
 
   return {
     generatedAt: new Date().toISOString(),
     studioStatus,
     revenueStatus: `MRR: $${finance.currentMrr.toLocaleString('en-US')} from local finance data.`,
-    topLead: topLead?.companyName ?? 'No lead found',
-    topOffer: topLead?.recommendedOffer ?? 'No offer found',
+    topLead: revenueTruth.topLead,
+    topOffer: revenueTruth.recommendedOffer,
     topAction,
     followUpStatus: `${followUp.dashboard.todaysFollowUps} follow-up review item(s), ${followUp.dashboard.waitingResponses} waiting response(s).`,
     systemHealth: `Release readiness: ${releaseReadiness}. Critical issues: ${studio.releaseReadiness.criticalIssues.length}. Warnings: ${studio.releaseReadiness.warnings.length}.`,
     snapshotStatus: snapshot.snapshotStatus,
     recoveryStatus: snapshot.recoveryStatus,
     topRevenueOpportunity: revenueActivation.pipeline[0]
-      ? `${revenueActivation.pipeline[0].companyName} (${revenueActivation.pipeline[0].activationScore}/100)`
+      ? `${revenueTruth.topLead} (${revenueActivation.pipeline[0].activationScore}/100)`
       : 'No revenue opportunity found',
-    nextManualAction: executionPack.manualNextAction,
+    nextManualAction: revenueTruth.nextAction,
     currentBlockers: executionPack.remainingBlockers,
     importantWarnings: buildWarnings(studio.releaseReadiness.warnings, finance.currentMrr),
-    todayAtAGlance: buildTodayAtAGlance(topLead?.companyName, topLead?.recommendedOffer, topAction, finance.currentMrr, studioStatus, releaseReadiness),
-    quickActions: quickActions(),
+    todayAtAGlance: buildTodayAtAGlance(revenueTruth.topLead, revenueTruth.recommendedOffer, topAction, finance.currentMrr, studioStatus, releaseReadiness),
+    quickActions: quickActions(revenueTruth.topLead),
     safetyRules,
   };
 }
@@ -135,7 +135,7 @@ export function renderOperatorCockpit(summary: OperatorUxSummary): string {
     '',
     '## What To Ignore',
     renderList([
-      'Do not chase lower-ranked leads before PushPress review is complete.',
+      `Do not chase lower-ranked leads before ${summary.topLead} review is complete.`,
       'Do not interpret missing outcomes as negative signal.',
       'Do not treat opportunity scores as revenue.',
     ]),
@@ -226,12 +226,12 @@ function buildTodayAtAGlance(
   ];
 }
 
-function quickActions(): OperatorQuickAction[] {
+function quickActions(topLead: string): OperatorQuickAction[] {
   return [
     { label: 'Dashboard', command: 'npm run dashboard:mobile', purpose: 'Open the mobile command center on the local network.' },
     { label: 'Revenue', command: 'npm run revenue:focus', purpose: 'Refresh the 30-minute revenue focus.' },
     { label: 'Daily Plan', command: 'npm run day:plan', purpose: 'Generate today’s local operating plan.' },
-    { label: 'PushPress Review', command: 'npm run message:pack -- --company PushPress', purpose: 'Review manual-only PushPress message drafts.' },
+    { label: `${topLead} Review`, command: 'npm run message:pack', purpose: `Review manual-only ${topLead} message drafts.` },
     { label: 'Lead Intelligence', command: 'npm run lead:intelligence', purpose: 'Refresh best lead, offer, and next action.' },
     { label: 'Follow-Up Queue', command: 'npm run followup:daily', purpose: 'Review follow-up priorities without sending anything.' },
     { label: 'Outcome Tracking', command: 'npm run outcome:dashboard', purpose: 'Review manually recorded outcomes.' },

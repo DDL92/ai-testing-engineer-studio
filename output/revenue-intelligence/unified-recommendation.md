@@ -1,6 +1,6 @@
 # Unified Recommendation
 
-Generated: 2026-06-14T02:12:29.907Z
+Generated: 2026-06-14T05:37:55.103Z
 
 Appointy is the unified top lead. Recommended offer: QA Automation Retainer ($1500-$3000/month).
 

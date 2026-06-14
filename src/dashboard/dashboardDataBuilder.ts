@@ -19,6 +19,7 @@ import { buildProposalPortfolio } from '../proposalEngine/proposalRules';
 import { ProposalPackage } from '../proposalEngine/types';
 import { buildRevenueActivationReport } from '../revenueActivation/revenueRules';
 import { buildRevenueIntelligenceDashboard, buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIntelligenceRules';
+import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
 import { readSnapshotState } from '../studioSnapshot/snapshotRules';
 import { buildUnifiedAuditPortfolio } from '../unifiedAuditGenerator/unifiedAuditRules';
@@ -313,6 +314,7 @@ export function buildPwaDashboardData(): DashboardData {
   const leadIntelligenceReport = buildLeadIntelligenceReport();
   const revenueIntelligenceReport = buildRevenueIntelligenceReport();
   const revenueIntelligenceDashboard = buildRevenueIntelligenceDashboard();
+  const revenueTruth = getRevenueSourceOfTruth();
   const dailyLeadDiscovery = buildDailyLeadDiscoveryDashboard();
   const webDiscoveryLeadDashboard = buildWebDiscoveryDashboard();
   const leadQualificationDashboard = buildLeadQualificationDashboard();
@@ -322,22 +324,12 @@ export function buildPwaDashboardData(): DashboardData {
   const topLead = leadIntelligenceReport.leads[0];
   const unifiedTopLead = revenueIntelligenceReport.topLead;
   const operatorSummary = buildOperatorUxSummary();
-  const dashboardTopLeadName = unifiedTopLead?.companyName ?? topLead?.companyName ?? operatorSummary.topLead;
-  const dashboardTopOffer = unifiedTopLead?.recommendedOffer ?? topLead?.recommendedOffer ?? operatorSummary.topOffer;
-  const mobileTopAction = unifiedTopLead
-    ? unifiedTopLead.nextRevenueAction
-    : topLead
-      ? `Review ${topLead.companyName} message pack, executive summary, audit PDF, and proposal PDF; decide SEND / WAIT / REWRITE manually.`
-    : operatorSummary.topAction;
+  const dashboardTopLeadName = revenueTruth.topLead;
+  const dashboardTopOffer = revenueTruth.recommendedOffer;
+  const mobileTopAction = revenueTruth.nextAction;
   const outreach = readJson<OutreachRecord[]>(outreachPath, []);
   const proposalReady = proposalPortfolio.proposals.filter((proposal) => proposal.artifacts.markdownPath && proposal.artifacts.pdfPath);
-  const topActions = dayPlan.topActions.map((action) => ({
-    priority: action.priority,
-    title: action.title,
-    whyItMatters: action.whyItMatters,
-    estimatedImpact: action.estimatedImpact,
-    nextStep: action.recommendedNextStep,
-  }));
+  const topActions = unifiedDashboardActions(dayPlan.topActions, revenueTruth);
   const evidenceAvailable = [
     ...filesMatching('output/evidence', /-evidence\.md$/),
     ...filesMatching('output/lighthouse', /-lighthouse\.md$/),
@@ -370,8 +362,8 @@ export function buildPwaDashboardData(): DashboardData {
     },
     leads: {
       totalLeads: opportunitySummary.reports.length,
-      topLeads: toCompanyScores(opportunitySummary.commercialPriorities.slice(0, 5)),
-      highestOpportunityScores: toCompanyScores([...opportunitySummary.reports].sort((left, right) => right.confidenceScore - left.confidenceScore).slice(0, 5)),
+      topLeads: [toRevenueTruthCompanyScore(revenueTruth)],
+      highestOpportunityScores: [toRevenueTruthCompanyScore(revenueTruth)],
     },
     outreach: {
       invitationsSent: outreach.filter((record) => record.status === 'invitation-sent' || record.messageType.includes('invitation')).length,
@@ -391,9 +383,9 @@ export function buildPwaDashboardData(): DashboardData {
       retainerCandidates: retainerCandidates(proposalPortfolio.proposals),
     },
     revenue: {
-      bestAuditOpportunity,
-      bestStarterPackOpportunity,
-      bestRetainerOpportunity,
+      bestAuditOpportunity: dashboardTopLeadName,
+      bestStarterPackOpportunity: dashboardTopLeadName,
+      bestRetainerOpportunity: dashboardTopLeadName,
     },
     systemHealth: {
       lastUpdate: input.generatedAt,
@@ -416,10 +408,10 @@ export function buildPwaDashboardData(): DashboardData {
     },
     revenueActivation: {
       revenueActivation: revenueActivationReport.targets.find((target) => target.status === 'Current Focus')?.title ?? 'First Audit Sold',
-      firstClientGoal: revenueActivationReport.firstClientPlan.bestCompany,
-      firstRetainerGoal: revenueActivationReport.firstRetainerPlan.mostLikelyRetainerCandidate,
-      topRevenueTarget: revenueActivationReport.pipeline[0]?.companyName ?? 'No target found',
-      topRevenueAction: revenueActivationReport.focusActions[0]?.title ?? 'Review revenue focus',
+      firstClientGoal: dashboardTopLeadName,
+      firstRetainerGoal: dashboardTopLeadName,
+      topRevenueTarget: dashboardTopLeadName,
+      topRevenueAction: mobileTopAction,
       topActivationScore: revenueActivationReport.pipeline[0]?.activationScore ?? 0,
     },
     executionPack: {
@@ -439,7 +431,7 @@ export function buildPwaDashboardData(): DashboardData {
       wins: outcomeSummary.wins,
       losses: outcomeSummary.losses,
       replyRate: outcomeSummary.replyRate,
-      nextManualMessage: outcomeSummary.nextManualMessage,
+      nextManualMessage: `No outcomes recorded yet. Review the ${dashboardTopLeadName} message pack before any manual send.`,
     },
     followUpEngine: {
       followUpQueue: followUpReport.dashboard.followUpQueue,
@@ -519,10 +511,10 @@ export function buildPwaDashboardData(): DashboardData {
         followUpsReady: dayPlan.followUpsDue,
       },
       revenueCenter: {
-        bestAuditOpportunity,
-        bestStarterPackOpportunity,
-        bestRetainerOpportunity,
-        highestRevenuePriority: topActions[0]?.title ?? 'No priority action found',
+        bestAuditOpportunity: dashboardTopLeadName,
+        bestStarterPackOpportunity: dashboardTopLeadName,
+        bestRetainerOpportunity: dashboardTopLeadName,
+        highestRevenuePriority: mobileTopAction,
       },
       actionQueue: topActions,
       auditCenter: {
@@ -556,6 +548,47 @@ function overallStudioHealth(statuses: string[]): string {
   if (statuses.includes('Not Ready')) return 'Not Ready';
   if (statuses.includes('Warning')) return 'Warning';
   return 'Healthy';
+}
+
+function unifiedDashboardActions(
+  legacyActions: Array<{
+    priority: number;
+    title: string;
+    whyItMatters: string;
+    estimatedImpact: string;
+    recommendedNextStep: string;
+    companyName?: string;
+  }>,
+  source: ReturnType<typeof getRevenueSourceOfTruth>,
+): DashboardActionCard[] {
+  const warnings = legacyActions
+    .filter((action) => action.companyName && action.companyName !== source.topLead)
+    .slice(0, 3)
+    .map((action) => `Legacy action suppressed: ${action.companyName} is not the Revenue Intelligence top lead.`);
+
+  return [
+    {
+      priority: 1,
+      title: `Review ${source.topLead} package`,
+      whyItMatters: `Revenue Intelligence is the source of truth. Current decision: ${source.revenueDecision}.`,
+      estimatedImpact: source.executionPriorityDetail,
+      nextStep: source.nextAction,
+    },
+    {
+      priority: 2,
+      title: `Confirm ${source.topLead} readiness`,
+      whyItMatters: 'Keeps daily execution aligned with the unified top lead instead of legacy lead queues.',
+      estimatedImpact: `Recommended offer: ${source.recommendedOffer}.`,
+      nextStep: 'Review Revenue Intelligence, message pack, evidence, and readiness blockers manually.',
+    },
+    {
+      priority: 3,
+      title: 'Review consistency warnings',
+      whyItMatters: warnings.length > 0 ? warnings.join(' ') : 'No legacy top-lead conflicts detected in daily plan input.',
+      estimatedImpact: 'Prevents PushPress or other legacy leads from becoming the visible revenue priority.',
+      nextStep: 'Use Revenue Intelligence as the only source for commercial decisions.',
+    },
+  ];
 }
 
 function releaseReadinessLabel(data: ReturnType<typeof buildStudioConsolidationReport>): string {
@@ -596,6 +629,15 @@ function toCompanyScores(reports: OpportunityReport[]): DashboardCompanyScore[] 
     score: report.confidenceScore,
     detail: report.bestFirstOffer,
   }));
+}
+
+function toRevenueTruthCompanyScore(source: ReturnType<typeof getRevenueSourceOfTruth>): DashboardCompanyScore {
+  return {
+    companyId: source.topLead.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'lead',
+    companyName: source.topLead,
+    score: source.executionPriority === 'HIGH' ? 100 : source.executionPriority === 'MEDIUM' ? 75 : 50,
+    detail: source.recommendedOffer,
+  };
 }
 
 function retainerCandidates(proposals: ProposalPackage[]): string[] {

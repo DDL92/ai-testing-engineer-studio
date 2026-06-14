@@ -2,6 +2,7 @@ import { ContactReviewRecord } from '../contactReview/types';
 import { Lead } from '../leads/types';
 import { buildOpportunityTracker } from '../pipeline/pipelineRules';
 import { OpportunityItem } from '../pipeline/types';
+import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import { CommercialLeadDecision, CommercialModeInput, CommercialModeReport, CommercialModeSummary } from './types';
 
 export function getDemoLeadReasons(lead: Lead): string[] {
@@ -61,15 +62,54 @@ export function filterCommercialContactReviews(contactReviews: ContactReviewReco
 }
 
 export function buildCommercialModeReport(input: CommercialModeInput): CommercialModeReport {
+  const source = getRevenueSourceOfTruth();
   const summary = buildCommercialModeSummary(input.leads);
   const commercialContactReviews = filterCommercialContactReviews(input.contactReviews, summary.commercialLeads);
   const tracker = buildOpportunityTracker(summary.commercialLeads, commercialContactReviews);
+  const unifiedOpportunity = buildCommercialSourceOpportunity(source);
 
   return {
     generatedAt: input.generatedAt,
     summary,
-    topCommercialOpportunities: tracker.topOpportunities.slice(0, 10),
-    topCommercialActions: tracker.topOpportunities.slice(0, 5).map((item) => `${item.lead.companyName}: ${item.nextAction}`),
+    topCommercialOpportunities: [unifiedOpportunity, ...tracker.topOpportunities.filter((item) => item.lead.companyName !== source.topLead)].slice(0, 10),
+    topCommercialActions: [
+      `${source.topLead}: ${source.nextAction}`,
+      ...tracker.topOpportunities.filter((item) => item.lead.companyName === source.topLead).slice(0, 4).map((item) => `${item.lead.companyName}: ${item.nextAction}`),
+    ],
+  };
+}
+
+function buildCommercialSourceOpportunity(source: ReturnType<typeof getRevenueSourceOfTruth>): OpportunityItem {
+  return {
+    lead: {
+      id: slug(source.topLead),
+      companyName: source.topLead,
+      website: '',
+      industry: 'Revenue Intelligence',
+      source: 'Revenue Intelligence source of truth',
+      status: 'reviewing',
+      fitNotes: source.executionPriorityDetail,
+      painPoints: [],
+      recommendedOffer: offerKey(source.recommendedOffer),
+      score: 10,
+      createdAt: source.lastUpdated,
+      updatedAt: source.lastUpdated,
+      nextAction: source.nextAction,
+    },
+    artifacts: {
+      researchPack: false,
+      auditPack: false,
+      outreachPack: false,
+      contactReview: false,
+      clientPrep: false,
+      clientOnboarding: false,
+      sow: false,
+    },
+    pipelineStage: 'NEW_LEAD',
+    opportunityScore: 100,
+    tier: 'A',
+    reason: `Revenue Intelligence source of truth. ${source.executionPriorityDetail}`,
+    nextAction: source.nextAction,
   };
 }
 
@@ -260,6 +300,17 @@ function manualReviewRules(): string[] {
     'Do not send outreach, proposals, reports, invoices, or client communication without Daniel approval.',
     'No APIs, scraping, browsing, CRM integrations, outreach automation, payments, credentials, or external databases are used.',
   ];
+}
+
+function offerKey(offer: string): Lead['recommendedOffer'] {
+  if (offer.includes('Retainer')) return 'qa-automation-retainer';
+  if (offer.includes('Starter')) return 'playwright-starter-pack';
+  if (offer.includes('Audit')) return 'qa-audit';
+  return 'qa-audit';
+}
+
+function slug(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'lead';
 }
 
 function renderList(items: string[]): string {

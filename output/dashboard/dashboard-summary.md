@@ -1,19 +1,19 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-14T02:13:38.807Z
+Generated: 2026-06-14T05:37:55.263Z
 
 ## Today
 
-- Top Actions: 5
-- Revenue Priorities: Review PushPress proposal package, Review TeamUp proposal package, Review Glofox / ABC Fitness proposal package
+- Top Actions: 3
+- Revenue Priorities: Review Appointy package, Review source-of-truth consistency
 - Follow-Ups Due: 0
 - Proposal Reviews: PushPress, TeamUp, Glofox / ABC Fitness
 
 ## Leads
 
 - Total Leads: 4
-- Top Leads: PushPress (100/100), TeamUp (93/100), Glofox / ABC Fitness (90/100), Wodify (64/100)
-- Highest Opportunity Scores: PushPress (100/100), TeamUp (93/100), Glofox / ABC Fitness (90/100), Wodify (64/100)
+- Top Leads: Appointy (100/100)
+- Highest Opportunity Scores: Appointy (100/100)
 
 ## Outreach
 
@@ -37,9 +37,9 @@ Generated: 2026-06-14T02:13:38.807Z
 
 ## Revenue
 
-- Best Audit Opportunity: PushPress
-- Best Starter Pack Opportunity: TeamUp
-- Best Retainer Opportunity: PushPress
+- Best Audit Opportunity: Appointy
+- Best Starter Pack Opportunity: Appointy
+- Best Retainer Opportunity: Appointy
 
 ## Studio Consolidation
 
@@ -60,7 +60,7 @@ Generated: 2026-06-14T02:13:38.807Z
 - First Client Goal: Appointy
 - First Retainer Goal: Appointy
 - Top Revenue Target: Appointy
-- Top Revenue Action: Move First Audit Sold forward
+- Top Revenue Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Top Activation Score: 62/100
 
 ## First Revenue Execution
@@ -82,7 +82,7 @@ Generated: 2026-06-14T02:13:38.807Z
 - Wins: 0
 - Losses: 0
 - Reply Rate: No outcomes recorded yet.
-- Next Manual Message: No outcomes recorded yet. Review the PushPress message pack before any manual send.
+- Next Manual Message: No outcomes recorded yet. Review the Appointy message pack before any manual send.
 
 ## Follow-Up Operating System
 

@@ -1,16 +1,16 @@
 # Monthly Success Review
 
-Generated At: 2026-06-11T21:28:11.998Z
+Generated At: 2026-06-14T05:37:10.507Z
 
 ## Month Summary
 
 - Leads created this month: 51
 - Clients reviewed: 2
-- Top opportunities available: 20
+- Top opportunities available: 21
 
 ## Revenue Snapshot
 
-- Estimated MRR: $2,000
+- Estimated MRR: $0
 - Active Clients: 2
 - Revenue uses local client monthlyFee values only.
 
@@ -28,9 +28,11 @@ Generated At: 2026-06-11T21:28:11.998Z
 ## Expansion Overview
 
 - Demo Retainer SaaS: QA Automation Retainer -> expanded retainer scope: review next-month scope only after current reporting and evidence are approved. (demo-retainer-client)
+- Demo Starter Marketplace: Playwright Starter Pack -> QA Automation Retainer: review if recurring QA risks and approved next actions justify monthly support. (demo-starter-client)
 
 ## Top Opportunities
 
+- Appointy: score 1000, stage NEW_LEAD
 - PushPress: score 100, stage FOLLOW_UP
 - BookingFlow AI: score 65, stage SOW_READY
 - TeamUp: score 60, stage RESEARCH_READY
@@ -40,7 +42,6 @@ Generated At: 2026-06-11T21:28:11.998Z
 - Bsport: score 65, stage NEW_LEAD
 - Fitli: score 65, stage NEW_LEAD
 - Momence: score 65, stage NEW_LEAD
-- MyStudio: score 65, stage NEW_LEAD
 
 ## Operational Risks
 
@@ -49,7 +50,7 @@ Generated At: 2026-06-11T21:28:11.998Z
 
 ## Next Month Priorities
 
-- Advance top opportunity: PushPress.
+- Advance top opportunity: Appointy.
 - Close evidence/reporting gaps for renewal watchlist clients.
 - Review expansion paths after reports and evidence are approved.
 - Review manual follow-up dates before outreach.

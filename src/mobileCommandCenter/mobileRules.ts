@@ -7,7 +7,7 @@ import { buildFinanceReport, loadFinanceInput } from '../financeTracking/finance
 import { buildLeadIntelligenceReport } from '../leadIntelligence/leadRules';
 import { buildOutcomeSummary, loadOutcomes } from '../outcomeTracking/outcomeRules';
 import { buildRevenueActivationReport } from '../revenueActivation/revenueRules';
-import { buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIntelligenceRules';
+import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
 import { buildWebLeadDiscoveryReport } from '../webLeadDiscovery/webDiscoveryRules';
 import { buildLeadQualificationReport } from '../webLeadQualification/normalizationRules';
@@ -45,7 +45,7 @@ const sprint82Safety = [
 
 export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
   const lead = buildLeadIntelligenceReport();
-  const revenueIntelligence = buildRevenueIntelligenceReport();
+  const revenueTruth = getRevenueSourceOfTruth();
   const revenue = buildRevenueActivationReport();
   const execution = buildFirstRevenueExecutionPack();
   const finance = buildFinanceReport(loadFinanceInput());
@@ -63,20 +63,15 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
   const bestQualifiedLead = leadQualification.topQualifiedLeads[0];
   const highestQaOpportunity = [...leadQualification.topQualifiedLeads].sort((left, right) => right.qaOpportunityScore - left.qaOpportunityScore || right.qualificationScore - left.qualificationScore)[0];
   const topLead = lead.leads[0];
-  const unifiedTopLead = revenueIntelligence.topLead;
   const studioHealth = studio.modules.some((module) => module.status === 'Not Ready')
     ? 'Not Ready'
     : studio.modules.some((module) => module.status === 'Warning') ? 'Warning' : 'Healthy';
   const revenueStatus = finance.currentMrr > 0
     ? `Current MRR: ${formatCurrency(finance.currentMrr)} from local finance data.`
     : 'Current MRR: $0';
-  const topAction = unifiedTopLead
-    ? unifiedTopLead.nextRevenueAction
-    : topLead
-      ? mobileActionFor(topLead.companyName, execution.recommendation)
-    : 'Run npm run lead:intelligence to refresh lead focus.';
-  const topLeadName = unifiedTopLead?.companyName ?? topLead?.companyName ?? execution.topTarget.companyName;
-  const topOffer = unifiedTopLead?.recommendedOffer ?? topLead?.recommendedOffer ?? execution.topTarget.bestOffer;
+  const topAction = revenueTruth.nextAction || (topLead ? mobileActionFor(topLead.companyName, execution.recommendation) : 'Run npm run lead:intelligence to refresh lead focus.');
+  const topLeadName = revenueTruth.topLead;
+  const topOffer = revenueTruth.recommendedOffer;
   const studioStatus = studioHealth === 'Healthy'
     ? 'Healthy'
     : studioHealth === 'Warning' ? 'Operational with warnings' : 'Needs Review';
@@ -100,14 +95,14 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
       `Studio Health: ${studioHealth}`,
     ].join(' | '),
     currentMrr: finance.currentMrr,
-    firstClientStatus: `${execution.topTarget.companyName}: ${execution.recommendation}`,
+    firstClientStatus: `${revenueTruth.topLead}: ${revenueTruth.revenueDecision}`,
     revenueActivationReadiness: revenue.pipeline[0]
       ? `${revenue.pipeline[0].companyName} activation score ${revenue.pipeline[0].activationScore}/100`
       : 'No revenue activation target found',
     bestAction: topAction,
     studioHealth,
     revenueHealth: revenueStatus,
-    nextManualStep: execution.manualNextAction,
+    nextManualStep: revenueTruth.nextAction,
     outcomeStatus: outcomes.hasOutcomes ? `${outcomes.totalRecords} outcome record(s)` : 'No outcomes recorded yet.',
     todaysDiscoveredLeads: todaysWebLeads.length > 0
       ? todaysWebLeads.slice(0, 3).map((item) => item.companyName).join(', ')
@@ -132,8 +127,8 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     topQualifiedLead: bestQualifiedLead?.normalizedName ?? 'No qualified web lead.',
     todaysRecommendedAction: topAction,
     currentTopLead: topLeadName,
-    nextRevenueAction: unifiedTopLead?.nextRevenueAction ?? topAction,
-    executionPriority: unifiedTopLead?.executionPriority ?? 'Review current revenue focus before any manual external action.',
+    nextRevenueAction: revenueTruth.nextAction,
+    executionPriority: revenueTruth.executionPriority,
     safetyRules: sprint82Safety,
   };
 }

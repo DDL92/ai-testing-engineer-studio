@@ -1,12 +1,12 @@
 # System Highlights
 
-Generated: 2026-06-13T21:20:19.211Z
+Generated: 2026-06-14T05:32:18.525Z
 
 - Studio: Healthy
 - Revenue: MRR: $0 from local finance data.
-- Best lead: PushPress
-- Best offer: QA Audit ($199-$500)
-- Follow-ups: 4 follow-up review item(s), 0 waiting response(s).
+- Best lead: Appointy
+- Best offer: QA Automation Retainer ($1500-$3000/month)
+- Follow-ups: 5 follow-up review item(s), 0 waiting response(s).
 - Snapshot: Ready
 - Recovery: Ready
 
