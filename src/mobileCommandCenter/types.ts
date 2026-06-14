@@ -170,6 +170,19 @@ export interface MobileCommandCenterSummary {
   commercialPriority: string;
   commercialDecision: string;
   commercialAction: string;
+  architectureStatus: string;
+  commandHealth: string;
+  runtimeHealth: string;
+  consolidationProgress: string;
+  testingStatus: string;
+  qualityGateStatus: string;
+  ciStatus: string;
+  intelligenceStatus: string;
+  companyConfidence: string;
+  evidenceConfidence: string;
+  evidenceStatus: string;
+  readinessStatus: string;
+  lighthouseStatus: string;
   safetyRules: string[];
 }
 

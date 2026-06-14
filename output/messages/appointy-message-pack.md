@@ -1,6 +1,6 @@
 # Appointy Message Pack
 
-Generated: 2026-06-14T05:49:57.675Z
+Generated: 2026-06-14T16:33:54.003Z
 
 Manual-only drafts for human review. Nothing was sent.
 

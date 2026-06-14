@@ -1,0 +1,10 @@
+[
+  {
+    "id": "demo-lead-001",
+    "companyName": "Sample BookingFlow AI",
+    "website": "https://example.com",
+    "segment": "Demo SaaS",
+    "qaOpportunity": "Public signup and booking smoke test coverage",
+    "status": "sample-only"
+  }
+]

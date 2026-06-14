@@ -4,6 +4,19 @@ import { ClientWorkflowDocument, ClientWorkflowInput, ClientWorkflowRecommendati
 const auditPriceRange = '$199-$500';
 const starterPriceRange = '$900-$1500';
 const retainerPriceRange = '$1500-$3000/month';
+const clientPreparationPackages = ['qa-audit', 'starter-pack', 'retainer'] as const;
+
+export type ClientPreparationPackage = typeof clientPreparationPackages[number];
+
+export function isSupportedClientPreparationPackage(value: string): value is ClientPreparationPackage {
+  return clientPreparationPackages.includes(value as ClientPreparationPackage);
+}
+
+export function clientPreparationPackageToOffer(value: ClientPreparationPackage): RecommendedOffer {
+  if (value === 'qa-audit') return 'qa-audit';
+  if (value === 'starter-pack') return 'playwright-starter-pack';
+  return 'qa-automation-retainer';
+}
 
 export function isEligibleForClientWorkflow(lead: Lead, score: LeadScoreResult): boolean {
   if (lead.status === 'paused' || lead.status === 'lost') return false;

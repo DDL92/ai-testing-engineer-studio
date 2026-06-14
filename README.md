@@ -36,6 +36,25 @@ Update `.env` with the client app URLs and test credentials.
 
 `.env` is local only and must not be committed. Use `.env.example` to document safe variable names for public sharing, onboarding, and client setup.
 
+## Security Boundary
+
+This repo separates public portfolio code from private operator runtime data. Keep real contacts, outreach history, client records, finance data, outcomes, generated private reports, and dashboard runtime data out of the public repository.
+
+Review the boundary docs:
+
+- [Repository boundary](docs/security/repository-boundary.md)
+- [Private runtime data](docs/security/private-runtime-data.md)
+- [Dashboard mobile security](docs/security/dashboard-mobile-security.md)
+
+Run:
+
+```bash
+npm run security:audit
+npm run security:private-data
+npm run security:portfolio-plan
+npm run security:dashboard-check
+```
+
 ## Run Tests
 
 ```bash

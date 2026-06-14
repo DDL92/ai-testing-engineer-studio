@@ -23,7 +23,10 @@ const safetyRules = [
 ];
 
 export function buildLeadQualificationReport(): LeadQualificationReport {
-  const rawLeads = loadRawLeads();
+  return buildLeadQualificationReportFromCandidates(loadRawLeads());
+}
+
+export function buildLeadQualificationReportFromCandidates(rawLeads: WebLeadCandidate[]): LeadQualificationReport {
   const normalizedCandidates = rawLeads.map((lead) => qualifyLead(lead));
   const deduped = dedupeQualifiedLeads(normalizedCandidates);
   const topQualifiedLeads = [...deduped].sort(sortQualifiedLeads);

@@ -4,6 +4,7 @@ import os = require('os');
 import path = require('path');
 import { buildPwaDashboardData, writeDashboardData } from './dashboardDataBuilder';
 import { renderPwaDashboardHealth, renderPwaDashboardSummary } from './dashboardRules';
+import { resolveDashboardAsset } from '../securityBoundary/securityRules';
 
 const outputDir = path.join(process.cwd(), 'output', 'dashboard');
 const dashboardDir = path.join(process.cwd(), 'dashboard');
@@ -73,6 +74,10 @@ function renderLegacyDashboardMarkdown(data: ReturnType<typeof buildPwaDashboard
       `Evidence Status: ${data.topLeadAudit.evidenceStatus}`,
       `Proposal Status: ${data.topLeadAudit.proposalStatus}`,
       `Execution Readiness: ${data.topLeadAudit.executionReadiness}`,
+      `Evidence Engine Status: ${data.evidenceEngine.evidenceStatus}`,
+      `Lighthouse Status: ${data.evidenceEngine.lighthouseStatus}`,
+      `Screenshot Status: ${data.evidenceEngine.screenshotStatus}`,
+      `Readiness Status: ${data.evidenceEngine.readinessStatus}`,
       `Outcomes Recorded: ${data.outcomeLearning.outcomesRecorded}`,
       `Reply Rate: ${data.outcomeLearning.replyRate}`,
       `Proposal Rate: ${data.outcomeLearning.proposalRate}`,
@@ -117,6 +122,10 @@ function renderLegacyDashboardHtml(data: ReturnType<typeof buildPwaDashboardData
     ['Evidence Status', data.topLeadAudit.evidenceStatus],
     ['Proposal Status', data.topLeadAudit.proposalStatus],
     ['Execution Readiness', data.topLeadAudit.executionReadiness],
+    ['Evidence Engine Status', data.evidenceEngine.evidenceStatus],
+    ['Lighthouse Status', data.evidenceEngine.lighthouseStatus],
+    ['Screenshot Status', data.evidenceEngine.screenshotStatus],
+    ['Readiness Status', data.evidenceEngine.readinessStatus],
     ['Outcomes Recorded', String(data.outcomeLearning.outcomesRecorded)],
     ['Reply Rate', data.outcomeLearning.replyRate],
     ['Proposal Rate', data.outcomeLearning.proposalRate],
@@ -179,18 +188,19 @@ function startDashboardServer(mode: 'preview' | 'mobile'): void {
   const host = mode === 'mobile' ? '0.0.0.0' : '127.0.0.1';
   const server = http.createServer((request, response) => {
     const requestUrl = new URL(request.url ?? '/', `http://${request.headers.host ?? '127.0.0.1'}`);
-    const pathname = decodeURIComponent(requestUrl.pathname);
-    const relativePath = pathname === '/' ? 'dashboard/index.html' : pathname.replace(/^\/+/, '');
-    const filePath = safeResolve(process.cwd(), relativePath);
 
-    if (!filePath || !fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
-      response.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
-      response.end('Not found');
+    // Security boundary: the mobile server exposes only static assets from dashboard/.
+    // It must never serve process.cwd(), data/, output/, dotfiles, package files, or source files.
+    const asset = resolveDashboardAsset(dashboardDir, requestUrl.pathname);
+
+    if (!asset.allowed || !asset.filePath || !asset.contentType) {
+      response.writeHead(asset.status, { 'content-type': 'text/plain; charset=utf-8' });
+      response.end(asset.reason);
       return;
     }
 
-    response.writeHead(200, { 'content-type': contentType(filePath) });
-    fs.createReadStream(filePath).pipe(response);
+    response.writeHead(200, { 'content-type': asset.contentType });
+    fs.createReadStream(asset.filePath).pipe(response);
   });
 
   server.on('error', (error: NodeJS.ErrnoException) => {
@@ -210,7 +220,7 @@ function startDashboardServer(mode: 'preview' | 'mobile'): void {
         console.log(`- http://${ip}:${port}/dashboard/index.html`);
       }
       console.log(`- http://127.0.0.1:${port}/dashboard/index.html`);
-      console.log('Local network only. Connect phone to the same WiFi. Press Ctrl+C to stop.');
+      console.log('Trusted Wi-Fi only. Connect phone to the same trusted network. Press Ctrl+C to stop.');
       return;
     }
     console.log(`Dashboard preview: http://127.0.0.1:${port}/dashboard/index.html`);
@@ -218,20 +228,6 @@ function startDashboardServer(mode: 'preview' | 'mobile'): void {
   });
 
   server.listen(preferredPort, host);
-}
-
-function safeResolve(root: string, relativePath: string): string | undefined {
-  const resolved = path.resolve(root, relativePath);
-  return resolved.startsWith(root) ? resolved : undefined;
-}
-
-function contentType(filePath: string): string {
-  if (filePath.endsWith('.html')) return 'text/html; charset=utf-8';
-  if (filePath.endsWith('.css')) return 'text/css; charset=utf-8';
-  if (filePath.endsWith('.js')) return 'application/javascript; charset=utf-8';
-  if (filePath.endsWith('.json')) return 'application/json; charset=utf-8';
-  if (filePath.endsWith('.md')) return 'text/markdown; charset=utf-8';
-  return 'application/octet-stream';
 }
 
 function ensureFrontendFiles(): void {

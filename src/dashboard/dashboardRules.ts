@@ -561,6 +561,16 @@ Generated: ${data.generatedAt}
 - Proposal Status: ${data.topLeadAudit.proposalStatus}
 - Execution Readiness: ${data.topLeadAudit.executionReadiness}
 
+## Evidence Engine
+
+- Evidence Status: ${data.evidenceEngine.evidenceStatus}
+- Lighthouse Status: ${data.evidenceEngine.lighthouseStatus}
+- Screenshot Status: ${data.evidenceEngine.screenshotStatus}
+- Readiness Status: ${data.evidenceEngine.readinessStatus}
+- Page Status: ${data.evidenceEngine.pageStatus}
+- Flow Status: ${data.evidenceEngine.flowStatus}
+- Commercial Readiness: ${data.evidenceEngine.commercialReadiness}
+
 ## Safety
 
 ${data.safety.map((item) => `- ${item}`).join('\n')}

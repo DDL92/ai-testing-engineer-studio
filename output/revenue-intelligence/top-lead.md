@@ -1,6 +1,6 @@
 # Revenue Intelligence Top Lead
 
-Generated: 2026-06-14T05:37:47.855Z
+Generated: 2026-06-14T06:26:58.072Z
 
 - Current Top Lead: Appointy
 - Category: Scheduling SaaS
@@ -9,6 +9,8 @@ Generated: 2026-06-14T05:37:47.855Z
 - QA opportunity score: 81/100
 - Pain signal relevance: 35/100
 - Offer fit: 100/100
+- Historical performance score: 83/100
+- Final selection score: 80/100
 - Recommended offer: QA Automation Retainer ($1500-$3000/month)
 - Next revenue action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
@@ -18,6 +20,7 @@ Generated: 2026-06-14T05:37:47.855Z
 - QA Opportunity Score
 - Pain Signal Relevance
 - Offer Fit
+- Historical Performance Signal (5% initial weight when real outcomes exist)
 
 ## Safety Rules
 - Revenue intelligence uses local Studio data only.

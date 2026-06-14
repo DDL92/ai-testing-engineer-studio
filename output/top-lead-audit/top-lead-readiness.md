@@ -1,17 +1,17 @@
 # Top Lead Readiness
 
-Generated: 2026-06-14T05:49:57.682Z
+Generated: 2026-06-14T16:33:54.089Z
 
 - Company: Appointy
 - Top Lead Audit Status: Ready
-- Evidence Status: Ready
+- Evidence Status: Missing
 - Proposal Status: Ready
-- Execution Readiness: GO
+- Execution Readiness: NO GO
 
 ## Checks
 | Check | Status | Evidence | Path |
 | --- | --- | --- | --- |
-| Evidence Collection | Ready | Current Appointy file exists. | output/top-lead-audit/top-lead-evidence.md |
+| Evidence Collection | Missing | Evidence readiness is NOT READY; page WARNING, screenshots PASS, lighthouse PASS. | output/evidence/evidence-readiness.md |
 | Audit Package | Ready | Current Appointy file exists. | output/top-lead-audit/top-lead-audit.md |
 | Executive Summary | Ready | Current Appointy file exists. | output/top-lead-audit/top-lead-executive-summary.md |
 | Proposal Draft | Ready | Current Appointy file exists. | output/top-lead-audit/top-lead-proposal.md |

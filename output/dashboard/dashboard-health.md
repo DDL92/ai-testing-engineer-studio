@@ -1,12 +1,12 @@
 # Dashboard Health
 
-Generated: 2026-06-14T06:22:11.008Z
+Generated: 2026-06-14T16:34:37.327Z
 
 ## Status
 
-- Last Update: 2026-06-14T06:22:11.008Z
+- Last Update: 2026-06-14T16:34:37.327Z
 - Lead Research Status: 7 research packs found
-- Evidence Status: 10 evidence files found
+- Evidence Status: 16 evidence files found
 - Proposal Status: 3 proposal packages found
 - Dashboard Status: Ready: static local PWA data generated
 - Studio Health: Healthy

@@ -122,3 +122,138 @@ export interface EvidencePortfolio {
   largestEvidenceGap?: EvidenceReport;
   researchNeeded: EvidenceReport[];
 }
+
+export type DynamicEvidenceStatus = 'PASS' | 'WARNING' | 'FAIL';
+export type DynamicEvidenceSignalLevel = 'INFO' | 'WARNING' | 'ERROR';
+export type DynamicEvidenceReadinessStatus = 'READY' | 'PARTIAL' | 'NOT READY';
+
+export interface DynamicEvidenceTarget {
+  companyId: string;
+  companyName: string;
+  website: string;
+  source: 'Revenue Intelligence';
+  generatedAt: string;
+}
+
+export interface PageEvidenceReport {
+  generatedAt: string;
+  target: DynamicEvidenceTarget;
+  requestedUrl: string;
+  finalUrl: string;
+  statusCode: number | null;
+  title: string;
+  evidenceStatus: DynamicEvidenceStatus;
+  notes: string[];
+}
+
+export interface FlowEvidenceItem {
+  flowName: string;
+  url: string;
+  statusCode: number | null;
+  title: string;
+  status: DynamicEvidenceStatus;
+  notes: string[];
+}
+
+export interface FlowEvidenceReport {
+  generatedAt: string;
+  target: DynamicEvidenceTarget;
+  flows: FlowEvidenceItem[];
+  evidenceStatus: DynamicEvidenceStatus;
+  notes: string[];
+}
+
+export interface EvidenceSignal {
+  level: DynamicEvidenceSignalLevel;
+  source: string;
+  message: string;
+  url: string;
+}
+
+export interface ConsoleEvidenceReport {
+  generatedAt: string;
+  target: DynamicEvidenceTarget;
+  signals: EvidenceSignal[];
+  evidenceStatus: DynamicEvidenceStatus;
+  notes: string[];
+}
+
+export interface NetworkEvidenceSignal {
+  level: DynamicEvidenceSignalLevel;
+  method: string;
+  url: string;
+  statusCode: number | null;
+  message: string;
+}
+
+export interface NetworkEvidenceReport {
+  generatedAt: string;
+  target: DynamicEvidenceTarget;
+  signals: NetworkEvidenceSignal[];
+  evidenceStatus: DynamicEvidenceStatus;
+  notes: string[];
+}
+
+export interface ScreenshotEvidenceItem {
+  viewport: 'desktop' | 'tablet' | 'mobile';
+  width: number;
+  height: number;
+  path: string;
+  exists: boolean;
+  status: DynamicEvidenceStatus;
+  notes: string[];
+}
+
+export interface ScreenshotEvidenceReport {
+  generatedAt: string;
+  target: DynamicEvidenceTarget;
+  screenshots: ScreenshotEvidenceItem[];
+  evidenceStatus: DynamicEvidenceStatus;
+  notes: string[];
+}
+
+export interface DynamicLighthouseScores {
+  performance: number | null;
+  accessibility: number | null;
+  bestPractices: number | null;
+  seo: number | null;
+}
+
+export interface DynamicLighthouseEvidenceReport {
+  generatedAt: string;
+  target: DynamicEvidenceTarget;
+  requestedUrl: string;
+  finalUrl: string;
+  scores: DynamicLighthouseScores;
+  rawReportPath: string | null;
+  htmlReportPath: string | null;
+  evidenceStatus: DynamicEvidenceStatus;
+  failureReason: string | null;
+  notes: string[];
+}
+
+export interface DynamicEvidenceSummary {
+  generatedAt: string;
+  target: DynamicEvidenceTarget;
+  page: PageEvidenceReport | null;
+  flows: FlowEvidenceReport | null;
+  console: ConsoleEvidenceReport | null;
+  network: NetworkEvidenceReport | null;
+  screenshots: ScreenshotEvidenceReport | null;
+  lighthouse: DynamicLighthouseEvidenceReport | null;
+}
+
+export interface DynamicEvidenceReadinessDecision {
+  generatedAt: string;
+  target: DynamicEvidenceTarget;
+  status: DynamicEvidenceReadinessStatus;
+  commercialReadiness: 'Commercially Ready' | 'Needs Manual Review' | 'Not Commercially Ready';
+  goNoGo: 'GO' | 'PARTIAL' | 'NO GO';
+  evidenceStatus: string;
+  pageStatus: string;
+  flowStatus: string;
+  screenshotStatus: string;
+  lighthouseStatus: string;
+  blockers: string[];
+  safetyNotes: string[];
+}

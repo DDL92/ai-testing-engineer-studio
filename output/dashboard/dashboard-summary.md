@@ -1,11 +1,11 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-14T06:22:11.008Z
+Generated: 2026-06-14T16:34:37.327Z
 
 ## Commercial UX
 
 - Today Focus: Appointy - QA Automation Retainer - HIGH
-- Revenue Hero: Appointy: GO
+- Revenue Hero: Appointy: REVIEW
 - Potential Value: $1,500-$3,000/month
 - Next Action: Review Appointy package and decide: SEND / WAIT / REWRITE.
 
@@ -34,7 +34,7 @@ Generated: 2026-06-14T06:22:11.008Z
 
 - Audit Reports Generated: 3
 - Unified Audits: 3
-- Evidence Available: 10
+- Evidence Available: 16
 
 ## Proposals
 
@@ -149,9 +149,19 @@ Generated: 2026-06-14T06:22:11.008Z
 ## Top Lead Audit
 
 - Top Lead Audit Status: Ready
-- Evidence Status: Ready
+- Evidence Status: Missing
 - Proposal Status: Ready
-- Execution Readiness: GO
+- Execution Readiness: NO GO
+
+## Evidence Engine
+
+- Evidence Status: NOT READY
+- Lighthouse Status: PASS
+- Screenshot Status: PASS
+- Readiness Status: NOT READY
+- Page Status: WARNING
+- Flow Status: WARNING
+- Commercial Readiness: Not Commercially Ready
 
 ## Safety
 

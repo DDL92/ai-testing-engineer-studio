@@ -1,6 +1,6 @@
 # Revenue Command Center
 
-Generated: 2026-06-14T06:22:11.934Z
+Generated: 2026-06-14T16:33:54.528Z
 
 ## TODAY
 
@@ -8,7 +8,7 @@ Generated: 2026-06-14T06:22:11.934Z
 - Offer: QA Automation Retainer
 - Potential Value: $1,500-$3,000/month
 - Priority: HIGH
-- Decision: GO
+- Decision: REVIEW
 
 ## NEXT ACTION
 
@@ -24,7 +24,7 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 
 - Last Refresh: 2026-06-14T01:53:03.396Z
 - Studio Health: Healthy
-- Execution Readiness: GO
+- Execution Readiness: NO GO
 
 ## Below The Fold
 
@@ -45,7 +45,7 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 - Today's Recommended Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Current Top Lead: Appointy
 - Audit Status: Ready
-- Execution Readiness: GO
+- Execution Readiness: NO GO
 - Learning Status: No outcomes recorded yet.
 - Reply Rate: No outcomes recorded yet.
 - Best Offer: Insufficient outcome history.
@@ -58,6 +58,18 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 - Next Revenue Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Execution Priority: HIGH
 - Studio Health: Healthy
+- Runtime Health: Runtime data needs cleanup
+- Architecture Status: Needs consolidation
+- Command Health: Command surface is too broad
+- Testing Status: Regression foundation active
+- Quality Gate Status: PASS
+- CI Status: Configured
+- Intelligence Status: PARTIAL
+- Company Confidence: 78/100
+- Evidence Confidence: 50/100
+- Evidence Status: NOT READY
+- Readiness Status: NOT READY
+- Lighthouse Status: PASS
 - Revenue Health: Current MRR: $0
 - Next Manual Step: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 

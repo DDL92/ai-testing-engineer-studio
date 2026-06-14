@@ -1,6 +1,10 @@
 import fs = require('fs');
 import path = require('path');
 import { buildAdaptiveRevenueDashboard, buildAdaptiveRevenueReport } from '../adaptiveRevenue/adaptiveRules';
+import { buildDynamicEvidenceSummary, buildEvidenceReadinessDecision } from '../evidenceEngine/evidenceRules';
+import { buildArchitectureAudit } from '../studioArchitecture/architectureRules';
+import { buildTestingReportBundle } from '../testing/testingRules';
+import { buildWebIntelligenceReport } from '../webIntelligence/intelligenceRules';
 import {
   buildDailyRevenuePlan,
   buildDailyRevenueSummary,
@@ -202,6 +206,8 @@ export interface DashboardMobileCommandCenterSummary {
   adaptiveBestCategory: string;
   adaptiveBestOffer: string;
   adaptiveRecommendation: string;
+  runtimeHealth: string;
+  architectureStatus: string;
 }
 
 export interface DashboardDailyLeadDiscovery {
@@ -257,6 +263,16 @@ export interface DashboardTopLeadAudit {
   executionReadiness: string;
 }
 
+export interface DashboardEvidenceEngine {
+  evidenceStatus: string;
+  lighthouseStatus: string;
+  screenshotStatus: string;
+  readinessStatus: string;
+  pageStatus: string;
+  flowStatus: string;
+  commercialReadiness: string;
+}
+
 export interface DashboardCommercialUx {
   todayFocus: string;
   revenueHero: string;
@@ -266,6 +282,41 @@ export interface DashboardCommercialUx {
   offer: string;
   priority: string;
   decision: string;
+}
+
+export interface DashboardArchitectureHealth {
+  architectureStatus: string;
+  commandHealth: string;
+  runtimeHealth: string;
+  consolidationProgress: string;
+  commandsAudited: number;
+  duplicateCommandGroups: number;
+  legacyCommands: number;
+  candidateDeprecations: number;
+  runtimeFiles: number;
+  duplicateRuntimeCandidates: number;
+  sourceOfTruthAuthorities: number;
+}
+
+export interface DashboardTestingHealth {
+  testingStatus: string;
+  coverageStatus: string;
+  qualityGateStatus: string;
+  ciStatus: string;
+  skippedTests: number;
+  requiredCategories: number;
+  missingCategories: number;
+}
+
+export interface DashboardWebIntelligenceQuality {
+  intelligenceQuality: string;
+  evidenceConfidence: string;
+  companyConfidence: string;
+  falsePositiveRisk: string;
+  readinessStatus: string;
+  acceptedEvidence: number;
+  suspiciousEvidence: number;
+  rejectedEvidence: number;
 }
 
 export interface DashboardData {
@@ -330,7 +381,11 @@ export interface DashboardData {
   autonomousRunner: DashboardAutonomousRunner;
   revenueIntelligence: DashboardRevenueIntelligence;
   topLeadAudit: DashboardTopLeadAudit;
+  evidenceEngine: DashboardEvidenceEngine;
   commercialUx: DashboardCommercialUx;
+  architecture: DashboardArchitectureHealth;
+  testing: DashboardTestingHealth;
+  webIntelligence: DashboardWebIntelligenceQuality;
   mobileCommandCenter: DashboardMobileCenter;
   safety: string[];
 }
@@ -376,6 +431,11 @@ export function buildPwaDashboardData(): DashboardData {
   const commercialUx = buildCommercialUxDashboard();
   const painMiningReport = buildPainMiningReport();
   const painMiningDashboard = buildPainMiningDashboard();
+  const architectureAudit = buildArchitectureAudit();
+  const testing = buildTestingReportBundle();
+  const webIntelligence = buildWebIntelligenceReport();
+  const dynamicEvidenceSummary = buildDynamicEvidenceSummary();
+  const dynamicEvidenceDecision = buildEvidenceReadinessDecision(dynamicEvidenceSummary);
   const topLead = leadIntelligenceReport.leads[0];
   const unifiedTopLead = revenueIntelligenceReport.topLead;
   const operatorSummary = buildOperatorUxSummary();
@@ -546,6 +606,8 @@ export function buildPwaDashboardData(): DashboardData {
       adaptiveBestCategory: adaptiveRevenue.bestPerformingCategory,
       adaptiveBestOffer: adaptiveRevenue.bestPerformingOffer,
       adaptiveRecommendation: adaptiveRevenueReport.adaptiveRecommendation,
+      runtimeHealth: architectureAudit.runtimeHealth,
+      architectureStatus: architectureAudit.architectureStatus,
       todayAtAGlance: [
         `Top Lead: ${dashboardTopLeadName}`,
         `Top Offer: ${dashboardTopOffer}`,
@@ -570,7 +632,48 @@ export function buildPwaDashboardData(): DashboardData {
     autonomousRunner: autonomousRunnerDashboard,
     revenueIntelligence: revenueIntelligenceDashboard,
     topLeadAudit: topLeadAuditDashboard,
+    evidenceEngine: {
+      evidenceStatus: dynamicEvidenceDecision.evidenceStatus,
+      lighthouseStatus: dynamicEvidenceDecision.lighthouseStatus,
+      screenshotStatus: dynamicEvidenceDecision.screenshotStatus,
+      readinessStatus: dynamicEvidenceDecision.status,
+      pageStatus: dynamicEvidenceDecision.pageStatus,
+      flowStatus: dynamicEvidenceDecision.flowStatus,
+      commercialReadiness: dynamicEvidenceDecision.commercialReadiness,
+    },
     commercialUx,
+    architecture: {
+      architectureStatus: architectureAudit.architectureStatus,
+      commandHealth: architectureAudit.commandHealth,
+      runtimeHealth: architectureAudit.runtimeHealth,
+      consolidationProgress: architectureAudit.consolidationProgress,
+      commandsAudited: architectureAudit.commandInventory.totalCommands,
+      duplicateCommandGroups: architectureAudit.commandInventory.duplicateCommandGroups.length,
+      legacyCommands: architectureAudit.commandInventory.legacyCommands.length,
+      candidateDeprecations: architectureAudit.commandInventory.candidateDeprecations.length,
+      runtimeFiles: architectureAudit.runtimeInventory.totalFiles,
+      duplicateRuntimeCandidates: architectureAudit.runtimeInventory.duplicateDataCandidates.length,
+      sourceOfTruthAuthorities: architectureAudit.sourceOfTruth.length,
+    },
+    testing: {
+      testingStatus: testing.readiness.testingStatus,
+      coverageStatus: testing.readiness.coverageStatus,
+      qualityGateStatus: testing.readiness.qualityGateStatus,
+      ciStatus: testing.readiness.ciStatus,
+      skippedTests: testing.readiness.skippedTests,
+      requiredCategories: testing.readiness.requiredCategories,
+      missingCategories: testing.readiness.missingCategories,
+    },
+    webIntelligence: {
+      intelligenceQuality: webIntelligence.readiness.status,
+      evidenceConfidence: `${webIntelligence.readiness.evidenceConfidence}/100`,
+      companyConfidence: `${webIntelligence.readiness.companyConfidence}/100`,
+      falsePositiveRisk: `${webIntelligence.rejectedEvidence.length} rejected, ${webIntelligence.suspiciousEvidence.length} suspicious`,
+      readinessStatus: webIntelligence.readiness.status,
+      acceptedEvidence: webIntelligence.acceptedEvidence.length,
+      suspiciousEvidence: webIntelligence.suspiciousEvidence.length,
+      rejectedEvidence: webIntelligence.rejectedEvidence.length,
+    },
     mobileCommandCenter: {
       reviewCenter: {
         auditsReady: auditPortfolio.reports.length,

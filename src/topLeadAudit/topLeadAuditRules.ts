@@ -1,5 +1,6 @@
 import fs = require('fs');
 import path = require('path');
+import { buildEvidenceReadinessDecision } from '../evidenceEngine/evidenceRules';
 import { buildMessageReview, writeMessagePack } from '../messageReview/messageRules';
 import { buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIntelligenceRules';
 import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
@@ -98,12 +99,14 @@ export function buildTopLeadAuditPackage(): TopLeadAuditPackage {
     safetyRules,
   };
   const readinessChecks = buildReadinessChecks(packageData.companyName, packageData.companyId);
-  const remainingBlockers = readinessChecks.filter((check) => check.status !== 'Ready').map((check) => `${check.label}: ${check.evidence}`);
+  const missingBlockers = readinessChecks.filter((check) => check.status === 'Missing').map((check) => `${check.label}: ${check.evidence}`);
+  const partialBlockers = readinessChecks.filter((check) => check.status === 'Partial').map((check) => `${check.label}: ${check.evidence}`);
+  const goNoGo = missingBlockers.length === 0 && partialBlockers.length === 0 ? 'GO' : missingBlockers.length > 0 ? 'NO GO' : 'PARTIAL';
   return {
     ...packageData,
     readinessChecks,
-    goNoGo: remainingBlockers.length === 0 ? 'GO' : 'NO GO',
-    remainingBlockers,
+    goNoGo,
+    remainingBlockers: [...missingBlockers, ...partialBlockers],
   };
 }
 
@@ -342,15 +345,16 @@ export function renderTopLeadReadiness(audit: TopLeadAuditPackage): string {
 }
 
 function buildReadinessChecks(companyName: string, companyId: string): TopLeadAuditReadinessCheck[] {
+  const evidenceDecision = buildEvidenceReadinessDecision();
+  const evidenceStatus: TopLeadAuditReadinessCheck['status'] = evidenceDecision.goNoGo === 'GO' ? 'Ready' : evidenceDecision.goNoGo === 'PARTIAL' ? 'Partial' : 'Missing';
   const checks: Array<[string, string]> = [
-    ['Evidence Collection', path.join(outputRoot, 'top-lead-evidence.md')],
     ['Audit Package', path.join(outputRoot, 'top-lead-audit.md')],
     ['Executive Summary', path.join(outputRoot, 'top-lead-executive-summary.md')],
     ['Proposal Draft', path.join(outputRoot, 'top-lead-proposal.md')],
     ['Message Pack', path.join(process.cwd(), 'output', 'messages', `${companyId}-message-pack.md`)],
   ];
 
-  return checks.map(([label, filePath]) => {
+  const artifactChecks: TopLeadAuditReadinessCheck[] = checks.map(([label, filePath]) => {
     const ready = fileContainsLead(filePath, companyName);
     return {
       label,
@@ -359,6 +363,16 @@ function buildReadinessChecks(companyName: string, companyId: string): TopLeadAu
       path: path.relative(process.cwd(), filePath),
     };
   });
+
+  return [
+    {
+      label: 'Evidence Collection',
+      status: evidenceStatus,
+      evidence: `Evidence readiness is ${evidenceDecision.status}; page ${evidenceDecision.pageStatus}, screenshots ${evidenceDecision.screenshotStatus}, lighthouse ${evidenceDecision.lighthouseStatus}.`,
+      path: 'output/evidence/evidence-readiness.md',
+    },
+    ...artifactChecks,
+  ];
 }
 
 function buildBusinessRisks(companyName: string, qaOpportunityScore: number, painSignalRelevance: number, categories: string[]): string[] {

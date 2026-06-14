@@ -1,0 +1,9 @@
+[
+  {
+    "id": "demo-client-001",
+    "companyName": "Demo Retainer Client",
+    "service": "Playwright smoke test automation",
+    "status": "sample-only",
+    "monthlyRetainerUsd": 0
+  }
+]

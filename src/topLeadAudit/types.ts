@@ -1,6 +1,6 @@
-export type TopLeadAuditReadinessStatus = 'Ready' | 'Missing';
+export type TopLeadAuditReadinessStatus = 'Ready' | 'Partial' | 'Missing';
 
-export type TopLeadAuditGoNoGo = 'GO' | 'NO GO';
+export type TopLeadAuditGoNoGo = 'GO' | 'PARTIAL' | 'NO GO';
 
 export interface TopLeadAuditEvidenceItem {
   label: string;

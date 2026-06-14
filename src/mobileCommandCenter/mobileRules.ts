@@ -1,6 +1,10 @@
 import fs = require('fs');
 import path = require('path');
 import { buildAdaptiveRevenueReport } from '../adaptiveRevenue/adaptiveRules';
+import { buildEvidenceReadinessDecision } from '../evidenceEngine/evidenceRules';
+import { buildArchitectureAudit } from '../studioArchitecture/architectureRules';
+import { buildTestingReportBundle } from '../testing/testingRules';
+import { buildWebIntelligenceReport } from '../webIntelligence/intelligenceRules';
 import { buildRunnerDashboard } from '../autonomousRunner/runnerRules';
 import { buildCommercialUxView } from '../commercialUx/commercialUxRules';
 import { buildPwaDashboardData, DashboardLink } from '../dashboard/dashboardDataBuilder';
@@ -65,6 +69,10 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
   const runner = buildRunnerDashboard();
   const topLeadAudit = buildTopLeadAuditDashboard();
   const commercialUx = buildCommercialUxView();
+  const architecture = buildArchitectureAudit();
+  const testing = buildTestingReportBundle();
+  const webIntelligence = buildWebIntelligenceReport();
+  const evidenceDecision = buildEvidenceReadinessDecision();
   const today = new Date().toISOString().slice(0, 10);
   const todaysWebLeads = webDiscovery.leads.filter((item) => item.discoveryDate === today);
   const todaysPainSignals = painMining.signals.filter((item) => item.date === today);
@@ -154,6 +162,19 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     commercialPriority: commercialUx.today.executionPriority,
     commercialDecision: commercialUx.today.revenueDecision,
     commercialAction: commercialUx.today.nextAction,
+    architectureStatus: architecture.architectureStatus,
+    commandHealth: architecture.commandHealth,
+    runtimeHealth: architecture.runtimeHealth,
+    consolidationProgress: architecture.consolidationProgress,
+    testingStatus: testing.readiness.testingStatus,
+    qualityGateStatus: testing.readiness.qualityGateStatus,
+    ciStatus: testing.readiness.ciStatus,
+    intelligenceStatus: webIntelligence.readiness.status,
+    companyConfidence: `${webIntelligence.readiness.companyConfidence}/100`,
+    evidenceConfidence: `${webIntelligence.readiness.evidenceConfidence}/100`,
+    evidenceStatus: evidenceDecision.evidenceStatus,
+    readinessStatus: evidenceDecision.status,
+    lighthouseStatus: evidenceDecision.lighthouseStatus,
     safetyRules: sprint82Safety,
   };
 }
@@ -234,6 +255,17 @@ export function renderMobileTodayView(summary: MobileCommandCenterSummary): stri
     renderSimpleLines([
       `Last Refresh: ${summary.lastRefresh}`,
       `Studio Health: ${summary.studioHealth}`,
+      `Runtime Health: ${summary.runtimeHealth}`,
+      `Architecture Status: ${summary.architectureStatus}`,
+      `Testing Status: ${summary.testingStatus}`,
+      `Quality Gate Status: ${summary.qualityGateStatus}`,
+      `CI Status: ${summary.ciStatus}`,
+      `Intelligence Status: ${summary.intelligenceStatus}`,
+      `Company Confidence: ${summary.companyConfidence}`,
+      `Evidence Confidence: ${summary.evidenceConfidence}`,
+      `Evidence Status: ${summary.evidenceStatus}`,
+      `Readiness Status: ${summary.readinessStatus}`,
+      `Lighthouse Status: ${summary.lighthouseStatus}`,
       `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
     ]),
     '',
@@ -438,6 +470,18 @@ export function renderSprint82MobileSummary(summary: MobileCommandCenterSummary)
       `Next Revenue Action: ${summary.nextRevenueAction}`,
       `Execution Priority: ${summary.executionPriority}`,
       `Studio Health: ${summary.studioHealth}`,
+      `Runtime Health: ${summary.runtimeHealth}`,
+      `Architecture Status: ${summary.architectureStatus}`,
+      `Command Health: ${summary.commandHealth}`,
+      `Testing Status: ${summary.testingStatus}`,
+      `Quality Gate Status: ${summary.qualityGateStatus}`,
+      `CI Status: ${summary.ciStatus}`,
+      `Intelligence Status: ${summary.intelligenceStatus}`,
+      `Company Confidence: ${summary.companyConfidence}`,
+      `Evidence Confidence: ${summary.evidenceConfidence}`,
+      `Evidence Status: ${summary.evidenceStatus}`,
+      `Readiness Status: ${summary.readinessStatus}`,
+      `Lighthouse Status: ${summary.lighthouseStatus}`,
       `Revenue Health: ${summary.revenueHealth}`,
       `Next Manual Step: ${summary.nextManualStep}`,
     ]),
@@ -456,6 +500,19 @@ export function buildMobileReviewPackage(): MobileReviewPackage {
     generatedAt: dashboard.generatedAt,
     mode: 'read-only-review',
     reviewCenter: [
+      item('Studio Health', dashboard.studio.studioHealth),
+      item('Runtime Health', dashboard.architecture.runtimeHealth),
+      item('Architecture Status', dashboard.architecture.architectureStatus),
+      item('Command Health', dashboard.architecture.commandHealth),
+      item('Testing Status', dashboard.testing.testingStatus),
+      item('Quality Gate Status', dashboard.testing.qualityGateStatus),
+      item('CI Status', dashboard.testing.ciStatus),
+      item('Intelligence Status', dashboard.webIntelligence.intelligenceQuality),
+      item('Company Confidence', dashboard.webIntelligence.companyConfidence),
+      item('Evidence Confidence', dashboard.webIntelligence.evidenceConfidence),
+      item('Evidence Status', dashboard.evidenceEngine.evidenceStatus),
+      item('Readiness Status', dashboard.evidenceEngine.readinessStatus),
+      item('Lighthouse Status', dashboard.evidenceEngine.lighthouseStatus),
       item('Audits Ready', String(center.reviewCenter.auditsReady), center.auditCenter.links),
       item('Proposals Ready', String(center.reviewCenter.proposalsReady), center.proposalCenter.proposalPdfs),
       item('Evidence Ready', String(center.reviewCenter.evidenceReady), center.auditCenter.links.filter((link) => link.href.includes('/evidence/') || link.href.includes('/lighthouse/') || link.href.includes('/playwright-runner/'))),
@@ -565,6 +622,18 @@ ${bullets([
     `Best Retainer Opportunity: ${valueFor(review.revenueCenter, 'Best Retainer Opportunity')}`,
     `Follow-Ups Due: ${valueFor(review.followUpCenter, 'Follow-Ups Due')}`,
     `Proposal PDFs: ${valueFor(review.proposalCenter, 'Proposal PDFs')}`,
+    `Studio Health: ${valueFor(review.reviewCenter, 'Studio Health')}`,
+    `Runtime Health: ${valueFor(review.reviewCenter, 'Runtime Health')}`,
+    `Architecture Status: ${valueFor(review.reviewCenter, 'Architecture Status')}`,
+    `Testing Status: ${valueFor(review.reviewCenter, 'Testing Status')}`,
+    `Quality Gate Status: ${valueFor(review.reviewCenter, 'Quality Gate Status')}`,
+    `CI Status: ${valueFor(review.reviewCenter, 'CI Status')}`,
+    `Intelligence Status: ${valueFor(review.reviewCenter, 'Intelligence Status')}`,
+    `Company Confidence: ${valueFor(review.reviewCenter, 'Company Confidence')}`,
+    `Evidence Confidence: ${valueFor(review.reviewCenter, 'Evidence Confidence')}`,
+    `Evidence Status: ${valueFor(review.reviewCenter, 'Evidence Status')}`,
+    `Readiness Status: ${valueFor(review.reviewCenter, 'Readiness Status')}`,
+    `Lighthouse Status: ${valueFor(review.reviewCenter, 'Lighthouse Status')}`,
   ])}
 
 ## Safety

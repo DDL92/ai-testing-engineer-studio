@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-14T06:22:11.008Z",
+  "generatedAt": "2026-06-14T16:34:37.327Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-14",
@@ -66,7 +66,7 @@
   "audits": {
     "auditReportsGenerated": 3,
     "unifiedAudits": 3,
-    "evidenceAvailable": 10
+    "evidenceAvailable": 16
   },
   "proposals": {
     "proposalReady": [
@@ -91,9 +91,9 @@
     "bestRetainerOpportunity": "Appointy"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-14T06:22:11.008Z",
+    "lastUpdate": "2026-06-14T16:34:37.327Z",
     "leadResearchStatus": "7 research packs found",
-    "evidenceStatus": "10 evidence files found",
+    "evidenceStatus": "16 evidence files found",
     "proposalStatus": "3 proposal packages found",
     "dashboardStatus": "Ready: static local PWA data generated"
   },
@@ -201,6 +201,8 @@
     "adaptiveBestCategory": "Insufficient outcome history.",
     "adaptiveBestOffer": "Insufficient outcome history.",
     "adaptiveRecommendation": "Insufficient outcome history. Keep using existing Revenue Intelligence ranking until real outcomes are recorded.",
+    "runtimeHealth": "Runtime data needs cleanup",
+    "architectureStatus": "Needs consolidation",
     "todayAtAGlance": "Top Lead: Appointy | Top Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
   },
   "dailyLeadDiscovery": {
@@ -246,25 +248,66 @@
   },
   "topLeadAudit": {
     "topLeadAuditStatus": "Ready",
-    "evidenceStatus": "Ready",
+    "evidenceStatus": "Missing",
     "proposalStatus": "Ready",
-    "executionReadiness": "GO"
+    "executionReadiness": "NO GO"
+  },
+  "evidenceEngine": {
+    "evidenceStatus": "NOT READY",
+    "lighthouseStatus": "PASS",
+    "screenshotStatus": "PASS",
+    "readinessStatus": "NOT READY",
+    "pageStatus": "WARNING",
+    "flowStatus": "WARNING",
+    "commercialReadiness": "Not Commercially Ready"
   },
   "commercialUx": {
     "todayFocus": "Appointy - QA Automation Retainer - HIGH",
-    "revenueHero": "Appointy: GO",
+    "revenueHero": "Appointy: REVIEW",
     "potentialValue": "$1,500-$3,000/month",
     "nextAction": "Review Appointy package and decide: SEND / WAIT / REWRITE.",
     "target": "Appointy",
     "offer": "QA Automation Retainer",
     "priority": "HIGH",
-    "decision": "GO"
+    "decision": "REVIEW"
+  },
+  "architecture": {
+    "architectureStatus": "Needs consolidation",
+    "commandHealth": "Command surface is too broad",
+    "runtimeHealth": "Runtime data needs cleanup",
+    "consolidationProgress": "14 future official commands recommended; 92 deprecation candidates identified.",
+    "commandsAudited": 275,
+    "duplicateCommandGroups": 1,
+    "legacyCommands": 22,
+    "candidateDeprecations": 92,
+    "runtimeFiles": 642,
+    "duplicateRuntimeCandidates": 39,
+    "sourceOfTruthAuthorities": 5
+  },
+  "testing": {
+    "testingStatus": "Regression foundation active",
+    "coverageStatus": "6/6 required categories covered",
+    "qualityGateStatus": "PASS",
+    "ciStatus": "Configured",
+    "skippedTests": 4,
+    "requiredCategories": 6,
+    "missingCategories": 0
+  },
+  "webIntelligence": {
+    "intelligenceQuality": "PARTIAL",
+    "evidenceConfidence": "50/100",
+    "companyConfidence": "78/100",
+    "falsePositiveRisk": "19 rejected, 51 suspicious",
+    "readinessStatus": "PARTIAL",
+    "acceptedEvidence": 14,
+    "suspiciousEvidence": 51,
+    "rejectedEvidence": 19
   },
   "mobileCommandCenter": {
     "reviewCenter": {
       "auditsReady": 3,
       "proposalsReady": 3,
-      "evidenceReady": 10,
+      "evidenceReady": 16,
       "followUpsReady": 0
     },
     "revenueCenter": {
@@ -299,7 +342,7 @@
     "auditCenter": {
       "auditReportsAvailable": 6,
       "unifiedAuditsAvailable": 3,
-      "evidenceAvailable": 10,
+      "evidenceAvailable": 16,
       "auditReadiness": "3 unified audits and 6 client audit report files available",
       "links": [
         {
@@ -339,16 +382,16 @@
           "href": "../output/unified-audits/teamup-unified-audit.md"
         },
         {
+          "label": "console-evidence.md",
+          "href": "../output/evidence/console-evidence.md"
+        },
+        {
+          "label": "flow-evidence.md",
+          "href": "../output/evidence/flow-evidence.md"
+        },
+        {
           "label": "glofox-evidence.md",
           "href": "../output/evidence/glofox-evidence.md"
-        },
-        {
-          "label": "pushpress-evidence.md",
-          "href": "../output/evidence/pushpress-evidence.md"
-        },
-        {
-          "label": "teamup-evidence.md",
-          "href": "../output/evidence/teamup-evidence.md"
         }
       ]
     },

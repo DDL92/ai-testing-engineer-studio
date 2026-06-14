@@ -32,6 +32,10 @@ function render(data) {
   renderRevenueIntelligence(data.revenueIntelligence);
   renderOperatorMode(data.operatorMode);
   renderMobileCommandCenterSummary(data.mobileCommandCenterSummary);
+  renderArchitecture(data.architecture);
+  renderTesting(data.testing);
+  renderWebIntelligence(data.webIntelligence);
+  renderEvidenceEngine(data.evidenceEngine);
   renderExecutionPack(data.executionPack);
   renderOutcomeTracking(data.outcomeTracking);
   renderFollowUpEngine(data.followUpEngine);
@@ -227,8 +231,79 @@ function renderMobileCommandCenterSummary(mobile) {
     miniCard('Follow Ups Waiting', mobile.followUpsWaiting),
     miniCard('Open Opportunities', mobile.openOpportunities),
     miniCard('Studio Status', mobile.studioStatus),
+    miniCard('Runtime Health', mobile.runtimeHealth),
+    miniCard('Architecture Status', mobile.architectureStatus),
     miniCard('Revenue Status', mobile.revenueStatus),
     miniCard('Today At A Glance', mobile.todayAtAGlance),
+  ].join('');
+}
+
+function renderWebIntelligence(intelligence) {
+  if (!intelligence) {
+    byId('webIntelligenceCards').innerHTML = miniCard('Intelligence Quality', 'Not loaded');
+    return;
+  }
+
+  byId('webIntelligenceCards').innerHTML = [
+    miniCard('Intelligence Quality', intelligence.intelligenceQuality),
+    miniCard('Evidence Confidence', intelligence.evidenceConfidence),
+    miniCard('Company Confidence', intelligence.companyConfidence),
+    miniCard('False Positive Risk', intelligence.falsePositiveRisk),
+    miniCard('Accepted Evidence', intelligence.acceptedEvidence),
+    miniCard('Suspicious Evidence', intelligence.suspiciousEvidence),
+    miniCard('Rejected Evidence', intelligence.rejectedEvidence),
+  ].join('');
+}
+
+function renderEvidenceEngine(evidence) {
+  if (!evidence) {
+    byId('evidenceEngineCards').innerHTML = miniCard('Evidence Status', 'Not loaded');
+    return;
+  }
+
+  byId('evidenceEngineCards').innerHTML = [
+    miniCard('Evidence Status', evidence.evidenceStatus),
+    miniCard('Lighthouse Status', evidence.lighthouseStatus),
+    miniCard('Screenshot Status', evidence.screenshotStatus),
+    miniCard('Readiness Status', evidence.readinessStatus),
+    miniCard('Page Status', evidence.pageStatus),
+    miniCard('Flow Status', evidence.flowStatus),
+    miniCard('Commercial Readiness', evidence.commercialReadiness),
+  ].join('');
+}
+
+function renderTesting(testing) {
+  if (!testing) {
+    byId('testingCards').innerHTML = miniCard('Testing Status', 'Not loaded');
+    return;
+  }
+
+  byId('testingCards').innerHTML = [
+    miniCard('Testing Status', testing.testingStatus),
+    miniCard('Coverage Status', testing.coverageStatus),
+    miniCard('Quality Gate Status', testing.qualityGateStatus),
+    miniCard('CI Status', testing.ciStatus),
+    miniCard('Skipped Tests', testing.skippedTests),
+    miniCard('Missing Categories', testing.missingCategories),
+  ].join('');
+}
+
+function renderArchitecture(architecture) {
+  if (!architecture) {
+    byId('architectureCards').innerHTML = miniCard('Architecture Status', 'Not loaded');
+    return;
+  }
+
+  byId('architectureCards').innerHTML = [
+    miniCard('Architecture Status', architecture.architectureStatus),
+    miniCard('Command Health', `${architecture.commandHealth} (${architecture.commandsAudited} commands)`),
+    miniCard('Runtime Health', `${architecture.runtimeHealth} (${architecture.runtimeFiles} files)`),
+    miniCard('Consolidation Progress', architecture.consolidationProgress),
+    miniCard('Duplicate Commands', architecture.duplicateCommandGroups),
+    miniCard('Legacy Commands', architecture.legacyCommands),
+    miniCard('Candidate Deprecations', architecture.candidateDeprecations),
+    miniCard('Duplicate Runtime Candidates', architecture.duplicateRuntimeCandidates),
+    miniCard('Source Of Truth Authorities', architecture.sourceOfTruthAuthorities),
   ].join('');
 }
 
