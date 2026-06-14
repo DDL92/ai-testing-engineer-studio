@@ -9,6 +9,7 @@ import { buildOutcomeSummary, loadOutcomes } from '../outcomeTracking/outcomeRul
 import { buildRevenueActivationReport } from '../revenueActivation/revenueRules';
 import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
+import { buildTopLeadAuditDashboard } from '../topLeadAudit/topLeadAuditRules';
 import { buildWebLeadDiscoveryReport } from '../webLeadDiscovery/webDiscoveryRules';
 import { buildLeadQualificationReport } from '../webLeadQualification/normalizationRules';
 import { buildPainMiningReport } from '../webPainMining/painMiningRules';
@@ -57,6 +58,7 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
   const leadQualification = buildLeadQualificationReport();
   const painMining = buildPainMiningReport();
   const runner = buildRunnerDashboard();
+  const topLeadAudit = buildTopLeadAuditDashboard();
   const today = new Date().toISOString().slice(0, 10);
   const todaysWebLeads = webDiscovery.leads.filter((item) => item.discoveryDate === today);
   const todaysPainSignals = painMining.signals.filter((item) => item.date === today);
@@ -127,6 +129,9 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     topQualifiedLead: bestQualifiedLead?.normalizedName ?? 'No qualified web lead.',
     todaysRecommendedAction: topAction,
     currentTopLead: topLeadName,
+    auditStatus: topLeadAudit.topLeadAuditStatus,
+    topLeadAuditStatus: topLeadAudit.topLeadAuditStatus,
+    topLeadExecutionReadiness: topLeadAudit.executionReadiness,
     nextRevenueAction: revenueTruth.nextAction,
     executionPriority: revenueTruth.executionPriority,
     safetyRules: sprint82Safety,
@@ -214,7 +219,11 @@ export function renderMobileTodayView(summary: MobileCommandCenterSummary): stri
     '',
     `Today\'s Recommended Action:\n${summary.todaysRecommendedAction}`,
     '',
-    `Current Top Lead:\n${summary.currentTopLead}`,
+      `Current Top Lead:\n${summary.currentTopLead}`,
+    '',
+    `Audit Status:\n${summary.auditStatus}`,
+    '',
+    `Execution Readiness:\n${summary.topLeadExecutionReadiness}`,
     '',
     `Next Revenue Action:\n${summary.nextRevenueAction}`,
     '',
@@ -279,6 +288,8 @@ export function renderMobilePipelineView(summary: MobileCommandCenterSummary): s
       `Top Qualified Lead: ${summary.topQualifiedLead}`,
       `Today\'s Recommended Action: ${summary.todaysRecommendedAction}`,
       `Current Top Lead: ${summary.currentTopLead}`,
+      `Audit Status: ${summary.auditStatus}`,
+      `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
       `Recommended Offer: ${summary.topOffer}`,
       `Next Revenue Action: ${summary.nextRevenueAction}`,
       `Execution Priority: ${summary.executionPriority}`,
@@ -315,6 +326,8 @@ export function renderMobileActionCenter(summary: MobileCommandCenterSummary, ac
       `Top Qualified Lead: ${summary.topQualifiedLead}`,
       `Today\'s Recommended Action: ${summary.todaysRecommendedAction}`,
       `Current Top Lead: ${summary.currentTopLead}`,
+      `Audit Status: ${summary.auditStatus}`,
+      `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
       `Recommended Offer: ${summary.topOffer}`,
       `Next Revenue Action: ${summary.nextRevenueAction}`,
       `Execution Priority: ${summary.executionPriority}`,
@@ -359,6 +372,8 @@ export function renderSprint82MobileSummary(summary: MobileCommandCenterSummary)
       `Top Qualified Lead: ${summary.topQualifiedLead}`,
       `Today\'s Recommended Action: ${summary.todaysRecommendedAction}`,
       `Current Top Lead: ${summary.currentTopLead}`,
+      `Audit Status: ${summary.auditStatus}`,
+      `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
       `Recommended Offer: ${summary.topOffer}`,
       `Next Revenue Action: ${summary.nextRevenueAction}`,
       `Execution Priority: ${summary.executionPriority}`,

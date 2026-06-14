@@ -151,6 +151,9 @@ export interface MobileCommandCenterSummary {
   topQualifiedLead: string;
   todaysRecommendedAction: string;
   currentTopLead: string;
+  auditStatus: string;
+  topLeadAuditStatus: string;
+  topLeadExecutionReadiness: string;
   nextRevenueAction: string;
   executionPriority: string;
   safetyRules: string[];

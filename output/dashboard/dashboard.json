@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-14T05:37:55.263Z",
+  "generatedAt": "2026-06-14T05:50:59.176Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-14",
@@ -22,7 +22,7 @@
         "priority": 3,
         "title": "Review consistency warnings",
         "whyItMatters": "No legacy top-lead conflicts detected in daily plan input.",
-        "estimatedImpact": "Prevents PushPress or other legacy leads from becoming the visible revenue priority.",
+        "estimatedImpact": "Prevents legacy leads from becoming the visible revenue priority.",
         "nextStep": "Use Revenue Intelligence as the only source for commercial decisions."
       }
     ],
@@ -91,7 +91,7 @@
     "bestRetainerOpportunity": "Appointy"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-14T05:37:55.263Z",
+    "lastUpdate": "2026-06-14T05:50:59.176Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "10 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -222,6 +222,12 @@
     "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
     "executionPriority": "HIGH"
   },
+  "topLeadAudit": {
+    "topLeadAuditStatus": "Ready",
+    "evidenceStatus": "Ready",
+    "proposalStatus": "Ready",
+    "executionReadiness": "GO"
+  },
   "mobileCommandCenter": {
     "reviewCenter": {
       "auditsReady": 3,
@@ -254,7 +260,7 @@
         "priority": 3,
         "title": "Review consistency warnings",
         "whyItMatters": "No legacy top-lead conflicts detected in daily plan input.",
-        "estimatedImpact": "Prevents PushPress or other legacy leads from becoming the visible revenue priority.",
+        "estimatedImpact": "Prevents legacy leads from becoming the visible revenue priority.",
         "nextStep": "Use Revenue Intelligence as the only source for commercial decisions."
       }
     ],

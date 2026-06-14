@@ -22,6 +22,7 @@ import { buildRevenueIntelligenceDashboard, buildRevenueIntelligenceReport } fro
 import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
 import { readSnapshotState } from '../studioSnapshot/snapshotRules';
+import { buildTopLeadAuditDashboard } from '../topLeadAudit/topLeadAuditRules';
 import { buildUnifiedAuditPortfolio } from '../unifiedAuditGenerator/unifiedAuditRules';
 import { buildWebDiscoveryDashboard } from '../webLeadDiscovery/webDiscoveryRules';
 import { buildLeadQualificationDashboard } from '../webLeadQualification/normalizationRules';
@@ -222,6 +223,13 @@ export interface DashboardRevenueIntelligence {
   executionPriority: string;
 }
 
+export interface DashboardTopLeadAudit {
+  topLeadAuditStatus: string;
+  evidenceStatus: string;
+  proposalStatus: string;
+  executionReadiness: string;
+}
+
 export interface DashboardData {
   generatedAt: string;
   mode: 'read-only';
@@ -281,6 +289,7 @@ export interface DashboardData {
   leadQualification: DashboardLeadQualification;
   autonomousRunner: DashboardAutonomousRunner;
   revenueIntelligence: DashboardRevenueIntelligence;
+  topLeadAudit: DashboardTopLeadAudit;
   mobileCommandCenter: DashboardMobileCenter;
   safety: string[];
 }
@@ -319,6 +328,7 @@ export function buildPwaDashboardData(): DashboardData {
   const webDiscoveryLeadDashboard = buildWebDiscoveryDashboard();
   const leadQualificationDashboard = buildLeadQualificationDashboard();
   const autonomousRunnerDashboard = buildRunnerDashboard();
+  const topLeadAuditDashboard = buildTopLeadAuditDashboard();
   const painMiningReport = buildPainMiningReport();
   const painMiningDashboard = buildPainMiningDashboard();
   const topLead = leadIntelligenceReport.leads[0];
@@ -503,6 +513,7 @@ export function buildPwaDashboardData(): DashboardData {
     leadQualification: leadQualificationDashboard,
     autonomousRunner: autonomousRunnerDashboard,
     revenueIntelligence: revenueIntelligenceDashboard,
+    topLeadAudit: topLeadAuditDashboard,
     mobileCommandCenter: {
       reviewCenter: {
         auditsReady: auditPortfolio.reports.length,
@@ -585,7 +596,7 @@ function unifiedDashboardActions(
       priority: 3,
       title: 'Review consistency warnings',
       whyItMatters: warnings.length > 0 ? warnings.join(' ') : 'No legacy top-lead conflicts detected in daily plan input.',
-      estimatedImpact: 'Prevents PushPress or other legacy leads from becoming the visible revenue priority.',
+      estimatedImpact: 'Prevents legacy leads from becoming the visible revenue priority.',
       nextStep: 'Use Revenue Intelligence as the only source for commercial decisions.',
     },
   ];

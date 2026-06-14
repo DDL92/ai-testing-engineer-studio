@@ -532,6 +532,13 @@ Generated: ${data.generatedAt}
 - Studio Status: ${data.operatorMode.studioStatus}
 - Today At A Glance: ${data.operatorMode.todayAtAGlance}
 
+## Top Lead Audit
+
+- Top Lead Audit Status: ${data.topLeadAudit.topLeadAuditStatus}
+- Evidence Status: ${data.topLeadAudit.evidenceStatus}
+- Proposal Status: ${data.topLeadAudit.proposalStatus}
+- Execution Readiness: ${data.topLeadAudit.executionReadiness}
+
 ## Safety
 
 ${data.safety.map((item) => `- ${item}`).join('\n')}

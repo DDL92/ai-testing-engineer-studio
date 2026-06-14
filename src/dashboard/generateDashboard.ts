@@ -65,6 +65,10 @@ function renderLegacyDashboardMarkdown(data: ReturnType<typeof buildPwaDashboard
       `Revenue Target: ${data.revenueIntelligence.revenueTarget}`,
       `Execution Priority: ${data.revenueIntelligence.executionPriority}`,
       `Next Action: ${data.leadIntelligence.recommendedNextAction}`,
+      `Top Lead Audit Status: ${data.topLeadAudit.topLeadAuditStatus}`,
+      `Evidence Status: ${data.topLeadAudit.evidenceStatus}`,
+      `Proposal Status: ${data.topLeadAudit.proposalStatus}`,
+      `Execution Readiness: ${data.topLeadAudit.executionReadiness}`,
     ]),
     '',
     '## Today',
@@ -92,6 +96,10 @@ function renderLegacyDashboardHtml(data: ReturnType<typeof buildPwaDashboardData
     ['Revenue Target', data.revenueIntelligence.revenueTarget],
     ['Execution Priority', data.revenueIntelligence.executionPriority],
     ['Next Action', data.leadIntelligence.recommendedNextAction],
+    ['Top Lead Audit Status', data.topLeadAudit.topLeadAuditStatus],
+    ['Evidence Status', data.topLeadAudit.evidenceStatus],
+    ['Proposal Status', data.topLeadAudit.proposalStatus],
+    ['Execution Readiness', data.topLeadAudit.executionReadiness],
     ['Top Action', topAction?.title ?? 'No action found'],
   ];
 

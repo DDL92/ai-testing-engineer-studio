@@ -1,6 +1,6 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-14T05:37:55.263Z
+Generated: 2026-06-14T05:50:59.176Z
 
 ## Today
 
@@ -123,6 +123,13 @@ Generated: 2026-06-14T05:37:55.263Z
 - Top Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Studio Status: Healthy
 - Today At A Glance: Top Lead: Appointy | Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+
+## Top Lead Audit
+
+- Top Lead Audit Status: Ready
+- Evidence Status: Ready
+- Proposal Status: Ready
+- Execution Readiness: GO
 
 ## Safety
 
