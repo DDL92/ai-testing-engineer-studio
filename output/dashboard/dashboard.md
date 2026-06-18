@@ -1,6 +1,6 @@
 # Studio Dashboard
 
-Generated: 2026-06-14T22:16:17.823Z
+Generated: 2026-06-18T19:22:17.042Z
 
 ## Revenue Intelligence Source Of Truth
 - Today Focus: Appointy - QA Automation Retainer - HIGH
@@ -24,6 +24,28 @@ Generated: 2026-06-14T22:16:17.823Z
 - Lighthouse Status: PASS
 - Screenshot Status: PASS
 - Readiness Status: NOT READY
+- Client Status: delivery-prep
+- Selected Package: qa-audit
+- Delivery Readiness: READY FOR PREPARATION
+- Next Delivery Action: Review Setmore public evidence checklist and approve the QA Audit scope manually.
+- Automation Status: READY FOR REVIEW
+- Critical Flows: 9
+- Delivery Assets: 10
+- Framework Status: Recommendations Ready
+- Client Handoff Status: Draft Ready for Review
+- Retainer Status: PLANNING
+- Client Health: WATCH
+- Coverage Status: 0% automated; 8 planned
+- Maintenance Status: 8 recurring task recommendations
+- Renewal Status: NOT READY
+- Expansion Opportunities: 6
+- Revenue Learning Status: INSUFFICIENT HISTORY
+- Outcomes Recorded: 0
+- Best Channel: Insufficient outcome history.
+- Revenue Learning Best Offer: Insufficient outcome history.
+- Best Industry: Insufficient outcome history.
+- Calibration Status: INSUFFICIENT HISTORY; 0% influence
+- Recommendation Confidence: INSUFFICIENT HISTORY
 - Outcomes Recorded: 0
 - Reply Rate: No outcomes recorded yet.
 - Proposal Rate: No outcomes recorded yet.

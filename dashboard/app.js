@@ -36,6 +36,10 @@ function render(data) {
   renderTesting(data.testing);
   renderWebIntelligence(data.webIntelligence);
   renderEvidenceEngine(data.evidenceEngine);
+  renderClientDelivery(data.clientDelivery);
+  renderAutomationDelivery(data.automationDelivery);
+  renderRetainerOperations(data.retainerOperations);
+  renderRevenueLearning(data.revenueLearning);
   renderExecutionPack(data.executionPack);
   renderOutcomeTracking(data.outcomeTracking);
   renderFollowUpEngine(data.followUpEngine);
@@ -273,6 +277,71 @@ function renderEvidenceEngine(evidence) {
     miniCard('Page Status', evidence.pageStatus),
     miniCard('Flow Status', evidence.flowStatus),
     miniCard('Commercial Readiness', evidence.commercialReadiness),
+  ].join('');
+}
+
+function renderClientDelivery(clientDelivery) {
+  if (!clientDelivery) {
+    byId('clientDeliveryCards').innerHTML = miniCard('Client Status', 'Not loaded');
+    return;
+  }
+
+  byId('clientDeliveryCards').innerHTML = [
+    miniCard('Client', clientDelivery.clientName),
+    miniCard('Client Status', clientDelivery.clientStatus),
+    miniCard('Selected Package', clientDelivery.selectedPackage),
+    miniCard('Delivery Readiness', clientDelivery.deliveryReadiness),
+    miniCard('Delivery Status', clientDelivery.deliveryStatus),
+    miniCard('Next Delivery Action', clientDelivery.nextDeliveryAction),
+  ].join('');
+}
+
+function renderAutomationDelivery(automation) {
+  if (!automation) {
+    byId('automationDeliveryCards').innerHTML = miniCard('Automation Status', 'Not loaded');
+    return;
+  }
+
+  byId('automationDeliveryCards').innerHTML = [
+    miniCard('Automation Status', automation.automationStatus),
+    miniCard('Critical Flows', automation.criticalFlowCount),
+    miniCard('Delivery Assets', automation.deliveryAssets),
+    miniCard('Framework Status', automation.frameworkStatus),
+    miniCard('Client Handoff Status', automation.clientHandoffStatus),
+    miniCard('Delivery Status', automation.deliveryStatus),
+  ].join('');
+}
+
+function renderRetainerOperations(retainer) {
+  if (!retainer) {
+    byId('retainerOperationsCards').innerHTML = miniCard('Retainer Status', 'Not loaded');
+    return;
+  }
+
+  byId('retainerOperationsCards').innerHTML = [
+    miniCard('Retainer Status', retainer.retainerStatus),
+    miniCard('Client Health', retainer.clientHealth),
+    miniCard('Coverage Status', retainer.coverageStatus),
+    miniCard('Maintenance Status', retainer.maintenanceStatus),
+    miniCard('Renewal Status', retainer.renewalStatus),
+    miniCard('Expansion Opportunities', retainer.expansionOpportunities),
+  ].join('');
+}
+
+function renderRevenueLearning(learning) {
+  if (!learning) {
+    byId('revenueLearningCards').innerHTML = miniCard('Revenue Learning Status', 'Not loaded');
+    return;
+  }
+
+  byId('revenueLearningCards').innerHTML = [
+    miniCard('Revenue Learning Status', learning.revenueLearningStatus),
+    miniCard('Outcomes Recorded', learning.outcomesRecorded),
+    miniCard('Best Channel', learning.bestChannel),
+    miniCard('Best Offer', learning.bestOffer),
+    miniCard('Best Industry', learning.bestIndustry),
+    miniCard('Calibration Status', learning.calibrationStatus),
+    miniCard('Recommendation Confidence', learning.recommendationConfidence),
   ].join('');
 }
 

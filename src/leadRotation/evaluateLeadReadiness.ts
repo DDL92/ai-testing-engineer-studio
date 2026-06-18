@@ -76,7 +76,13 @@ function dynamicEvidenceForLead(lead: NormalizedWebLead): { status: LeadRotation
 function readDynamicEvidenceDecision(): { target: { companyName: string }; status: LeadRotationReadinessStatus; blockers: string[] } | null {
   const filePath = path.join(process.cwd(), 'output', 'evidence', '.state', 'evidence-readiness.json');
   if (!fs.existsSync(filePath)) return null;
-  return JSON.parse(fs.readFileSync(filePath, 'utf8')) as { target: { companyName: string }; status: LeadRotationReadinessStatus; blockers: string[] };
+  try {
+    const raw = fs.readFileSync(filePath, 'utf8').trim();
+    if (!raw) return null;
+    return JSON.parse(raw) as { target: { companyName: string }; status: LeadRotationReadinessStatus; blockers: string[] };
+  } catch {
+    return null;
+  }
 }
 
 function webEvidenceStatus(summary: CompanyEvidenceSummary | undefined, lead: NormalizedWebLead): LeadRotationReadinessStatus {

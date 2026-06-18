@@ -185,6 +185,19 @@ export interface MobileCommandCenterSummary {
   evidenceStatus: string;
   readinessStatus: string;
   lighthouseStatus: string;
+  clientStatus: string;
+  clientPackage: string;
+  deliveryStatus: string;
+  automationStatus: string;
+  criticalFlowCount: string;
+  retainerStatus: string;
+  healthStatus: string;
+  coverageStatus: string;
+  renewalStatus: string;
+  revenueLearningStatus: string;
+  learningBestChannel: string;
+  revenueLearningBestOffer: string;
+  calibrationStatus: string;
   safetyRules: string[];
 }
 

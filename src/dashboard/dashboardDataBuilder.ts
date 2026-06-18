@@ -1,6 +1,11 @@
 import fs = require('fs');
 import path = require('path');
 import { buildAdaptiveRevenueDashboard, buildAdaptiveRevenueReport } from '../adaptiveRevenue/adaptiveRules';
+import { buildAutomationDeliveryDashboard } from '../automationDelivery/automationRules';
+import { buildClientConversionDashboard } from '../clientConversion/conversionRules';
+import { buildDeliveryRouterDashboard } from '../deliveryRouter/routerRules';
+import { buildRetainerOperationsDashboard } from '../retainerOperations/retainerRules';
+import { buildRevenueLearningDashboard } from '../revenueLearning/learningRules';
 import { buildDynamicEvidenceSummary, buildEvidenceReadinessDecision } from '../evidenceEngine/evidenceRules';
 import { buildArchitectureAudit } from '../studioArchitecture/architectureRules';
 import { buildTestingReportBundle } from '../testing/testingRules';
@@ -148,6 +153,16 @@ export interface DashboardAdaptiveRevenue {
   learningInfluence: string;
 }
 
+export interface DashboardRevenueLearning {
+  revenueLearningStatus: string;
+  outcomesRecorded: number;
+  bestChannel: string;
+  bestOffer: string;
+  bestIndustry: string;
+  calibrationStatus: string;
+  recommendationConfidence: string;
+}
+
 export interface DashboardFollowUpEngine {
   followUpQueue: number;
   todaysFollowUps: number;
@@ -277,6 +292,33 @@ export interface DashboardEvidenceEngine {
   commercialReadiness: string;
 }
 
+export interface DashboardClientDelivery {
+  clientName: string;
+  clientStatus: string;
+  selectedPackage: string;
+  deliveryReadiness: string;
+  deliveryStatus: string;
+  nextDeliveryAction: string;
+}
+
+export interface DashboardAutomationDelivery {
+  automationStatus: string;
+  criticalFlowCount: number;
+  deliveryAssets: number;
+  frameworkStatus: string;
+  clientHandoffStatus: string;
+  deliveryStatus: string;
+}
+
+export interface DashboardRetainerOperations {
+  retainerStatus: string;
+  clientHealth: string;
+  coverageStatus: string;
+  maintenanceStatus: string;
+  renewalStatus: string;
+  expansionOpportunities: number;
+}
+
 export interface DashboardCommercialUx {
   todayFocus: string;
   revenueHero: string;
@@ -373,6 +415,7 @@ export interface DashboardData {
   outcomeTracking: DashboardOutcomeTracking;
   outcomeLearning: DashboardOutcomeLearning;
   adaptiveRevenue: DashboardAdaptiveRevenue;
+  revenueLearning: DashboardRevenueLearning;
   followUpEngine: DashboardFollowUpEngine;
   winLossIntelligence: DashboardWinLossIntelligence;
   studioSnapshot: DashboardStudioSnapshot;
@@ -386,6 +429,9 @@ export interface DashboardData {
   revenueIntelligence: DashboardRevenueIntelligence;
   topLeadAudit: DashboardTopLeadAudit;
   evidenceEngine: DashboardEvidenceEngine;
+  clientDelivery: DashboardClientDelivery;
+  automationDelivery: DashboardAutomationDelivery;
+  retainerOperations: DashboardRetainerOperations;
   commercialUx: DashboardCommercialUx;
   architecture: DashboardArchitectureHealth;
   testing: DashboardTestingHealth;
@@ -420,6 +466,7 @@ export function buildPwaDashboardData(): DashboardData {
   const outcomeLearning = buildOutcomeLearningDashboard();
   const adaptiveRevenue = buildAdaptiveRevenueDashboard();
   const adaptiveRevenueReport = buildAdaptiveRevenueReport();
+  const revenueLearning = buildRevenueLearningDashboard();
   const followUpReport = buildFollowUpOperatingReport();
   const winLossReport = buildWinLossReport();
   const snapshotState = readSnapshotState();
@@ -440,6 +487,10 @@ export function buildPwaDashboardData(): DashboardData {
   const webIntelligence = buildWebIntelligenceReport();
   const dynamicEvidenceSummary = buildDynamicEvidenceSummary();
   const dynamicEvidenceDecision = buildEvidenceReadinessDecision(dynamicEvidenceSummary);
+  const clientConversion = buildClientConversionDashboard();
+  const deliveryRouter = buildDeliveryRouterDashboard();
+  const automationDelivery = buildAutomationDeliveryDashboard();
+  const retainerOperations = buildRetainerOperationsDashboard();
   const topLead = leadIntelligenceReport.leads[0];
   const unifiedTopLead = revenueIntelligenceReport.topLead;
   const operatorSummary = buildOperatorUxSummary();
@@ -554,6 +605,7 @@ export function buildPwaDashboardData(): DashboardData {
     },
     outcomeLearning,
     adaptiveRevenue,
+    revenueLearning,
     followUpEngine: {
       followUpQueue: followUpReport.dashboard.followUpQueue,
       todaysFollowUps: followUpReport.dashboard.todaysFollowUps,
@@ -645,6 +697,16 @@ export function buildPwaDashboardData(): DashboardData {
       flowStatus: dynamicEvidenceDecision.flowStatus,
       commercialReadiness: dynamicEvidenceDecision.commercialReadiness,
     },
+    clientDelivery: {
+      clientName: clientConversion.clientName,
+      clientStatus: clientConversion.clientStatus,
+      selectedPackage: clientConversion.selectedPackage,
+      deliveryReadiness: deliveryRouter.deliveryReadiness,
+      deliveryStatus: deliveryRouter.deliveryStatus,
+      nextDeliveryAction: deliveryRouter.nextDeliveryAction,
+    },
+    automationDelivery,
+    retainerOperations,
     commercialUx,
     architecture: {
       architectureStatus: architectureAudit.architectureStatus,

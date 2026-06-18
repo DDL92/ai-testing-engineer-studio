@@ -19,7 +19,7 @@ const safetyRules = [
   'Adaptive Revenue uses manually recorded local outcomes only.',
   'No outcomes, replies, meetings, proposals, wins, losses, revenue, clients, or interest are invented.',
   'No outreach, emails, LinkedIn messages, CRM records, invoices, meetings, payments, or external actions are created.',
-  'Adaptive learning is a small ranking signal and never exceeds 30% influence.',
+  'Adaptive learning is a small ranking signal and never exceeds 20% influence.',
   'Human approval remains required before external action.',
 ];
 
@@ -152,7 +152,7 @@ export function renderHistoricalWeights(report: AdaptiveRevenueReport): string {
       '10-24 usable outcomes: 90% existing model, 10% learning.',
       '25-49 usable outcomes: 85% existing model, 15% learning.',
       '50-99 usable outcomes: 80% existing model, 20% learning.',
-      '100+ usable outcomes: 70% existing model, 30% learning.',
+      '100+ usable outcomes: 80% existing model, 20% learning.',
     ]),
     '',
     '## Safety Rules',
@@ -260,7 +260,7 @@ function learningWeightFor(usableOutcomes: number): number {
   if (usableOutcomes < 25) return 10;
   if (usableOutcomes < 50) return 15;
   if (usableOutcomes < 100) return 20;
-  return 30;
+  return 20;
 }
 
 function adaptiveScoreForLead(

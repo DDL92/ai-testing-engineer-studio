@@ -1,6 +1,9 @@
 import fs = require('fs');
 import path = require('path');
 import { buildAdaptiveRevenueReport } from '../adaptiveRevenue/adaptiveRules';
+import { buildAutomationDeliveryDashboard } from '../automationDelivery/automationRules';
+import { buildClientConversionDashboard } from '../clientConversion/conversionRules';
+import { buildDeliveryRouterDashboard } from '../deliveryRouter/routerRules';
 import { buildEvidenceReadinessDecision } from '../evidenceEngine/evidenceRules';
 import { buildArchitectureAudit } from '../studioArchitecture/architectureRules';
 import { buildTestingReportBundle } from '../testing/testingRules';
@@ -15,6 +18,8 @@ import { buildOutcomeLearningAnalysis } from '../outcomeLearning/learningRules';
 import { buildOutcomeSummary, loadOutcomes } from '../outcomeTracking/outcomeRules';
 import { buildRevenueActivationReport } from '../revenueActivation/revenueRules';
 import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
+import { buildRetainerOperationsDashboard } from '../retainerOperations/retainerRules';
+import { buildRevenueLearningDashboard } from '../revenueLearning/learningRules';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
 import { buildTopLeadAuditDashboard } from '../topLeadAudit/topLeadAuditRules';
 import { buildWebLeadDiscoveryReport } from '../webLeadDiscovery/webDiscoveryRules';
@@ -73,6 +78,11 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
   const testing = buildTestingReportBundle();
   const webIntelligence = buildWebIntelligenceReport();
   const evidenceDecision = buildEvidenceReadinessDecision();
+  const clientConversion = buildClientConversionDashboard();
+  const deliveryRouter = buildDeliveryRouterDashboard();
+  const automationDelivery = buildAutomationDeliveryDashboard();
+  const retainerOperations = buildRetainerOperationsDashboard();
+  const revenueLearning = buildRevenueLearningDashboard();
   const today = new Date().toISOString().slice(0, 10);
   const todaysWebLeads = webDiscovery.leads.filter((item) => item.discoveryDate === today);
   const todaysPainSignals = painMining.signals.filter((item) => item.date === today);
@@ -180,6 +190,19 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     evidenceStatus: evidenceDecision.evidenceStatus,
     readinessStatus: evidenceDecision.status,
     lighthouseStatus: evidenceDecision.lighthouseStatus,
+    clientStatus: clientConversion.clientStatus,
+    clientPackage: clientConversion.selectedPackage,
+    deliveryStatus: deliveryRouter.deliveryReadiness,
+    automationStatus: automationDelivery.automationStatus,
+    criticalFlowCount: String(automationDelivery.criticalFlowCount),
+    retainerStatus: retainerOperations.retainerStatus,
+    healthStatus: retainerOperations.clientHealth,
+    coverageStatus: retainerOperations.coverageStatus,
+    renewalStatus: retainerOperations.renewalStatus,
+    revenueLearningStatus: revenueLearning.revenueLearningStatus,
+    learningBestChannel: revenueLearning.bestChannel,
+    revenueLearningBestOffer: revenueLearning.bestOffer,
+    calibrationStatus: revenueLearning.calibrationStatus,
     safetyRules: sprint82Safety,
   };
 }
@@ -271,6 +294,19 @@ export function renderMobileTodayView(summary: MobileCommandCenterSummary): stri
       `Evidence Status: ${summary.evidenceStatus}`,
       `Readiness Status: ${summary.readinessStatus}`,
       `Lighthouse Status: ${summary.lighthouseStatus}`,
+      `Client Status: ${summary.clientStatus}`,
+      `Package: ${summary.clientPackage}`,
+      `Delivery Status: ${summary.deliveryStatus}`,
+      `Automation Status: ${summary.automationStatus}`,
+      `Critical Flow Count: ${summary.criticalFlowCount}`,
+      `Retainer Status: ${summary.retainerStatus}`,
+      `Health Status: ${summary.healthStatus}`,
+      `Coverage Status: ${summary.coverageStatus}`,
+      `Renewal Status: ${summary.renewalStatus}`,
+      `Learning Status: ${summary.revenueLearningStatus}`,
+      `Best Channel: ${summary.learningBestChannel}`,
+      `Revenue Learning Best Offer: ${summary.revenueLearningBestOffer}`,
+      `Calibration Status: ${summary.calibrationStatus}`,
       `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
     ]),
     '',
@@ -495,6 +531,19 @@ export function renderSprint82MobileSummary(summary: MobileCommandCenterSummary)
       `Evidence Status: ${summary.evidenceStatus}`,
       `Readiness Status: ${summary.readinessStatus}`,
       `Lighthouse Status: ${summary.lighthouseStatus}`,
+      `Client Status: ${summary.clientStatus}`,
+      `Package: ${summary.clientPackage}`,
+      `Delivery Status: ${summary.deliveryStatus}`,
+      `Automation Status: ${summary.automationStatus}`,
+      `Critical Flow Count: ${summary.criticalFlowCount}`,
+      `Retainer Status: ${summary.retainerStatus}`,
+      `Health Status: ${summary.healthStatus}`,
+      `Coverage Status: ${summary.coverageStatus}`,
+      `Renewal Status: ${summary.renewalStatus}`,
+      `Learning Status: ${summary.revenueLearningStatus}`,
+      `Best Channel: ${summary.learningBestChannel}`,
+      `Revenue Learning Best Offer: ${summary.revenueLearningBestOffer}`,
+      `Calibration Status: ${summary.calibrationStatus}`,
       `Revenue Health: ${summary.revenueHealth}`,
       `Next Manual Step: ${summary.nextManualStep}`,
     ]),
@@ -528,6 +577,19 @@ export function buildMobileReviewPackage(): MobileReviewPackage {
       item('Evidence Status', dashboard.evidenceEngine.evidenceStatus),
       item('Readiness Status', dashboard.evidenceEngine.readinessStatus),
       item('Lighthouse Status', dashboard.evidenceEngine.lighthouseStatus),
+      item('Client Status', dashboard.clientDelivery.clientStatus),
+      item('Package', dashboard.clientDelivery.selectedPackage),
+      item('Delivery Status', dashboard.clientDelivery.deliveryReadiness),
+      item('Automation Status', dashboard.automationDelivery.automationStatus),
+      item('Critical Flow Count', String(dashboard.automationDelivery.criticalFlowCount)),
+      item('Retainer Status', dashboard.retainerOperations.retainerStatus),
+      item('Health Status', dashboard.retainerOperations.clientHealth),
+      item('Coverage Status', dashboard.retainerOperations.coverageStatus),
+      item('Renewal Status', dashboard.retainerOperations.renewalStatus),
+      item('Learning Status', dashboard.revenueLearning.revenueLearningStatus),
+      item('Best Channel', dashboard.revenueLearning.bestChannel),
+      item('Revenue Learning Best Offer', dashboard.revenueLearning.bestOffer),
+      item('Calibration Status', dashboard.revenueLearning.calibrationStatus),
       item('Audits Ready', String(center.reviewCenter.auditsReady), center.auditCenter.links),
       item('Proposals Ready', String(center.reviewCenter.proposalsReady), center.proposalCenter.proposalPdfs),
       item('Evidence Ready', String(center.reviewCenter.evidenceReady), center.auditCenter.links.filter((link) => link.href.includes('/evidence/') || link.href.includes('/lighthouse/') || link.href.includes('/playwright-runner/'))),
@@ -651,6 +713,19 @@ ${bullets([
     `Evidence Status: ${valueFor(review.reviewCenter, 'Evidence Status')}`,
     `Readiness Status: ${valueFor(review.reviewCenter, 'Readiness Status')}`,
     `Lighthouse Status: ${valueFor(review.reviewCenter, 'Lighthouse Status')}`,
+    `Client Status: ${valueFor(review.reviewCenter, 'Client Status')}`,
+    `Package: ${valueFor(review.reviewCenter, 'Package')}`,
+    `Delivery Status: ${valueFor(review.reviewCenter, 'Delivery Status')}`,
+    `Automation Status: ${valueFor(review.reviewCenter, 'Automation Status')}`,
+    `Critical Flow Count: ${valueFor(review.reviewCenter, 'Critical Flow Count')}`,
+    `Retainer Status: ${valueFor(review.reviewCenter, 'Retainer Status')}`,
+    `Health Status: ${valueFor(review.reviewCenter, 'Health Status')}`,
+    `Coverage Status: ${valueFor(review.reviewCenter, 'Coverage Status')}`,
+    `Renewal Status: ${valueFor(review.reviewCenter, 'Renewal Status')}`,
+    `Learning Status: ${valueFor(review.reviewCenter, 'Learning Status')}`,
+    `Best Channel: ${valueFor(review.reviewCenter, 'Best Channel')}`,
+    `Revenue Learning Best Offer: ${valueFor(review.reviewCenter, 'Revenue Learning Best Offer')}`,
+    `Calibration Status: ${valueFor(review.reviewCenter, 'Calibration Status')}`,
   ])}
 
 ## Safety

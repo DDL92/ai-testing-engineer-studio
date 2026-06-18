@@ -1,6 +1,6 @@
 # Revenue Command Center
 
-Generated: 2026-06-14T22:16:18.519Z
+Generated: 2026-06-18T19:21:33.687Z
 
 ## TODAY
 
@@ -16,8 +16,8 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 
 ## DISCOVERY SNAPSHOT
 
-- New Leads Today: 30
-- New Pain Signals: 54
+- New Leads Today: 0
+- New Pain Signals: 0
 - Qualified Leads: Appointy, Setmore, SuperSaaS
 
 ## SYSTEM HEALTH
@@ -33,7 +33,7 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 - Commercial Readiness: 86/100
 - Best Offer: QA Automation Retainer ($1500-$3000/month)
 - Best Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
-- Today's Discovered Leads: Fitness Studio and Gym Scheduling Software - Appointy, Gym Management Software - GymMaster Member Management, Online booking software for gyms and fitness studios - SuperSaaS
+- Today's Discovered Leads: No web leads discovered today.
 - Top Pain Signal: Potential recurring pain signal: mobile app for Gym Software Market
 - Best Opportunity: Fitness Studio and Gym Scheduling Software - Appointy (99/100)
 - Best Qualified Lead: Appointy
@@ -41,8 +41,8 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 - Best Offer: QA Automation Retainer ($1500-$3000/month)
 - Highest QA Opportunity: Setmore (84/100)
 - Last Refresh: 2026-06-14T01:53:03.396Z
-- New Leads Today: 30
-- New Pain Signals: 54
+- New Leads Today: 0
+- New Pain Signals: 0
 - Top Qualified Lead: Appointy
 - Today's Recommended Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Current Top Lead: Appointy
@@ -74,6 +74,19 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 - Evidence Status: NOT READY
 - Readiness Status: NOT READY
 - Lighthouse Status: PASS
+- Client Status: delivery-prep
+- Package: qa-audit
+- Delivery Status: READY FOR PREPARATION
+- Automation Status: READY FOR REVIEW
+- Critical Flow Count: 9
+- Retainer Status: PLANNING
+- Health Status: WATCH
+- Coverage Status: 0% automated; 8 planned
+- Renewal Status: NOT READY
+- Learning Status: INSUFFICIENT HISTORY
+- Best Channel: Insufficient outcome history.
+- Revenue Learning Best Offer: Insufficient outcome history.
+- Calibration Status: INSUFFICIENT HISTORY; 0% influence
 - Revenue Health: Current MRR: $0
 - Next Manual Step: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 

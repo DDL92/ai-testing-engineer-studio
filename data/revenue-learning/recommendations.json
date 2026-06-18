@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-18T19:21:23.683Z",
+  "status": "INSUFFICIENT HISTORY",
+  "calibrationInfluence": 0,
+  "recommendations": {
+    "bestChannel": "Insufficient outcome history.",
+    "bestOffer": "Insufficient outcome history.",
+    "bestIndustry": "Insufficient outcome history.",
+    "bestPricePoint": "Insufficient outcome history.",
+    "bestLeadCategory": "Insufficient outcome history.",
+    "bestMessageType": "Insufficient outcome history.",
+    "worstChannel": "Insufficient outcome history.",
+    "worstOffer": "Insufficient outcome history.",
+    "worstIndustry": "Insufficient outcome history.",
+    "confidence": "INSUFFICIENT HISTORY",
+    "actions": [
+      "Record only real, manually verified commercial outcomes.",
+      "Keep current discovery and Revenue Intelligence rankings unchanged."
+    ]
+  }
+}

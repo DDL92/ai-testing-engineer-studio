@@ -1,0 +1,819 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - paragraph [ref=e5]: AI Testing Engineer Studio
+      - heading "Command Center" [level=1] [ref=e6]
+    - generic [ref=e7]: Read Only
+  - region "Revenue Command Center" [ref=e8]:
+    - generic [ref=e9]:
+      - paragraph [ref=e10]: Today
+      - heading "Revenue Command Center" [level=2] [ref=e11]
+      - paragraph [ref=e12]: "Review Appointy package and decide: SEND / WAIT / REWRITE."
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - text: Target
+        - strong [ref=e15]: Appointy
+      - generic [ref=e16]:
+        - text: Offer
+        - strong [ref=e17]: QA Automation Retainer
+      - generic [ref=e18]:
+        - text: Potential Value
+        - strong [ref=e19]: $1,500-$3,000/month
+      - generic [ref=e20]:
+        - text: Priority
+        - strong [ref=e21]: HIGH
+      - generic [ref=e22]:
+        - text: Decision
+        - strong [ref=e23]: REVIEW
+  - region "Supporting Actions" [ref=e24]:
+    - generic [ref=e25]:
+      - heading "Supporting Actions" [level=2] [ref=e26]
+      - generic [ref=e27]: Jun 18, 1:22 PM
+    - generic [ref=e28]:
+      - article [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]: "1"
+          - heading "Review Appointy package" [level=3] [ref=e32]
+        - paragraph [ref=e33]: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+        - paragraph [ref=e34]: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+      - article [ref=e35]:
+        - generic [ref=e36]:
+          - generic [ref=e37]: "2"
+          - heading "Confirm Appointy readiness" [level=3] [ref=e38]
+        - paragraph [ref=e39]: "Recommended offer: QA Automation Retainer ($1500-$3000/month)."
+        - paragraph [ref=e40]: Review Revenue Intelligence, message pack, evidence, and readiness blockers manually.
+      - article [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: "3"
+          - heading "Review consistency warnings" [level=3] [ref=e44]
+        - paragraph [ref=e45]: Prevents legacy leads from becoming the visible revenue priority.
+        - paragraph [ref=e46]: Use Revenue Intelligence as the only source for commercial decisions.
+  - generic [ref=e47]:
+    - region "Review Center" [ref=e48]:
+      - heading "Review Center" [level=2] [ref=e49]
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - text: Audits Ready
+          - strong [ref=e52]: "3"
+        - generic [ref=e53]:
+          - text: Proposals Ready
+          - strong [ref=e54]: "3"
+        - generic [ref=e55]:
+          - text: Evidence Ready
+          - strong [ref=e56]: "16"
+        - generic [ref=e57]:
+          - text: Follow-Ups Ready
+          - strong [ref=e58]: "0"
+    - region "Revenue Center" [ref=e59]:
+      - heading "Revenue Center" [level=2] [ref=e60]
+      - generic [ref=e61]:
+        - article [ref=e62]:
+          - generic [ref=e63]: Best Audit Opportunity
+          - paragraph [ref=e64]: Appointy
+        - article [ref=e65]:
+          - generic [ref=e66]: Best Starter Pack
+          - paragraph [ref=e67]: Appointy
+        - article [ref=e68]:
+          - generic [ref=e69]: Best Retainer
+          - paragraph [ref=e70]: Appointy
+        - article [ref=e71]:
+          - generic [ref=e72]: Highest Priority
+          - paragraph [ref=e73]: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+    - region "Action Queue" [ref=e74]:
+      - heading "Action Queue" [level=2] [ref=e75]
+      - generic [ref=e76]:
+        - article [ref=e77]:
+          - generic [ref=e78]: Priority 1
+          - heading "Review Appointy package" [level=3] [ref=e79]
+          - paragraph [ref=e80]:
+            - strong [ref=e81]: "Reason:"
+            - text: "Revenue Intelligence is the source of truth. Current decision: GO."
+          - paragraph [ref=e82]:
+            - strong [ref=e83]: "Impact:"
+            - text: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+          - paragraph [ref=e84]:
+            - strong [ref=e85]: "Recommended Action:"
+            - text: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+        - article [ref=e86]:
+          - generic [ref=e87]: Priority 2
+          - heading "Confirm Appointy readiness" [level=3] [ref=e88]
+          - paragraph [ref=e89]:
+            - strong [ref=e90]: "Reason:"
+            - text: Keeps daily execution aligned with the unified top lead instead of legacy lead queues.
+          - paragraph [ref=e91]:
+            - strong [ref=e92]: "Impact:"
+            - text: "Recommended offer: QA Automation Retainer ($1500-$3000/month)."
+          - paragraph [ref=e93]:
+            - strong [ref=e94]: "Recommended Action:"
+            - text: Review Revenue Intelligence, message pack, evidence, and readiness blockers manually.
+        - article [ref=e95]:
+          - generic [ref=e96]: Priority 3
+          - heading "Review consistency warnings" [level=3] [ref=e97]
+          - paragraph [ref=e98]:
+            - strong [ref=e99]: "Reason:"
+            - text: No legacy top-lead conflicts detected in daily plan input.
+          - paragraph [ref=e100]:
+            - strong [ref=e101]: "Impact:"
+            - text: Prevents legacy leads from becoming the visible revenue priority.
+          - paragraph [ref=e102]:
+            - strong [ref=e103]: "Recommended Action:"
+            - text: Use Revenue Intelligence as the only source for commercial decisions.
+    - region "Revenue" [ref=e104]:
+      - heading "Revenue" [level=2] [ref=e105]
+      - generic [ref=e106]:
+        - article [ref=e107]:
+          - generic [ref=e108]: Best Audit
+          - paragraph [ref=e109]: Appointy
+        - article [ref=e110]:
+          - generic [ref=e111]: Best Starter Pack
+          - paragraph [ref=e112]: Appointy
+        - article [ref=e113]:
+          - generic [ref=e114]: Best Retainer
+          - paragraph [ref=e115]: Appointy
+    - region "Revenue Activation" [ref=e116]:
+      - heading "Revenue Activation" [level=2] [ref=e117]
+      - generic [ref=e118]:
+        - article [ref=e119]:
+          - generic [ref=e120]: Revenue Activation
+          - paragraph [ref=e121]: First Audit Sold
+        - article [ref=e122]:
+          - generic [ref=e123]: First Client Goal
+          - paragraph [ref=e124]: Appointy
+        - article [ref=e125]:
+          - generic [ref=e126]: First Retainer Goal
+          - paragraph [ref=e127]: Appointy
+        - article [ref=e128]:
+          - generic [ref=e129]: Top Revenue Target
+          - paragraph [ref=e130]: Appointy (62/100)
+        - article [ref=e131]:
+          - generic [ref=e132]: Top Revenue Action
+          - paragraph [ref=e133]: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+    - region "Lead Intelligence" [ref=e134]:
+      - heading "Lead Intelligence" [level=2] [ref=e135]
+      - generic [ref=e136]:
+        - article [ref=e137]:
+          - generic [ref=e138]: Best Lead
+          - paragraph [ref=e139]: Appointy
+        - article [ref=e140]:
+          - generic [ref=e141]: Best Offer
+          - paragraph [ref=e142]: QA Automation Retainer ($1500-$3000/month)
+        - article [ref=e143]:
+          - generic [ref=e144]: Highest Opportunity Score
+          - paragraph [ref=e145]: 84/100
+        - article [ref=e146]:
+          - generic [ref=e147]: Fastest Revenue Path
+          - paragraph [ref=e148]: Qualified Ranking -> Revenue Intelligence -> Manual review
+        - article [ref=e149]:
+          - generic [ref=e150]: Recommended Next Action
+          - paragraph [ref=e151]: Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+    - region "Daily Lead Discovery" [ref=e152]:
+      - heading "Daily Lead Discovery" [level=2] [ref=e153]
+      - generic [ref=e154]:
+        - article [ref=e155]:
+          - generic [ref=e156]: New Leads Today
+          - paragraph [ref=e157]: "0"
+        - article [ref=e158]:
+          - generic [ref=e159]: Top New Lead
+          - paragraph [ref=e160]: No new leads found
+        - article [ref=e161]:
+          - generic [ref=e162]: Top 5 Leads
+          - paragraph [ref=e163]: ABC Glofox, Bookee, TeamUp, PushPress, Wodify
+        - article [ref=e164]:
+          - generic [ref=e165]: Best Offer
+          - paragraph [ref=e166]: Agency Partner Retainer ($1500-$3000/month)
+        - article [ref=e167]:
+          - generic [ref=e168]: Recommended Next Action
+          - paragraph [ref=e169]: No new approved-source leads found. Top known candidate is ABC Glofox; keep the current Studio workflow and add more approved local sources if Daniel wants fresh candidates.
+    - region "Web Lead Discovery" [ref=e170]:
+      - heading "Web Lead Discovery" [level=2] [ref=e171]
+      - generic [ref=e172]:
+        - article [ref=e173]:
+          - generic [ref=e174]: New Leads Today
+          - paragraph [ref=e175]: "0"
+        - article [ref=e176]:
+          - generic [ref=e177]: New Pain Signals
+          - paragraph [ref=e178]: "0"
+        - article [ref=e179]:
+          - generic [ref=e180]: Top Opportunity
+          - paragraph [ref=e181]: Fitness Studio and Gym Scheduling Software - Appointy (99/100)
+        - article [ref=e182]:
+          - generic [ref=e183]: Best New Lead
+          - paragraph [ref=e184]: Fitness Studio and Gym Scheduling Software - Appointy
+        - article [ref=e185]:
+          - generic [ref=e186]: Lead Source
+          - paragraph [ref=e187]: https://www.appointy.com/fitness-class-scheduling-software
+        - article [ref=e188]:
+          - generic [ref=e189]: Discovery Date
+          - paragraph [ref=e190]: 2026-06-14
+        - article [ref=e191]:
+          - generic [ref=e192]: New Web Leads
+          - paragraph [ref=e193]: "30"
+        - article [ref=e194]:
+          - generic [ref=e195]: Top Web Lead
+          - paragraph [ref=e196]: Fitness Studio and Gym Scheduling Software - Appointy
+        - article [ref=e197]:
+          - generic [ref=e198]: Top Pain Signal
+          - paragraph [ref=e199]: "Potential recurring pain signal: mobile app"
+        - article [ref=e200]:
+          - generic [ref=e201]: Best New QA Opportunity
+          - paragraph [ref=e202]: "Fitness Studio and Gym Scheduling Software - Appointy: QA Automation Retainer candidate"
+        - article [ref=e203]:
+          - generic [ref=e204]: Recommended Research Action
+          - paragraph [ref=e205]: Human review Fitness Studio and Gym Scheduling Software - Appointy; confirm public evidence before adding to active lead workflow.
+    - region "Lead Qualification" [ref=e206]:
+      - heading "Lead Qualification" [level=2] [ref=e207]
+      - generic [ref=e208]:
+        - article [ref=e209]:
+          - generic [ref=e210]: Best Qualified Lead
+          - paragraph [ref=e211]: Appointy
+        - article [ref=e212]:
+          - generic [ref=e213]: Best Category
+          - paragraph [ref=e214]: Scheduling SaaS
+        - article [ref=e215]:
+          - generic [ref=e216]: Highest QA Opportunity
+          - paragraph [ref=e217]: Setmore (84/100)
+        - article [ref=e218]:
+          - generic [ref=e219]: Recommended Offer
+          - paragraph [ref=e220]: QA Automation Retainer ($1500-$3000/month)
+        - article [ref=e221]:
+          - generic [ref=e222]: Qualified Leads Count
+          - paragraph [ref=e223]: "29"
+    - region "Autonomous Runner" [ref=e224]:
+      - heading "Autonomous Runner" [level=2] [ref=e225]
+      - generic [ref=e226]:
+        - article [ref=e227]:
+          - generic [ref=e228]: Autonomous Runner Status
+          - paragraph [ref=e229]: Last run completed
+        - article [ref=e230]:
+          - generic [ref=e231]: Last Successful Run
+          - paragraph [ref=e232]: 2026-06-14T01:53:03.396Z
+        - article [ref=e233]:
+          - generic [ref=e234]: Next Scheduled Run
+          - paragraph [ref=e235]: 2026-06-19T13:00:00.000Z (07:00 America/Costa_Rica)
+        - article [ref=e236]:
+          - generic [ref=e237]: Runner Health
+          - paragraph [ref=e238]: Healthy
+        - article [ref=e239]:
+          - generic [ref=e240]: Daily Refresh Status
+          - paragraph [ref=e241]: "Refresh sequence complete. Top lead: Appointy."
+    - region "Revenue Intelligence" [ref=e242]:
+      - heading "Revenue Intelligence" [level=2] [ref=e243]
+      - generic [ref=e244]:
+        - article [ref=e245]:
+          - generic [ref=e246]: Revenue Intelligence Status
+          - paragraph [ref=e247]: Unified
+        - article [ref=e248]:
+          - generic [ref=e249]: Top Ranked Lead
+          - paragraph [ref=e250]: Appointy
+        - article [ref=e251]:
+          - generic [ref=e252]: Actionable Lead
+          - paragraph [ref=e253]: Setmore
+        - article [ref=e254]:
+          - generic [ref=e255]: Commercial Readiness
+          - paragraph [ref=e256]: 86/100
+        - article [ref=e257]:
+          - generic [ref=e258]: Evidence Blockers
+          - paragraph [ref=e259]: "Appointy: Page evidence is WARNING. | Appointy: Evidence status is NOT READY. | ShapeNet Software: Evidence status is NOT READY."
+        - article [ref=e260]:
+          - generic [ref=e261]: Rotation Status
+          - paragraph [ref=e262]: ACTIONABLE_LEAD_FOUND
+        - article [ref=e263]:
+          - generic [ref=e264]: Revenue Target
+          - paragraph [ref=e265]: First paid client
+        - article [ref=e266]:
+          - generic [ref=e267]: Recommended Offer
+          - paragraph [ref=e268]: QA Automation Retainer ($1500-$3000/month)
+        - article [ref=e269]:
+          - generic [ref=e270]: Execution Priority
+          - paragraph [ref=e271]: HIGH
+    - region "Operator Mode" [ref=e272]:
+      - heading "Operator Mode" [level=2] [ref=e273]
+      - generic [ref=e274]:
+        - article [ref=e275]:
+          - generic [ref=e276]: Top Lead
+          - paragraph [ref=e277]: Appointy
+        - article [ref=e278]:
+          - generic [ref=e279]: Top Offer
+          - paragraph [ref=e280]: QA Automation Retainer ($1500-$3000/month)
+        - article [ref=e281]:
+          - generic [ref=e282]: Top Action
+          - paragraph [ref=e283]: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+        - article [ref=e284]:
+          - generic [ref=e285]: Studio Status
+          - paragraph [ref=e286]: Healthy
+        - article [ref=e287]:
+          - generic [ref=e288]: Today At A Glance
+          - paragraph [ref=e289]: "Top Lead: Appointy | Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
+    - region "Mobile Command Center" [ref=e290]:
+      - heading "Mobile Command Center" [level=2] [ref=e291]
+      - generic [ref=e292]:
+        - article [ref=e293]:
+          - generic [ref=e294]: Top Lead
+          - paragraph [ref=e295]: Appointy
+        - article [ref=e296]:
+          - generic [ref=e297]: Top Offer
+          - paragraph [ref=e298]: QA Automation Retainer ($1500-$3000/month)
+        - article [ref=e299]:
+          - generic [ref=e300]: Top Action
+          - paragraph [ref=e301]: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+        - article [ref=e302]:
+          - generic [ref=e303]: Follow Ups Waiting
+          - paragraph [ref=e304]: "0"
+        - article [ref=e305]:
+          - generic [ref=e306]: Open Opportunities
+          - paragraph [ref=e307]: "29"
+        - article [ref=e308]:
+          - generic [ref=e309]: Studio Status
+          - paragraph [ref=e310]: Healthy
+        - article [ref=e311]:
+          - generic [ref=e312]: Runtime Health
+          - paragraph [ref=e313]: Runtime data needs cleanup
+        - article [ref=e314]:
+          - generic [ref=e315]: Architecture Status
+          - paragraph [ref=e316]: Needs consolidation
+        - article [ref=e317]:
+          - generic [ref=e318]: Revenue Status
+          - paragraph [ref=e319]: "Current MRR: $0"
+        - article [ref=e320]:
+          - generic [ref=e321]: Today At A Glance
+          - paragraph [ref=e322]: "Top Lead: Appointy | Top Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
+    - region "Architecture" [ref=e323]:
+      - heading "Architecture" [level=2] [ref=e324]
+      - generic [ref=e325]:
+        - article [ref=e326]:
+          - generic [ref=e327]: Architecture Status
+          - paragraph [ref=e328]: Needs consolidation
+        - article [ref=e329]:
+          - generic [ref=e330]: Command Health
+          - paragraph [ref=e331]: Command surface is too broad (307 commands)
+        - article [ref=e332]:
+          - generic [ref=e333]: Runtime Health
+          - paragraph [ref=e334]: Runtime data needs cleanup (694 files)
+        - article [ref=e335]:
+          - generic [ref=e336]: Consolidation Progress
+          - paragraph [ref=e337]: 14 future official commands recommended; 114 deprecation candidates identified.
+        - article [ref=e338]:
+          - generic [ref=e339]: Duplicate Commands
+          - paragraph [ref=e340]: "2"
+        - article [ref=e341]:
+          - generic [ref=e342]: Legacy Commands
+          - paragraph [ref=e343]: "22"
+        - article [ref=e344]:
+          - generic [ref=e345]: Candidate Deprecations
+          - paragraph [ref=e346]: "114"
+        - article [ref=e347]:
+          - generic [ref=e348]: Duplicate Runtime Candidates
+          - paragraph [ref=e349]: "42"
+        - article [ref=e350]:
+          - generic [ref=e351]: Source Of Truth Authorities
+          - paragraph [ref=e352]: "5"
+    - region "Testing" [ref=e353]:
+      - heading "Testing" [level=2] [ref=e354]
+      - generic [ref=e355]:
+        - article [ref=e356]:
+          - generic [ref=e357]: Testing Status
+          - paragraph [ref=e358]: Regression foundation active
+        - article [ref=e359]:
+          - generic [ref=e360]: Coverage Status
+          - paragraph [ref=e361]: 6/6 required categories covered
+        - article [ref=e362]:
+          - generic [ref=e363]: Quality Gate Status
+          - paragraph [ref=e364]: PASS
+        - article [ref=e365]:
+          - generic [ref=e366]: CI Status
+          - paragraph [ref=e367]: Configured
+        - article [ref=e368]:
+          - generic [ref=e369]: Skipped Tests
+          - paragraph [ref=e370]: "4"
+        - article [ref=e371]:
+          - generic [ref=e372]: Missing Categories
+          - paragraph [ref=e373]: "0"
+    - region "Web Intelligence" [ref=e374]:
+      - heading "Web Intelligence" [level=2] [ref=e375]
+      - generic [ref=e376]:
+        - article [ref=e377]:
+          - generic [ref=e378]: Intelligence Quality
+          - paragraph [ref=e379]: PARTIAL
+        - article [ref=e380]:
+          - generic [ref=e381]: Evidence Confidence
+          - paragraph [ref=e382]: 50/100
+        - article [ref=e383]:
+          - generic [ref=e384]: Company Confidence
+          - paragraph [ref=e385]: 78/100
+        - article [ref=e386]:
+          - generic [ref=e387]: False Positive Risk
+          - paragraph [ref=e388]: 19 rejected, 51 suspicious
+        - article [ref=e389]:
+          - generic [ref=e390]: Accepted Evidence
+          - paragraph [ref=e391]: "14"
+        - article [ref=e392]:
+          - generic [ref=e393]: Suspicious Evidence
+          - paragraph [ref=e394]: "51"
+        - article [ref=e395]:
+          - generic [ref=e396]: Rejected Evidence
+          - paragraph [ref=e397]: "19"
+    - region "Evidence Engine" [ref=e398]:
+      - heading "Evidence Engine" [level=2] [ref=e399]
+      - generic [ref=e400]:
+        - article [ref=e401]:
+          - generic [ref=e402]: Evidence Status
+          - paragraph [ref=e403]: NOT READY
+        - article [ref=e404]:
+          - generic [ref=e405]: Lighthouse Status
+          - paragraph [ref=e406]: PASS
+        - article [ref=e407]:
+          - generic [ref=e408]: Screenshot Status
+          - paragraph [ref=e409]: PASS
+        - article [ref=e410]:
+          - generic [ref=e411]: Readiness Status
+          - paragraph [ref=e412]: NOT READY
+        - article [ref=e413]:
+          - generic [ref=e414]: Page Status
+          - paragraph [ref=e415]: WARNING
+        - article [ref=e416]:
+          - generic [ref=e417]: Flow Status
+          - paragraph [ref=e418]: WARNING
+        - article [ref=e419]:
+          - generic [ref=e420]: Commercial Readiness
+          - paragraph [ref=e421]: Not Commercially Ready
+    - region "Client Delivery" [ref=e422]:
+      - heading "Client Delivery" [level=2] [ref=e423]
+      - generic [ref=e424]:
+        - article [ref=e425]:
+          - generic [ref=e426]: Client
+          - paragraph [ref=e427]: Setmore
+        - article [ref=e428]:
+          - generic [ref=e429]: Client Status
+          - paragraph [ref=e430]: delivery-prep
+        - article [ref=e431]:
+          - generic [ref=e432]: Selected Package
+          - paragraph [ref=e433]: qa-audit
+        - article [ref=e434]:
+          - generic [ref=e435]: Delivery Readiness
+          - paragraph [ref=e436]: READY FOR PREPARATION
+        - article [ref=e437]:
+          - generic [ref=e438]: Delivery Status
+          - paragraph [ref=e439]: delivery-prep
+        - article [ref=e440]:
+          - generic [ref=e441]: Next Delivery Action
+          - paragraph [ref=e442]: Review Setmore public evidence checklist and approve the QA Audit scope manually.
+    - region "Automation Delivery" [ref=e443]:
+      - heading "Automation Delivery" [level=2] [ref=e444]
+      - generic [ref=e445]:
+        - article [ref=e446]:
+          - generic [ref=e447]: Automation Status
+          - paragraph [ref=e448]: READY FOR REVIEW
+        - article [ref=e449]:
+          - generic [ref=e450]: Critical Flows
+          - paragraph [ref=e451]: "9"
+        - article [ref=e452]:
+          - generic [ref=e453]: Delivery Assets
+          - paragraph [ref=e454]: "10"
+        - article [ref=e455]:
+          - generic [ref=e456]: Framework Status
+          - paragraph [ref=e457]: Recommendations Ready
+        - article [ref=e458]:
+          - generic [ref=e459]: Client Handoff Status
+          - paragraph [ref=e460]: Draft Ready for Review
+        - article [ref=e461]:
+          - generic [ref=e462]: Delivery Status
+          - paragraph [ref=e463]: delivery-prep
+    - region "Retainer Operations" [ref=e464]:
+      - heading "Retainer Operations" [level=2] [ref=e465]
+      - generic [ref=e466]:
+        - article [ref=e467]:
+          - generic [ref=e468]: Retainer Status
+          - paragraph [ref=e469]: PLANNING
+        - article [ref=e470]:
+          - generic [ref=e471]: Client Health
+          - paragraph [ref=e472]: WATCH
+        - article [ref=e473]:
+          - generic [ref=e474]: Coverage Status
+          - paragraph [ref=e475]: 0% automated; 8 planned
+        - article [ref=e476]:
+          - generic [ref=e477]: Maintenance Status
+          - paragraph [ref=e478]: 8 recurring task recommendations
+        - article [ref=e479]:
+          - generic [ref=e480]: Renewal Status
+          - paragraph [ref=e481]: NOT READY
+        - article [ref=e482]:
+          - generic [ref=e483]: Expansion Opportunities
+          - paragraph [ref=e484]: "6"
+    - region "Revenue Learning" [ref=e485]:
+      - heading "Revenue Learning" [level=2] [ref=e486]
+      - generic [ref=e487]:
+        - article [ref=e488]:
+          - generic [ref=e489]: Revenue Learning Status
+          - paragraph [ref=e490]: INSUFFICIENT HISTORY
+        - article [ref=e491]:
+          - generic [ref=e492]: Outcomes Recorded
+          - paragraph [ref=e493]: "0"
+        - article [ref=e494]:
+          - generic [ref=e495]: Best Channel
+          - paragraph [ref=e496]: Insufficient outcome history.
+        - article [ref=e497]:
+          - generic [ref=e498]: Best Offer
+          - paragraph [ref=e499]: Insufficient outcome history.
+        - article [ref=e500]:
+          - generic [ref=e501]: Best Industry
+          - paragraph [ref=e502]: Insufficient outcome history.
+        - article [ref=e503]:
+          - generic [ref=e504]: Calibration Status
+          - paragraph [ref=e505]: INSUFFICIENT HISTORY; 0% influence
+        - article [ref=e506]:
+          - generic [ref=e507]: Recommendation Confidence
+          - paragraph [ref=e508]: INSUFFICIENT HISTORY
+    - region "First Revenue Execution" [ref=e509]:
+      - heading "First Revenue Execution" [level=2] [ref=e510]
+      - generic [ref=e511]:
+        - article [ref=e512]:
+          - generic [ref=e513]: First Revenue Status
+          - paragraph [ref=e514]: "Appointy: NO GO"
+        - article [ref=e515]:
+          - generic [ref=e516]: Go / No Go
+          - paragraph [ref=e517]: NO GO
+        - article [ref=e518]:
+          - generic [ref=e519]: Remaining Blockers
+          - paragraph [ref=e520]: "4"
+        - article [ref=e521]:
+          - generic [ref=e522]: Next Manual Action
+          - paragraph [ref=e523]: Resolve the readiness blockers for Appointy, then rerun npm run execute:first-client.
+        - article [ref=e524]:
+          - generic [ref=e525]: Estimated Value
+          - paragraph [ref=e526]: $199-$500 potential first QA Audit value
+        - article [ref=e527]:
+          - generic [ref=e528]: Confidence
+          - paragraph [ref=e529]: 49/100
+    - region "Outcome Tracking" [ref=e530]:
+      - heading "Outcome Tracking" [level=2] [ref=e531]
+      - generic [ref=e532]:
+        - article [ref=e533]:
+          - generic [ref=e534]: Outcome Tracking
+          - paragraph [ref=e535]: No outcomes recorded yet.
+        - article [ref=e536]:
+          - generic [ref=e537]: Messages Sent
+          - paragraph [ref=e538]: "0"
+        - article [ref=e539]:
+          - generic [ref=e540]: Replies
+          - paragraph [ref=e541]: "0"
+        - article [ref=e542]:
+          - generic [ref=e543]: Meetings
+          - paragraph [ref=e544]: "0"
+        - article [ref=e545]:
+          - generic [ref=e546]: Proposals
+          - paragraph [ref=e547]: "0"
+        - article [ref=e548]:
+          - generic [ref=e549]: Wins
+          - paragraph [ref=e550]: "0"
+        - article [ref=e551]:
+          - generic [ref=e552]: Losses
+          - paragraph [ref=e553]: "0"
+        - article [ref=e554]:
+          - generic [ref=e555]: Reply Rate
+          - paragraph [ref=e556]: No outcomes recorded yet.
+        - article [ref=e557]:
+          - generic [ref=e558]: Next Manual Message
+          - paragraph [ref=e559]: No outcomes recorded yet. Review the Appointy message pack before any manual send.
+    - region "Follow-Up Operating System" [ref=e560]:
+      - heading "Follow-Up Operating System" [level=2] [ref=e561]
+      - generic [ref=e562]:
+        - article [ref=e563]:
+          - generic [ref=e564]: Follow-Up Queue
+          - paragraph [ref=e565]: "29"
+        - article [ref=e566]:
+          - generic [ref=e567]: Today's Follow-Ups
+          - paragraph [ref=e568]: "5"
+        - article [ref=e569]:
+          - generic [ref=e570]: Waiting Responses
+          - paragraph [ref=e571]: "0"
+        - article [ref=e572]:
+          - generic [ref=e573]: Open Opportunities
+          - paragraph [ref=e574]: "29"
+        - article [ref=e575]:
+          - generic [ref=e576]: Next Best Action
+          - paragraph [ref=e577]: Review Appointy message pack and manually decide whether to send the LinkedIn short message from message pack.
+    - region "Win/Loss Intelligence" [ref=e578]:
+      - heading "Win/Loss Intelligence" [level=2] [ref=e579]
+      - generic [ref=e580]:
+        - article [ref=e581]:
+          - generic [ref=e582]: Win Rate
+          - paragraph [ref=e583]: Insufficient outcome history.
+        - article [ref=e584]:
+          - generic [ref=e585]: Reply Rate
+          - paragraph [ref=e586]: Insufficient outcome history.
+        - article [ref=e587]:
+          - generic [ref=e588]: Best Offer
+          - paragraph [ref=e589]: Insufficient outcome history.
+        - article [ref=e590]:
+          - generic [ref=e591]: Best Segment
+          - paragraph [ref=e592]: Insufficient outcome history.
+        - article [ref=e593]:
+          - generic [ref=e594]: Top Learning
+          - paragraph [ref=e595]: Insufficient outcome history.
+        - article [ref=e596]:
+          - generic [ref=e597]: Top Recommendation
+          - paragraph [ref=e598]: Insufficient outcome history.
+    - region "Studio Snapshot" [ref=e599]:
+      - heading "Studio Snapshot" [level=2] [ref=e600]
+      - generic [ref=e601]:
+        - article [ref=e602]:
+          - generic [ref=e603]: Studio Version
+          - paragraph [ref=e604]: 0.1.0
+        - article [ref=e605]:
+          - generic [ref=e606]: Snapshot Status
+          - paragraph [ref=e607]: Ready
+        - article [ref=e608]:
+          - generic [ref=e609]: Recovery Status
+          - paragraph [ref=e610]: Ready
+        - article [ref=e611]:
+          - generic [ref=e612]: Last Snapshot
+          - paragraph [ref=e613]: 2026-06-13T20:49:43.297Z
+    - region "Studio Health" [ref=e614]:
+      - heading "Studio Health" [level=2] [ref=e615]
+      - generic [ref=e616]:
+        - article [ref=e617]:
+          - generic [ref=e618]: Studio Health
+          - paragraph [ref=e619]: Healthy
+        - article [ref=e620]:
+          - generic [ref=e621]: System Status
+          - paragraph [ref=e622]: Ready
+        - article [ref=e623]:
+          - generic [ref=e624]: Current MRR
+          - paragraph [ref=e625]: $0
+        - article [ref=e626]:
+          - generic [ref=e627]: Warnings
+          - paragraph [ref=e628]: "1"
+    - region "Release Readiness" [ref=e629]:
+      - heading "Release Readiness" [level=2] [ref=e630]
+      - generic [ref=e631]:
+        - article [ref=e632]:
+          - generic [ref=e633]: Release Readiness
+          - paragraph [ref=e634]: Needs Review
+        - article [ref=e635]:
+          - generic [ref=e636]: Critical Issues
+          - paragraph [ref=e637]: "0"
+        - article [ref=e638]:
+          - generic [ref=e639]: Ready For Outreach
+          - paragraph [ref=e640]: Ready
+        - article [ref=e641]:
+          - generic [ref=e642]: Ready For Audit Sales
+          - paragraph [ref=e643]: Ready
+        - article [ref=e644]:
+          - generic [ref=e645]: Ready For Retainers
+          - paragraph [ref=e646]: Ready
+        - article [ref=e647]:
+          - generic [ref=e648]: Ready For Client Delivery
+          - paragraph [ref=e649]: Ready
+    - region "Leads" [ref=e650]:
+      - heading "Leads" [level=2] [ref=e651]
+      - generic [ref=e652]:
+        - generic [ref=e653]: Total Leads
+        - strong [ref=e654]: "4"
+      - article [ref=e656]:
+        - generic [ref=e657]: Appointy (100/100)
+        - paragraph [ref=e658]: QA Automation Retainer ($1500-$3000/month)
+    - region "Outreach" [ref=e659]:
+      - heading "Outreach" [level=2] [ref=e660]
+      - generic [ref=e661]:
+        - generic [ref=e662]:
+          - text: Invitations
+          - strong [ref=e663]: "8"
+        - generic [ref=e664]:
+          - text: Messages
+          - strong [ref=e665]: "2"
+        - generic [ref=e666]:
+          - text: Connected
+          - strong [ref=e667]: "2"
+        - generic [ref=e668]:
+          - text: Replies
+          - strong [ref=e669]: "0"
+        - generic [ref=e670]:
+          - text: Due
+          - strong [ref=e671]: "0"
+    - region "Audits" [ref=e672]:
+      - heading "Audits" [level=2] [ref=e673]
+      - generic [ref=e674]:
+        - generic [ref=e675]:
+          - text: Reports
+          - strong [ref=e676]: "3"
+        - generic [ref=e677]:
+          - text: Unified
+          - strong [ref=e678]: "3"
+        - generic [ref=e679]:
+          - text: Evidence
+          - strong [ref=e680]: "16"
+    - region "Audit Center" [ref=e681]:
+      - heading "Audit Center" [level=2] [ref=e682]
+      - generic [ref=e683]:
+        - article [ref=e684]:
+          - generic [ref=e685]: Audit Reports Available
+          - paragraph [ref=e686]: "6"
+        - article [ref=e687]:
+          - generic [ref=e688]: Unified Audits Available
+          - paragraph [ref=e689]: "3"
+        - article [ref=e690]:
+          - generic [ref=e691]: Evidence Available
+          - paragraph [ref=e692]: "16"
+        - article [ref=e693]:
+          - generic [ref=e694]: Audit Readiness
+          - paragraph [ref=e695]: 3 unified audits and 6 client audit report files available
+        - article [ref=e696]:
+          - generic [ref=e697]: Audit Report Links
+          - generic [ref=e698]:
+            - link "glofox-qa-audit-report.md" [ref=e699] [cursor=pointer]:
+              - /url: ../output/client-audit-reports/glofox-qa-audit-report.md
+            - link "glofox-qa-audit-report.pdf" [ref=e700] [cursor=pointer]:
+              - /url: ../output/client-audit-reports/glofox-qa-audit-report.pdf
+            - link "pushpress-qa-audit-report.md" [ref=e701] [cursor=pointer]:
+              - /url: ../output/client-audit-reports/pushpress-qa-audit-report.md
+            - link "pushpress-qa-audit-report.pdf" [ref=e702] [cursor=pointer]:
+              - /url: ../output/client-audit-reports/pushpress-qa-audit-report.pdf
+            - link "teamup-qa-audit-report.md" [ref=e703] [cursor=pointer]:
+              - /url: ../output/client-audit-reports/teamup-qa-audit-report.md
+            - link "teamup-qa-audit-report.pdf" [ref=e704] [cursor=pointer]:
+              - /url: ../output/client-audit-reports/teamup-qa-audit-report.pdf
+            - link "glofox-unified-audit.md" [ref=e705] [cursor=pointer]:
+              - /url: ../output/unified-audits/glofox-unified-audit.md
+            - link "pushpress-unified-audit.md" [ref=e706] [cursor=pointer]:
+              - /url: ../output/unified-audits/pushpress-unified-audit.md
+            - link "teamup-unified-audit.md" [ref=e707] [cursor=pointer]:
+              - /url: ../output/unified-audits/teamup-unified-audit.md
+            - link "console-evidence.md" [ref=e708] [cursor=pointer]:
+              - /url: ../output/evidence/console-evidence.md
+            - link "flow-evidence.md" [ref=e709] [cursor=pointer]:
+              - /url: ../output/evidence/flow-evidence.md
+            - link "glofox-evidence.md" [ref=e710] [cursor=pointer]:
+              - /url: ../output/evidence/glofox-evidence.md
+    - region "Proposals" [ref=e711]:
+      - heading "Proposals" [level=2] [ref=e712]
+      - generic [ref=e713]:
+        - article [ref=e714]:
+          - generic [ref=e715]: Proposal Ready
+          - paragraph [ref=e716]: PushPress, TeamUp, Glofox / ABC Fitness
+        - article [ref=e717]:
+          - generic [ref=e718]: Needs Review
+          - paragraph [ref=e719]: "PushPress: QA Audit ($199-$500) | TeamUp: Playwright Starter Pack ($900-$1500) | Glofox / ABC Fitness: QA Audit ($199-$500)"
+        - article [ref=e720]:
+          - generic [ref=e721]: Retainer Candidates
+          - paragraph [ref=e722]: "PushPress: QA Audit -> Starter Pack -> Retainer | TeamUp: QA Audit -> Starter Pack -> Retainer | Glofox / ABC Fitness: QA Audit -> Starter Pack -> Retainer"
+    - region "Proposal Center" [ref=e723]:
+      - heading "Proposal Center" [level=2] [ref=e724]
+      - generic [ref=e725]:
+        - article [ref=e726]:
+          - generic [ref=e727]: Proposal PDFs
+          - generic [ref=e728]:
+            - link "glofox-proposal.pdf" [ref=e729] [cursor=pointer]:
+              - /url: ../output/proposals/glofox-proposal.pdf
+            - link "pushpress-proposal.pdf" [ref=e730] [cursor=pointer]:
+              - /url: ../output/proposals/pushpress-proposal.pdf
+            - link "teamup-proposal.pdf" [ref=e731] [cursor=pointer]:
+              - /url: ../output/proposals/teamup-proposal.pdf
+        - article [ref=e732]:
+          - generic [ref=e733]: Proposal Status
+          - paragraph [ref=e734]: "PushPress: QA Audit ($199-$500) | TeamUp: Playwright Starter Pack ($900-$1500) | Glofox / ABC Fitness: QA Audit ($199-$500)"
+        - article [ref=e735]:
+          - generic [ref=e736]: Retainer Candidates
+          - paragraph [ref=e737]: "PushPress: QA Audit -> Starter Pack -> Retainer | TeamUp: QA Audit -> Starter Pack -> Retainer | Glofox / ABC Fitness: QA Audit -> Starter Pack -> Retainer"
+    - region "Follow-Up Center" [ref=e738]:
+      - heading "Follow-Up Center" [level=2] [ref=e739]
+      - generic [ref=e740]:
+        - article [ref=e741]:
+          - generic [ref=e742]: Follow-Ups Due
+          - paragraph [ref=e743]: "5"
+        - article [ref=e744]:
+          - generic [ref=e745]: Outreach Status
+          - paragraph [ref=e746]: 10 outreach records, 2 messages sent, 2 connected
+        - article [ref=e747]:
+          - generic [ref=e748]: Contact Status
+          - paragraph [ref=e749]: 10 contacts recorded
+        - article [ref=e750]:
+          - generic [ref=e751]: Tracking Links
+          - generic [ref=e752]:
+            - link "company-status.md" [ref=e753] [cursor=pointer]:
+              - /url: ../output/outreach-tracking/company-status.md
+            - link "contact-status.md" [ref=e754] [cursor=pointer]:
+              - /url: ../output/outreach-tracking/contact-status.md
+            - link "followup-queue.md" [ref=e755] [cursor=pointer]:
+              - /url: ../output/outreach-tracking/followup-queue.md
+            - link "outreach-status.md" [ref=e756] [cursor=pointer]:
+              - /url: ../output/outreach-tracking/outreach-status.md
+            - link "pipeline-summary.md" [ref=e757] [cursor=pointer]:
+              - /url: ../output/outreach-tracking/pipeline-summary.md
+    - region "System Health" [ref=e758]:
+      - heading "System Health" [level=2] [ref=e759]
+      - generic [ref=e760]:
+        - article [ref=e761]:
+          - generic [ref=e762]: Last Update
+          - paragraph [ref=e763]: Jun 18, 1:22 PM
+        - article [ref=e764]:
+          - generic [ref=e765]: Lead Research
+          - paragraph [ref=e766]: 7 research packs found
+        - article [ref=e767]:
+          - generic [ref=e768]: Evidence
+          - paragraph [ref=e769]: 16 evidence files found
+        - article [ref=e770]:
+          - generic [ref=e771]: Proposal
+          - paragraph [ref=e772]: 3 proposal packages found
+        - article [ref=e773]:
+          - generic [ref=e774]: Dashboard
+          - paragraph [ref=e775]: "Ready: static local PWA data generated"

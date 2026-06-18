@@ -12,6 +12,8 @@ export interface UnifiedTopLead {
   painSignalRelevance: number;
   offerFitScore: number;
   historicalPerformanceScore: number;
+  revenueLearningStatus: string;
+  calibrationInfluence: number;
   selectionScore: number;
   recommendedOffer: RecommendedQualifiedOffer;
   executionPriority: string;
@@ -47,4 +49,6 @@ export interface RevenueIntelligenceDashboard {
   revenueTarget: string;
   recommendedOffer: string;
   executionPriority: string;
+  revenueLearningStatus: string;
+  calibrationInfluence: string;
 }

@@ -1,7 +1,7 @@
 import fs = require('fs');
 import path = require('path');
-import { adaptiveSignalForLead } from '../adaptiveRevenue/adaptiveRules';
 import { buildLeadRotationDecision } from '../leadRotation/rotationRules';
+import { revenueCalibrationForLead } from '../revenueLearning/learningRules';
 import { buildLeadQualificationReport } from '../webLeadQualification/normalizationRules';
 import { NormalizedWebLead, RecommendedQualifiedOffer } from '../webLeadQualification/types';
 import { buildPainMiningReport } from '../webPainMining/painMiningRules';
@@ -62,6 +62,8 @@ export function buildRevenueIntelligenceDashboard(): RevenueIntelligenceDashboar
     revenueTarget: report.topLead ? 'First paid client' : 'Refresh qualified ranking',
     recommendedOffer: report.actionableLead?.recommendedOffer ?? report.topLead?.recommendedOffer ?? 'No offer selected',
     executionPriority: dashboardPriority(report.decision.status),
+    revenueLearningStatus: report.topLead?.revenueLearningStatus ?? 'INSUFFICIENT HISTORY',
+    calibrationInfluence: `${report.topLead?.calibrationInfluence ?? 0}%`,
   };
 }
 
@@ -111,7 +113,7 @@ export function renderTopLead(report: RevenueIntelligenceReport): string {
       'QA Opportunity Score',
       'Pain Signal Relevance',
       'Offer Fit',
-      'Historical Performance Signal (5% initial weight when real outcomes exist)',
+      'Revenue Learning calibration signal (0-20% only when real outcomes exist)',
     ]),
     '',
     '## Safety Rules',
@@ -197,6 +199,8 @@ export function renderRevenueUnificationReport(report: RevenueIntelligenceReport
       `QA opportunity score: ${report.topLead?.qaOpportunityScore ?? 0}/100`,
       `Offer recommendation: ${report.topLead?.recommendedOffer ?? 'No offer selected'}`,
       `Historical performance score: ${report.topLead?.historicalPerformanceScore ?? 0}/100`,
+      `Revenue learning status: ${report.topLead?.revenueLearningStatus ?? 'INSUFFICIENT HISTORY'}`,
+      `Calibration influence: ${report.topLead?.calibrationInfluence ?? 0}%`,
       `Revenue action recommendation: ${report.topLead?.nextRevenueAction ?? 'Refresh qualified ranking.'}`,
     ]),
     '',
@@ -222,12 +226,10 @@ function rankUnifiedTopLeads(leads: NormalizedWebLead[], painSignals: { companyN
 function buildUnifiedTopLead(lead: NormalizedWebLead, rank: number, painSignals: { companyName: string; category: string }[]): UnifiedTopLead {
   const painSignalRelevance = painSignals.some((signal) => normalizeKey(signal.companyName) === normalizeKey(lead.normalizedName)) ? 100 : 35;
   const offerFitScore = offerFit(lead.recommendedOffer);
-  const adaptivePerformance = adaptiveSignalForLead({
+  const revenueLearning = revenueCalibrationForLead({
     companyName: lead.normalizedName,
     category: lead.category,
     recommendedOffer: lead.recommendedOffer,
-    qualificationScore: lead.qualificationScore,
-    qaOpportunityScore: lead.qaOpportunityScore,
   });
   const baseSelectionScore = Math.round(
     lead.qualificationScore * 0.45
@@ -235,8 +237,8 @@ function buildUnifiedTopLead(lead: NormalizedWebLead, rank: number, painSignals:
     + painSignalRelevance * 0.1
     + offerFitScore * 0.1,
   );
-  const selectionScore = adaptivePerformance.influence > 0
-    ? Math.round(baseSelectionScore * ((100 - adaptivePerformance.influence) / 100) + adaptivePerformance.score * (adaptivePerformance.influence / 100))
+  const selectionScore = revenueLearning.influence > 0
+    ? Math.round(baseSelectionScore * ((100 - revenueLearning.influence) / 100) + revenueLearning.score * (revenueLearning.influence / 100))
     : baseSelectionScore;
   const executionPriority = executionPriorityFor(lead);
   const nextRevenueAction = `Review ${lead.normalizedName} message pack and public evidence; decide manually whether to prepare a QA Audit offer.`;
@@ -251,7 +253,9 @@ function buildUnifiedTopLead(lead: NormalizedWebLead, rank: number, painSignals:
     qaOpportunityScore: lead.qaOpportunityScore,
     painSignalRelevance,
     offerFitScore,
-    historicalPerformanceScore: adaptivePerformance.score,
+    historicalPerformanceScore: revenueLearning.score,
+    revenueLearningStatus: revenueLearning.status,
+    calibrationInfluence: revenueLearning.influence,
     selectionScore,
     recommendedOffer: lead.recommendedOffer,
     executionPriority,
@@ -262,7 +266,7 @@ function buildUnifiedTopLead(lead: NormalizedWebLead, rank: number, painSignals:
       `QA opportunity score ${lead.qaOpportunityScore}/100`,
       `Pain signal relevance ${painSignalRelevance}/100`,
       `Offer fit ${offerFitScore}/100`,
-      adaptivePerformance.reason,
+      revenueLearning.reason,
       `Final selection score ${selectionScore}/100`,
     ],
     sourceLead: lead,
@@ -339,6 +343,8 @@ function renderTopLeadBullets(lead: UnifiedTopLead): string {
     `Pain signal relevance: ${lead.painSignalRelevance}/100`,
     `Offer fit: ${lead.offerFitScore}/100`,
     `Historical performance score: ${lead.historicalPerformanceScore}/100`,
+    `Revenue learning status: ${lead.revenueLearningStatus}`,
+    `Calibration influence: ${lead.calibrationInfluence}%`,
     `Final selection score: ${lead.selectionScore}/100`,
     `Recommended offer: ${lead.recommendedOffer}`,
     `Next revenue action: ${lead.nextRevenueAction}`,

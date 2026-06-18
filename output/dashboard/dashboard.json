@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-14T22:16:17.823Z",
+  "generatedAt": "2026-06-18T19:22:17.042Z",
   "mode": "read-only",
   "today": {
-    "date": "2026-06-14",
+    "date": "2026-06-18",
     "topActions": [
       {
         "priority": 1,
@@ -91,7 +91,7 @@
     "bestRetainerOpportunity": "Appointy"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-14T22:16:17.823Z",
+    "lastUpdate": "2026-06-18T19:22:17.042Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "16 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -148,6 +148,15 @@
     "bestPerformingCategory": "Insufficient outcome history.",
     "bestPerformingOffer": "Insufficient outcome history.",
     "learningInfluence": "0%"
+  },
+  "revenueLearning": {
+    "revenueLearningStatus": "INSUFFICIENT HISTORY",
+    "outcomesRecorded": 0,
+    "bestChannel": "Insufficient outcome history.",
+    "bestOffer": "Insufficient outcome history.",
+    "bestIndustry": "Insufficient outcome history.",
+    "calibrationStatus": "INSUFFICIENT HISTORY; 0% influence",
+    "recommendationConfidence": "INSUFFICIENT HISTORY"
   },
   "followUpEngine": {
     "followUpQueue": 29,
@@ -218,8 +227,8 @@
     "topPainSignal": "Potential recurring pain signal: mobile app",
     "bestNewQaOpportunity": "Fitness Studio and Gym Scheduling Software - Appointy: QA Automation Retainer candidate",
     "recommendedResearchAction": "Human review Fitness Studio and Gym Scheduling Software - Appointy; confirm public evidence before adding to active lead workflow.",
-    "newLeadsToday": 30,
-    "newPainSignals": 54,
+    "newLeadsToday": 0,
+    "newPainSignals": 0,
     "topOpportunity": "Fitness Studio and Gym Scheduling Software - Appointy (99/100)",
     "bestNewLead": "Fitness Studio and Gym Scheduling Software - Appointy",
     "leadSource": "https://www.appointy.com/fitness-class-scheduling-software",
@@ -235,7 +244,7 @@
   "autonomousRunner": {
     "autonomousRunnerStatus": "Last run completed",
     "lastSuccessfulRun": "2026-06-14T01:53:03.396Z",
-    "nextScheduledRun": "2026-06-15T13:00:00.000Z (07:00 America/Costa_Rica)",
+    "nextScheduledRun": "2026-06-19T13:00:00.000Z (07:00 America/Costa_Rica)",
     "runnerHealth": "Healthy",
     "dailyRefreshStatus": "Refresh sequence complete. Top lead: Appointy."
   },
@@ -248,7 +257,9 @@
     "rotationStatus": "ACTIONABLE_LEAD_FOUND",
     "revenueTarget": "First paid client",
     "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
-    "executionPriority": "HIGH"
+    "executionPriority": "HIGH",
+    "revenueLearningStatus": "INSUFFICIENT HISTORY",
+    "calibrationInfluence": "0%"
   },
   "topLeadAudit": {
     "topLeadAuditStatus": "Missing",
@@ -265,6 +276,30 @@
     "flowStatus": "WARNING",
     "commercialReadiness": "Not Commercially Ready"
   },
+  "clientDelivery": {
+    "clientName": "Setmore",
+    "clientStatus": "delivery-prep",
+    "selectedPackage": "qa-audit",
+    "deliveryReadiness": "READY FOR PREPARATION",
+    "deliveryStatus": "delivery-prep",
+    "nextDeliveryAction": "Review Setmore public evidence checklist and approve the QA Audit scope manually."
+  },
+  "automationDelivery": {
+    "automationStatus": "READY FOR REVIEW",
+    "criticalFlowCount": 9,
+    "deliveryAssets": 10,
+    "frameworkStatus": "Recommendations Ready",
+    "clientHandoffStatus": "Draft Ready for Review",
+    "deliveryStatus": "delivery-prep"
+  },
+  "retainerOperations": {
+    "retainerStatus": "PLANNING",
+    "clientHealth": "WATCH",
+    "coverageStatus": "0% automated; 8 planned",
+    "maintenanceStatus": "8 recurring task recommendations",
+    "renewalStatus": "NOT READY",
+    "expansionOpportunities": 6
+  },
   "commercialUx": {
     "todayFocus": "Appointy - QA Automation Retainer - HIGH",
     "revenueHero": "Appointy: REVIEW",
@@ -279,13 +314,13 @@
     "architectureStatus": "Needs consolidation",
     "commandHealth": "Command surface is too broad",
     "runtimeHealth": "Runtime data needs cleanup",
-    "consolidationProgress": "14 future official commands recommended; 93 deprecation candidates identified.",
-    "commandsAudited": 279,
+    "consolidationProgress": "14 future official commands recommended; 114 deprecation candidates identified.",
+    "commandsAudited": 307,
     "duplicateCommandGroups": 2,
     "legacyCommands": 22,
-    "candidateDeprecations": 93,
-    "runtimeFiles": 648,
-    "duplicateRuntimeCandidates": 39,
+    "candidateDeprecations": 114,
+    "runtimeFiles": 694,
+    "duplicateRuntimeCandidates": 42,
     "sourceOfTruthAuthorities": 5
   },
   "testing": {

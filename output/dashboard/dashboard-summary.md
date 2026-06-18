@@ -1,6 +1,6 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-14T22:16:17.823Z
+Generated: 2026-06-18T19:22:17.042Z
 
 ## Commercial UX
 
@@ -170,6 +170,43 @@ Generated: 2026-06-14T22:16:17.823Z
 - Page Status: WARNING
 - Flow Status: WARNING
 - Commercial Readiness: Not Commercially Ready
+
+## Client Delivery
+
+- Client: Setmore
+- Client Status: delivery-prep
+- Selected Package: qa-audit
+- Delivery Readiness: READY FOR PREPARATION
+- Delivery Status: delivery-prep
+- Next Delivery Action: Review Setmore public evidence checklist and approve the QA Audit scope manually.
+
+## Automation Delivery
+
+- Automation Status: READY FOR REVIEW
+- Critical Flows: 9
+- Delivery Assets: 10
+- Framework Status: Recommendations Ready
+- Client Handoff Status: Draft Ready for Review
+- Delivery Status: delivery-prep
+
+## Retainer Operations
+
+- Retainer Status: PLANNING
+- Client Health: WATCH
+- Coverage Status: 0% automated; 8 planned
+- Maintenance Status: 8 recurring task recommendations
+- Renewal Status: NOT READY
+- Expansion Opportunities: 6
+
+## Revenue Learning
+
+- Revenue Learning Status: INSUFFICIENT HISTORY
+- Outcomes Recorded: 0
+- Best Channel: Insufficient outcome history.
+- Best Offer: Insufficient outcome history.
+- Best Industry: Insufficient outcome history.
+- Calibration Status: INSUFFICIENT HISTORY; 0% influence
+- Recommendation Confidence: INSUFFICIENT HISTORY
 
 ## Safety
 

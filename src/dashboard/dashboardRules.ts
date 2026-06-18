@@ -579,6 +579,43 @@ Generated: ${data.generatedAt}
 - Flow Status: ${data.evidenceEngine.flowStatus}
 - Commercial Readiness: ${data.evidenceEngine.commercialReadiness}
 
+## Client Delivery
+
+- Client: ${data.clientDelivery.clientName}
+- Client Status: ${data.clientDelivery.clientStatus}
+- Selected Package: ${data.clientDelivery.selectedPackage}
+- Delivery Readiness: ${data.clientDelivery.deliveryReadiness}
+- Delivery Status: ${data.clientDelivery.deliveryStatus}
+- Next Delivery Action: ${data.clientDelivery.nextDeliveryAction}
+
+## Automation Delivery
+
+- Automation Status: ${data.automationDelivery.automationStatus}
+- Critical Flows: ${data.automationDelivery.criticalFlowCount}
+- Delivery Assets: ${data.automationDelivery.deliveryAssets}
+- Framework Status: ${data.automationDelivery.frameworkStatus}
+- Client Handoff Status: ${data.automationDelivery.clientHandoffStatus}
+- Delivery Status: ${data.automationDelivery.deliveryStatus}
+
+## Retainer Operations
+
+- Retainer Status: ${data.retainerOperations.retainerStatus}
+- Client Health: ${data.retainerOperations.clientHealth}
+- Coverage Status: ${data.retainerOperations.coverageStatus}
+- Maintenance Status: ${data.retainerOperations.maintenanceStatus}
+- Renewal Status: ${data.retainerOperations.renewalStatus}
+- Expansion Opportunities: ${data.retainerOperations.expansionOpportunities}
+
+## Revenue Learning
+
+- Revenue Learning Status: ${data.revenueLearning.revenueLearningStatus}
+- Outcomes Recorded: ${data.revenueLearning.outcomesRecorded}
+- Best Channel: ${data.revenueLearning.bestChannel}
+- Best Offer: ${data.revenueLearning.bestOffer}
+- Best Industry: ${data.revenueLearning.bestIndustry}
+- Calibration Status: ${data.revenueLearning.calibrationStatus}
+- Recommendation Confidence: ${data.revenueLearning.recommendationConfidence}
+
 ## Safety
 
 ${data.safety.map((item) => `- ${item}`).join('\n')}
