@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-19T01:57:07.729Z",
+  "generatedAt": "2026-06-19T02:15:51.947Z",
   "mode": "read-only",
   "today": {
     "date": "2026-06-19",
@@ -91,7 +91,7 @@
     "bestRetainerOpportunity": "Setmore"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-19T01:57:07.729Z",
+    "lastUpdate": "2026-06-19T02:15:51.947Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "16 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -179,9 +179,9 @@
     "archiveStatus": "HEALTHY",
     "historicalArtifacts": 50,
     "portfolioAssets": 43,
-    "temporaryAssets": 39,
+    "temporaryAssets": 40,
     "retentionStatus": "6/6 classifications covered",
-    "archiveScore": "86/100"
+    "archiveScore": "85/100"
   },
   "release": {
     "studioVersion": "1.0.0",

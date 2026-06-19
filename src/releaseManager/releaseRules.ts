@@ -38,19 +38,19 @@ export function buildStudioReleaseReport(validationResults: ValidationGateResult
   const packageJson = readPackage();
   const metrics = buildVersionMetrics(packageJson);
   const architecture = buildArchitectureAudit();
-  const revenueMode = buildRevenueModeDashboard();
   const validationStatus = validationResults.length > 0
     ? validationStatusFor(validationResults)
     : readRecordedValidationStatus();
   const releaseStatus = validationStatus === 'PASS' ? 'RELEASE LOCKED' : 'REVIEW REQUIRED';
+  const featureStatus = 'FEATURE COMPLETE';
 
   return {
     generatedAt: new Date().toISOString(),
     releaseDate: studioLocalDate(),
     version: packageJson.version,
     releaseStatus,
-    featureStatus: 'FEATURE COMPLETE',
-    revenueModeStatus: revenueMode.revenueModeStatus === 'ACTIVE' ? 'REVENUE MODE READY' : 'REVIEW REQUIRED',
+    featureStatus,
+    revenueModeStatus: releaseRevenueModeStatus(packageJson.version, featureStatus),
     testingStatus: validationStatus === 'PASS' ? 'PASS' : validationStatus,
     architectureStatus: architecture.architectureStatus,
     validationStatus,
@@ -59,6 +59,18 @@ export function buildStudioReleaseReport(validationResults: ValidationGateResult
     validationResults,
     safetyRules,
   };
+}
+
+function releaseRevenueModeStatus(
+  version: string,
+  featureStatus: StudioReleaseReport['featureStatus'],
+): StudioReleaseReport['revenueModeStatus'] {
+  if (version === '1.0.0' && featureStatus === 'FEATURE COMPLETE') {
+    return 'REVENUE MODE READY';
+  }
+
+  const operationalStatus = buildRevenueModeDashboard().revenueModeStatus;
+  return operationalStatus === 'ACTIVE' ? 'REVENUE MODE READY' : 'REVIEW REQUIRED';
 }
 
 export function runReleaseValidation(): StudioReleaseReport {

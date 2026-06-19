@@ -16,7 +16,7 @@ test.describe('Release Manager regression', () => {
     const output = renderReleaseNotes(report);
     expect(report.version).toBe('1.0.0');
     expect(output).toContain('Feature Status: FEATURE COMPLETE');
-    expect(output).toContain('REVENUE MODE READY');
+    expect(output).toContain('Revenue Mode Status: REVENUE MODE READY');
   });
 
   test('generates a validation report from explicit gate results', () => {

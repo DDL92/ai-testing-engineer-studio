@@ -1,6 +1,6 @@
 # Revenue Command Center
 
-Generated: 2026-06-19T01:56:51.306Z
+Generated: 2026-06-19T02:15:53.620Z
 
 ## TODAY
 
@@ -102,7 +102,7 @@ Review Setmore message pack and public evidence; decide manually whether to prep
 - Consistency Status: WARNING
 - Legacy References: 271
 - Source Of Truth Status: PASS
-- Archive Status: HEALTHY (86/100)
+- Archive Status: HEALTHY (85/100)
 - Portfolio Status: 43 asset(s) identified
 - Retention Status: 6/6 classifications covered
 - Studio Version: 1.0.0

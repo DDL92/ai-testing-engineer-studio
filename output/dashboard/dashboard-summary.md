@@ -1,6 +1,6 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-19T01:57:07.729Z
+Generated: 2026-06-19T02:15:51.947Z
 
 ## Commercial UX
 
@@ -248,9 +248,9 @@ Generated: 2026-06-19T01:57:07.729Z
 - Archive Status: HEALTHY
 - Historical Artifacts: 50
 - Portfolio Assets: 43
-- Temporary Assets: 39
+- Temporary Assets: 40
 - Retention Status: 6/6 classifications covered
-- Archive Score: 86/100
+- Archive Score: 85/100
 
 ## Studio v1 Release
 
