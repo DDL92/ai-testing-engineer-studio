@@ -1,0 +1,19 @@
+{
+  "clientId": "example_client_001",
+  "leadId": "example_surf_camp_001",
+  "clientName": "Pacific Wave Surf Camp",
+  "acceptanceStatus": "accepted",
+  "selectedOffer": "Website Presence Starter",
+  "agreedPriceUsd": 1200,
+  "depositStatus": "not_recorded",
+  "scopeConfirmed": true,
+  "targetStartDate": null,
+  "targetDeliveryDate": null,
+  "primaryContactName": null,
+  "primaryContactEmail": null,
+  "domainStatus": "unknown",
+  "hostingStatus": "unknown",
+  "brandAssetsStatus": "not_received",
+  "contentStatus": "not_received",
+  "notes": "Fictional validation fixture."
+}
