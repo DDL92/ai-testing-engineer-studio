@@ -30,6 +30,7 @@ data/leads/clients.json
 data/leads/closed-leads.json
 data/leads/revenue-summary.json
 data/leads/weekly-executive-dashboard.json
+data/website-studio/leads.json
 sales-marketing-engine/operator/generated/*
 !sales-marketing-engine/operator/generated/.gitkeep
 sales-marketing-engine/operator/approval-queue/*

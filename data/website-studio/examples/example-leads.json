@@ -1,0 +1,41 @@
+[
+  {
+    "id": "example_surf_camp_001",
+    "businessName": "Pacific Wave Surf Camp",
+    "category": "surf_camp",
+    "location": "Guanacaste, Costa Rica",
+    "websiteUrl": null,
+    "instagramUrl": "https://instagram.com/example",
+    "facebookUrl": null,
+    "email": null,
+    "phone": null,
+    "source": "manual_research",
+    "notes": "Fictional validation record with a social-only presence."
+  },
+  {
+    "id": "example_boutique_hotel_001",
+    "businessName": "Cloud Forest Boutique Hotel",
+    "category": "boutique_hotel",
+    "location": "Monteverde, Costa Rica",
+    "websiteUrl": null,
+    "instagramUrl": null,
+    "facebookUrl": null,
+    "email": "stay@example.invalid",
+    "phone": null,
+    "source": "manual_research",
+    "notes": "Fictional validation record; a basic website is not supplied and requires manual verification."
+  },
+  {
+    "id": "example_professional_service_001",
+    "businessName": "Northstar Advisory Studio",
+    "category": "professional_services",
+    "location": null,
+    "websiteUrl": null,
+    "instagramUrl": null,
+    "facebookUrl": null,
+    "email": null,
+    "phone": null,
+    "source": "manual_research",
+    "notes": "Fictional validation record with limited public evidence."
+  }
+]

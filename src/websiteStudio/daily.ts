@@ -1,0 +1,215 @@
+import fs = require('fs');
+import path = require('path');
+import { runDiscovery } from './discovery';
+import { readWebsiteLeads } from './leadAdapter';
+import { writeWebsiteLeadPack } from './leadPack';
+import { buildWebsiteRanking, writeWebsiteRanking } from './rankingWorkflow';
+import { WebsiteLeadRecord } from './types';
+
+interface DailySummary {
+  date: string;
+  discoverySummary: {
+    skipped: boolean;
+    dryRun: boolean;
+    candidatesFound: number;
+    added: number;
+    updated: number;
+    duplicates: number;
+    errors: string[];
+  };
+  storedLeadCount: number;
+  rankingSummary: {
+    total: number;
+    priority: number;
+    qualified: number;
+    review: number;
+    lowPriority: number;
+  };
+  topThreeCandidates: Array<{
+    leadId: string;
+    business: string;
+    score: number;
+    decision: string;
+    nextAction: string;
+  }>;
+  leadPacksGenerated: string[];
+  evidenceGaps: Array<{ leadId: string; gaps: string[] }>;
+  recommendedManualActions: Array<{ leadId: string; action: string }>;
+  warnings: string[];
+  manualReviewRequired: true;
+}
+
+async function main(): Promise<void> {
+  const args = process.argv.slice(2);
+  const dryRun = args.includes('--dry-run');
+  const skipDiscovery = args.includes('--skip-discovery');
+  const limitValue = readFlag(args, '--limit');
+  const warnings: string[] = [];
+  let discovery: Awaited<ReturnType<typeof runDiscovery>> | null = null;
+
+  if (!skipDiscovery) {
+    try {
+      discovery = await runDiscovery({
+        dryRun,
+        limit: limitValue ? Number(limitValue) : undefined,
+        writeReport: !dryRun,
+      });
+      warnings.push(...discovery.errors);
+    } catch (error) {
+      warnings.push(`Discovery failed; daily run continued with stored leads: ${errorMessage(error)}`);
+    }
+  }
+
+  const leads = dryRun && discovery?.plannedLeads ? discovery.plannedLeads : readWebsiteLeads();
+  const ranking = buildWebsiteRanking(leads);
+  const eligible = ranking
+    .filter((item) => item.decision === 'PRIORITY' || item.decision === 'QUALIFIED')
+    .filter((item) => {
+      const record = leads.find((lead) => lead.lead.id === item.leadId);
+      return record?.analysis.nextAction !== 'archive low-priority lead';
+    })
+    .slice(0, 3);
+  const generated: string[] = [];
+
+  if (!dryRun) {
+    const rankingPaths = writeWebsiteRanking(ranking);
+    console.log(`Ranking generated: ${path.relative(process.cwd(), rankingPaths.jsonPath)}, ${path.relative(process.cwd(), rankingPaths.markdownPath)}`);
+
+    for (const item of eligible) {
+      const record = leads.find((lead) => lead.lead.id === item.leadId);
+      if (!record || isFictional(record) || hasIdenticalPack(record)) continue;
+      const output = writeWebsiteLeadPack(record);
+      generated.push(path.relative(process.cwd(), output.markdownPath));
+    }
+  }
+
+  const summary: DailySummary = {
+    date: new Date().toISOString().slice(0, 10),
+    discoverySummary: {
+      skipped: skipDiscovery,
+      dryRun,
+      candidatesFound: discovery?.candidatesFound ?? 0,
+      added: discovery?.added ?? 0,
+      updated: discovery?.updated ?? 0,
+      duplicates: discovery?.duplicates ?? 0,
+      errors: discovery?.errors ?? [],
+    },
+    storedLeadCount: leads.length,
+    rankingSummary: {
+      total: ranking.length,
+      priority: ranking.filter((item) => item.decision === 'PRIORITY').length,
+      qualified: ranking.filter((item) => item.decision === 'QUALIFIED').length,
+      review: ranking.filter((item) => item.decision === 'REVIEW').length,
+      lowPriority: ranking.filter((item) => item.decision === 'LOW_PRIORITY').length,
+    },
+    topThreeCandidates: eligible.map((item) => ({
+      leadId: item.leadId,
+      business: item.business,
+      score: item.score,
+      decision: item.decision,
+      nextAction: item.recommendedNextAction,
+    })),
+    leadPacksGenerated: generated,
+    evidenceGaps: eligible.map((item) => ({
+      leadId: item.leadId,
+      gaps: leads.find((lead) => lead.lead.id === item.leadId)?.analysis.evidenceGaps ?? [],
+    })),
+    recommendedManualActions: eligible.map((item) => ({
+      leadId: item.leadId,
+      action: item.recommendedNextAction,
+    })),
+    warnings,
+    manualReviewRequired: true,
+  };
+
+  if (!dryRun) writeDailySummary(summary);
+  console.log(`Stored leads: ${summary.storedLeadCount}`);
+  console.log(`Eligible top candidates: ${summary.topThreeCandidates.length}`);
+  console.log(`Lead packs generated: ${summary.leadPacksGenerated.length}`);
+  console.log(`Warnings: ${summary.warnings.length}`);
+  console.log(dryRun ? 'Daily dry run complete; no store, packs, ranking, or daily reports were written.' : 'Daily report generated. No outreach was sent.');
+}
+
+function hasIdenticalPack(record: WebsiteLeadRecord): boolean {
+  const packPath = path.join(
+    process.cwd(),
+    'output',
+    'website-studio',
+    'leads',
+    record.lead.id,
+    'lead-pack.json',
+  );
+  if (!fs.existsSync(packPath)) return false;
+  try {
+    const pack = JSON.parse(fs.readFileSync(packPath, 'utf8')) as {
+      websiteInspectionEvidence?: unknown;
+      verifiedOpportunitySignals?: unknown;
+      score?: number;
+      decision?: string;
+    };
+    return JSON.stringify({
+      inspection: pack.websiteInspectionEvidence,
+      signals: pack.verifiedOpportunitySignals,
+      score: pack.score,
+      decision: pack.decision,
+    }) === JSON.stringify({
+      inspection: record.inspection,
+      signals: record.analysis.opportunitySignals,
+      score: record.analysis.score,
+      decision: record.analysis.decision,
+    });
+  } catch {
+    return false;
+  }
+}
+
+function isFictional(record: WebsiteLeadRecord): boolean {
+  return record.lead.id.startsWith('example_')
+    || record.lead.fitNotes.toLowerCase().includes('fictional validation');
+}
+
+function writeDailySummary(summary: DailySummary): void {
+  const outputDir = path.join(process.cwd(), 'output', 'website-studio', 'daily');
+  fs.mkdirSync(outputDir, { recursive: true });
+  fs.writeFileSync(path.join(outputDir, 'latest.json'), `${JSON.stringify(summary, null, 2)}\n`, 'utf8');
+  fs.writeFileSync(path.join(outputDir, 'latest.md'), renderDailySummary(summary), 'utf8');
+}
+
+function renderDailySummary(summary: DailySummary): string {
+  return `# Website Studio Daily Summary — ${summary.date}
+
+- Stored leads: ${summary.storedLeadCount}
+- Ranked leads: ${summary.rankingSummary.total}
+- Priority: ${summary.rankingSummary.priority}
+- Qualified: ${summary.rankingSummary.qualified}
+- Discovery skipped: ${summary.discoverySummary.skipped}
+- Discovery candidates: ${summary.discoverySummary.candidatesFound}
+- Lead packs generated: ${summary.leadPacksGenerated.length}
+
+## Top Candidates
+
+${summary.topThreeCandidates.map((lead) => `- ${lead.business}: ${lead.score}/100, ${lead.decision}; next action: ${lead.nextAction}`).join('\n') || '- No eligible candidates.'}
+
+## Evidence Gaps
+
+${summary.evidenceGaps.map((lead) => `- ${lead.leadId}: ${lead.gaps.join('; ') || 'none recorded'}`).join('\n') || '- No eligible candidates.'}
+
+## Recommended Manual Actions
+
+${summary.recommendedManualActions.map((item) => `- ${item.leadId}: ${item.action}`).join('\n') || '- Manual review.'}
+
+Manual review required: **yes**. No messages were generated or sent.
+`;
+}
+
+function readFlag(args: string[], flag: string): string | undefined {
+  const index = args.indexOf(flag);
+  if (index >= 0) return args[index + 1];
+  return args.find((argument) => argument.startsWith(`${flag}=`))?.slice(flag.length + 1);
+}
+
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+void main();
