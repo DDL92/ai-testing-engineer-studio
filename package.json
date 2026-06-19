@@ -48,6 +48,7 @@
     "website:leads:discover": "node --import tsx src/websiteStudio/discovery.ts",
     "website:leads:discover:fixture": "WEBSITE_STUDIO_FIXTURE=1 node --import tsx src/websiteStudio/discovery.ts",
     "website:daily": "node --import tsx src/websiteStudio/daily.ts",
+    "website:demo": "node --import tsx src/cli/website-demo.ts",
     "lead:opportunities": "node --import tsx src/leadIntelligence/generateLeadOpportunities.ts",
     "lead:next-actions": "node --import tsx src/leadIntelligence/generateNextActions.ts",
     "lead:daily-discovery": "node --import tsx src/dailyLeadDiscovery/runDailyDiscovery.ts",
