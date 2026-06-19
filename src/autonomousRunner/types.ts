@@ -5,7 +5,7 @@ export type RunnerHealthStatus = 'Healthy' | 'Warning' | 'Needs Review';
 export interface RunnerCommandDefinition {
   script: string;
   description: string;
-  phase: 'discovery' | 'qualification' | 'revenue' | 'planning' | 'dashboard' | 'mobile';
+  phase: 'discovery' | 'evidence' | 'qualification' | 'rotation' | 'revenue' | 'planning' | 'dashboard' | 'mobile';
 }
 
 export interface RunnerCommandResult {

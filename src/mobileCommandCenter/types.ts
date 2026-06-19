@@ -185,6 +185,11 @@ export interface MobileCommandCenterSummary {
   evidenceStatus: string;
   readinessStatus: string;
   lighthouseStatus: string;
+  evidencePackageStatus: string;
+  performanceStatus: string;
+  deliveryAssetsStatus: string;
+  executiveReportStatus: string;
+  assetBundleStatus: string;
   clientStatus: string;
   clientPackage: string;
   deliveryStatus: string;
@@ -198,6 +203,22 @@ export interface MobileCommandCenterSummary {
   learningBestChannel: string;
   revenueLearningBestOffer: string;
   calibrationStatus: string;
+  doctorStatus: string;
+  repairRecommendations: string;
+  revenueModeStatus: string;
+  morningBrief: string;
+  revenueModeTopAction: string;
+  revenueGoal: string;
+  revenueModeFollowUpCount: string;
+  consistencyStatus: string;
+  consistencyLegacyReferences: string;
+  consistencySourceOfTruthStatus: string;
+  archiveStatus: string;
+  portfolioStatus: string;
+  retentionStatus: string;
+  releaseStudioVersion: string;
+  releaseStatus: string;
+  releaseValidationStatus: string;
   safetyRules: string[];
 }
 

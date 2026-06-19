@@ -36,10 +36,17 @@ function render(data) {
   renderTesting(data.testing);
   renderWebIntelligence(data.webIntelligence);
   renderEvidenceEngine(data.evidenceEngine);
+  renderEvidencePro(data.evidencePro);
   renderClientDelivery(data.clientDelivery);
   renderAutomationDelivery(data.automationDelivery);
+  renderDeliveryAssets(data.deliveryAssets);
   renderRetainerOperations(data.retainerOperations);
   renderRevenueLearning(data.revenueLearning);
+  renderRevenueMode(data.revenueMode);
+  renderCommercialConsistency(data.commercialConsistency);
+  renderArchive(data.archive);
+  renderReleaseV1(data.release);
+  renderStudioDoctor(data.studioDoctor);
   renderExecutionPack(data.executionPack);
   renderOutcomeTracking(data.outcomeTracking);
   renderFollowUpEngine(data.followUpEngine);
@@ -200,7 +207,7 @@ function renderRevenueIntelligence(intelligence) {
 
   byId('revenueIntelligenceCards').innerHTML = [
     miniCard('Revenue Intelligence Status', intelligence.revenueIntelligenceStatus),
-    miniCard('Top Ranked Lead', intelligence.currentTopLead),
+    miniCard('Commercial Lead', intelligence.currentTopLead),
     miniCard('Actionable Lead', intelligence.actionableLead),
     miniCard('Commercial Readiness', intelligence.commercialReadiness),
     miniCard('Evidence Blockers', intelligence.evidenceBlockers),
@@ -296,6 +303,20 @@ function renderClientDelivery(clientDelivery) {
   ].join('');
 }
 
+function renderEvidencePro(evidence) {
+  if (!evidence) {
+    byId('evidenceProCards').innerHTML = miniCard('Evidence Package Status', 'Not loaded');
+    return;
+  }
+
+  byId('evidenceProCards').innerHTML = [
+    miniCard('Evidence Package Status', evidence.evidencePackageStatus),
+    miniCard('Performance Status', evidence.performanceStatus),
+    miniCard('Trace Status', evidence.traceStatus),
+    miniCard('Video Status', evidence.videoStatus),
+  ].join('');
+}
+
 function renderAutomationDelivery(automation) {
   if (!automation) {
     byId('automationDeliveryCards').innerHTML = miniCard('Automation Status', 'Not loaded');
@@ -328,6 +349,22 @@ function renderRetainerOperations(retainer) {
   ].join('');
 }
 
+function renderDeliveryAssets(assets) {
+  if (!assets) {
+    byId('deliveryAssetsCards').innerHTML = miniCard('Delivery Assets Status', 'Not loaded');
+    return;
+  }
+
+  byId('deliveryAssetsCards').innerHTML = [
+    miniCard('Delivery Assets Status', assets.deliveryAssetsStatus),
+    miniCard('Executive Report Status', assets.executiveReportStatus),
+    miniCard('Coverage Matrix Status', assets.coverageMatrixStatus),
+    miniCard('Timeline Status', assets.timelineStatus),
+    miniCard('Onboarding Status', assets.onboardingStatus),
+    miniCard('Bundle Status', assets.bundleStatus),
+  ].join('');
+}
+
 function renderRevenueLearning(learning) {
   if (!learning) {
     byId('revenueLearningCards').innerHTML = miniCard('Revenue Learning Status', 'Not loaded');
@@ -342,6 +379,85 @@ function renderRevenueLearning(learning) {
     miniCard('Best Industry', learning.bestIndustry),
     miniCard('Calibration Status', learning.calibrationStatus),
     miniCard('Recommendation Confidence', learning.recommendationConfidence),
+  ].join('');
+}
+
+function renderRevenueMode(revenueMode) {
+  if (!revenueMode) {
+    byId('revenueModeCards').innerHTML = miniCard('Revenue Mode Status', 'Not loaded');
+    return;
+  }
+
+  byId('revenueModeCards').innerHTML = [
+    miniCard('Revenue Mode Status', revenueMode.revenueModeStatus),
+    miniCard('Morning Brief', revenueMode.morningBrief),
+    miniCard("Today's Top Action", revenueMode.todaysTopAction),
+    miniCard('Revenue Goal', revenueMode.revenueGoal),
+    miniCard('Priority Queue', revenueMode.priorityQueue),
+    miniCard('Follow Ups Waiting', revenueMode.followUpsWaiting),
+    miniCard('Biggest Bottleneck', revenueMode.biggestBottleneck),
+    miniCard('Tomorrow Focus', revenueMode.tomorrowFocus),
+  ].join('');
+}
+
+function renderCommercialConsistency(consistency) {
+  if (!consistency) {
+    byId('commercialConsistencyCards').innerHTML = miniCard('Commercial Consistency Status', 'Not loaded');
+    return;
+  }
+
+  byId('commercialConsistencyCards').innerHTML = [
+    miniCard('Commercial Consistency Status', consistency.commercialConsistencyStatus),
+    miniCard('Legacy References', consistency.legacyReferences),
+    miniCard('Source Of Truth Status', consistency.sourceOfTruthStatus),
+    miniCard('Conflicting References', consistency.conflictingReferences),
+    miniCard('Repair Recommendations', consistency.repairRecommendations),
+  ].join('');
+}
+
+function renderArchive(archive) {
+  if (!archive) {
+    byId('archiveCards').innerHTML = miniCard('Archive Status', 'Not loaded');
+    return;
+  }
+
+  byId('archiveCards').innerHTML = [
+    miniCard('Archive Status', archive.archiveStatus),
+    miniCard('Historical Artifacts', archive.historicalArtifacts),
+    miniCard('Portfolio Assets', archive.portfolioAssets),
+    miniCard('Temporary Assets', archive.temporaryAssets),
+    miniCard('Retention Status', archive.retentionStatus),
+    miniCard('Archive Score', archive.archiveScore),
+  ].join('');
+}
+
+function renderReleaseV1(release) {
+  if (!release) {
+    byId('releaseV1Cards').innerHTML = miniCard('Release Status', 'Not loaded');
+    return;
+  }
+
+  byId('releaseV1Cards').innerHTML = [
+    miniCard('Studio Version', release.studioVersion),
+    miniCard('Release Status', release.releaseStatus),
+    miniCard('Revenue Mode Status', release.revenueModeStatus),
+    miniCard('Validation Status', release.validationStatus),
+  ].join('');
+}
+
+function renderStudioDoctor(doctor) {
+  if (!doctor) {
+    byId('studioDoctorCards').innerHTML = miniCard('Doctor Status', 'Not loaded');
+    return;
+  }
+
+  byId('studioDoctorCards').innerHTML = [
+    miniCard('Studio Health', doctor.studioHealth),
+    miniCard('Command Health', doctor.commandHealth),
+    miniCard('Runtime Health', doctor.runtimeHealth),
+    miniCard('Evidence Health', doctor.evidenceHealth),
+    miniCard('Doctor Status', doctor.doctorStatus),
+    miniCard('Repair Recommendations', doctor.repairRecommendations),
   ].join('');
 }
 

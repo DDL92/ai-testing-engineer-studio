@@ -53,14 +53,14 @@ export function buildRevenueIntelligenceDashboard(): RevenueIntelligenceDashboar
   const report = buildRevenueIntelligenceReport();
   const rotation = buildLeadRotationDecision();
   return {
-    revenueIntelligenceStatus: report.topLead ? 'Unified' : 'Needs Review',
-    currentTopLead: report.topLead?.companyName ?? 'No unified top lead',
+    revenueIntelligenceStatus: report.actionableLead ? 'Unified' : 'Needs Review',
+    currentTopLead: report.actionableLead?.companyName ?? 'No actionable lead',
     actionableLead: report.actionableLead?.companyName ?? 'No actionable lead',
     commercialReadiness: report.actionableLead ? `${report.actionableLead.commercialReadinessScore}/100` : 'Not Available',
     evidenceBlockers: rotation.evidenceBlockers.slice(0, 3).join(' | ') || 'None',
     rotationStatus: rotation.rotationStatus,
-    revenueTarget: report.topLead ? 'First paid client' : 'Refresh qualified ranking',
-    recommendedOffer: report.actionableLead?.recommendedOffer ?? report.topLead?.recommendedOffer ?? 'No offer selected',
+    revenueTarget: report.actionableLead ? 'First paid client' : 'Refresh lead rotation',
+    recommendedOffer: report.actionableLead?.recommendedOffer ?? 'No offer selected',
     executionPriority: dashboardPriority(report.decision.status),
     revenueLearningStatus: report.topLead?.revenueLearningStatus ?? 'INSUFFICIENT HISTORY',
     calibrationInfluence: `${report.topLead?.calibrationInfluence ?? 0}%`,

@@ -1,10 +1,10 @@
 # Dashboard Health
 
-Generated: 2026-06-18T19:22:17.042Z
+Generated: 2026-06-19T01:57:07.729Z
 
 ## Status
 
-- Last Update: 2026-06-18T19:22:17.042Z
+- Last Update: 2026-06-19T01:57:07.729Z
 - Lead Research Status: 7 research packs found
 - Evidence Status: 16 evidence files found
 - Proposal Status: 3 proposal packages found
@@ -15,11 +15,11 @@ Generated: 2026-06-18T19:22:17.042Z
 - Critical Issues: 0
 - Warnings: 1
 - Revenue Activation: First Audit Sold
-- Top Revenue Target: Appointy
+- Top Revenue Target: Setmore
 - Top Activation Score: 62/100
-- First Revenue Status: Appointy: NO GO
-- Go / No Go: NO GO
-- Remaining Blockers: 4
+- First Revenue Status: Setmore: ACTIVE
+- Go / No Go: GO
+- Remaining Blockers: 0
 - Outcome Tracking: No outcomes recorded yet.
 - Messages Sent: 0
 - Replies: 0
@@ -40,7 +40,7 @@ Generated: 2026-06-18T19:22:17.042Z
 - Snapshot Status: Ready
 - Recovery Status: Ready
 - Last Snapshot: 2026-06-13T20:49:43.297Z
-- Best Lead: Appointy
+- Best Lead: Setmore
 - Best Offer: QA Automation Retainer ($1500-$3000/month)
 - Highest Opportunity Score: 84/100
 - Operator Top Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.

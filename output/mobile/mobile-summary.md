@@ -1,18 +1,18 @@
 # Revenue Command Center
 
-Generated: 2026-06-18T19:21:33.687Z
+Generated: 2026-06-19T01:56:51.306Z
 
 ## TODAY
 
-- Target: Appointy
-- Offer: QA Automation Retainer
+- Target: Setmore
+- Offer: QA Automation Retainer ($1500-$3000/month)
 - Potential Value: $1,500-$3,000/month
 - Priority: HIGH
 - Decision: REVIEW
 
 ## NEXT ACTION
 
-Review Appointy package and decide: SEND / WAIT / REWRITE.
+Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
 ## DISCOVERY SNAPSHOT
 
@@ -28,7 +28,7 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 
 ## Below The Fold
 
-- Best Lead: Appointy
+- Best Lead: Setmore
 - Actionable Lead: Setmore
 - Commercial Readiness: 86/100
 - Best Offer: QA Automation Retainer ($1500-$3000/month)
@@ -45,7 +45,7 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 - New Pain Signals: 0
 - Top Qualified Lead: Appointy
 - Today's Recommended Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
-- Current Top Lead: Appointy
+- Current Top Lead: Setmore
 - Actionable Lead: Setmore
 - Commercial Readiness: 86/100
 - Audit Status: Missing
@@ -74,6 +74,11 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 - Evidence Status: NOT READY
 - Readiness Status: NOT READY
 - Lighthouse Status: PASS
+- Evidence Package Status: READY
+- Performance Status: CAPTURED
+- Delivery Assets Status: READY FOR REVIEW
+- Executive Report Status: READY FOR REVIEW
+- Bundle Status: READY FOR REVIEW
 - Client Status: delivery-prep
 - Package: qa-audit
 - Delivery Status: READY FOR PREPARATION
@@ -87,6 +92,22 @@ Review Appointy package and decide: SEND / WAIT / REWRITE.
 - Best Channel: Insufficient outcome history.
 - Revenue Learning Best Offer: Insufficient outcome history.
 - Calibration Status: INSUFFICIENT HISTORY; 0% influence
+- Doctor Status: WATCH
+- Repair Recommendations: 3
+- Revenue Mode Status: ACTIVE
+- Morning Brief: Setmore | 86/100 | READY
+- Today's Top Action: Review the QA Automation Retainer ($1500-$3000/month) evidence package and message decision for Setmore; Daniel decides any external next step.
+- Revenue Goal: $0 MRR toward $3,000-$5,000
+- Follow-Up Count: 29
+- Consistency Status: WARNING
+- Legacy References: 271
+- Source Of Truth Status: PASS
+- Archive Status: HEALTHY (86/100)
+- Portfolio Status: 43 asset(s) identified
+- Retention Status: 6/6 classifications covered
+- Studio Version: 1.0.0
+- Release Status: RELEASE LOCKED
+- Validation Status: PASS
 - Revenue Health: Current MRR: $0
 - Next Manual Step: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 

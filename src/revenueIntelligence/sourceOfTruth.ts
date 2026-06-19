@@ -16,24 +16,25 @@ export interface RevenueSourceOfTruth {
 
 export function getRevenueSourceOfTruth(): RevenueSourceOfTruth {
   const report = buildRevenueIntelligenceReport();
-  const topLead = report.topLead;
+  const topRankedLead = report.topLead;
+  const actionableLead = report.actionableLead;
 
   return {
-    topLead: topLead?.companyName ?? 'No unified top lead',
-    topRankedLead: topLead?.companyName ?? 'No unified top lead',
-    actionableLead: report.actionableLead?.companyName ?? 'No actionable lead',
-    commercialReadiness: report.actionableLead ? `${report.actionableLead.commercialReadinessScore}/100` : 'Not Available',
-    recommendedOffer: report.actionableLead?.recommendedOffer ?? topLead?.recommendedOffer ?? 'No offer selected',
+    topLead: actionableLead?.companyName ?? 'No actionable lead',
+    topRankedLead: topRankedLead?.companyName ?? 'No ranked lead',
+    actionableLead: actionableLead?.companyName ?? 'No actionable lead',
+    commercialReadiness: actionableLead ? `${actionableLead.commercialReadinessScore}/100` : 'Not Available',
+    recommendedOffer: actionableLead?.recommendedOffer ?? 'No offer selected',
     revenueDecision: report.decision.status,
     executionPriority: priorityLabel(report.decision.status),
     executionPriorityDetail: report.executionPriority,
-    nextAction: report.actionableLead
-      ? `Review ${report.actionableLead.companyName} message pack and public evidence; decide manually whether to prepare a QA Audit offer.`
-      : topLead?.nextRevenueAction ?? report.decision.manualAction,
+    nextAction: actionableLead
+      ? `Review ${actionableLead.companyName} message pack and public evidence; decide manually whether to prepare a QA Audit offer.`
+      : report.decision.manualAction,
     lastUpdated: report.generatedAt,
     warnings: [
       ...report.safetyRules,
-      ...(!topLead ? ['Revenue Intelligence has no current top lead.'] : []),
+      ...(!actionableLead ? ['Lead Rotation has no current actionable lead.'] : []),
     ],
   };
 }

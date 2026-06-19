@@ -1,10 +1,14 @@
 import fs = require('fs');
 import path = require('path');
+import { buildArchiveDashboard } from '../archiveManager/archiveRules';
 import { buildAdaptiveRevenueReport } from '../adaptiveRevenue/adaptiveRules';
 import { buildAutomationDeliveryDashboard } from '../automationDelivery/automationRules';
 import { buildClientConversionDashboard } from '../clientConversion/conversionRules';
+import { buildCommercialConsistencyDashboard } from '../commercialConsistency/consistencyRules';
 import { buildDeliveryRouterDashboard } from '../deliveryRouter/routerRules';
+import { buildDeliveryAssetsDashboard } from '../deliveryAssets/assetRules';
 import { buildEvidenceReadinessDecision } from '../evidenceEngine/evidenceRules';
+import { buildEvidenceProDashboard } from '../evidencePro/evidenceProRules';
 import { buildArchitectureAudit } from '../studioArchitecture/architectureRules';
 import { buildTestingReportBundle } from '../testing/testingRules';
 import { buildWebIntelligenceReport } from '../webIntelligence/intelligenceRules';
@@ -20,7 +24,10 @@ import { buildRevenueActivationReport } from '../revenueActivation/revenueRules'
 import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import { buildRetainerOperationsDashboard } from '../retainerOperations/retainerRules';
 import { buildRevenueLearningDashboard } from '../revenueLearning/learningRules';
+import { buildRevenueModeDashboard } from '../revenueMode/revenueModeRules';
+import { buildReleaseDashboard } from '../releaseManager/releaseRules';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
+import { buildStudioHealthDashboard } from '../studioHealth/healthRules';
 import { buildTopLeadAuditDashboard } from '../topLeadAudit/topLeadAuditRules';
 import { buildWebLeadDiscoveryReport } from '../webLeadDiscovery/webDiscoveryRules';
 import { buildLeadQualificationReport } from '../webLeadQualification/normalizationRules';
@@ -78,11 +85,18 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
   const testing = buildTestingReportBundle();
   const webIntelligence = buildWebIntelligenceReport();
   const evidenceDecision = buildEvidenceReadinessDecision();
+  const evidencePro = buildEvidenceProDashboard();
   const clientConversion = buildClientConversionDashboard();
   const deliveryRouter = buildDeliveryRouterDashboard();
+  const deliveryAssets = buildDeliveryAssetsDashboard();
   const automationDelivery = buildAutomationDeliveryDashboard();
   const retainerOperations = buildRetainerOperationsDashboard();
   const revenueLearning = buildRevenueLearningDashboard();
+  const studioDoctor = buildStudioHealthDashboard();
+  const revenueMode = buildRevenueModeDashboard();
+  const consistency = buildCommercialConsistencyDashboard();
+  const archive = buildArchiveDashboard();
+  const release = buildReleaseDashboard();
   const today = new Date().toISOString().slice(0, 10);
   const todaysWebLeads = webDiscovery.leads.filter((item) => item.discoveryDate === today);
   const todaysPainSignals = painMining.signals.filter((item) => item.date === today);
@@ -96,7 +110,7 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     ? `Current MRR: ${formatCurrency(finance.currentMrr)} from local finance data.`
     : 'Current MRR: $0';
   const topAction = revenueTruth.nextAction || (topLead ? mobileActionFor(topLead.companyName, execution.recommendation) : 'Run npm run lead:intelligence to refresh lead focus.');
-  const topLeadName = revenueTruth.topLead;
+  const topLeadName = revenueTruth.actionableLead;
   const actionableLeadName = revenueTruth.actionableLead;
   const topOffer = revenueTruth.recommendedOffer;
   const studioStatus = studioHealth === 'Healthy'
@@ -126,10 +140,8 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
       `Studio Health: ${studioHealth}`,
     ].join(' | '),
     currentMrr: finance.currentMrr,
-    firstClientStatus: `${revenueTruth.topLead}: ${revenueTruth.revenueDecision}`,
-    revenueActivationReadiness: revenue.pipeline[0]
-      ? `${revenue.pipeline[0].companyName} activation score ${revenue.pipeline[0].activationScore}/100`
-      : 'No revenue activation target found',
+    firstClientStatus: `${actionableLeadName}: ${revenueTruth.revenueDecision}`,
+    revenueActivationReadiness: `${actionableLeadName} commercial readiness ${revenueTruth.commercialReadiness}`,
     bestAction: topAction,
     studioHealth,
     revenueHealth: revenueStatus,
@@ -171,12 +183,12 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     adaptiveRecommendation: adaptive.adaptiveRecommendation,
     nextRevenueAction: revenueTruth.nextAction,
     executionPriority: revenueTruth.executionPriority,
-    commercialTarget: commercialUx.today.topLead,
-    commercialOffer: commercialUx.today.offerLabel,
+    commercialTarget: actionableLeadName,
+    commercialOffer: topOffer,
     commercialPotentialValue: commercialUx.today.potentialValue,
     commercialPriority: commercialUx.today.executionPriority,
     commercialDecision: commercialUx.today.revenueDecision,
-    commercialAction: commercialUx.today.nextAction,
+    commercialAction: topAction,
     architectureStatus: architecture.architectureStatus,
     commandHealth: architecture.commandHealth,
     runtimeHealth: architecture.runtimeHealth,
@@ -190,6 +202,11 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     evidenceStatus: evidenceDecision.evidenceStatus,
     readinessStatus: evidenceDecision.status,
     lighthouseStatus: evidenceDecision.lighthouseStatus,
+    evidencePackageStatus: evidencePro.evidencePackageStatus,
+    performanceStatus: evidencePro.performanceStatus,
+    deliveryAssetsStatus: deliveryAssets.deliveryAssetsStatus,
+    executiveReportStatus: deliveryAssets.executiveReportStatus,
+    assetBundleStatus: deliveryAssets.bundleStatus,
     clientStatus: clientConversion.clientStatus,
     clientPackage: clientConversion.selectedPackage,
     deliveryStatus: deliveryRouter.deliveryReadiness,
@@ -203,6 +220,22 @@ export function buildMobileCommandCenterSummary(): MobileCommandCenterSummary {
     learningBestChannel: revenueLearning.bestChannel,
     revenueLearningBestOffer: revenueLearning.bestOffer,
     calibrationStatus: revenueLearning.calibrationStatus,
+    doctorStatus: studioDoctor.doctorStatus,
+    repairRecommendations: String(studioDoctor.repairRecommendations),
+    revenueModeStatus: revenueMode.revenueModeStatus,
+    morningBrief: revenueMode.morningBrief,
+    revenueModeTopAction: revenueMode.todaysTopAction,
+    revenueGoal: revenueMode.revenueGoal,
+    revenueModeFollowUpCount: String(revenueMode.followUpsWaiting),
+    consistencyStatus: consistency.commercialConsistencyStatus,
+    consistencyLegacyReferences: String(consistency.legacyReferences),
+    consistencySourceOfTruthStatus: consistency.sourceOfTruthStatus,
+    archiveStatus: `${archive.archiveStatus} (${archive.archiveScore})`,
+    portfolioStatus: `${archive.portfolioAssets} asset(s) identified`,
+    retentionStatus: archive.retentionStatus,
+    releaseStudioVersion: release.studioVersion,
+    releaseStatus: release.releaseStatus,
+    releaseValidationStatus: release.validationStatus,
     safetyRules: sprint82Safety,
   };
 }
@@ -212,7 +245,7 @@ export function buildMobileActionCenter(summary = buildMobileCommandCenterSummar
     {
       priority: 1,
       action: summary.topAction,
-      why: `${summary.topLead} is the current best lead from local Studio data. Best qualified web lead: ${summary.bestQualifiedLead}. Highest QA opportunity: ${summary.highestQaOpportunity}.`,
+      why: `${summary.actionableLead} is the current commercially actionable lead from Revenue Intelligence and Lead Rotation.`,
       manualStep: summary.nextManualStep,
     },
     {
@@ -294,6 +327,11 @@ export function renderMobileTodayView(summary: MobileCommandCenterSummary): stri
       `Evidence Status: ${summary.evidenceStatus}`,
       `Readiness Status: ${summary.readinessStatus}`,
       `Lighthouse Status: ${summary.lighthouseStatus}`,
+      `Evidence Package Status: ${summary.evidencePackageStatus}`,
+      `Performance Status: ${summary.performanceStatus}`,
+      `Delivery Assets Status: ${summary.deliveryAssetsStatus}`,
+      `Executive Report Status: ${summary.executiveReportStatus}`,
+      `Bundle Status: ${summary.assetBundleStatus}`,
       `Client Status: ${summary.clientStatus}`,
       `Package: ${summary.clientPackage}`,
       `Delivery Status: ${summary.deliveryStatus}`,
@@ -307,6 +345,22 @@ export function renderMobileTodayView(summary: MobileCommandCenterSummary): stri
       `Best Channel: ${summary.learningBestChannel}`,
       `Revenue Learning Best Offer: ${summary.revenueLearningBestOffer}`,
       `Calibration Status: ${summary.calibrationStatus}`,
+      `Doctor Status: ${summary.doctorStatus}`,
+      `Repair Recommendations: ${summary.repairRecommendations}`,
+      `Revenue Mode Status: ${summary.revenueModeStatus}`,
+      `Morning Brief: ${summary.morningBrief}`,
+      `Today's Top Action: ${summary.revenueModeTopAction}`,
+      `Revenue Goal: ${summary.revenueGoal}`,
+      `Follow-Up Count: ${summary.revenueModeFollowUpCount}`,
+      `Consistency Status: ${summary.consistencyStatus}`,
+      `Legacy References: ${summary.consistencyLegacyReferences}`,
+      `Source Of Truth Status: ${summary.consistencySourceOfTruthStatus}`,
+      `Archive Status: ${summary.archiveStatus}`,
+      `Portfolio Status: ${summary.portfolioStatus}`,
+      `Retention Status: ${summary.retentionStatus}`,
+      `Studio Version: ${summary.releaseStudioVersion}`,
+      `Release Status: ${summary.releaseStatus}`,
+      `Validation Status: ${summary.releaseValidationStatus}`,
       `Execution Readiness: ${summary.topLeadExecutionReadiness}`,
     ]),
     '',
@@ -531,6 +585,11 @@ export function renderSprint82MobileSummary(summary: MobileCommandCenterSummary)
       `Evidence Status: ${summary.evidenceStatus}`,
       `Readiness Status: ${summary.readinessStatus}`,
       `Lighthouse Status: ${summary.lighthouseStatus}`,
+      `Evidence Package Status: ${summary.evidencePackageStatus}`,
+      `Performance Status: ${summary.performanceStatus}`,
+      `Delivery Assets Status: ${summary.deliveryAssetsStatus}`,
+      `Executive Report Status: ${summary.executiveReportStatus}`,
+      `Bundle Status: ${summary.assetBundleStatus}`,
       `Client Status: ${summary.clientStatus}`,
       `Package: ${summary.clientPackage}`,
       `Delivery Status: ${summary.deliveryStatus}`,
@@ -544,6 +603,22 @@ export function renderSprint82MobileSummary(summary: MobileCommandCenterSummary)
       `Best Channel: ${summary.learningBestChannel}`,
       `Revenue Learning Best Offer: ${summary.revenueLearningBestOffer}`,
       `Calibration Status: ${summary.calibrationStatus}`,
+      `Doctor Status: ${summary.doctorStatus}`,
+      `Repair Recommendations: ${summary.repairRecommendations}`,
+      `Revenue Mode Status: ${summary.revenueModeStatus}`,
+      `Morning Brief: ${summary.morningBrief}`,
+      `Today's Top Action: ${summary.revenueModeTopAction}`,
+      `Revenue Goal: ${summary.revenueGoal}`,
+      `Follow-Up Count: ${summary.revenueModeFollowUpCount}`,
+      `Consistency Status: ${summary.consistencyStatus}`,
+      `Legacy References: ${summary.consistencyLegacyReferences}`,
+      `Source Of Truth Status: ${summary.consistencySourceOfTruthStatus}`,
+      `Archive Status: ${summary.archiveStatus}`,
+      `Portfolio Status: ${summary.portfolioStatus}`,
+      `Retention Status: ${summary.retentionStatus}`,
+      `Studio Version: ${summary.releaseStudioVersion}`,
+      `Release Status: ${summary.releaseStatus}`,
+      `Validation Status: ${summary.releaseValidationStatus}`,
       `Revenue Health: ${summary.revenueHealth}`,
       `Next Manual Step: ${summary.nextManualStep}`,
     ]),
@@ -577,6 +652,11 @@ export function buildMobileReviewPackage(): MobileReviewPackage {
       item('Evidence Status', dashboard.evidenceEngine.evidenceStatus),
       item('Readiness Status', dashboard.evidenceEngine.readinessStatus),
       item('Lighthouse Status', dashboard.evidenceEngine.lighthouseStatus),
+      item('Evidence Package Status', dashboard.evidencePro.evidencePackageStatus),
+      item('Performance Status', dashboard.evidencePro.performanceStatus),
+      item('Delivery Assets Status', dashboard.deliveryAssets.deliveryAssetsStatus),
+      item('Executive Report Status', dashboard.deliveryAssets.executiveReportStatus),
+      item('Bundle Status', dashboard.deliveryAssets.bundleStatus),
       item('Client Status', dashboard.clientDelivery.clientStatus),
       item('Package', dashboard.clientDelivery.selectedPackage),
       item('Delivery Status', dashboard.clientDelivery.deliveryReadiness),
@@ -590,6 +670,22 @@ export function buildMobileReviewPackage(): MobileReviewPackage {
       item('Best Channel', dashboard.revenueLearning.bestChannel),
       item('Revenue Learning Best Offer', dashboard.revenueLearning.bestOffer),
       item('Calibration Status', dashboard.revenueLearning.calibrationStatus),
+      item('Doctor Status', dashboard.studioDoctor.doctorStatus),
+      item('Revenue Mode Status', dashboard.revenueMode.revenueModeStatus),
+      item('Morning Brief', dashboard.revenueMode.morningBrief),
+      item("Today's Top Action", dashboard.revenueMode.todaysTopAction),
+      item('Revenue Goal', dashboard.revenueMode.revenueGoal),
+      item('Follow-Up Count', String(dashboard.revenueMode.followUpsWaiting)),
+      item('Consistency Status', dashboard.commercialConsistency.commercialConsistencyStatus),
+      item('Legacy References', String(dashboard.commercialConsistency.legacyReferences)),
+      item('Source Of Truth Status', dashboard.commercialConsistency.sourceOfTruthStatus),
+      item('Archive Status', `${dashboard.archive.archiveStatus} (${dashboard.archive.archiveScore})`),
+      item('Portfolio Status', `${dashboard.archive.portfolioAssets} asset(s) identified`),
+      item('Retention Status', dashboard.archive.retentionStatus),
+      item('Studio Version', dashboard.release.studioVersion),
+      item('Release Status', dashboard.release.releaseStatus),
+      item('Validation Status', dashboard.release.validationStatus),
+      item('Repair Recommendations', String(dashboard.studioDoctor.repairRecommendations)),
       item('Audits Ready', String(center.reviewCenter.auditsReady), center.auditCenter.links),
       item('Proposals Ready', String(center.reviewCenter.proposalsReady), center.proposalCenter.proposalPdfs),
       item('Evidence Ready', String(center.reviewCenter.evidenceReady), center.auditCenter.links.filter((link) => link.href.includes('/evidence/') || link.href.includes('/lighthouse/') || link.href.includes('/playwright-runner/'))),
@@ -713,6 +809,11 @@ ${bullets([
     `Evidence Status: ${valueFor(review.reviewCenter, 'Evidence Status')}`,
     `Readiness Status: ${valueFor(review.reviewCenter, 'Readiness Status')}`,
     `Lighthouse Status: ${valueFor(review.reviewCenter, 'Lighthouse Status')}`,
+    `Evidence Package Status: ${valueFor(review.reviewCenter, 'Evidence Package Status')}`,
+    `Performance Status: ${valueFor(review.reviewCenter, 'Performance Status')}`,
+    `Delivery Assets Status: ${valueFor(review.reviewCenter, 'Delivery Assets Status')}`,
+    `Executive Report Status: ${valueFor(review.reviewCenter, 'Executive Report Status')}`,
+    `Bundle Status: ${valueFor(review.reviewCenter, 'Bundle Status')}`,
     `Client Status: ${valueFor(review.reviewCenter, 'Client Status')}`,
     `Package: ${valueFor(review.reviewCenter, 'Package')}`,
     `Delivery Status: ${valueFor(review.reviewCenter, 'Delivery Status')}`,
@@ -726,6 +827,8 @@ ${bullets([
     `Best Channel: ${valueFor(review.reviewCenter, 'Best Channel')}`,
     `Revenue Learning Best Offer: ${valueFor(review.reviewCenter, 'Revenue Learning Best Offer')}`,
     `Calibration Status: ${valueFor(review.reviewCenter, 'Calibration Status')}`,
+    `Doctor Status: ${valueFor(review.reviewCenter, 'Doctor Status')}`,
+    `Repair Recommendations: ${valueFor(review.reviewCenter, 'Repair Recommendations')}`,
   ])}
 
 ## Safety

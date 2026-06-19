@@ -1,12 +1,18 @@
 import fs = require('fs');
 import path = require('path');
+import { buildArchiveDashboard } from '../archiveManager/archiveRules';
 import { buildAdaptiveRevenueDashboard, buildAdaptiveRevenueReport } from '../adaptiveRevenue/adaptiveRules';
 import { buildAutomationDeliveryDashboard } from '../automationDelivery/automationRules';
 import { buildClientConversionDashboard } from '../clientConversion/conversionRules';
+import { buildCommercialConsistencyDashboard } from '../commercialConsistency/consistencyRules';
 import { buildDeliveryRouterDashboard } from '../deliveryRouter/routerRules';
+import { buildDeliveryAssetsDashboard } from '../deliveryAssets/assetRules';
 import { buildRetainerOperationsDashboard } from '../retainerOperations/retainerRules';
 import { buildRevenueLearningDashboard } from '../revenueLearning/learningRules';
+import { buildRevenueModeDashboard } from '../revenueMode/revenueModeRules';
+import { buildReleaseDashboard } from '../releaseManager/releaseRules';
 import { buildDynamicEvidenceSummary, buildEvidenceReadinessDecision } from '../evidenceEngine/evidenceRules';
+import { buildEvidenceProDashboard } from '../evidencePro/evidenceProRules';
 import { buildArchitectureAudit } from '../studioArchitecture/architectureRules';
 import { buildTestingReportBundle } from '../testing/testingRules';
 import { buildWebIntelligenceReport } from '../webIntelligence/intelligenceRules';
@@ -33,6 +39,7 @@ import { buildRevenueActivationReport } from '../revenueActivation/revenueRules'
 import { buildRevenueIntelligenceDashboard, buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIntelligenceRules';
 import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
 import { buildStudioConsolidationReport } from '../studioConsolidation/studioRules';
+import { buildStudioHealthDashboard } from '../studioHealth/healthRules';
 import { readSnapshotState } from '../studioSnapshot/snapshotRules';
 import { buildTopLeadAuditDashboard } from '../topLeadAudit/topLeadAuditRules';
 import { buildUnifiedAuditPortfolio } from '../unifiedAuditGenerator/unifiedAuditRules';
@@ -161,6 +168,41 @@ export interface DashboardRevenueLearning {
   bestIndustry: string;
   calibrationStatus: string;
   recommendationConfidence: string;
+}
+
+export interface DashboardRevenueMode {
+  revenueModeStatus: string;
+  morningBrief: string;
+  todaysTopAction: string;
+  revenueGoal: string;
+  priorityQueue: string;
+  followUpsWaiting: number;
+  biggestBottleneck: string;
+  tomorrowFocus: string;
+}
+
+export interface DashboardCommercialConsistency {
+  commercialConsistencyStatus: string;
+  legacyReferences: number;
+  sourceOfTruthStatus: string;
+  conflictingReferences: number;
+  repairRecommendations: number;
+}
+
+export interface DashboardArchive {
+  archiveStatus: string;
+  historicalArtifacts: number;
+  portfolioAssets: number;
+  temporaryAssets: number;
+  retentionStatus: string;
+  archiveScore: string;
+}
+
+export interface DashboardRelease {
+  studioVersion: string;
+  releaseStatus: string;
+  revenueModeStatus: string;
+  validationStatus: string;
 }
 
 export interface DashboardFollowUpEngine {
@@ -292,6 +334,13 @@ export interface DashboardEvidenceEngine {
   commercialReadiness: string;
 }
 
+export interface DashboardEvidencePro {
+  evidencePackageStatus: string;
+  performanceStatus: string;
+  traceStatus: string;
+  videoStatus: string;
+}
+
 export interface DashboardClientDelivery {
   clientName: string;
   clientStatus: string;
@@ -310,6 +359,15 @@ export interface DashboardAutomationDelivery {
   deliveryStatus: string;
 }
 
+export interface DashboardDeliveryAssets {
+  deliveryAssetsStatus: string;
+  executiveReportStatus: string;
+  coverageMatrixStatus: string;
+  timelineStatus: string;
+  onboardingStatus: string;
+  bundleStatus: string;
+}
+
 export interface DashboardRetainerOperations {
   retainerStatus: string;
   clientHealth: string;
@@ -317,6 +375,15 @@ export interface DashboardRetainerOperations {
   maintenanceStatus: string;
   renewalStatus: string;
   expansionOpportunities: number;
+}
+
+export interface DashboardStudioDoctor {
+  studioHealth: string;
+  commandHealth: string;
+  runtimeHealth: string;
+  evidenceHealth: string;
+  doctorStatus: string;
+  repairRecommendations: number;
 }
 
 export interface DashboardCommercialUx {
@@ -416,6 +483,10 @@ export interface DashboardData {
   outcomeLearning: DashboardOutcomeLearning;
   adaptiveRevenue: DashboardAdaptiveRevenue;
   revenueLearning: DashboardRevenueLearning;
+  revenueMode: DashboardRevenueMode;
+  commercialConsistency: DashboardCommercialConsistency;
+  archive: DashboardArchive;
+  release: DashboardRelease;
   followUpEngine: DashboardFollowUpEngine;
   winLossIntelligence: DashboardWinLossIntelligence;
   studioSnapshot: DashboardStudioSnapshot;
@@ -429,9 +500,12 @@ export interface DashboardData {
   revenueIntelligence: DashboardRevenueIntelligence;
   topLeadAudit: DashboardTopLeadAudit;
   evidenceEngine: DashboardEvidenceEngine;
+  evidencePro: DashboardEvidencePro;
   clientDelivery: DashboardClientDelivery;
   automationDelivery: DashboardAutomationDelivery;
+  deliveryAssets: DashboardDeliveryAssets;
   retainerOperations: DashboardRetainerOperations;
+  studioDoctor: DashboardStudioDoctor;
   commercialUx: DashboardCommercialUx;
   architecture: DashboardArchitectureHealth;
   testing: DashboardTestingHealth;
@@ -467,6 +541,10 @@ export function buildPwaDashboardData(): DashboardData {
   const adaptiveRevenue = buildAdaptiveRevenueDashboard();
   const adaptiveRevenueReport = buildAdaptiveRevenueReport();
   const revenueLearning = buildRevenueLearningDashboard();
+  const revenueMode = buildRevenueModeDashboard();
+  const commercialConsistency = buildCommercialConsistencyDashboard();
+  const archive = buildArchiveDashboard();
+  const release = buildReleaseDashboard();
   const followUpReport = buildFollowUpOperatingReport();
   const winLossReport = buildWinLossReport();
   const snapshotState = readSnapshotState();
@@ -487,14 +565,17 @@ export function buildPwaDashboardData(): DashboardData {
   const webIntelligence = buildWebIntelligenceReport();
   const dynamicEvidenceSummary = buildDynamicEvidenceSummary();
   const dynamicEvidenceDecision = buildEvidenceReadinessDecision(dynamicEvidenceSummary);
+  const evidencePro = buildEvidenceProDashboard();
   const clientConversion = buildClientConversionDashboard();
   const deliveryRouter = buildDeliveryRouterDashboard();
   const automationDelivery = buildAutomationDeliveryDashboard();
+  const deliveryAssets = buildDeliveryAssetsDashboard();
   const retainerOperations = buildRetainerOperationsDashboard();
+  const studioDoctor = buildStudioHealthDashboard();
   const topLead = leadIntelligenceReport.leads[0];
   const unifiedTopLead = revenueIntelligenceReport.topLead;
   const operatorSummary = buildOperatorUxSummary();
-  const dashboardTopLeadName = revenueTruth.topLead;
+  const dashboardTopLeadName = revenueTruth.actionableLead;
   const dashboardTopOffer = revenueTruth.recommendedOffer;
   const mobileTopAction = revenueTruth.nextAction;
   const outreach = readJson<OutreachRecord[]>(outreachPath, []);
@@ -585,10 +666,10 @@ export function buildPwaDashboardData(): DashboardData {
       topActivationScore: revenueActivationReport.pipeline[0]?.activationScore ?? 0,
     },
     executionPack: {
-      firstRevenueStatus: `${executionPack.topTarget.companyName}: ${executionPack.recommendation}`,
-      goNoGo: executionPack.recommendation,
-      remainingBlockers: executionPack.remainingBlockers.length,
-      nextManualAction: executionPack.manualNextAction,
+      firstRevenueStatus: `${dashboardTopLeadName}: ${revenueMode.revenueModeStatus}`,
+      goNoGo: revenueMode.revenueModeStatus === 'ACTIVE' ? 'GO' : 'REVIEW',
+      remainingBlockers: revenueMode.revenueModeStatus === 'ACTIVE' ? 0 : executionPack.remainingBlockers.length,
+      nextManualAction: mobileTopAction,
       estimatedRevenueValue: executionPack.estimatedRevenueValue,
       estimatedConfidenceScore: executionPack.estimatedConfidenceScore,
     },
@@ -606,12 +687,16 @@ export function buildPwaDashboardData(): DashboardData {
     outcomeLearning,
     adaptiveRevenue,
     revenueLearning,
+    revenueMode,
+    commercialConsistency,
+    archive,
+    release,
     followUpEngine: {
       followUpQueue: followUpReport.dashboard.followUpQueue,
       todaysFollowUps: followUpReport.dashboard.todaysFollowUps,
       waitingResponses: followUpReport.dashboard.waitingResponses,
       openOpportunities: followUpReport.dashboard.openOpportunities,
-      nextBestAction: followUpReport.dashboard.nextBestAction,
+      nextBestAction: followUpReport.queue.find((item) => item.companyName === dashboardTopLeadName)?.expectedNextStep ?? mobileTopAction,
     },
     winLossIntelligence: {
       winRate: winLossReport.hasEnoughData ? winLossReport.metrics.closeRate : 'Insufficient outcome history.',
@@ -632,7 +717,7 @@ export function buildPwaDashboardData(): DashboardData {
       bestOffer: dashboardTopOffer,
       highestOpportunityScore: unifiedTopLead?.qualificationScore ?? topLead?.overallScore ?? 0,
       fastestRevenuePath: unifiedTopLead ? 'Qualified Ranking -> Revenue Intelligence -> Manual review' : topLead?.fastestRevenuePath ?? 'No local revenue path found',
-      recommendedNextAction: unifiedTopLead?.nextRevenueAction ?? (topLead ? `${topLead.recommendedActionType} - ${topLead.recommendedNextAction}` : 'No local next action found'),
+      recommendedNextAction: mobileTopAction,
     },
     operatorMode: {
       topLead: dashboardTopLeadName,
@@ -697,6 +782,7 @@ export function buildPwaDashboardData(): DashboardData {
       flowStatus: dynamicEvidenceDecision.flowStatus,
       commercialReadiness: dynamicEvidenceDecision.commercialReadiness,
     },
+    evidencePro,
     clientDelivery: {
       clientName: clientConversion.clientName,
       clientStatus: clientConversion.clientStatus,
@@ -706,8 +792,19 @@ export function buildPwaDashboardData(): DashboardData {
       nextDeliveryAction: deliveryRouter.nextDeliveryAction,
     },
     automationDelivery,
+    deliveryAssets,
     retainerOperations,
-    commercialUx,
+    studioDoctor,
+    commercialUx: {
+      ...commercialUx,
+      todayFocus: `${dashboardTopLeadName} - ${dashboardTopOffer} - ${revenueTruth.executionPriority}`,
+      revenueHero: `${dashboardTopLeadName}: ${revenueTruth.revenueDecision}`,
+      nextAction: mobileTopAction,
+      target: dashboardTopLeadName,
+      offer: dashboardTopOffer,
+      priority: revenueTruth.executionPriority,
+      decision: revenueTruth.revenueDecision,
+    },
     architecture: {
       architectureStatus: architectureAudit.architectureStatus,
       commandHealth: architectureAudit.commandHealth,

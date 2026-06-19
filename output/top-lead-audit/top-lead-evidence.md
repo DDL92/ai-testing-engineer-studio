@@ -1,25 +1,26 @@
 # Top Lead Evidence
 
-Generated: 2026-06-14T05:49:45.703Z
+Generated: 2026-06-18T20:30:01.024Z
 
-- Company: Appointy
-- Website: https://www.appointy.com
+- Company: Setmore
+- Website: https://www.setmore.com
 - Recommended Offer: QA Automation Retainer ($1500-$3000/month)
-- Revenue Decision: GO
+- Revenue Decision: ACTIONABLE_LEAD_FOUND
 
 ## Local Evidence
 | Evidence | Value | Source |
 | --- | --- | --- |
-| Revenue Intelligence Top Lead | Appointy | Revenue Intelligence |
-| Website | https://www.appointy.com | Qualified Ranking |
+| Top Ranked Lead | Appointy | Lead Rotation |
+| Actionable Lead | Setmore | Lead Rotation |
+| Website | https://www.setmore.com | Qualified Ranking |
 | Category | Scheduling SaaS | Lead Qualification |
-| Qualification Score | 84/100 | Lead Qualification |
-| QA Opportunity Score | 81/100 | Lead Qualification |
-| Pain Signal Relevance | 35/100 | Revenue Intelligence |
-| Offer Fit | 100/100 | Revenue Intelligence |
+| Qualification Score | 80/100 | Lead Qualification |
+| QA Opportunity Score | 84/100 | Lead Qualification |
+| Pain Confidence | 35/100 | Lead Rotation |
+| Commercial Readiness | 86/100 | Lead Rotation |
 | Source Query | fitness scheduling software | Web Lead Discovery |
-| Source Title | Fitness Studio and Gym Scheduling Software - Appointy | Web Lead Discovery |
-| Public Notes | If you have any questions or want to know more about our product, schedule a free call with us now! Appointy's fitness and gym scheduling software takes care of online booking, appointment reminders, trainer and facility management, marketing, payments, and more! # Discover the easiest way to manage & grow your gym & fitness business. ## Gym and fitness booking system fit for various business verticals. ### Fitness Classes. ## Fitness studio software that helps you do better at every stage of your customer's journey. Appointy helps you support customers beyond their in-studio experience so that you can help more members reach their fitness goals. Give customers the convenience to self-schedule, cancel, reschedule, and book recurring classes & sessions online from any device with Appointy’s 24×7 online booking system. Appointy's gym and fitness management software helps you save time, reduce no shows, increase trainer productivity, manage members, and track important metrics for your business. Fitness and Gym Scheduling Software. | Web Lead Discovery |
+| Source Title | Gym Scheduling Software \| Fitness Class Scheduling - Setmore | Web Lead Discovery |
+| Public Notes | # Gym Scheduling Software. Bulk up your bookings and gain new members with online gym booking software. Create a Booking Page to share your availability online. Your gym schedule software helps maximize class capacity and enables new visitors to book inductions 24/7. Assign classes to instructors with your gym class booking software. Connect your personalized Booking Page with Square or Stripe and get paid online for memberships, classes, one-to-one coaching sessions and more. ## Give your clients the power to book any time with a gym appointment app. Your custom Booking Page helps members sign-up for your classes online, at any time. Your app will ping you when it's time to set up for class, clean equipment, plan training for a new member, and more. Online scheduling for fitness classes helps you create your own gym community. Showcase your availability online with gym class scheduling software, and empower clients to book and pay for their spots in seconds. | Web Lead Discovery |
 
 ## Evidence Boundary
 - Evidence is assembled from existing local Studio outputs.

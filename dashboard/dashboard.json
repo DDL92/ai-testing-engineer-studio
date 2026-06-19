@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-06-18T19:22:17.042Z",
+  "generatedAt": "2026-06-19T01:57:07.729Z",
   "mode": "read-only",
   "today": {
-    "date": "2026-06-18",
+    "date": "2026-06-19",
     "topActions": [
       {
         "priority": 1,
-        "title": "Review Appointy package",
+        "title": "Review Setmore package",
         "whyItMatters": "Revenue Intelligence is the source of truth. Current decision: GO.",
         "estimatedImpact": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
         "nextStep": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
       },
       {
         "priority": 2,
-        "title": "Confirm Appointy readiness",
+        "title": "Confirm Setmore readiness",
         "whyItMatters": "Keeps daily execution aligned with the unified top lead instead of legacy lead queues.",
         "estimatedImpact": "Recommended offer: QA Automation Retainer ($1500-$3000/month).",
         "nextStep": "Review Revenue Intelligence, message pack, evidence, and readiness blockers manually."
@@ -27,10 +27,10 @@
       }
     ],
     "revenuePriorities": [
-      "Review Appointy package",
+      "Review Setmore package",
       "Review source-of-truth consistency"
     ],
-    "followUpsDue": 0,
+    "followUpsDue": 2,
     "proposalReviews": [
       "PushPress",
       "TeamUp",
@@ -41,16 +41,16 @@
     "totalLeads": 4,
     "topLeads": [
       {
-        "companyId": "appointy",
-        "companyName": "Appointy",
+        "companyId": "setmore",
+        "companyName": "Setmore",
         "score": 100,
         "detail": "QA Automation Retainer ($1500-$3000/month)"
       }
     ],
     "highestOpportunityScores": [
       {
-        "companyId": "appointy",
-        "companyName": "Appointy",
+        "companyId": "setmore",
+        "companyName": "Setmore",
         "score": 100,
         "detail": "QA Automation Retainer ($1500-$3000/month)"
       }
@@ -61,7 +61,7 @@
     "messagesSent": 2,
     "connected": 2,
     "replies": 0,
-    "followUpsDue": 0
+    "followUpsDue": 2
   },
   "audits": {
     "auditReportsGenerated": 3,
@@ -86,12 +86,12 @@
     ]
   },
   "revenue": {
-    "bestAuditOpportunity": "Appointy",
-    "bestStarterPackOpportunity": "Appointy",
-    "bestRetainerOpportunity": "Appointy"
+    "bestAuditOpportunity": "Setmore",
+    "bestStarterPackOpportunity": "Setmore",
+    "bestRetainerOpportunity": "Setmore"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-18T19:22:17.042Z",
+    "lastUpdate": "2026-06-19T01:57:07.729Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "16 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -111,17 +111,17 @@
   },
   "revenueActivation": {
     "revenueActivation": "First Audit Sold",
-    "firstClientGoal": "Appointy",
-    "firstRetainerGoal": "Appointy",
-    "topRevenueTarget": "Appointy",
+    "firstClientGoal": "Setmore",
+    "firstRetainerGoal": "Setmore",
+    "topRevenueTarget": "Setmore",
     "topRevenueAction": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
     "topActivationScore": 62
   },
   "executionPack": {
-    "firstRevenueStatus": "Appointy: NO GO",
-    "goNoGo": "NO GO",
-    "remainingBlockers": 4,
-    "nextManualAction": "Resolve the readiness blockers for Appointy, then rerun npm run execute:first-client.",
+    "firstRevenueStatus": "Setmore: ACTIVE",
+    "goNoGo": "GO",
+    "remainingBlockers": 0,
+    "nextManualAction": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
     "estimatedRevenueValue": "$199-$500 potential first QA Audit value",
     "estimatedConfidenceScore": 49
   },
@@ -134,7 +134,7 @@
     "wins": 0,
     "losses": 0,
     "replyRate": "No outcomes recorded yet.",
-    "nextManualMessage": "No outcomes recorded yet. Review the Appointy message pack before any manual send."
+    "nextManualMessage": "No outcomes recorded yet. Review the Setmore message pack before any manual send."
   },
   "outcomeLearning": {
     "outcomesRecorded": 0,
@@ -158,12 +158,43 @@
     "calibrationStatus": "INSUFFICIENT HISTORY; 0% influence",
     "recommendationConfidence": "INSUFFICIENT HISTORY"
   },
+  "revenueMode": {
+    "revenueModeStatus": "ACTIVE",
+    "morningBrief": "Setmore | 86/100 | READY",
+    "todaysTopAction": "Review the QA Automation Retainer ($1500-$3000/month) evidence package and message decision for Setmore; Daniel decides any external next step.",
+    "revenueGoal": "$0 MRR toward $3,000-$5,000",
+    "priorityQueue": "2 high / 4 total",
+    "followUpsWaiting": 29,
+    "biggestBottleneck": "No real commercial outcomes are recorded; external action and outcome recording remain manual.",
+    "tomorrowFocus": "Review the highest-priority follow-up for Setmore; do not send without human approval."
+  },
+  "commercialConsistency": {
+    "commercialConsistencyStatus": "WARNING",
+    "legacyReferences": 271,
+    "sourceOfTruthStatus": "PASS",
+    "conflictingReferences": 0,
+    "repairRecommendations": 1
+  },
+  "archive": {
+    "archiveStatus": "HEALTHY",
+    "historicalArtifacts": 50,
+    "portfolioAssets": 43,
+    "temporaryAssets": 39,
+    "retentionStatus": "6/6 classifications covered",
+    "archiveScore": "86/100"
+  },
+  "release": {
+    "studioVersion": "1.0.0",
+    "releaseStatus": "RELEASE LOCKED",
+    "revenueModeStatus": "REVENUE MODE READY",
+    "validationStatus": "PASS"
+  },
   "followUpEngine": {
     "followUpQueue": 29,
     "todaysFollowUps": 5,
     "waitingResponses": 0,
     "openOpportunities": 29,
-    "nextBestAction": "Review Appointy message pack and manually decide whether to send the LinkedIn short message from message pack."
+    "nextBestAction": "Review Setmore local revenue and executive context, then manually decide whether to draft an Executive angle."
   },
   "winLossIntelligence": {
     "winRate": "Insufficient outcome history.",
@@ -180,21 +211,21 @@
     "lastSnapshot": "2026-06-13T20:49:43.297Z"
   },
   "leadIntelligence": {
-    "bestLead": "Appointy",
+    "bestLead": "Setmore",
     "bestOffer": "QA Automation Retainer ($1500-$3000/month)",
     "highestOpportunityScore": 84,
     "fastestRevenuePath": "Qualified Ranking -> Revenue Intelligence -> Manual review",
-    "recommendedNextAction": "Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer."
+    "recommendedNextAction": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
   },
   "operatorMode": {
-    "topLead": "Appointy",
+    "topLead": "Setmore",
     "topOffer": "QA Automation Retainer ($1500-$3000/month)",
     "topAction": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
     "studioStatus": "Healthy",
-    "todayAtAGlance": "Top Lead: Appointy | Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
+    "todayAtAGlance": "Top Lead: Setmore | Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
   },
   "mobileCommandCenterSummary": {
-    "topLead": "Appointy",
+    "topLead": "Setmore",
     "topOffer": "QA Automation Retainer ($1500-$3000/month)",
     "topAction": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
     "followUpsWaiting": 0,
@@ -212,7 +243,7 @@
     "adaptiveRecommendation": "Insufficient outcome history. Keep using existing Revenue Intelligence ranking until real outcomes are recorded.",
     "runtimeHealth": "Runtime data needs cleanup",
     "architectureStatus": "Needs consolidation",
-    "todayAtAGlance": "Top Lead: Appointy | Top Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
+    "todayAtAGlance": "Top Lead: Setmore | Top Offer: QA Automation Retainer ($1500-$3000/month) | Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
   },
   "dailyLeadDiscovery": {
     "newLeadsToday": 0,
@@ -246,11 +277,11 @@
     "lastSuccessfulRun": "2026-06-14T01:53:03.396Z",
     "nextScheduledRun": "2026-06-19T13:00:00.000Z (07:00 America/Costa_Rica)",
     "runnerHealth": "Healthy",
-    "dailyRefreshStatus": "Refresh sequence complete. Top lead: Appointy."
+    "dailyRefreshStatus": "Refresh sequence complete. Actionable lead: Setmore."
   },
   "revenueIntelligence": {
     "revenueIntelligenceStatus": "Unified",
-    "currentTopLead": "Appointy",
+    "currentTopLead": "Setmore",
     "actionableLead": "Setmore",
     "commercialReadiness": "86/100",
     "evidenceBlockers": "Appointy: Page evidence is WARNING. | Appointy: Evidence status is NOT READY. | ShapeNet Software: Evidence status is NOT READY.",
@@ -276,6 +307,12 @@
     "flowStatus": "WARNING",
     "commercialReadiness": "Not Commercially Ready"
   },
+  "evidencePro": {
+    "evidencePackageStatus": "READY",
+    "performanceStatus": "CAPTURED",
+    "traceStatus": "CAPTURED",
+    "videoStatus": "CAPTURED"
+  },
   "clientDelivery": {
     "clientName": "Setmore",
     "clientStatus": "delivery-prep",
@@ -292,6 +329,14 @@
     "clientHandoffStatus": "Draft Ready for Review",
     "deliveryStatus": "delivery-prep"
   },
+  "deliveryAssets": {
+    "deliveryAssetsStatus": "READY FOR REVIEW",
+    "executiveReportStatus": "READY FOR REVIEW",
+    "coverageMatrixStatus": "READY FOR REVIEW",
+    "timelineStatus": "READY FOR REVIEW",
+    "onboardingStatus": "READY FOR REVIEW",
+    "bundleStatus": "READY FOR REVIEW"
+  },
   "retainerOperations": {
     "retainerStatus": "PLANNING",
     "clientHealth": "WATCH",
@@ -300,27 +345,35 @@
     "renewalStatus": "NOT READY",
     "expansionOpportunities": 6
   },
+  "studioDoctor": {
+    "studioHealth": "83/100",
+    "commandHealth": "WARNING; 0 broken",
+    "runtimeHealth": "WARNING; 0 invalid JSON",
+    "evidenceHealth": "PASS",
+    "doctorStatus": "WATCH",
+    "repairRecommendations": 3
+  },
   "commercialUx": {
-    "todayFocus": "Appointy - QA Automation Retainer - HIGH",
-    "revenueHero": "Appointy: REVIEW",
+    "todayFocus": "Setmore - QA Automation Retainer ($1500-$3000/month) - HIGH",
+    "revenueHero": "Setmore: GO",
     "potentialValue": "$1,500-$3,000/month",
-    "nextAction": "Review Appointy package and decide: SEND / WAIT / REWRITE.",
-    "target": "Appointy",
-    "offer": "QA Automation Retainer",
+    "nextAction": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
+    "target": "Setmore",
+    "offer": "QA Automation Retainer ($1500-$3000/month)",
     "priority": "HIGH",
-    "decision": "REVIEW"
+    "decision": "GO"
   },
   "architecture": {
     "architectureStatus": "Needs consolidation",
     "commandHealth": "Command surface is too broad",
     "runtimeHealth": "Runtime data needs cleanup",
-    "consolidationProgress": "14 future official commands recommended; 114 deprecation candidates identified.",
-    "commandsAudited": 307,
-    "duplicateCommandGroups": 2,
+    "consolidationProgress": "14 future official commands recommended; 144 deprecation candidates identified.",
+    "commandsAudited": 360,
+    "duplicateCommandGroups": 3,
     "legacyCommands": 22,
-    "candidateDeprecations": 114,
-    "runtimeFiles": 694,
-    "duplicateRuntimeCandidates": 42,
+    "candidateDeprecations": 144,
+    "runtimeFiles": 761,
+    "duplicateRuntimeCandidates": 46,
     "sourceOfTruthAuthorities": 5
   },
   "testing": {
@@ -347,25 +400,25 @@
       "auditsReady": 3,
       "proposalsReady": 3,
       "evidenceReady": 16,
-      "followUpsReady": 0
+      "followUpsReady": 2
     },
     "revenueCenter": {
-      "bestAuditOpportunity": "Appointy",
-      "bestStarterPackOpportunity": "Appointy",
-      "bestRetainerOpportunity": "Appointy",
+      "bestAuditOpportunity": "Setmore",
+      "bestStarterPackOpportunity": "Setmore",
+      "bestRetainerOpportunity": "Setmore",
       "highestRevenuePriority": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
     },
     "actionQueue": [
       {
         "priority": 1,
-        "title": "Review Appointy package",
+        "title": "Review Setmore package",
         "whyItMatters": "Revenue Intelligence is the source of truth. Current decision: GO.",
         "estimatedImpact": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
         "nextStep": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer."
       },
       {
         "priority": 2,
-        "title": "Confirm Appointy readiness",
+        "title": "Confirm Setmore readiness",
         "whyItMatters": "Keeps daily execution aligned with the unified top lead instead of legacy lead queues.",
         "estimatedImpact": "Recommended offer: QA Automation Retainer ($1500-$3000/month).",
         "nextStep": "Review Revenue Intelligence, message pack, evidence, and readiness blockers manually."

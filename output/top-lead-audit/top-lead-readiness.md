@@ -1,6 +1,6 @@
 # Top Lead Readiness
 
-Generated: 2026-06-14T22:14:36.863Z
+Generated: 2026-06-18T20:30:01.043Z
 
 - Company: Setmore
 - Top Lead Audit Status: Missing
@@ -12,6 +12,7 @@ Generated: 2026-06-14T22:14:36.863Z
 | Check | Status | Evidence | Path |
 | --- | --- | --- | --- |
 | Evidence Collection | Ready | Lead rotation readiness is READY; evidence READY, commercial score 86/100. | output/lead-rotation/rotation-decision.md |
+| Evidence Package | Ready | Current Setmore file exists. | output/evidence-pro/evidence-package.md |
 | Audit Package | Missing | Missing current Setmore file at output/top-lead-audit/top-lead-audit.md. | output/top-lead-audit/top-lead-audit.md |
 | Executive Summary | Missing | Missing current Setmore file at output/top-lead-audit/top-lead-executive-summary.md. | output/top-lead-audit/top-lead-executive-summary.md |
 | Proposal Draft | Missing | Missing current Setmore file at output/top-lead-audit/top-lead-proposal.md. | output/top-lead-audit/top-lead-proposal.md |

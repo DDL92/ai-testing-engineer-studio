@@ -2,6 +2,61 @@
 
 AI Testing Engineer Studio is a lean MVP for selling QA Automation and AI Testing services fast. It combines a reusable Playwright + TypeScript starter framework, AI testing templates, client delivery documents, Upwork assets, Codex prompts, and launch content.
 
+## Studio Status
+
+- Version: 1.0.0
+- Feature Complete
+- Revenue Mode Ready
+- Release Locked
+- Local-only and human-approved
+
+## Quick Start
+
+```bash
+npm install
+npm run studio:health
+npm run revenue:morning
+npm run dashboard:generate
+npm run mobile:summary
+```
+
+## Daily Workflow
+
+1. Review Studio health.
+2. Review the Revenue Mode morning brief.
+3. Confirm the actionable lead and evidence package.
+4. Complete any external action manually.
+5. Record only real outcomes.
+
+## Revenue Mode Workflow
+
+```text
+Lead Discovery
+-> Qualification
+-> Evidence
+-> Lead Rotation
+-> Actionable Lead
+-> Manual Commercial Action
+-> Outcome Recording
+```
+
+## Core Commands
+
+```bash
+npm run studio:health
+npm run revenue:morning
+npm run revenue:today
+npm run revenue:summary
+npm run dashboard:generate
+npm run mobile:summary
+npm run archive:summary
+npm run release:validate
+```
+
+## Testing Status
+
+Studio v1 release validation requires TypeScript compilation and the complete Playwright regression suite to pass. See `docs/release/validation-report.md` for the latest recorded result.
+
 ## Why This Repo Exists
 
 This repo is both a public portfolio asset and a delivery kit for QA Automation and AI Testing services. It shows how I structure client-ready Playwright work, package AI testing audits, and deliver practical QA artifacts without overbuilding.

@@ -556,7 +556,7 @@ Generated: ${data.generatedAt}
 
 ## Lead Rotation
 
-- Top Ranked Lead: ${data.revenueIntelligence.currentTopLead}
+- Commercial Lead: ${data.revenueIntelligence.currentTopLead}
 - Actionable Lead: ${data.revenueIntelligence.actionableLead}
 - Commercial Readiness: ${data.revenueIntelligence.commercialReadiness}
 - Evidence Blockers: ${data.revenueIntelligence.evidenceBlockers}
@@ -579,6 +579,13 @@ Generated: ${data.generatedAt}
 - Flow Status: ${data.evidenceEngine.flowStatus}
 - Commercial Readiness: ${data.evidenceEngine.commercialReadiness}
 
+## Evidence Pro
+
+- Evidence Package Status: ${data.evidencePro.evidencePackageStatus}
+- Performance Status: ${data.evidencePro.performanceStatus}
+- Trace Status: ${data.evidencePro.traceStatus}
+- Video Status: ${data.evidencePro.videoStatus}
+
 ## Client Delivery
 
 - Client: ${data.clientDelivery.clientName}
@@ -596,6 +603,15 @@ Generated: ${data.generatedAt}
 - Framework Status: ${data.automationDelivery.frameworkStatus}
 - Client Handoff Status: ${data.automationDelivery.clientHandoffStatus}
 - Delivery Status: ${data.automationDelivery.deliveryStatus}
+
+## Delivery Assets
+
+- Delivery Assets Status: ${data.deliveryAssets.deliveryAssetsStatus}
+- Executive Report Status: ${data.deliveryAssets.executiveReportStatus}
+- Coverage Matrix Status: ${data.deliveryAssets.coverageMatrixStatus}
+- Timeline Status: ${data.deliveryAssets.timelineStatus}
+- Onboarding Status: ${data.deliveryAssets.onboardingStatus}
+- Bundle Status: ${data.deliveryAssets.bundleStatus}
 
 ## Retainer Operations
 
@@ -615,6 +631,50 @@ Generated: ${data.generatedAt}
 - Best Industry: ${data.revenueLearning.bestIndustry}
 - Calibration Status: ${data.revenueLearning.calibrationStatus}
 - Recommendation Confidence: ${data.revenueLearning.recommendationConfidence}
+
+## Revenue Mode
+
+- Revenue Mode Status: ${data.revenueMode.revenueModeStatus}
+- Morning Brief: ${data.revenueMode.morningBrief}
+- Today's Top Action: ${data.revenueMode.todaysTopAction}
+- Revenue Goal: ${data.revenueMode.revenueGoal}
+- Priority Queue: ${data.revenueMode.priorityQueue}
+- Follow Ups Waiting: ${data.revenueMode.followUpsWaiting}
+- Biggest Bottleneck: ${data.revenueMode.biggestBottleneck}
+- Tomorrow Focus: ${data.revenueMode.tomorrowFocus}
+
+## Commercial Consistency
+
+- Commercial Consistency Status: ${data.commercialConsistency.commercialConsistencyStatus}
+- Legacy References: ${data.commercialConsistency.legacyReferences}
+- Source Of Truth Status: ${data.commercialConsistency.sourceOfTruthStatus}
+- Conflicting References: ${data.commercialConsistency.conflictingReferences}
+- Repair Recommendations: ${data.commercialConsistency.repairRecommendations}
+
+## Archive And Portfolio
+
+- Archive Status: ${data.archive.archiveStatus}
+- Historical Artifacts: ${data.archive.historicalArtifacts}
+- Portfolio Assets: ${data.archive.portfolioAssets}
+- Temporary Assets: ${data.archive.temporaryAssets}
+- Retention Status: ${data.archive.retentionStatus}
+- Archive Score: ${data.archive.archiveScore}
+
+## Studio v1 Release
+
+- Studio Version: ${data.release.studioVersion}
+- Release Status: ${data.release.releaseStatus}
+- Revenue Mode Status: ${data.release.revenueModeStatus}
+- Validation Status: ${data.release.validationStatus}
+
+## Studio Doctor
+
+- Studio Health: ${data.studioDoctor.studioHealth}
+- Command Health: ${data.studioDoctor.commandHealth}
+- Runtime Health: ${data.studioDoctor.runtimeHealth}
+- Evidence Health: ${data.studioDoctor.evidenceHealth}
+- Doctor Status: ${data.studioDoctor.doctorStatus}
+- Repair Recommendations: ${data.studioDoctor.repairRecommendations}
 
 ## Safety
 

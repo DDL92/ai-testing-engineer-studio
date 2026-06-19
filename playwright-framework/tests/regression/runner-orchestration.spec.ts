@@ -13,6 +13,10 @@ test.describe('Runner orchestration regression', () => {
       'web:qualified-ranking',
       'revenue:focus',
       'dashboard:generate',
+      'mobile:summary',
+      'revenue:morning',
+      'revenue:today',
+      'revenue:summary',
     ];
 
     // Act

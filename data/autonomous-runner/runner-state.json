@@ -44,6 +44,16 @@
       "phase": "qualification"
     },
     {
+      "script": "evidence:package",
+      "description": "Refresh the local evidence package for commercial review.",
+      "phase": "evidence"
+    },
+    {
+      "script": "lead:rotation",
+      "description": "Select the highest-ranked evidence-ready actionable lead.",
+      "phase": "rotation"
+    },
+    {
       "script": "revenue:focus",
       "description": "Refresh the first-revenue focus report.",
       "phase": "revenue"
@@ -62,6 +72,21 @@
       "script": "mobile:summary",
       "description": "Regenerate the mobile command center summary.",
       "phase": "mobile"
+    },
+    {
+      "script": "revenue:morning",
+      "description": "Generate the Revenue Mode morning brief.",
+      "phase": "revenue"
+    },
+    {
+      "script": "revenue:today",
+      "description": "Generate the top three revenue-priority actions.",
+      "phase": "revenue"
+    },
+    {
+      "script": "revenue:summary",
+      "description": "Generate the consolidated Revenue Mode summary.",
+      "phase": "revenue"
     }
   ],
   "safetyRules": [
@@ -71,5 +96,5 @@
     "Only existing local Studio commands are executed.",
     "Human approval is required before any external business action."
   ],
-  "updatedAt": "2026-06-18T19:22:17.291Z"
+  "updatedAt": "2026-06-19T01:58:23.639Z"
 }

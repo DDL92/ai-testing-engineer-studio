@@ -27,10 +27,15 @@ export const runnerSequence: RunnerCommandDefinition[] = [
   { script: 'web:lead-classify', description: 'Classify normalized leads by SaaS category.', phase: 'qualification' },
   { script: 'web:lead-qualify', description: 'Score normalized leads for qualification.', phase: 'qualification' },
   { script: 'web:qualified-ranking', description: 'Generate final qualified web lead ranking.', phase: 'qualification' },
+  { script: 'evidence:package', description: 'Refresh the local evidence package for commercial review.', phase: 'evidence' },
+  { script: 'lead:rotation', description: 'Select the highest-ranked evidence-ready actionable lead.', phase: 'rotation' },
   { script: 'revenue:focus', description: 'Refresh the first-revenue focus report.', phase: 'revenue' },
   { script: 'day:plan', description: 'Refresh the daily revenue operating plan.', phase: 'planning' },
   { script: 'dashboard:generate', description: 'Regenerate the read-only dashboard data.', phase: 'dashboard' },
   { script: 'mobile:summary', description: 'Regenerate the mobile command center summary.', phase: 'mobile' },
+  { script: 'revenue:morning', description: 'Generate the Revenue Mode morning brief.', phase: 'revenue' },
+  { script: 'revenue:today', description: 'Generate the top three revenue-priority actions.', phase: 'revenue' },
+  { script: 'revenue:summary', description: 'Generate the consolidated Revenue Mode summary.', phase: 'revenue' },
 ];
 
 export const runnerSafetyRules = [
@@ -161,7 +166,7 @@ export function buildRunnerDashboard(): RunnerDashboardSummary {
     lastSuccessfulRun,
     nextScheduledRun: health.nextScheduledRun,
     runnerHealth: health.status,
-    dailyRefreshStatus: failedCommands.length > 0 ? `${failedCommands.length} command(s) need review` : health.lastRun ? `Refresh sequence complete. Top lead: ${source.topLead}.` : `Waiting for first run. Top lead: ${source.topLead}.`,
+    dailyRefreshStatus: failedCommands.length > 0 ? `${failedCommands.length} command(s) need review` : health.lastRun ? `Refresh sequence complete. Actionable lead: ${source.actionableLead}.` : `Waiting for first run. Actionable lead: ${source.actionableLead}.`,
   };
 }
 

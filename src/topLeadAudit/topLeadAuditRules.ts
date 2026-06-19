@@ -116,7 +116,7 @@ export function buildTopLeadAuditDashboard(): TopLeadAuditDashboard {
   const check = (label: string): string => audit.readinessChecks.find((item) => item.label === label)?.status ?? 'Missing';
   return {
     topLeadAuditStatus: check('Audit Package'),
-    evidenceStatus: check('Evidence Collection'),
+    evidenceStatus: check('Evidence Package'),
     proposalStatus: check('Proposal Draft'),
     executionReadiness: audit.goNoGo,
   };
@@ -356,6 +356,7 @@ function buildReadinessChecks(companyName: string, companyId: string): TopLeadAu
     ? `Lead rotation readiness is ${actionable.readiness}; evidence ${actionable.evidenceStatus}, commercial score ${actionable.commercialReadinessScore}/100.`
     : `Evidence readiness is ${fallbackEvidenceDecision.status}; page ${fallbackEvidenceDecision.pageStatus}, screenshots ${fallbackEvidenceDecision.screenshotStatus}, lighthouse ${fallbackEvidenceDecision.lighthouseStatus}.`;
   const checks: Array<[string, string]> = [
+    ['Evidence Package', path.join(process.cwd(), 'output', 'evidence-pro', 'evidence-package.md')],
     ['Audit Package', path.join(outputRoot, 'top-lead-audit.md')],
     ['Executive Summary', path.join(outputRoot, 'top-lead-executive-summary.md')],
     ['Proposal Draft', path.join(outputRoot, 'top-lead-proposal.md')],

@@ -27,8 +27,10 @@ test.describe('Revenue Intelligence regression', () => {
     const source = getRevenueSourceOfTruth();
 
     // Assert
-    expect(source.topLead).toBe(report.topLead?.companyName);
-    expect(source.topLead).not.toBe('No unified top lead');
+    expect(source.topLead).toBe(report.actionableLead?.companyName);
+    expect(source.actionableLead).toBe(report.actionableLead?.companyName);
+    expect(source.topRankedLead).toBe(report.topLead?.companyName);
+    expect(source.topLead).not.toBe('No actionable lead');
     expect(source.recommendedOffer).toBeTruthy();
     expect(source.revenueDecision).toBe(report.decision.status);
     expect(['HIGH', 'MEDIUM', 'LOW']).toContain(source.executionPriority);
