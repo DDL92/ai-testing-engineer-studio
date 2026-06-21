@@ -5,6 +5,9 @@ export interface TavilySearchOptions {
   maxResults?: number;
   searchDepth?: 'basic' | 'advanced';
   includeAnswer?: boolean;
+  topic?: 'general';
+  includeImages?: boolean;
+  timeoutMs?: number;
 }
 
 export interface TavilySearchResult {
@@ -18,6 +21,25 @@ export interface TavilySearchResponse {
   query: string;
   answer?: string;
   results: TavilySearchResult[];
+  requestId?: string;
+  usage?: {
+    credits?: number;
+  };
+}
+
+export interface TavilyUsageResponse {
+  planUsage: number | null;
+  planLimit: number | null;
+  paygoUsage: number | null;
+  paygoLimit: number | null;
+  accountSearchUsage: number | null;
+  keyUsage: number | null;
+  keyLimit: number | null;
+  keySearchUsage: number | null;
+  available: boolean;
+  errorCode: string | null;
+  errorMessage: string | null;
+  httpStatus: number;
 }
 
 export interface TavilyRuntimeConfig {
@@ -28,6 +50,7 @@ export interface TavilyRuntimeConfig {
 }
 
 const tavilyEndpoint = 'https://api.tavily.com/search';
+const tavilyUsageEndpoint = 'https://api.tavily.com/usage';
 
 export function getTavilyRuntimeConfig(): TavilyRuntimeConfig {
   loadLocalEnv();
@@ -51,20 +74,30 @@ export async function tavilySearch(query: string, options: TavilySearchOptions =
   }
 
   const config = getTavilyRuntimeConfig();
-  const response = await fetch(tavilyEndpoint, {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      api_key: apiKey,
-      query,
-      search_depth: options.searchDepth ?? config.searchDepth,
-      max_results: options.maxResults ?? config.maxResults,
-      include_answer: options.includeAnswer ?? false,
-      include_raw_content: false,
-    }),
-  });
+  const controller = options.timeoutMs ? new AbortController() : null;
+  const timeout = controller ? setTimeout(() => controller.abort(), options.timeoutMs) : null;
+  let response: Response;
+  try {
+    response = await fetch(tavilyEndpoint, {
+      method: 'POST',
+      signal: controller?.signal,
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        api_key: apiKey,
+        query,
+        search_depth: options.searchDepth ?? config.searchDepth,
+        max_results: options.maxResults ?? config.maxResults,
+        include_answer: options.includeAnswer ?? false,
+        include_raw_content: false,
+        ...(options.topic ? { topic: options.topic } : {}),
+        ...(options.includeImages !== undefined ? { include_images: options.includeImages } : {}),
+      }),
+    });
+  } finally {
+    if (timeout) clearTimeout(timeout);
+  }
 
   if (!response.ok) {
     const body = await response.text();
@@ -75,11 +108,15 @@ export async function tavilySearch(query: string, options: TavilySearchOptions =
     query?: string;
     answer?: string;
     results?: Array<{ title?: string; url?: string; content?: string; score?: number }>;
+    request_id?: string;
+    usage?: { credits?: number };
   };
 
   return {
     query: data.query ?? query,
     answer: data.answer,
+    requestId: typeof data.request_id === 'string' ? data.request_id : undefined,
+    usage: data.usage,
     results: (data.results ?? [])
       .map((result) => ({
         title: String(result.title ?? '').trim(),
@@ -88,6 +125,78 @@ export async function tavilySearch(query: string, options: TavilySearchOptions =
         score: typeof result.score === 'number' ? result.score : undefined,
       }))
       .filter((result) => result.title && result.url && allowedPublicUrl(result.url)),
+  };
+}
+
+export async function getTavilyUsage(): Promise<TavilyUsageResponse> {
+  loadLocalEnv();
+  const apiKey = process.env.TAVILY_API_KEY;
+  if (!apiKey) throw new Error('No Tavily API key detected');
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8_000);
+  let response: Response;
+  try {
+    response = await fetch(tavilyUsageEndpoint, {
+      method: 'GET',
+      signal: controller.signal,
+      headers: {
+        authorization: `Bearer ${apiKey}`,
+        accept: 'application/json',
+      },
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
+  if (!response.ok) {
+    throw new Error(
+      `Tavily usage unavailable: attempted=true; httpStatus=${response.status}; `
+      + `category=${usageErrorCategory(response.status)}; parseSuccess=false.`,
+    );
+  }
+
+  let data: unknown;
+  try {
+    data = await response.json();
+  } catch {
+    throw new Error(
+      `Tavily usage unavailable: attempted=true; httpStatus=${response.status}; `
+      + 'category=invalid_json; parseSuccess=false.',
+    );
+  }
+
+  if (!isRecord(data)) {
+    throw new Error(
+      `Tavily usage unavailable: attempted=true; httpStatus=${response.status}; `
+      + 'category=invalid_shape; parseSuccess=false; missingFields=account,key.',
+    );
+  }
+  const account = isRecord(data.account) ? data.account : null;
+  const key = isRecord(data.key) ? data.key : null;
+  const missingFields = [
+    ...missingNumericFields(account, 'account', ['plan_usage', 'plan_limit']),
+    ...(key ? [] : ['key']),
+  ];
+  if (missingFields.length > 0) {
+    throw new Error(
+      `Tavily usage unavailable: attempted=true; httpStatus=${response.status}; `
+      + `category=missing_fields; parseSuccess=true; missingFields=${missingFields.join(',')}.`,
+    );
+  }
+
+  return {
+    planUsage: numberOrNull(account?.plan_usage),
+    planLimit: numberOrNull(account?.plan_limit),
+    paygoUsage: numberOrNull(account?.paygo_usage),
+    paygoLimit: numberOrNull(account?.paygo_limit),
+    accountSearchUsage: numberOrNull(account?.search_usage),
+    keyUsage: numberOrNull(key?.usage),
+    keyLimit: numberOrNull(key?.limit),
+    keySearchUsage: numberOrNull(key?.search_usage),
+    available: true,
+    errorCode: null,
+    errorMessage: null,
+    httpStatus: response.status,
   };
 }
 
@@ -104,17 +213,21 @@ export function allowedPublicUrl(url: string): boolean {
 }
 
 export function loadLocalEnv(): void {
-  const envPath = path.join(process.cwd(), '.env.local');
-  if (!fs.existsSync(envPath)) return;
-  const raw = fs.readFileSync(envPath, 'utf8');
-  for (const line of raw.split(/\r?\n/)) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith('#')) continue;
-    const index = trimmed.indexOf('=');
-    if (index <= 0) continue;
-    const key = trimmed.slice(0, index).trim();
-    const value = trimmed.slice(index + 1).trim().replace(/^["']|["']$/g, '');
-    if (!process.env[key]) process.env[key] = value;
+  for (const fileName of ['.env.local', '.env']) {
+    const envPath = path.join(process.cwd(), fileName);
+    if (!fs.existsSync(envPath)) continue;
+    const raw = fs.readFileSync(envPath, 'utf8');
+    for (const line of raw.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+      const normalized = trimmed.startsWith('export ') ? trimmed.slice(7).trim() : trimmed;
+      const index = normalized.indexOf('=');
+      if (index <= 0) continue;
+      const key = normalized.slice(0, index).trim();
+      if (Object.prototype.hasOwnProperty.call(process.env, key)) continue;
+      const value = normalized.slice(index + 1).trim().replace(/^["']|["']$/g, '');
+      process.env[key] = value;
+    }
   }
 }
 
@@ -122,4 +235,30 @@ function boundedNumber(value: string | undefined, fallback: number, min: number,
   const parsed = Number(value);
   if (!Number.isFinite(parsed)) return fallback;
   return Math.max(min, Math.min(max, Math.floor(parsed)));
+}
+
+function numberOrNull(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) ? value : null;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function missingNumericFields(
+  value: Record<string, unknown> | null,
+  prefix: string,
+  fields: string[],
+): string[] {
+  if (!value) return fields.map((field) => `${prefix}.${field}`);
+  return fields
+    .filter((field) => numberOrNull(value[field]) === null)
+    .map((field) => `${prefix}.${field}`);
+}
+
+function usageErrorCategory(status: number): string {
+  if (status === 401 || status === 403) return 'authentication';
+  if (status === 429) return 'rate_limit';
+  if (status >= 500) return 'server_error';
+  return 'http_error';
 }

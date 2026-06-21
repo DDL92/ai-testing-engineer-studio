@@ -1,0 +1,85 @@
+[
+  {
+    "id": "example-tourism-directory",
+    "name": "Example Tourism Directory",
+    "url": "https://directory.example.invalid/business-directory",
+    "enabled": false,
+    "category": "boutique_hotel",
+    "location": "Guanacaste, Costa Rica",
+    "sourceType": "public_directory",
+    "maxPages": 1,
+    "selectors": {
+      "businessContainer": null,
+      "businessName": null,
+      "websiteLink": null,
+      "detailLink": null,
+      "location": null,
+      "email": null,
+      "phone": null
+    },
+    "notes": "Disabled fictional example. Configure only public sources that permit normal public access."
+  },
+  {
+    "id": "example-surf-camp-fixture",
+    "name": "Example Surf Camp Fixture",
+    "url": "data/website-studio/examples/example-directory.html",
+    "enabled": false,
+    "fixture": true,
+    "category": "surf_camp",
+    "location": "Guanacaste, Costa Rica",
+    "sourceType": "curated_list",
+    "maxPages": 1,
+    "selectors": {
+      "businessContainer": ".surf-camp",
+      "businessName": ".business-name",
+      "websiteLink": ".website-link",
+      "detailLink": ".detail-link",
+      "location": ".business-location",
+      "email": ".business-email",
+      "phone": ".business-phone"
+    },
+    "notes": "Disabled fictional local fixture. Production discovery ignores fixture sources."
+  },
+  {
+    "id": "example-hotel-fixture",
+    "name": "Example Boutique Hotel Fixture",
+    "url": "data/website-studio/examples/example-directory.html",
+    "enabled": false,
+    "fixture": true,
+    "category": "boutique_hotel",
+    "location": "La Fortuna, Costa Rica",
+    "sourceType": "curated_list",
+    "maxPages": 1,
+    "selectors": {
+      "businessContainer": ".boutique-hotel",
+      "businessName": ".business-name",
+      "websiteLink": ".website-link",
+      "detailLink": ".detail-link",
+      "location": ".business-location",
+      "email": ".business-email",
+      "phone": ".business-phone"
+    },
+    "notes": "Disabled fictional local fixture. Production discovery ignores fixture sources."
+  },
+  {
+    "id": "example-wellness-fixture",
+    "name": "Example Wellness Fixture",
+    "url": "data/website-studio/examples/example-directory.html",
+    "enabled": false,
+    "fixture": true,
+    "category": "wellness",
+    "location": "Nosara, Costa Rica",
+    "sourceType": "curated_list",
+    "maxPages": 1,
+    "selectors": {
+      "businessContainer": ".wellness",
+      "businessName": ".business-name",
+      "websiteLink": ".website-link",
+      "detailLink": ".detail-link",
+      "location": ".business-location",
+      "email": ".business-email",
+      "phone": ".business-phone"
+    },
+    "notes": "Disabled fictional local fixture. Production discovery ignores fixture sources."
+  }
+]
