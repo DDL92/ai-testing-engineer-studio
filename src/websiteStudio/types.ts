@@ -28,6 +28,7 @@ export type WebsiteNextAction =
   | 'prepare website audit'
   | 'prepare homepage demo'
   | 'find public business contact'
+  | 'verify official business website'
   | 'archive low-priority lead'
   | 'manual review';
 

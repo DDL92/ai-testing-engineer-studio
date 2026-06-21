@@ -3,7 +3,8 @@ import path = require('path');
 import { runDiscovery } from './discovery';
 import { readWebsiteLeads } from './leadAdapter';
 import { writeWebsiteLeadPack } from './leadPack';
-import { buildWebsiteRanking, writeWebsiteRanking } from './rankingWorkflow';
+import { buildWebsiteRanking, isFixtureWebsiteLead, writeWebsiteRanking } from './rankingWorkflow';
+import type { WebsiteTavilyReport } from './tavilyDiscovery';
 import { WebsiteLeadRecord } from './types';
 
 interface DailySummary {
@@ -16,6 +17,7 @@ interface DailySummary {
     updated: number;
     duplicates: number;
     errors: string[];
+    tavily: WebsiteTavilyReport | null;
   };
   storedLeadCount: number;
   rankingSummary: {
@@ -77,7 +79,7 @@ async function main(): Promise<void> {
 
     for (const item of eligible) {
       const record = leads.find((lead) => lead.lead.id === item.leadId);
-      if (!record || isFictional(record) || hasIdenticalPack(record)) continue;
+      if (!record || isFixtureWebsiteLead(record) || hasIdenticalPack(record)) continue;
       const output = writeWebsiteLeadPack(record);
       generated.push(path.relative(process.cwd(), output.markdownPath));
     }
@@ -93,6 +95,42 @@ async function main(): Promise<void> {
       updated: discovery?.updated ?? 0,
       duplicates: discovery?.duplicates ?? 0,
       errors: discovery?.errors ?? [],
+      tavily: discovery ? {
+        tavilyEnabled: discovery.tavilyEnabled,
+        tavilyAvailable: discovery.tavilyAvailable,
+        usageChecked: discovery.usageChecked,
+        accountPlanUsage: discovery.accountPlanUsage,
+        accountPlanLimit: discovery.accountPlanLimit,
+        accountUsagePercent: discovery.accountUsagePercent,
+        sharedThresholdPercent: discovery.sharedThresholdPercent,
+        websiteCreditsUsedToday: discovery.websiteCreditsUsedToday,
+        websiteCreditsUsedThisMonth: discovery.websiteCreditsUsedThisMonth,
+        websiteDailyLimit: discovery.websiteDailyLimit,
+        websiteMonthlyLimit: discovery.websiteMonthlyLimit,
+        queriesConfigured: discovery.queriesConfigured,
+        queriesEligible: discovery.queriesEligible,
+        eligibleQueryIds: discovery.eligibleQueryIds,
+        cachedQueryIds: discovery.cachedQueryIds,
+        queriesExecuted: discovery.queriesExecuted,
+        queriesSkippedCached: discovery.queriesSkippedCached,
+        estimatedCredits: discovery.estimatedCredits,
+        actualCredits: discovery.actualCredits,
+        budgetDecision: discovery.budgetDecision,
+        budgetReasons: discovery.budgetReasons,
+        candidatesFromTavily: discovery.candidatesFromTavily,
+        candidatesAccepted: discovery.candidatesAccepted,
+        candidatesRejected: discovery.candidatesRejected,
+        rejectedNonBusiness: discovery.rejectedNonBusiness,
+        rejectedGenericTitle: discovery.rejectedGenericTitle,
+        rejectedEditorialOrDirectory: discovery.rejectedEditorialOrDirectory,
+        rejectedLowRelevance: discovery.rejectedLowRelevance,
+        acceptedHighConfidence: discovery.acceptedHighConfidence,
+        acceptedForReview: discovery.acceptedForReview,
+        fixtureLeadsExcludedFromProductionRanking: discovery.fixtureLeadsExcludedFromProductionRanking,
+        resultDiagnostics: discovery.resultDiagnostics,
+        fallbackSourcesUsed: discovery.fallbackSourcesUsed,
+        warnings: discovery.warnings,
+      } : null,
     },
     storedLeadCount: leads.length,
     rankingSummary: {
@@ -163,11 +201,6 @@ function hasIdenticalPack(record: WebsiteLeadRecord): boolean {
   }
 }
 
-function isFictional(record: WebsiteLeadRecord): boolean {
-  return record.lead.id.startsWith('example_')
-    || record.lead.fitNotes.toLowerCase().includes('fictional validation');
-}
-
 function writeDailySummary(summary: DailySummary): void {
   const outputDir = path.join(process.cwd(), 'output', 'website-studio', 'daily');
   fs.mkdirSync(outputDir, { recursive: true });
@@ -185,6 +218,12 @@ function renderDailySummary(summary: DailySummary): string {
 - Discovery skipped: ${summary.discoverySummary.skipped}
 - Discovery candidates: ${summary.discoverySummary.candidatesFound}
 - Lead packs generated: ${summary.leadPacksGenerated.length}
+- Tavily enabled: ${summary.discoverySummary.tavily?.tavilyEnabled ?? false}
+- Tavily shared usage: ${summary.discoverySummary.tavily?.accountPlanUsage ?? 'unknown'}/${summary.discoverySummary.tavily?.accountPlanLimit ?? 'unknown'}
+- Website Tavily usage today: ${summary.discoverySummary.tavily?.websiteCreditsUsedToday ?? 0}/${summary.discoverySummary.tavily?.websiteDailyLimit ?? 3}
+- Website Tavily usage this month: ${summary.discoverySummary.tavily?.websiteCreditsUsedThisMonth ?? 0}/${summary.discoverySummary.tavily?.websiteMonthlyLimit ?? 100}
+- Tavily queries executed: ${summary.discoverySummary.tavily?.queriesExecuted ?? 0}
+- Tavily budget decision: ${summary.discoverySummary.tavily?.budgetDecision ?? 'not_evaluated'}
 
 ## Top Candidates
 

@@ -1,6 +1,7 @@
 import fs = require('fs');
 import path = require('path');
-import { readWebsiteLeads } from './leadAdapter';
+import { readWebsiteLeads, writeWebsiteLeads } from './leadAdapter';
+import { evaluateTavilyCandidate } from './tavilyDiscovery';
 import { WebsiteDecision, WebsiteLeadRecord } from './types';
 
 export interface RankedWebsiteLead {
@@ -25,7 +26,13 @@ export function buildWebsiteRanking(leads: WebsiteLeadRecord[] = readWebsiteLead
     LOW_PRIORITY: 3,
   };
 
-  return [...leads]
+  const usingStoredLeads = arguments.length === 0;
+  const cleaned = leads.map(cleanTavilyRecord);
+  if (usingStoredLeads && JSON.stringify(cleaned) !== JSON.stringify(leads)) writeWebsiteLeads(cleaned);
+
+  return cleaned
+    .filter((record) => !isFixtureWebsiteLead(record))
+    .filter((record) => record.analysis.nextAction !== 'archive low-priority lead')
     .sort((left, right) => (
       order[left.analysis.decision] - order[right.analysis.decision]
       || right.analysis.score - left.analysis.score
@@ -44,6 +51,109 @@ export function buildWebsiteRanking(leads: WebsiteLeadRecord[] = readWebsiteLead
       mainEvidenceGap: record.analysis.evidenceGaps[0] ?? 'None recorded',
       recommendedNextAction: record.analysis.nextAction,
     }));
+}
+
+export function isFixtureWebsiteLead(record: WebsiteLeadRecord): boolean {
+  const source = record.lead.source.toLowerCase();
+  return record.lead.id.startsWith('example_')
+    || (record as WebsiteLeadRecord & { fixture?: boolean }).fixture === true
+    || source === 'fixture'
+    || source === 'test'
+    || source.startsWith('fixture:')
+    || source.includes('_fixture')
+    || source.includes('_test')
+    || /\bfictional\b/i.test(record.lead.fitNotes)
+    || record.discovery?.sources.some((item) => item.sourceUrl.startsWith('fixture:')) === true;
+}
+
+function cleanTavilyRecord(record: WebsiteLeadRecord): WebsiteLeadRecord {
+  if (record.lead.source !== 'tavily_search') return record;
+  const evaluation = evaluateTavilyCandidate({
+    title: record.lead.companyName,
+    url: record.lead.website ?? '',
+    content: stripConfidenceMarkers(record.lead.fitNotes),
+    score: tavilyScore(record.lead.fitNotes),
+  }, {
+    category: record.lead.industry,
+    location: record.location,
+  });
+
+  if (!evaluation.candidate) {
+    if (record.analysis.nextAction === 'archive low-priority lead') return record;
+    return {
+      ...record,
+      lead: {
+        ...record.lead,
+        fitNotes: appendMarker(record.lead.fitNotes, `[tavily-rejected:${evaluation.rejectionCategory ?? 'non_business'}]`),
+        nextAction: 'archive low-priority lead',
+      },
+      analysis: {
+        ...record.analysis,
+        presence: 'unknown',
+        score: 0,
+        decision: 'LOW_PRIORITY',
+        primaryOffer: { name: 'Website QA & Performance Audit', priceRange: record.analysis.primaryOffer.priceRange },
+        strongestOpportunity: 'Tavily result rejected as a non-business or editorial page',
+        evidenceGaps: unique([
+          ...record.analysis.evidenceGaps,
+          `Tavily candidate rejected: ${evaluation.diagnostic.reason}`,
+        ]),
+        nextAction: 'archive low-priority lead',
+      },
+    };
+  }
+
+  if (evaluation.confidence === 'low') {
+    const alreadyCapped = record.analysis.decision === 'REVIEW'
+      && record.analysis.presence === 'unknown'
+      && record.analysis.nextAction === 'verify official business website';
+    if (alreadyCapped) return record;
+    return {
+      ...record,
+      lead: {
+        ...record.lead,
+        fitNotes: appendMarker(record.lead.fitNotes, '[tavily-confidence:low]'),
+        nextAction: 'verify official business website',
+      },
+      analysis: {
+        ...record.analysis,
+        presence: 'unknown',
+        score: Math.min(record.analysis.score, 59),
+        decision: 'REVIEW',
+        primaryOffer: { name: 'Website QA & Performance Audit', priceRange: record.analysis.primaryOffer.priceRange },
+        strongestOpportunity: 'Official business identity requires verification',
+        evidenceGaps: unique([...record.analysis.evidenceGaps, 'Official business identity requires manual verification']),
+        nextAction: 'verify official business website',
+      },
+    };
+  }
+  if (evaluation.candidate.businessName !== record.lead.companyName) {
+    return {
+      ...record,
+      lead: {
+        ...record.lead,
+        companyName: evaluation.candidate.businessName,
+      },
+    };
+  }
+  return record;
+}
+
+function tavilyScore(notes: string): number | undefined {
+  const match = notes.match(/\[tavily-score:(\d+(?:\.\d+)?)\]/i);
+  return match ? Number(match[1]) : undefined;
+}
+
+function stripConfidenceMarkers(notes: string): string {
+  return notes.replace(/\[tavily-[^\]]+\]\s*/gi, '').trim();
+}
+
+function appendMarker(notes: string, marker: string): string {
+  return notes.includes(marker) ? notes : `${marker} ${notes}`.trim();
+}
+
+function unique(values: string[]): string[] {
+  return [...new Set(values)];
 }
 
 export function writeWebsiteRanking(ranked: RankedWebsiteLead[]): { jsonPath: string; markdownPath: string } {

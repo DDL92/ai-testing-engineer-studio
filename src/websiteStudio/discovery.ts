@@ -9,6 +9,12 @@ import {
   WebsiteCandidateInput,
   WebsiteSourceReference,
 } from './types';
+import {
+  addFallbackSource,
+  createEmptyWebsiteTavilyReport,
+  runWebsiteTavilyDiscovery,
+  type WebsiteTavilyReport,
+} from './tavilyDiscovery';
 
 const SOURCE_PATH = path.join(process.cwd(), 'data', 'website-studio', 'discovery-sources.json');
 const EXAMPLES_DIR = path.join(process.cwd(), 'data', 'website-studio', 'examples');
@@ -43,7 +49,7 @@ interface SourceResult {
   errorMessage: string | null;
 }
 
-export interface DiscoveryReport {
+export interface DiscoveryReport extends WebsiteTavilyReport {
   runId: string;
   startedAt: string;
   completedAt: string;
@@ -74,6 +80,7 @@ export async function runDiscovery(options: {
   const startedAt = new Date().toISOString();
   const runId = startedAt.replace(/[:.]/g, '-');
   const report: DiscoveryReport = {
+    ...createEmptyWebsiteTavilyReport(),
     runId,
     startedAt,
     completedAt: startedAt,
@@ -93,14 +100,33 @@ export async function runDiscovery(options: {
     importedLeadIds: [],
   };
   const limit = Math.min(50, Math.max(1, options.limit ?? 20));
+  const discovered: WebsiteCandidateInput[] = [];
 
-  let sources: DiscoverySource[];
+  try {
+    const tavily = await runWebsiteTavilyDiscovery({ dryRun: options.dryRun ?? false });
+    Object.assign(report, tavily.report);
+    for (const candidate of tavily.candidates) {
+      if (discovered.length >= limit) break;
+      const duplicateIndex = findDuplicateCandidate(discovered, candidate);
+      if (duplicateIndex >= 0) {
+        discovered[duplicateIndex] = mergeDiscoveredCandidate(discovered[duplicateIndex], candidate);
+        report.duplicates += 1;
+      } else {
+        discovered.push(candidate);
+      }
+    }
+  } catch (error) {
+    report.budgetDecision = 'unavailable';
+    report.budgetReasons.push('Website Tavily discovery failed safely before directory fallback.');
+    report.warnings.push(errorMessage(error));
+  }
+
+  let sources: DiscoverySource[] = [];
   try {
     sources = loadSources();
     report.sourcesConfigured = sources.length;
   } catch (error) {
     report.errors.push(errorMessage(error));
-    return finishReport(report, options.writeReport ?? true);
   }
 
   const duplicateIds = new Set<string>();
@@ -113,7 +139,6 @@ export async function runDiscovery(options: {
     return !options.sourceId || source.id === options.sourceId;
   });
 
-  const discovered: WebsiteCandidateInput[] = [];
   for (const source of sources) {
     if (discovered.length >= limit) break;
     const sourceResult = emptySourceResult(source);
@@ -135,6 +160,7 @@ export async function runDiscovery(options: {
       continue;
     }
 
+    addFallbackSource(report, source.id);
     report.sourcesChecked += 1;
     try {
       let html: string;
@@ -518,6 +544,29 @@ function renderReport(report: DiscoveryReport): string {
 - Skipped: ${report.skipped}
 - Errors: ${report.errors.length}
 
+## Tavily Budget
+
+- Enabled: ${report.tavilyEnabled}
+- Available: ${report.tavilyAvailable}
+- Usage checked: ${report.usageChecked}
+- Shared usage: ${report.accountPlanUsage ?? 'unknown'}/${report.accountPlanLimit ?? 'unknown'}
+- Shared threshold: ${report.sharedThresholdPercent}%
+- Website usage today: ${report.websiteCreditsUsedToday}/${report.websiteDailyLimit}
+- Website usage this month: ${report.websiteCreditsUsedThisMonth}/${report.websiteMonthlyLimit}
+- Queries configured: ${report.queriesConfigured}
+- Queries eligible: ${report.queriesEligible}
+- Eligible query IDs: ${report.eligibleQueryIds.join(', ') || 'none'}
+- Queries executed: ${report.queriesExecuted}
+- Queries skipped by cache: ${report.queriesSkippedCached}
+- Cached query IDs: ${report.cachedQueryIds.join(', ') || 'none'}
+- Estimated credits: ${report.estimatedCredits}
+- Actual credits: ${report.actualCredits}
+- Budget decision: ${report.budgetDecision}
+- Budget reasons: ${report.budgetReasons.join('; ') || 'none'}
+- Tavily candidates: ${report.candidatesFromTavily}; accepted=${report.candidatesAccepted}; rejected=${report.candidatesRejected}
+- Fallback sources: ${report.fallbackSourcesUsed.join(', ') || 'none'}
+- Warnings: ${report.warnings.join('; ') || 'none'}
+
 ## Source Results
 
 ${report.sourceResults.map((result) => `- ${result.sourceId}: ${result.status}; robots=${result.robotsStatus}; entries=${result.entriesDetected}; accepted=${result.candidatesAccepted}; reason=${result.skipReason ?? result.errorMessage ?? 'none'}`).join('\n') || '- No source results.'}
@@ -620,7 +669,16 @@ async function cli(): Promise<void> {
     sourceId,
     limit: limitValue ? Number(limitValue) : undefined,
     fixtureMode,
+    writeReport: !dryRun,
   });
+  console.log(`Tavily shared usage: ${report.accountPlanUsage ?? 'unknown'}/${report.accountPlanLimit ?? 'unknown'}`);
+  console.log(`Website usage today: ${report.websiteCreditsUsedToday}/${report.websiteDailyLimit}`);
+  console.log(`Website usage this month: ${report.websiteCreditsUsedThisMonth}/${report.websiteMonthlyLimit}`);
+  console.log(`Queries allowed: ${report.estimatedCredits}`);
+  console.log(`Eligible queries: ${report.eligibleQueryIds.join(', ') || 'none'}`);
+  console.log(`Cached queries: ${report.cachedQueryIds.join(', ') || 'none'}`);
+  console.log(`Credits consumed: ${report.actualCredits}`);
+  console.log(`Fallback directories: ${report.fallbackSourcesUsed.length > 0 ? 'completed' : 'none completed'}`);
   console.log(`Sources configured: ${report.sourcesConfigured}`);
   console.log(`Sources checked: ${report.sourcesChecked}`);
   console.log(`Sources skipped: ${report.skipped}`);

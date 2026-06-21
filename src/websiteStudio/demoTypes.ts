@@ -79,6 +79,11 @@ export interface SiteAudit {
   desktopObservations: string[];
   mobileObservations: string[];
   evidenceLimitations: string[];
+  auditErrors: Array<{
+    stage: string;
+    errorType: string;
+    message: string;
+  }>;
   lighthouse: LighthouseResult;
   manualReviewRequired: true;
 }
