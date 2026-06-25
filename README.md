@@ -117,6 +117,10 @@ npm run leads:quality
 npm run leads:verification-review
 npm run leads:verify
 npm run leads:pilot
+npm run leads:pilot-pack
+npm run leads:offer-pack
+npm run leads:offer-value
+npm run leads:meeting-prep
 npm run leads:outcomes
 npm run leads:export
 npm run leads:dashboard
@@ -148,6 +152,9 @@ Outputs:
 - `output/lead-discovery/delivery-candidates/`
 - `output/lead-discovery/verification/`
 - `output/lead-discovery/pilots/flora-and-fauna-foods/`
+- `output/pilot-pack/`
+- `output/client-offer/`
+- `output/commercial/`
 - `output/lead-discovery/outcomes/`
 - `output/lead-discovery/exports/flora-and-fauna-foods/`
 - `output/lead-discovery/dashboard/`
@@ -221,6 +228,12 @@ Evidence-Based Verification Promotion: `npm run leads:verification-review` reads
 `npm run leads:verify` reads delivery candidates and prepares the Flora interest verification queue, soft intro message CSV, sales context, manual approval checklist, and verification failure reports. Flora verification candidates must be real buyers, not excluded, strong intent or strong buyer-intent signals, NY/NJ/PA/NYC/New York/New Jersey/Pennsylvania/Tri-State location fit, medium/high source quality, and score `>= 8.2`. Vendor, directory, caterer profile, catering company, and marketplace signals remain excluded. It does not send messages or contact anyone.
 
 `npm run leads:pilot` generates a client-facing Flora pilot package with a pilot summary, candidate preview, offer proposal, verification process, and executive report. It packages existing local outputs only and does not contact anyone.
+
+`npm run leads:pilot-pack` generates the Flora Pilot Delivery Pack v2 under `output/pilot-pack/`, including executive summary, reviewed lead table, sales intelligence, recommended actions, delivery package metadata, commercial metrics, and pilot delivery health. The pack reports `NO_DELIVERY` when no approved reviewed leads exist.
+
+`npm run leads:offer-pack` generates the Flora client-facing commercial offer under `output/client-offer/`, including the AI Lead Discovery pitch, lead definitions, exclusions, pricing, deliverables, and commercial terms. `npm run leads:offer-value` generates an assumption-only value estimate with potential bookings and revenue ranges. These commands are local preparation only and do not use providers, scraping, outreach, or paid services.
+
+`npm run leads:meeting-prep` generates the Flora Commercial Meeting Prep Pack under `output/commercial/`. It includes a 60 second pitch, 20-30 minute meeting agenda, pilot explanation, objection responses, closing questions, follow-up drafts, and value story. Follow-ups are drafts only: no emails, DMs, calls, forms, or outreach automation are sent. `npm run leads:dashboard` reports Commercial Meeting Readiness with pitch, agenda, objections, closing, follow-up, estimated duration, and readiness score.
 
 `npm run leads:outcomes` summarizes local outcome records after client feedback. `npm run leads:export` prepares Flora delivery CSVs and review sheets. `npm run leads:dashboard` creates a client dashboard summary with behavior query count, top buyer behaviors, top pain and urgency signals, buyer signals discovered, signal strength distribution, top/worst signal combinations, promoted/disabled dynamic queries, promoted/disabled behavior queries, verification review count, verification confidence distribution, promotion reasons, conversion funnel, estimated commercial value, provider selected, Tavily configured, fallback enabled, provider health, query success/failure rate, provider failures, provider result count, empty responses, rate limits, blocked queries, and average search duration.
 

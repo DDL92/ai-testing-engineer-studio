@@ -8,6 +8,7 @@ import { QueryExecutionDiagnostic, SearchDiagnosticsBatch } from './searchDiagno
 import { VerificationReviewBatch, VerificationReviewQueueItem } from './verificationTypes';
 import { getPilotDeliveryHealth } from './generatePilotDeliveryPack';
 import { getCommercialReadiness } from './generateClientOfferPack';
+import { getCommercialMeetingReadiness } from './generateMeetingPrepPack';
 
 interface DeliveryBatch {
   deliveryCandidates: DeliveryLeadCandidate[];
@@ -393,6 +394,7 @@ function rowFor(
 function renderDashboard(rows: DashboardRow[], regression: RegressionReport | null, reviewHealth: ReviewHealth, loopHealth: { state: LoopStateReport | null; budget: CostBudgetReport | null }, operatorBrief: OperatorBriefReport | null): string {
   const pilotHealth = getPilotDeliveryHealth();
   const commercialReadiness = getCommercialReadiness();
+  const meetingReadiness = getCommercialMeetingReadiness();
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -468,6 +470,16 @@ ${renderOperatorHealth(operatorBrief)}
 - Pricing status: ${commercialReadiness.pricingStatus}
 - Terms status: ${commercialReadiness.termsStatus}
 - Value model status: ${commercialReadiness.valueModelStatus}
+
+## Commercial Meeting Readiness
+
+- Pitch status: ${meetingReadiness.pitchStatus}
+- Agenda status: ${meetingReadiness.agendaStatus}
+- Objections status: ${meetingReadiness.objectionsStatus}
+- Closing status: ${meetingReadiness.closingStatus}
+- Follow-up status: ${meetingReadiness.followUpStatus}
+- Estimated meeting duration: ${meetingReadiness.estimatedMeetingDuration}
+- Commercial readiness score: ${meetingReadiness.commercialReadinessScore}
 
 ## Verification Promotion
 
