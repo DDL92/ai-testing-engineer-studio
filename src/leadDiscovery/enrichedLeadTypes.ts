@@ -24,7 +24,7 @@ export interface EnrichedLeadCandidate {
   sourceCategory: LeadSourceCategory;
   query: string;
   queryTemplateId?: string;
-  queryTemplateType?: 'standard' | 'social' | 'source_specific' | 'behavior' | 'dynamic';
+  queryTemplateType?: 'standard' | 'social' | 'source_specific' | 'intent_rewrite' | 'conversation' | 'behavior' | 'dynamic';
   expectedSourceTypes?: string[];
   sourceQueryPriority?: 'high' | 'medium' | 'low';
   expectedLeadQuality?: 'high' | 'medium' | 'low';

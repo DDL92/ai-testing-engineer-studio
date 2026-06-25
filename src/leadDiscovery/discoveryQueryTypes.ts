@@ -29,13 +29,18 @@ export interface DiscoveryQuery {
   manualReviewRequired: boolean;
   notes: string;
   queryTemplateId?: string;
-  queryTemplateType?: 'standard' | 'social' | 'source_specific' | 'behavior' | 'dynamic';
+  queryTemplateType?: 'standard' | 'social' | 'source_specific' | 'intent_rewrite' | 'conversation' | 'behavior' | 'dynamic';
   expectedSourceTypes?: string[];
   intentType?: string;
   sourceQueryPriority?: 'high' | 'medium' | 'low';
   expectedLeadQuality?: 'high' | 'medium' | 'low';
   behaviorCategory?: string;
   behaviorSignals?: string[];
+  rewrittenQueries?: string[];
+  rewriteSource?: string;
+  rewriteReason?: string;
+  rewritePhrase?: string;
+  conversationSource?: string;
 }
 
 export interface DiscoveryQueryBatch {

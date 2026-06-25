@@ -33,6 +33,7 @@ function buyerEvidenceFor(candidate: DeliveryLeadCandidate): string[] {
   ];
 
   if (candidate.buyerType === 'buyer') evidence.push('classified as buyer');
+  if (candidate.buyerRole === 'buyer_service') evidence.push('classified as service buyer role');
   if (candidate.leadLikeClassification === 'lead_like') evidence.push('lead-like classification');
   if (candidate.leadLikeClassification === 'possibly_lead_like') evidence.push('possibly lead-like classification');
   if (/\b(need|needs|needed|looking for|seeking|searching for|trying to find)\b/.test(text)) evidence.push('explicit request language');
@@ -124,6 +125,7 @@ function confidenceFor(
   if (candidate.sourceQuality === 'low') score -= 2;
   if (candidate.resultRelevance !== 'relevant') score -= 3;
   if (candidate.excluded) score -= 4;
+  if (candidate.buyerRole !== 'buyer_service') score -= 4;
   if (status === 'verification_ready') score += 2;
   if (score >= 13) return 'high';
   if (score >= 8) return 'medium';
@@ -138,6 +140,7 @@ function hasDisqualifyingSignal(candidate: DeliveryLeadCandidate): boolean {
     || candidate.domainBlocked
     || candidate.buyerType === 'vendor'
     || candidate.buyerType === 'directory'
+    || candidate.buyerRole !== 'buyer_service'
     || candidate.competitorDetected
     || candidate.exclusionSignals.length > 0
   );

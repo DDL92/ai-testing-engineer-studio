@@ -12,6 +12,7 @@ export interface LeadDiscoveryClientConfig {
   preferredLeadTypes: string[];
   excludedLeadTypes: string[];
   minScore: number;
+  maxLeadAgeDays?: number;
   leadGoalPerDay: number;
   deliveryCadence: LeadDeliveryCadence;
   notes: string;

@@ -151,10 +151,12 @@ function sortByClientPriority<TQuery extends GuardrailQueryInput>(
 
 function templateTypeRank(query: GuardrailQueryInput): number {
   if (query.queryTemplateType === 'source_specific') return 0;
-  if (query.queryTemplateType === 'dynamic') return 1;
-  if (query.queryTemplateType === 'behavior') return 2;
-  if (query.queryTemplateType === 'social') return 3;
-  return 4;
+  if (query.queryTemplateType === 'intent_rewrite') return 1;
+  if (query.queryTemplateType === 'conversation') return 2;
+  if (query.queryTemplateType === 'behavior') return 3;
+  if (query.queryTemplateType === 'dynamic') return 4;
+  if (query.queryTemplateType === 'social') return 5;
+  return 6;
 }
 
 function sourceRank(query: GuardrailQueryInput): number {

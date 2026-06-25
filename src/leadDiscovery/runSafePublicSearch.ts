@@ -39,6 +39,8 @@ const requestTimeoutMs = 10000;
 const clientsDir = path.join(process.cwd(), 'data', 'lead-discovery', 'clients');
 const queryBatchPath = path.join(process.cwd(), 'output', 'lead-discovery', 'discovery-queries', 'discovery-queries.json');
 const sourceQueryBatchPath = path.join(process.cwd(), 'output', 'lead-discovery', 'targeted-discovery', 'source-queries.json');
+const rewriteQueryBatchPath = path.join(process.cwd(), 'output', 'lead-discovery', 'query-rewrites', 'rewritten-queries.json');
+const conversationQueryBatchPath = path.join(process.cwd(), 'output', 'lead-discovery', 'conversation-queries', 'conversation-queries.json');
 const behaviorQueryBatchPath = path.join(process.cwd(), 'output', 'lead-discovery', 'behavior-queries', 'behavior-queries.json');
 const dynamicQueryBatchPath = path.join(process.cwd(), 'output', 'lead-discovery', 'dynamic-queries', 'dynamic-queries.json');
 const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'search-candidates');
@@ -65,11 +67,20 @@ export async function runSafePublicSearch(now = new Date()): Promise<SearchCandi
   const clients = readActiveClients().sort(compareClientPriority);
   const queryBatch = readQueryBatch();
   const sourceQueryBatch = readSourceQueryBatch();
+  const rewriteQueryBatch = readRewriteQueryBatch();
+  const conversationQueryBatch = readConversationQueryBatch();
   const behaviorQueryBatch = readBehaviorQueryBatch();
   const dynamicQueryBatch = readDynamicQueryBatch();
   const guardrails = loadTavilyGuardrails();
   const clientIds = new Set(clients.map((client) => client.clientId));
-  const guardrailInput = prioritizeQueries([...sourceQueryBatch.queries, ...behaviorQueryBatch.queries, ...dynamicQueryBatch.queries, ...queryBatch.queries]
+  const guardrailInput = prioritizeQueries([
+    ...sourceQueryBatch.queries,
+    ...rewriteQueryBatch.queries,
+    ...conversationQueryBatch.queries,
+    ...behaviorQueryBatch.queries,
+    ...dynamicQueryBatch.queries,
+    ...queryBatch.queries,
+  ]
     .filter((query) => clientIds.has(query.clientId)));
   const guardrailResult = applyTavilyGuardrails(guardrailInput, guardrails);
   const maxQueriesPerClientForRun = guardrails.limits.maxQueriesPerClient;
@@ -118,6 +129,11 @@ export async function runSafePublicSearch(now = new Date()): Promise<SearchCandi
           expectedLeadQuality: query.expectedLeadQuality,
           behaviorCategory: query.behaviorCategory,
           behaviorSignals: query.behaviorSignals,
+          rewrittenQueries: query.rewrittenQueries,
+          rewriteSource: query.rewriteSource,
+          rewriteReason: query.rewriteReason,
+          rewritePhrase: query.rewritePhrase,
+          conversationSource: query.conversationSource,
           executedAt: generatedAt,
           candidateCount: limited.length,
           error: failureReason ? diagnosticMessage(failureReason, execution.responseDiagnostic) : null,
@@ -150,6 +166,11 @@ export async function runSafePublicSearch(now = new Date()): Promise<SearchCandi
           expectedLeadQuality: query.expectedLeadQuality,
           behaviorCategory: query.behaviorCategory,
           behaviorSignals: query.behaviorSignals,
+          rewrittenQueries: query.rewrittenQueries,
+          rewriteSource: query.rewriteSource,
+          rewriteReason: query.rewriteReason,
+          rewritePhrase: query.rewritePhrase,
+          conversationSource: query.conversationSource,
           executedAt: generatedAt,
           candidateCount: 0,
           error: diagnosticMessage(failureReason, responseDiagnostic),
@@ -220,6 +241,16 @@ function readQueryBatch(): DiscoveryQueryBatch {
 function readSourceQueryBatch(): Pick<DiscoveryQueryBatch, 'queries'> {
   if (!fs.existsSync(sourceQueryBatchPath)) return { queries: [] };
   return JSON.parse(fs.readFileSync(sourceQueryBatchPath, 'utf8')) as Pick<DiscoveryQueryBatch, 'queries'>;
+}
+
+function readRewriteQueryBatch(): Pick<DiscoveryQueryBatch, 'queries'> {
+  if (!fs.existsSync(rewriteQueryBatchPath)) return { queries: [] };
+  return JSON.parse(fs.readFileSync(rewriteQueryBatchPath, 'utf8')) as Pick<DiscoveryQueryBatch, 'queries'>;
+}
+
+function readConversationQueryBatch(): Pick<DiscoveryQueryBatch, 'queries'> {
+  if (!fs.existsSync(conversationQueryBatchPath)) return { queries: [] };
+  return JSON.parse(fs.readFileSync(conversationQueryBatchPath, 'utf8')) as Pick<DiscoveryQueryBatch, 'queries'>;
 }
 
 function readBehaviorQueryBatch(): Pick<DiscoveryQueryBatch, 'queries'> {
@@ -627,6 +658,11 @@ function toCandidate(query: DiscoveryQuery, result: SearchResultItem, discovered
     expectedLeadQuality: query.expectedLeadQuality,
     behaviorCategory: query.behaviorCategory,
     behaviorSignals: query.behaviorSignals,
+    rewrittenQueries: query.rewrittenQueries,
+    rewriteSource: query.rewriteSource,
+    rewriteReason: query.rewriteReason,
+    rewritePhrase: query.rewritePhrase,
+    conversationSource: query.conversationSource,
     url: result.url,
     title: result.title,
     snippet: result.snippet,
@@ -651,6 +687,8 @@ function renderSummary(
   blockedQueries: Array<GuardrailBlockedQuery<DiscoveryQuery>>,
 ): string {
   const socialResults = batch.sourceResults.filter((result) => result.queryTemplateType === 'social');
+  const rewriteResults = batch.sourceResults.filter((result) => result.queryTemplateType === 'intent_rewrite');
+  const conversationResults = batch.sourceResults.filter((result) => result.queryTemplateType === 'conversation');
   const blockedPrivateCount = blockedQueries.filter((blocked) => isPrivateOrDisallowedSource(blocked.query)).length;
   return `# Safe Public Search Summary
 
@@ -669,6 +707,10 @@ ${clients.map((client, index) => `${index + 1}. ${client.clientName} (${client.c
 - Max candidates per query: ${batch.maxCandidatesPerQuery}
 - Queries blocked by guardrails: ${blockedQueries.length}
 - Social template queries executed: ${socialResults.length}
+- Rewritten queries executed: ${rewriteResults.length}
+- Conversation queries executed: ${conversationResults.length}
+- Rewrite success rate: ${percentage(rewriteResults.filter((result) => result.candidateCount > 0).length, rewriteResults.length).toFixed(1)}%
+- Conversation candidate count: ${conversationResults.reduce((sum, result) => sum + result.candidateCount, 0)}
 - Public social source count: ${unique(batch.sourceResults.filter((result) => result.queryTemplateType === 'social' && result.sourceId).map((result) => result.sourceId as string)).length}
 - Blocked/private source count: ${blockedPrivateCount}
 - Graceful failures: ${batch.sourceResults.filter((result) => result.error).length}
@@ -711,6 +753,14 @@ ${renderExpectedQualityDistribution(batch.sourceResults)}
 ## Behavior Query Distribution
 
 ${renderBehaviorQueryDistribution(batch.sourceResults)}
+
+## Rewrite Phrase Distribution
+
+${renderTopValues(batch.sourceResults.filter((result) => result.queryTemplateType === 'intent_rewrite' || result.queryTemplateType === 'conversation').map((result) => result.rewritePhrase ?? 'unknown'))}
+
+## Conversation Source Distribution
+
+${renderTopValues(batch.sourceResults.filter((result) => result.queryTemplateType === 'conversation').map((result) => result.conversationSource ?? 'unknown'))}
 
 ## Top Sources
 
@@ -914,6 +964,10 @@ function renderTopValues(values: string[]): string {
   return rows.map(([value, count]) => `- ${value}: ${count}`).join('\n') || '- None.';
 }
 
+function percentage(numerator: number, denominator: number): number {
+  return denominator === 0 ? 0 : Math.round((numerator / denominator) * 1000) / 10;
+}
+
 function sourcePreviewRows(batch: SearchCandidateBatch): Array<{
   sourceId: string;
   sourceCategory: string;
@@ -1030,10 +1084,12 @@ function compareQueryClientPriority(leftClientId: string, rightClientId: string)
 
 function queryTypeRank(type: DiscoveryQuery['queryTemplateType']): number {
   if (type === 'source_specific') return 0;
-  if (type === 'dynamic') return 1;
-  if (type === 'behavior') return 2;
-  if (type === 'social') return 3;
-  return 4;
+  if (type === 'intent_rewrite') return 1;
+  if (type === 'conversation') return 2;
+  if (type === 'behavior') return 3;
+  if (type === 'dynamic') return 4;
+  if (type === 'social') return 5;
+  return 6;
 }
 
 function sourcePriorityRank(priority: DiscoveryQuery['sourceQueryPriority']): number {

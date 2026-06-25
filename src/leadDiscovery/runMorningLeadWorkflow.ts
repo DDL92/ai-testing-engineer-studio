@@ -5,6 +5,8 @@ import path = require('path');
 const commands = [
   'leads:targeted-plan',
   'leads:source-queries',
+  'leads:rewrite-queries',
+  'leads:conversation-queries',
   'leads:behavior-queries',
   'leads:dynamic-queries',
   'leads:queries',
@@ -22,6 +24,7 @@ const commands = [
   'leads:performance',
   'leads:behavior-performance',
   'leads:query-learning',
+  'leads:false-positive-learning',
 ];
 
 function main(): void {
@@ -52,6 +55,8 @@ function main(): void {
     console.log(`Flora verification candidates: ${floraVerification}`);
     console.log('Targeted plan path: output/lead-discovery/targeted-discovery/targeted-plan.md');
     console.log('Source query path: output/lead-discovery/targeted-discovery/source-queries.md');
+    console.log('Rewrite path: output/lead-discovery/query-rewrites/rewritten-queries.json');
+    console.log('Conversation path: output/lead-discovery/conversation-queries/conversation-queries.json');
     console.log('Behavior query path: output/lead-discovery/behavior-queries/behavior-query-summary.md');
     console.log('Dynamic query path: output/lead-discovery/dynamic-queries/dynamic-query-summary.md');
     console.log('Dashboard path: output/lead-discovery/dashboard/client-dashboard.md');
@@ -69,6 +74,7 @@ function main(): void {
     console.log('Recommendations path: output/lead-discovery/source-performance/recommendations.md');
     console.log('Behavior performance path: output/lead-discovery/search-quality/behavior-query-performance.md');
     console.log('Query learning path: output/lead-discovery/query-learning/query-learning.md');
+    console.log('False positive learning path: output/lead-discovery/learning/false-positive-summary.md');
     console.log('Verification review queue path: output/lead-discovery/verification/review-queue.md');
     console.log('Verification learning path: output/lead-discovery/verification/verification-learning.md');
     console.log('Blocked query report path: output/lead-discovery/search-candidates/blocked-queries.md');

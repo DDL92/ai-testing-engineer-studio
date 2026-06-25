@@ -33,6 +33,13 @@ interface DashboardRow {
   queryQualityDistribution: string;
   topPerformingQueries: string;
   topFailingQueries: string;
+  rewrittenQueriesExecuted: number;
+  conversationQueriesExecuted: number;
+  rewriteSuccessRate: number;
+  topRewritePhrases: string;
+  worstRewritePhrases: string;
+  topConversationSources: string;
+  conversationCandidateCounts: number;
   providerSelected: string;
   tavilyConfigured: string;
   fallbackEnabled: string;
@@ -72,6 +79,12 @@ interface DashboardRow {
   verificationReadyCandidates: number;
   verificationConfidenceDistribution: string;
   verificationPromotionReasons: string;
+  buyerRoleDistribution: string;
+  staffingExclusions: number;
+  jobPostingExclusions: number;
+  employeeSeekingWorkExclusions: number;
+  falsePositiveCount: number;
+  topRejectionReasons: string;
   conversionFunnel: string;
   averageScore: number;
   qualifiedCold: number;
@@ -113,7 +126,7 @@ export function generateClientDashboard(): { filesGenerated: string[]; rows: Das
   const tavilyHealth = readTavilyHealth();
   const outcomes = readOutcomes();
   const verificationReview = readVerificationReview();
-  const rows = ['flora_and_fauna_foods_001', 'costa_retreats_001']
+  const rows = ['flora_and_fauna_foods_001', 'lzt_costa_rica_001', 'costa_retreats_001']
     .map((clientId) => rowFor(clientId, delivery, searchBatch, behaviorQueries, diagnostics, tavilyHealth, outcomes, verificationReview.reviewItems))
     .filter((row) => row.searchCandidates > 0 || row.deliveryCandidates > 0 || row.verificationCandidates > 0 || row.outcomeCount > 0 || row.behaviorQueryCount > 0);
 
@@ -135,6 +148,9 @@ function rowFor(
 ): DashboardRow {
   const clientSearchCandidates = searchBatch.candidates.filter((candidate) => candidate.clientId === clientId);
   const queryRows = queryQualityRows(clientSearchCandidates);
+  const clientSourceResults = searchBatch.sourceResults.filter((result) => result.clientId === clientId);
+  const rewriteStats = rewriteStatsFor(clientSourceResults);
+  const conversationStats = conversationStatsFor(clientSourceResults);
   const sourceRows = sourceQualityRows(clientSearchCandidates);
   const behaviorStats = behaviorStatsFor(clientId, behaviorQueries, searchBatch, delivery);
   const signalStats = buyerSignalStatsFor(clientId, searchBatch.candidates, delivery);
@@ -158,6 +174,13 @@ function rowFor(
     queryQualityDistribution: compactDistribution(queryRows.map((row) => row.recommendation)),
     topPerformingQueries: queryRows.filter((row) => row.leadLikeTotal > 0).slice(0, 3).map((row) => `${row.recommendation}:${row.leadLikePercentage.toFixed(0)}% ${row.query}`).join(' || ') || 'none',
     topFailingQueries: queryRows.filter((row) => row.recommendation === 'disable').slice(0, 3).map((row) => `${row.leadLikePercentage.toFixed(0)}% ${row.query}`).join(' || ') || 'none',
+    rewrittenQueriesExecuted: rewriteStats.executed,
+    conversationQueriesExecuted: conversationStats.executed,
+    rewriteSuccessRate: rewriteStats.successRate,
+    topRewritePhrases: rewriteStats.topPhrases,
+    worstRewritePhrases: rewriteStats.worstPhrases,
+    topConversationSources: conversationStats.topSources,
+    conversationCandidateCounts: conversationStats.candidateCount,
     providerSelected: tavilyHealth.providerSelected,
     tavilyConfigured: tavilyHealth.apiKeyConfigured ? 'yes' : 'no',
     fallbackEnabled: tavilyHealth.fallbackEnabled ? 'yes' : 'no',
@@ -197,6 +220,12 @@ function rowFor(
     verificationReadyCandidates: clientVerificationReviewItems.filter((item) => item.verificationPromotionStatus === 'verification_ready').length,
     verificationConfidenceDistribution: compactDistribution(clientVerificationReviewItems.map((item) => item.verificationConfidence)),
     verificationPromotionReasons: compactDistribution(clientVerificationReviewItems.flatMap((item) => item.promotionReasons)),
+    buyerRoleDistribution: compactDistribution(allClientCandidates.map((candidate) => candidate.buyerRole ?? 'unknown')),
+    staffingExclusions: allClientCandidates.filter((candidate) => candidate.excluded && candidate.buyerRole === 'staffing_recruitment').length,
+    jobPostingExclusions: allClientCandidates.filter((candidate) => candidate.excluded && candidate.buyerRole === 'job_posting').length,
+    employeeSeekingWorkExclusions: allClientCandidates.filter((candidate) => candidate.excluded && candidate.buyerRole === 'employee_seeking_work').length,
+    falsePositiveCount: allClientCandidates.filter((candidate) => candidate.exclusionReason === 'not_buying_service').length,
+    topRejectionReasons: compactDistribution(allClientCandidates.filter((candidate) => candidate.excluded).map((candidate) => candidate.exclusionReason ?? 'unknown')),
     conversionFunnel: `${clientSearchCandidates.length} search > ${leadLikeCount + possibleLeadLikeCount} possible > ${candidates.length} delivery > ${clientVerificationReviewItems.length} review > ${verificationCandidates} strict-ready`,
     averageScore: average(candidates.map((candidate) => candidate.overallScore)),
     qualifiedCold: candidates.filter((candidate) => candidate.deliveryQueue === 'qualified_cold').length,
@@ -230,9 +259,9 @@ function renderDashboard(rows: DashboardRow[]): string {
 
 Generated: ${new Date().toISOString()}
 
-| Client | Search candidates | Lead-like | Possible | Lead-like % | Generic % | Query quality | Provider selected | Tavily configured | Fallback enabled | Provider health | Query success % | Query failure % | Provider failures | Provider results | Empty responses | Rate limits | Blocked queries | Avg search ms | Sources | High-priority sources | Source categories | Source recs | Behavior queries | Buyer behaviors | Pain signals | Urgency signals | Buyer signals | Signal strength | Top signal combos | Worst signal combos | Promoted dynamic queries | Disabled dynamic queries | Behavior top queries | Behavior worst queries | Promoted behavior queries | Disabled behavior queries | Est. commercial value | Delivery candidates | Verification review | Verification ready | Verification candidates | Confidence | Promotion reasons | Funnel | Avg score | Ready | Missing buyer evidence | Missing recency | Top contact method | Blocked domains | Irrelevant pages | Directories | Vendors | Marketplaces | Relevance distribution | Avg buyer evidence | Avg recency evidence | Outcomes | Est. value | Next action |
-| --- | ---: | ---: | ---: | ---: | ---: | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | ---: | --- | --- | --- | ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- | --- | --- | ---: | ---: | ---: | ---: | --- | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: | ---: | ---: | --- |
-${rows.map((row) => `| ${row.clientName} | ${row.searchCandidates} | ${row.leadLikeCandidates} | ${row.possiblyLeadLikeCandidates} | ${row.leadLikePercentage.toFixed(1)}% | ${row.genericPercentage.toFixed(1)}% | ${row.queryQualityDistribution} | ${row.providerSelected} | ${row.tavilyConfigured} | ${row.fallbackEnabled} | ${row.providerHealth} | ${row.querySuccessRate.toFixed(1)}% | ${row.queryFailureRate.toFixed(1)}% | ${row.providerFailures} | ${row.providerResultCount} | ${row.emptyResponseCount} | ${row.rateLimitCount} | ${row.blockedQueryCount} | ${row.averageSearchDuration.toFixed(0)} | ${row.sourceCount} | ${row.highPrioritySourceCount} | ${row.sourceCategories} | ${row.sourceRecommendations} | ${row.behaviorQueryCount} | ${row.topBuyerBehaviors} | ${row.topPainSignals} | ${row.topUrgencySignals} | ${row.buyerSignalsDiscovered} | ${row.signalStrengthDistribution} | ${row.topSignalCombinations} | ${row.worstSignalCombinations} | ${row.promotedDynamicQueries} | ${row.disabledDynamicQueries} | ${row.behaviorTopPerformingQueries} | ${row.behaviorWorstQueries} | ${row.promotedQueries} | ${row.disabledQueries} | $${row.estimatedCommercialValue.toFixed(0)} | ${row.deliveryCandidates} | ${row.verificationReviewCandidates} | ${row.verificationReadyCandidates} | ${row.verificationCandidates} | ${row.verificationConfidenceDistribution} | ${row.verificationPromotionReasons} | ${row.conversionFunnel} | ${row.averageScore.toFixed(1)} | ${row.readyCount} | ${row.missingBuyerEvidenceCount} | ${row.missingRecencyCount} | ${row.topContactMethod} | ${row.blockedDomainsCount} | ${row.irrelevantPagesCount} | ${row.directoriesExcluded} | ${row.vendorPagesExcluded} | ${row.marketplacesExcluded} | ${row.relevanceDistribution} | ${row.averageBuyerEvidenceCount.toFixed(1)} | ${row.averageRecencyEvidenceCount.toFixed(1)} | ${row.outcomeCount} | $${row.estimatedValue.toFixed(0)} | ${row.nextAction} |`).join('\n')}
+| Client | Search candidates | Lead-like | Possible | Lead-like % | Generic % | Query quality | Rewrites executed | Conversation queries | Rewrite success % | Top rewrite phrases | Worst rewrite phrases | Conversation sources | Conversation candidates | Provider selected | Tavily configured | Fallback enabled | Provider health | Query success % | Query failure % | Provider failures | Provider results | Empty responses | Rate limits | Blocked queries | Avg search ms | Sources | High-priority sources | Source categories | Source recs | Behavior queries | Buyer behaviors | Pain signals | Urgency signals | Buyer signals | Signal strength | Top signal combos | Worst signal combos | Promoted dynamic queries | Disabled dynamic queries | Behavior top queries | Behavior worst queries | Promoted behavior queries | Disabled behavior queries | Est. commercial value | Delivery candidates | Buyer roles | Staffing exclusions | Job exclusions | Employee seeking exclusions | False positives | Top rejection reasons | Verification review | Verification ready | Verification candidates | Confidence | Promotion reasons | Funnel | Avg score | Ready | Missing buyer evidence | Missing recency | Top contact method | Blocked domains | Irrelevant pages | Directories | Vendors | Marketplaces | Relevance distribution | Avg buyer evidence | Avg recency evidence | Outcomes | Est. value | Next action |
+| --- | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: | ---: | --- | --- | --- | ---: | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | ---: | --- | --- | --- | ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---: | ---: | --- | ---: | ---: | ---: | ---: | --- | ---: | ---: | ---: | --- | --- | --- | ---: | ---: | ---: | ---: | --- | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: | ---: | ---: | --- |
+${rows.map((row) => `| ${row.clientName} | ${row.searchCandidates} | ${row.leadLikeCandidates} | ${row.possiblyLeadLikeCandidates} | ${row.leadLikePercentage.toFixed(1)}% | ${row.genericPercentage.toFixed(1)}% | ${row.queryQualityDistribution} | ${row.rewrittenQueriesExecuted} | ${row.conversationQueriesExecuted} | ${row.rewriteSuccessRate.toFixed(1)}% | ${row.topRewritePhrases} | ${row.worstRewritePhrases} | ${row.topConversationSources} | ${row.conversationCandidateCounts} | ${row.providerSelected} | ${row.tavilyConfigured} | ${row.fallbackEnabled} | ${row.providerHealth} | ${row.querySuccessRate.toFixed(1)}% | ${row.queryFailureRate.toFixed(1)}% | ${row.providerFailures} | ${row.providerResultCount} | ${row.emptyResponseCount} | ${row.rateLimitCount} | ${row.blockedQueryCount} | ${row.averageSearchDuration.toFixed(0)} | ${row.sourceCount} | ${row.highPrioritySourceCount} | ${row.sourceCategories} | ${row.sourceRecommendations} | ${row.behaviorQueryCount} | ${row.topBuyerBehaviors} | ${row.topPainSignals} | ${row.topUrgencySignals} | ${row.buyerSignalsDiscovered} | ${row.signalStrengthDistribution} | ${row.topSignalCombinations} | ${row.worstSignalCombinations} | ${row.promotedDynamicQueries} | ${row.disabledDynamicQueries} | ${row.behaviorTopPerformingQueries} | ${row.behaviorWorstQueries} | ${row.promotedQueries} | ${row.disabledQueries} | $${row.estimatedCommercialValue.toFixed(0)} | ${row.deliveryCandidates} | ${row.buyerRoleDistribution} | ${row.staffingExclusions} | ${row.jobPostingExclusions} | ${row.employeeSeekingWorkExclusions} | ${row.falsePositiveCount} | ${row.topRejectionReasons} | ${row.verificationReviewCandidates} | ${row.verificationReadyCandidates} | ${row.verificationCandidates} | ${row.verificationConfidenceDistribution} | ${row.verificationPromotionReasons} | ${row.conversionFunnel} | ${row.averageScore.toFixed(1)} | ${row.readyCount} | ${row.missingBuyerEvidenceCount} | ${row.missingRecencyCount} | ${row.topContactMethod} | ${row.blockedDomainsCount} | ${row.irrelevantPagesCount} | ${row.directoriesExcluded} | ${row.vendorPagesExcluded} | ${row.marketplacesExcluded} | ${row.relevanceDistribution} | ${row.averageBuyerEvidenceCount.toFixed(1)} | ${row.averageRecencyEvidenceCount.toFixed(1)} | ${row.outcomeCount} | $${row.estimatedValue.toFixed(0)} | ${row.nextAction} |`).join('\n')}
 
 ## Top Performing Queries
 
@@ -262,16 +291,24 @@ ${rows.map((row) => `- ${row.clientName}: ${row.behaviorQueryCount} queries; top
 
 ${rows.map((row) => `- ${row.clientName}: ${row.buyerSignalsDiscovered} signals; strength ${row.signalStrengthDistribution}; top combinations: ${row.topSignalCombinations}; worst combinations: ${row.worstSignalCombinations}; promoted dynamic: ${row.promotedDynamicQueries}; disabled dynamic: ${row.disabledDynamicQueries}`).join('\n') || '- None.'}
 
+## Intent Rewrite And Conversation Discovery
+
+${rows.map((row) => `- ${row.clientName}: rewrites executed ${row.rewrittenQueriesExecuted}; conversations executed ${row.conversationQueriesExecuted}; rewrite success ${row.rewriteSuccessRate.toFixed(1)}%; top rewrite phrases ${row.topRewritePhrases}; worst rewrite phrases ${row.worstRewritePhrases}; conversation sources ${row.topConversationSources}; conversation candidates ${row.conversationCandidateCounts}`).join('\n') || '- None.'}
+
 ## Verification Promotion
 
 ${rows.map((row) => `- ${row.clientName}: ${row.conversionFunnel}; review ${row.verificationReviewCandidates}; ready ${row.verificationReadyCandidates}; confidence ${row.verificationConfidenceDistribution}; reasons ${row.verificationPromotionReasons}`).join('\n') || '- None.'}
+
+## Buyer Role Learning
+
+${rows.map((row) => `- ${row.clientName}: roles ${row.buyerRoleDistribution}; staffing exclusions ${row.staffingExclusions}; job posting exclusions ${row.jobPostingExclusions}; employee seeking work exclusions ${row.employeeSeekingWorkExclusions}; false positives ${row.falsePositiveCount}; top rejection reasons ${row.topRejectionReasons}`).join('\n') || '- None.'}
 
 Manual review required before delivery or contact. No outreach, contact extraction, scraping, emails, DMs, calls, or forms were performed.
 `;
 }
 
 function renderCsv(rows: DashboardRow[]): string {
-  const headers = ['client_name', 'search_candidates', 'lead_like_candidates', 'possibly_lead_like_candidates', 'lead_like_percentage', 'generic_percentage', 'query_quality_distribution', 'top_performing_queries', 'top_failing_queries', 'provider_selected', 'tavily_configured', 'fallback_enabled', 'provider_health', 'query_success_rate', 'query_failure_rate', 'provider_failures', 'provider_result_count', 'empty_response_count', 'rate_limit_count', 'blocked_query_count', 'average_search_duration', 'source_count', 'source_categories', 'high_priority_source_count', 'source_recommendations', 'top_performing_sources', 'weakest_sources', 'behavior_query_count', 'top_buyer_behaviors', 'top_pain_signals', 'top_urgency_signals', 'buyer_signals_discovered', 'signal_strength_distribution', 'top_signal_combinations', 'worst_signal_combinations', 'promoted_dynamic_queries', 'disabled_dynamic_queries', 'behavior_top_performing_queries', 'behavior_worst_queries', 'promoted_queries', 'disabled_queries', 'estimated_commercial_value', 'delivery_candidates', 'verification_review_candidates', 'verification_ready_candidates', 'verification_candidates', 'verification_confidence_distribution', 'verification_promotion_reasons', 'conversion_funnel', 'average_score', 'qualified_cold', 'warm_intent', 'interest_verification', 'ready', 'needs_review', 'missing_contact_method', 'missing_buyer_evidence', 'missing_recency', 'not_ready', 'top_contact_method', 'average_buyer_evidence_count', 'average_recency_evidence_count', 'blocked_domains', 'irrelevant_pages', 'directories_excluded', 'vendor_pages_excluded', 'marketplaces_excluded', 'relevance_distribution', 'outcome_count', 'estimated_value', 'next_action'];
+  const headers = ['client_name', 'search_candidates', 'lead_like_candidates', 'possibly_lead_like_candidates', 'lead_like_percentage', 'generic_percentage', 'query_quality_distribution', 'top_performing_queries', 'top_failing_queries', 'rewritten_queries_executed', 'conversation_queries_executed', 'rewrite_success_rate', 'top_rewrite_phrases', 'worst_rewrite_phrases', 'top_conversation_sources', 'conversation_candidate_counts', 'provider_selected', 'tavily_configured', 'fallback_enabled', 'provider_health', 'query_success_rate', 'query_failure_rate', 'provider_failures', 'provider_result_count', 'empty_response_count', 'rate_limit_count', 'blocked_query_count', 'average_search_duration', 'source_count', 'source_categories', 'high_priority_source_count', 'source_recommendations', 'top_performing_sources', 'weakest_sources', 'behavior_query_count', 'top_buyer_behaviors', 'top_pain_signals', 'top_urgency_signals', 'buyer_signals_discovered', 'signal_strength_distribution', 'top_signal_combinations', 'worst_signal_combinations', 'promoted_dynamic_queries', 'disabled_dynamic_queries', 'behavior_top_performing_queries', 'behavior_worst_queries', 'promoted_queries', 'disabled_queries', 'estimated_commercial_value', 'delivery_candidates', 'buyer_role_distribution', 'staffing_exclusions', 'job_posting_exclusions', 'employee_seeking_work_exclusions', 'false_positive_count', 'top_rejection_reasons', 'verification_review_candidates', 'verification_ready_candidates', 'verification_candidates', 'verification_confidence_distribution', 'verification_promotion_reasons', 'conversion_funnel', 'average_score', 'qualified_cold', 'warm_intent', 'interest_verification', 'ready', 'needs_review', 'missing_contact_method', 'missing_buyer_evidence', 'missing_recency', 'not_ready', 'top_contact_method', 'average_buyer_evidence_count', 'average_recency_evidence_count', 'blocked_domains', 'irrelevant_pages', 'directories_excluded', 'vendor_pages_excluded', 'marketplaces_excluded', 'relevance_distribution', 'outcome_count', 'estimated_value', 'next_action'];
   const body = rows.map((row) => [
     row.clientName,
     String(row.searchCandidates),
@@ -282,6 +319,13 @@ function renderCsv(rows: DashboardRow[]): string {
     row.queryQualityDistribution,
     row.topPerformingQueries,
     row.topFailingQueries,
+    String(row.rewrittenQueriesExecuted),
+    String(row.conversationQueriesExecuted),
+    row.rewriteSuccessRate.toFixed(1),
+    row.topRewritePhrases,
+    row.worstRewritePhrases,
+    row.topConversationSources,
+    String(row.conversationCandidateCounts),
     row.providerSelected,
     row.tavilyConfigured,
     row.fallbackEnabled,
@@ -316,6 +360,12 @@ function renderCsv(rows: DashboardRow[]): string {
     row.disabledQueries,
     row.estimatedCommercialValue.toFixed(0),
     String(row.deliveryCandidates),
+    row.buyerRoleDistribution,
+    String(row.staffingExclusions),
+    String(row.jobPostingExclusions),
+    String(row.employeeSeekingWorkExclusions),
+    String(row.falsePositiveCount),
+    row.topRejectionReasons,
     String(row.verificationReviewCandidates),
     String(row.verificationReadyCandidates),
     String(row.verificationCandidates),
@@ -442,6 +492,52 @@ function queryQualityRows(candidates: SearchCandidate[]): Array<{ query: string;
       };
     })
     .sort((left, right) => right.leadLikePercentage - left.leadLikePercentage || right.leadLikeTotal - left.leadLikeTotal || left.query.localeCompare(right.query));
+}
+
+function rewriteStatsFor(sourceResults: SearchSourceResult[]): {
+  executed: number;
+  successRate: number;
+  topPhrases: string;
+  worstPhrases: string;
+} {
+  const rows = sourceResults.filter((result) => result.queryTemplateType === 'intent_rewrite' || result.queryTemplateType === 'conversation');
+  const phraseRows = Object.entries(rows.reduce<Record<string, { candidates: number; queries: number }>>((acc, result) => {
+    const phrase = result.rewritePhrase ?? 'unknown';
+    acc[phrase] = acc[phrase] ?? { candidates: 0, queries: 0 };
+    acc[phrase].queries += 1;
+    acc[phrase].candidates += result.candidateCount;
+    return acc;
+  }, {})).map(([phrase, stats]) => ({ phrase, ...stats }));
+
+  return {
+    executed: rows.length,
+    successRate: percentage(rows.filter((result) => result.candidateCount > 0).length, rows.length),
+    topPhrases: phraseRows
+      .filter((row) => row.candidates > 0)
+      .sort((left, right) => right.candidates - left.candidates || left.phrase.localeCompare(right.phrase))
+      .slice(0, 3)
+      .map((row) => `${row.phrase}:${row.candidates}`)
+      .join(' || ') || 'none',
+    worstPhrases: phraseRows
+      .filter((row) => row.candidates === 0)
+      .sort((left, right) => right.queries - left.queries || left.phrase.localeCompare(right.phrase))
+      .slice(0, 3)
+      .map((row) => `${row.phrase}:${row.queries} empty`)
+      .join(' || ') || 'none',
+  };
+}
+
+function conversationStatsFor(sourceResults: SearchSourceResult[]): {
+  executed: number;
+  topSources: string;
+  candidateCount: number;
+} {
+  const rows = sourceResults.filter((result) => result.queryTemplateType === 'conversation');
+  return {
+    executed: rows.length,
+    topSources: compactDistribution(rows.flatMap((result) => Array(result.candidateCount || 1).fill(result.conversationSource ?? result.sourceCategory ?? 'unknown'))),
+    candidateCount: rows.reduce((sum, result) => sum + result.candidateCount, 0),
+  };
 }
 
 function queryRecommendation(candidatesGenerated: number, leadLikeTotal: number, leadLikePercentage: number): string {

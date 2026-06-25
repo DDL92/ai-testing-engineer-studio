@@ -81,6 +81,10 @@ function toReviewQueueItem(
     queryTemplateType: candidate.queryTemplateType,
     overallScore: candidate.overallScore,
     buyerType: candidate.buyerType,
+    buyerRole: candidate.buyerRole,
+    buyerRoleConfidence: candidate.buyerRoleConfidence,
+    buyerRoleReasons: candidate.buyerRoleReasons,
+    rejectionReason: candidate.exclusionReason,
     intentStrength: candidate.intentStrength,
     sourceQuality: candidate.sourceQuality,
     resultRelevance: candidate.resultRelevance,
@@ -164,6 +168,10 @@ ${batch.reviewItems.map((item, index) => `## ${index + 1}. ${item.title}
 - Source: ${item.sourceName} (${item.sourceCategory})
 - Score: ${item.overallScore}
 - Buyer type: ${item.buyerType}
+- Buyer role: ${item.buyerRole ?? 'unknown'}
+- Buyer role confidence: ${item.buyerRoleConfidence ?? 'unknown'}
+- Buyer role reasons: ${(item.buyerRoleReasons ?? []).join('; ') || 'none'}
+- Rejection reason: ${item.rejectionReason ?? 'none'}
 - Intent strength: ${item.intentStrength}
 - Source quality: ${item.sourceQuality}
 - Recommended contact method: ${item.recommendedContactMethod}
@@ -194,6 +202,10 @@ function renderReviewQueueCsv(items: VerificationReviewQueueItem[]): string {
     'title',
     'overall_score',
     'buyer_type',
+    'buyer_role',
+    'buyer_role_confidence',
+    'buyer_role_reasons',
+    'rejection_reason',
     'intent_strength',
     'source_quality',
     'recommended_contact_method',
@@ -216,6 +228,10 @@ function renderReviewQueueCsv(items: VerificationReviewQueueItem[]): string {
     item.title,
     item.overallScore.toFixed(1),
     item.buyerType,
+    item.buyerRole ?? 'unknown',
+    item.buyerRoleConfidence ?? 'unknown',
+    (item.buyerRoleReasons ?? []).join('|'),
+    item.rejectionReason ?? '',
     item.intentStrength,
     item.sourceQuality,
     item.recommendedContactMethod,

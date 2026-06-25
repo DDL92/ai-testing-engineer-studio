@@ -18,6 +18,12 @@ interface QueryLearningRow {
   possibleCount: number;
   deliveryCount: number;
   verificationCount: number;
+  buyerServiceCount: number;
+  directoryCount: number;
+  vendorCount: number;
+  articleLikeCount: number;
+  staffingRecruitmentCount: number;
+  emptyResponseCount: number;
   estimatedValue: number;
   performanceScore: number;
   recommendation: QueryLearningRecommendation;
@@ -65,10 +71,30 @@ function buildRows(sourceResults: SearchSourceResult[], candidates: SearchCandid
     const candidateCount = group.candidates.length;
     const leadLikeCount = group.candidates.filter((candidate) => candidate.leadLikeClassification === 'lead_like').length;
     const possibleCount = group.candidates.filter((candidate) => candidate.leadLikeClassification === 'possibly_lead_like').length;
-    const deliveryForQuery = delivery.filter((candidate) => candidate.clientId === clientId && candidate.query === query && !candidate.excluded);
+    const allDeliveryForQuery = delivery.filter((candidate) => candidate.clientId === clientId && candidate.query === query);
+    const deliveryForQuery = allDeliveryForQuery.filter((candidate) => !candidate.excluded);
     const verificationCount = deliveryForQuery.filter((candidate) => candidate.deliveryQueue === 'interest_verification').length;
+    const buyerServiceCount = allDeliveryForQuery.filter((candidate) => candidate.buyerRole === 'buyer_service' && !candidate.excluded).length;
+    const directoryCount = allDeliveryForQuery.filter((candidate) => candidate.resultRelevance === 'directory' || candidate.buyerRole === 'directory').length;
+    const vendorCount = allDeliveryForQuery.filter((candidate) => candidate.resultRelevance === 'vendor' || candidate.buyerRole === 'vendor').length;
+    const articleLikeCount = allDeliveryForQuery.filter((candidate) => ['definition_page', 'reference_page'].includes(candidate.resultRelevance)).length;
+    const staffingRecruitmentCount = allDeliveryForQuery.filter((candidate) => candidate.buyerRole === 'staffing_recruitment').length;
+    const emptyResponseCount = group.sourceResults.filter((result) => result.candidateCount === 0 || result.error === 'provider returned zero results').length;
     const estimatedValue = estimateValue(group.candidates, deliveryForQuery);
-    const performanceScore = scoreFor({ candidateCount, leadLikeCount, possibleCount, deliveryCount: deliveryForQuery.length, verificationCount, estimatedValue });
+    const performanceScore = scoreFor({
+      candidateCount,
+      leadLikeCount,
+      possibleCount,
+      deliveryCount: deliveryForQuery.length,
+      verificationCount,
+      buyerServiceCount,
+      directoryCount,
+      vendorCount,
+      articleLikeCount,
+      staffingRecruitmentCount,
+      emptyResponseCount,
+      estimatedValue,
+    });
     return {
       clientId,
       query,
@@ -78,9 +104,28 @@ function buildRows(sourceResults: SearchSourceResult[], candidates: SearchCandid
       possibleCount,
       deliveryCount: deliveryForQuery.length,
       verificationCount,
+      buyerServiceCount,
+      directoryCount,
+      vendorCount,
+      articleLikeCount,
+      staffingRecruitmentCount,
+      emptyResponseCount,
       estimatedValue,
       performanceScore,
-      recommendation: recommendationFor({ candidateCount, leadLikeCount, possibleCount, deliveryCount: deliveryForQuery.length, verificationCount, performanceScore }),
+      recommendation: recommendationFor({
+        candidateCount,
+        leadLikeCount,
+        possibleCount,
+        deliveryCount: deliveryForQuery.length,
+        verificationCount,
+        buyerServiceCount,
+        directoryCount,
+        vendorCount,
+        articleLikeCount,
+        staffingRecruitmentCount,
+        emptyResponseCount,
+        performanceScore,
+      }),
     };
   }).sort((left, right) => {
     if (left.clientId === 'flora_and_fauna_foods_001' && right.clientId !== 'flora_and_fauna_foods_001') return -1;
@@ -95,13 +140,25 @@ function scoreFor(input: {
   possibleCount: number;
   deliveryCount: number;
   verificationCount: number;
+  buyerServiceCount: number;
+  directoryCount: number;
+  vendorCount: number;
+  articleLikeCount: number;
+  staffingRecruitmentCount: number;
+  emptyResponseCount: number;
   estimatedValue: number;
 }): number {
   const score = input.leadLikeCount * 8
     + input.possibleCount * 4
     + input.deliveryCount * 10
     + input.verificationCount * 18
+    + input.buyerServiceCount * 6
     + Math.min(20, input.estimatedValue / 250)
+    - input.directoryCount * 4
+    - input.vendorCount * 4
+    - input.articleLikeCount * 3
+    - input.staffingRecruitmentCount * 8
+    - input.emptyResponseCount * 4
     - (input.candidateCount >= 8 && input.leadLikeCount + input.possibleCount === 0 ? 8 : 0);
   return Math.max(0, Math.round(score * 10) / 10);
 }
@@ -112,11 +169,19 @@ function recommendationFor(input: {
   possibleCount: number;
   deliveryCount: number;
   verificationCount: number;
+  buyerServiceCount: number;
+  directoryCount: number;
+  vendorCount: number;
+  articleLikeCount: number;
+  staffingRecruitmentCount: number;
+  emptyResponseCount: number;
   performanceScore: number;
 }): QueryLearningRecommendation {
-  if (input.verificationCount > 0 || input.deliveryCount >= 2 || input.leadLikeCount >= 2 || input.performanceScore >= 18) return 'promote';
+  if (input.verificationCount > 0 || input.deliveryCount >= 2 || input.buyerServiceCount >= 2 || input.leadLikeCount >= 2 || input.performanceScore >= 18) return 'promote';
   if (input.leadLikeCount + input.possibleCount > 0) return 'keep';
+  if (input.staffingRecruitmentCount > 0 || input.directoryCount + input.vendorCount + input.articleLikeCount >= 3) return 'reduce';
   if (input.candidateCount >= 5) return 'reduce';
+  if (input.emptyResponseCount >= 2) return 'disable';
   return 'disable';
 }
 
@@ -141,14 +206,14 @@ Generated: ${generatedAt}
 
 ${rows.map((row, index) => `${index + 1}. ${row.recommendation.toUpperCase()} | ${row.clientId} | ${row.queryTemplateType}
    - Query: \`${row.query}\`
-   - Candidates: ${row.candidateCount}; lead-like: ${row.leadLikeCount}; possible: ${row.possibleCount}; delivery: ${row.deliveryCount}; verification: ${row.verificationCount}; estimated value: $${row.estimatedValue}; score: ${row.performanceScore}`).join('\n') || '- No query learning rows.'}
+   - Candidates: ${row.candidateCount}; lead-like: ${row.leadLikeCount}; possible: ${row.possibleCount}; buyer service: ${row.buyerServiceCount}; delivery: ${row.deliveryCount}; verification: ${row.verificationCount}; empty: ${row.emptyResponseCount}; directories: ${row.directoryCount}; vendors: ${row.vendorCount}; articles: ${row.articleLikeCount}; staffing: ${row.staffingRecruitmentCount}; estimated value: $${row.estimatedValue}; score: ${row.performanceScore}`).join('\n') || '- No query learning rows.'}
 
 No automatic query deletion or outreach was performed. Human review is required before changing query allocation.
 `;
 }
 
 function renderCsv(rows: QueryLearningRow[]): string {
-  const headers: Array<keyof QueryLearningRow> = ['clientId', 'queryTemplateType', 'query', 'candidateCount', 'leadLikeCount', 'possibleCount', 'deliveryCount', 'verificationCount', 'estimatedValue', 'performanceScore', 'recommendation'];
+  const headers: Array<keyof QueryLearningRow> = ['clientId', 'queryTemplateType', 'query', 'candidateCount', 'leadLikeCount', 'possibleCount', 'buyerServiceCount', 'deliveryCount', 'verificationCount', 'emptyResponseCount', 'directoryCount', 'vendorCount', 'articleLikeCount', 'staffingRecruitmentCount', 'estimatedValue', 'performanceScore', 'recommendation'];
   return `${headers.map(csvCell).join(',')}\n${rows.map((row) => headers.map((header) => csvCell(String(row[header]))).join(',')).join('\n')}\n`;
 }
 

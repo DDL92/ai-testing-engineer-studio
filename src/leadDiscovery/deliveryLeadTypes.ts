@@ -1,5 +1,6 @@
 import { ContactabilityLevel, LeadTier } from './enrichedLeadTypes';
 import { BuyerType, IntentStrength } from './buyerIntentTypes';
+import { BuyerRole, BuyerRoleConfidence } from './buyerRoleTypes';
 import { LeadSourceCategory } from './sourceTypes';
 import { LeadVertical } from './types';
 import type { VerificationFailureReason } from './verificationTypes';
@@ -26,7 +27,7 @@ export interface DeliveryLeadCandidate {
   sourceCategory: LeadSourceCategory;
   query: string;
   queryTemplateId?: string;
-  queryTemplateType?: 'standard' | 'social' | 'source_specific' | 'behavior' | 'dynamic';
+  queryTemplateType?: 'standard' | 'social' | 'source_specific' | 'intent_rewrite' | 'conversation' | 'behavior' | 'dynamic';
   expectedSourceTypes?: string[];
   sourceQueryPriority?: 'high' | 'medium' | 'low';
   expectedLeadQuality?: 'high' | 'medium' | 'low';
@@ -52,6 +53,10 @@ export interface DeliveryLeadCandidate {
   estimatedContactability: ContactabilityLevel;
   sourceQuality: SourceQuality;
   buyerType: BuyerType;
+  buyerRole: BuyerRole;
+  buyerRoleConfidence: BuyerRoleConfidence;
+  buyerRoleSignals: string[];
+  buyerRoleReasons: string[];
   intentStrength: IntentStrength;
   intentSignals: string[];
   exclusionSignals: string[];

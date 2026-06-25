@@ -9,7 +9,7 @@ export interface SourcePerformanceRow {
   sourceId?: string;
   source: string;
   sourceCategory?: string;
-  queryTemplateType?: 'standard' | 'social' | 'source_specific' | 'behavior' | 'dynamic' | 'unknown';
+  queryTemplateType?: 'standard' | 'social' | 'source_specific' | 'intent_rewrite' | 'conversation' | 'behavior' | 'dynamic' | 'unknown';
   expectedLeadQuality?: 'high' | 'medium' | 'low';
   query: string;
   clientId: string;

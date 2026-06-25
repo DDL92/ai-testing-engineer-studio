@@ -20,6 +20,7 @@ export type VerificationConfidence =
 
 export type VerificationFailureReason =
   | 'not_buyer'
+  | 'not_buying_service'
   | 'weak_intent'
   | 'location_mismatch'
   | 'low_score'
@@ -63,6 +64,10 @@ export interface VerificationFailureItem {
   queryTemplateId?: string;
   overallScore: number;
   buyerType: string;
+  buyerRole?: string;
+  buyerRoleConfidence?: string;
+  buyerRoleReasons?: string[];
+  rejectionReason?: string | null;
   intentStrength: string;
   sourceQuality: string;
   failureReasons: VerificationFailureReason[];
@@ -112,6 +117,10 @@ export interface VerificationReviewQueueItem {
   queryTemplateType?: string;
   overallScore: number;
   buyerType: string;
+  buyerRole?: string;
+  buyerRoleConfidence?: string;
+  buyerRoleReasons?: string[];
+  rejectionReason?: string | null;
   intentStrength: string;
   sourceQuality: string;
   resultRelevance: string;

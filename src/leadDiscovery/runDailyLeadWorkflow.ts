@@ -5,6 +5,8 @@ import { generateClientLeadPacks } from './generateClientLeadPacks';
 import { generateDailyLeadPack } from './generateDailyLeadPack';
 import { generateTargetedDiscoveryPlan } from './generateTargetedDiscoveryPlan';
 import { buildSourceQueries } from './buildSourceQueries';
+import { rewriteQueries } from './rewriteQueries';
+import { generateConversationQueries } from './generateConversationQueries';
 import { generateBehaviorQueries } from './generateBehaviorQueries';
 import { generateDynamicQueries } from './generateDynamicQueries';
 import { generateDiscoveryQueries } from './generateDiscoveryQueries';
@@ -19,6 +21,7 @@ import { prepareInterestVerification } from './prepareInterestVerification';
 import { generateFloraPilotPack } from './generateFloraPilotPack';
 import { learnBehaviorQueries } from './learnBehaviorQueries';
 import { updateQueryLearning } from './updateQueryLearning';
+import { updateFalsePositiveLearning } from './updateFalsePositiveLearning';
 
 const rawSamplePath = path.join(process.cwd(), 'data', 'lead-discovery', 'raw-signals.sample.json');
 
@@ -46,6 +49,10 @@ async function main(): Promise<void> {
     modulesExecuted.push('targeted discovery planning');
     const sourceQueries = buildSourceQueries();
     modulesExecuted.push('source-specific query generation');
+    const rewrittenQueries = rewriteQueries();
+    modulesExecuted.push('intent rewrite query generation');
+    const conversationQueries = generateConversationQueries();
+    modulesExecuted.push('conversation query generation');
     const behaviorQueries = generateBehaviorQueries();
     modulesExecuted.push('behavioral buyer intent query generation');
     const dynamicQueries = generateDynamicQueries();
@@ -74,12 +81,16 @@ async function main(): Promise<void> {
     modulesExecuted.push('behavior query performance learning');
     const queryLearning = updateQueryLearning();
     modulesExecuted.push('dynamic query learning');
+    const falsePositiveLearning = updateFalsePositiveLearning();
+    modulesExecuted.push('false-positive learning');
 
     console.log('Daily Lead Discovery Workflow: READY');
     console.log(`Modules executed: ${modulesExecuted.join(', ')}`);
     console.log(`Files generated: ${[...pack.filesGenerated, ...clientRouting.filesGenerated].join(', ')}`);
     console.log(`Targeted discovery plan generated: ${targetedPlan.filesGenerated.join(', ')}`);
     console.log(`Source queries generated: output/lead-discovery/targeted-discovery/source-queries.md, output/lead-discovery/targeted-discovery/source-queries.csv (${sourceQueries.rows.length} source queries)`);
+    console.log(`Intent rewrite queries generated: output/lead-discovery/query-rewrites/rewrite-query-summary.md, output/lead-discovery/query-rewrites/rewritten-queries.json (${rewrittenQueries.totalQueries} queries)`);
+    console.log(`Conversation queries generated: output/lead-discovery/conversation-queries/conversation-query-summary.md, output/lead-discovery/conversation-queries/conversation-queries.json (${conversationQueries.totalQueries} queries)`);
     console.log(`Behavior queries generated: output/lead-discovery/behavior-queries/behavior-query-summary.md, output/lead-discovery/behavior-queries/behavior-queries.json (${behaviorQueries.totalQueries} queries)`);
     console.log(`Dynamic queries generated: output/lead-discovery/dynamic-queries/dynamic-query-summary.md, output/lead-discovery/dynamic-queries/dynamic-queries.json (${dynamicQueries.totalQueries} queries)`);
     console.log(`Discovery queries generated: output/lead-discovery/discovery-queries/discovery-query-summary.md, output/lead-discovery/discovery-queries/discovery-queries.json (${queryBatch.totalQueries} queries)`);
@@ -94,6 +105,7 @@ async function main(): Promise<void> {
     console.log(`Flora pilot package generated: ${pilotPack.outputPaths.join(', ')}`);
     console.log(`Behavior query learning generated: ${behaviorPerformance.filesGenerated.join(', ')} (${behaviorPerformance.rows.length} rows)`);
     console.log(`Query learning generated: ${queryLearning.filesGenerated.join(', ')} (${queryLearning.rows.length} rows)`);
+    console.log(`False-positive learning generated: ${falsePositiveLearning.filesGenerated.join(', ')} (${falsePositiveLearning.rows.length} rows)`);
     console.log(`Total leads: ${pack.totalLeads}`);
     console.log(`Included leads: ${pack.includedLeads}`);
     console.log(`Top verticals: ${pack.topVerticals.map((item) => `${item.vertical} (${item.count})`).join(', ') || 'none'}`);

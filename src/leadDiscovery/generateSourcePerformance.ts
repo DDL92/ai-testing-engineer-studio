@@ -200,7 +200,7 @@ function recommendationFor(row: SourcePerformanceRow, performanceScore: number):
 interface SourcePerformanceMetadata {
   sourceId?: string;
   sourceCategory?: string;
-  queryTemplateType?: 'standard' | 'social' | 'source_specific' | 'behavior' | 'dynamic' | 'unknown';
+  queryTemplateType?: 'standard' | 'social' | 'source_specific' | 'intent_rewrite' | 'conversation' | 'behavior' | 'dynamic' | 'unknown';
   expectedLeadQuality?: 'high' | 'medium' | 'low';
 }
 

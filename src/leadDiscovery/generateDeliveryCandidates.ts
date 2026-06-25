@@ -2,6 +2,7 @@ import fs = require('fs');
 import path = require('path');
 import { buildCandidateEvidence } from './buildCandidateEvidence';
 import { classifyBuyerIntent } from './classifyBuyerIntent';
+import { classifyBuyerRole } from './classifyBuyerRole';
 import { evaluateResultRelevance } from './evaluateResultRelevance';
 import { LeadDiscoveryClientConfig } from './clientTypes';
 import { DeliveryLeadCandidate, DeliveryQueue, SourceQuality } from './deliveryLeadTypes';
@@ -83,6 +84,20 @@ function toDeliveryCandidate(
   const recency = recencyAdjustment(candidate.estimatedRecencyDays);
   const priorityBoost = client.vertical === 'travel_leads' ? costaBoost(candidate) : floraBoost(candidate);
   const buyerIntent = classifyBuyerIntent(candidate);
+  const buyerRole = classifyBuyerRole({
+    clientId: candidate.clientId,
+    vertical: candidate.vertical,
+    title: candidate.title,
+    snippet: candidate.snippet,
+    url: candidate.url,
+    sourceName: candidate.sourceName,
+    sourceCategory: candidate.sourceCategory,
+    query: candidate.query,
+    buyerType: buyerIntent.buyerType,
+    estimatedLeadType: candidate.estimatedLeadType,
+    estimatedEventType: candidate.estimatedEventType,
+    estimatedTripType: candidate.estimatedTripType,
+  });
   const relevance = evaluateResultRelevance({
     clientId: candidate.clientId,
     sourceUrl: candidate.url,
@@ -107,6 +122,7 @@ function toDeliveryCandidate(
   const sourceAdjustment = sourceQuality === 'high' ? 0.5 : sourceQuality === 'medium' ? 0 : -1.2;
   const adjustedScore = clampScore(candidate.overallScore + recency.scoreAdjustment + sourceAdjustment + priorityBoost + intentBoost);
   const exclusionReason = exclusionReasonFor(
+    buyerRole.buyerRole,
     buyerIntent.buyerType,
     buyerIntent.competitorDetected,
     recency.exclude,
@@ -120,6 +136,9 @@ function toDeliveryCandidate(
     ...candidate.reasons,
     `Source quality: ${sourceQuality}.`,
     `Buyer type: ${buyerIntent.buyerType}.`,
+    `Buyer role: ${buyerRole.buyerRole} (${buyerRole.buyerRoleConfidence}).`,
+    buyerRole.buyerRoleSignals.length > 0 ? `Buyer role signals: ${buyerRole.buyerRoleSignals.join(', ')}.` : 'Buyer role signals: none.',
+    buyerRole.buyerRoleReasons.length > 0 ? `Buyer role reasons: ${buyerRole.buyerRoleReasons.join(' ')}` : 'Buyer role reasons: none.',
     `Intent strength: ${buyerIntent.intentStrength}.`,
     buyerIntent.intentSignals.length > 0 ? `Intent signals: ${buyerIntent.intentSignals.join(', ')}.` : 'Intent signals: none.',
     buyerIntent.exclusionSignals.length > 0 ? `Exclusion signals: ${buyerIntent.exclusionSignals.join(', ')}.` : 'Exclusion signals: none.',
@@ -163,6 +182,10 @@ function toDeliveryCandidate(
     estimatedContactability: candidate.estimatedContactability,
     sourceQuality,
     buyerType: buyerIntent.buyerType,
+    buyerRole: buyerRole.buyerRole,
+    buyerRoleConfidence: buyerRole.buyerRoleConfidence,
+    buyerRoleSignals: buyerRole.buyerRoleSignals,
+    buyerRoleReasons: buyerRole.buyerRoleReasons,
     intentStrength: buyerIntent.intentStrength,
     intentSignals: buyerIntent.intentSignals,
     exclusionSignals: buyerIntent.exclusionSignals,
@@ -177,6 +200,7 @@ function toDeliveryCandidate(
     verificationFailureReasons: verificationFailureReasonsFor({
       candidate,
       buyerType: buyerIntent.buyerType,
+      buyerRole: buyerRole.buyerRole,
       intentStrength: buyerIntent.intentStrength,
       intentSignals: buyerIntent.intentSignals,
       sourceQuality,
@@ -256,7 +280,14 @@ ${clients.map((client, index) => `${index + 1}. ${client.clientName} (${client.c
 - Possibly lead-like candidates: ${batch.deliveryCandidates.filter((candidate) => candidate.leadLikeClassification === 'possibly_lead_like').length}
 - Vendor exclusions: ${countExcluded(batch.deliveryCandidates, 'competitor_or_vendor')}
 - Directory exclusions: ${countExcluded(batch.deliveryCandidates, 'directory_listing')}
+- Staffing exclusions: ${countExcludedByRole(batch.deliveryCandidates, 'staffing_recruitment')}
+- Job posting exclusions: ${countExcludedByRole(batch.deliveryCandidates, 'job_posting')}
+- Employee seeking work exclusions: ${countExcludedByRole(batch.deliveryCandidates, 'employee_seeking_work')}
 - Average active score: ${averageScore(active).toFixed(1)}
+
+## Buyer Role Distribution
+
+${renderTopValues(batch.deliveryCandidates.map((candidate) => candidate.buyerRole))}
 
 ## Buyer Candidates By Client
 
@@ -390,8 +421,16 @@ Generated: ${generatedAt}
 - Stale leads excluded: ${countExcluded(all, 'stale_recency')}
 - Vendor exclusions: ${countExcluded(all, 'competitor_or_vendor')}
 - Directory exclusions: ${countExcluded(all, 'directory_listing')}
+- Staffing exclusions: ${countExcludedByRole(all, 'staffing_recruitment')}
+- Job posting exclusions: ${countExcludedByRole(all, 'job_posting')}
+- Employee seeking work exclusions: ${countExcludedByRole(all, 'employee_seeking_work')}
 - Average score: ${averageScore(active).toFixed(1)}
 - Buyer candidates: ${all.filter((candidate) => candidate.buyerType === 'buyer' && !candidate.excluded).length}
+- Buyer service candidates: ${all.filter((candidate) => candidate.buyerRole === 'buyer_service' && !candidate.excluded).length}
+
+## Buyer Role Distribution
+
+${renderTopValues(all.map((candidate) => candidate.buyerRole))}
 
 ## Verification Failure Reasons
 
@@ -413,7 +452,7 @@ ${renderTopValues(active.map((candidate) => client.vertical === 'travel_leads' ?
 
 ${active.slice(0, 20).map((candidate, index) => `${index + 1}. [${cell(candidate.title)}](${candidate.url})
    - Score: ${candidate.overallScore}; queue: ${candidate.deliveryQueue}; source quality: ${candidate.sourceQuality}; contactability: ${candidate.estimatedContactability}
-   - Buyer type: ${candidate.buyerType}; intent: ${candidate.intentStrength}; type: ${candidate.estimatedLeadType}; location: ${candidate.estimatedLocation}; recency: ${candidate.estimatedRecencyDays ?? 'unknown'} days
+   - Buyer type: ${candidate.buyerType}; buyer role: ${candidate.buyerRole} (${candidate.buyerRoleConfidence}); intent: ${candidate.intentStrength}; type: ${candidate.estimatedLeadType}; location: ${candidate.estimatedLocation}; recency: ${candidate.estimatedRecencyDays ?? 'unknown'} days
    - Reasons: ${candidate.reasons.map(cell).join(' ')}`).join('\n') || '- No active delivery candidates.'}
 
 ## Manual Review Disclaimer
@@ -441,6 +480,9 @@ Review reasons include unknown recency, low confidence, weak location fit, dupli
 
 - Excluded vendors: ${countExcluded(batch.deliveryCandidates, 'competitor_or_vendor')}
 - Excluded directories: ${countExcluded(batch.deliveryCandidates, 'directory_listing')}
+- Staffing exclusions: ${countExcludedByRole(batch.deliveryCandidates, 'staffing_recruitment')}
+- Job posting exclusions: ${countExcludedByRole(batch.deliveryCandidates, 'job_posting')}
+- Employee seeking work exclusions: ${countExcludedByRole(batch.deliveryCandidates, 'employee_seeking_work')}
 - Weak intent candidates: ${batch.deliveryCandidates.filter((candidate) => candidate.intentStrength === 'weak').length}
 
 ${needsReview.slice(0, 100).map((candidate, index) => `## ${index + 1}. ${candidate.title}
@@ -450,6 +492,9 @@ ${needsReview.slice(0, 100).map((candidate, index) => `## ${index + 1}. ${candid
 - Score: ${candidate.overallScore}
 - Queue: ${candidate.deliveryQueue}
 - Buyer type: ${candidate.buyerType}
+- Buyer role: ${candidate.buyerRole}
+- Buyer role confidence: ${candidate.buyerRoleConfidence}
+- Buyer role reasons: ${candidate.buyerRoleReasons.join('; ') || 'none'}
 - Intent strength: ${candidate.intentStrength}
 - Intent signals: ${candidate.intentSignals.join(', ') || 'none'}
 - Exclusion signals: ${candidate.exclusionSignals.join(', ') || 'none'}
@@ -550,6 +595,7 @@ function floraVerificationEligible(input: {
 }
 
 function exclusionReasonFor(
+  buyerRole: string,
   buyerType: string,
   competitorDetected: boolean,
   stale: boolean,
@@ -557,6 +603,7 @@ function exclusionReasonFor(
   domainBlocked: boolean,
   buyerEvidenceCount: number,
 ): string | null {
+  if (buyerRole === 'staffing_recruitment' || buyerRole === 'job_posting' || buyerRole === 'employee_seeking_work') return 'not_buying_service';
   if (domainBlocked) return 'blocked_domain';
   if (resultRelevance !== 'relevant') return `result_${resultRelevance}`;
   if (buyerEvidenceCount === 0) return 'missing_result_buyer_evidence';
@@ -594,6 +641,7 @@ function duplicateKey(candidate: EnrichedLeadCandidate): string {
 function reviewReasons(candidate: DeliveryLeadCandidate): string[] {
   const reasons: string[] = [];
   if (candidate.buyerType !== 'buyer') reasons.push(`buyer type ${candidate.buyerType}`);
+  if (candidate.buyerRole !== 'buyer_service') reasons.push(`buyer role ${candidate.buyerRole}`);
   if (candidate.intentStrength === 'weak') reasons.push('weak buyer intent');
   if (candidate.estimatedRecencyDays === null) reasons.push('unknown recency');
   if (candidate.overallScore < 6) reasons.push('low confidence score');
@@ -606,6 +654,7 @@ function reviewReasons(candidate: DeliveryLeadCandidate): string[] {
 function verificationFailureReasonsFor(input: {
   candidate: EnrichedLeadCandidate;
   buyerType: string;
+  buyerRole: string;
   intentStrength: string;
   intentSignals: string[];
   sourceQuality: SourceQuality;
@@ -616,12 +665,14 @@ function verificationFailureReasonsFor(input: {
   if (input.candidate.clientId !== 'flora_and_fauna_foods_001') return [];
   const reasons: VerificationFailureReason[] = [];
   if (input.buyerType !== 'buyer') reasons.push('not_buyer');
+  if (input.buyerRole === 'staffing_recruitment' || input.buyerRole === 'job_posting' || input.buyerRole === 'employee_seeking_work') reasons.push('not_buying_service');
   if (input.intentStrength !== 'strong' && !hasStrongFloraIntentSignal(input.candidate, input.intentSignals)) reasons.push('weak_intent');
   if (!hasFloraLocationSignal(input.candidate)) reasons.push('location_mismatch');
   if (input.score < 8.2) reasons.push('low_score');
   if (input.sourceQuality === 'low') reasons.push('low_source_quality');
   if (input.candidate.estimatedRecencyDays === null) reasons.push('unknown_recency');
   if (input.exclusionReason === 'competitor_or_vendor' || input.exclusionReason === 'directory_listing') reasons.push('vendor_or_directory');
+  if (input.exclusionReason === 'not_buying_service' && !reasons.includes('not_buying_service')) reasons.push('not_buying_service');
   if (!hasActualFloraServiceSignal(input.candidate)) reasons.push('missing_event_signal');
   if (input.candidate.estimatedContactability === 'low') reasons.push('contactability_too_low');
   return reasons;
@@ -743,6 +794,7 @@ function activeCandidates(candidates: DeliveryLeadCandidate[]): DeliveryLeadCand
   return candidates.filter((candidate) => (
     !candidate.excluded
     && candidate.buyerType === 'buyer'
+    && candidate.buyerRole === 'buyer_service'
     && candidate.overallScore >= 6
     && candidate.sourceQuality !== 'low'
   ));
@@ -750,6 +802,10 @@ function activeCandidates(candidates: DeliveryLeadCandidate[]): DeliveryLeadCand
 
 function countExcluded(candidates: DeliveryLeadCandidate[], reason: string): number {
   return candidates.filter((candidate) => candidate.excluded && candidate.exclusionReason === reason).length;
+}
+
+function countExcludedByRole(candidates: DeliveryLeadCandidate[], buyerRole: string): number {
+  return candidates.filter((candidate) => candidate.excluded && candidate.buyerRole === buyerRole).length;
 }
 
 function averageScore(candidates: DeliveryLeadCandidate[]): number {
