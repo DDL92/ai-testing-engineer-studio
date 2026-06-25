@@ -210,6 +210,39 @@ The simulator reviews fixture and golden-dataset cases without persisting real r
 
 The morning workflow does not run review decisions or review simulation automatically.
 
+## Loop State And Budget Guardrails
+
+Loop health is tracked locally in `runtime/lead-discovery/`:
+
+- `loop-state.json`
+- `cost-budget.json`
+
+Manual commands:
+
+```sh
+npm run leads:loop-health
+npm run leads:loop-reset
+npm run leads:loop-simulate
+```
+
+Stop conditions pause the loop instead of terminating the app:
+
+- `too_many_empty_runs`
+- `too_many_provider_failures`
+- `too_many_no_delivery_runs`
+- `max_duration_reached`
+
+Cost guardrails use estimated values only. `warning` reduces query batches, `critical` disables dynamic queries, and `paused` disables external search entirely until Daniel approves resuming.
+
+Escalation reports are written to `output/lead-discovery/loop-health/`:
+
+- `escalation-report.md`
+- `escalation-report.json`
+- `loop-health-summary.md`
+- `loop-health-summary.json`
+
+The client dashboard includes `Loop Health` with paused status, stop reason, provider health, estimated credits remaining, cost health, last successful run, last outcome, and the recommended next action.
+
 ## Outputs
 
 - `data/leads/discovered-leads.json`

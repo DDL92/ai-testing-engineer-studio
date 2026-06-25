@@ -22,6 +22,8 @@ const simulationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'sim
 const regressionPath = path.join(process.cwd(), 'output', 'lead-discovery', 'regression', 'regression-results.json');
 const reviewHistoryPath = path.join(process.cwd(), 'output', 'lead-discovery', 'review-state', 'review-history.json');
 const reviewSimulationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'review', 'review-simulation.json');
+const loopStatePath = path.join(process.cwd(), 'runtime', 'lead-discovery', 'loop-state.json');
+const costBudgetPath = path.join(process.cwd(), 'runtime', 'lead-discovery', 'cost-budget.json');
 const outcomesPath = path.join(process.cwd(), 'data', 'lead-discovery', 'outcomes', 'sample-outcomes.json');
 const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'dashboard');
 const dashboardPath = path.join(outputDir, 'client-dashboard.md');
@@ -194,6 +196,35 @@ interface ReviewHealth {
   metrics: ReviewMetrics | null;
 }
 
+interface LoopStateReport {
+  lastRunAt: string | null;
+  lastSuccessfulRunAt: string | null;
+  consecutiveFailures: number;
+  consecutiveEmptyRuns: number;
+  consecutiveNoDeliveryRuns: number;
+  consecutiveProviderFailures: number;
+  lastProvider: string;
+  lastProviderHealth: string;
+  lastDeliveryCount: number;
+  lastVerificationCount: number;
+  lastReviewCount: number;
+  lastCreditsEstimate: number;
+  lastLoopDurationMs: number;
+  lastLoopOutcome: string;
+  paused: boolean;
+  pauseReasons: string[];
+  recommendations: string[];
+  humanApprovalRequired: boolean;
+}
+
+interface CostBudgetReport {
+  estimatedCreditsRemaining: number;
+  costHealth: string;
+  reduceQueryBatches: boolean;
+  disableDynamicQueries: boolean;
+  disableExternalSearch: boolean;
+}
+
 export function generateClientDashboard(): { filesGenerated: string[]; rows: DashboardRow[] } {
   const delivery = readJson<DeliveryBatch>(deliveryPath).deliveryCandidates;
   const searchBatch = readSearchBatch();
@@ -205,12 +236,13 @@ export function generateClientDashboard(): { filesGenerated: string[]; rows: Das
   const simulation = readSimulation();
   const regression = readRegression();
   const reviewHealth = readReviewHealth();
+  const loopHealth = readLoopHealth();
   const rows = ['flora_and_fauna_foods_001', 'lzt_costa_rica_001', 'costa_retreats_001']
     .map((clientId) => rowFor(clientId, delivery, searchBatch, behaviorQueries, diagnostics, tavilyHealth, outcomes, verificationReview.reviewItems, simulation))
     .filter((row) => row.searchCandidates > 0 || row.deliveryCandidates > 0 || row.verificationCandidates > 0 || row.outcomeCount > 0 || row.behaviorQueryCount > 0 || row.fixtureCount > 0);
 
   fs.mkdirSync(outputDir, { recursive: true });
-  fs.writeFileSync(dashboardPath, renderDashboard(rows, regression, reviewHealth), 'utf8');
+  fs.writeFileSync(dashboardPath, renderDashboard(rows, regression, reviewHealth, loopHealth), 'utf8');
   fs.writeFileSync(csvPath, renderCsv(rows), 'utf8');
   return { filesGenerated: [dashboardPath, csvPath].map((file) => path.relative(process.cwd(), file)), rows };
 }
@@ -341,7 +373,7 @@ function rowFor(
   };
 }
 
-function renderDashboard(rows: DashboardRow[], regression: RegressionReport | null, reviewHealth: ReviewHealth): string {
+function renderDashboard(rows: DashboardRow[], regression: RegressionReport | null, reviewHealth: ReviewHealth, loopHealth: { state: LoopStateReport | null; budget: CostBudgetReport | null }): string {
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -393,6 +425,10 @@ ${renderRegressionHealth(regression)}
 ## Review Health
 
 ${renderReviewHealth(reviewHealth)}
+
+## Loop Health
+
+${renderLoopHealth(loopHealth.state, loopHealth.budget)}
 
 ## Verification Promotion
 
@@ -550,6 +586,13 @@ function readReviewHealth(): ReviewHealth {
   return { mode: 'none', metrics: null };
 }
 
+function readLoopHealth(): { state: LoopStateReport | null; budget: CostBudgetReport | null } {
+  return {
+    state: fs.existsSync(loopStatePath) ? readJson<LoopStateReport>(loopStatePath) : null,
+    budget: fs.existsSync(costBudgetPath) ? readJson<CostBudgetReport>(costBudgetPath) : null,
+  };
+}
+
 function readOutcomes(): LeadOutcomeRecord[] {
   if (!fs.existsSync(outcomesPath)) return [];
   return JSON.parse(fs.readFileSync(outcomesPath, 'utf8')) as LeadOutcomeRecord[];
@@ -611,6 +654,30 @@ function renderReviewHealth(reviewHealth: ReviewHealth): string {
     `- Top approval reasons: ${reviewHealth.metrics.topApprovalReasons}`,
     `- Top rejection reasons: ${reviewHealth.metrics.topRejectionReasons}`,
     `- Learning count: ${reviewHealth.metrics.learningCount}`,
+  ].join('\n');
+}
+
+function renderLoopHealth(state: LoopStateReport | null, budget: CostBudgetReport | null): string {
+  if (!state && !budget) {
+    return '- No loop health state found. Run `npm run leads:loop-health` or `npm run leads:loop-simulate`.';
+  }
+  const stopReason = state?.pauseReasons?.join(', ') || 'none';
+  const nextAction = state?.recommendations?.[0]
+    ?? (budget?.disableExternalSearch ? 'Keep external search disabled until budget is manually approved.' : 'Continue local validation.');
+  return [
+    `- Loop State: ${state ? 'available' : 'missing'}`,
+    `- Paused Status: ${state?.paused ? 'paused' : 'active'}`,
+    `- Stop Reason: ${stopReason}`,
+    `- Consecutive Failures: ${state?.consecutiveFailures ?? 0}`,
+    `- Consecutive Empty Runs: ${state?.consecutiveEmptyRuns ?? 0}`,
+    `- Consecutive No Delivery Runs: ${state?.consecutiveNoDeliveryRuns ?? 0}`,
+    `- Consecutive Provider Failures: ${state?.consecutiveProviderFailures ?? 0}`,
+    `- Provider Health: ${state?.lastProviderHealth ?? 'unknown'}`,
+    `- Estimated Credits Remaining: ${budget?.estimatedCreditsRemaining ?? state?.lastCreditsEstimate ?? 0}`,
+    `- Cost Health: ${budget?.costHealth ?? 'unknown'}`,
+    `- Last Successful Run: ${state?.lastSuccessfulRunAt ?? 'none'}`,
+    `- Last Outcome: ${state?.lastLoopOutcome ?? 'unknown'}`,
+    `- Recommended Next Action: ${nextAction}`,
   ].join('\n');
 }
 
