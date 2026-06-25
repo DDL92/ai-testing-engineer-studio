@@ -243,6 +243,58 @@ Escalation reports are written to `output/lead-discovery/loop-health/`:
 
 The client dashboard includes `Loop Health` with paused status, stop reason, provider health, estimated credits remaining, cost health, last successful run, last outcome, and the recommended next action.
 
+## Daily Operator Brief
+
+The Operator Cockpit gives Daniel one local daily brief:
+
+```sh
+npm run leads:operator
+```
+
+It writes:
+
+- `output/operator/daily-operator-brief.md`
+- `output/operator/daily-operator-brief.json`
+
+The brief answers what happened, what is healthy, what is paused, what to do today, what not to run, and the next command to run. It reads existing local outputs only and does not execute provider search.
+
+## Operator Health
+
+The client dashboard includes `Operator Health` after `npm run leads:operator` runs. It shows system readiness, operator readiness, recommended next action, estimated review time, blocked command count, and safe command count.
+
+## Next Best Action Engine
+
+`src/leadDiscovery/recommendNextAction.ts` chooses the next local action from loop state, budget health, regression health, review health, and simulation metrics.
+
+When `cost_budget_paused` is active, the recommended action is to wait for Tavily credits reset and use only safe local commands.
+
+## Safe Commands
+
+Safe local commands:
+
+- `npm run leads:simulate`
+- `npm run leads:regression`
+- `npm run leads:review-simulate`
+- `npm run leads:dashboard`
+- `npm run leads:loop-health`
+
+## Blocked Commands
+
+When cost budget is paused, these commands are blocked until human approval:
+
+- `npm run leads:search`
+- `npm run leads:morning`
+- `npm run leads:daily`
+- `npm run leads:test-provider`
+
+## Operator Workflow
+
+1. Run `npm run leads:operator`.
+2. Read `Do First`, `Do Next`, and `Blocked Commands`.
+3. Run only safe commands while credits remain paused.
+4. Refresh dashboard with `npm run leads:dashboard`.
+5. Resume external search only after human budget approval.
+
 ## Outputs
 
 - `data/leads/discovered-leads.json`

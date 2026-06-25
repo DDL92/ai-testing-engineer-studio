@@ -24,6 +24,7 @@ const reviewHistoryPath = path.join(process.cwd(), 'output', 'lead-discovery', '
 const reviewSimulationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'review', 'review-simulation.json');
 const loopStatePath = path.join(process.cwd(), 'runtime', 'lead-discovery', 'loop-state.json');
 const costBudgetPath = path.join(process.cwd(), 'runtime', 'lead-discovery', 'cost-budget.json');
+const operatorBriefPath = path.join(process.cwd(), 'output', 'operator', 'daily-operator-brief.json');
 const outcomesPath = path.join(process.cwd(), 'data', 'lead-discovery', 'outcomes', 'sample-outcomes.json');
 const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'dashboard');
 const dashboardPath = path.join(outputDir, 'client-dashboard.md');
@@ -225,6 +226,19 @@ interface CostBudgetReport {
   disableExternalSearch: boolean;
 }
 
+interface OperatorBriefReport {
+  systemStatus: string;
+  loopStatus: string;
+  pausedStatus: boolean;
+  safeCommands: string[];
+  blockedCommands: Array<{ command: string; reason: string }>;
+  nextBestAction: {
+    nextAction: string;
+    nextCommand: string;
+    estimatedTimeMinutes: number;
+  };
+}
+
 export function generateClientDashboard(): { filesGenerated: string[]; rows: DashboardRow[] } {
   const delivery = readJson<DeliveryBatch>(deliveryPath).deliveryCandidates;
   const searchBatch = readSearchBatch();
@@ -237,12 +251,13 @@ export function generateClientDashboard(): { filesGenerated: string[]; rows: Das
   const regression = readRegression();
   const reviewHealth = readReviewHealth();
   const loopHealth = readLoopHealth();
+  const operatorBrief = readOperatorBrief();
   const rows = ['flora_and_fauna_foods_001', 'lzt_costa_rica_001', 'costa_retreats_001']
     .map((clientId) => rowFor(clientId, delivery, searchBatch, behaviorQueries, diagnostics, tavilyHealth, outcomes, verificationReview.reviewItems, simulation))
     .filter((row) => row.searchCandidates > 0 || row.deliveryCandidates > 0 || row.verificationCandidates > 0 || row.outcomeCount > 0 || row.behaviorQueryCount > 0 || row.fixtureCount > 0);
 
   fs.mkdirSync(outputDir, { recursive: true });
-  fs.writeFileSync(dashboardPath, renderDashboard(rows, regression, reviewHealth, loopHealth), 'utf8');
+  fs.writeFileSync(dashboardPath, renderDashboard(rows, regression, reviewHealth, loopHealth, operatorBrief), 'utf8');
   fs.writeFileSync(csvPath, renderCsv(rows), 'utf8');
   return { filesGenerated: [dashboardPath, csvPath].map((file) => path.relative(process.cwd(), file)), rows };
 }
@@ -373,7 +388,7 @@ function rowFor(
   };
 }
 
-function renderDashboard(rows: DashboardRow[], regression: RegressionReport | null, reviewHealth: ReviewHealth, loopHealth: { state: LoopStateReport | null; budget: CostBudgetReport | null }): string {
+function renderDashboard(rows: DashboardRow[], regression: RegressionReport | null, reviewHealth: ReviewHealth, loopHealth: { state: LoopStateReport | null; budget: CostBudgetReport | null }, operatorBrief: OperatorBriefReport | null): string {
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -429,6 +444,10 @@ ${renderReviewHealth(reviewHealth)}
 ## Loop Health
 
 ${renderLoopHealth(loopHealth.state, loopHealth.budget)}
+
+## Operator Health
+
+${renderOperatorHealth(operatorBrief)}
 
 ## Verification Promotion
 
@@ -593,6 +612,11 @@ function readLoopHealth(): { state: LoopStateReport | null; budget: CostBudgetRe
   };
 }
 
+function readOperatorBrief(): OperatorBriefReport | null {
+  if (!fs.existsSync(operatorBriefPath)) return null;
+  return readJson<OperatorBriefReport>(operatorBriefPath);
+}
+
 function readOutcomes(): LeadOutcomeRecord[] {
   if (!fs.existsSync(outcomesPath)) return [];
   return JSON.parse(fs.readFileSync(outcomesPath, 'utf8')) as LeadOutcomeRecord[];
@@ -678,6 +702,21 @@ function renderLoopHealth(state: LoopStateReport | null, budget: CostBudgetRepor
     `- Last Successful Run: ${state?.lastSuccessfulRunAt ?? 'none'}`,
     `- Last Outcome: ${state?.lastLoopOutcome ?? 'unknown'}`,
     `- Recommended Next Action: ${nextAction}`,
+  ].join('\n');
+}
+
+function renderOperatorHealth(operatorBrief: OperatorBriefReport | null): string {
+  if (!operatorBrief) {
+    return '- No operator brief found. Run `npm run leads:operator`.';
+  }
+  return [
+    `- System readiness: ${operatorBrief.systemStatus}`,
+    `- Operator readiness: ${operatorBrief.pausedStatus ? 'manual-review-only' : 'ready'}`,
+    `- Recommended next action: ${operatorBrief.nextBestAction.nextAction}`,
+    `- Next command: ${operatorBrief.nextBestAction.nextCommand}`,
+    `- Estimated review time: ${operatorBrief.nextBestAction.estimatedTimeMinutes} minutes`,
+    `- Blocked commands count: ${operatorBrief.blockedCommands.length}`,
+    `- Safe commands count: ${operatorBrief.safeCommands.length}`,
   ].join('\n');
 }
 

@@ -69,6 +69,7 @@
     "leads:loop-health": "node --import tsx src/leadDiscovery/runLoopHealth.ts",
     "leads:loop-reset": "node --import tsx src/leadDiscovery/resetLoopState.ts",
     "leads:loop-simulate": "node --import tsx src/leadDiscovery/runLoopSimulation.ts",
+    "leads:operator": "node --import tsx src/leadDiscovery/generateDailyOperatorBrief.ts",
     "leads:morning": "node --import tsx src/leadDiscovery/runMorningLeadWorkflow.ts",
     "leads:daily": "node --import tsx src/leadDiscovery/runDailyLeadWorkflow.ts",
     "day:plan": "node --import tsx src/operator/generateDailyRevenuePlan.ts",
