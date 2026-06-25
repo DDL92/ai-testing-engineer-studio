@@ -6,6 +6,7 @@ import { LeadOutcomeRecord } from './outcomeTypes';
 import { SearchCandidate, SearchCandidateBatch, SearchSourceResult } from './searchCandidateTypes';
 import { QueryExecutionDiagnostic, SearchDiagnosticsBatch } from './searchDiagnosticsTypes';
 import { VerificationReviewBatch, VerificationReviewQueueItem } from './verificationTypes';
+import { getPilotDeliveryHealth } from './generatePilotDeliveryPack';
 
 interface DeliveryBatch {
   deliveryCandidates: DeliveryLeadCandidate[];
@@ -389,6 +390,7 @@ function rowFor(
 }
 
 function renderDashboard(rows: DashboardRow[], regression: RegressionReport | null, reviewHealth: ReviewHealth, loopHealth: { state: LoopStateReport | null; budget: CostBudgetReport | null }, operatorBrief: OperatorBriefReport | null): string {
+  const pilotHealth = getPilotDeliveryHealth();
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -448,6 +450,15 @@ ${renderLoopHealth(loopHealth.state, loopHealth.budget)}
 ## Operator Health
 
 ${renderOperatorHealth(operatorBrief)}
+
+## Pilot Delivery Health
+
+- Pilot readiness: ${pilotHealth.pilotReadiness}
+- Number of approved leads: ${pilotHealth.approvedLeadCount}
+- Commercial readiness: ${pilotHealth.commercialReadiness}
+- Estimated opportunity value: $${pilotHealth.estimatedOpportunityValue.toFixed(0)}
+- Review workload: ${pilotHealth.reviewWorkload}
+- Next recommended action: ${pilotHealth.nextRecommendedAction}
 
 ## Verification Promotion
 
