@@ -56,6 +56,53 @@ const fallbackFloraBuyerSignals = [
   'recommend a caterer',
 ];
 
+const lztBuyerSignals = [
+  'tanque septico se rebalsa',
+  'tanque séptico se rebalsa',
+  'no tengo espacio para drenaje',
+  'el terreno no drena',
+  'necesito ptar',
+  'ptar para hotel',
+  'fuera de red aya',
+  'permiso minsa aguas residuales',
+  'construyendo hotel',
+  'construyendo cabinas',
+  'arquitecto necesita solucion de aguas residuales',
+  'arquitecto necesita solución de aguas residuales',
+  'planta de tratamiento',
+  'aguas residuales',
+];
+
+const lztNonBuyerSignals = [
+  'limpiar tanque septico',
+  'limpiar tanque séptico',
+  'destape de tuberias',
+  'destape de tuberías',
+  'necesito fontanero',
+  'servicio mas barato',
+  'servicio más barato',
+];
+
+const costaBuyerSignals = [
+  'planning costa rica honeymoon',
+  'planning costa rica family trip',
+  'need itinerary help',
+  'looking for villa recommendations',
+  'planning family reunion',
+  'corporate retreat in tamarindo',
+  'group trip recommendations',
+  'costa rica concierge recommendations',
+];
+
+const articleSignals = [
+  'wikipedia article',
+  'travel blog',
+  'general costa rica guide',
+  'cheap flights article',
+  'top 10',
+  'directory',
+];
+
 const employeeSeekingSignals = [
   'looking to work',
   'available to work',
@@ -97,7 +144,14 @@ export function classifyBuyerRole(input: BuyerRoleInput): BuyerRoleClassificatio
   const staffingSignals = matchSignals(text, [...readSignals(floraNegativeSignalsPath, fallbackFloraStaffingSignals), ...staffingRecruitmentSignals]);
   const jobSignals = matchSignals(text, jobPostingSignals);
   const employeeSignals = matchSignals(text, employeeSeekingSignals);
-  const buyerSignals = matchSignals(text, readSignals(floraPositiveSignalsPath, fallbackFloraBuyerSignals));
+  const buyerSignals = matchSignals(text, buyerSignalsFor(input));
+  const nonBuyerSignals = matchSignals(text, nonBuyerSignalsFor(input));
+
+  if (nonBuyerSignals.length > 0) {
+    return result(articleSignals.some((signal) => nonBuyerSignals.includes(signal)) ? 'directory' : 'unknown', confidence(nonBuyerSignals.length, buyerSignals.length), nonBuyerSignals, [
+      'Candidate matches local non-buyer or service-mismatch signals.',
+    ]);
+  }
 
   if (employeeSignals.length > 0) {
     return result('employee_seeking_work', confidence(employeeSignals.length, buyerSignals.length), employeeSignals, [
@@ -168,6 +222,18 @@ function hasStaffingPattern(text: string): boolean {
     && text.includes('work')
     && (text.includes('dm me') || text.includes('asap') || text.includes('event staff') || text.includes('model types'))
   );
+}
+
+function buyerSignalsFor(input: BuyerRoleInput): string[] {
+  if (input.clientId === 'lzt_costa_rica_001') return lztBuyerSignals;
+  if (input.clientId === 'costa_retreats_001' || input.vertical === 'travel_leads') return costaBuyerSignals;
+  return readSignals(floraPositiveSignalsPath, fallbackFloraBuyerSignals);
+}
+
+function nonBuyerSignalsFor(input: BuyerRoleInput): string[] {
+  if (input.clientId === 'lzt_costa_rica_001') return lztNonBuyerSignals;
+  if (input.clientId === 'costa_retreats_001' || input.vertical === 'travel_leads') return articleSignals;
+  return [];
 }
 
 function readSignals(filePath: string, fallback: string[]): string[] {

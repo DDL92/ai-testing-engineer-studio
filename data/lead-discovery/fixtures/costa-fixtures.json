@@ -1,0 +1,74 @@
+[
+  {
+    "id": "costa-positive-001",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "Planning Costa Rica honeymoon.",
+    "snippet": "Planning Costa Rica honeymoon and looking for itinerary help.",
+    "query": "site:reddit.com \"planning Costa Rica honeymoon\""
+  },
+  {
+    "id": "costa-positive-002",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "Need itinerary help.",
+    "snippet": "Need itinerary help for Costa Rica family trip.",
+    "query": "site:reddit.com \"need itinerary help\""
+  },
+  {
+    "id": "costa-positive-003",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_review",
+    "title": "Looking for villa recommendations.",
+    "snippet": "Looking for villa recommendations in Tamarindo for a group trip.",
+    "query": "site:tripadvisor.com \"looking for villa recommendations\""
+  },
+  {
+    "id": "costa-positive-004",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "Planning family reunion.",
+    "snippet": "Planning family reunion in Costa Rica and need travel planning help.",
+    "query": "site:reddit.com \"family reunion Costa Rica\""
+  },
+  {
+    "id": "costa-positive-005",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "Corporate retreat in Tamarindo.",
+    "snippet": "Corporate retreat in Tamarindo. Need itinerary, villa, and concierge recommendations.",
+    "query": "site:reddit.com \"corporate retreat in Tamarindo\""
+  },
+  {
+    "id": "costa-negative-001",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_forum",
+    "title": "Wikipedia article.",
+    "snippet": "Wikipedia article about Costa Rica geography.",
+    "query": "\"Costa Rica Wikipedia\""
+  },
+  {
+    "id": "costa-negative-002",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_forum",
+    "title": "Travel blog.",
+    "snippet": "Travel blog with a general Costa Rica guide.",
+    "query": "\"Costa Rica travel blog\""
+  },
+  {
+    "id": "costa-negative-003",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_forum",
+    "title": "General Costa Rica guide.",
+    "snippet": "General Costa Rica guide and things to know.",
+    "query": "\"general Costa Rica guide\""
+  },
+  {
+    "id": "costa-negative-004",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_forum",
+    "title": "Cheap flights article.",
+    "snippet": "Cheap flights article for Costa Rica deals.",
+    "query": "\"cheap flights Costa Rica article\""
+  }
+]

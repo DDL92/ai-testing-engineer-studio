@@ -67,6 +67,65 @@ npm run leads:dashboard
 
 `npm run leads:morning` and `npm run leads:daily` include the rewrite and conversation query steps before public search.
 
+## Offline Fixture Lab
+
+The Offline Fixture Lab improves lead discovery without spending Tavily credits. Fixtures live in `data/lead-discovery/fixtures/`:
+
+- `flora-fixtures.json`
+- `lzt-fixtures.json`
+- `costa-fixtures.json`
+
+The lab uses realistic positive and negative examples to validate local classifiers before running paid or external search again.
+
+## Lead Simulation Engine
+
+Run the simulation manually:
+
+```sh
+npm run leads:simulate
+```
+
+The command is local only. It does not call Tavily, execute search, open a browser, scrape pages, extract contacts, or send outreach.
+
+Simulation output is written to `output/lead-discovery/simulation/`:
+
+- `simulation-summary.md`
+- `simulation-dashboard.md`
+- `simulation-candidates.json`
+- `simulation-delivery.md`
+- `simulation-verification.md`
+- `simulation-failures.md`
+
+## Fixture Training Workflow
+
+1. Add a positive or negative fixture with the expected outcome.
+2. Run `npm run leads:simulate`.
+3. Review false positives and false negatives in `simulation-failures.md`.
+4. Tighten local classifier signals.
+5. Re-run until precision and recall are acceptable.
+
+The morning workflow does not run fixture simulation automatically.
+
+## Precision Metrics
+
+Precision measures how many promoted simulation candidates were truly positive:
+
+```text
+true positives / (true positives + false positives)
+```
+
+For Flora, the target is precision above 90% with zero false positives.
+
+## Recall Metrics
+
+Recall measures how many positive fixtures were correctly promoted:
+
+```text
+true positives / (true positives + false negatives)
+```
+
+Use recall to catch overly strict rules that reject real buyer conversations.
+
 ## Outputs
 
 - `data/leads/discovered-leads.json`

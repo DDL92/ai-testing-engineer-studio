@@ -1,0 +1,74 @@
+[
+  {
+    "id": "lzt-positive-001",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "Tanque séptico se rebalsa.",
+    "snippet": "Tanque séptico se rebalsa y necesito solución para aguas residuales.",
+    "query": "site:reddit.com \"tanque séptico se rebalsa\""
+  },
+  {
+    "id": "lzt-positive-002",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "No tengo espacio para drenaje.",
+    "snippet": "No tengo espacio para drenaje y necesito PTAR para un proyecto.",
+    "query": "site:facebook.com/groups \"no tengo espacio para drenaje\""
+  },
+  {
+    "id": "lzt-positive-003",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "Necesito PTAR para hotel.",
+    "snippet": "Necesito PTAR para hotel fuera de red AyA y permiso MINSA.",
+    "query": "\"necesito PTAR para hotel\""
+  },
+  {
+    "id": "lzt-positive-004",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "Construyendo cabinas en Guanacaste.",
+    "snippet": "Construyendo cabinas en Guanacaste y necesito solución de aguas residuales.",
+    "query": "\"construyendo cabinas en Guanacaste\""
+  },
+  {
+    "id": "lzt-positive-005",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "Arquitecto necesita solución de aguas residuales.",
+    "snippet": "Arquitecto necesita solución de aguas residuales y planta de tratamiento.",
+    "query": "\"arquitecto necesita solución de aguas residuales\""
+  },
+  {
+    "id": "lzt-negative-001",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_forum",
+    "title": "Busco limpiar tanque séptico.",
+    "snippet": "Busco limpiar tanque séptico esta semana.",
+    "query": "\"busco limpiar tanque séptico\""
+  },
+  {
+    "id": "lzt-negative-002",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_forum",
+    "title": "Destape de tuberías.",
+    "snippet": "Necesito destape de tuberías para una casa.",
+    "query": "\"destape de tuberías\""
+  },
+  {
+    "id": "lzt-negative-003",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_forum",
+    "title": "Necesito fontanero.",
+    "snippet": "Necesito fontanero para reparar baño.",
+    "query": "\"necesito fontanero\""
+  },
+  {
+    "id": "lzt-negative-004",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_forum",
+    "title": "Busco el servicio más barato.",
+    "snippet": "Busco el servicio más barato para limpiar tuberías.",
+    "query": "\"servicio más barato\""
+  }
+]

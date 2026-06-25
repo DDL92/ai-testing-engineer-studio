@@ -14,6 +14,7 @@ const floraPositiveSignals = [
   'request for proposals',
   'rfp',
   'food service',
+  'food vendor recommendations',
   'bar service',
   'event rentals',
   'wedding catering',
@@ -29,6 +30,8 @@ const lztPositiveSignals = [
   'tanque séptico',
   'tanque septico',
   'planta de tratamiento',
+  'solucion de aguas residuales',
+  'solución de aguas residuales',
   'ptar',
   'permiso minsa',
   'aguas residuales',
@@ -37,17 +40,23 @@ const lztPositiveSignals = [
   'ingeniero',
   'desarrollador',
   'hotel',
+  'cabinas',
   'condominio',
   'aya',
 ];
 
 const costaPositiveSignals = [
   'planning trip',
+  'planning costa rica honeymoon',
+  'planning family reunion',
+  'travel planning help',
   'family trip',
   'group trip',
   'honeymoon',
   'corporate retreat',
   'need itinerary',
+  'itinerary help',
+  'villa recommendations',
   'recommendations',
   'where should we stay',
   'costa rica trip',
@@ -56,6 +65,7 @@ const costaPositiveSignals = [
 
 const requestSignals = [
   'looking for',
+  'planning',
   'need',
   'needs',
   'anyone know',
@@ -70,7 +80,10 @@ const requestSignals = [
   'request for proposals',
   'rfp',
   'necesito',
+  'necesita solucion',
+  'necesita solución',
   'busco',
+  'construyendo',
 ];
 
 const definitionSignals = [
@@ -123,6 +136,19 @@ const articleSignals = [
   'assistance programs',
   'planning association',
   'planning software',
+];
+
+const serviceMismatchSignals = [
+  'busco limpiar tanque septico',
+  'busco limpiar tanque séptico',
+  'limpiar tanque septico',
+  'limpiar tanque séptico',
+  'destape de tuberias',
+  'destape de tuberías',
+  'necesito fontanero',
+  'servicio mas barato',
+  'servicio más barato',
+  'cheap flights',
 ];
 
 const landingPageSignals = [
@@ -189,7 +215,8 @@ export function classifyLeadLikeCandidate(input: LeadLikeCandidateInput): LeadLi
 
 function negativeClassFor(text: string): LeadLikeClassification {
   if (findSignals(text, definitionSignals).length > 0) return 'definition';
-  if (findSignals(text, directorySignals).length > 0) return 'directory';
+  if (findSignals(text, directorySignals).length > 0 && !/\b(vendor recommendations|food vendor recommendations|need food vendor)\b/.test(text)) return 'directory';
+  if (findSignals(text, serviceMismatchSignals).length > 0) return 'article';
   if (findSignals(text, articleSignals).length > 0) return 'article';
   if (findSignals(text, landingPageSignals).length > 0) return 'landing_page';
   return 'unknown';

@@ -62,6 +62,7 @@
     "leads:behavior-performance": "node --import tsx src/leadDiscovery/learnBehaviorQueries.ts",
     "leads:query-learning": "node --import tsx src/leadDiscovery/updateQueryLearning.ts",
     "leads:false-positive-learning": "node --import tsx src/leadDiscovery/updateFalsePositiveLearning.ts",
+    "leads:simulate": "node --import tsx src/leadDiscovery/runFixtureSimulation.ts",
     "leads:morning": "node --import tsx src/leadDiscovery/runMorningLeadWorkflow.ts",
     "leads:daily": "node --import tsx src/leadDiscovery/runDailyLeadWorkflow.ts",
     "day:plan": "node --import tsx src/operator/generateDailyRevenuePlan.ts",

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "flora-positive-001",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "My caterer cancelled for our wedding next week.",
+    "snippet": "My caterer cancelled for our wedding next week. Need catering recommendations ASAP in New Jersey.",
+    "query": "site:reddit.com \"my caterer cancelled\""
+  },
+  {
+    "id": "flora-positive-002",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_social",
+    "title": "Looking for bar service for a fundraiser in New Jersey.",
+    "snippet": "Looking for bar service for a fundraiser in New Jersey. Any recommendations?",
+    "query": "site:facebook.com/groups \"looking for bar service\""
+  },
+  {
+    "id": "flora-positive-003",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "Need food vendor recommendations for corporate event.",
+    "snippet": "Need food vendor recommendations for corporate event next month in New York.",
+    "query": "site:reddit.com \"need food vendor recommendations\""
+  },
+  {
+    "id": "flora-positive-004",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "Need catering recommendations ASAP.",
+    "snippet": "Need catering recommendations ASAP for an event next week near NYC.",
+    "query": "site:reddit.com \"need catering recommendations ASAP\""
+  },
+  {
+    "id": "flora-positive-005",
+    "expectedOutcome": "positive",
+    "sourceCategory": "public_forum",
+    "title": "Private dinner for 80 guests.",
+    "snippet": "Private dinner for 80 guests. Looking for a caterer and bar service in Pennsylvania.",
+    "query": "site:reddit.com \"private dinner recommendations\""
+  },
+  {
+    "id": "flora-negative-001",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_job_board",
+    "title": "Looking for servers",
+    "snippet": "Looking for servers to work a catering event this weekend.",
+    "query": "site:facebook.com/groups \"looking for servers\""
+  },
+  {
+    "id": "flora-negative-002",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_job_board",
+    "title": "Hiring bartenders",
+    "snippet": "Hiring bartenders for event staff. Pay rate by shift.",
+    "query": "site:facebook.com/groups \"hiring bartenders\""
+  },
+  {
+    "id": "flora-negative-003",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_social",
+    "title": "Looking for model types",
+    "snippet": "Looking for model types in NYC who have catering experience to work two catering events. DM me ASAP.",
+    "query": "site:facebook.com/groups \"looking for model types\""
+  },
+  {
+    "id": "flora-negative-004",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_directory",
+    "title": "Wedding caterer directory",
+    "snippet": "Wedding caterer directory with vendor profiles and marketplace listings.",
+    "query": "\"wedding caterer directory\""
+  },
+  {
+    "id": "flora-negative-005",
+    "expectedOutcome": "negative",
+    "sourceCategory": "public_forum",
+    "title": "Top 10 caterers article",
+    "snippet": "Top 10 caterers article and guide to choosing catering companies.",
+    "query": "\"top 10 caterers article\""
+  }
+]
