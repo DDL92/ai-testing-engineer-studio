@@ -57,6 +57,8 @@
     "leads:pilot": "node --import tsx src/leadDiscovery/generateFloraPilotPack.ts",
     "leads:pilot-pack": "node --import tsx src/leadDiscovery/generatePilotDeliveryPack.ts",
     "leads:pilot-simulate": "node --import tsx src/leadDiscovery/runPilotSimulation.ts",
+    "leads:offer-pack": "node --import tsx src/leadDiscovery/generateClientOfferPack.ts",
+    "leads:offer-value": "node --import tsx src/leadDiscovery/calculateOfferValue.ts",
     "leads:outcomes": "node --import tsx src/leadDiscovery/generateOutcomeReport.ts",
     "leads:export": "node --import tsx src/leadDiscovery/generateDeliveryExport.ts",
     "leads:dashboard": "node --import tsx src/leadDiscovery/generateClientDashboard.ts",

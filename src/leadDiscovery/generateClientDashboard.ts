@@ -7,6 +7,7 @@ import { SearchCandidate, SearchCandidateBatch, SearchSourceResult } from './sea
 import { QueryExecutionDiagnostic, SearchDiagnosticsBatch } from './searchDiagnosticsTypes';
 import { VerificationReviewBatch, VerificationReviewQueueItem } from './verificationTypes';
 import { getPilotDeliveryHealth } from './generatePilotDeliveryPack';
+import { getCommercialReadiness } from './generateClientOfferPack';
 
 interface DeliveryBatch {
   deliveryCandidates: DeliveryLeadCandidate[];
@@ -391,6 +392,7 @@ function rowFor(
 
 function renderDashboard(rows: DashboardRow[], regression: RegressionReport | null, reviewHealth: ReviewHealth, loopHealth: { state: LoopStateReport | null; budget: CostBudgetReport | null }, operatorBrief: OperatorBriefReport | null): string {
   const pilotHealth = getPilotDeliveryHealth();
+  const commercialReadiness = getCommercialReadiness();
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -459,6 +461,13 @@ ${renderOperatorHealth(operatorBrief)}
 - Estimated opportunity value: $${pilotHealth.estimatedOpportunityValue.toFixed(0)}
 - Review workload: ${pilotHealth.reviewWorkload}
 - Next recommended action: ${pilotHealth.nextRecommendedAction}
+
+## Commercial Readiness
+
+- Offer status: ${commercialReadiness.offerStatus}
+- Pricing status: ${commercialReadiness.pricingStatus}
+- Terms status: ${commercialReadiness.termsStatus}
+- Value model status: ${commercialReadiness.valueModelStatus}
 
 ## Verification Promotion
 
