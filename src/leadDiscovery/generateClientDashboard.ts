@@ -9,6 +9,8 @@ import { VerificationReviewBatch, VerificationReviewQueueItem } from './verifica
 import { getPilotDeliveryHealth } from './generatePilotDeliveryPack';
 import { getCommercialReadiness } from './generateClientOfferPack';
 import { getCommercialMeetingReadiness } from './generateMeetingPrepPack';
+import { getCommercialPipelineSummary } from './generateClientCallTracker';
+import { getDeliveryReadinessSummary } from './generateClientDeliveryRouter';
 
 interface DeliveryBatch {
   deliveryCandidates: DeliveryLeadCandidate[];
@@ -395,6 +397,8 @@ function renderDashboard(rows: DashboardRow[], regression: RegressionReport | nu
   const pilotHealth = getPilotDeliveryHealth();
   const commercialReadiness = getCommercialReadiness();
   const meetingReadiness = getCommercialMeetingReadiness();
+  const pipelineSummary = getCommercialPipelineSummary();
+  const deliveryReadiness = getDeliveryReadinessSummary();
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -480,6 +484,24 @@ ${renderOperatorHealth(operatorBrief)}
 - Follow-up status: ${meetingReadiness.followUpStatus}
 - Estimated meeting duration: ${meetingReadiness.estimatedMeetingDuration}
 - Commercial readiness score: ${meetingReadiness.commercialReadinessScore}
+
+## Commercial Pipeline
+
+- Active opportunities: ${pipelineSummary.activeOpportunities}
+- Pilot proposed: ${pipelineSummary.pilotProposed}
+- Waiting response: ${pipelineSummary.waitingResponse}
+- Close probability: ${pipelineSummary.closeProbability.toFixed(0)}%
+- Next follow-up: ${pipelineSummary.nextFollowUp}
+- Next commercial action: ${pipelineSummary.nextCommercialAction}
+
+## Delivery Readiness
+
+- Active clients: ${deliveryReadiness.activeClients}
+- Package type: ${deliveryReadiness.packageType}
+- Deliverables ready: ${deliveryReadiness.deliverablesReady}
+- Next milestone: ${deliveryReadiness.nextMilestone}
+- Estimated workload: ${deliveryReadiness.estimatedWorkload}
+- Next action: ${deliveryReadiness.nextAction}
 
 ## Verification Promotion
 
