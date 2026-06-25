@@ -38,3 +38,8 @@ sales-marketing-engine/operator/approval-queue/*
 .env.local
 .env
 .env.local
+
+# Sprint 38 repo hygiene guardrails
+output/evidence/
+data/autonomous-runner/runner-state.json
+data/messages/message-drafts.json

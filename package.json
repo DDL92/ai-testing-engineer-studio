@@ -62,6 +62,7 @@
     "leads:meeting-prep": "node --import tsx src/leadDiscovery/generateMeetingPrepPack.ts",
     "leads:call-tracker": "node --import tsx src/leadDiscovery/generateClientCallTracker.ts",
     "leads:delivery-router": "node --import tsx src/leadDiscovery/generateClientDeliveryRouter.ts",
+    "leads:safe-commands": "node --import tsx src/leadDiscovery/printSafeCommands.ts",
     "leads:outcomes": "node --import tsx src/leadDiscovery/generateOutcomeReport.ts",
     "leads:export": "node --import tsx src/leadDiscovery/generateDeliveryExport.ts",
     "leads:dashboard": "node --import tsx src/leadDiscovery/generateClientDashboard.ts",

@@ -121,6 +121,9 @@ npm run leads:pilot-pack
 npm run leads:offer-pack
 npm run leads:offer-value
 npm run leads:meeting-prep
+npm run leads:call-tracker
+npm run leads:delivery-router
+npm run leads:safe-commands
 npm run leads:outcomes
 npm run leads:export
 npm run leads:dashboard
@@ -234,6 +237,10 @@ Evidence-Based Verification Promotion: `npm run leads:verification-review` reads
 `npm run leads:offer-pack` generates the Flora client-facing commercial offer under `output/client-offer/`, including the AI Lead Discovery pitch, lead definitions, exclusions, pricing, deliverables, and commercial terms. `npm run leads:offer-value` generates an assumption-only value estimate with potential bookings and revenue ranges. These commands are local preparation only and do not use providers, scraping, outreach, or paid services.
 
 `npm run leads:meeting-prep` generates the Flora Commercial Meeting Prep Pack under `output/commercial/`. It includes a 60 second pitch, 20-30 minute meeting agenda, pilot explanation, objection responses, closing questions, follow-up drafts, and value story. Follow-ups are drafts only: no emails, DMs, calls, forms, or outreach automation are sent. `npm run leads:dashboard` reports Commercial Meeting Readiness with pitch, agenda, objections, closing, follow-up, estimated duration, and readiness score.
+
+## Maintenance + Tavily Credit Pause Workflow
+
+When Tavily credits are exhausted, keep live discovery paused and use local maintenance commands only. Start with `npm run leads:operator` for the operator brief and `npm run leads:safe-commands` for the current safe/blocked command list. Do not run live search while paused, including `npm run leads:search`, `npm run leads:morning`, `npm run leads:daily`, or `npm run leads:test-provider`. Resume live discovery only after credits reset and the Tavily reset plan in `docs/status/tavily-reset-plan.md` has been reviewed.
 
 `npm run leads:outcomes` summarizes local outcome records after client feedback. `npm run leads:export` prepares Flora delivery CSVs and review sheets. `npm run leads:dashboard` creates a client dashboard summary with behavior query count, top buyer behaviors, top pain and urgency signals, buyer signals discovered, signal strength distribution, top/worst signal combinations, promoted/disabled dynamic queries, promoted/disabled behavior queries, verification review count, verification confidence distribution, promotion reasons, conversion funnel, estimated commercial value, provider selected, Tavily configured, fallback enabled, provider health, query success/failure rate, provider failures, provider result count, empty responses, rate limits, blocked queries, and average search duration.
 

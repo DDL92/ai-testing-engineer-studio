@@ -11,6 +11,7 @@ import { getCommercialReadiness } from './generateClientOfferPack';
 import { getCommercialMeetingReadiness } from './generateMeetingPrepPack';
 import { getCommercialPipelineSummary } from './generateClientCallTracker';
 import { getDeliveryReadinessSummary } from './generateClientDeliveryRouter';
+import { getMaintenanceReadiness } from './printSafeCommands';
 
 interface DeliveryBatch {
   deliveryCandidates: DeliveryLeadCandidate[];
@@ -399,6 +400,7 @@ function renderDashboard(rows: DashboardRow[], regression: RegressionReport | nu
   const meetingReadiness = getCommercialMeetingReadiness();
   const pipelineSummary = getCommercialPipelineSummary();
   const deliveryReadiness = getDeliveryReadinessSummary();
+  const maintenanceReadiness = getMaintenanceReadiness();
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -502,6 +504,15 @@ ${renderOperatorHealth(operatorBrief)}
 - Next milestone: ${deliveryReadiness.nextMilestone}
 - Estimated workload: ${deliveryReadiness.estimatedWorkload}
 - Next action: ${deliveryReadiness.nextAction}
+
+## Maintenance Readiness
+
+- Status docs ready: ${maintenanceReadiness.statusDocsReady}
+- Generated file policy ready: ${maintenanceReadiness.generatedFilePolicyReady}
+- Safe commands ready: ${maintenanceReadiness.safeCommandsReady}
+- Tavily reset plan ready: ${maintenanceReadiness.tavilyResetPlanReady}
+- Repo hygiene status: ${maintenanceReadiness.repoHygieneStatus}
+- Recommended next action: ${maintenanceReadiness.recommendedNextAction}
 
 ## Verification Promotion
 
