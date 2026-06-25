@@ -8,6 +8,7 @@ export interface TavilySearchOptions {
   topic?: 'general';
   includeImages?: boolean;
   timeoutMs?: number;
+  retainLinkedInSearchSnippets?: boolean;
 }
 
 export interface TavilySearchResult {
@@ -124,7 +125,10 @@ export async function tavilySearch(query: string, options: TavilySearchOptions =
         content: String(result.content ?? '').trim(),
         score: typeof result.score === 'number' ? result.score : undefined,
       }))
-      .filter((result) => result.title && result.url && allowedPublicUrl(result.url)),
+      .filter((result) => result.title && result.url && (
+        allowedPublicUrl(result.url)
+        || (options.retainLinkedInSearchSnippets && allowedLinkedInSnippetUrl(result.url))
+      )),
   };
 }
 
@@ -210,6 +214,17 @@ export function allowedPublicUrl(url: string): boolean {
     'accounts.google.com',
     'facebook.com/login',
   ].some((blocked) => normalized.includes(blocked));
+}
+
+export function allowedLinkedInSnippetUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    return /(^|\.)linkedin\.com$/i.test(parsed.hostname)
+      && /^\/in\/[^/]+\/?$/i.test(parsed.pathname)
+      && !parsed.searchParams.has('sessionRedirect');
+  } catch {
+    return false;
+  }
 }
 
 export function loadLocalEnv(): void {

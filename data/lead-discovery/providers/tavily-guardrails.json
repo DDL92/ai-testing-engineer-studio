@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "maxDailyQueries": 50,
+  "maxQueriesPerClient": 25,
+  "maxTestQueries": 3,
+  "prioritizeFlora": true,
+  "prioritizePayingClientsOnly": true,
+  "fallbackEnabled": false
+}

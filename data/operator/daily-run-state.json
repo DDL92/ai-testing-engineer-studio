@@ -1,0 +1,293 @@
+{
+  "startedAt": "2026-06-23T15:37:44.665Z",
+  "completedAt": "2026-06-23T15:39:27.761Z",
+  "durationMs": 103096,
+  "modulesExecuted": [
+    "QA daily lead discovery",
+    "QA lead rotation",
+    "contact-aware QA rotation",
+    "Website Studio daily refresh",
+    "daily action selection",
+    "outcome dashboard",
+    "outreach follow-up plan",
+    "outreach status",
+    "dashboard generation"
+  ],
+  "modulesReusedFromCache": [],
+  "cachesBypassed": [
+    "QA lead discovery",
+    "QA contact discovery",
+    "Website Studio lead discovery"
+  ],
+  "searchProviderStatus": "available or not required",
+  "warnings": [],
+  "errors": [],
+  "notificationSucceeded": true,
+  "notificationDiagnostics": {
+    "succeeded": true,
+    "attemptedCommand": "/usr/bin/osascript",
+    "exitCode": null,
+    "sanitizedStderr": "",
+    "nonInteractiveSession": false
+  },
+  "preparationRecurrence": {
+    "setmore": 1
+  },
+  "nextScheduledRun": "2026-06-24T13:30:00.000Z",
+  "plan": {
+    "generatedAt": "2026-06-23T15:37:44.665Z",
+    "date": "2026-06-23",
+    "status": "PARTIAL",
+    "targetActionCount": 5,
+    "selectedActions": [
+      {
+        "id": "follow-up:pushpress",
+        "priority": 1,
+        "actionType": "follow_up",
+        "companyName": "PushPress",
+        "vertical": "qa_automation",
+        "contactName": "Chris McConachie",
+        "contactRole": "Co-Founder / Product",
+        "channel": "linkedin",
+        "offer": "Continue existing outreach conversation",
+        "reason": "Manual message was sent on 2026-06-12; next follow-up date is 2026-06-19.",
+        "evidenceStatus": "Existing outreach",
+        "contactStatus": "SENT",
+        "messagePath": "output/messages/pushpress-message-pack.md",
+        "followUpDate": "2026-06-19",
+        "source": "Legacy Outreach",
+        "estimatedMinutes": 3,
+        "manualInstruction": "Review the prior conversation and send manually only if still appropriate."
+      },
+      {
+        "id": "follow-up:teamup",
+        "priority": 1,
+        "actionType": "follow_up",
+        "companyName": "TeamUp",
+        "vertical": "qa_automation",
+        "contactName": "Fiona Murphy",
+        "contactRole": "Director of Product",
+        "channel": "linkedin",
+        "offer": "Continue existing outreach conversation",
+        "reason": "Manual message was sent on 2026-06-12; next follow-up date is 2026-06-19.",
+        "evidenceStatus": "Existing outreach",
+        "contactStatus": "SENT",
+        "followUpDate": "2026-06-19",
+        "source": "Legacy Outreach",
+        "estimatedMinutes": 3,
+        "manualInstruction": "Review the prior conversation and send manually only if still appropriate."
+      },
+      {
+        "id": "verify_contact:setmore",
+        "priority": 4,
+        "actionType": "verify_contact",
+        "companyName": "Setmore",
+        "vertical": "qa_automation",
+        "channel": "unknown",
+        "offer": "QA Audit ($199-$500)",
+        "reason": "No verified QA, engineering, product-engineering, or technical decision-maker met thresholds.",
+        "evidenceStatus": "READY",
+        "contactStatus": "CONTACT_BLOCKED",
+        "evidencePath": "output/contacts/setmore-contact-pack.md",
+        "source": "Contact-Aware QA Rotation",
+        "estimatedMinutes": 6,
+        "manualInstruction": "Verify the named contact and current role using public sources; do not send a message."
+      }
+    ],
+    "qaActions": [
+      {
+        "id": "follow-up:pushpress",
+        "priority": 1,
+        "actionType": "follow_up",
+        "companyName": "PushPress",
+        "vertical": "qa_automation",
+        "contactName": "Chris McConachie",
+        "contactRole": "Co-Founder / Product",
+        "channel": "linkedin",
+        "offer": "Continue existing outreach conversation",
+        "reason": "Manual message was sent on 2026-06-12; next follow-up date is 2026-06-19.",
+        "evidenceStatus": "Existing outreach",
+        "contactStatus": "SENT",
+        "messagePath": "output/messages/pushpress-message-pack.md",
+        "followUpDate": "2026-06-19",
+        "source": "Legacy Outreach",
+        "estimatedMinutes": 3,
+        "manualInstruction": "Review the prior conversation and send manually only if still appropriate."
+      },
+      {
+        "id": "follow-up:teamup",
+        "priority": 1,
+        "actionType": "follow_up",
+        "companyName": "TeamUp",
+        "vertical": "qa_automation",
+        "contactName": "Fiona Murphy",
+        "contactRole": "Director of Product",
+        "channel": "linkedin",
+        "offer": "Continue existing outreach conversation",
+        "reason": "Manual message was sent on 2026-06-12; next follow-up date is 2026-06-19.",
+        "evidenceStatus": "Existing outreach",
+        "contactStatus": "SENT",
+        "followUpDate": "2026-06-19",
+        "source": "Legacy Outreach",
+        "estimatedMinutes": 3,
+        "manualInstruction": "Review the prior conversation and send manually only if still appropriate."
+      },
+      {
+        "id": "verify_contact:setmore",
+        "priority": 4,
+        "actionType": "verify_contact",
+        "companyName": "Setmore",
+        "vertical": "qa_automation",
+        "channel": "unknown",
+        "offer": "QA Audit ($199-$500)",
+        "reason": "No verified QA, engineering, product-engineering, or technical decision-maker met thresholds.",
+        "evidenceStatus": "READY",
+        "contactStatus": "CONTACT_BLOCKED",
+        "evidencePath": "output/contacts/setmore-contact-pack.md",
+        "source": "Contact-Aware QA Rotation",
+        "estimatedMinutes": 6,
+        "manualInstruction": "Verify the named contact and current role using public sources; do not send a message."
+      }
+    ],
+    "websiteActions": [],
+    "followUpActions": [
+      {
+        "id": "follow-up:pushpress",
+        "priority": 1,
+        "actionType": "follow_up",
+        "companyName": "PushPress",
+        "vertical": "qa_automation",
+        "contactName": "Chris McConachie",
+        "contactRole": "Co-Founder / Product",
+        "channel": "linkedin",
+        "offer": "Continue existing outreach conversation",
+        "reason": "Manual message was sent on 2026-06-12; next follow-up date is 2026-06-19.",
+        "evidenceStatus": "Existing outreach",
+        "contactStatus": "SENT",
+        "messagePath": "output/messages/pushpress-message-pack.md",
+        "followUpDate": "2026-06-19",
+        "source": "Legacy Outreach",
+        "estimatedMinutes": 3,
+        "manualInstruction": "Review the prior conversation and send manually only if still appropriate."
+      },
+      {
+        "id": "follow-up:teamup",
+        "priority": 1,
+        "actionType": "follow_up",
+        "companyName": "TeamUp",
+        "vertical": "qa_automation",
+        "contactName": "Fiona Murphy",
+        "contactRole": "Director of Product",
+        "channel": "linkedin",
+        "offer": "Continue existing outreach conversation",
+        "reason": "Manual message was sent on 2026-06-12; next follow-up date is 2026-06-19.",
+        "evidenceStatus": "Existing outreach",
+        "contactStatus": "SENT",
+        "followUpDate": "2026-06-19",
+        "source": "Legacy Outreach",
+        "estimatedMinutes": 3,
+        "manualInstruction": "Review the prior conversation and send manually only if still appropriate."
+      }
+    ],
+    "actionCounts": {
+      "sendReadyQaOutreach": 0,
+      "sendReadyWebsiteOutreach": 0,
+      "followUpsRequiringReview": 2,
+      "repliesRequiringAction": 0,
+      "contactVerification": 1,
+      "evidenceReview": 0,
+      "commerciallyReady": 2,
+      "preparationActions": 1
+    },
+    "skippedCandidates": [
+      {
+        "companyName": "Playa Grande Surf Camp",
+        "reason": "Working site has no sufficiently specific verified opportunity for today."
+      },
+      {
+        "companyName": "Tierra Magnifica",
+        "reason": "Working site has no sufficiently specific verified opportunity for today."
+      },
+      {
+        "companyName": "Costa Rica Surf Camp",
+        "reason": "Functioning website with active booking/conversion path and substantial navigation"
+      },
+      {
+        "companyName": "Surf Camp Avellanas Costa Rica",
+        "reason": "Active booking/conversion path and established functioning parent website"
+      },
+      {
+        "companyName": "Guanacaste",
+        "reason": "Skipped — Functioning website with active booking/conversion path and substantial navigation."
+      },
+      {
+        "companyName": "Best boutique and luxury hotels in Guanacaste Province",
+        "reason": "Skipped — Functioning website with active booking/conversion path and substantial navigation."
+      },
+      {
+        "companyName": "Nosara CR Surf School",
+        "reason": "Skipped — Functioning website with active booking/conversion path and substantial navigation."
+      },
+      {
+        "companyName": "Costa Rica Surf Camp",
+        "reason": "Skipped — Functioning website with active booking/conversion path and substantial navigation."
+      },
+      {
+        "companyName": "Surfcamps Guanacaste",
+        "reason": "Skipped — Functioning website with active booking/conversion path and substantial navigation."
+      },
+      {
+        "companyName": "Surf Camp Avellanas Costa Rica",
+        "reason": "Skipped — Active booking/conversion path and established functioning parent website."
+      },
+      {
+        "companyName": "Hacienda del Sol",
+        "reason": "Skipped — Functioning website with active booking/conversion path and substantial navigation."
+      },
+      {
+        "companyName": "Peace Retreat Costa Rica",
+        "reason": "Skipped — Functioning website with active booking/conversion path and substantial navigation."
+      },
+      {
+        "companyName": "Reunion Wellness Resort & Retreats",
+        "reason": "Skipped — migrated domain; current official website has navigation, contact details, and booking paths."
+      },
+      {
+        "companyName": "Costa Rica luxe Yoga and Wellness Retreat",
+        "reason": "Skipped — Functioning website with active booking/conversion path and substantial navigation."
+      },
+      {
+        "companyName": "SuperSaaS",
+        "reason": "Public search completed but found no supported named contact."
+      },
+      {
+        "companyName": "SimplyBook.me",
+        "reason": "Contacted within the last three days."
+      },
+      {
+        "companyName": "Zoho Creator",
+        "reason": "Low commercial fit for current small-business QA Audit outreach; skip unless a strong explicit trigger appears."
+      },
+      {
+        "companyName": "Join It",
+        "reason": "Public search completed but found no supported named contact."
+      },
+      {
+        "companyName": "YourMembership",
+        "reason": "Public search completed but found no supported named contact."
+      },
+      {
+        "companyName": "AXIS Martial Arts",
+        "reason": "Public search completed but found no supported named contact."
+      }
+    ],
+    "estimatedTotalMinutes": 12,
+    "nextCommand": "Review output/operator/today-action-checklist.md and perform approved actions manually.",
+    "safetyRules": [
+      "No outreach, follow-up, email, form, connection request, meeting, invoice, or payment is sent automatically.",
+      "Generated drafts are preparation only and never count as completed outreach.",
+      "Only verified contacts may produce ready-to-send actions.",
+      "Record actual sends and outcomes manually after external action."
+    ]
+  }
+}

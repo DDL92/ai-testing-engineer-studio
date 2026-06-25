@@ -1,0 +1,40 @@
+{
+  "pain": [
+    "overwhelmed planning Costa Rica",
+    "need itinerary help",
+    "first time Costa Rica",
+    "too many options"
+  ],
+  "urgency": [
+    "next month",
+    "next week",
+    "ASAP",
+    "upcoming trip"
+  ],
+  "purchase": [
+    "need concierge",
+    "looking for villa",
+    "need private transportation",
+    "hire itinerary planner"
+  ],
+  "recommendation": [
+    "villa recommendations",
+    "where should we stay",
+    "family trip recommendations",
+    "honeymoon recommendations"
+  ],
+  "planning": [
+    "planning Costa Rica trip",
+    "family reunion",
+    "group trip",
+    "honeymoon",
+    "corporate retreat"
+  ],
+  "commercial_value": [
+    "villa",
+    "luxury",
+    "concierge",
+    "itinerary",
+    "private transportation"
+  ]
+}

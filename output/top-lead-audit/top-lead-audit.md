@@ -1,20 +1,20 @@
 # Top Lead Audit
 
-Generated: 2026-06-14T05:49:53.836Z
+Generated: 2026-06-22T16:53:59.409Z
 
-- Company: Appointy
+- Company: SimplyBook.me
 - Category: Scheduling SaaS
 - Recommended Offer: QA Automation Retainer ($1500-$3000/month)
-- Qualification Score: 84/100
-- QA Opportunity Score: 81/100
+- Qualification Score: 80/100
+- QA Opportunity Score: 73/100
 
 ## Top Business Risks
-1. Appointy may have public workflow complexity worth reviewing because QA opportunity is 81/100.
+1. SimplyBook.me may have public workflow complexity worth reviewing because QA opportunity is 73/100.
 2. Pain signal relevance is limited; validate public observations before making business claims.
 3. Booking, scheduling, membership, checkout, and mobile paths may increase release-confidence risk if they are not covered by smoke checks.
 
 ## Top Priorities
-1. Review Appointy public evidence and message pack manually.
+1. Review SimplyBook.me public evidence and message pack manually.
 2. Use the QA Automation Retainer ($1500-$3000/month) angle only after Daniel confirms the evidence is relevant.
 3. Prepare a concise QA audit path before any starter-pack or retainer positioning.
 4. Record only real outcomes after any manual external action.
@@ -25,7 +25,7 @@ Generated: 2026-06-14T05:49:53.836Z
 - Do not claim bugs, lost revenue, vulnerabilities, or customer complaints.
 
 ## Safety Rules
-- Top Lead Audit uses Revenue Intelligence as the only source of truth for the selected company.
+- Top Lead Audit uses the contact-ready operational lead when available while preserving Revenue Intelligence ranking context.
 - Preparation assets are local-only and review-only.
 - No outreach, emails, LinkedIn messages, CRM records, meetings, invoices, payments, revenue, outcomes, replies, or client interest are created.
 - No bugs, outages, vulnerabilities, lost sales, churn, or customer complaints are invented.

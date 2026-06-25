@@ -1,0 +1,26 @@
+{
+  "blockedDomains": [
+    { "domain": "wikipedia.org", "category": "reference_page" },
+    { "domain": "merriam-webster.com", "category": "definition_page" },
+    { "domain": "dictionary.com", "category": "definition_page" },
+    { "domain": "cambridge.org", "category": "definition_page" },
+    { "domain": "collinsdictionary.com", "category": "definition_page" },
+    { "domain": "vocabulary.com", "category": "definition_page" },
+    { "domain": "thesaurus.com", "category": "definition_page" },
+    { "domain": "wordreference.com", "category": "definition_page" },
+    { "domain": "wiktionary.org", "category": "definition_page" },
+    { "domain": "grammarbook.com", "category": "definition_page" },
+    { "domain": "grammarly.com", "category": "definition_page" },
+    { "domain": "grammar-monster.com", "category": "definition_page" },
+    { "domain": "imdb.com", "category": "reference_page" },
+    { "domain": "hbo.com", "category": "reference_page" },
+    { "domain": "hbomax.com", "category": "reference_page" },
+    { "domain": "max.com", "category": "reference_page" },
+    { "domain": "forbes.com", "category": "reference_page" },
+    { "domain": "pornhub.com", "category": "blocked_domain" },
+    { "domain": "xvideos.com", "category": "blocked_domain" },
+    { "domain": "xnxx.com", "category": "blocked_domain" },
+    { "domain": "xhamster.com", "category": "blocked_domain" },
+    { "domain": "redtube.com", "category": "blocked_domain" }
+  ]
+}

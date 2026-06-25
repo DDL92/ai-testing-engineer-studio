@@ -1,6 +1,6 @@
 # AI Studio Daily Command Center
 
-Generated At: 2026-06-14T05:37:10.539Z
+Generated At: 2026-06-22T15:23:56.501Z
 
 ## Commercial Mode
 
@@ -20,8 +20,8 @@ Generated At: 2026-06-14T05:37:10.539Z
 
 | Company | Opportunity Score | Stage | Next Action | Daily Priority Score |
 | --- | --- | --- | --- | --- |
-| Appointy | 1000 | NEW_LEAD | Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer. | 1000 |
-| PushPress | 100 | FOLLOW_UP | Monitor manually for follow-up on 2026-06-15. | 95 |
+| Setmore | 1000 | NEW_LEAD | Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer. | 1000 |
+| PushPress | 100 | FOLLOW_UP | Monitor manually for follow-up on 2026-06-15. | 100 |
 | TeamUp | 60 | RESEARCH_READY | Run or review audit workflow for TeamUp. | 43 |
 | Wodify | 60 | RESEARCH_READY | Run or review audit workflow for Wodify. | 43 |
 | ABC Glofox | 65 | NEW_LEAD | Generate research pack for ABC Glofox. | 41 |
@@ -34,7 +34,8 @@ Generated At: 2026-06-14T05:37:10.539Z
 ## Follow-Ups
 
 - Follow-ups due: 0
-- Follow-ups overdue: 0
+- Follow-ups overdue: 1
+- Overdue: PushPress (2026-06-15)
 
 ## Client Health
 
@@ -54,19 +55,19 @@ Generated At: 2026-06-14T05:37:10.539Z
 
 ## Top 5 Actions Today
 
-1. Review Appointy package - Revenue Intelligence source of truth: HIGH.
-2. Generate research pack for Appointy - NEW_LEAD, opportunity score 1000
-3. Review follow-up for PushPress - FOLLOW_UP, opportunity score 100
-4. Generate audit pack for TeamUp - RESEARCH_READY, opportunity score 60
-5. Generate audit pack for Wodify - RESEARCH_READY, opportunity score 60
+1. Review Setmore package - Revenue Intelligence source of truth: HIGH.
+2. Generate research pack for Setmore - NEW_LEAD, opportunity score 1000
+3. Review PushPress follow-up - Follow-up date 2026-06-15
+4. Review follow-up for PushPress - FOLLOW_UP, opportunity score 100
+5. Generate audit pack for TeamUp - RESEARCH_READY, opportunity score 60
 
 ## Suggested Commands
 
 - npm run revenue:recommendation
-- npm run lead:research -- --id appointy
+- npm run lead:research -- --id setmore
+- npm run contact:review -- --id pushpress
 - npm run contact:review -- --id pushpress
 - npm run audit:pack -- --id teamup
-- npm run audit:pack -- --id wodify
 
 ## Human Approval Reminder
 

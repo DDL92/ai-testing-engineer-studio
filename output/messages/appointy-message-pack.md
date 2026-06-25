@@ -1,8 +1,23 @@
 # Appointy Message Pack
 
-Generated: 2026-06-14T16:33:54.003Z
+Generated: 2026-06-22T16:53:27.502Z
 
 Manual-only drafts for human review. Nothing was sent.
+
+## Evidence Basis
+
+- Requested company: Appointy
+- Commercial top-ranked lead: Appointy
+- Previous lead-rotation actionable lead: Setmore
+- Contact-aware rotation status: READY
+- Current contact-ready operational lead: SimplyBook.me
+- Current execution target: SimplyBook.me
+- Historical revenue-activation target: Appointy
+- Historical revenue-activation recommendation: NO GO
+- Executive recommendation: QA Automation Retainer ($1500-$3000/month)
+- Release confidence: Not available for this web-qualified lead yet.
+- Business risk level: Not available for this web-qualified lead yet.
+- Language must describe a lightweight public-page QA review only.
 
 ## LinkedIn Short Message
 
@@ -12,27 +27,27 @@ I did a lightweight public-page QA review of Appointy and noticed potential perf
 
 ## LinkedIn Normal Message
 
-Word count: 55/75
+Word count: 53/75
 
-Hi [Name], I did a lightweight public-page QA review of Appointy and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help gym software teams turn those observations into a concise QA audit and practical next steps. Would it be useful if I sent the short summary for manual review?
+Hi [Name], I did a lightweight public-page QA review of Appointy and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help SaaS product teams turn those observations into a concise QA audit and practical next steps. Would it be useful if I sent you the short summary?
 
 ## Email Version
 
-Word count: 64/120
+Word count: 62/120
 
 Subject: Lightweight QA observations for Appointy
 
 Hi [Name],
 
-I did a lightweight public-page QA review of Appointy and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help gym software teams translate public-page observations into a concise QA audit with prioritized next steps. If helpful, I can send a short summary for manual review. No pressure either way.
+I did a lightweight public-page QA review of Appointy and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help SaaS product teams translate public-page observations into a concise QA audit with prioritized next steps. If helpful, I can send you a short summary. No pressure either way.
 
 Daniel
 
 ## Short Follow-Up
 
-Word count: 26/60
+Word count: 29/60
 
-Hi [Name], quick follow-up. I had a few public-page observations on potential performance and release-confidence areas for Appointy. Worth sending the short summary for manual review?
+Hi [Name], quick follow-up. I had a few public-page observations on potential performance and release-confidence areas for Appointy. Would it be useful if I sent you the short summary?
 
 ## If They Reply Interested
 

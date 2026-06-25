@@ -1,6 +1,43 @@
 # Follow-Up Plan
 
-Generated: 2026-06-12T17:23:55.091Z
+Generated: 2026-06-23T15:39:25.985Z
+
+## Actual Due or Upcoming Follow-Ups
+
+### PushPress - Chris McConachie
+
+- Company: PushPress
+- Contact: Chris McConachie
+- Channel: linkedin
+- Sent: 2026-06-12
+- Response: Pending
+- Follow-up due: 2026-06-19
+- Source: Legacy Outreach
+- Manual action: Review context and decide whether to follow up manually. Do not auto-send.
+
+### TeamUp - Fiona Murphy
+
+- Company: TeamUp
+- Contact: Fiona Murphy
+- Channel: linkedin
+- Sent: 2026-06-12
+- Response: Pending
+- Follow-up due: 2026-06-19
+- Source: Legacy Outreach
+- Manual action: Review context and decide whether to follow up manually. Do not auto-send.
+
+### SimplyBook.me - Rut Steinsen
+
+- Company: SimplyBook.me
+- Contact: Rut Steinsen
+- Channel: linkedin
+- Sent: 2026-06-22
+- Response: Pending
+- Follow-up due: 2026-06-25
+- Source: Outcome Tracking
+- Manual action: Review context and decide whether to follow up manually. Do not auto-send.
+
+## Prepared Lead Follow-Up Guidance
 
 ## 1. PushPress
 

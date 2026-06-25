@@ -1,0 +1,62 @@
+{
+  "planningSignals": [
+    "planning a wedding",
+    "planning a fundraiser",
+    "planning corporate event",
+    "hosting private dinner",
+    "organizing gala",
+    "organizing reception"
+  ],
+  "painSignals": [
+    "caterer cancelled",
+    "need food vendor",
+    "need bar service",
+    "need rentals",
+    "still looking for caterer",
+    "need food and bar service",
+    "our caterer cancelled"
+  ],
+  "urgencySignals": [
+    "next month",
+    "next week",
+    "ASAP",
+    "urgently",
+    "need recommendations quickly"
+  ],
+  "recommendationSignals": [
+    "recommend a caterer",
+    "catering recommendations",
+    "anyone know a caterer",
+    "wedding caterer recommendations",
+    "food vendor recommendations"
+  ],
+  "purchaseSignals": [
+    "looking for caterer",
+    "looking for wedding caterer",
+    "need catering recommendations",
+    "accepting catering quotes",
+    "comparing catering companies",
+    "requesting proposals"
+  ],
+  "commercialValueSignals": [
+    "100 guests",
+    "150 guests",
+    "200 guests",
+    "wedding venue",
+    "fundraiser",
+    "corporate event",
+    "gala",
+    "reception"
+  ],
+  "exclusionSignals": [
+    "caterer profile",
+    "best caterers",
+    "top caterers",
+    "vendor directory",
+    "marketplace",
+    "article",
+    "definition",
+    "wikipedia",
+    "dictionary"
+  ]
+}

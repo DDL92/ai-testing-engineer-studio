@@ -1,0 +1,57 @@
+[
+  {
+    "templateId": "costa_buyer_intent_001",
+    "clientId": "costa_retreats_001",
+    "vertical": "travel_leads",
+    "query": "\"planning Costa Rica family trip\"",
+    "intentType": "family_trip_planning",
+    "priority": 2,
+    "expectedSourceTypes": ["reddit", "travel communities", "travel forums", "public discussions"],
+    "maxLeadAgeDays": 45,
+    "notes": "Family trip planning intent suitable for concierge travel support."
+  },
+  {
+    "templateId": "costa_buyer_intent_002",
+    "clientId": "costa_retreats_001",
+    "vertical": "travel_leads",
+    "query": "\"Tamarindo family vacation\"",
+    "intentType": "destination_family_trip",
+    "priority": 2,
+    "expectedSourceTypes": ["reddit", "travel communities", "travel forums"],
+    "maxLeadAgeDays": 45,
+    "notes": "Tamarindo-specific family vacation signal."
+  },
+  {
+    "templateId": "costa_buyer_intent_003",
+    "clientId": "costa_retreats_001",
+    "vertical": "travel_leads",
+    "query": "\"Costa Rica group trip\"",
+    "intentType": "group_trip_planning",
+    "priority": 2,
+    "expectedSourceTypes": ["reddit", "travel communities", "travel forums", "public discussions"],
+    "maxLeadAgeDays": 45,
+    "notes": "Group trip intent with potential concierge booking need."
+  },
+  {
+    "templateId": "costa_buyer_intent_004",
+    "clientId": "costa_retreats_001",
+    "vertical": "travel_leads",
+    "query": "\"Costa Rica corporate retreat\"",
+    "intentType": "corporate_retreat_planning",
+    "priority": 2,
+    "expectedSourceTypes": ["travel communities", "travel forums", "public discussions"],
+    "maxLeadAgeDays": 45,
+    "notes": "Higher-value retreat planning signal."
+  },
+  {
+    "templateId": "costa_buyer_intent_005",
+    "clientId": "costa_retreats_001",
+    "vertical": "travel_leads",
+    "query": "\"luxury villa Costa Rica group\"",
+    "intentType": "luxury_group_travel",
+    "priority": 2,
+    "expectedSourceTypes": ["reddit", "travel communities", "travel forums", "public discussions"],
+    "maxLeadAgeDays": 45,
+    "notes": "Luxury group travel signal aligned with Costa Retreats services."
+  }
+]

@@ -24,6 +24,9 @@ export interface OutcomeRecord {
   amount: number;
   notes: string;
   next_action: string;
+  follow_up_date?: string;
+  contact_role?: string;
+  message_type?: string;
 }
 
 export interface OutcomeSummary {

@@ -1,0 +1,8 @@
+{
+  "vertical": "travel_leads",
+  "searchPhrases": ["planning trip to Costa Rica", "looking for honeymoon recommendations", "surf trip Costa Rica"],
+  "servicePhrases": ["custom itinerary", "private transfers", "retreat planning", "tailored travel"],
+  "urgencyPhrases": ["traveling next month", "trip in September", "planning now", "last minute itinerary"],
+  "budgetPhrases": ["luxury", "boutique hotels", "private tour", "honeymoon budget"],
+  "locationPhrases": ["Costa Rica", "Guanacaste", "Tamarindo", "Nosara", "USA travelers"]
+}

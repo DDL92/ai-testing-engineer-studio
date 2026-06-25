@@ -113,3 +113,69 @@ export interface OperatorDocument {
   title: string;
   body: string;
 }
+
+export type DailyActionType =
+  | 'send_qa_outreach'
+  | 'send_website_outreach'
+  | 'follow_up'
+  | 'verify_contact'
+  | 'review_evidence'
+  | 'reply_required'
+  | 'review_proposal';
+
+export type DailyActionChannel =
+  | 'linkedin'
+  | 'email'
+  | 'instagram'
+  | 'whatsapp'
+  | 'contact_form'
+  | 'unknown';
+
+export interface DailyRevenueAction {
+  id: string;
+  priority: number;
+  actionType: DailyActionType;
+  companyName: string;
+  vertical: 'qa_automation' | 'ai_website';
+  contactName?: string;
+  contactRole?: string;
+  channel?: DailyActionChannel;
+  offer: string;
+  reason: string;
+  evidenceStatus: string;
+  contactStatus: string;
+  messagePath?: string;
+  evidencePath?: string;
+  followUpDate?: string;
+  source: string;
+  estimatedMinutes: number;
+  manualInstruction: string;
+}
+
+export interface DailyRevenuePlan {
+  generatedAt: string;
+  date: string;
+  status: 'READY' | 'PARTIAL' | 'BLOCKED';
+  targetActionCount: number;
+  selectedActions: DailyRevenueAction[];
+  qaActions: DailyRevenueAction[];
+  websiteActions: DailyRevenueAction[];
+  followUpActions: DailyRevenueAction[];
+  actionCounts: {
+    sendReadyQaOutreach: number;
+    sendReadyWebsiteOutreach: number;
+    followUpsRequiringReview: number;
+    repliesRequiringAction: number;
+    contactVerification: number;
+    evidenceReview: number;
+    commerciallyReady: number;
+    preparationActions: number;
+  };
+  skippedCandidates: Array<{
+    companyName: string;
+    reason: string;
+  }>;
+  estimatedTotalMinutes: number;
+  nextCommand?: string;
+  safetyRules: string[];
+}

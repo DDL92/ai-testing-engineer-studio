@@ -1,0 +1,14 @@
+{
+  "clientId": "flora_and_fauna_foods_001",
+  "blockedDomains": [
+    { "domain": "eventective.com", "category": "marketplace" },
+    { "domain": "theknot.com", "category": "marketplace" },
+    { "domain": "zola.com", "category": "marketplace" },
+    { "domain": "weddingwire.com", "category": "marketplace" },
+    { "domain": "charitynavigator.org", "category": "directory" },
+    { "domain": "givewell.org", "category": "directory" },
+    { "domain": "guidestar.org", "category": "directory" },
+    { "domain": "greatnonprofits.org", "category": "directory" },
+    { "domain": "brides.com", "category": "reference_page" }
+  ]
+}

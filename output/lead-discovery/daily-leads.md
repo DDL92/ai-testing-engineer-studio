@@ -1,7 +1,7 @@
 # Daily Leads
 
-Generated: 2026-06-14T00:33:21.760Z
-Run Date: 2026-06-14
+Generated: 2026-06-23T15:37:44.934Z
+Run Date: 2026-06-23
 
 ## Discovery Boundary
 - Only approved local source files were reviewed.

@@ -1,6 +1,6 @@
 # PWA Dashboard Summary
 
-Generated: 2026-06-19T02:15:51.947Z
+Generated: 2026-06-23T15:39:26.362Z
 
 ## Commercial UX
 
@@ -81,14 +81,14 @@ Generated: 2026-06-19T02:15:51.947Z
 
 ## Outcome Tracking
 
-- Outcome Tracking: No outcomes recorded yet.
-- Messages Sent: 0
+- Outcome Tracking: 1 outcome record(s)
+- Messages Sent: 1
 - Replies: 0
 - Meetings: 0
 - Proposals: 0
 - Wins: 0
 - Losses: 0
-- Reply Rate: No outcomes recorded yet.
+- Reply Rate: 0%
 - Next Manual Message: No outcomes recorded yet. Review the Setmore message pack before any manual send.
 
 ## Outcome Learning
@@ -108,9 +108,9 @@ Generated: 2026-06-19T02:15:51.947Z
 
 ## Follow-Up Operating System
 
-- Follow-Up Queue: 29
+- Follow-Up Queue: 28
 - Today's Follow-Ups: 5
-- Waiting Responses: 0
+- Waiting Responses: 1
 - Open Opportunities: 29
 - Next Best Action: Review Setmore local revenue and executive context, then manually decide whether to draft an Executive angle.
 
@@ -157,7 +157,7 @@ Generated: 2026-06-19T02:15:51.947Z
 ## Top Lead Audit
 
 - Top Lead Audit Status: Missing
-- Evidence Status: Ready
+- Evidence Status: Missing
 - Proposal Status: Missing
 - Execution Readiness: NO GO
 
@@ -198,7 +198,7 @@ Generated: 2026-06-19T02:15:51.947Z
 
 ## Delivery Assets
 
-- Delivery Assets Status: READY FOR REVIEW
+- Delivery Assets Status: PARTIAL
 - Executive Report Status: READY FOR REVIEW
 - Coverage Matrix Status: READY FOR REVIEW
 - Timeline Status: READY FOR REVIEW
@@ -230,27 +230,27 @@ Generated: 2026-06-19T02:15:51.947Z
 - Morning Brief: Setmore | 86/100 | READY
 - Today's Top Action: Review the QA Automation Retainer ($1500-$3000/month) evidence package and message decision for Setmore; Daniel decides any external next step.
 - Revenue Goal: $0 MRR toward $3,000-$5,000
-- Priority Queue: 2 high / 4 total
+- Priority Queue: 3 high / 5 total
 - Follow Ups Waiting: 29
-- Biggest Bottleneck: No real commercial outcomes are recorded; external action and outcome recording remain manual.
+- Biggest Bottleneck: 29 manual follow-up item(s) require review.
 - Tomorrow Focus: Review the highest-priority follow-up for Setmore; do not send without human approval.
 
 ## Commercial Consistency
 
 - Commercial Consistency Status: WARNING
-- Legacy References: 271
+- Legacy References: 263
 - Source Of Truth Status: PASS
 - Conflicting References: 0
 - Repair Recommendations: 1
 
 ## Archive And Portfolio
 
-- Archive Status: HEALTHY
+- Archive Status: WATCH
 - Historical Artifacts: 50
-- Portfolio Assets: 43
+- Portfolio Assets: 49
 - Temporary Assets: 40
 - Retention Status: 6/6 classifications covered
-- Archive Score: 85/100
+- Archive Score: 84/100
 
 ## Studio v1 Release
 
@@ -261,7 +261,7 @@ Generated: 2026-06-19T02:15:51.947Z
 
 ## Studio Doctor
 
-- Studio Health: 83/100
+- Studio Health: 80/100
 - Command Health: WARNING; 0 broken
 - Runtime Health: WARNING; 0 invalid JSON
 - Evidence Health: PASS

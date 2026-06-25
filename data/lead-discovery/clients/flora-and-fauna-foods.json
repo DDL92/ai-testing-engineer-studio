@@ -1,0 +1,32 @@
+{
+  "clientId": "flora_and_fauna_foods_001",
+  "clientName": "Flora and Fauna Foods",
+  "vertical": "catering_leads",
+  "status": "active",
+  "targetLocations": ["New York", "New Jersey", "Pennsylvania", "NYC", "NJ", "PA", "Tri-State Area"],
+  "preferredLeadTypes": [
+    "wedding catering",
+    "corporate catering",
+    "private dinner catering",
+    "charity event catering",
+    "bar service",
+    "event rentals",
+    "food service"
+  ],
+  "excludedLeadTypes": [],
+  "minScore": 8,
+  "leadGoalPerDay": 10,
+  "deliveryCadence": "daily",
+  "desiredLeadTier": "interest_verified",
+  "maxLeadAgeDays": 30,
+  "preferredContactMethods": ["email", "phone"],
+  "budgetNotes": "Custom pricing, usually starts around $75 per head.",
+  "verifiedInterestDefinition": "People willing to receive information and cold calls from the Flora and Fauna Foods sales team.",
+  "salesResponseSpeed": "immediate",
+  "serviceRadius": "no travel restrictions",
+  "minimumGuestCount": "none",
+  "monthlyLeadTarget": "not specified",
+  "notes": "First real potential client. Prioritize this client in upcoming development.",
+  "createdAt": "2026-06-23T00:00:00.000Z",
+  "updatedAt": "2026-06-23T00:00:00.000Z"
+}

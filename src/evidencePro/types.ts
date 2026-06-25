@@ -4,7 +4,7 @@ export interface EvidenceProTarget {
   companyId: string;
   companyName: string;
   website: string;
-  source: 'Lead Rotation Actionable Lead';
+  source: 'Contact-Ready Operational Lead' | 'Lead Rotation Actionable Lead';
 }
 
 export interface HarEvidence {

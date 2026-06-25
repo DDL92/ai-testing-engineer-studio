@@ -1,7 +1,7 @@
 import fs = require('fs');
 import path = require('path');
 import { runDiscovery } from './discovery';
-import { readWebsiteLeads } from './leadAdapter';
+import { importWebsiteCandidates, readWebsiteLeads } from './leadAdapter';
 import { writeWebsiteLeadPack } from './leadPack';
 import { buildWebsiteRanking, isFixtureWebsiteLead, writeWebsiteRanking } from './rankingWorkflow';
 import type { WebsiteTavilyReport } from './tavilyDiscovery';
@@ -45,6 +45,7 @@ async function main(): Promise<void> {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry-run');
   const skipDiscovery = args.includes('--skip-discovery');
+  const refresh = args.includes('--refresh');
   const limitValue = readFlag(args, '--limit');
   const warnings: string[] = [];
   let discovery: Awaited<ReturnType<typeof runDiscovery>> | null = null;
@@ -55,6 +56,7 @@ async function main(): Promise<void> {
         dryRun,
         limit: limitValue ? Number(limitValue) : undefined,
         writeReport: !dryRun,
+        refresh,
       });
       warnings.push(...discovery.errors);
     } catch (error) {
@@ -62,6 +64,7 @@ async function main(): Promise<void> {
     }
   }
 
+  if (refresh && !dryRun) await reInspectRankedStoredLeads();
   const leads = dryRun && discovery?.plannedLeads ? discovery.plannedLeads : readWebsiteLeads();
   const ranking = buildWebsiteRanking(leads);
   const eligible = ranking
@@ -76,6 +79,12 @@ async function main(): Promise<void> {
   if (!dryRun) {
     const rankingPaths = writeWebsiteRanking(ranking);
     console.log(`Ranking generated: ${path.relative(process.cwd(), rankingPaths.jsonPath)}, ${path.relative(process.cwd(), rankingPaths.markdownPath)}`);
+
+    for (const record of leads.filter((lead) => lead.analysis.decision === 'NOT_QUALIFIED')) {
+      const output = writeWebsiteLeadPack(record);
+      generated.push(path.relative(process.cwd(), output.markdownPath));
+      removeStaleSalesAssets(record.lead.id);
+    }
 
     for (const item of eligible) {
       const record = leads.find((lead) => lead.lead.id === item.leadId);
@@ -166,6 +175,45 @@ async function main(): Promise<void> {
   console.log(`Lead packs generated: ${summary.leadPacksGenerated.length}`);
   console.log(`Warnings: ${summary.warnings.length}`);
   console.log(dryRun ? 'Daily dry run complete; no store, packs, ranking, or daily reports were written.' : 'Daily report generated. No outreach was sent.');
+}
+
+function removeStaleSalesAssets(leadId: string): void {
+  const outputDir = path.join(process.cwd(), 'output', 'website-studio', 'leads', leadId);
+  for (const fileName of [
+    'outreach-drafts.md',
+    'homepage-demo.html',
+    'proposal.md',
+    'sow.md',
+    'follow-up-plan.md',
+    'sales-pack.json',
+  ]) {
+    const filePath = path.join(outputDir, fileName);
+    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+  }
+}
+
+async function reInspectRankedStoredLeads(): Promise<void> {
+  const stored = readWebsiteLeads();
+  const byId = new Map(stored.map((record) => [record.lead.id, record]));
+  const candidates = buildWebsiteRanking(stored)
+    .slice(0, 10)
+    .map((ranked) => byId.get(ranked.leadId))
+    .filter((record): record is WebsiteLeadRecord => Boolean(record))
+    .map((record) => ({
+      id: record.lead.id,
+      businessName: record.lead.companyName,
+      category: record.lead.industry,
+      source: record.lead.source,
+      location: record.location,
+      websiteUrl: record.legacyWebsiteUrl ?? record.lead.website,
+      instagramUrl: record.publicContact.instagramUrl,
+      facebookUrl: record.publicContact.facebookUrl,
+      email: record.publicContact.email,
+      phone: record.publicContact.phone,
+      notes: record.lead.fitNotes,
+      sources: record.discovery?.sources ?? [],
+    }));
+  if (candidates.length > 0) await importWebsiteCandidates(candidates, { force: true });
 }
 
 function hasIdenticalPack(record: WebsiteLeadRecord): boolean {

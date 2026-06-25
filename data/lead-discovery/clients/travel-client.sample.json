@@ -1,0 +1,15 @@
+{
+  "clientId": "travel_client_001",
+  "clientName": "Sample Costa Rica Travel Planner",
+  "status": "active",
+  "vertical": "travel_leads",
+  "targetLocations": ["Costa Rica", "USA travelers"],
+  "preferredLeadTypes": ["honeymoon", "luxury travel", "surf trip", "wellness retreat", "tailored travel"],
+  "excludedLeadTypes": [],
+  "minScore": 7.5,
+  "leadGoalPerDay": 10,
+  "deliveryCadence": "daily",
+  "notes": "Fictional sample client. Manual review required before delivery or contact.",
+  "createdAt": "2026-06-23T00:00:00.000Z",
+  "updatedAt": "2026-06-23T00:00:00.000Z"
+}

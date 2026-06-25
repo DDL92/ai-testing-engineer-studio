@@ -1,5 +1,15 @@
 # Company Outreach Status
 
+## SimplyBook.me
+
+- Contacts: 1
+- Invitations sent: 0
+- Messages sent: 1
+- Connected: 0
+- Replied: 0
+- Follow-ups due: 0
+- Coverage score: 3
+
 ## PushPress
 
 - Contacts: 5
@@ -7,7 +17,7 @@
 - Messages sent: 1
 - Connected: 2
 - Replied: 0
-- Follow-ups due: 0
+- Follow-ups due: 1
 - Coverage score: 11
 
 ## Glofox / ABC Fitness
@@ -27,5 +37,5 @@
 - Messages sent: 1
 - Connected: 0
 - Replied: 0
-- Follow-ups due: 0
+- Follow-ups due: 1
 - Coverage score: 5

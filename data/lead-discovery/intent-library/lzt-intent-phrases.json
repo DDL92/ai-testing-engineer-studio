@@ -1,0 +1,44 @@
+{
+  "pain": [
+    "tanque séptico se rebalsa",
+    "no tengo espacio para drenaje",
+    "el terreno no drena",
+    "el agua se queda",
+    "tanque huele mal"
+  ],
+  "urgency": [
+    "necesito solución",
+    "urgente",
+    "ASAP",
+    "problema sanitario"
+  ],
+  "purchase": [
+    "necesito empresa",
+    "busco PTAR",
+    "cotización planta de tratamiento",
+    "quién instala"
+  ],
+  "recommendation": [
+    "alguien conoce PTAR",
+    "recomendaciones",
+    "necesito empresa",
+    "quién instala"
+  ],
+  "planning": [
+    "construyendo casa",
+    "construyendo hotel",
+    "construyendo condominio",
+    "desarrollando lotes"
+  ],
+  "commercial_value": [
+    "PTAR",
+    "planta de tratamiento",
+    "fuera de red AyA",
+    "permiso MINSA",
+    "memoria de cálculo",
+    "SETENA",
+    "arquitecto",
+    "ingeniero",
+    "desarrollador"
+  ]
+}

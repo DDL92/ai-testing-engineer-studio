@@ -1,0 +1,23 @@
+{
+  "vertical": "travel_leads",
+  "sources": [
+    {
+      "name": "Public travel planning forums",
+      "category": "public_forum",
+      "requiresLogin": false,
+      "automationRisk": "low",
+      "enabled": true,
+      "exampleKeywords": ["planning trip to Costa Rica", "Costa Rica itinerary help", "honeymoon recommendations"],
+      "notes": "Use public posts only; capture source URL and intent context for human review."
+    },
+    {
+      "name": "Public destination Q&A pages",
+      "category": "public_forum",
+      "requiresLogin": false,
+      "automationRisk": "low",
+      "enabled": true,
+      "exampleKeywords": ["surf trip Costa Rica", "family trip Costa Rica", "private transfer Costa Rica"],
+      "notes": "Good for itinerary, destination, and timing signals; avoid private profile data."
+    }
+  ]
+}

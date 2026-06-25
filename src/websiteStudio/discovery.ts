@@ -76,6 +76,7 @@ export async function runDiscovery(options: {
   sourceId?: string;
   fixtureMode?: boolean;
   writeReport?: boolean;
+  refresh?: boolean;
 } = {}): Promise<DiscoveryReport> {
   const startedAt = new Date().toISOString();
   const runId = startedAt.replace(/[:.]/g, '-');
@@ -103,7 +104,10 @@ export async function runDiscovery(options: {
   const discovered: WebsiteCandidateInput[] = [];
 
   try {
-    const tavily = await runWebsiteTavilyDiscovery({ dryRun: options.dryRun ?? false });
+    const tavily = await runWebsiteTavilyDiscovery({
+      dryRun: options.dryRun ?? false,
+      refresh: options.refresh ?? false,
+    });
     Object.assign(report, tavily.report);
     for (const candidate of tavily.candidates) {
       if (discovered.length >= limit) break;
@@ -214,7 +218,10 @@ export async function runDiscovery(options: {
 
   report.candidatesFound = discovered.length;
   try {
-    const imported = await importWebsiteCandidates(discovered, { dryRun: options.dryRun });
+    const imported = await importWebsiteCandidates(discovered, {
+      dryRun: options.dryRun,
+      force: options.refresh,
+    });
     report.added = imported.counts.added;
     report.updated = imported.counts.updated;
     report.invalid = imported.counts.invalid;

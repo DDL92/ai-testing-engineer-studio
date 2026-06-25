@@ -1,0 +1,112 @@
+[
+  {
+    "templateId": "flora_buyer_intent_001",
+    "clientId": "flora_and_fauna_foods_001",
+    "vertical": "catering_leads",
+    "query": "\"looking for catering\" \"New York\"",
+    "intentType": "explicit_catering_request",
+    "priority": 1,
+    "expectedSourceTypes": ["reddit", "community discussions", "public recommendation threads"],
+    "maxLeadAgeDays": 30,
+    "notes": "High-intent public request for catering in Flora's target geography."
+  },
+  {
+    "templateId": "flora_buyer_intent_002",
+    "clientId": "flora_and_fauna_foods_001",
+    "vertical": "catering_leads",
+    "query": "\"need catering\" \"NYC\"",
+    "intentType": "explicit_catering_request",
+    "priority": 1,
+    "expectedSourceTypes": ["reddit", "community discussions", "event request boards"],
+    "maxLeadAgeDays": 30,
+    "notes": "Direct need signal for catering in New York City."
+  },
+  {
+    "templateId": "flora_buyer_intent_003",
+    "clientId": "flora_and_fauna_foods_001",
+    "vertical": "catering_leads",
+    "query": "\"wedding catering recommendations\" \"New Jersey\"",
+    "intentType": "recommendation_request",
+    "priority": 1,
+    "expectedSourceTypes": ["public recommendation threads", "public forums", "community discussions"],
+    "maxLeadAgeDays": 30,
+    "notes": "Wedding catering recommendation request in New Jersey."
+  },
+  {
+    "templateId": "flora_buyer_intent_004",
+    "clientId": "flora_and_fauna_foods_001",
+    "vertical": "catering_leads",
+    "query": "\"planning corporate event\" \"Pennsylvania\" \"catering\"",
+    "intentType": "corporate_event_need",
+    "priority": 1,
+    "expectedSourceTypes": ["public forums", "event request boards", "community discussions"],
+    "maxLeadAgeDays": 30,
+    "notes": "Corporate event planning with catering need in Pennsylvania."
+  },
+  {
+    "templateId": "flora_buyer_intent_005",
+    "clientId": "flora_and_fauna_foods_001",
+    "vertical": "catering_leads",
+    "query": "\"anyone know a caterer\" \"NJ\"",
+    "intentType": "recommendation_request",
+    "priority": 1,
+    "expectedSourceTypes": ["reddit", "community discussions", "public recommendation threads"],
+    "maxLeadAgeDays": 30,
+    "notes": "Conversational buyer-intent phrasing for New Jersey catering."
+  },
+  {
+    "templateId": "flora_buyer_intent_006",
+    "clientId": "flora_and_fauna_foods_001",
+    "vertical": "catering_leads",
+    "query": "\"need food service\" \"New York\"",
+    "intentType": "food_service_need",
+    "priority": 2,
+    "expectedSourceTypes": ["community discussions", "event request boards", "public forums"],
+    "maxLeadAgeDays": 30,
+    "notes": "Broader food service need that may map to Flora catering services."
+  },
+  {
+    "templateId": "flora_buyer_intent_007",
+    "clientId": "flora_and_fauna_foods_001",
+    "vertical": "catering_leads",
+    "query": "\"need bar service\" \"wedding\" \"New Jersey\"",
+    "intentType": "bar_service_need",
+    "priority": 2,
+    "expectedSourceTypes": ["public recommendation threads", "community discussions", "public forums"],
+    "maxLeadAgeDays": 30,
+    "notes": "Wedding bar service signal aligned with Flora's service list."
+  },
+  {
+    "templateId": "flora_buyer_intent_008",
+    "clientId": "flora_and_fauna_foods_001",
+    "vertical": "catering_leads",
+    "query": "\"looking for event rentals\" \"PA\"",
+    "intentType": "event_rental_need",
+    "priority": 2,
+    "expectedSourceTypes": ["event request boards", "community discussions", "public forums"],
+    "maxLeadAgeDays": 30,
+    "notes": "Event rentals may lead to catering or combined event service opportunities."
+  },
+  {
+    "templateId": "flora_buyer_intent_009",
+    "clientId": "flora_and_fauna_foods_001",
+    "vertical": "catering_leads",
+    "query": "\"charity event catering\" \"NYC\"",
+    "intentType": "charity_event_need",
+    "priority": 2,
+    "expectedSourceTypes": ["event request boards", "public forums", "community discussions"],
+    "maxLeadAgeDays": 30,
+    "notes": "Charity event catering signal in NYC."
+  },
+  {
+    "templateId": "flora_buyer_intent_010",
+    "clientId": "flora_and_fauna_foods_001",
+    "vertical": "catering_leads",
+    "query": "\"private dinner catering\" \"New York\"",
+    "intentType": "private_dinner_need",
+    "priority": 2,
+    "expectedSourceTypes": ["reddit", "public recommendation threads", "community discussions"],
+    "maxLeadAgeDays": 30,
+    "notes": "Private dinner catering signal in New York."
+  }
+]

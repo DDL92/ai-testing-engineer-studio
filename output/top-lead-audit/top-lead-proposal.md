@@ -1,13 +1,13 @@
 # Top Lead Proposal Draft
 
-Generated: 2026-06-14T07:16:22.379Z
+Generated: 2026-06-22T16:54:00.347Z
 
-- Company: Appointy
+- Company: SimplyBook.me
 - Offer: QA Automation Retainer ($1500-$3000/month)
 - Status: Draft only. Not sent.
 
 ## Proposed Scope
-- Initial QA audit review for Appointy.
+- Initial QA audit review for SimplyBook.me.
 - Starter smoke coverage outline for high-value public workflows.
 - Retainer path only after a paid audit or starter pack validates value.
 
@@ -23,7 +23,7 @@ Generated: 2026-06-14T07:16:22.379Z
 - Findings are preparation notes until Daniel validates them manually.
 
 ## Safety Rules
-- Top Lead Audit uses Revenue Intelligence as the only source of truth for the selected company.
+- Top Lead Audit uses the contact-ready operational lead when available while preserving Revenue Intelligence ranking context.
 - Preparation assets are local-only and review-only.
 - No outreach, emails, LinkedIn messages, CRM records, meetings, invoices, payments, revenue, outcomes, replies, or client interest are created.
 - No bugs, outages, vulnerabilities, lost sales, churn, or customer complaints are invented.

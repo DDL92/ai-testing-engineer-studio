@@ -11,11 +11,13 @@ import {
   TopLeadAuditPackage,
   TopLeadAuditReadinessCheck,
 } from './types';
+import { selectedContactReadyLead } from '../contactAwareRotation/rotationRules';
+import { getOperationalLeadContext } from '../revenueIntelligence/sourceOfTruth';
 
 const outputRoot = path.join(process.cwd(), 'output', 'top-lead-audit');
 
 const safetyRules = [
-  'Top Lead Audit uses Revenue Intelligence as the only source of truth for the selected company.',
+  'Top Lead Audit uses the contact-ready operational lead when available while preserving Revenue Intelligence ranking context.',
   'Preparation assets are local-only and review-only.',
   'No outreach, emails, LinkedIn messages, CRM records, meetings, invoices, payments, revenue, outcomes, replies, or client interest are created.',
   'No bugs, outages, vulnerabilities, lost sales, churn, or customer complaints are invented.',
@@ -25,7 +27,10 @@ const safetyRules = [
 export function buildTopLeadAuditPackage(): TopLeadAuditPackage {
   const source = getRevenueSourceOfTruth();
   const rotation = buildLeadRotationDecision();
-  const topLead = rotation.actionableLead;
+  const selected = selectedContactReadyLead();
+  const topLead = selected
+    ? rotation.candidates.find((candidate) => candidate.companyId === selected.companyId) ?? rotation.actionableLead
+    : rotation.actionableLead;
 
   if (!topLead) {
     const generatedAt = new Date().toISOString();
@@ -58,8 +63,8 @@ export function buildTopLeadAuditPackage(): TopLeadAuditPackage {
   const painSignals = buildPainMiningReport().signals.filter((signal) => normalizeKey(signal.companyName) === normalizeKey(topLead.companyName));
   const lead = topLead.sourceLead;
   const evidenceItems: TopLeadAuditEvidenceItem[] = [
-    { label: 'Top Ranked Lead', value: rotation.topRankedLead?.companyName ?? 'No top ranked lead', source: 'Lead Rotation' },
-    { label: 'Actionable Lead', value: topLead.companyName, source: 'Lead Rotation' },
+    { label: 'Commercial Top-Ranked Lead', value: rotation.topRankedLead?.companyName ?? 'No top ranked lead', source: 'Lead Rotation' },
+    { label: 'Current Operational Lead', value: topLead.companyName, source: selected ? 'Contact-Aware Lead Rotation' : 'Lead Rotation' },
     { label: 'Website', value: topLead.website || 'No website recorded.', source: 'Qualified Ranking' },
     { label: 'Category', value: topLead.category, source: 'Lead Qualification' },
     { label: 'Qualification Score', value: `${topLead.qualificationScore}/100`, source: 'Lead Qualification' },
@@ -243,7 +248,7 @@ export function renderTopLeadExecutiveSummary(audit: TopLeadAuditPackage): strin
     ]),
     '',
     '## What Matters',
-    `${audit.companyName} appears to be the current best revenue focus because Revenue Intelligence ranked it first using qualified lead, QA opportunity, pain relevance, and offer-fit signals.`,
+    `${audit.companyName} is the current operational focus because Contact-Aware Lead Rotation selected the first commercially usable lead with verified public contact evidence.`,
     '',
     '## Why It Matters',
     'Public product workflows such as booking, scheduling, membership, checkout, and mobile usage may create release-confidence risk when they are complex or hard to verify manually.',
@@ -347,7 +352,8 @@ export function renderTopLeadReadiness(audit: TopLeadAuditPackage): string {
 
 function buildReadinessChecks(companyName: string, companyId: string): TopLeadAuditReadinessCheck[] {
   const rotation = buildLeadRotationDecision();
-  const actionable = rotation.actionableLead;
+  const context = getOperationalLeadContext();
+  const actionable = rotation.candidates.find((candidate) => candidate.companyId === context.operationalCompanyId) ?? rotation.actionableLead;
   const fallbackEvidenceDecision = buildEvidenceReadinessDecision();
   const evidenceStatus: TopLeadAuditReadinessCheck['status'] = actionable?.companyName === companyName
     ? actionable.readiness === 'READY' ? 'Ready' : actionable.readiness === 'PARTIAL' ? 'Partial' : 'Missing'

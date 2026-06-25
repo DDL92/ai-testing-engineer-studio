@@ -21,7 +21,13 @@ export type WebsitePresence =
   | 'basic_website'
   | 'functioning_website'
   | 'unknown';
-export type WebsiteDecision = 'PRIORITY' | 'QUALIFIED' | 'REVIEW' | 'LOW_PRIORITY';
+export type WebsiteDecision =
+  | 'PRIORITY'
+  | 'QUALIFIED'
+  | 'REVIEW'
+  | 'LOW_PRIORITY'
+  | 'INSPECTION_INCONCLUSIVE'
+  | 'NOT_QUALIFIED';
 export type WebsiteNextAction =
   | 'verify website presence'
   | 'inspect website manually'
@@ -30,7 +36,19 @@ export type WebsiteNextAction =
   | 'find public business contact'
   | 'verify official business website'
   | 'archive low-priority lead'
+  | 'skip — migrated domain; no verified redesign opportunity'
+  | 'skip — functioning site; no verified redesign opportunity'
+  | 'RETRY_INSPECTION'
   | 'manual review';
+
+export type WebsiteInspectionStatus =
+  | 'SUCCESS'
+  | 'TIMEOUT'
+  | 'ABORTED'
+  | 'DNS_FAILURE'
+  | 'CONNECTION_FAILURE'
+  | 'HTTP_ERROR'
+  | 'UNKNOWN_FAILURE';
 
 export interface WebsiteCandidateInput {
   id: string;
@@ -62,6 +80,10 @@ export interface WebsiteSourceReference {
 export interface WebsiteInspection {
   inspectedAt: string | null;
   requestedUrl: string | null;
+  status?: WebsiteInspectionStatus | null;
+  attemptCount?: number;
+  timeoutMs?: number;
+  externalReachabilityUnverified?: boolean;
   reachable: boolean | null;
   httpStatus: number | null;
   httpsUsed: boolean | null;
@@ -77,6 +99,16 @@ export interface WebsiteInspection {
   responseTimeMs: number | null;
   htmlSizeBytes: number | null;
   failure: string | null;
+  canonicalWebsiteUrl?: string;
+  legacyWebsiteUrl?: string;
+  migrationDetected?: boolean;
+  migrationEvidence?: string[];
+  migrationTargetUrl?: string;
+  canonicalSiteName?: string;
+  rootDomain?: string;
+  parentBusinessName?: string;
+  parentPlatformPage?: boolean;
+  standaloneBusinessPage?: boolean;
 }
 
 export interface WebsiteOffer {
@@ -137,6 +169,11 @@ export interface WebsiteLeadRecord {
   };
   inspection: WebsiteInspection;
   analysis: WebsiteAnalysis;
+  canonicalWebsiteUrl?: string;
+  legacyWebsiteUrl?: string;
+  migrationDetected?: boolean;
+  migrationEvidence?: string[];
+  migrationTargetUrl?: string;
 }
 
 export interface ImportCounts {

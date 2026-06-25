@@ -12,7 +12,8 @@ function main(): void {
 
   console.log(`Follow-up plan generated: ${path.relative(process.cwd(), outputPath)}`);
   console.log(`Top 5 prepared: ${report.topFive.map((item) => item.lead.companyName).join(', ') || 'none'}`);
-  console.log('No follow-ups were scheduled or sent. Manual tracking is required.');
+  console.log(`Actual due or upcoming follow-ups: ${report.actualFollowUps.length}`);
+  console.log('No follow-ups were scheduled or sent. Manual review is required.');
 }
 
 main();

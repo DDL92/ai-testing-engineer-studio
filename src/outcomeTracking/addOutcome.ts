@@ -28,6 +28,9 @@ function main(): void {
     amount: Number(valueFor(args, '--amount') ?? 0),
     notes: valueFor(args, '--notes') ?? '',
     next_action: valueFor(args, '--next-action') ?? '',
+    follow_up_date: valueFor(args, '--follow-up-date'),
+    contact_role: valueFor(args, '--contact-role'),
+    message_type: valueFor(args, '--message-type'),
   };
 
   const records = addOutcomeRecord(record);

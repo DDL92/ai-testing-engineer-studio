@@ -114,6 +114,7 @@ const CONFIDENCE_MARKER = '[tavily-confidence:';
 
 export async function runWebsiteTavilyDiscovery(options: {
   dryRun: boolean;
+  refresh?: boolean;
 }): Promise<WebsiteTavilyDiscoveryResult> {
   loadLocalEnv();
   const report = createEmptyWebsiteTavilyReport();
@@ -152,7 +153,7 @@ export async function runWebsiteTavilyDiscovery(options: {
   report.websiteCreditsUsedToday = usage.today;
   report.websiteCreditsUsedThisMonth = usage.month;
 
-  const cacheEvaluation = eligibleQueries(config.queries, cache, ledger);
+  const cacheEvaluation = eligibleQueries(config.queries, cache, ledger, options.refresh ?? false);
   report.queriesEligible = cacheEvaluation.eligible.length;
   report.queriesSkippedCached = cacheEvaluation.cached;
   report.eligibleQueryIds = cacheEvaluation.eligible.map((query) => query.id);
@@ -325,6 +326,7 @@ function eligibleQueries(
   queries: TavilyQuery[],
   cache: TavilyCacheEntry[],
   ledger: ReturnType<typeof readTavilyLedger>,
+  refresh = false,
 ): {
   eligible: TavilyQuery[];
   cached: number;
@@ -334,6 +336,7 @@ function eligibleQueries(
   let cached = 0;
   const cachedIds: string[] = [];
   const eligible = queries.filter((query) => query.enabled).filter((query) => {
+    if (refresh) return true;
     const currentHash = queryHash(query.query);
     const entry = cache.find((item) => item.queryId === query.id && item.queryHash === currentHash);
     const ledgerFresh = ledger.some((item) => (

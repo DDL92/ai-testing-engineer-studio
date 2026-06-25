@@ -1,6 +1,7 @@
 import path = require('path');
 import { buildMessageReview, writeMessageReview } from './messageRules';
 import { buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIntelligenceRules';
+import { selectedContactReadyLead } from '../contactAwareRotation/rotationRules';
 
 function main(): void {
   const company = readCompanyArg();
@@ -19,7 +20,7 @@ function readCompanyArg(): string {
   const company = companyFlagIndex >= 0 ? args[companyFlagIndex + 1] : undefined;
 
   const report = buildRevenueIntelligenceReport();
-  return company || report.actionableLead?.companyName || report.topLead?.companyName || 'No unified top lead';
+  return company || selectedContactReadyLead()?.companyName || report.actionableLead?.companyName || report.topLead?.companyName || 'No unified top lead';
 }
 
 main();

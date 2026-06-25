@@ -1,0 +1,56 @@
+{
+  "planningSignals": [
+    "construyendo hotel",
+    "construyendo condominio",
+    "construyendo casa",
+    "arquitecto necesita PTAR",
+    "permiso MINSA aguas residuales"
+  ],
+  "painSignals": [
+    "tanque séptico se rebalsa",
+    "tanque septico se rebalsa",
+    "no tengo drenaje",
+    "terreno no drena",
+    "no tengo espacio para drenaje",
+    "fuera de la red de AyA"
+  ],
+  "urgencySignals": [
+    "urgente",
+    "lo antes posible",
+    "esta semana",
+    "necesito resolver",
+    "problema de aguas residuales"
+  ],
+  "recommendationSignals": [
+    "recomiendan PTAR",
+    "recomiendan planta de tratamiento",
+    "busco ingeniero aguas residuales",
+    "quien instala PTAR",
+    "necesito recomendación PTAR"
+  ],
+  "purchaseSignals": [
+    "necesito PTAR",
+    "necesito planta de tratamiento",
+    "planta de tratamiento aguas residuales",
+    "condominio aguas residuales",
+    "hotel aguas residuales"
+  ],
+  "commercialValueSignals": [
+    "hotel",
+    "condominio",
+    "desarrollador",
+    "arquitecto",
+    "ingeniero",
+    "Guanacaste",
+    "permiso MINSA"
+  ],
+  "exclusionSignals": [
+    "definición",
+    "wikipedia",
+    "diccionario",
+    "empresa de tratamiento",
+    "perfil de proveedor",
+    "directorio",
+    "artículo"
+  ]
+}

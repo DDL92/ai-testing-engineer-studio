@@ -2,6 +2,7 @@ import fs = require('fs');
 import path = require('path');
 import { chromium, type BrowserContext, type ConsoleMessage, type Request, type Response, type Video } from '@playwright/test';
 import { buildLeadRotationDecision } from '../leadRotation/rotationRules';
+import { getOperationalLeadContext } from '../revenueIntelligence/sourceOfTruth';
 import {
   DependencySignal,
   EvidenceProDashboard,
@@ -48,9 +49,9 @@ interface ConsoleObservation {
 }
 
 export async function collectEvidencePro(force = false): Promise<EvidenceProReport> {
-  const target = currentTarget();
+  const target = currentEvidenceProTarget();
   const cached = loadEvidenceProReport();
-  if (!force && cached && sameTarget(cached.target, target) && Date.now() - Date.parse(cached.generatedAt) < cacheMs && artifactsStillExist(cached)) {
+  if (!force && cached && evidenceTargetsMatch(cached.target, target) && Date.now() - Date.parse(cached.generatedAt) < cacheMs && artifactsStillExist(cached)) {
     writeEvidenceProOutputs(cached);
     return cached;
   }
@@ -525,14 +526,14 @@ function groupSignals(consoleTimeline: ConsoleObservation[], failures: RequestOb
   })).sort((left, right) => right.count - left.count || left.signature.localeCompare(right.signature));
 }
 
-function currentTarget(): EvidenceProTarget {
-  const actionable = buildLeadRotationDecision().actionableLead;
-  if (!actionable?.website) throw new Error('No actionable lead with a public website is available.');
+export function currentEvidenceProTarget(): EvidenceProTarget {
+  const context = getOperationalLeadContext();
+  if (!context.operationalWebsite) throw new Error('No operational lead with a public website is available.');
   return {
-    companyId: actionable.companyId,
-    companyName: actionable.companyName,
-    website: actionable.website,
-    source: 'Lead Rotation Actionable Lead',
+    companyId: context.operationalCompanyId,
+    companyName: context.operationalLead,
+    website: context.operationalWebsite,
+    source: context.contactReady ? 'Contact-Ready Operational Lead' : 'Lead Rotation Actionable Lead',
   };
 }
 
@@ -629,7 +630,7 @@ function artifactsStillExist(report: EvidenceProReport): boolean {
     .every((item) => fs.existsSync(path.join(process.cwd(), item)));
 }
 
-function sameTarget(left: EvidenceProTarget, right: EvidenceProTarget): boolean {
+export function evidenceTargetsMatch(left: EvidenceProTarget, right: EvidenceProTarget): boolean {
   return left.companyId === right.companyId && left.website === right.website;
 }
 

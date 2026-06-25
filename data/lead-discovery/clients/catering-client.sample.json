@@ -1,0 +1,15 @@
+{
+  "clientId": "catering_client_001",
+  "clientName": "Sample Event Catering Team",
+  "status": "active",
+  "vertical": "catering_leads",
+  "targetLocations": ["United States", "Austin TX", "Dallas TX", "Miami FL"],
+  "preferredLeadTypes": ["wedding catering", "corporate catering", "private events", "graduation parties"],
+  "excludedLeadTypes": [],
+  "minScore": 7.5,
+  "leadGoalPerDay": 10,
+  "deliveryCadence": "daily",
+  "notes": "Fictional sample client. Manual review required before delivery or contact.",
+  "createdAt": "2026-06-23T00:00:00.000Z",
+  "updatedAt": "2026-06-23T00:00:00.000Z"
+}

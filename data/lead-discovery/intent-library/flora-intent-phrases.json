@@ -1,0 +1,46 @@
+{
+  "pain": [
+    "my caterer cancelled",
+    "caterer backed out",
+    "food vendor cancelled",
+    "venue requires catering",
+    "need food vendor",
+    "looking for catering"
+  ],
+  "urgency": [
+    "ASAP",
+    "next week",
+    "this weekend",
+    "last minute",
+    "urgent"
+  ],
+  "purchase": [
+    "need catering",
+    "looking for caterer",
+    "hire a caterer",
+    "accepting catering quotes",
+    "requesting proposals"
+  ],
+  "recommendation": [
+    "anyone know a caterer",
+    "recommendations",
+    "who should I hire",
+    "referrals",
+    "suggestions"
+  ],
+  "planning": [
+    "planning wedding",
+    "planning fundraiser",
+    "planning gala",
+    "planning private dinner",
+    "planning corporate event"
+  ],
+  "commercial_value": [
+    "wedding",
+    "fundraiser",
+    "corporate event",
+    "private dinner",
+    "100 guests",
+    "bar service"
+  ]
+}

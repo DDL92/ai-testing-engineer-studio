@@ -91,6 +91,181 @@ Update `.env` with the client app URLs and test credentials.
 
 `.env` is local only and must not be committed. Use `.env.example` to document safe variable names for public sharing, onboarding, and client setup.
 
+## AI Lead Discovery Studio
+
+AI Lead Discovery Studio is the local-first commercial lead-discovery foundation for qualified, intent-based lead packs across travel, catering, wedding, real estate, website, and QA verticals. Current MVP commands use fictional sample data only and generate review artifacts for human approval.
+
+Run:
+
+```bash
+npm run leads:intake
+npm run leads:report
+npm run leads:pack
+npm run leads:clients
+npm run leads:sources
+npm run leads:targeted-plan
+npm run leads:source-queries
+npm run leads:behavior-queries
+npm run leads:dynamic-queries
+npm run leads:queries
+npm run leads:tavily-health
+npm run leads:test-provider
+npm run leads:search
+npm run leads:health
+npm run leads:enrich
+npm run leads:quality
+npm run leads:verification-review
+npm run leads:verify
+npm run leads:pilot
+npm run leads:outcomes
+npm run leads:export
+npm run leads:dashboard
+npm run leads:performance
+npm run leads:behavior-performance
+npm run leads:query-learning
+npm run leads:morning
+npm run leads:daily
+```
+
+Outputs:
+
+- `output/lead-discovery/normalized-leads.json`
+- `output/lead-discovery/intake-report.md`
+- `output/lead-discovery/lead-discovery-report.md`
+- `output/lead-discovery/qualified-leads.csv`
+- `output/lead-discovery/daily/`
+- `output/lead-discovery/clients/`
+- `output/lead-discovery/source-plan.md`
+- `output/lead-discovery/source-summary.json`
+- `output/lead-discovery/targeted-discovery/`
+- `output/lead-discovery/behavior-queries/`
+- `output/lead-discovery/dynamic-queries/`
+- `output/lead-discovery/query-learning/`
+- `output/lead-discovery/discovery-queries/`
+- `output/lead-discovery/search-candidates/`
+- `output/lead-discovery/diagnostics/`
+- `output/lead-discovery/enriched-leads/`
+- `output/lead-discovery/delivery-candidates/`
+- `output/lead-discovery/verification/`
+- `output/lead-discovery/pilots/flora-and-fauna-foods/`
+- `output/lead-discovery/outcomes/`
+- `output/lead-discovery/exports/flora-and-fauna-foods/`
+- `output/lead-discovery/dashboard/`
+- `output/lead-discovery/source-performance/`
+- `output/lead-discovery/search-quality/behavior-query-performance.md`
+
+Client configs live in `data/lead-discovery/clients/`. Each active fictional/sample client receives a separate local lead pack under `output/lead-discovery/clients/{clientId}/`.
+
+`npm run leads:queries` generates client-driven discovery query plans for active client configs, with Flora and Fauna Foods prioritized first. It prefers client-specific buyer-intent templates in `data/lead-discovery/query-templates/` before older generated query combinations. Discovery queries are planning outputs only: they are not executed and do not create lead records.
+
+Public Social Source Expansion: social and community query templates live in `data/lead-discovery/query-templates/*-social-buyer-intent-queries.json`, and source rules live in `data/lead-discovery/social-sources/public-social-sources.json`. Allowed sources are indexed public Reddit threads, indexed public Facebook posts/groups, indexed public Instagram and TikTok pages, public forums, public event request boards, public RFP boards, and public community recommendation threads. Private groups, login scraping, profile harvesting, contact extraction, aggressive crawling, auto-DMs, and automated outreach are disallowed. See `docs/lead-discovery/public-social-source-policy.md`.
+
+Social template priority: Flora and Fauna Foods social buyer-intent templates run first, LZT Costa Rica templates stay inactive unless an active LZT client config exists, and Costa Retreats runs after Flora and active LZT. Query plans preserve `sourceId`, `sourceCategory`, `queryTemplateType`, `queryTemplateId`, and negative query terms so downstream search, quality, and performance reports can distinguish standard versus social sources.
+
+Provider Router: Tavily is the primary lead-search provider for AI Lead Discovery Studio. Provider registry config lives in `data/lead-discovery/providers/providers.json`; Tavily is enabled by default and `bing_rss` is disabled by default. Bing RSS is optional fallback only and requires explicit fallback enablement in both provider config and `data/lead-discovery/providers/tavily-guardrails.json`.
+
+Tavily Health Check: `npm run leads:tavily-health` validates that `TAVILY_API_KEY` is configured locally, the provider registry loads, Tavily is enabled, the router selects Tavily, and fallback status is known. It writes `output/lead-discovery/diagnostics/tavily-health.md` and `.json` without logging secrets or exposing API keys.
+
+Controlled Provider Tests: `npm run leads:test-provider` runs at most three Flora-only Tavily test queries from `data/lead-discovery/providers/tavily-guardrails.json` and writes `output/lead-discovery/diagnostics/provider-test.md` and `.json`. This is a manual diagnostic command, not part of the normal morning spend path.
+
+`npm run leads:search` reads generated discovery queries, applies Tavily cost guardrails, routes each allowed query through the provider router, and runs bounded Tavily public search for active clients. It stores search candidates only: public result URL, title, snippet, query used, template metadata, and source metadata. Blocked queries are written to `output/lead-discovery/search-candidates/blocked-queries.md` and `blocked-queries.json`.
+
+Search Diagnostics Engine: `npm run leads:search` writes structured execution diagnostics for every allowed and blocked query to `output/lead-discovery/diagnostics/search-execution-diagnostics.json`. Diagnostics capture provider used, provider reason, fallback activation, query start/finish, duration, guardrail status, whether the query was sent, response size, result count, empty responses, timeouts, rate limits, parser failures, provider errors, and deterministic failure categories. It never logs API keys, secrets, contact details, or private data.
+
+Provider Health Reports: `npm run leads:health` reads the latest search diagnostics and writes `provider-health.md`, `provider-health.csv`, `query-failures.md`, `query-failures.csv`, `search-execution-summary.md`, and `recommendations.md` under `output/lead-discovery/diagnostics/`. These reports answer whether Tavily ran, which provider actually ran, which queries were sent or blocked, whether responses were empty, whether parser/rate-limit/timeout/network failures occurred, and the next human-reviewed action needed to restore lead generation.
+
+Failure Classification System: search failures are classified deterministically as `query_blocked`, `provider_empty`, `timeout`, `rate_limit`, `network_error`, `parser_error`, or `unknown`. Diagnostics are observability only: no scraping, login, browser automation, contact extraction, outreach, email, DMs, calls, forms, query deletion, or provider changes are performed automatically.
+
+Tavily Search Quality Mode: `npm run leads:search-quality` classifies stored search candidates before enrichment and writes `output/lead-discovery/search-quality/search-quality-summary.md`, `search-quality.csv`, `query-quality.md`, `query-quality.csv`, and `search-candidate-preview.md`. A result matching query keywords is not automatically a lead. Only results that demonstrate buyer intent or request behavior, such as public discussions, recommendation requests, event requests, planning conversations, RFPs, or public requests for help/services, are promoted to enrichment.
+
+Lead-Like Candidate Classification: search candidates receive `leadLikeClassification`, `leadLikeScore`, `leadLikeConfidence`, `leadLikeSignals`, and `leadLikeReasons`. Classifications include `lead_like`, `possibly_lead_like`, `generic_content`, `directory`, `article`, `definition`, `landing_page`, and `unknown`. Only `lead_like` and `possibly_lead_like` candidates continue to enrichment; all other search results remain stored and auditable but excluded from the lead pipeline.
+
+Seed Source Registry: curated public source registries live in `data/lead-discovery/seed-sources/` for Flora, LZT, and Costa. Each source records client, vertical, source category, URL pattern, region, priority, login/automation safety, expected lead quality, and notes. LZT seed sources exist but remain disabled unless an active LZT client config is added.
+
+Targeted Discovery Engine: `npm run leads:targeted-plan` generates `output/lead-discovery/targeted-discovery/targeted-plan.md`, `source-registry-summary.md`, and `client-source-summary.csv`. `npm run leads:source-queries` builds source-specific public search queries from active client configs, seed sources, buyer-intent templates, and negative terms. The search runner prioritizes source-specific queries first, then behavior queries, social templates, and standard templates. Broad web search is now a fallback pattern; the system prioritizes public indexed communities and request sources that are more likely to contain buyer intent.
+
+Source Learning Foundation: source-specific search metadata flows through search, search quality, enrichment, delivery, dashboard, and source performance reports using `sourceId`, `sourceCategory`, `sourceQueryPriority`, `expectedLeadQuality`, and template type. Recommendations remain deterministic: increase, keep, reduce, disable, or needs_more_data. No ML, scraping, browser automation, login, contact extraction, or outreach is used.
+
+Behavioral Buyer Intent Engine: buyer behavior signal libraries live in `data/lead-discovery/buyer-intent-signals/` for Flora, Costa, and LZT. `npm run leads:behavior-queries` turns those local signal libraries into Flora-first behavior query plans under `output/lead-discovery/behavior-queries/`, including per-client markdown and JSON artifacts. The search flow preserves `behaviorCategory`, `behaviorSignals`, `behaviorScore`, `behaviorConfidence`, and `behaviorReasons` through search candidates, enrichment, delivery, dashboard, and learning reports. LZT behavior signals remain inactive unless an active LZT client config exists.
+
+Behavior Query Learning: `npm run leads:behavior-performance` reviews behavior query source results, search candidates, delivery candidates, verification queues, and non-sample outcomes. It writes `output/lead-discovery/search-quality/behavior-query-performance.md` and `.csv` with deterministic promote, increase, keep, reduce, disable, or needs_more_data recommendations. It does not train ML, delete queries, scrape pages, extract contacts, or perform outreach.
+
+Intent Phrase Library: real buyer phrase libraries live in `data/lead-discovery/intent-library/` for Flora, Costa, and LZT. Categories are `pain`, `urgency`, `purchase`, `recommendation`, `planning`, and `commercial_value`. These libraries are local JSON only and are used to detect buying behavior in query, title, and snippet metadata.
+
+Buyer Signal Extraction Engine: search candidates receive `buyerSignals`, `buyerSignalCount`, `buyerSignalCategories`, and `buyerSignalStrength` from deterministic phrase matching. Signal strength is weak, medium, or strong based on action-oriented phrases and commercial-value context. The fields flow through enrichment, delivery, dashboards, and query learning without page visits, scraping, AI calls, contact extraction, or outreach.
+
+Dynamic Query Engine: `npm run leads:dynamic-queries` combines pain, urgency, commercial value, and recommendation phrases into Flora-first dynamic query plans under `output/lead-discovery/dynamic-queries/`. Dynamic queries are prioritized after source-specific queries and before older behavior/social templates so the daily run spends search budget on real buyer-signal combinations.
+
+Search Learning Engine: `npm run leads:query-learning` writes `output/lead-discovery/query-learning/query-learning.md` and `.csv`. It scores each query using lead-like count, possible count, delivery count, verification count, estimated value, and performance score, then recommends `promote`, `keep`, `reduce`, or `disable`. Dynamic Query Prioritization promotes queries that produce lead-like or verification outcomes, reduces article/directory-heavy queries, and disables repeated zero-signal failures after human review.
+
+`npm run leads:enrich` reads local search candidates and estimates lead signals with deterministic rules only. It estimates lead type, recency, location fit, budget signals, contactability, overall score, and lead tier without page visits, scraping, AI calls, or contact extraction.
+
+`npm run leads:quality` reads local enriched candidates and generates delivery candidates with deterministic quality rules. It performs buyer intent filtering, competitor/vendor exclusion, directory exclusion, deduplication, recency filtering, source quality scoring, and delivery queue assignment for Qualified Cold, Warm Intent, and Interest Verification review queues.
+
+Buyer Intent Filter purpose: prevent delivering competitors and directories to clients. For Flora and Fauna Foods, the goal is to deliver buyers who need catering, food service, bar service, or event rentals, not caterers, catering companies, vendor profiles, or vendor directories. Costa Retreats keeps its normal flow while excluding travel agencies, tour operators, and resort directories. All classification is deterministic and local.
+
+Client/query attribution is preserved through queries, search candidates, enriched leads, delivery candidates, verification reports, and performance reports using `clientId`, `clientName`, `vertical`, `sourceName`, `query`, and `queryTemplateId`. LZT query templates remain inactive unless an active LZT client config is added.
+
+Contact Method Recommendation Engine: the lead discovery workflow infers the safest likely communication method from existing metadata only, such as source URL, source name, source category, title, snippet, and query. It does not scrape pages, extract emails or phone numbers, send messages, submit forms, call APIs, or visit sources. Contact recommendations are labels for Daniel review, such as `platform_message`, `source_reply`, `website_form`, `manual_review_required`, or `not_available`.
+
+Verification Readiness Engine: enrichment and delivery candidates include buyer evidence, recency evidence, contact method evidence, recommended contact method, verification readiness, and readiness reasons. Its purpose is to explain why a candidate is or is not ready for manual verification. A ready candidate needs at least two buyer evidence items, at least one recency evidence item, and a safe inferred contact method that is not `not_available` or `manual_review_required`.
+
+Result Relevance Gate: `npm run leads:quality` evaluates each result before it can become an active delivery candidate. The result title, snippet, URL, source name, and source category must indicate buyer intent from the result itself. Query text can support scoring and attribution, but it is never primary buyer evidence. Results are excluded when `domainBlocked === true`, `resultRelevance !== "relevant"`, or `buyerEvidenceCount === 0`. Relevance outcomes are written to `output/lead-discovery/delivery-candidates/relevance-summary.md`.
+
+Domain Blocklist System: global and client-specific domain blocklists live under `data/lead-discovery/blocklists/`. The global list blocks dictionaries, encyclopedias, thesauruses, grammar/reference pages, entertainment pages, and other generic non-buyer sources. Flora also blocks wedding/vendor directories, marketplaces, and charity-rating directories such as The Knot, Zola, WeddingWire, Eventective, Charity Navigator, GuideStar, and GreatNonprofits. Blocklist matches fail closed and remain auditable in delivery, verification, and dashboard artifacts.
+
+Buyer Evidence Hardening: buyer evidence is generated from result metadata only, primarily title and snippet. A query such as `planning corporate event` cannot create buyer evidence by itself. Definition pages, Wikipedia-style references, dictionary pages, grammar pages, entertainment pages, vendor marketplaces, directories, career/job pages, and generic vendor pages receive zero buyer evidence even when the query contains buyer-intent language.
+
+Evidence-Based Verification Promotion: `npm run leads:verification-review` reads local delivery candidates and promotes candidates to `verification_review` or `verification_ready` when buyer evidence, intent evidence, and recency evidence cross the review threshold. It writes `output/lead-discovery/verification/review-queue.md`, `review-queue.csv`, `review-queue.json`, `verification-learning.md`, and `verification-learning.csv`. The statuses are review states only; Daniel approval is still required before any delivery or contact. The command does not scrape, visit pages, extract contacts, send messages, call, DM, or submit forms.
+
+`npm run leads:verify` reads delivery candidates and prepares the Flora interest verification queue, soft intro message CSV, sales context, manual approval checklist, and verification failure reports. Flora verification candidates must be real buyers, not excluded, strong intent or strong buyer-intent signals, NY/NJ/PA/NYC/New York/New Jersey/Pennsylvania/Tri-State location fit, medium/high source quality, and score `>= 8.2`. Vendor, directory, caterer profile, catering company, and marketplace signals remain excluded. It does not send messages or contact anyone.
+
+`npm run leads:pilot` generates a client-facing Flora pilot package with a pilot summary, candidate preview, offer proposal, verification process, and executive report. It packages existing local outputs only and does not contact anyone.
+
+`npm run leads:outcomes` summarizes local outcome records after client feedback. `npm run leads:export` prepares Flora delivery CSVs and review sheets. `npm run leads:dashboard` creates a client dashboard summary with behavior query count, top buyer behaviors, top pain and urgency signals, buyer signals discovered, signal strength distribution, top/worst signal combinations, promoted/disabled dynamic queries, promoted/disabled behavior queries, verification review count, verification confidence distribution, promotion reasons, conversion funnel, estimated commercial value, provider selected, Tavily configured, fallback enabled, provider health, query success/failure rate, provider failures, provider result count, empty responses, rate limits, blocked queries, and average search duration.
+
+`npm run leads:performance` tracks source and query performance across search candidates, enriched leads, delivery candidates, verification outputs, and real outcomes when available. Sample outcomes are marked with `isSample: true` and do not influence performance scores or recommendations. Recommendations are deduplicated by `clientId + sourceName + query`; conflicting recommendation signals choose the safest action in this order: disable, reduce, keep, increase, needs_more_data. It writes `source-performance-summary.md`, `source-performance.csv`, `query-performance.md`, `query-performance.csv`, and `recommendations.md` under `output/lead-discovery/source-performance/`.
+
+`npm run leads:morning` is the main 7:30am operating command. It runs targeted planning, source queries, behavior queries, dynamic queries, discovery queries, Tavily health validation, safe public search, search diagnostics, search quality, enrichment, quality filtering, evidence-based verification review, verification prep, pilot packaging, export, dashboard generation, source/query performance tracking, behavior query learning, and dynamic query learning. Daniel must review outputs before delivery or contact. Outcomes should be recorded after client feedback.
+
+Tavily Cost Guardrails:
+
+- Flora and Fauna Foods is first priority.
+- LZT Costa Rica is second priority when an active LZT client config is added.
+- Costa Retreats is third priority.
+- Future paying clients are allowed only when explicitly added to guardrails.
+- No Tavily/search spend for QA audit discovery, website audit discovery, generic discovery, or non-commercial research.
+- Buyer intent is required before a query can run.
+- Current guardrails limit runs to 50 queries total, 25 queries per client, and 10 results per query.
+- Provider guardrails limit controlled provider tests to three Flora queries and keep Bing RSS fallback disabled by default.
+- Lead discovery spending should prioritize Flora, active paying clients, and high-intent buyer discovery.
+- Blocked query reporting shows allowed/blocked counts, reasons, client distribution, source distribution, and template query distribution.
+- Source/query performance tracking recommends whether to increase, keep, reduce, disable, or gather more data for each source/query.
+- Behavior query performance tracking recommends whether to promote, increase, keep, reduce, disable, or gather more data for each behavior query.
+
+Current AI Lead Discovery Studio stages:
+
+- intake
+- scoring
+- routing
+- query generation
+- dynamic buyer-signal query generation
+- safe public search
+- search diagnostics and provider health reporting
+- lead signal enrichment
+- buyer intent filtering
+- lead quality and delivery candidate generation
+- interest verification preparation
+- client-facing pilot package generation
+- delivery export and dashboard reporting
+- source/query performance tracking
+- behavior query learning
+- dynamic query learning
+
+AI Lead Discovery Studio currently supports multi-client routing, daily lead packs, source planning, keyword libraries, behavior signal libraries, discovery query planning, safe public search candidates, deterministic enrichment, delivery candidate generation, interest verification preparation, client-facing pilot packages, exports, outcome reporting, dashboards, source learning, behavior query learning, and a manual review workflow.
+
+Safe public search, enrichment, quality scoring, verification preparation, and pilot packaging use public search result metadata and local deterministic rules only. They do not log in, bypass access controls, scrape pages, crawl websites, extract contact information, use paid APIs, automate browser actions, use AI calls, send outbound email, send DMs, make calls, submit forms, or automate outreach. Human review is required before delivery or contact.
+
 ## Security Boundary
 
 This repo separates public portfolio code from private operator runtime data. Keep real contacts, outreach history, client records, finance data, outcomes, generated private reports, and dashboard runtime data out of the public repository.

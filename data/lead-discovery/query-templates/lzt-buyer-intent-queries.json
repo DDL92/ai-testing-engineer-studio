@@ -1,0 +1,112 @@
+[
+  {
+    "templateId": "lzt_buyer_intent_001",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "wastewater_leads",
+    "query": "\"necesito planta de tratamiento\"",
+    "intentType": "explicit_wastewater_solution_request",
+    "priority": 1,
+    "expectedSourceTypes": ["construction discussions", "architecture discussions", "permit discussions"],
+    "maxLeadAgeDays": 45,
+    "notes": "Direct Spanish-language request for a treatment plant."
+  },
+  {
+    "templateId": "lzt_buyer_intent_002",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "wastewater_leads",
+    "query": "\"necesito PTAR\"",
+    "intentType": "explicit_ptar_request",
+    "priority": 1,
+    "expectedSourceTypes": ["construction discussions", "permit discussions", "real estate development discussions"],
+    "maxLeadAgeDays": 45,
+    "notes": "Direct PTAR need signal."
+  },
+  {
+    "templateId": "lzt_buyer_intent_003",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "wastewater_leads",
+    "query": "\"tanque septico se rebalsa\"",
+    "intentType": "urgent_system_failure",
+    "priority": 1,
+    "expectedSourceTypes": ["community discussions", "construction discussions"],
+    "maxLeadAgeDays": 30,
+    "notes": "Urgent overflow issue that may require wastewater treatment support."
+  },
+  {
+    "templateId": "lzt_buyer_intent_004",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "wastewater_leads",
+    "query": "\"no tengo espacio para drenaje\"",
+    "intentType": "site_constraint_need",
+    "priority": 1,
+    "expectedSourceTypes": ["architecture discussions", "construction discussions", "community discussions"],
+    "maxLeadAgeDays": 45,
+    "notes": "Space constraint signal relevant to wastewater system design."
+  },
+  {
+    "templateId": "lzt_buyer_intent_005",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "wastewater_leads",
+    "query": "\"estoy construyendo hotel\"",
+    "intentType": "development_project_signal",
+    "priority": 2,
+    "expectedSourceTypes": ["real estate development discussions", "construction discussions", "permit discussions"],
+    "maxLeadAgeDays": 60,
+    "notes": "Hotel construction may require wastewater planning and permitting."
+  },
+  {
+    "templateId": "lzt_buyer_intent_006",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "wastewater_leads",
+    "query": "\"estoy construyendo condominio\"",
+    "intentType": "development_project_signal",
+    "priority": 2,
+    "expectedSourceTypes": ["real estate development discussions", "construction discussions", "permit discussions"],
+    "maxLeadAgeDays": 60,
+    "notes": "Condominium construction may require wastewater system design."
+  },
+  {
+    "templateId": "lzt_buyer_intent_007",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "wastewater_leads",
+    "query": "\"necesito permiso MINSA aguas residuales\"",
+    "intentType": "permit_need",
+    "priority": 1,
+    "expectedSourceTypes": ["permit discussions", "architecture discussions", "construction discussions"],
+    "maxLeadAgeDays": 45,
+    "notes": "MINSA wastewater permit signal."
+  },
+  {
+    "templateId": "lzt_buyer_intent_008",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "wastewater_leads",
+    "query": "\"arquitecto necesita solucion de aguas residuales\"",
+    "intentType": "professional_referral_need",
+    "priority": 2,
+    "expectedSourceTypes": ["architecture discussions", "construction discussions", "permit discussions"],
+    "maxLeadAgeDays": 45,
+    "notes": "Architect-driven wastewater solution request."
+  },
+  {
+    "templateId": "lzt_buyer_intent_009",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "wastewater_leads",
+    "query": "\"fuera de red AyA\"",
+    "intentType": "off_grid_utility_need",
+    "priority": 2,
+    "expectedSourceTypes": ["real estate development discussions", "community discussions", "construction discussions"],
+    "maxLeadAgeDays": 60,
+    "notes": "Off-grid AyA signal may indicate need for independent wastewater solution."
+  },
+  {
+    "templateId": "lzt_buyer_intent_010",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "wastewater_leads",
+    "query": "\"reutilizar agua tratada\"",
+    "intentType": "treated_water_reuse_need",
+    "priority": 2,
+    "expectedSourceTypes": ["architecture discussions", "construction discussions", "real estate development discussions"],
+    "maxLeadAgeDays": 60,
+    "notes": "Reuse intent may indicate a higher-fit treatment system opportunity."
+  }
+]

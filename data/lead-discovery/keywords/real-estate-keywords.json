@@ -1,0 +1,8 @@
+{
+  "vertical": "real_estate_leads",
+  "searchPhrases": ["moving before school year", "need realtor recommendation", "looking for rental near downtown"],
+  "servicePhrases": ["relocation help", "rental search", "buyer agent", "neighborhood guidance"],
+  "urgencyPhrases": ["moving next month", "before school starts", "lease ending soon", "relocating this summer"],
+  "budgetPhrases": ["rent budget", "pre-approved", "three bedroom", "monthly budget"],
+  "locationPhrases": ["Austin", "Charlotte", "Miami", "Denver", "downtown"]
+}

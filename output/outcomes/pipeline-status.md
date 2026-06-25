@@ -1,8 +1,15 @@
 # Pipeline Status
 
-Generated: 2026-06-14T05:31:07.602Z
+Generated: 2026-06-23T15:39:25.913Z
 
-No outcomes recorded yet.
+- Outcome records: 1
+- Messages sent: 1
+- Replies: 0
+- Meetings: 0
+- Proposals: 0
+- Wins: 0
+- Losses: 0
+- Next manual message: Wait for reply; follow up on 2026-06-25 if no response
 
 ## Safety Rules
 - Manual-only outcome tracking.

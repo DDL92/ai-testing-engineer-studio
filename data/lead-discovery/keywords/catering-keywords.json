@@ -1,0 +1,8 @@
+{
+  "vertical": "catering_leads",
+  "searchPhrases": ["need catering for 100 people", "corporate lunch recommendations", "wedding catering suggestions"],
+  "servicePhrases": ["corporate catering", "wedding catering", "private chef", "buffet catering", "boxed lunches"],
+  "urgencyPhrases": ["event next month", "in three weeks", "this weekend", "date confirmed"],
+  "budgetPhrases": ["per person budget", "premium menu", "plated dinner", "guest count"],
+  "locationPhrases": ["Austin TX", "Dallas TX", "Miami FL", "United States"]
+}

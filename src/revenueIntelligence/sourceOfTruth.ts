@@ -1,4 +1,6 @@
 import { buildRevenueIntelligenceReport } from './revenueIntelligenceRules';
+import { selectedContactReadyLead } from '../contactAwareRotation/rotationRules';
+import { buildLeadRotationDecision } from '../leadRotation/rotationRules';
 
 export interface RevenueSourceOfTruth {
   topLead: string;
@@ -14,10 +16,39 @@ export interface RevenueSourceOfTruth {
   warnings: string[];
 }
 
+export interface OperationalLeadContext {
+  commercialTopRankedLead: string;
+  previousActionableLead: string;
+  operationalLead: string;
+  operationalCompanyId: string;
+  operationalWebsite: string;
+  operationalRecommendedOffer: string;
+  contactReady: boolean;
+}
+
+export function getOperationalLeadContext(): OperationalLeadContext {
+  const report = buildRevenueIntelligenceReport();
+  const rotation = buildLeadRotationDecision();
+  const contactReady = selectedContactReadyLead();
+  const operational = contactReady
+    ? rotation.candidates.find((candidate) => candidate.companyId === contactReady.companyId) ?? null
+    : rotation.actionableLead ?? report.actionableLead;
+  return {
+    commercialTopRankedLead: report.topLead?.companyName ?? 'No ranked lead',
+    previousActionableLead: report.actionableLead?.companyName ?? 'No actionable lead',
+    operationalLead: operational?.companyName ?? report.topLead?.companyName ?? 'No unified top lead',
+    operationalCompanyId: operational?.companyId ?? report.topLead?.companyId ?? '',
+    operationalWebsite: operational?.website ?? report.topLead?.website ?? '',
+    operationalRecommendedOffer: operational?.recommendedOffer ?? report.topLead?.recommendedOffer ?? 'No offer selected',
+    contactReady: Boolean(contactReady && operational),
+  };
+}
+
 export function getRevenueSourceOfTruth(): RevenueSourceOfTruth {
   const report = buildRevenueIntelligenceReport();
   const topRankedLead = report.topLead;
-  const actionableLead = report.actionableLead;
+  const context = getOperationalLeadContext();
+  const actionableLead = buildLeadRotationDecision().candidates.find((candidate) => candidate.companyId === context.operationalCompanyId) ?? report.actionableLead;
 
   return {
     topLead: actionableLead?.companyName ?? 'No actionable lead',
@@ -34,6 +65,7 @@ export function getRevenueSourceOfTruth(): RevenueSourceOfTruth {
     lastUpdated: report.generatedAt,
     warnings: [
       ...report.safetyRules,
+      ...(context.contactReady ? [`Contact-aware rotation selected ${context.operationalLead} with a verified contact.`] : []),
       ...(!actionableLead ? ['Lead Rotation has no current actionable lead.'] : []),
     ],
   };

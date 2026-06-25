@@ -24,6 +24,8 @@ export function buildWebsiteRanking(leads: WebsiteLeadRecord[] = readWebsiteLead
     QUALIFIED: 1,
     REVIEW: 2,
     LOW_PRIORITY: 3,
+    INSPECTION_INCONCLUSIVE: 4,
+    NOT_QUALIFIED: 5,
   };
 
   const usingStoredLeads = arguments.length === 0;
@@ -33,6 +35,7 @@ export function buildWebsiteRanking(leads: WebsiteLeadRecord[] = readWebsiteLead
   return cleaned
     .filter((record) => !isFixtureWebsiteLead(record))
     .filter((record) => record.analysis.nextAction !== 'archive low-priority lead')
+    .filter((record) => record.analysis.decision !== 'NOT_QUALIFIED')
     .sort((left, right) => (
       order[left.analysis.decision] - order[right.analysis.decision]
       || right.analysis.score - left.analysis.score

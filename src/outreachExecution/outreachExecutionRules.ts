@@ -3,6 +3,7 @@ import path = require('path');
 import { buildCommercialModeSummary } from '../commercialMode/commercialModeRules';
 import { ContactReviewRecord } from '../contactReview/types';
 import { Lead } from '../leads/types';
+import { buildPlannedFollowUps, loadOutreachRecords } from '../outreachTracking/outreachTrackingRules';
 import {
   MessageDraftSet,
   OutreachExecutionArtifacts,
@@ -50,6 +51,7 @@ export function loadOutreachExecutionInput(): OutreachExecutionInput {
       readContextSource('Revenue command center', path.join('output', 'revenue-command-center', 'revenue-command-center.md')),
       readContextSource('Mac daily summary', path.join('output', 'mac-daily', 'mac-daily-summary.md')),
     ],
+    actualFollowUps: buildPlannedFollowUps(loadOutreachRecords()),
   };
 }
 
@@ -68,6 +70,7 @@ export function buildOutreachExecutionReport(input: OutreachExecutionInput): Out
     excludedLeadCount: commercialSummary.demoLeads.length,
     topFive,
     contextSources: input.contextSources,
+    actualFollowUps: input.actualFollowUps,
   };
 }
 
@@ -200,6 +203,14 @@ export function renderFollowUpPlan(report: OutreachExecutionReport): string {
     '',
     `Generated: ${report.generatedAt}`,
     '',
+    '## Actual Due or Upcoming Follow-Ups',
+    '',
+    report.actualFollowUps.length === 0
+      ? '- No actual due or upcoming follow-ups are recorded.'
+      : report.actualFollowUps.map(renderActualFollowUp).join('\n\n'),
+    '',
+    '## Prepared Lead Follow-Up Guidance',
+    '',
     report.topFive.length === 0 ? 'No Top 5 outreach leads available.' : report.topFive.map(renderFollowUpForLead).join('\n\n'),
     '',
     '## Timing Rules',
@@ -213,6 +224,22 @@ export function renderFollowUpPlan(report: OutreachExecutionReport): string {
     '## Manual Approval Reminder',
     renderList(manualApprovalReminder),
     '',
+  ].join('\n');
+}
+
+function renderActualFollowUp(item: OutreachExecutionReport['actualFollowUps'][number]): string {
+  const record = item.record;
+  return [
+    `### ${record.companyName} - ${record.contactName}`,
+    '',
+    `- Company: ${record.companyName}`,
+    `- Contact: ${record.contactName}`,
+    `- Channel: ${record.channel}`,
+    `- Sent: ${record.sentAt}`,
+    `- Response: ${record.replyReceived ? 'Replied' : 'Pending'}`,
+    `- Follow-up due: ${record.nextFollowUpAt}`,
+    `- Source: ${record.source ?? 'Legacy Outreach'}`,
+    `- Manual action: ${item.recommendedAction}`,
   ].join('\n');
 }
 

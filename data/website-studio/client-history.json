@@ -1,0 +1,11 @@
+[
+  {
+    "clientId": "example_client_001",
+    "leadId": "example_surf_camp_001",
+    "clientName": "Pacific Wave Surf Camp",
+    "selectedOffer": "Website Presence Starter",
+    "acceptanceStatus": "accepted",
+    "createdAt": "2026-06-19T22:30:10.921Z",
+    "outputDirectory": "output/website-studio/clients/example_client_001"
+  }
+]

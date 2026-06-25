@@ -2,19 +2,20 @@
 
 ## Pipeline Counts
 
-- Companies contacted: 3
-- Contacts in local outreach tracker: 10
+- Companies contacted: 4
+- Contacts in local outreach tracker: 11
 - Open invitations: 6
-- Manual messages sent: 2
+- Manual messages sent: 3
 - Connections recorded: 2
 - Replies recorded: 0
-- Follow-ups due: 0
+- Follow-ups due: 2
 
 ## Company Coverage
 
-- PushPress: 5 contacts, 1 messages sent, 2 connected, 0 follow-ups due, coverage score 11.
+- SimplyBook.me: 1 contacts, 1 messages sent, 0 connected, 0 follow-ups due, coverage score 3.
+- PushPress: 5 contacts, 1 messages sent, 2 connected, 1 follow-ups due, coverage score 11.
 - Glofox / ABC Fitness: 2 contacts, 0 messages sent, 0 connected, 0 follow-ups due, coverage score 2.
-- TeamUp: 3 contacts, 1 messages sent, 0 connected, 0 follow-ups due, coverage score 5.
+- TeamUp: 3 contacts, 1 messages sent, 0 connected, 1 follow-ups due, coverage score 5.
 
 ## Recommended Operating Note
 

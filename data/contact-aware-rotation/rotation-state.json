@@ -1,0 +1,157 @@
+{
+  "generatedAt": "2026-06-23T15:37:45.037Z",
+  "status": "NO_CONTACT_READY_LEAD",
+  "readyLeads": [],
+  "evaluatedLeads": [
+    {
+      "companyId": "setmore",
+      "companyName": "Setmore",
+      "rank": 2,
+      "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
+      "evidenceStatus": "READY",
+      "contactStatus": "CONTACT_BLOCKED",
+      "reason": "No verified QA, engineering, product-engineering, or technical decision-maker met thresholds.",
+      "contactPackPath": "output/contacts/setmore-contact-pack.md"
+    },
+    {
+      "companyId": "supersaas",
+      "companyName": "SuperSaaS",
+      "rank": 3,
+      "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
+      "evidenceStatus": "PARTIAL",
+      "contactStatus": "NO_CANDIDATES_FOUND",
+      "reason": "Public search completed but found no supported named contact.",
+      "contactPackPath": "output/contacts/supersaas-contact-pack.md"
+    },
+    {
+      "companyId": "simplybook-me",
+      "companyName": "SimplyBook.me",
+      "rank": 4,
+      "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
+      "evidenceStatus": "READY",
+      "contactStatus": "CONTACT_BLOCKED",
+      "reason": "No verified QA, engineering, product-engineering, or technical decision-maker met thresholds.",
+      "contactPackPath": "output/contacts/simplybook-me-contact-pack.md"
+    },
+    {
+      "companyId": "zoho-creator",
+      "companyName": "Zoho Creator",
+      "rank": 5,
+      "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
+      "evidenceStatus": "PARTIAL",
+      "contactStatus": "LOW_COMMERCIAL_FIT",
+      "reason": "Low commercial fit for current small-business QA Audit outreach; skip unless a strong explicit trigger appears.",
+      "contactPackPath": "output/contacts/zoho-creator-contact-pack.md"
+    },
+    {
+      "companyId": "join-it",
+      "companyName": "Join It",
+      "rank": 6,
+      "recommendedOffer": "Playwright Starter Pack ($900-$1500)",
+      "evidenceStatus": "READY",
+      "contactStatus": "NO_CANDIDATES_FOUND",
+      "reason": "Public search completed but found no supported named contact.",
+      "contactPackPath": "output/contacts/join-it-contact-pack.md"
+    },
+    {
+      "companyId": "yourmembership",
+      "companyName": "YourMembership",
+      "rank": 8,
+      "recommendedOffer": "QA Audit ($199-$500)",
+      "evidenceStatus": "READY",
+      "contactStatus": "NO_CANDIDATES_FOUND",
+      "reason": "Public search completed but found no supported named contact.",
+      "contactPackPath": "output/contacts/yourmembership-contact-pack.md"
+    },
+    {
+      "companyId": "axis-martial-arts",
+      "companyName": "AXIS Martial Arts",
+      "rank": 9,
+      "recommendedOffer": "QA Audit ($199-$500)",
+      "evidenceStatus": "PARTIAL",
+      "contactStatus": "NO_CANDIDATES_FOUND",
+      "reason": "Public search completed but found no supported named contact.",
+      "contactPackPath": "output/contacts/axis-martial-arts-contact-pack.md"
+    }
+  ],
+  "skippedLeads": [
+    {
+      "companyId": "setmore",
+      "companyName": "Setmore",
+      "rank": 2,
+      "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
+      "evidenceStatus": "READY",
+      "contactStatus": "CONTACT_BLOCKED",
+      "reason": "No verified QA, engineering, product-engineering, or technical decision-maker met thresholds.",
+      "contactPackPath": "output/contacts/setmore-contact-pack.md"
+    },
+    {
+      "companyId": "supersaas",
+      "companyName": "SuperSaaS",
+      "rank": 3,
+      "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
+      "evidenceStatus": "PARTIAL",
+      "contactStatus": "NO_CANDIDATES_FOUND",
+      "reason": "Public search completed but found no supported named contact.",
+      "contactPackPath": "output/contacts/supersaas-contact-pack.md"
+    },
+    {
+      "companyId": "simplybook-me",
+      "companyName": "SimplyBook.me",
+      "rank": 4,
+      "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
+      "evidenceStatus": "READY",
+      "contactStatus": "CONTACT_BLOCKED",
+      "reason": "No verified QA, engineering, product-engineering, or technical decision-maker met thresholds.",
+      "contactPackPath": "output/contacts/simplybook-me-contact-pack.md"
+    },
+    {
+      "companyId": "zoho-creator",
+      "companyName": "Zoho Creator",
+      "rank": 5,
+      "recommendedOffer": "QA Automation Retainer ($1500-$3000/month)",
+      "evidenceStatus": "PARTIAL",
+      "contactStatus": "LOW_COMMERCIAL_FIT",
+      "reason": "Low commercial fit for current small-business QA Audit outreach; skip unless a strong explicit trigger appears.",
+      "contactPackPath": "output/contacts/zoho-creator-contact-pack.md"
+    },
+    {
+      "companyId": "join-it",
+      "companyName": "Join It",
+      "rank": 6,
+      "recommendedOffer": "Playwright Starter Pack ($900-$1500)",
+      "evidenceStatus": "READY",
+      "contactStatus": "NO_CANDIDATES_FOUND",
+      "reason": "Public search completed but found no supported named contact.",
+      "contactPackPath": "output/contacts/join-it-contact-pack.md"
+    },
+    {
+      "companyId": "yourmembership",
+      "companyName": "YourMembership",
+      "rank": 8,
+      "recommendedOffer": "QA Audit ($199-$500)",
+      "evidenceStatus": "READY",
+      "contactStatus": "NO_CANDIDATES_FOUND",
+      "reason": "Public search completed but found no supported named contact.",
+      "contactPackPath": "output/contacts/yourmembership-contact-pack.md"
+    },
+    {
+      "companyId": "axis-martial-arts",
+      "companyName": "AXIS Martial Arts",
+      "rank": 9,
+      "recommendedOffer": "QA Audit ($199-$500)",
+      "evidenceStatus": "PARTIAL",
+      "contactStatus": "NO_CANDIDATES_FOUND",
+      "reason": "Public search completed but found no supported named contact.",
+      "contactPackPath": "output/contacts/axis-martial-arts-contact-pack.md"
+    }
+  ],
+  "nextManualAction": "Manually review blocked contacts or rerun later after public contact evidence changes.",
+  "safetyRules": [
+    "Public professional data only.",
+    "No email address was guessed.",
+    "No authenticated LinkedIn browsing was performed.",
+    "No messages were sent.",
+    "Human approval is required before external action."
+  ]
+}

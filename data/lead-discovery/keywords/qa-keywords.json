@@ -1,0 +1,8 @@
+{
+  "vertical": "qa_leads",
+  "searchPhrases": ["startups hiring QA", "product launch QA help", "rapid growth company QA"],
+  "servicePhrases": ["Playwright automation", "smoke tests", "test automation", "QA audit"],
+  "urgencyPhrases": ["before launch", "before onboarding", "release next month", "contract help"],
+  "budgetPhrases": ["contract", "hiring", "paid role", "business customer"],
+  "locationPhrases": ["Remote US", "SaaS", "startup", "software company"]
+}

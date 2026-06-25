@@ -55,7 +55,7 @@ export function addOutcomeRecord(record: OutcomeRecord): OutcomeRecord[] {
 
 export function buildOutcomeSummary(records = loadOutcomes()): OutcomeSummary {
   const revenueTruth = getRevenueSourceOfTruth();
-  const messagesSent = records.filter((record) => record.message_sent || record.response_status !== 'not_sent').length;
+  const messagesSent = records.filter((record) => record.message_sent).length;
   const replies = records.filter((record) => record.response_status === 'replied').length;
   const meetings = records.filter((record) => record.meeting_status === 'meeting_booked').length;
   const proposals = records.filter((record) => record.proposal_status === 'proposal_sent').length;
@@ -224,7 +224,15 @@ function normalizeRecord(record: OutcomeRecord): OutcomeRecord {
     amount: safeAmount(record.amount),
     notes: String(record.notes ?? '').trim(),
     next_action: String(record.next_action ?? '').trim(),
+    follow_up_date: optionalString(record.follow_up_date),
+    contact_role: optionalString(record.contact_role),
+    message_type: optionalString(record.message_type),
   };
+}
+
+function optionalString(value: string | undefined): string | undefined {
+  const normalized = String(value ?? '').trim();
+  return normalized || undefined;
 }
 
 function normalizeStatus(status: OutcomeStatus): OutcomeStatus {

@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "queriesPerRun": 3,
+  "resultsPerQuery": 5,
+  "queries": [
+    {
+      "id": "guanacaste-boutique-hotels",
+      "query": "boutique hotels Guanacaste Costa Rica official website",
+      "category": "boutique_hotel",
+      "location": "Guanacaste, Costa Rica",
+      "enabled": true
+    },
+    {
+      "id": "guanacaste-surf-camps",
+      "query": "surf camps Guanacaste Costa Rica official website",
+      "category": "surf_camp",
+      "location": "Guanacaste, Costa Rica",
+      "enabled": true
+    },
+    {
+      "id": "guanacaste-wellness",
+      "query": "wellness retreats Guanacaste Costa Rica official website",
+      "category": "wellness",
+      "location": "Guanacaste, Costa Rica",
+      "enabled": true
+    }
+  ]
+}

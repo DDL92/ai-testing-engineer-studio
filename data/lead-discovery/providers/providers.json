@@ -1,0 +1,20 @@
+{
+  "providers": [
+    {
+      "providerName": "tavily",
+      "enabled": true,
+      "priority": 1,
+      "requiresApiKey": true,
+      "status": "healthy",
+      "notes": "Primary lead-search provider for AI Lead Discovery Studio."
+    },
+    {
+      "providerName": "bing_rss",
+      "enabled": false,
+      "priority": 2,
+      "requiresApiKey": false,
+      "status": "disabled",
+      "notes": "Optional fallback only. Disabled by default to avoid masking Tavily configuration issues."
+    }
+  ]
+}

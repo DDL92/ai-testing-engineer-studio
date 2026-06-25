@@ -1,0 +1,82 @@
+[
+  {
+    "sourceId": "reddit",
+    "sourceName": "Reddit public threads",
+    "sourceCategory": "public_social",
+    "priority": "high",
+    "enabled": true,
+    "requiresLogin": false,
+    "allowedForAutomation": true,
+    "notes": "Use indexed public Reddit threads only. No login, profile crawling, or DMs."
+  },
+  {
+    "sourceId": "facebook_public",
+    "sourceName": "Facebook public indexed posts and groups",
+    "sourceCategory": "public_social",
+    "priority": "high",
+    "enabled": true,
+    "requiresLogin": false,
+    "allowedForAutomation": true,
+    "notes": "High priority only when content is indexed and accessible without login. Do not access private groups."
+  },
+  {
+    "sourceId": "instagram_public",
+    "sourceName": "Instagram public indexed posts and pages",
+    "sourceCategory": "public_social",
+    "priority": "medium",
+    "enabled": true,
+    "requiresLogin": false,
+    "allowedForAutomation": true,
+    "notes": "Use indexed public pages only. Do not crawl profiles, comments, followers, or hidden content."
+  },
+  {
+    "sourceId": "tiktok_public",
+    "sourceName": "TikTok public indexed posts and pages",
+    "sourceCategory": "public_social",
+    "priority": "low_medium",
+    "enabled": true,
+    "requiresLogin": false,
+    "allowedForAutomation": true,
+    "notes": "Use indexed public search results only. Do not log in or scrape feeds."
+  },
+  {
+    "sourceId": "public_forums",
+    "sourceName": "Public forums",
+    "sourceCategory": "public_forum",
+    "priority": "medium",
+    "enabled": true,
+    "requiresLogin": false,
+    "allowedForAutomation": true,
+    "notes": "Use visible indexed threads with buyer-intent discussion only."
+  },
+  {
+    "sourceId": "event_request_boards",
+    "sourceName": "Public event request boards",
+    "sourceCategory": "public_event_board",
+    "priority": "medium",
+    "enabled": true,
+    "requiresLogin": false,
+    "allowedForAutomation": true,
+    "notes": "Use public request pages only. Vendor directories and marketplace profiles remain excluded elsewhere."
+  },
+  {
+    "sourceId": "rfp_boards",
+    "sourceName": "Public RFP boards",
+    "sourceCategory": "public_event_board",
+    "priority": "medium",
+    "enabled": true,
+    "requiresLogin": false,
+    "allowedForAutomation": true,
+    "notes": "Use public RFP/request pages only. No account access or document scraping."
+  },
+  {
+    "sourceId": "community_recommendation_threads",
+    "sourceName": "Public community recommendation threads",
+    "sourceCategory": "public_forum",
+    "priority": "high",
+    "enabled": true,
+    "requiresLogin": false,
+    "allowedForAutomation": true,
+    "notes": "High-fit source for explicit recommendation requests. Public indexed threads only."
+  }
+]

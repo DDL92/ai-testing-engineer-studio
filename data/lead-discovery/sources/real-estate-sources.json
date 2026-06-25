@@ -1,0 +1,23 @@
+{
+  "vertical": "real_estate_leads",
+  "sources": [
+    {
+      "name": "Public relocation forums",
+      "category": "public_forum",
+      "requiresLogin": false,
+      "automationRisk": "low",
+      "enabled": true,
+      "exampleKeywords": ["moving to Austin before school starts", "best neighborhoods for families", "need realtor recommendation"],
+      "notes": "Focus on public relocation intent, timeline, and location; avoid sensitive household details."
+    },
+    {
+      "name": "Public community Q&A boards",
+      "category": "public_forum",
+      "requiresLogin": false,
+      "automationRisk": "medium",
+      "enabled": true,
+      "exampleKeywords": ["looking for rental near downtown", "relocating to Charlotte", "neighborhood recommendations"],
+      "notes": "Manual review needed for regulated-market and privacy risk."
+    }
+  ]
+}

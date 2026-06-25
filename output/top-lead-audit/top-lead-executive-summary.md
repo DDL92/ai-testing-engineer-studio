@@ -1,24 +1,24 @@
 # Top Lead Executive Summary
 
-Generated: 2026-06-14T07:16:22.956Z
+Generated: 2026-06-22T16:53:59.877Z
 
-- Company: Appointy
-- Executive Score: 88/100
-- Release Confidence: 83/100
+- Company: SimplyBook.me
+- Executive Score: 79/100
+- Release Confidence: 77/100
 - Business Risk Level: Medium
 - Recommended Engagement: QA Automation Retainer ($1500-$3000/month)
 
 ## What Matters
-Appointy appears to be the current best revenue focus because Revenue Intelligence ranked it first using qualified lead, QA opportunity, pain relevance, and offer-fit signals.
+SimplyBook.me is the current operational focus because Contact-Aware Lead Rotation selected the first commercially usable lead with verified public contact evidence.
 
 ## Why It Matters
 Public product workflows such as booking, scheduling, membership, checkout, and mobile usage may create release-confidence risk when they are complex or hard to verify manually.
 
 ## What Should Be Done First
-Review Appointy message pack and public evidence; decide manually whether to prepare a QA Audit offer.
+Review SimplyBook.me message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 
 ## Safety Rules
-- Top Lead Audit uses Revenue Intelligence as the only source of truth for the selected company.
+- Top Lead Audit uses the contact-ready operational lead when available while preserving Revenue Intelligence ranking context.
 - Preparation assets are local-only and review-only.
 - No outreach, emails, LinkedIn messages, CRM records, meetings, invoices, payments, revenue, outcomes, replies, or client interest are created.
 - No bugs, outages, vulnerabilities, lost sales, churn, or customer complaints are invented.

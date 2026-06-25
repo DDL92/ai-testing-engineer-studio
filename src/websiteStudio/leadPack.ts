@@ -27,6 +27,10 @@ function buildPack(record: WebsiteLeadRecord) {
     },
     publicContactInformation: record.publicContact,
     websiteInspectionEvidence: record.inspection,
+    canonicalWebsiteUrl: record.canonicalWebsiteUrl ?? record.lead.website,
+    legacyWebsiteUrl: record.legacyWebsiteUrl ?? null,
+    migrationDetected: record.migrationDetected ?? false,
+    migrationEvidence: record.migrationEvidence ?? [],
     verifiedOpportunitySignals: record.analysis.opportunitySignals,
     score: record.analysis.score,
     scoreBreakdown: record.analysis.scoreBreakdown,
@@ -67,6 +71,11 @@ function renderPack(pack: ReturnType<typeof buildPack>): string {
 - Facebook: ${pack.publicContactInformation.facebookUrl ?? 'Unknown'}
 
 ## Website Inspection Evidence
+
+- Legacy URL: ${pack.legacyWebsiteUrl ?? 'Not applicable'}
+- Canonical URL: ${pack.canonicalWebsiteUrl ?? 'Unknown'}
+- Migration detected: ${pack.migrationDetected ? 'true' : 'false'}
+- Migration evidence: ${pack.migrationEvidence.join('; ') || 'None'}
 
 \`\`\`json
 ${JSON.stringify(pack.websiteInspectionEvidence, null, 2)}

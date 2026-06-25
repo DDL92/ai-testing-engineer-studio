@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-19T02:15:51.947Z",
+  "generatedAt": "2026-06-23T15:39:26.362Z",
   "mode": "read-only",
   "today": {
-    "date": "2026-06-19",
+    "date": "2026-06-23",
     "topActions": [
       {
         "priority": 1,
@@ -91,7 +91,7 @@
     "bestRetainerOpportunity": "Setmore"
   },
   "systemHealth": {
-    "lastUpdate": "2026-06-19T02:15:51.947Z",
+    "lastUpdate": "2026-06-23T15:39:26.362Z",
     "leadResearchStatus": "7 research packs found",
     "evidenceStatus": "16 evidence files found",
     "proposalStatus": "3 proposal packages found",
@@ -126,14 +126,14 @@
     "estimatedConfidenceScore": 49
   },
   "outcomeTracking": {
-    "status": "No outcomes recorded yet.",
-    "messagesSent": 0,
+    "status": "1 outcome record(s)",
+    "messagesSent": 1,
     "replies": 0,
     "meetings": 0,
     "proposals": 0,
     "wins": 0,
     "losses": 0,
-    "replyRate": "No outcomes recorded yet.",
+    "replyRate": "0%",
     "nextManualMessage": "No outcomes recorded yet. Review the Setmore message pack before any manual send."
   },
   "outcomeLearning": {
@@ -163,25 +163,25 @@
     "morningBrief": "Setmore | 86/100 | READY",
     "todaysTopAction": "Review the QA Automation Retainer ($1500-$3000/month) evidence package and message decision for Setmore; Daniel decides any external next step.",
     "revenueGoal": "$0 MRR toward $3,000-$5,000",
-    "priorityQueue": "2 high / 4 total",
+    "priorityQueue": "3 high / 5 total",
     "followUpsWaiting": 29,
-    "biggestBottleneck": "No real commercial outcomes are recorded; external action and outcome recording remain manual.",
+    "biggestBottleneck": "29 manual follow-up item(s) require review.",
     "tomorrowFocus": "Review the highest-priority follow-up for Setmore; do not send without human approval."
   },
   "commercialConsistency": {
     "commercialConsistencyStatus": "WARNING",
-    "legacyReferences": 271,
+    "legacyReferences": 263,
     "sourceOfTruthStatus": "PASS",
     "conflictingReferences": 0,
     "repairRecommendations": 1
   },
   "archive": {
-    "archiveStatus": "HEALTHY",
+    "archiveStatus": "WATCH",
     "historicalArtifacts": 50,
-    "portfolioAssets": 43,
+    "portfolioAssets": 49,
     "temporaryAssets": 40,
     "retentionStatus": "6/6 classifications covered",
-    "archiveScore": "85/100"
+    "archiveScore": "84/100"
   },
   "release": {
     "studioVersion": "1.0.0",
@@ -190,9 +190,9 @@
     "validationStatus": "PASS"
   },
   "followUpEngine": {
-    "followUpQueue": 29,
+    "followUpQueue": 28,
     "todaysFollowUps": 5,
-    "waitingResponses": 0,
+    "waitingResponses": 1,
     "openOpportunities": 29,
     "nextBestAction": "Review Setmore local revenue and executive context, then manually decide whether to draft an Executive angle."
   },
@@ -228,7 +228,7 @@
     "topLead": "Setmore",
     "topOffer": "QA Automation Retainer ($1500-$3000/month)",
     "topAction": "Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.",
-    "followUpsWaiting": 0,
+    "followUpsWaiting": 1,
     "openOpportunities": 29,
     "studioStatus": "Healthy",
     "revenueStatus": "Current MRR: $0",
@@ -275,8 +275,8 @@
   "autonomousRunner": {
     "autonomousRunnerStatus": "Last run completed",
     "lastSuccessfulRun": "2026-06-14T01:53:03.396Z",
-    "nextScheduledRun": "2026-06-19T13:00:00.000Z (07:00 America/Costa_Rica)",
-    "runnerHealth": "Healthy",
+    "nextScheduledRun": "2026-06-24T13:00:00.000Z (07:00 America/Costa_Rica)",
+    "runnerHealth": "Warning",
     "dailyRefreshStatus": "Refresh sequence complete. Actionable lead: Setmore."
   },
   "revenueIntelligence": {
@@ -294,7 +294,7 @@
   },
   "topLeadAudit": {
     "topLeadAuditStatus": "Missing",
-    "evidenceStatus": "Ready",
+    "evidenceStatus": "Missing",
     "proposalStatus": "Missing",
     "executionReadiness": "NO GO"
   },
@@ -330,7 +330,7 @@
     "deliveryStatus": "delivery-prep"
   },
   "deliveryAssets": {
-    "deliveryAssetsStatus": "READY FOR REVIEW",
+    "deliveryAssetsStatus": "PARTIAL",
     "executiveReportStatus": "READY FOR REVIEW",
     "coverageMatrixStatus": "READY FOR REVIEW",
     "timelineStatus": "READY FOR REVIEW",
@@ -346,7 +346,7 @@
     "expansionOpportunities": 6
   },
   "studioDoctor": {
-    "studioHealth": "83/100",
+    "studioHealth": "80/100",
     "commandHealth": "WARNING; 0 broken",
     "runtimeHealth": "WARNING; 0 invalid JSON",
     "evidenceHealth": "PASS",
@@ -367,13 +367,13 @@
     "architectureStatus": "Needs consolidation",
     "commandHealth": "Command surface is too broad",
     "runtimeHealth": "Runtime data needs cleanup",
-    "consolidationProgress": "14 future official commands recommended; 144 deprecation candidates identified.",
-    "commandsAudited": 360,
+    "consolidationProgress": "14 future official commands recommended; 152 deprecation candidates identified.",
+    "commandsAudited": 383,
     "duplicateCommandGroups": 3,
     "legacyCommands": 22,
-    "candidateDeprecations": 144,
-    "runtimeFiles": 761,
-    "duplicateRuntimeCandidates": 46,
+    "candidateDeprecations": 152,
+    "runtimeFiles": 917,
+    "duplicateRuntimeCandidates": 73,
     "sourceOfTruthAuthorities": 5
   },
   "testing": {

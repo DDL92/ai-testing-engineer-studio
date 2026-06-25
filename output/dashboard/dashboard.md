@@ -1,6 +1,6 @@
 # Studio Dashboard
 
-Generated: 2026-06-19T02:15:51.947Z
+Generated: 2026-06-23T15:39:26.362Z
 
 ## Revenue Intelligence Source Of Truth
 - Today Focus: Setmore - QA Automation Retainer ($1500-$3000/month) - HIGH
@@ -17,7 +17,7 @@ Generated: 2026-06-19T02:15:51.947Z
 - Execution Priority: HIGH
 - Next Action: Review Setmore message pack and public evidence; decide manually whether to prepare a QA Audit offer.
 - Top Lead Audit Status: Missing
-- Evidence Status: Ready
+- Evidence Status: Missing
 - Proposal Status: Missing
 - Execution Readiness: NO GO
 - Evidence Engine Status: NOT READY
@@ -37,7 +37,7 @@ Generated: 2026-06-19T02:15:51.947Z
 - Delivery Assets: 10
 - Framework Status: Recommendations Ready
 - Client Handoff Status: Draft Ready for Review
-- Delivery Assets Status: READY FOR REVIEW
+- Delivery Assets Status: PARTIAL
 - Executive Report Status: READY FOR REVIEW
 - Coverage Matrix Status: READY FOR REVIEW
 - Timeline Status: READY FOR REVIEW
@@ -56,7 +56,7 @@ Generated: 2026-06-19T02:15:51.947Z
 - Best Industry: Insufficient outcome history.
 - Calibration Status: INSUFFICIENT HISTORY; 0% influence
 - Recommendation Confidence: INSUFFICIENT HISTORY
-- Studio Doctor Health: 83/100
+- Studio Doctor Health: 80/100
 - Studio Doctor Command Health: WARNING; 0 broken
 - Studio Doctor Runtime Health: WARNING; 0 invalid JSON
 - Studio Doctor Evidence Health: PASS

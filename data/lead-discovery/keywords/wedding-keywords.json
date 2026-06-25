@@ -1,0 +1,8 @@
+{
+  "vertical": "wedding_leads",
+  "searchPhrases": ["looking for wedding vendors", "destination wedding planner recommendations", "need venue and catering"],
+  "servicePhrases": ["wedding planner", "venue search", "wedding catering", "photographer", "florist"],
+  "urgencyPhrases": ["wedding next spring", "vendor needed next month", "date confirmed", "booking soon"],
+  "budgetPhrases": ["wedding budget", "guest count", "premium package", "destination wedding"],
+  "locationPhrases": ["Tulum", "Costa Rica", "Miami", "Austin", "destination wedding"]
+}

@@ -1,0 +1,40 @@
+{
+  "enabled": true,
+  "priority": {
+    "floraFirst": true,
+    "clientOrder": [
+      "flora_and_fauna_foods_001",
+      "lzt_costa_rica_001",
+      "costa_retreats_001"
+    ]
+  },
+  "allowedClientIds": [
+    "flora_and_fauna_foods_001",
+    "lzt_costa_rica_001",
+    "costa_retreats_001"
+  ],
+  "blockedVerticals": [
+    "qa_leads",
+    "website_leads",
+    "qa_audit",
+    "website_audit"
+  ],
+  "limits": {
+    "maxQueriesPerRun": 50,
+    "maxQueriesPerClient": 25,
+    "maxResultsPerQuery": 10,
+    "requireBuyerIntent": true,
+    "requireClientId": true,
+    "recencyFirst": true
+  },
+  "budgetPhilosophy": "Do not spend Tavily credits on searches that cannot realistically produce deliverable leads.",
+  "manualReviewRequired": true,
+  "prohibitedActions": [
+    "outreach",
+    "contact_extraction",
+    "scraping",
+    "page_crawling",
+    "browser_automation",
+    "login_flows"
+  ]
+}

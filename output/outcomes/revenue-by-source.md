@@ -1,8 +1,9 @@
 # Revenue By Source
 
-Generated: 2026-06-14T05:31:07.602Z
+Generated: 2026-06-23T15:39:25.913Z
 
-No outcomes recorded yet.
+- Revenue recorded from local won outcomes: $0
+- Pipeline estimates, offer ranges, and plans are not counted as revenue.
 
 ## Safety Rules
 - Manual-only outcome tracking.

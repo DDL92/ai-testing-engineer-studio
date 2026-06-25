@@ -1,13 +1,13 @@
 # Approved Manual Messages
 
-Generated: 2026-06-14T22:14:36.816Z
+Generated: 2026-06-22T17:25:30.465Z
 
 These drafts are not sent or approved for external use until Daniel manually reviews them.
 
 - LinkedIn Short Message: 23/35 words
-- LinkedIn Normal Message: 55/75 words
-- Email Version: 64/120 words
-- Short Follow-Up: 26/60 words
+- LinkedIn Normal Message: 53/75 words
+- Email Version: 62/120 words
+- Short Follow-Up: 29/60 words
 - If They Reply Interested: 44/90 words
 - Executive Angle: 27/75 words
 - Audit Offer Angle: 26/75 words

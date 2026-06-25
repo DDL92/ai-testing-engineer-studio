@@ -16,6 +16,8 @@ export type OutreachStatus =
   | 'closed-no-response'
   | 'do-not-contact';
 
+export type OutreachSource = 'Outcome Tracking' | 'Lead Operator' | 'Legacy Outreach';
+
 export interface OutreachRecord {
   companyId: string;
   companyName: string;
@@ -29,6 +31,9 @@ export interface OutreachRecord {
   messageType: string;
   notes: string;
   humanApproved: boolean;
+  source?: OutreachSource;
+  messageSent?: boolean;
+  replyReceived?: boolean;
 }
 
 export interface OutreachSummary {
@@ -40,6 +45,8 @@ export interface OutreachSummary {
   replied: number;
   waiting: number;
   followUpsDue: number;
+  preparedButUnsent: number;
+  contactDiscoveryCandidates: number;
   companiesWithBestCoverage: CompanyOutreachStatus[];
   companiesNeedingMoreContacts: CompanyOutreachStatus[];
 }
@@ -61,4 +68,9 @@ export interface FollowupQueueItem {
   daysSinceLastTouch: number;
   reason: string;
   recommendedAction: string;
+}
+
+export interface OutreachContext {
+  preparedButUnsent: string[];
+  contactDiscoveryCandidates: string[];
 }

@@ -1,0 +1,23 @@
+{
+  "vertical": "website_leads",
+  "sources": [
+    {
+      "name": "Public business directories",
+      "category": "public_directory",
+      "requiresLogin": false,
+      "automationRisk": "low",
+      "enabled": true,
+      "exampleKeywords": ["business with no website", "local studio booking page", "small business website help"],
+      "notes": "Future discovery must verify current official website and avoid migrated-domain false positives."
+    },
+    {
+      "name": "Public local business posts",
+      "category": "public_social",
+      "requiresLogin": false,
+      "automationRisk": "medium",
+      "enabled": true,
+      "exampleKeywords": ["outdated website", "poor mobile experience", "need booking page"],
+      "notes": "Manual review required before claiming a website issue."
+    }
+  ]
+}

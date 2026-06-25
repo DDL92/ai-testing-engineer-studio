@@ -21,7 +21,7 @@ const storePath = path.join(process.cwd(), 'data', 'website-studio', 'leads.json
 export function readWebsiteLeads(): WebsiteLeadRecord[] {
   if (!fs.existsSync(storePath)) return [];
   const raw = fs.readFileSync(storePath, 'utf8').trim();
-  return raw ? JSON.parse(raw) as WebsiteLeadRecord[] : [];
+  return raw ? (JSON.parse(raw) as WebsiteLeadRecord[]).map(refreshStoredAnalysis) : [];
 }
 
 export function writeWebsiteLeads(leads: WebsiteLeadRecord[]): void {
@@ -59,10 +59,13 @@ export async function importWebsiteCandidates(
     const analysis = analyzeWebsiteLead(candidate, inspection);
     const now = new Date().toISOString();
     const reusedLead = toReusedLeadFields(candidate, existing, now);
+    const canonicalWebsite = inspection.canonicalWebsiteUrl ?? candidate.websiteUrl ?? null;
+    const canonicalName = inspection.canonicalSiteName ?? candidate.businessName;
     const record: WebsiteLeadRecord = {
       lead: {
         ...reusedLead,
-        website: candidate.websiteUrl ?? null,
+        companyName: canonicalName,
+        website: canonicalWebsite,
         industry: candidate.category,
         status: existing?.lead.status ?? 'new',
         nextAction: analysis.nextAction,
@@ -79,6 +82,11 @@ export async function importWebsiteCandidates(
       },
       inspection,
       analysis,
+      ...(inspection.canonicalWebsiteUrl ? { canonicalWebsiteUrl: inspection.canonicalWebsiteUrl } : {}),
+      ...(inspection.legacyWebsiteUrl ? { legacyWebsiteUrl: inspection.legacyWebsiteUrl } : {}),
+      ...(inspection.migrationDetected ? { migrationDetected: true } : {}),
+      ...(inspection.migrationEvidence ? { migrationEvidence: inspection.migrationEvidence } : {}),
+      ...(inspection.migrationTargetUrl ? { migrationTargetUrl: inspection.migrationTargetUrl } : {}),
     };
 
     if (identityIndex >= 0) {
@@ -254,6 +262,32 @@ function normalizeCandidate(candidate: WebsiteCandidateInput): WebsiteCandidateI
   };
 }
 
+function refreshStoredAnalysis(record: WebsiteLeadRecord): WebsiteLeadRecord {
+  const candidate: WebsiteCandidateInput = {
+    id: record.lead.id,
+    businessName: record.lead.companyName,
+    category: record.lead.industry,
+    source: record.lead.source,
+    location: record.location,
+    websiteUrl: record.legacyWebsiteUrl ?? record.lead.website,
+    instagramUrl: record.publicContact.instagramUrl,
+    facebookUrl: record.publicContact.facebookUrl,
+    email: record.publicContact.email,
+    phone: record.publicContact.phone,
+    notes: record.lead.fitNotes || null,
+    sources: record.discovery?.sources ?? [],
+  };
+  const analysis = analyzeWebsiteLead(candidate, record.inspection);
+  return {
+    ...record,
+    lead: {
+      ...record.lead,
+      nextAction: analysis.nextAction,
+    },
+    analysis,
+  };
+}
+
 function findMatchingLeadIndex(leads: WebsiteLeadRecord[], candidate: WebsiteCandidateInput): number {
   const candidateHost = normalizeHostname(candidate.websiteUrl);
   const candidateEmail = normalizeOptional(candidate.email)?.toLowerCase() ?? null;
@@ -262,11 +296,12 @@ function findMatchingLeadIndex(leads: WebsiteLeadRecord[], candidate: WebsiteCan
 
   return leads.findIndex((lead) => {
     const leadHost = normalizeHostname(lead.lead.website);
+    const legacyHost = normalizeHostname(lead.legacyWebsiteUrl);
     const leadEmail = lead.publicContact.email?.toLowerCase() ?? null;
     const leadPhone = normalizePhone(lead.publicContact.phone);
     const leadNameLocation = `${normalizeText(lead.lead.companyName)}|${normalizeText(lead.location ?? '')}`;
     return Boolean(
-      (candidateHost && leadHost === candidateHost)
+      (candidateHost && (leadHost === candidateHost || legacyHost === candidateHost))
       || (candidateEmail && leadEmail === candidateEmail)
       || (candidatePhone && leadPhone === candidatePhone)
       || candidateNameLocation === leadNameLocation

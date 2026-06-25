@@ -1,5 +1,6 @@
 import { ContactReviewRecord } from '../contactReview/types';
 import { Lead } from '../leads/types';
+import { FollowupQueueItem } from '../outreachTracking/types';
 
 export interface OutreachExecutionArtifacts {
   researchPack: boolean;
@@ -37,6 +38,7 @@ export interface OutreachExecutionInput {
   leads: Lead[];
   contactReviews: ContactReviewRecord[];
   contextSources: OutreachExecutionSource[];
+  actualFollowUps: FollowupQueueItem[];
 }
 
 export interface OutreachExecutionReport {
@@ -46,6 +48,7 @@ export interface OutreachExecutionReport {
   excludedLeadCount: number;
   topFive: OutreachExecutionLead[];
   contextSources: OutreachExecutionSource[];
+  actualFollowUps: FollowupQueueItem[];
 }
 
 export interface MessageDraftSet {

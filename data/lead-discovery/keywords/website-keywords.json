@@ -1,0 +1,8 @@
+{
+  "vertical": "website_leads",
+  "searchPhrases": ["business with no website", "outdated website", "poor mobile experience"],
+  "servicePhrases": ["booking page", "website redesign", "mobile website", "conversion page"],
+  "urgencyPhrases": ["before launch", "new class launch", "opening soon", "need website help"],
+  "budgetPhrases": ["paid classes", "booking revenue", "online sales", "service business"],
+  "locationPhrases": ["local business", "wellness studio", "restaurant", "boutique hotel", "clinic"]
+}

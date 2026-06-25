@@ -1,8 +1,23 @@
 # PushPress Message Pack
 
-Generated: 2026-06-13T19:43:48.528Z
+Generated: 2026-06-22T16:53:27.882Z
 
 Manual-only drafts for human review. Nothing was sent.
+
+## Evidence Basis
+
+- Requested company: PushPress
+- Commercial top-ranked lead: Appointy
+- Previous lead-rotation actionable lead: Setmore
+- Contact-aware rotation status: READY
+- Current contact-ready operational lead: SimplyBook.me
+- Current execution target: SimplyBook.me
+- Historical revenue-activation target: Appointy
+- Historical revenue-activation recommendation: NO GO
+- Executive recommendation: QA Audit ($199-$500)
+- Release confidence: 92/100
+- Business risk level: High
+- Language must describe a lightweight public-page QA review only.
 
 ## LinkedIn Short Message
 
@@ -12,27 +27,27 @@ I did a lightweight public-page QA review of PushPress and noticed potential per
 
 ## LinkedIn Normal Message
 
-Word count: 55/75
+Word count: 53/75
 
-Hi [Name], I did a lightweight public-page QA review of PushPress and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help gym software teams turn those observations into a concise QA audit and practical next steps. Would it be useful if I sent the short summary for manual review?
+Hi [Name], I did a lightweight public-page QA review of PushPress and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help SaaS product teams turn those observations into a concise QA audit and practical next steps. Would it be useful if I sent you the short summary?
 
 ## Email Version
 
-Word count: 64/120
+Word count: 62/120
 
 Subject: Lightweight QA observations for PushPress
 
 Hi [Name],
 
-I did a lightweight public-page QA review of PushPress and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help gym software teams translate public-page observations into a concise QA audit with prioritized next steps. If helpful, I can send a short summary for manual review. No pressure either way.
+I did a lightweight public-page QA review of PushPress and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help SaaS product teams translate public-page observations into a concise QA audit with prioritized next steps. If helpful, I can send you a short summary. No pressure either way.
 
 Daniel
 
 ## Short Follow-Up
 
-Word count: 26/60
+Word count: 29/60
 
-Hi [Name], quick follow-up. I had a few public-page observations on potential performance and release-confidence areas for PushPress. Worth sending the short summary for manual review?
+Hi [Name], quick follow-up. I had a few public-page observations on potential performance and release-confidence areas for PushPress. Would it be useful if I sent you the short summary?
 
 ## If They Reply Interested
 

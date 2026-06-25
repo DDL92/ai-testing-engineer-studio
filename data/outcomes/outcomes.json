@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "company": "SimplyBook.me",
+    "contact": "Rut Steinsen",
+    "channel": "linkedin",
+    "date": "2026-06-22",
+    "action_type": "manual_dm",
+    "message_sent": true,
+    "response_status": "sent",
+    "meeting_status": "not_sent",
+    "proposal_status": "not_sent",
+    "deal_status": "not_sent",
+    "revenue_status": "not_sent",
+    "amount": 0,
+    "notes": "",
+    "next_action": "Wait for reply; follow up on 2026-06-25 if no response"
+  }
+]

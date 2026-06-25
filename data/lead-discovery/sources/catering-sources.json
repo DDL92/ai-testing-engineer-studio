@@ -1,0 +1,23 @@
+{
+  "vertical": "catering_leads",
+  "sources": [
+    {
+      "name": "Public event recommendation boards",
+      "category": "public_event_board",
+      "requiresLogin": false,
+      "automationRisk": "low",
+      "enabled": true,
+      "exampleKeywords": ["need catering for 100 people", "corporate lunch recommendations", "private chef recommendations"],
+      "notes": "Prioritize public posts with date, city, guest count, and service type."
+    },
+    {
+      "name": "Public wedding vendor forums",
+      "category": "public_forum",
+      "requiresLogin": false,
+      "automationRisk": "low",
+      "enabled": true,
+      "exampleKeywords": ["wedding catering suggestions", "buffet catering near me", "graduation party catering"],
+      "notes": "Use public vendor request context only; avoid collecting personal event details beyond lead relevance."
+    }
+  ]
+}

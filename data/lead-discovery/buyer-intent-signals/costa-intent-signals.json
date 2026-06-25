@@ -1,0 +1,57 @@
+{
+  "planningSignals": [
+    "planning Costa Rica family trip",
+    "planning corporate retreat Costa Rica",
+    "family reunion Costa Rica",
+    "group trip Costa Rica",
+    "planning honeymoon Costa Rica"
+  ],
+  "painSignals": [
+    "need itinerary",
+    "overwhelmed planning Costa Rica",
+    "not sure where to stay",
+    "need help planning Costa Rica",
+    "hard to plan group trip"
+  ],
+  "urgencySignals": [
+    "next month",
+    "next week",
+    "booking soon",
+    "last minute",
+    "need recommendations quickly"
+  ],
+  "recommendationSignals": [
+    "villa recommendations Costa Rica",
+    "where should we stay Costa Rica",
+    "Costa Rica itinerary recommendations",
+    "Tamarindo vacation recommendations",
+    "recommendations for Costa Rica family trip"
+  ],
+  "purchaseSignals": [
+    "looking for villa recommendations Costa Rica",
+    "looking for itinerary help Costa Rica",
+    "need concierge Costa Rica",
+    "need private chef Costa Rica",
+    "booking Costa Rica group trip"
+  ],
+  "commercialValueSignals": [
+    "family reunion",
+    "corporate retreat",
+    "group trip",
+    "luxury villa",
+    "private chef",
+    "honeymoon",
+    "wellness retreat"
+  ],
+  "exclusionSignals": [
+    "travel agency profile",
+    "tour operator",
+    "resort directory",
+    "best resorts",
+    "top hotels",
+    "article",
+    "definition",
+    "wikipedia",
+    "dictionary"
+  ]
+}

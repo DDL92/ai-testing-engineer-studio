@@ -1,0 +1,23 @@
+{
+  "vertical": "wedding_leads",
+  "sources": [
+    {
+      "name": "Public wedding planning forums",
+      "category": "public_forum",
+      "requiresLogin": false,
+      "automationRisk": "low",
+      "enabled": true,
+      "exampleKeywords": ["looking for wedding vendors", "destination wedding planner recommendations", "need venue and catering"],
+      "notes": "Prioritize posts with date, location, guest count, and missing vendor category."
+    },
+    {
+      "name": "Public venue recommendation threads",
+      "category": "public_social",
+      "requiresLogin": false,
+      "automationRisk": "medium",
+      "enabled": true,
+      "exampleKeywords": ["wedding venue recommendations", "wedding photographer available", "florist recommendations"],
+      "notes": "Manual review required because social contexts can include personal-event details."
+    }
+  ]
+}

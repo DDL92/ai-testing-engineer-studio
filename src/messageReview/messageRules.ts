@@ -3,6 +3,9 @@ import path = require('path');
 import { buildFirstRevenueExecutionPack } from '../executionPack/generateFirstRevenueChecklist';
 import { buildExecutiveCompanyReport } from '../executiveLayer/executiveRules';
 import { buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIntelligenceRules';
+import { firstName, readyPrimaryContact } from '../contactDiscovery/contactRules';
+import { readContactAwareState, selectedContactReadyLead } from '../contactAwareRotation/rotationRules';
+import { getOperationalLeadContext } from '../revenueIntelligence/sourceOfTruth';
 import { MessageDraft, MessageReviewReport } from './types';
 
 const dataPath = path.join(process.cwd(), 'data', 'messages', 'message-drafts.json');
@@ -16,35 +19,50 @@ const safetyRules = [
   'Use potential, may indicate, worth reviewing, public-page observations, and performance and release-confidence areas when uncertainty exists.',
 ];
 
-export function buildMessageReview(company: string): MessageReviewReport {
+export function buildMessageReview(
+  company: string,
+  options: { persistDrafts?: boolean } = {},
+): MessageReviewReport {
   ensureMessageStore();
   const revenueIntelligence = buildRevenueIntelligenceReport();
-  const defaultCompany = revenueIntelligence.actionableLead?.companyName ?? revenueIntelligence.topLead?.companyName ?? company;
+  const contactAware = readContactAwareState();
+  const contactReadyLead = selectedContactReadyLead();
+  const operational = getOperationalLeadContext();
+  const defaultCompany = contactReadyLead?.companyName ?? revenueIntelligence.actionableLead?.companyName ?? revenueIntelligence.topLead?.companyName ?? company;
   const selectedCompany = company && company !== 'No unified top lead' ? company : defaultCompany;
   const executionPack = buildFirstRevenueExecutionPack();
   const executive = safeExecutiveCompanyReport(selectedCompany);
   const companyName = executive?.companyName ?? selectedCompany;
   const companyId = executive?.companyId ?? slug(selectedCompany);
-  const executiveRecommendation = executive?.executiveRecommendation ?? revenueIntelligence.actionableLead?.recommendedOffer ?? revenueIntelligence.topLead?.recommendedOffer ?? 'QA Audit ($199-$500)';
-  const drafts = buildDrafts(companyName);
+  const executiveRecommendation = executive?.executiveRecommendation ?? operational.operationalRecommendedOffer;
+  const contact = readyPrimaryContact(companyName);
+  const drafts = buildDrafts(companyName, contact ? firstName(contact.fullName) : undefined, options.persistDrafts);
 
   return {
     generatedAt: new Date().toISOString(),
     companyId,
     companyName,
-    currentOffer: executionPack.topTarget.companyName === companyName
-      ? executionPack.topTarget.bestOffer
-      : executiveRecommendation,
-    goNoGo: executionPack.topTarget.companyName === companyName ? executionPack.recommendation : 'Needs Review',
+    currentOffer: operational.operationalLead === companyName ? operational.operationalRecommendedOffer : executiveRecommendation,
+    goNoGo: contactReadyLead?.companyName === companyName ? 'GO' : 'Needs Review',
     evidenceBasis: [
       `Requested company: ${company || 'default actionable lead'}`,
-      `Revenue Intelligence top ranked lead: ${revenueIntelligence.topLead?.companyName ?? 'No top ranked lead'}`,
-      `Lead Rotation actionable lead: ${revenueIntelligence.actionableLead?.companyName ?? 'No actionable lead'}`,
-      `Current top target: ${executionPack.topTarget.companyName}`,
-      `Execution recommendation: ${executionPack.recommendation}`,
+      `Commercial top-ranked lead: ${operational.commercialTopRankedLead}`,
+      `Previous lead-rotation actionable lead: ${operational.previousActionableLead}`,
+      `Contact-aware rotation status: ${contactAware?.status ?? 'NO_CONTACT_READY_LEAD'}`,
+      `Current contact-ready operational lead: ${contactReadyLead?.companyName ?? 'None'}`,
+      `Current execution target: ${operational.operationalLead}`,
+      `Historical revenue-activation target: ${executionPack.topTarget.companyName}`,
+      `Historical revenue-activation recommendation: ${executionPack.recommendation}`,
       `Executive recommendation: ${executiveRecommendation}`,
       executive ? `Release confidence: ${executive.releaseConfidence}/100` : 'Release confidence: Not available for this web-qualified lead yet.',
       executive ? `Business risk level: ${executive.businessRiskLevel}` : 'Business risk level: Not available for this web-qualified lead yet.',
+      ...(contact ? [
+        `Verified contact: ${contact.fullName}`,
+        `Verified contact title: ${contact.title}`,
+        `Contact confidence: ${contact.confidenceScore}/100`,
+        `Contact source: ${contact.sourceUrl}`,
+        `Contact verification basis: current employment verified by ${contact.sourceType} public evidence.`,
+      ] : []),
       'Language must describe a lightweight public-page QA review only.',
     ],
     drafts,
@@ -114,6 +132,10 @@ export function renderMessagePack(report: MessageReviewReport): string {
     '',
     'Manual-only drafts for human review. Nothing was sent.',
     '',
+    '## Evidence Basis',
+    '',
+    renderList(report.evidenceBasis),
+    '',
     ...report.drafts.map(renderDraftBlock),
     '',
     '## Required Language Rules',
@@ -166,18 +188,19 @@ export function renderApprovedManualMessages(report: MessageReviewReport): strin
   ].join('\n');
 }
 
-function buildDrafts(companyName: string): MessageDraft[] {
+export function buildDrafts(companyName: string, contactFirstName?: string, persist = true): MessageDraft[] {
+  const name = contactFirstName || '[Name]';
   const drafts = [
     draft('linkedin_short', 'LinkedIn Short Message', `I did a lightweight public-page QA review of ${companyName} and noticed potential performance and release-confidence areas worth reviewing. Open to a short summary?`, 35),
-    draft('linkedin_normal', 'LinkedIn Normal Message', `Hi [Name], I did a lightweight public-page QA review of ${companyName} and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help gym software teams turn those observations into a concise QA audit and practical next steps. Would it be useful if I sent the short summary for manual review?`, 75),
-    draft('email', 'Email Version', `Subject: Lightweight QA observations for ${companyName}\n\nHi [Name],\n\nI did a lightweight public-page QA review of ${companyName} and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help gym software teams translate public-page observations into a concise QA audit with prioritized next steps. If helpful, I can send a short summary for manual review. No pressure either way.\n\nDaniel`, 120),
-    draft('follow_up', 'Short Follow-Up', `Hi [Name], quick follow-up. I had a few public-page observations on potential performance and release-confidence areas for ${companyName}. Worth sending the short summary for manual review?`, 60),
-    draft('interested_reply', 'If They Reply Interested', 'Thanks, [Name]. I can share a concise QA Audit summary based on public-page observations only. It will frame items as potential areas to review, not confirmed defects. If it looks useful, the paid QA Audit is $199-$500 and includes prioritized findings and next steps.', 90),
+    draft('linkedin_normal', 'LinkedIn Normal Message', `Hi ${name}, I did a lightweight public-page QA review of ${companyName} and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help SaaS product teams turn those observations into a concise QA audit and practical next steps. Would it be useful if I sent you the short summary?`, 75),
+    draft('email', 'Email Version', `Subject: Lightweight QA observations for ${companyName}\n\nHi ${name},\n\nI did a lightweight public-page QA review of ${companyName} and noticed a few potential performance and release-confidence areas that may be worth reviewing. I help SaaS product teams translate public-page observations into a concise QA audit with prioritized next steps. If helpful, I can send you a short summary. No pressure either way.\n\nDaniel`, 120),
+    draft('follow_up', 'Short Follow-Up', `Hi ${name}, quick follow-up. I had a few public-page observations on potential performance and release-confidence areas for ${companyName}. Would it be useful if I sent you the short summary?`, 60),
+    draft('interested_reply', 'If They Reply Interested', `Thanks, ${name}. I can share a concise QA Audit summary based on public-page observations only. It will frame items as potential areas to review, not confirmed defects. If it looks useful, the paid QA Audit is $199-$500 and includes prioritized findings and next steps.`, 90),
     draft('executive_angle', 'Executive Angle', `For an executive review, the angle is release confidence: public-page performance and QA signals may indicate areas worth reviewing before they affect demo trust or buyer confidence.`, 75),
     draft('audit_offer_angle', 'Audit Offer Angle', `Offer a focused QA Audit: public-page observations, prioritized business risks, and practical next steps for $199-$500. No claim of a full audit until Daniel is engaged.`, 75),
   ];
 
-  saveDraftState(companyName, drafts);
+  if (persist) saveDraftState(companyName, drafts);
   return drafts;
 }
 

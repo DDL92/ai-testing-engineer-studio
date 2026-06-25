@@ -1,0 +1,23 @@
+{
+  "vertical": "qa_leads",
+  "sources": [
+    {
+      "name": "Public job boards",
+      "category": "public_job_board",
+      "requiresLogin": false,
+      "automationRisk": "low",
+      "enabled": true,
+      "exampleKeywords": ["startups hiring QA", "Playwright automation contractor", "test automation engineer contract"],
+      "notes": "Use recent public hiring signals only; do not scrape behind job-board logins."
+    },
+    {
+      "name": "Public release and issue signals",
+      "category": "public_review",
+      "requiresLogin": false,
+      "automationRisk": "medium",
+      "enabled": true,
+      "exampleKeywords": ["product launch QA help", "need test automation before launch", "rapid growth company QA"],
+      "notes": "Manual review required because technical pain may be ambiguous."
+    }
+  ]
+}
