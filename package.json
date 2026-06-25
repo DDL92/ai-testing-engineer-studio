@@ -64,6 +64,8 @@
     "leads:false-positive-learning": "node --import tsx src/leadDiscovery/updateFalsePositiveLearning.ts",
     "leads:simulate": "node --import tsx src/leadDiscovery/runFixtureSimulation.ts",
     "leads:regression": "node --import tsx src/leadDiscovery/runRegressionSuite.ts",
+    "leads:review": "node --import tsx src/leadDiscovery/applyReviewDecision.ts",
+    "leads:review-simulate": "node --import tsx src/leadDiscovery/runReviewSimulation.ts",
     "leads:morning": "node --import tsx src/leadDiscovery/runMorningLeadWorkflow.ts",
     "leads:daily": "node --import tsx src/leadDiscovery/runDailyLeadWorkflow.ts",
     "day:plan": "node --import tsx src/operator/generateDailyRevenuePlan.ts",

@@ -20,6 +20,8 @@ const verificationSummaryPath = path.join(process.cwd(), 'output', 'lead-discove
 const verificationReviewPath = path.join(process.cwd(), 'output', 'lead-discovery', 'verification', 'review-queue.json');
 const simulationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'simulation', 'simulation-candidates.json');
 const regressionPath = path.join(process.cwd(), 'output', 'lead-discovery', 'regression', 'regression-results.json');
+const reviewHistoryPath = path.join(process.cwd(), 'output', 'lead-discovery', 'review-state', 'review-history.json');
+const reviewSimulationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'review', 'review-simulation.json');
 const outcomesPath = path.join(process.cwd(), 'data', 'lead-discovery', 'outcomes', 'sample-outcomes.json');
 const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'dashboard');
 const dashboardPath = path.join(outputDir, 'client-dashboard.md');
@@ -157,6 +159,41 @@ interface RegressionReport {
   results: Array<{ failedAssertions: string[]; passed: boolean }>;
 }
 
+interface ReviewMetrics {
+  totalDecisions: number;
+  approvedCount: number;
+  rejectedCount: number;
+  holdCount: number;
+  needsRecencyCheckCount: number;
+  falsePositiveCount: number;
+  approvalRate: number;
+  rejectionRate: number;
+  topApprovalReasons: string;
+  topRejectionReasons: string;
+  learningCount: number;
+  lastReviewDate: string | null;
+}
+
+interface ReviewHistoryReport {
+  generatedAt: string;
+  decisions: Array<{
+    reviewDate: string;
+    decision: string;
+    reviewReason: string;
+    learningApplied: boolean;
+  }>;
+}
+
+interface ReviewSimulationReport {
+  generatedAt: string;
+  metrics: ReviewMetrics;
+}
+
+interface ReviewHealth {
+  mode: 'actual' | 'simulation' | 'none';
+  metrics: ReviewMetrics | null;
+}
+
 export function generateClientDashboard(): { filesGenerated: string[]; rows: DashboardRow[] } {
   const delivery = readJson<DeliveryBatch>(deliveryPath).deliveryCandidates;
   const searchBatch = readSearchBatch();
@@ -167,12 +204,13 @@ export function generateClientDashboard(): { filesGenerated: string[]; rows: Das
   const verificationReview = readVerificationReview();
   const simulation = readSimulation();
   const regression = readRegression();
+  const reviewHealth = readReviewHealth();
   const rows = ['flora_and_fauna_foods_001', 'lzt_costa_rica_001', 'costa_retreats_001']
     .map((clientId) => rowFor(clientId, delivery, searchBatch, behaviorQueries, diagnostics, tavilyHealth, outcomes, verificationReview.reviewItems, simulation))
     .filter((row) => row.searchCandidates > 0 || row.deliveryCandidates > 0 || row.verificationCandidates > 0 || row.outcomeCount > 0 || row.behaviorQueryCount > 0 || row.fixtureCount > 0);
 
   fs.mkdirSync(outputDir, { recursive: true });
-  fs.writeFileSync(dashboardPath, renderDashboard(rows, regression), 'utf8');
+  fs.writeFileSync(dashboardPath, renderDashboard(rows, regression, reviewHealth), 'utf8');
   fs.writeFileSync(csvPath, renderCsv(rows), 'utf8');
   return { filesGenerated: [dashboardPath, csvPath].map((file) => path.relative(process.cwd(), file)), rows };
 }
@@ -303,7 +341,7 @@ function rowFor(
   };
 }
 
-function renderDashboard(rows: DashboardRow[], regression: RegressionReport | null): string {
+function renderDashboard(rows: DashboardRow[], regression: RegressionReport | null, reviewHealth: ReviewHealth): string {
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -351,6 +389,10 @@ ${rows.map((row) => `- ${row.clientName}: fixtures ${row.fixtureCount}; precisio
 ## Regression Health
 
 ${renderRegressionHealth(regression)}
+
+## Review Health
+
+${renderReviewHealth(reviewHealth)}
 
 ## Verification Promotion
 
@@ -491,6 +533,23 @@ function readRegression(): RegressionReport | null {
   return readJson<RegressionReport>(regressionPath);
 }
 
+function readReviewHealth(): ReviewHealth {
+  if (fs.existsSync(reviewHistoryPath)) {
+    const history = readJson<ReviewHistoryReport>(reviewHistoryPath);
+    return {
+      mode: 'actual',
+      metrics: reviewMetricsFor(history.decisions ?? []),
+    };
+  }
+  if (fs.existsSync(reviewSimulationPath)) {
+    return {
+      mode: 'simulation',
+      metrics: readJson<ReviewSimulationReport>(reviewSimulationPath).metrics,
+    };
+  }
+  return { mode: 'none', metrics: null };
+}
+
 function readOutcomes(): LeadOutcomeRecord[] {
   if (!fs.existsSync(outcomesPath)) return [];
   return JSON.parse(fs.readFileSync(outcomesPath, 'utf8')) as LeadOutcomeRecord[];
@@ -535,6 +594,46 @@ function renderRegressionHealth(regression: RegressionReport | null): string {
     `- Top failing rules: ${regressionTopFailingRules(regression)}`,
     `- Regression trend: ${regression.regressionTrend}`,
   ].join('\n');
+}
+
+function renderReviewHealth(reviewHealth: ReviewHealth): string {
+  if (!reviewHealth.metrics) {
+    return '- No review run found. Run `npm run leads:review` or `npm run leads:review-simulate`.';
+  }
+  return [
+    `- Mode: ${reviewHealth.mode}`,
+    `- Last review date: ${reviewHealth.metrics.lastReviewDate ?? 'none'}`,
+    `- Approval rate: ${toPercent(reviewHealth.metrics.approvalRate)}`,
+    `- Rejection rate: ${toPercent(reviewHealth.metrics.rejectionRate)}`,
+    `- Hold count: ${reviewHealth.metrics.holdCount}`,
+    `- Needs recency check: ${reviewHealth.metrics.needsRecencyCheckCount}`,
+    `- False positives: ${reviewHealth.metrics.falsePositiveCount}`,
+    `- Top approval reasons: ${reviewHealth.metrics.topApprovalReasons}`,
+    `- Top rejection reasons: ${reviewHealth.metrics.topRejectionReasons}`,
+    `- Learning count: ${reviewHealth.metrics.learningCount}`,
+  ].join('\n');
+}
+
+function reviewMetricsFor(decisions: ReviewHistoryReport['decisions']): ReviewMetrics {
+  const approvedCount = decisions.filter((decision) => decision.decision === 'approve').length;
+  const rejectedCount = decisions.filter((decision) => decision.decision === 'reject').length;
+  const holdCount = decisions.filter((decision) => decision.decision === 'hold').length;
+  const needsRecencyCheckCount = decisions.filter((decision) => decision.decision === 'needs_recency_check').length;
+  const falsePositiveCount = decisions.filter((decision) => decision.decision === 'false_positive').length;
+  return {
+    totalDecisions: decisions.length,
+    approvedCount,
+    rejectedCount,
+    holdCount,
+    needsRecencyCheckCount,
+    falsePositiveCount,
+    approvalRate: ratio(approvedCount, decisions.length),
+    rejectionRate: ratio(rejectedCount + falsePositiveCount, decisions.length),
+    topApprovalReasons: compactDistribution(decisions.filter((decision) => decision.decision === 'approve').map((decision) => decision.reviewReason)),
+    topRejectionReasons: compactDistribution(decisions.filter((decision) => decision.decision === 'reject' || decision.decision === 'false_positive').map((decision) => decision.reviewReason)),
+    learningCount: decisions.filter((decision) => decision.learningApplied).length,
+    lastReviewDate: decisions.length ? decisions.map((decision) => decision.reviewDate).sort().at(-1) ?? null : null,
+  };
 }
 
 function regressionTopFailingRules(regression: RegressionReport): string {
@@ -596,6 +695,10 @@ function average(values: number[]): number {
 
 function percentage(numerator: number, denominator: number): number {
   return denominator === 0 ? 0 : Math.round((numerator / denominator) * 1000) / 10;
+}
+
+function ratio(numerator: number, denominator: number): number {
+  return denominator === 0 ? 0 : Math.round((numerator / denominator) * 1000) / 1000;
 }
 
 function queryQualityRows(candidates: SearchCandidate[]): Array<{ query: string; leadLikeTotal: number; leadLikePercentage: number; recommendation: string }> {

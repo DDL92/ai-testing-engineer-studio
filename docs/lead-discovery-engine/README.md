@@ -149,6 +149,67 @@ The suite validates buyer role, lead-like classification, delivery eligibility, 
 
 `npm test` runs `npm run leads:regression` before Playwright. This keeps CI local and deterministic while failing fast if lead quality regresses. No provider calls, Tavily usage, browser automation, scraping, contact extraction, or outreach are performed.
 
+## Human Review Workflow
+
+Human review records Daniel's commercial decision after candidates are generated. It is manual and local:
+
+```sh
+npm run leads:review -- --candidateId candidate-id --clientId flora_and_fauna_foods_001 --decision approve --reviewReason "real buyer" --notes "Strong event need."
+```
+
+Batch decisions can also be applied from a local JSON file:
+
+```sh
+npm run leads:review -- --file data/lead-discovery/review-decisions.json
+```
+
+The command writes:
+
+- `output/lead-discovery/review-state/review-state.json`
+- `output/lead-discovery/review-state/review-history.json`
+- `output/lead-discovery/review-state/review-history.csv`
+- `output/lead-discovery/review/review-summary.md`
+- `output/lead-discovery/review/review-summary.csv`
+- `output/lead-discovery/review/review-learning.md`
+- `output/lead-discovery/review/review-learning.csv`
+
+## Decision Types
+
+Supported decisions:
+
+- `approve`
+- `reject`
+- `hold`
+- `needs_recency_check`
+- `false_positive`
+
+Approved reasons include `real buyer`, `high intent`, `good fit`, `recent post`, and `high commercial value`. Rejected reasons include `directory`, `vendor`, `staffing`, `article`, `stale`, `not buyer`, `duplicate`, and `low value`. Hold reasons include `needs more evidence`, `unclear intent`, and `ambiguous source`.
+
+## Outcome Learning
+
+Approved decisions create positive learning rows that promote similar future candidates with matching buyer, intent, source, and commercial-value signals.
+
+False-positive decisions create negative learning rows that increase local penalties for staffing, directories, reference articles, vendor pages, and other non-buyer patterns.
+
+## Review Metrics
+
+Review reports track approved count, rejected count, hold count, false-positive count, approval rate, rejection rate, top approval reasons, top rejection reasons, and learning count. The client dashboard includes a `Review Health` section with the latest review metrics.
+
+## Review Simulation Workflow
+
+Run the review simulator manually:
+
+```sh
+npm run leads:review-simulate
+```
+
+The simulator reviews fixture and golden-dataset cases without persisting real review history. It writes:
+
+- `output/lead-discovery/review/review-simulation.md`
+- `output/lead-discovery/review/review-simulation.json`
+
+The morning workflow does not run review decisions or review simulation automatically.
+
 ## Outputs
 
 - `data/leads/discovered-leads.json`
