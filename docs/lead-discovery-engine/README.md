@@ -126,6 +126,29 @@ true positives / (true positives + false negatives)
 
 Use recall to catch overly strict rules that reject real buyer conversations.
 
+## Golden Dataset Regression
+
+The golden dataset is the permanent local quality gate for lead discovery logic. It lives in `data/lead-discovery/golden-dataset/`:
+
+- `flora-golden.json`
+- `lzt-golden.json`
+- `costa-golden.json`
+
+Run it directly:
+
+```sh
+npm run leads:regression
+```
+
+The suite validates buyer role, lead-like classification, delivery eligibility, verification eligibility, intent strength, and commercial value buckets. It writes:
+
+- `output/lead-discovery/regression/regression-summary.md`
+- `output/lead-discovery/regression/regression-results.json`
+- `output/lead-discovery/regression/regression-failures.md`
+- `output/lead-discovery/regression/regression-dashboard.md`
+
+`npm test` runs `npm run leads:regression` before Playwright. This keeps CI local and deterministic while failing fast if lead quality regresses. No provider calls, Tavily usage, browser automation, scraping, contact extraction, or outreach are performed.
+
 ## Outputs
 
 - `data/leads/discovered-leads.json`

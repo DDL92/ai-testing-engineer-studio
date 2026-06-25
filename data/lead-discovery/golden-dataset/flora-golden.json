@@ -1,0 +1,101 @@
+[
+  {
+    "id": "flora-golden-positive-001",
+    "title": "My caterer cancelled for our wedding next week.",
+    "snippet": "My caterer cancelled for our wedding next week. Need catering recommendations ASAP in New Jersey.",
+    "expectedBuyerRole": "buyer_service",
+    "expectedLeadLikeClassification": "lead_like",
+    "expectedDeliveryEligibility": true,
+    "expectedVerificationEligibility": true,
+    "expectedIntentStrength": "strong",
+    "expectedCommercialValue": "high"
+  },
+  {
+    "id": "flora-golden-positive-002",
+    "title": "Need catering recommendations ASAP.",
+    "snippet": "Need catering recommendations ASAP for a fundraiser next week in New Jersey.",
+    "expectedBuyerRole": "buyer_service",
+    "expectedLeadLikeClassification": "lead_like",
+    "expectedDeliveryEligibility": true,
+    "expectedVerificationEligibility": true,
+    "expectedIntentStrength": "strong",
+    "expectedCommercialValue": "high"
+  },
+  {
+    "id": "flora-golden-positive-003",
+    "title": "Need food vendor recommendations.",
+    "snippet": "Need food vendor recommendations for corporate event next month in New York.",
+    "expectedBuyerRole": "buyer_service",
+    "expectedLeadLikeClassification": "lead_like",
+    "expectedDeliveryEligibility": true,
+    "expectedVerificationEligibility": true,
+    "expectedIntentStrength": "strong",
+    "expectedCommercialValue": "high"
+  },
+  {
+    "id": "flora-golden-positive-004",
+    "title": "Fundraiser next week.",
+    "snippet": "Looking for bar service and catering help for a fundraiser next week in New Jersey.",
+    "expectedBuyerRole": "buyer_service",
+    "expectedLeadLikeClassification": "lead_like",
+    "expectedDeliveryEligibility": true,
+    "expectedVerificationEligibility": true,
+    "expectedIntentStrength": "strong",
+    "expectedCommercialValue": "high"
+  },
+  {
+    "id": "flora-golden-negative-001",
+    "title": "Looking for servers.",
+    "snippet": "Looking for servers to work a catering event this weekend.",
+    "expectedBuyerRole": "staffing_recruitment",
+    "expectedLeadLikeClassification": "generic_content",
+    "expectedDeliveryEligibility": false,
+    "expectedVerificationEligibility": false,
+    "expectedIntentStrength": "weak",
+    "expectedCommercialValue": "none"
+  },
+  {
+    "id": "flora-golden-negative-002",
+    "title": "Hiring bartenders.",
+    "snippet": "Hiring bartenders for event staff. Pay rate by shift.",
+    "expectedBuyerRole": "staffing_recruitment",
+    "expectedLeadLikeClassification": "unknown",
+    "expectedDeliveryEligibility": false,
+    "expectedVerificationEligibility": false,
+    "expectedIntentStrength": "weak",
+    "expectedCommercialValue": "none"
+  },
+  {
+    "id": "flora-golden-negative-003",
+    "title": "Model types with catering experience.",
+    "snippet": "Looking for model types in NYC who have catering experience to work two catering events. DM me ASAP.",
+    "expectedBuyerRole": "staffing_recruitment",
+    "expectedLeadLikeClassification": "generic_content",
+    "expectedDeliveryEligibility": false,
+    "expectedVerificationEligibility": false,
+    "expectedIntentStrength": "weak",
+    "expectedCommercialValue": "none"
+  },
+  {
+    "id": "flora-golden-negative-004",
+    "title": "Wedding caterer directory.",
+    "snippet": "Wedding caterer directory with vendor profiles and marketplace listings.",
+    "expectedBuyerRole": "directory",
+    "expectedLeadLikeClassification": "directory",
+    "expectedDeliveryEligibility": false,
+    "expectedVerificationEligibility": false,
+    "expectedIntentStrength": "weak",
+    "expectedCommercialValue": "none"
+  },
+  {
+    "id": "flora-golden-negative-005",
+    "title": "Top 10 caterers article.",
+    "snippet": "Top 10 caterers article and guide to choosing catering companies.",
+    "expectedBuyerRole": "directory",
+    "expectedLeadLikeClassification": "directory",
+    "expectedDeliveryEligibility": false,
+    "expectedVerificationEligibility": false,
+    "expectedIntentStrength": "weak",
+    "expectedCommercialValue": "none"
+  }
+]

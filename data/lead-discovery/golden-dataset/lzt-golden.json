@@ -1,0 +1,79 @@
+[
+  {
+    "id": "lzt-golden-positive-001",
+    "title": "Tanque séptico se rebalsa.",
+    "snippet": "Tanque séptico se rebalsa y necesito solución de aguas residuales.",
+    "expectedBuyerRole": "buyer_service",
+    "expectedLeadLikeClassification": "lead_like",
+    "expectedDeliveryEligibility": true,
+    "expectedVerificationEligibility": true,
+    "expectedIntentStrength": "strong",
+    "expectedCommercialValue": "high"
+  },
+  {
+    "id": "lzt-golden-positive-002",
+    "title": "Building hotel in Guanacaste.",
+    "snippet": "Construyendo hotel en Guanacaste y necesito PTAR para permiso MINSA.",
+    "expectedBuyerRole": "buyer_service",
+    "expectedLeadLikeClassification": "lead_like",
+    "expectedDeliveryEligibility": true,
+    "expectedVerificationEligibility": true,
+    "expectedIntentStrength": "strong",
+    "expectedCommercialValue": "high"
+  },
+  {
+    "id": "lzt-golden-positive-003",
+    "title": "Need PTAR.",
+    "snippet": "Necesito PTAR para proyecto fuera de red AyA.",
+    "expectedBuyerRole": "buyer_service",
+    "expectedLeadLikeClassification": "lead_like",
+    "expectedDeliveryEligibility": true,
+    "expectedVerificationEligibility": true,
+    "expectedIntentStrength": "strong",
+    "expectedCommercialValue": "high"
+  },
+  {
+    "id": "lzt-golden-positive-004",
+    "title": "Architect needs wastewater solution.",
+    "snippet": "Arquitecto necesita solución de aguas residuales y planta de tratamiento.",
+    "expectedBuyerRole": "buyer_service",
+    "expectedLeadLikeClassification": "lead_like",
+    "expectedDeliveryEligibility": true,
+    "expectedVerificationEligibility": true,
+    "expectedIntentStrength": "strong",
+    "expectedCommercialValue": "high"
+  },
+  {
+    "id": "lzt-golden-negative-001",
+    "title": "Clean septic tank.",
+    "snippet": "Busco limpiar tanque séptico esta semana.",
+    "expectedBuyerRole": "unknown",
+    "expectedLeadLikeClassification": "article",
+    "expectedDeliveryEligibility": false,
+    "expectedVerificationEligibility": false,
+    "expectedIntentStrength": "weak",
+    "expectedCommercialValue": "none"
+  },
+  {
+    "id": "lzt-golden-negative-002",
+    "title": "Plumber.",
+    "snippet": "Necesito fontanero para reparar baño.",
+    "expectedBuyerRole": "unknown",
+    "expectedLeadLikeClassification": "article",
+    "expectedDeliveryEligibility": false,
+    "expectedVerificationEligibility": false,
+    "expectedIntentStrength": "weak",
+    "expectedCommercialValue": "none"
+  },
+  {
+    "id": "lzt-golden-negative-003",
+    "title": "Cheapest option.",
+    "snippet": "Busco el servicio más barato para limpiar tuberías.",
+    "expectedBuyerRole": "unknown",
+    "expectedLeadLikeClassification": "article",
+    "expectedDeliveryEligibility": false,
+    "expectedVerificationEligibility": false,
+    "expectedIntentStrength": "weak",
+    "expectedCommercialValue": "none"
+  }
+]

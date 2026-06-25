@@ -19,6 +19,7 @@ const tavilyHealthPath = path.join(process.cwd(), 'output', 'lead-discovery', 'd
 const verificationSummaryPath = path.join(process.cwd(), 'output', 'lead-discovery', 'verification', 'verification-summary.md');
 const verificationReviewPath = path.join(process.cwd(), 'output', 'lead-discovery', 'verification', 'review-queue.json');
 const simulationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'simulation', 'simulation-candidates.json');
+const regressionPath = path.join(process.cwd(), 'output', 'lead-discovery', 'regression', 'regression-results.json');
 const outcomesPath = path.join(process.cwd(), 'data', 'lead-discovery', 'outcomes', 'sample-outcomes.json');
 const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'dashboard');
 const dashboardPath = path.join(outputDir, 'client-dashboard.md');
@@ -139,6 +140,23 @@ interface SimulationReport {
   clientMetrics: Record<string, SimulationMetrics>;
 }
 
+interface RegressionReport {
+  generatedAt: string;
+  regressionTrend: string;
+  metrics: {
+    totalCases: number;
+    passed: number;
+    failed: number;
+    passRate: number;
+    precision: number;
+    recall: number;
+    buyerRoleAccuracy: number;
+    deliveryAccuracy: number;
+    verificationAccuracy: number;
+  };
+  results: Array<{ failedAssertions: string[]; passed: boolean }>;
+}
+
 export function generateClientDashboard(): { filesGenerated: string[]; rows: DashboardRow[] } {
   const delivery = readJson<DeliveryBatch>(deliveryPath).deliveryCandidates;
   const searchBatch = readSearchBatch();
@@ -148,12 +166,13 @@ export function generateClientDashboard(): { filesGenerated: string[]; rows: Das
   const outcomes = readOutcomes();
   const verificationReview = readVerificationReview();
   const simulation = readSimulation();
+  const regression = readRegression();
   const rows = ['flora_and_fauna_foods_001', 'lzt_costa_rica_001', 'costa_retreats_001']
     .map((clientId) => rowFor(clientId, delivery, searchBatch, behaviorQueries, diagnostics, tavilyHealth, outcomes, verificationReview.reviewItems, simulation))
     .filter((row) => row.searchCandidates > 0 || row.deliveryCandidates > 0 || row.verificationCandidates > 0 || row.outcomeCount > 0 || row.behaviorQueryCount > 0 || row.fixtureCount > 0);
 
   fs.mkdirSync(outputDir, { recursive: true });
-  fs.writeFileSync(dashboardPath, renderDashboard(rows), 'utf8');
+  fs.writeFileSync(dashboardPath, renderDashboard(rows, regression), 'utf8');
   fs.writeFileSync(csvPath, renderCsv(rows), 'utf8');
   return { filesGenerated: [dashboardPath, csvPath].map((file) => path.relative(process.cwd(), file)), rows };
 }
@@ -284,7 +303,7 @@ function rowFor(
   };
 }
 
-function renderDashboard(rows: DashboardRow[]): string {
+function renderDashboard(rows: DashboardRow[], regression: RegressionReport | null): string {
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -328,6 +347,10 @@ ${rows.map((row) => `- ${row.clientName}: rewrites executed ${row.rewrittenQueri
 ## Offline Fixture Simulation
 
 ${rows.map((row) => `- ${row.clientName}: fixtures ${row.fixtureCount}; precision ${toPercent(row.simulationPrecision)}; recall ${toPercent(row.simulationRecall)}; buyer role accuracy ${toPercent(row.simulationBuyerRoleAccuracy)}; verification promotion rate ${toPercent(row.simulationVerificationPromotionRate)}; false positive rate ${toPercent(row.simulationFalsePositiveRate)}`).join('\n') || '- None.'}
+
+## Regression Health
+
+${renderRegressionHealth(regression)}
 
 ## Verification Promotion
 
@@ -463,6 +486,11 @@ function readSimulation(): SimulationReport | null {
   return readJson<SimulationReport>(simulationPath);
 }
 
+function readRegression(): RegressionReport | null {
+  if (!fs.existsSync(regressionPath)) return null;
+  return readJson<RegressionReport>(regressionPath);
+}
+
 function readOutcomes(): LeadOutcomeRecord[] {
   if (!fs.existsSync(outcomesPath)) return [];
   return JSON.parse(fs.readFileSync(outcomesPath, 'utf8')) as LeadOutcomeRecord[];
@@ -488,6 +516,35 @@ function clientNameFor(clientId: string): string {
 
 function toPercent(value: number): string {
   return `${(value * 100).toFixed(1)}%`;
+}
+
+function renderRegressionHealth(regression: RegressionReport | null): string {
+  if (!regression) {
+    return '- No regression run found. Run `npm run leads:regression`.';
+  }
+  return [
+    `- Last regression run: ${regression.generatedAt}`,
+    `- Cases: ${regression.metrics.totalCases}`,
+    `- Pass rate: ${toPercent(regression.metrics.passRate)}`,
+    `- Failure count: ${regression.metrics.failed}`,
+    `- Precision: ${toPercent(regression.metrics.precision)}`,
+    `- Recall: ${toPercent(regression.metrics.recall)}`,
+    `- Buyer role accuracy: ${toPercent(regression.metrics.buyerRoleAccuracy)}`,
+    `- Delivery accuracy: ${toPercent(regression.metrics.deliveryAccuracy)}`,
+    `- Verification accuracy: ${toPercent(regression.metrics.verificationAccuracy)}`,
+    `- Top failing rules: ${regressionTopFailingRules(regression)}`,
+    `- Regression trend: ${regression.regressionTrend}`,
+  ].join('\n');
+}
+
+function regressionTopFailingRules(regression: RegressionReport): string {
+  const rows = Object.entries(regression.results
+    .flatMap((result) => result.failedAssertions.map((failure) => failure.split(' expected ')[0]))
+    .reduce<Record<string, number>>((counts, rule) => {
+      counts[rule] = (counts[rule] ?? 0) + 1;
+      return counts;
+    }, {})).sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]));
+  return rows.map(([rule, count]) => `${rule}:${count}`).join('; ') || 'none';
 }
 
 function readSearchBatch(): SearchCandidateBatch {

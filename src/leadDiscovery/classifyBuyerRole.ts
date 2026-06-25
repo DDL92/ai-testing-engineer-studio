@@ -98,9 +98,11 @@ const articleSignals = [
   'wikipedia article',
   'travel blog',
   'general costa rica guide',
+  'generic tourism blog',
   'cheap flights article',
   'top 10',
   'directory',
+  'article',
 ];
 
 const employeeSeekingSignals = [
@@ -153,16 +155,16 @@ export function classifyBuyerRole(input: BuyerRoleInput): BuyerRoleClassificatio
     ]);
   }
 
-  if (employeeSignals.length > 0) {
-    return result('employee_seeking_work', confidence(employeeSignals.length, buyerSignals.length), employeeSignals, [
-      'Person appears to be seeking work, not buying a service.',
-    ]);
-  }
-
   const staffingPatternDetected = hasStaffingPattern(text);
   if (staffingSignals.length >= 2 || staffingPatternDetected) {
     return result('staffing_recruitment', staffingPatternDetected || staffingSignals.length >= 3 ? 'high' : confidence(staffingSignals.length, buyerSignals.length), staffingSignals, [
       'Post is recruiting workers or event staff instead of purchasing catering services.',
+    ]);
+  }
+
+  if (employeeSignals.length > 0) {
+    return result('employee_seeking_work', confidence(employeeSignals.length, buyerSignals.length), employeeSignals, [
+      'Person appears to be seeking work, not buying a service.',
     ]);
   }
 
@@ -233,7 +235,7 @@ function buyerSignalsFor(input: BuyerRoleInput): string[] {
 function nonBuyerSignalsFor(input: BuyerRoleInput): string[] {
   if (input.clientId === 'lzt_costa_rica_001') return lztNonBuyerSignals;
   if (input.clientId === 'costa_retreats_001' || input.vertical === 'travel_leads') return articleSignals;
-  return [];
+  return articleSignals;
 }
 
 function readSignals(filePath: string, fallback: string[]): string[] {

@@ -1,0 +1,79 @@
+[
+  {
+    "id": "costa-golden-positive-001",
+    "title": "Need itinerary help.",
+    "snippet": "Need itinerary help for Costa Rica family trip.",
+    "expectedBuyerRole": "buyer_service",
+    "expectedLeadLikeClassification": "lead_like",
+    "expectedDeliveryEligibility": true,
+    "expectedVerificationEligibility": true,
+    "expectedIntentStrength": "strong",
+    "expectedCommercialValue": "high"
+  },
+  {
+    "id": "costa-golden-positive-002",
+    "title": "Planning honeymoon.",
+    "snippet": "Planning Costa Rica honeymoon and looking for itinerary help.",
+    "expectedBuyerRole": "buyer_service",
+    "expectedLeadLikeClassification": "lead_like",
+    "expectedDeliveryEligibility": true,
+    "expectedVerificationEligibility": true,
+    "expectedIntentStrength": "strong",
+    "expectedCommercialValue": "high"
+  },
+  {
+    "id": "costa-golden-positive-003",
+    "title": "Family reunion Costa Rica.",
+    "snippet": "Planning family reunion in Costa Rica and need travel planning help.",
+    "expectedBuyerRole": "buyer_service",
+    "expectedLeadLikeClassification": "lead_like",
+    "expectedDeliveryEligibility": true,
+    "expectedVerificationEligibility": true,
+    "expectedIntentStrength": "strong",
+    "expectedCommercialValue": "high"
+  },
+  {
+    "id": "costa-golden-positive-004",
+    "title": "Villa recommendations.",
+    "snippet": "Looking for villa recommendations in Tamarindo for a group trip.",
+    "expectedBuyerRole": "buyer_service",
+    "expectedLeadLikeClassification": "lead_like",
+    "expectedDeliveryEligibility": true,
+    "expectedVerificationEligibility": true,
+    "expectedIntentStrength": "strong",
+    "expectedCommercialValue": "high"
+  },
+  {
+    "id": "costa-golden-negative-001",
+    "title": "Travel article.",
+    "snippet": "Travel article with a general Costa Rica guide.",
+    "expectedBuyerRole": "directory",
+    "expectedLeadLikeClassification": "article",
+    "expectedDeliveryEligibility": false,
+    "expectedVerificationEligibility": false,
+    "expectedIntentStrength": "weak",
+    "expectedCommercialValue": "none"
+  },
+  {
+    "id": "costa-golden-negative-002",
+    "title": "Wikipedia.",
+    "snippet": "Wikipedia article about Costa Rica geography.",
+    "expectedBuyerRole": "directory",
+    "expectedLeadLikeClassification": "definition",
+    "expectedDeliveryEligibility": false,
+    "expectedVerificationEligibility": false,
+    "expectedIntentStrength": "weak",
+    "expectedCommercialValue": "none"
+  },
+  {
+    "id": "costa-golden-negative-003",
+    "title": "Generic tourism blog.",
+    "snippet": "Generic tourism blog with things to know before visiting Costa Rica.",
+    "expectedBuyerRole": "directory",
+    "expectedLeadLikeClassification": "article",
+    "expectedDeliveryEligibility": false,
+    "expectedVerificationEligibility": false,
+    "expectedIntentStrength": "weak",
+    "expectedCommercialValue": "none"
+  }
+]

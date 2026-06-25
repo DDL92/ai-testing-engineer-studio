@@ -11,6 +11,9 @@ const floraPositiveSignals = [
   'help finding',
   'need help',
   'event request',
+  'caterer cancelled',
+  'fundraiser next week',
+  'catering help',
   'request for proposals',
   'rfp',
   'food service',
@@ -66,6 +69,8 @@ const costaPositiveSignals = [
 const requestSignals = [
   'looking for',
   'planning',
+  'fundraiser next week',
+  'catering help',
   'need',
   'needs',
   'anyone know',
