@@ -434,7 +434,8 @@
     "winloss:insights": "node --import tsx src/winLossEngine/generateOpportunityInsights.ts",
     "winloss:strategy": "node --import tsx src/winLossEngine/generateStrategyRecommendations.ts",
     "validate:business": "tsx apps/lead-operator/src/cli/validateBusiness.ts",
-    "repo:check": "node --import tsx src/repoCheck/runRepoCheck.ts"
+    "system:audit": "node --import tsx src/leadDiscovery/generateSystemAudit.ts",
+    "repo:check": "node --import tsx src/leadDiscovery/runRepoCheck.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.46.0",

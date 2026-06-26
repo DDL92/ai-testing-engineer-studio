@@ -88,6 +88,19 @@ Generated files policy:
 - Use `output/operator/repo-check.md` and `output/operator/repo-check.json` as local operator reports; do not treat them as source of truth for application logic.
 - If a generated file must be committed intentionally, document why in the commit or PR notes.
 
+## System Audit + Repo Check
+
+Use these commands before commits, after test cleanup work, and while Tavily credits are exhausted:
+
+```bash
+npm run system:audit
+npm run repo:check
+```
+
+`npm run system:audit` generates `output/system-audit/system-audit.md`, `system-audit.json`, `script-inventory.md`, `output-inventory.md`, and `optimization-recommendations.md`. It audits scripts, duplicated Lead Discovery files, generated/runtime risks, docs gaps, stale outputs, unsafe commands, large files, test health, and dashboard coverage without running Tavily, providers, scraping, browser automation, or outreach.
+
+`npm run repo:check` generates `output/operator/repo-check.md` and `repo-check.json`. It checks private env tracking, Tavily key patterns, staged generated/runtime files, required scripts, and required docs. It fails hard only on secret risk; generated-file drift is reported as a warning for operator review.
+
 ## Why This Repo Exists
 
 This repo is both a public portfolio asset and a delivery kit for QA Automation and AI Testing services. It shows how I structure client-ready Playwright work, package AI testing audits, and deliver practical QA artifacts without overbuilding.

@@ -31,6 +31,8 @@ const reviewSimulationPath = path.join(process.cwd(), 'output', 'lead-discovery'
 const loopStatePath = path.join(process.cwd(), 'runtime', 'lead-discovery', 'loop-state.json');
 const costBudgetPath = path.join(process.cwd(), 'runtime', 'lead-discovery', 'cost-budget.json');
 const operatorBriefPath = path.join(process.cwd(), 'output', 'operator', 'daily-operator-brief.json');
+const repoCheckPath = path.join(process.cwd(), 'output', 'operator', 'repo-check.json');
+const systemAuditPath = path.join(process.cwd(), 'output', 'system-audit', 'system-audit.json');
 const outcomesPath = path.join(process.cwd(), 'data', 'lead-discovery', 'outcomes', 'sample-outcomes.json');
 const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'dashboard');
 const dashboardPath = path.join(outputDir, 'client-dashboard.md');
@@ -401,6 +403,7 @@ function renderDashboard(rows: DashboardRow[], regression: RegressionReport | nu
   const pipelineSummary = getCommercialPipelineSummary();
   const deliveryReadiness = getDeliveryReadinessSummary();
   const maintenanceReadiness = getMaintenanceReadiness();
+  const systemAuditHealth = getSystemAuditHealth();
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -460,6 +463,15 @@ ${renderLoopHealth(loopHealth.state, loopHealth.budget)}
 ## Operator Health
 
 ${renderOperatorHealth(operatorBrief)}
+
+## System Audit Health
+
+- Audit status: ${systemAuditHealth.auditStatus}
+- Repo check status: ${systemAuditHealth.repoCheckStatus}
+- Unsafe command count: ${systemAuditHealth.unsafeCommandCount}
+- Generated file risk count: ${systemAuditHealth.generatedFileRiskCount}
+- Docs status: ${systemAuditHealth.docsStatus}
+- Recommended next action: ${systemAuditHealth.recommendedNextAction}
 
 ## Pilot Delivery Health
 
@@ -680,6 +692,40 @@ function readLoopHealth(): { state: LoopStateReport | null; budget: CostBudgetRe
 function readOperatorBrief(): OperatorBriefReport | null {
   if (!fs.existsSync(operatorBriefPath)) return null;
   return readJson<OperatorBriefReport>(operatorBriefPath);
+}
+
+function getSystemAuditHealth(): {
+  auditStatus: string;
+  repoCheckStatus: string;
+  unsafeCommandCount: number;
+  generatedFileRiskCount: number;
+  docsStatus: string;
+  recommendedNextAction: string;
+} {
+  const audit = fs.existsSync(systemAuditPath)
+    ? readJson<{
+      status?: string;
+      summary?: {
+        unsafeCommandCount?: number;
+        generatedFileRiskCount?: number;
+        documentationGapCount?: number;
+        recommendedNextAction?: string;
+      };
+    }>(systemAuditPath)
+    : null;
+  const repoCheck = fs.existsSync(repoCheckPath)
+    ? readJson<{ status?: string; hardFailure?: boolean }>(repoCheckPath)
+    : null;
+  const documentationGapCount = audit?.summary?.documentationGapCount ?? 0;
+
+  return {
+    auditStatus: audit?.status ?? 'Not run',
+    repoCheckStatus: repoCheck ? `${repoCheck.status ?? 'unknown'}${repoCheck.hardFailure ? ' hard failure' : ''}` : 'Not run',
+    unsafeCommandCount: audit?.summary?.unsafeCommandCount ?? 0,
+    generatedFileRiskCount: audit?.summary?.generatedFileRiskCount ?? 0,
+    docsStatus: audit ? (documentationGapCount === 0 ? 'Current' : `${documentationGapCount} gap(s)`) : 'Not run',
+    recommendedNextAction: audit?.summary?.recommendedNextAction ?? 'Run npm run system:audit, then npm run repo:check.',
+  };
 }
 
 function readOutcomes(): LeadOutcomeRecord[] {
