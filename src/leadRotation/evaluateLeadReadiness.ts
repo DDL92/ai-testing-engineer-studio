@@ -87,8 +87,8 @@ function readDynamicEvidenceDecision(): { target: { companyName: string }; statu
 
 function webEvidenceStatus(summary: CompanyEvidenceSummary | undefined, lead: NormalizedWebLead): LeadRotationReadinessStatus {
   if (!lead.website || !summary) return 'NOT READY';
-  if (summary.evidenceConfidence === 'HIGH' && summary.companyConfidence === 'HIGH' && summary.falsePositiveRisk !== 'LOW') return 'READY';
-  if (summary.averageConfidence >= 60 && summary.falsePositiveRisk !== 'LOW') return 'PARTIAL';
+  if (summary.evidenceConfidence === 'HIGH' && summary.companyConfidence === 'HIGH' && summary.falsePositiveRisk === 'HIGH') return 'READY';
+  if (summary.averageConfidence >= 75 && summary.falsePositiveRisk !== 'LOW') return 'PARTIAL';
   return 'NOT READY';
 }
 
@@ -116,7 +116,7 @@ function readinessFor(
   blockers: string[],
 ): LeadRotationReadinessStatus {
   const criticalBlocker = blockers.some((blocker) => /403|cloudflare|not ready|no public website|no evidence|no screenshots/i.test(blocker));
-  if ((evidenceStatus === 'READY' || evidenceStatus === 'PARTIAL') && companyConfidence >= 70 && evidenceConfidence >= 60 && !criticalBlocker) return 'READY';
+  if (evidenceStatus === 'READY' && companyConfidence >= 70 && evidenceConfidence >= 60 && !criticalBlocker) return 'READY';
   if (evidenceStatus !== 'NOT READY' && companyConfidence >= 60 && evidenceConfidence >= 50) return 'PARTIAL';
   return 'NOT READY';
 }
