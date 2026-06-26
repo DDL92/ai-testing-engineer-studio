@@ -1,5 +1,6 @@
 import fs = require('fs');
 import path = require('path');
+import { runtimeOutputPath } from '../runtimePaths';
 import { classifyBuyerIntent } from './classifyBuyerIntent';
 import { classifyBuyerRole } from './classifyBuyerRole';
 import { classifyLeadLikeCandidate } from './classifyLeadLikeCandidate';
@@ -83,7 +84,7 @@ interface RegressionReport {
 }
 
 const datasetDir = path.join(process.cwd(), 'data', 'lead-discovery', 'golden-dataset');
-const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'regression');
+const outputDir = runtimeOutputPath('lead-discovery', 'regression');
 const summaryPath = path.join(outputDir, 'regression-summary.md');
 const resultsPath = path.join(outputDir, 'regression-results.json');
 const failuresPath = path.join(outputDir, 'regression-failures.md');

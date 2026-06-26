@@ -3,6 +3,7 @@ import fs = require('fs');
 import path = require('path');
 import { getTavilyRuntimeConfig } from '../integrations/tavily/tavilyClient';
 import { getRevenueSourceOfTruth } from '../revenueIntelligence/sourceOfTruth';
+import { runtimeDataPath, runtimeOutputPath } from '../runtimePaths';
 import {
   RunnerCommandDefinition,
   RunnerCommandResult,
@@ -15,8 +16,8 @@ import {
   RunnerState,
 } from './types';
 
-const dataDir = path.join(process.cwd(), 'data', 'autonomous-runner');
-const outputDir = path.join(process.cwd(), 'output', 'autonomous-runner');
+const dataDir = runtimeDataPath('autonomous-runner');
+const outputDir = runtimeOutputPath('autonomous-runner');
 const runnerStatePath = path.join(dataDir, 'runner-state.json');
 const lastRunPath = path.join(dataDir, 'last-run.json');
 

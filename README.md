@@ -57,6 +57,37 @@ npm run release:validate
 
 Studio v1 release validation requires TypeScript compilation and the complete Playwright regression suite to pass. See `docs/release/validation-report.md` for the latest recorded result.
 
+## Repo Guardrails
+
+Before committing:
+
+1. Run safe local validation only.
+2. Run `npm run repo:check`.
+3. Review `git status --short`.
+4. Confirm no `.env` file, Tavily key, runtime state, or generated evidence file is staged.
+5. Commit source/docs/config changes only unless a generated artifact is intentionally part of the change.
+
+Safe validation commands:
+
+```bash
+npm run typecheck
+npm run repo:check
+npm run leads:simulate
+npm run leads:regression
+npm run leads:review-simulate
+npm test -- --reporter=line
+npm run repo:check
+```
+
+`npm test`, `npm run leads:simulate`, `npm run leads:regression`, and `npm run leads:review-simulate` run with `STUDIO_TEST_MODE=1`, so validation artifacts are written under `tmp/test-output` instead of production-like generated paths.
+
+Generated files policy:
+
+- Keep `.env`, local credentials, Tavily keys, runtime state, and private client data out of git.
+- Treat `runtime/`, `data/autonomous-runner/`, `data/messages/message-drafts.json`, `output/evidence/`, `output/autonomous-runner/`, `output/lead-discovery/`, and `output/messages/` as volatile generated paths.
+- Use `output/operator/repo-check.md` and `output/operator/repo-check.json` as local operator reports; do not treat them as source of truth for application logic.
+- If a generated file must be committed intentionally, document why in the commit or PR notes.
+
 ## Why This Repo Exists
 
 This repo is both a public portfolio asset and a delivery kit for QA Automation and AI Testing services. It shows how I structure client-ready Playwright work, package AI testing audits, and deliver practical QA artifacts without overbuilding.

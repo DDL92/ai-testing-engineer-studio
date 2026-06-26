@@ -12,6 +12,7 @@ coverage/
 .DS_Store
 *.log
 runtime/
+tmp/test-output/
 output/
 data/contacts/
 data/outreach/
@@ -41,5 +42,11 @@ sales-marketing-engine/operator/approval-queue/*
 
 # Sprint 38 repo hygiene guardrails
 output/evidence/
+output/autonomous-runner/
+output/lead-discovery/
+output/messages/
+output/operator/repo-check.md
+output/operator/repo-check.json
 data/autonomous-runner/runner-state.json
+data/autonomous-runner/last-run.json
 data/messages/message-drafts.json

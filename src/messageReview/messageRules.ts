@@ -6,10 +6,11 @@ import { buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIn
 import { firstName, readyPrimaryContact } from '../contactDiscovery/contactRules';
 import { readContactAwareState, selectedContactReadyLead } from '../contactAwareRotation/rotationRules';
 import { getOperationalLeadContext } from '../revenueIntelligence/sourceOfTruth';
+import { runtimeDataPath, runtimeOutputPath } from '../runtimePaths';
 import { MessageDraft, MessageReviewReport } from './types';
 
-const dataPath = path.join(process.cwd(), 'data', 'messages', 'message-drafts.json');
-const outputRoot = path.join(process.cwd(), 'output', 'messages');
+const dataPath = runtimeDataPath('messages', 'message-drafts.json');
+const outputRoot = runtimeOutputPath('messages');
 
 const safetyRules = [
   'Manual-only message review.',

@@ -1,5 +1,6 @@
 import fs = require('fs');
 import path = require('path');
+import { runtimeOutputPath } from '../runtimePaths';
 import { classifyBuyerIntent } from './classifyBuyerIntent';
 import { classifyBuyerRole } from './classifyBuyerRole';
 import { classifyLeadLikeCandidate } from './classifyLeadLikeCandidate';
@@ -74,7 +75,7 @@ interface ReviewSimulationReport {
 
 const fixturesDir = path.join(process.cwd(), 'data', 'lead-discovery', 'fixtures');
 const goldenDir = path.join(process.cwd(), 'data', 'lead-discovery', 'golden-dataset');
-const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'review');
+const outputDir = runtimeOutputPath('lead-discovery', 'review');
 const simulationMdPath = path.join(outputDir, 'review-simulation.md');
 const simulationJsonPath = path.join(outputDir, 'review-simulation.json');
 const reviewSummaryPath = path.join(outputDir, 'review-summary.md');

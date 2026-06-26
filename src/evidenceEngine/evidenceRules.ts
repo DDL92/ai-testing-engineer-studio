@@ -7,6 +7,7 @@ import { loadLighthouseReport } from '../lighthouseEvidence/lighthouseRules';
 import { buildOpportunity } from '../opportunityEngine/opportunityEngineRules';
 import { PainResearchRecord } from '../painIntelligence/types';
 import { buildRevenueIntelligenceReport } from '../revenueIntelligence/revenueIntelligenceRules';
+import { runtimeOutputPath } from '../runtimePaths';
 import { SiteIntelligenceRecord } from '../siteIntelligence/types';
 import {
   ConsoleEvidenceReport,
@@ -41,7 +42,7 @@ const contactsPath = path.join(process.cwd(), 'data', 'contacts', 'contacts.json
 const channelsPath = path.join(process.cwd(), 'data', 'channels', 'channels.json');
 const painPath = path.join(process.cwd(), 'data', 'pain-intelligence', 'pain-research.json');
 const sitePath = path.join(process.cwd(), 'data', 'site-intelligence', 'site-intelligence.json');
-const outputDir = path.join(process.cwd(), 'output', 'evidence');
+const outputDir = runtimeOutputPath('evidence');
 const dynamicStateDir = path.join(outputDir, '.state');
 const screenshotsDir = path.join(outputDir, 'screenshots');
 const dynamicLighthouseDir = path.join(outputDir, 'lighthouse');
