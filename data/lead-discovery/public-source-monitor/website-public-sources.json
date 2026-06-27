@@ -1,0 +1,53 @@
+[
+  {
+    "sourceId": "website_local_business_directories",
+    "sourceName": "Sample local business directories",
+    "sourceType": "local_business_directory",
+    "clientId": "ai_website_studio_001",
+    "vertical": "website_leads",
+    "url": "sampleOnly://website/local-business-directories",
+    "allowed": true,
+    "requiresLogin": false,
+    "riskLevel": "low",
+    "useCase": "Find businesses with weak/no website signals from public directory metadata.",
+    "expectedSignals": ["business name", "category", "location", "website missing signal"],
+    "supportedEnrichmentTypes": ["geo", "business_profile"],
+    "enrichmentNotes": "Future enrichment can add local context, category fit, and business profile completeness.",
+    "notes": "Sample-only source metadata; no contact extraction.",
+    "sampleOnly": true
+  },
+  {
+    "sourceId": "website_chamber_business_listings",
+    "sourceName": "Sample chamber business listings",
+    "sourceType": "chamber_event_page",
+    "clientId": "ai_website_studio_001",
+    "vertical": "website_leads",
+    "url": "sampleOnly://website/chamber-business-listings",
+    "allowed": true,
+    "requiresLogin": false,
+    "riskLevel": "low",
+    "useCase": "Identify local businesses where public profile quality suggests website review value.",
+    "expectedSignals": ["business category", "location", "profile completeness", "public listing age"],
+    "supportedEnrichmentTypes": ["geo", "municipality", "business_profile"],
+    "enrichmentNotes": "Future enrichment can add municipality context and site-quality prioritization.",
+    "notes": "Planning-only source entry.",
+    "sampleOnly": true
+  },
+  {
+    "sourceId": "website_tourism_business_listings",
+    "sourceName": "Sample tourism business listings",
+    "sourceType": "local_business_directory",
+    "clientId": "ai_website_studio_001",
+    "vertical": "website_leads",
+    "url": "sampleOnly://website/tourism-business-listings",
+    "allowed": true,
+    "requiresLogin": false,
+    "riskLevel": "low",
+    "useCase": "Find tourism businesses where weak website presence can reduce direct bookings.",
+    "expectedSignals": ["business category", "destination", "booking friction clue", "website missing signal"],
+    "supportedEnrichmentTypes": ["geo", "tourism", "business_profile"],
+    "enrichmentNotes": "Future enrichment can add tourism demand and direct-booking opportunity context.",
+    "notes": "No browser automation or scraping behind authentication.",
+    "sampleOnly": true
+  }
+]

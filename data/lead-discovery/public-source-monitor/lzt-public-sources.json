@@ -1,0 +1,53 @@
+[
+  {
+    "sourceId": "lzt_municipality_public_notices",
+    "sourceName": "Sample municipality public notices",
+    "sourceType": "municipality_page",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "real_estate_leads",
+    "url": "sampleOnly://lzt/municipality-public-notices",
+    "allowed": true,
+    "requiresLogin": false,
+    "riskLevel": "low",
+    "useCase": "Find public development, permit, and infrastructure notices where wastewater context may matter.",
+    "expectedSignals": ["municipality", "project location", "notice date", "project type"],
+    "supportedEnrichmentTypes": ["geo", "municipality", "project_value", "business_profile"],
+    "enrichmentNotes": "Future enrichment can add municipality context, project type, and estimated value bands.",
+    "notes": "Sample-only source metadata. No government site fetch is included.",
+    "sampleOnly": true
+  },
+  {
+    "sourceId": "lzt_construction_notice_pages",
+    "sourceName": "Sample public construction notices",
+    "sourceType": "construction_notice_page",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "real_estate_leads",
+    "url": "sampleOnly://lzt/construction-notice-pages",
+    "allowed": true,
+    "requiresLogin": false,
+    "riskLevel": "low",
+    "useCase": "Track public construction notices for hotels, villas, subdivisions, and commercial builds.",
+    "expectedSignals": ["project type", "location", "developer context", "construction stage"],
+    "supportedEnrichmentTypes": ["geo", "municipality", "project_value", "business_profile"],
+    "enrichmentNotes": "Future enrichment can estimate commercial value and project stage priority.",
+    "notes": "Planning-only source entry.",
+    "sampleOnly": true
+  },
+  {
+    "sourceId": "lzt_real_estate_development_pages",
+    "sourceName": "Sample real estate development pages",
+    "sourceType": "real_estate_development_page",
+    "clientId": "lzt_costa_rica_001",
+    "vertical": "real_estate_leads",
+    "url": "sampleOnly://lzt/real-estate-development-pages",
+    "allowed": true,
+    "requiresLogin": false,
+    "riskLevel": "medium",
+    "useCase": "Identify public hotel, villa, and residential development announcements.",
+    "expectedSignals": ["development name", "location", "unit count clue", "project type"],
+    "supportedEnrichmentTypes": ["geo", "municipality", "project_value", "business_profile"],
+    "enrichmentNotes": "Future enrichment can add estimated commercial value and local infrastructure context.",
+    "notes": "No aggressive crawling; future fetches must be bounded and public-only.",
+    "sampleOnly": true
+  }
+]

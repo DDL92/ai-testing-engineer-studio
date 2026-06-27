@@ -1,0 +1,53 @@
+[
+  {
+    "sourceId": "costa_tourism_event_calendar",
+    "sourceName": "Sample Costa Rica tourism event pages",
+    "sourceType": "tourism_event_page",
+    "clientId": "costa_retreats_001",
+    "vertical": "travel_leads",
+    "url": "sampleOnly://costa/tourism-event-pages",
+    "allowed": true,
+    "requiresLogin": false,
+    "riskLevel": "low",
+    "useCase": "Find seasonal public events that can support retreat and group travel timing.",
+    "expectedSignals": ["event date", "destination", "traveler segment", "seasonal demand clue"],
+    "supportedEnrichmentTypes": ["geo", "event", "tourism", "seasonality", "weather_context"],
+    "enrichmentNotes": "Future enrichment can add tourism demand, weather season, and destination context.",
+    "notes": "Sample-only source metadata. No live tourism page fetch is included.",
+    "sampleOnly": true
+  },
+  {
+    "sourceId": "costa_public_itinerary_forums",
+    "sourceName": "Sample public itinerary discussion sources",
+    "sourceType": "public_forum",
+    "clientId": "costa_retreats_001",
+    "vertical": "travel_leads",
+    "url": "sampleOnly://costa/public-itinerary-discussions",
+    "allowed": true,
+    "requiresLogin": false,
+    "riskLevel": "medium",
+    "useCase": "Identify public trip-planning questions for families, villas, retreats, and group travel.",
+    "expectedSignals": ["destination", "trip date", "group size", "traveler intent"],
+    "supportedEnrichmentTypes": ["geo", "tourism", "seasonality", "weather_context"],
+    "enrichmentNotes": "Future enrichment can add destination seasonality and route/venue context.",
+    "notes": "Public snippets only; no contact extraction, DMs, or login-required scraping.",
+    "sampleOnly": true
+  },
+  {
+    "sourceId": "costa_group_travel_boards",
+    "sourceName": "Sample public group travel boards",
+    "sourceType": "public_event_calendar",
+    "clientId": "costa_retreats_001",
+    "vertical": "travel_leads",
+    "url": "sampleOnly://costa/group-travel-boards",
+    "allowed": true,
+    "requiresLogin": false,
+    "riskLevel": "low",
+    "useCase": "Track public retreat, reunion, and corporate offsite planning signals.",
+    "expectedSignals": ["group size", "event type", "date window", "destination"],
+    "supportedEnrichmentTypes": ["geo", "event", "tourism", "seasonality", "weather_context"],
+    "enrichmentNotes": "Future enrichment can estimate tourism demand and event timing fit.",
+    "notes": "Planning-only source entry.",
+    "sampleOnly": true
+  }
+]

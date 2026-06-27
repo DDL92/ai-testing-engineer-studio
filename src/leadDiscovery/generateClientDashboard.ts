@@ -12,6 +12,7 @@ import { getCommercialMeetingReadiness } from './generateMeetingPrepPack';
 import { getCommercialPipelineSummary } from './generateClientCallTracker';
 import { getDeliveryReadinessSummary } from './generateClientDeliveryRouter';
 import { getMaintenanceReadiness } from './printSafeCommands';
+import { EnrichmentReadiness, PublicSourceEnrichmentType } from './sourceMonitorTypes';
 
 interface DeliveryBatch {
   deliveryCandidates: DeliveryLeadCandidate[];
@@ -33,6 +34,9 @@ const costBudgetPath = path.join(process.cwd(), 'runtime', 'lead-discovery', 'co
 const operatorBriefPath = path.join(process.cwd(), 'output', 'operator', 'daily-operator-brief.json');
 const repoCheckPath = path.join(process.cwd(), 'output', 'operator', 'repo-check.json');
 const systemAuditPath = path.join(process.cwd(), 'output', 'system-audit', 'system-audit.json');
+const sourceMonitorPlanPath = path.join(process.cwd(), 'output', 'lead-discovery', 'source-monitor', 'source-monitor-plan.json');
+const sourceMonitorCandidatesPath = path.join(process.cwd(), 'output', 'lead-discovery', 'source-monitor', 'mock-source-candidates.json');
+const enrichmentReadinessPath = path.join(process.cwd(), 'output', 'lead-discovery', 'source-monitor', 'enrichment-readiness.json');
 const outcomesPath = path.join(process.cwd(), 'data', 'lead-discovery', 'outcomes', 'sample-outcomes.json');
 const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'dashboard');
 const dashboardPath = path.join(outputDir, 'client-dashboard.md');
@@ -247,6 +251,18 @@ interface OperatorBriefReport {
   };
 }
 
+interface PublicSourceMonitorDashboard {
+  status: string;
+  enabledSourceCount: number;
+  blockedSourceCount: number;
+  lowRiskSourceCount: number;
+  mockCandidatesCount: number;
+  enrichmentReadyCandidates: number;
+  supportedEnrichmentTypeDistribution: Record<string, number>;
+  integrationReadiness: string;
+  recommendedNextAction: string;
+}
+
 export function generateClientDashboard(): { filesGenerated: string[]; rows: DashboardRow[] } {
   const delivery = readJson<DeliveryBatch>(deliveryPath).deliveryCandidates;
   const searchBatch = readSearchBatch();
@@ -404,6 +420,7 @@ function renderDashboard(rows: DashboardRow[], regression: RegressionReport | nu
   const deliveryReadiness = getDeliveryReadinessSummary();
   const maintenanceReadiness = getMaintenanceReadiness();
   const systemAuditHealth = getSystemAuditHealth();
+  const sourceMonitor = getPublicSourceMonitorDashboard();
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -472,6 +489,18 @@ ${renderOperatorHealth(operatorBrief)}
 - Generated file risk count: ${systemAuditHealth.generatedFileRiskCount}
 - Docs status: ${systemAuditHealth.docsStatus}
 - Recommended next action: ${systemAuditHealth.recommendedNextAction}
+
+## Public Source + Enrichment Readiness
+
+- Source monitor status: ${sourceMonitor.status}
+- Enabled source count: ${sourceMonitor.enabledSourceCount}
+- Blocked source count: ${sourceMonitor.blockedSourceCount}
+- Low-risk source count: ${sourceMonitor.lowRiskSourceCount}
+- Mock candidates count: ${sourceMonitor.mockCandidatesCount}
+- Enrichment-ready candidates: ${sourceMonitor.enrichmentReadyCandidates}
+- Supported enrichment type distribution: ${formatInlineDistribution(sourceMonitor.supportedEnrichmentTypeDistribution)}
+- Integration readiness: ${sourceMonitor.integrationReadiness}
+- Recommended next action: ${sourceMonitor.recommendedNextAction}
 
 ## Pilot Delivery Health
 
@@ -728,6 +757,47 @@ function getSystemAuditHealth(): {
   };
 }
 
+function getPublicSourceMonitorDashboard(): PublicSourceMonitorDashboard {
+  const plan = fs.existsSync(sourceMonitorPlanPath)
+    ? readJson<{
+      health?: {
+        status?: string;
+        enabledSourceCount?: number;
+        blockedSourceCount?: number;
+        lowRiskSourceCount?: number;
+        recommendedNextAction?: string;
+      };
+      summary?: {
+        enrichmentTypeDistribution?: Record<PublicSourceEnrichmentType, number>;
+      };
+    }>(sourceMonitorPlanPath)
+    : null;
+  const candidates = fs.existsSync(sourceMonitorCandidatesPath)
+    ? readJson<{ totalCandidates?: number; candidates?: unknown[] }>(sourceMonitorCandidatesPath)
+    : null;
+  const readiness = fs.existsSync(enrichmentReadinessPath)
+    ? readJson<{
+      enrichmentReadyCandidates?: number;
+      readinessDistribution?: Record<EnrichmentReadiness, number>;
+      supportedEnrichmentTypeDistribution?: Record<PublicSourceEnrichmentType, number>;
+    }>(enrichmentReadinessPath)
+    : null;
+
+  return {
+    status: plan?.health?.status ?? 'Not run',
+    enabledSourceCount: plan?.health?.enabledSourceCount ?? 0,
+    blockedSourceCount: plan?.health?.blockedSourceCount ?? 0,
+    lowRiskSourceCount: plan?.health?.lowRiskSourceCount ?? 0,
+    mockCandidatesCount: candidates?.totalCandidates ?? candidates?.candidates?.length ?? 0,
+    enrichmentReadyCandidates: readiness?.enrichmentReadyCandidates ?? readiness?.readinessDistribution?.ready ?? 0,
+    supportedEnrichmentTypeDistribution: readiness?.supportedEnrichmentTypeDistribution ?? plan?.summary?.enrichmentTypeDistribution ?? {},
+    integrationReadiness: plan && readiness
+      ? 'Offline candidate shape ready for future public data enrichment, buyer role classification, lead-like scoring, and client-facing sales intelligence.'
+      : 'Run npm run leads:source-monitor-plan, npm run leads:source-monitor-simulate, and npm run leads:enrichment-readiness.',
+    recommendedNextAction: plan?.health?.recommendedNextAction ?? 'Generate offline source-monitor artifacts before reviewing enrichment readiness.',
+  };
+}
+
 function readOutcomes(): LeadOutcomeRecord[] {
   if (!fs.existsSync(outcomesPath)) return [];
   return JSON.parse(fs.readFileSync(outcomesPath, 'utf8')) as LeadOutcomeRecord[];
@@ -829,6 +899,11 @@ function renderOperatorHealth(operatorBrief: OperatorBriefReport | null): string
     `- Blocked commands count: ${operatorBrief.blockedCommands.length}`,
     `- Safe commands count: ${operatorBrief.safeCommands.length}`,
   ].join('\n');
+}
+
+function formatInlineDistribution(counts: Record<string, number>): string {
+  const rows = Object.entries(counts).sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]));
+  return rows.map(([key, count]) => `${key}:${count}`).join('; ') || 'none';
 }
 
 function reviewMetricsFor(decisions: ReviewHistoryReport['decisions']): ReviewMetrics {

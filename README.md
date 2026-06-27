@@ -147,6 +147,9 @@ npm run leads:report
 npm run leads:pack
 npm run leads:clients
 npm run leads:sources
+npm run leads:source-monitor-plan
+npm run leads:source-monitor-simulate
+npm run leads:enrichment-readiness
 npm run leads:targeted-plan
 npm run leads:source-queries
 npm run leads:behavior-queries
@@ -188,6 +191,7 @@ Outputs:
 - `output/lead-discovery/clients/`
 - `output/lead-discovery/source-plan.md`
 - `output/lead-discovery/source-summary.json`
+- `output/lead-discovery/source-monitor/`
 - `output/lead-discovery/targeted-discovery/`
 - `output/lead-discovery/behavior-queries/`
 - `output/lead-discovery/dynamic-queries/`
@@ -217,6 +221,27 @@ Public Social Source Expansion: social and community query templates live in `da
 Social template priority: Flora and Fauna Foods social buyer-intent templates run first, LZT Costa Rica templates stay inactive unless an active LZT client config exists, and Costa Retreats runs after Flora and active LZT. Query plans preserve `sourceId`, `sourceCategory`, `queryTemplateType`, `queryTemplateId`, and negative query terms so downstream search, quality, and performance reports can distinguish standard versus social sources.
 
 Provider Router: Tavily is the primary lead-search provider for AI Lead Discovery Studio. Provider registry config lives in `data/lead-discovery/providers/providers.json`; Tavily is enabled by default and `bing_rss` is disabled by default. Bing RSS is optional fallback only and requires explicit fallback enablement in both provider config and `data/lead-discovery/providers/tavily-guardrails.json`.
+
+### Public Source Monitor + Enrichment Readiness
+
+The Public Source Monitor is a local-first supplemental discovery planning layer. It does not replace Tavily. Tavily remains the primary buyer-intent discovery engine, while this monitor tracks safe public source metadata that can later support Public Data Enrichment.
+
+Run:
+
+```bash
+npm run leads:source-monitor-plan
+npm run leads:source-monitor-simulate
+npm run leads:enrichment-readiness
+npm run leads:dashboard
+```
+
+Source registries live in `data/lead-discovery/public-source-monitor/` and are sample-only planning data. The generated plan, mock candidates, and readiness scorecards are written to `output/lead-discovery/source-monitor/`.
+
+Allowed source categories are public event calendars, public notices, public forums, chamber/venue/tourism event pages, municipality pages, construction notices, real estate development pages, and local business directories when they are visible without login and suitable for bounded future collection. Blocked sources include anything requiring login, scraping behind authentication, private groups, member/profile harvesting, contact extraction, aggressive crawling, automated outreach, emails, DMs, calls, or form submissions.
+
+Enrichment-ready metadata prepares future hooks for geo, event, tourism, municipality, seasonality, venue proximity, project value, weather context, and business profile enrichment. Future RSS/Cheerio/public API integrations must remain bounded, public-only, no-login, and human-reviewed before production use.
+
+Future Public Data Enrichment should improve scoring and prioritization by adding location context, event timing, venue proximity, tourism demand, weather/season context, municipality context, project type, estimated commercial value, and client-facing sales intelligence. Current commands only score readiness from local sample fixtures; they do not perform live enrichment.
 
 Tavily Health Check: `npm run leads:tavily-health` validates that `TAVILY_API_KEY` is configured locally, the provider registry loads, Tavily is enabled, the router selects Tavily, and fallback status is known. It writes `output/lead-discovery/diagnostics/tavily-health.md` and `.json` without logging secrets or exposing API keys.
 
