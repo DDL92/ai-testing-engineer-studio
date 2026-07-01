@@ -1,0 +1,17 @@
+{
+  "monthlyCreditLimit": 1000,
+  "monthlyDiscoveryBudget": 780,
+  "monthlyReserveCredits": 200,
+  "emergencyBufferCredits": 20,
+  "maxCreditsPerRun": 60,
+  "maxSearchCreditsPerRun": 50,
+  "maxExtractCreditsPerRun": 8,
+  "allowedRunDays": ["Monday", "Wednesday", "Friday"],
+  "runFrequency": "3 days per week",
+  "defaultSearchDepth": "basic",
+  "allowAdvancedSearch": false,
+  "allowCrawl": false,
+  "allowResearch": false,
+  "allowExtract": true,
+  "extractOnlyAfterCandidateFiltering": true
+}

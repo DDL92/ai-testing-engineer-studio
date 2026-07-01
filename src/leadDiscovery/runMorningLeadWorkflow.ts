@@ -1,6 +1,7 @@
 import fs = require('fs');
 import { execFileSync } from 'child_process';
 import path = require('path');
+import { getBudgetDecision } from './tavilyBudgetManager';
 
 const commands = [
   'leads:targeted-plan',
@@ -10,6 +11,8 @@ const commands = [
   'leads:behavior-queries',
   'leads:dynamic-queries',
   'leads:queries',
+  'leads:tavily-budget',
+  'leads:tavily-allocation',
   'leads:tavily-health',
   'leads:search',
   'leads:health',
@@ -31,6 +34,26 @@ function main(): void {
   console.log('Morning Lead Workflow: STARTED');
   const completed: string[] = [];
   try {
+    const budgetDecision = getBudgetDecision();
+    if (!['full_scheduled_run', 'reduced_run'].includes(budgetDecision.recommendedRunMode)) {
+      for (const command of ['leads:tavily-budget', 'leads:tavily-allocation', 'leads:safe-commands', 'leads:dashboard']) {
+        execFileSync('npm', ['run', command], {
+          cwd: process.cwd(),
+          stdio: 'pipe',
+          encoding: 'utf8',
+        });
+        completed.push(command);
+        console.log(`Completed: ${command}`);
+      }
+      console.log('Morning Lead Workflow: LIVE DISCOVERY BLOCKED');
+      console.log(`Budget health: ${budgetDecision.budgetHealth}`);
+      console.log(`Recommended mode: ${budgetDecision.recommendedRunMode}`);
+      console.log(`Blocked reason: ${budgetDecision.blockedReason ?? 'live search blocked until scheduled run is allowed'}`);
+      console.log(`Next allowed run: ${budgetDecision.nextAllowedRunDay}`);
+      console.log('Recommended offline commands: npm run leads:tavily-budget, npm run leads:tavily-allocation, npm run leads:dashboard');
+      return;
+    }
+
     for (const command of commands) {
       execFileSync('npm', ['run', command], {
         cwd: process.cwd(),

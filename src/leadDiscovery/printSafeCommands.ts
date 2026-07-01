@@ -1,11 +1,20 @@
 import fs = require('fs');
 import path = require('path');
+import { getBudgetDecision } from './tavilyBudgetManager';
 
 interface SafeCommandsReport {
   generatedAt: string;
-  currentReason: 'cost_budget_paused';
+  currentReason: string;
+  tavilyBudgetHealth: string;
+  tavilyMonthlyLimit: number;
+  tavilyEstimatedUsed: number;
+  tavilyEstimatedRemaining: number;
+  tavilyAllowedToday: boolean;
+  tavilyNextAllowedRun: string;
+  tavilyRecommendedMode: string;
+  tavilyBlockedReason: string | null;
   safeOfflineCommands: string[];
-  blockedTavilyCommands: string[];
+  blockedTavilyCommands: Array<{ command: string; reason: string }>;
   recommendedNextCommand: string;
   safetyRules: string[];
 }
@@ -16,6 +25,8 @@ const jsonPath = path.join(outputDir, 'safe-commands.json');
 
 const safeOfflineCommands = [
   'npm run typecheck',
+  'npm run leads:tavily-budget',
+  'npm run leads:tavily-allocation',
   'npm run leads:safe-commands',
   'npm run leads:operator',
   'npm run leads:simulate',
@@ -37,16 +48,27 @@ const blockedTavilyCommands = [
 ];
 
 export function printSafeCommands(now = new Date()): SafeCommandsReport {
+  const budget = getBudgetDecision(now);
+  const blockedReason = budget.blockedReason ?? 'human_budget_approval_required_before_live_tavily_use';
   const report: SafeCommandsReport = {
     generatedAt: now.toISOString(),
-    currentReason: 'cost_budget_paused',
+    currentReason: blockedReason,
+    tavilyBudgetHealth: budget.budgetHealth,
+    tavilyMonthlyLimit: budget.monthlyCreditLimit,
+    tavilyEstimatedUsed: budget.currentEstimatedCreditsUsed,
+    tavilyEstimatedRemaining: budget.currentEstimatedCreditsRemaining,
+    tavilyAllowedToday: budget.allowedToday,
+    tavilyNextAllowedRun: budget.nextAllowedRunDay,
+    tavilyRecommendedMode: budget.recommendedRunMode,
+    tavilyBlockedReason: budget.blockedReason,
     safeOfflineCommands,
-    blockedTavilyCommands,
-    recommendedNextCommand: 'npm run leads:operator',
+    blockedTavilyCommands: blockedTavilyCommands.map((command) => ({ command, reason: blockedReason })),
+    recommendedNextCommand: budget.blockedReason ? 'npm run leads:tavily-budget' : 'npm run leads:tavily-allocation',
     safetyRules: [
       'No Tavily, providers, network calls, browser automation, login, scraping, contact extraction, outreach, emails, DMs, calls, or forms.',
-      'Use offline validation and commercial preparation commands while credits are exhausted.',
-      'Resume live discovery only after credits reset and Tavily health is checked manually.',
+      'Use offline validation, budget planning, query allocation, and commercial preparation commands before live discovery.',
+      'Resume live discovery only on allowed run days, within allocation limits, and after human approval.',
+      'Advanced search, crawl, and research remain disabled.',
     ],
   };
 
@@ -86,13 +108,24 @@ Generated: ${report.generatedAt}
 
 Current reason: ${report.currentReason}
 
+## Tavily Budget Status
+
+- Budget health: ${report.tavilyBudgetHealth}
+- Monthly limit: ${report.tavilyMonthlyLimit}
+- Estimated used: ${report.tavilyEstimatedUsed}
+- Estimated remaining: ${report.tavilyEstimatedRemaining}
+- Allowed today: ${report.tavilyAllowedToday ? 'yes' : 'no'}
+- Next allowed run: ${report.tavilyNextAllowedRun}
+- Recommended mode: ${report.tavilyRecommendedMode}
+- Blocked reason: ${report.tavilyBlockedReason ?? 'none'}
+
 ## Safe Offline Commands
 
 ${report.safeOfflineCommands.map((command) => `- \`${command}\``).join('\n')}
 
 ## Blocked Tavily Commands
 
-${report.blockedTavilyCommands.map((command) => `- \`${command}\``).join('\n')}
+${report.blockedTavilyCommands.map((row) => `- \`${row.command}\` - ${row.reason}`).join('\n')}
 
 ## Recommended Next Command
 
@@ -112,5 +145,6 @@ if (require.main === module) {
   const report = printSafeCommands();
   console.log(`Safe commands generated: ${path.relative(process.cwd(), markdownPath)}, ${path.relative(process.cwd(), jsonPath)}`);
   console.log(`Current reason: ${report.currentReason}`);
+  console.log(`Tavily budget health: ${report.tavilyBudgetHealth}`);
   console.log(`Recommended next command: ${report.recommendedNextCommand}`);
 }

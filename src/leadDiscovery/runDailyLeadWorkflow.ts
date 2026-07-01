@@ -10,6 +10,8 @@ import { generateConversationQueries } from './generateConversationQueries';
 import { generateBehaviorQueries } from './generateBehaviorQueries';
 import { generateDynamicQueries } from './generateDynamicQueries';
 import { generateDiscoveryQueries } from './generateDiscoveryQueries';
+import { generateTavilyBudgetPlan } from './generateTavilyBudgetPlan';
+import { generateTavilyQueryAllocation } from './generateTavilyQueryAllocation';
 import { validateTavilyConfig } from './validateTavilyConfig';
 import { runSafePublicSearch } from './runSafePublicSearch';
 import { generateProviderHealthReport } from './generateProviderHealthReport';
@@ -59,6 +61,21 @@ async function main(): Promise<void> {
     modulesExecuted.push('dynamic buyer signal query generation');
     const queryBatch = generateDiscoveryQueries();
     modulesExecuted.push('discovery query generation');
+    const budgetDecision = generateTavilyBudgetPlan();
+    modulesExecuted.push('Tavily monthly budget planning');
+    const queryAllocation = generateTavilyQueryAllocation();
+    modulesExecuted.push('Tavily query allocation planning');
+    if (!['full_scheduled_run', 'reduced_run'].includes(budgetDecision.recommendedRunMode)) {
+      console.log('Daily Lead Discovery Workflow: LIVE DISCOVERY BLOCKED');
+      console.log(`Budget health: ${budgetDecision.budgetHealth}`);
+      console.log(`Recommended mode: ${budgetDecision.recommendedRunMode}`);
+      console.log(`Blocked reason: ${budgetDecision.blockedReason ?? 'live search blocked until scheduled run is allowed'}`);
+      console.log(`Next allowed run: ${budgetDecision.nextAllowedRunDay}`);
+      console.log(`Offline modules executed: ${modulesExecuted.join(', ')}`);
+      console.log(`Query allocation plan generated with ${queryAllocation.estimatedTotalCredits} estimated credits if later approved.`);
+      console.log('No Tavily, provider calls, network, scraping, browser automation, contact extraction, outreach, email, DM, calls, forms, or login was performed.');
+      return;
+    }
     const tavilyHealth = validateTavilyConfig();
     modulesExecuted.push('Tavily provider health validation');
     const searchBatch = await runSafePublicSearch();

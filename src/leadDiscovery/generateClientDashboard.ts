@@ -37,6 +37,10 @@ const systemAuditPath = path.join(process.cwd(), 'output', 'system-audit', 'syst
 const sourceMonitorPlanPath = path.join(process.cwd(), 'output', 'lead-discovery', 'source-monitor', 'source-monitor-plan.json');
 const sourceMonitorCandidatesPath = path.join(process.cwd(), 'output', 'lead-discovery', 'source-monitor', 'mock-source-candidates.json');
 const enrichmentReadinessPath = path.join(process.cwd(), 'output', 'lead-discovery', 'source-monitor', 'enrichment-readiness.json');
+const extractQueuePath = path.join(process.cwd(), 'output', 'lead-discovery', 'extract', 'extract-queue.json');
+const extractSimulationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'extract', 'extract-simulation.json');
+const tavilyBudgetPlanPath = path.join(process.cwd(), 'output', 'lead-discovery', 'tavily-budget', 'tavily-budget-plan.json');
+const tavilyQueryAllocationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'tavily-budget', 'query-allocation.json');
 const outcomesPath = path.join(process.cwd(), 'data', 'lead-discovery', 'outcomes', 'sample-outcomes.json');
 const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'dashboard');
 const dashboardPath = path.join(outputDir, 'client-dashboard.md');
@@ -263,6 +267,28 @@ interface PublicSourceMonitorDashboard {
   recommendedNextAction: string;
 }
 
+interface TavilyExtractReadinessDashboard {
+  adapterStatus: string;
+  queueCount: number;
+  allowedExtractionCandidates: number;
+  blockedExtractionCandidates: number;
+  simulationStatus: string;
+  futureLiveExtractionReadiness: string;
+  recommendedNextAction: string;
+}
+
+interface TavilyBudgetHealthDashboard {
+  monthlyLimit: number;
+  estimatedUsed: number;
+  estimatedRemaining: number;
+  nextAllowedRun: string;
+  allowedToday: string;
+  recommendedMode: string;
+  blockedReason: string;
+  safeCommandRecommendation: string;
+  queryAllocation: string;
+}
+
 export function generateClientDashboard(): { filesGenerated: string[]; rows: DashboardRow[] } {
   const delivery = readJson<DeliveryBatch>(deliveryPath).deliveryCandidates;
   const searchBatch = readSearchBatch();
@@ -421,6 +447,8 @@ function renderDashboard(rows: DashboardRow[], regression: RegressionReport | nu
   const maintenanceReadiness = getMaintenanceReadiness();
   const systemAuditHealth = getSystemAuditHealth();
   const sourceMonitor = getPublicSourceMonitorDashboard();
+  const extractReadiness = getTavilyExtractReadinessDashboard();
+  const tavilyBudget = getTavilyBudgetHealthDashboard();
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -481,6 +509,18 @@ ${renderLoopHealth(loopHealth.state, loopHealth.budget)}
 
 ${renderOperatorHealth(operatorBrief)}
 
+## Tavily Budget Health
+
+- Monthly limit: ${tavilyBudget.monthlyLimit}
+- Estimated used: ${tavilyBudget.estimatedUsed}
+- Estimated remaining: ${tavilyBudget.estimatedRemaining}
+- Next allowed run: ${tavilyBudget.nextAllowedRun}
+- Allowed today: ${tavilyBudget.allowedToday}
+- Recommended mode: ${tavilyBudget.recommendedMode}
+- Blocked reason if paused: ${tavilyBudget.blockedReason}
+- Safe command recommendation: ${tavilyBudget.safeCommandRecommendation}
+- Query allocation: ${tavilyBudget.queryAllocation}
+
 ## System Audit Health
 
 - Audit status: ${systemAuditHealth.auditStatus}
@@ -501,6 +541,16 @@ ${renderOperatorHealth(operatorBrief)}
 - Supported enrichment type distribution: ${formatInlineDistribution(sourceMonitor.supportedEnrichmentTypeDistribution)}
 - Integration readiness: ${sourceMonitor.integrationReadiness}
 - Recommended next action: ${sourceMonitor.recommendedNextAction}
+
+## Tavily Extract Readiness
+
+- Extract adapter status: ${extractReadiness.adapterStatus}
+- Queue count: ${extractReadiness.queueCount}
+- Allowed extraction candidates: ${extractReadiness.allowedExtractionCandidates}
+- Blocked extraction candidates: ${extractReadiness.blockedExtractionCandidates}
+- Simulation status: ${extractReadiness.simulationStatus}
+- Future live extraction readiness: ${extractReadiness.futureLiveExtractionReadiness}
+- Recommended next action: ${extractReadiness.recommendedNextAction}
 
 ## Pilot Delivery Health
 
@@ -795,6 +845,75 @@ function getPublicSourceMonitorDashboard(): PublicSourceMonitorDashboard {
       ? 'Offline candidate shape ready for future public data enrichment, buyer role classification, lead-like scoring, and client-facing sales intelligence.'
       : 'Run npm run leads:source-monitor-plan, npm run leads:source-monitor-simulate, and npm run leads:enrichment-readiness.',
     recommendedNextAction: plan?.health?.recommendedNextAction ?? 'Generate offline source-monitor artifacts before reviewing enrichment readiness.',
+  };
+}
+
+function getTavilyExtractReadinessDashboard(): TavilyExtractReadinessDashboard {
+  const queue = fs.existsSync(extractQueuePath)
+    ? readJson<{
+      adapterStatus?: { status?: string; liveExtractionEnabled?: boolean; creditsUsed?: number };
+      queueCount?: number;
+      allowedCount?: number;
+      blockedCount?: number;
+    }>(extractQueuePath)
+    : null;
+  const simulation = fs.existsSync(extractSimulationPath)
+    ? readJson<{ status?: string; allowedCount?: number; blockedCount?: number }>(extractSimulationPath)
+    : null;
+  const queueReady = Boolean(queue);
+  const simulationReady = simulation?.status === 'pass';
+  const liveDisabled = queue?.adapterStatus?.liveExtractionEnabled === false;
+
+  return {
+    adapterStatus: queue?.adapterStatus?.status ?? 'Not run',
+    queueCount: queue?.queueCount ?? 0,
+    allowedExtractionCandidates: queue?.allowedCount ?? 0,
+    blockedExtractionCandidates: queue?.blockedCount ?? 0,
+    simulationStatus: simulation?.status ?? 'Not run',
+    futureLiveExtractionReadiness: queueReady && simulationReady && liveDisabled
+      ? 'Ready for human-approved future Tavily Extract wiring; live extraction remains disabled and used 0 credits during validation.'
+      : 'Run npm run leads:extract-queue and npm run leads:extract-simulate before considering live Tavily Extract wiring.',
+    recommendedNextAction: queueReady && simulationReady
+      ? 'Keep Extract disabled until Tavily credits return, then add a human-approved live adapter behind this queue.'
+      : 'Generate the extract queue and simulation using local stored candidates only.',
+  };
+}
+
+function getTavilyBudgetHealthDashboard(): TavilyBudgetHealthDashboard {
+  const plan = fs.existsSync(tavilyBudgetPlanPath)
+    ? readJson<{
+      monthlyCreditLimit?: number;
+      currentEstimatedCreditsUsed?: number;
+      currentEstimatedCreditsRemaining?: number;
+      nextAllowedRunDay?: string;
+      allowedToday?: boolean;
+      recommendedRunMode?: string;
+      blockedReason?: string | null;
+      safeCommandRecommendation?: string;
+    }>(tavilyBudgetPlanPath)
+    : null;
+  const allocation = fs.existsSync(tavilyQueryAllocationPath)
+    ? readJson<{
+      totalSearchCredits?: number;
+      extractCredits?: number;
+      bufferCredits?: number;
+      estimatedTotalCredits?: number;
+      clients?: Array<{ clientName: string; searchCredits: number }>;
+    }>(tavilyQueryAllocationPath)
+    : null;
+
+  return {
+    monthlyLimit: plan?.monthlyCreditLimit ?? 0,
+    estimatedUsed: plan?.currentEstimatedCreditsUsed ?? 0,
+    estimatedRemaining: plan?.currentEstimatedCreditsRemaining ?? 0,
+    nextAllowedRun: plan?.nextAllowedRunDay ?? 'Not run',
+    allowedToday: plan ? (plan.allowedToday ? 'yes' : 'no') : 'Not run',
+    recommendedMode: plan?.recommendedRunMode ?? 'Not run',
+    blockedReason: plan?.blockedReason ?? 'none',
+    safeCommandRecommendation: plan?.safeCommandRecommendation ?? 'Run npm run leads:tavily-budget and npm run leads:tavily-allocation.',
+    queryAllocation: allocation
+      ? `${allocation.estimatedTotalCredits ?? 0} credits (${allocation.totalSearchCredits ?? 0} search, ${allocation.extractCredits ?? 0} extract, ${allocation.bufferCredits ?? 0} buffer): ${(allocation.clients ?? []).map((client) => `${client.clientName} ${client.searchCredits}`).join('; ') || 'offline only'}`
+      : 'Not run',
   };
 }
 

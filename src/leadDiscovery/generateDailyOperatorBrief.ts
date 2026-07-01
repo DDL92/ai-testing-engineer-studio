@@ -1,6 +1,7 @@
 import fs = require('fs');
 import path = require('path');
 import { recommendNextAction, OperatorStatus } from './recommendNextAction';
+import { getBudgetDecision } from './tavilyBudgetManager';
 
 interface SimulationReport {
   generatedAt: string;
@@ -58,6 +59,14 @@ interface OperatorBrief {
   lastOutcome: string;
   costHealth: OperatorStatus;
   estimatedCreditsRemaining: number;
+  tavilyMonthlyLimit: number;
+  tavilyEstimatedUsed: number;
+  tavilyEstimatedRemaining: number;
+  tavilyAllowedToday: boolean;
+  tavilyNextAllowedRun: string;
+  tavilyRecommendedMode: string;
+  tavilyBlockedReason: string | null;
+  tavilySafeCommandRecommendation: string;
   providerHealth: string;
   regressionHealth: string;
   reviewHealth: string;
@@ -88,6 +97,8 @@ const reviewSimulationPath = path.join(process.cwd(), 'output', 'lead-discovery'
 const loopHealthPath = path.join(process.cwd(), 'output', 'lead-discovery', 'loop-health', 'loop-health-summary.json');
 
 const safeCommands = [
+  'npm run leads:tavily-budget',
+  'npm run leads:tavily-allocation',
   'npm run leads:simulate',
   'npm run leads:regression',
   'npm run leads:review-simulate',
@@ -113,6 +124,7 @@ export function generateDailyOperatorBrief(now = new Date()): OperatorBrief {
   const regression = readJsonOrNull<RegressionReport>(regressionPath);
   const review = readJsonOrNull<ReviewReport>(reviewSimulationPath);
   const loop = readJsonOrNull<LoopHealthReport>(loopHealthPath);
+  const tavilyBudget = getBudgetDecision(now);
   const pauseReasons = loop?.state.pauseReasons ?? [];
   const costHealth = loop?.budget.costHealth ?? 'paused';
   const regressionFailed = regression?.metrics.failed ?? 0;
@@ -131,7 +143,7 @@ export function generateDailyOperatorBrief(now = new Date()): OperatorBrief {
   });
   const blockedCommands = providerCommands.map((command) => ({
     command,
-    reason: pauseReasons.join(', ') || 'cost_budget_paused',
+    reason: tavilyBudget.blockedReason ?? (pauseReasons.join(', ') || 'human_budget_approval_required'),
   }));
   const brief: OperatorBrief = {
     generatedAt: now.toISOString(),
@@ -144,6 +156,14 @@ export function generateDailyOperatorBrief(now = new Date()): OperatorBrief {
     lastOutcome: loop?.state.lastLoopOutcome ?? 'unknown',
     costHealth,
     estimatedCreditsRemaining: loop?.budget.estimatedCreditsRemaining ?? 0,
+    tavilyMonthlyLimit: tavilyBudget.monthlyCreditLimit,
+    tavilyEstimatedUsed: tavilyBudget.currentEstimatedCreditsUsed,
+    tavilyEstimatedRemaining: tavilyBudget.currentEstimatedCreditsRemaining,
+    tavilyAllowedToday: tavilyBudget.allowedToday,
+    tavilyNextAllowedRun: tavilyBudget.nextAllowedRunDay,
+    tavilyRecommendedMode: tavilyBudget.recommendedRunMode,
+    tavilyBlockedReason: tavilyBudget.blockedReason,
+    tavilySafeCommandRecommendation: tavilyBudget.safeCommandRecommendation,
     providerHealth: loop?.state.lastProviderHealth ?? 'unknown',
     regressionHealth: regressionFailed === 0 ? 'healthy' : 'critical',
     reviewHealth: reviewFalsePositiveCount === 0 ? 'healthy' : 'warning',
@@ -208,6 +228,14 @@ Generated: ${brief.generatedAt}
 - Last outcome: ${brief.lastOutcome}
 - Cost health: ${brief.costHealth}
 - Estimated credits remaining: ${brief.estimatedCreditsRemaining}
+- Tavily monthly limit: ${brief.tavilyMonthlyLimit}
+- Tavily estimated used: ${brief.tavilyEstimatedUsed}
+- Tavily estimated remaining: ${brief.tavilyEstimatedRemaining}
+- Tavily allowed today: ${brief.tavilyAllowedToday ? 'yes' : 'no'}
+- Tavily next allowed run: ${brief.tavilyNextAllowedRun}
+- Tavily recommended mode: ${brief.tavilyRecommendedMode}
+- Tavily blocked reason: ${brief.tavilyBlockedReason ?? 'none'}
+- Tavily safe command recommendation: ${brief.tavilySafeCommandRecommendation}
 - Provider health: ${brief.providerHealth}
 - Regression health: ${brief.regressionHealth}
 - Review health: ${brief.reviewHealth}

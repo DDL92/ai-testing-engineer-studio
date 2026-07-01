@@ -156,9 +156,13 @@ npm run leads:behavior-queries
 npm run leads:dynamic-queries
 npm run leads:queries
 npm run leads:tavily-health
+npm run leads:tavily-budget
+npm run leads:tavily-allocation
 npm run leads:test-provider
 npm run leads:search
 npm run leads:health
+npm run leads:extract-queue
+npm run leads:extract-simulate
 npm run leads:enrich
 npm run leads:quality
 npm run leads:verification-review
@@ -199,6 +203,8 @@ Outputs:
 - `output/lead-discovery/discovery-queries/`
 - `output/lead-discovery/search-candidates/`
 - `output/lead-discovery/diagnostics/`
+- `output/lead-discovery/tavily-budget/`
+- `output/lead-discovery/extract/`
 - `output/lead-discovery/enriched-leads/`
 - `output/lead-discovery/delivery-candidates/`
 - `output/lead-discovery/verification/`
@@ -221,6 +227,42 @@ Public Social Source Expansion: social and community query templates live in `da
 Social template priority: Flora and Fauna Foods social buyer-intent templates run first, LZT Costa Rica templates stay inactive unless an active LZT client config exists, and Costa Retreats runs after Flora and active LZT. Query plans preserve `sourceId`, `sourceCategory`, `queryTemplateType`, `queryTemplateId`, and negative query terms so downstream search, quality, and performance reports can distinguish standard versus social sources.
 
 Provider Router: Tavily is the primary lead-search provider for AI Lead Discovery Studio. Provider registry config lives in `data/lead-discovery/providers/providers.json`; Tavily is enabled by default and `bing_rss` is disabled by default. Bing RSS is optional fallback only and requires explicit fallback enablement in both provider config and `data/lead-discovery/providers/tavily-guardrails.json`.
+
+### Tavily Monthly Credit Budget
+
+Tavily free-tier credits are managed with a monthly scheduler so automated discovery does not spend the full 1,000-credit allowance early in the month. The policy lives in `data/lead-discovery/tavily-budget/tavily-budget-policy.json`.
+
+Default policy:
+
+- Monthly credit limit: 1,000 credits.
+- Scheduled discovery budget: 780 credits/month.
+- Reserve: 200 credits/month for debugging, manual checks, extract, and retries.
+- Emergency buffer: 20 credits.
+- Live scheduled discovery days: Monday, Wednesday, Friday.
+- Max credits per scheduled run: 60.
+- Max search credits per run: 50.
+- Max extract credits per run: 8.
+- Search depth: basic only.
+- Advanced search, crawl, and research: disabled.
+- Extract: allowed only after candidate filtering.
+
+Run:
+
+```bash
+npm run leads:tavily-budget
+npm run leads:tavily-allocation
+npm run leads:safe-commands
+npm run leads:operator
+npm run leads:dashboard
+```
+
+`npm run leads:tavily-budget` writes `output/lead-discovery/tavily-budget/tavily-budget-plan.md` and `.json` with monthly limit, estimated credits used, estimated credits remaining, allowed run days, max credits per run, current budget health, whether today is allowed, next allowed run day, recommended run mode, and blocked reason.
+
+`npm run leads:tavily-allocation` writes `output/lead-discovery/tavily-budget/query-allocation.md` and `.json`. In healthy mode it allocates 35 basic search credits to Flora and Fauna Foods, 8 to LZT Costa Rica, 7 to Costa Retreats, 8 to Extract, and 2 to buffer. In warning mode it reduces to Flora 25, LZT 5, Costa 5, Extract 4, and buffer 1. In critical mode it plans Flora only with 15 search credits and disables Extract. In paused mode it recommends offline-only work and no external search.
+
+Budget health rules are intentionally conservative: warning reduces volume, critical limits discovery to the highest-priority client or extract-only planning, and paused blocks live discovery when the emergency buffer is at risk. `runtime/lead-discovery/tavily-credit-ledger.json` tracks estimated credit usage by date, command, search credits, extract credits, total credits, client, run type, and notes.
+
+Advanced search, crawl, and research stay disabled because they can double or unpredictably increase credit usage. Extract has a small separate budget because basic Extract costs 1 credit per 5 successful URL extractions and should only run after lead-like, buyer-intent candidates pass filtering.
 
 ### Public Source Monitor + Enrichment Readiness
 
@@ -258,6 +300,40 @@ Failure Classification System: search failures are classified deterministically 
 Tavily Search Quality Mode: `npm run leads:search-quality` classifies stored search candidates before enrichment and writes `output/lead-discovery/search-quality/search-quality-summary.md`, `search-quality.csv`, `query-quality.md`, `query-quality.csv`, and `search-candidate-preview.md`. A result matching query keywords is not automatically a lead. Only results that demonstrate buyer intent or request behavior, such as public discussions, recommendation requests, event requests, planning conversations, RFPs, or public requests for help/services, are promoted to enrichment.
 
 Lead-Like Candidate Classification: search candidates receive `leadLikeClassification`, `leadLikeScore`, `leadLikeConfidence`, `leadLikeSignals`, and `leadLikeReasons`. Classifications include `lead_like`, `possibly_lead_like`, `generic_content`, `directory`, `article`, `definition`, `landing_page`, and `unknown`. Only `lead_like` and `possibly_lead_like` candidates continue to enrichment; all other search results remain stored and auditable but excluded from the lead pipeline.
+
+### Tavily Extract Adapter
+
+The Tavily Extract Adapter prepares AI Lead Discovery Studio for future URL context enrichment without using Tavily credits during validation. It does not replace Tavily Search. Tavily Search finds public candidate URLs first; the Extract queue only prepares high-value URLs that may benefit from cleaner context before scoring, enrichment, review, and delivery.
+
+Run:
+
+```bash
+npm run leads:extract-queue
+npm run leads:extract-simulate
+npm run leads:dashboard
+```
+
+`npm run leads:extract-queue` reads stored search candidates and writes `output/lead-discovery/extract/extract-queue.md` and `.json`. It does not call Tavily, providers, network, browsers, scraping, login flows, contact extraction, or outreach.
+
+Safe extraction policy: only `lead_like` or `possibly_lead_like` candidates with buyer-intent evidence can be queued. The source must be public, no-login, relevant, and not a vendor page, directory, article, staffing post, job post, private/social-login page, or low-relevance page. Contact extraction is explicitly blocked.
+
+`npm run leads:extract-simulate` uses local mock candidates only and writes `output/lead-discovery/extract/extract-simulation.md` and `.json`. The simulation covers a successful public extract candidate, blocked vendor URL, blocked directory URL, blocked login-required URL, useful public event page, and useful public forum page.
+
+Future live extraction path, once Tavily credits return and a human approves provider use:
+
+```text
+Tavily Search
+-> candidate scoring
+-> extract queue
+-> Tavily Extract
+-> cleaner context
+-> buyer evidence
+-> enrichment
+-> review queue
+-> pilot pack
+```
+
+This improves lead quality by spending future Extract calls only on high-potential public URLs, adding cleaner buyer context, and reducing false positives before a human reviews anything for delivery.
 
 Seed Source Registry: curated public source registries live in `data/lead-discovery/seed-sources/` for Flora, LZT, and Costa. Each source records client, vertical, source category, URL pattern, region, priority, login/automation safety, expected lead quality, and notes. LZT seed sources exist but remain disabled unless an active LZT client config is added.
 
