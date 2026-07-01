@@ -51,6 +51,7 @@
     "leads:tavily-health": "node --import tsx src/leadDiscovery/validateTavilyConfig.ts",
     "leads:tavily-budget": "node --import tsx src/leadDiscovery/generateTavilyBudgetPlan.ts",
     "leads:tavily-allocation": "node --import tsx src/leadDiscovery/generateTavilyQueryAllocation.ts",
+    "leads:live-readiness": "node --import tsx src/leadDiscovery/generateLiveRunReadiness.ts",
     "leads:test-provider": "node --import tsx src/leadDiscovery/testTavilyProvider.ts",
     "leads:search": "node --import tsx src/leadDiscovery/runSafePublicSearch.ts",
     "leads:health": "node --import tsx src/leadDiscovery/generateProviderHealthReport.ts",

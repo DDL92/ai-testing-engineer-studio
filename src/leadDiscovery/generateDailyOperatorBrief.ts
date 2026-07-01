@@ -48,6 +48,14 @@ interface LoopHealthReport {
   };
 }
 
+interface LiveReadinessReport {
+  readinessState: string;
+  recommendedNextCommand: string;
+  blockedReason: string | null;
+  estimatedCreditsForNextRun: number;
+  liveCommandWhenReady: string | null;
+}
+
 interface OperatorBrief {
   generatedAt: string;
   date: string;
@@ -67,6 +75,11 @@ interface OperatorBrief {
   tavilyRecommendedMode: string;
   tavilyBlockedReason: string | null;
   tavilySafeCommandRecommendation: string;
+  liveReadinessState: string;
+  liveReadinessNextCommand: string;
+  liveReadinessBlockedReason: string | null;
+  liveReadinessEstimatedCredits: number;
+  liveReadinessLiveCommand: string | null;
   providerHealth: string;
   regressionHealth: string;
   reviewHealth: string;
@@ -95,6 +108,7 @@ const simulationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'sim
 const regressionPath = path.join(process.cwd(), 'output', 'lead-discovery', 'regression', 'regression-results.json');
 const reviewSimulationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'review', 'review-simulation.json');
 const loopHealthPath = path.join(process.cwd(), 'output', 'lead-discovery', 'loop-health', 'loop-health-summary.json');
+const liveReadinessPath = path.join(process.cwd(), 'output', 'lead-discovery', 'live-readiness', 'live-readiness.json');
 
 const safeCommands = [
   'npm run leads:tavily-budget',
@@ -124,6 +138,7 @@ export function generateDailyOperatorBrief(now = new Date()): OperatorBrief {
   const regression = readJsonOrNull<RegressionReport>(regressionPath);
   const review = readJsonOrNull<ReviewReport>(reviewSimulationPath);
   const loop = readJsonOrNull<LoopHealthReport>(loopHealthPath);
+  const liveReadiness = readJsonOrNull<LiveReadinessReport>(liveReadinessPath);
   const tavilyBudget = getBudgetDecision(now);
   const pauseReasons = loop?.state.pauseReasons ?? [];
   const costHealth = loop?.budget.costHealth ?? 'paused';
@@ -164,6 +179,11 @@ export function generateDailyOperatorBrief(now = new Date()): OperatorBrief {
     tavilyRecommendedMode: tavilyBudget.recommendedRunMode,
     tavilyBlockedReason: tavilyBudget.blockedReason,
     tavilySafeCommandRecommendation: tavilyBudget.safeCommandRecommendation,
+    liveReadinessState: liveReadiness?.readinessState ?? 'Not run',
+    liveReadinessNextCommand: liveReadiness?.recommendedNextCommand ?? 'npm run leads:live-readiness',
+    liveReadinessBlockedReason: liveReadiness?.blockedReason ?? null,
+    liveReadinessEstimatedCredits: liveReadiness?.estimatedCreditsForNextRun ?? 0,
+    liveReadinessLiveCommand: liveReadiness?.liveCommandWhenReady ?? null,
     providerHealth: loop?.state.lastProviderHealth ?? 'unknown',
     regressionHealth: regressionFailed === 0 ? 'healthy' : 'critical',
     reviewHealth: reviewFalsePositiveCount === 0 ? 'healthy' : 'warning',
@@ -236,6 +256,11 @@ Generated: ${brief.generatedAt}
 - Tavily recommended mode: ${brief.tavilyRecommendedMode}
 - Tavily blocked reason: ${brief.tavilyBlockedReason ?? 'none'}
 - Tavily safe command recommendation: ${brief.tavilySafeCommandRecommendation}
+- Live readiness state: ${brief.liveReadinessState}
+- Live readiness next command: ${brief.liveReadinessNextCommand}
+- Live readiness blocked reason: ${brief.liveReadinessBlockedReason ?? 'none'}
+- Live readiness estimated credits: ${brief.liveReadinessEstimatedCredits}
+- Live command when ready: ${brief.liveReadinessLiveCommand ?? 'not available'}
 - Provider health: ${brief.providerHealth}
 - Regression health: ${brief.regressionHealth}
 - Review health: ${brief.reviewHealth}

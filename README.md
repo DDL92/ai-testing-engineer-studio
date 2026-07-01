@@ -251,6 +251,7 @@ Run:
 ```bash
 npm run leads:tavily-budget
 npm run leads:tavily-allocation
+npm run leads:live-readiness
 npm run leads:safe-commands
 npm run leads:operator
 npm run leads:dashboard
@@ -263,6 +264,20 @@ npm run leads:dashboard
 Budget health rules are intentionally conservative: warning reduces volume, critical limits discovery to the highest-priority client or extract-only planning, and paused blocks live discovery when the emergency buffer is at risk. `runtime/lead-discovery/tavily-credit-ledger.json` tracks estimated credit usage by date, command, search credits, extract credits, total credits, client, run type, and notes.
 
 Advanced search, crawl, and research stay disabled because they can double or unpredictably increase credit usage. Extract has a small separate budget because basic Extract costs 1 credit per 5 successful URL extractions and should only run after lead-like, buyer-intent candidates pass filtering.
+
+### Before Live Tavily Run
+
+Run `npm run leads:live-readiness` before the first live Tavily discovery run after credits reset. It writes `output/lead-discovery/live-readiness/live-readiness.md` and `.json`.
+
+The readiness gate checks API key presence without printing the key, budget health, allowed run day, query allocation, max run credits, basic-only search, crawl/research disabled, filtered Extract policy, repo check, latest regression status, loop provider-failure pause state, safe commands, do-not-run docs, and operator brief.
+
+Readiness states:
+
+- `READY_FOR_LIVE_RUN`: all checks pass and the report may show `npm run leads:morning` as the live command.
+- `OFFLINE_ONLY`: safety prerequisites may be present, but today is outside the Monday/Wednesday/Friday Tavily schedule.
+- `BLOCKED`: one or more hard gates failed, such as missing key, critical/paused budget, missing allocation, repo failure, missing regression status, provider-failure pause, unsafe credit cap, or missing safety artifacts.
+
+The command is local-only. It does not call Tavily, providers, network, scraping, browser automation, login, contact extraction, or outreach. Do not run `npm run leads:search`, `npm run leads:morning`, `npm run leads:daily`, or `npm run leads:test-provider` unless live readiness is `READY_FOR_LIVE_RUN` and Daniel explicitly approves the run.
 
 ### Public Source Monitor + Enrichment Readiness
 

@@ -41,6 +41,7 @@ const extractQueuePath = path.join(process.cwd(), 'output', 'lead-discovery', 'e
 const extractSimulationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'extract', 'extract-simulation.json');
 const tavilyBudgetPlanPath = path.join(process.cwd(), 'output', 'lead-discovery', 'tavily-budget', 'tavily-budget-plan.json');
 const tavilyQueryAllocationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'tavily-budget', 'query-allocation.json');
+const liveReadinessPath = path.join(process.cwd(), 'output', 'lead-discovery', 'live-readiness', 'live-readiness.json');
 const outcomesPath = path.join(process.cwd(), 'data', 'lead-discovery', 'outcomes', 'sample-outcomes.json');
 const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'dashboard');
 const dashboardPath = path.join(outputDir, 'client-dashboard.md');
@@ -289,6 +290,15 @@ interface TavilyBudgetHealthDashboard {
   queryAllocation: string;
 }
 
+interface LiveRunReadinessDashboard {
+  readinessState: string;
+  recommendedNextCommand: string;
+  blockedReason: string;
+  estimatedCreditsForNextRun: number;
+  allowedClients: string;
+  liveCommandWhenReady: string;
+}
+
 export function generateClientDashboard(): { filesGenerated: string[]; rows: DashboardRow[] } {
   const delivery = readJson<DeliveryBatch>(deliveryPath).deliveryCandidates;
   const searchBatch = readSearchBatch();
@@ -449,6 +459,7 @@ function renderDashboard(rows: DashboardRow[], regression: RegressionReport | nu
   const sourceMonitor = getPublicSourceMonitorDashboard();
   const extractReadiness = getTavilyExtractReadinessDashboard();
   const tavilyBudget = getTavilyBudgetHealthDashboard();
+  const liveReadiness = getLiveRunReadinessDashboard();
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -520,6 +531,15 @@ ${renderOperatorHealth(operatorBrief)}
 - Blocked reason if paused: ${tavilyBudget.blockedReason}
 - Safe command recommendation: ${tavilyBudget.safeCommandRecommendation}
 - Query allocation: ${tavilyBudget.queryAllocation}
+
+## Live Run Readiness
+
+- Readiness state: ${liveReadiness.readinessState}
+- Recommended next command: ${liveReadiness.recommendedNextCommand}
+- Blocked reason: ${liveReadiness.blockedReason}
+- Estimated credits for next run: ${liveReadiness.estimatedCreditsForNextRun}
+- Allowed clients: ${liveReadiness.allowedClients}
+- Live command when ready: ${liveReadiness.liveCommandWhenReady}
 
 ## System Audit Health
 
@@ -914,6 +934,27 @@ function getTavilyBudgetHealthDashboard(): TavilyBudgetHealthDashboard {
     queryAllocation: allocation
       ? `${allocation.estimatedTotalCredits ?? 0} credits (${allocation.totalSearchCredits ?? 0} search, ${allocation.extractCredits ?? 0} extract, ${allocation.bufferCredits ?? 0} buffer): ${(allocation.clients ?? []).map((client) => `${client.clientName} ${client.searchCredits}`).join('; ') || 'offline only'}`
       : 'Not run',
+  };
+}
+
+function getLiveRunReadinessDashboard(): LiveRunReadinessDashboard {
+  const readiness = fs.existsSync(liveReadinessPath)
+    ? readJson<{
+      readinessState?: string;
+      recommendedNextCommand?: string;
+      blockedReason?: string | null;
+      estimatedCreditsForNextRun?: number;
+      liveCommandWhenReady?: string | null;
+      allowedClients?: Array<{ clientName: string; searchCredits: number }>;
+    }>(liveReadinessPath)
+    : null;
+  return {
+    readinessState: readiness?.readinessState ?? 'Not run',
+    recommendedNextCommand: readiness?.recommendedNextCommand ?? 'npm run leads:live-readiness',
+    blockedReason: readiness?.blockedReason ?? 'none',
+    estimatedCreditsForNextRun: readiness?.estimatedCreditsForNextRun ?? 0,
+    allowedClients: readiness?.allowedClients?.map((client) => `${client.clientName}:${client.searchCredits}`).join('; ') ?? 'none',
+    liveCommandWhenReady: readiness?.liveCommandWhenReady ?? 'not available',
   };
 }
 
