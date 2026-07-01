@@ -220,11 +220,17 @@ export function classifyLeadLikeCandidate(input: LeadLikeCandidateInput): LeadLi
 
 function negativeClassFor(text: string): LeadLikeClassification {
   if (findSignals(text, definitionSignals).length > 0) return 'definition';
-  if (findSignals(text, directorySignals).length > 0 && !/\b(vendor recommendations|food vendor recommendations|need food vendor)\b/.test(text)) return 'directory';
   if (findSignals(text, serviceMismatchSignals).length > 0) return 'article';
+  if (isAllowedDiscussionText(text) && findSignals(text, requestSignals).length > 0) return 'unknown';
+  if (findSignals(text, directorySignals).length > 0 && !/\b(vendor recommendations|food vendor recommendations|need food vendor)\b/.test(text)) return 'directory';
   if (findSignals(text, articleSignals).length > 0) return 'article';
   if (findSignals(text, landingPageSignals).length > 0) return 'landing_page';
   return 'unknown';
+}
+
+function isAllowedDiscussionText(text: string): boolean {
+  return /\b(forum|forums|wedding-forums|boards|discussion|thread|community|groups|public_forum)\b/.test(text)
+    && !/\b(vendor profile|vendor listing|marketplace listing|business listing|pricing page|company profile)\b/.test(text);
 }
 
 function classificationFor(

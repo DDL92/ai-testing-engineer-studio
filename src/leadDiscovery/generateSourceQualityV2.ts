@@ -322,23 +322,22 @@ function buildBudgetRecommendations(generatedAt: string, summary: SourceQualityV
     nextBudgetAction: summary.nextBudgetAction,
     clientAllocations: [
       clientAllocation('flora_and_fauna_foods_001', 'Flora and Fauna Foods', [
-        ['intent rewrites', 35],
-        ['conversation queries', 25],
-        ['source-specific', 20],
-        ['public source monitor', 10],
+        ['conversation-first', 50],
+        ['source-specific', 25],
+        ['intent rewrites', 15],
         ['behavior/dynamic', 10],
       ], summary.rows),
       clientAllocation('lzt_costa_rica_001', 'LZT Costa Rica', [
-        ['source-specific', 30],
-        ['public notices/construction sources', 30],
-        ['intent rewrites', 25],
-        ['enrichment-ready sources', 15],
+        ['source-specific public notices/construction', 40],
+        ['conversation/Spanish pain phrases', 30],
+        ['intent rewrites', 20],
+        ['enrichment-ready public source monitor', 10],
       ], summary.rows),
       clientAllocation('costa_retreats_001', 'Costa Retreats', [
-        ['travel discussion sources', 30],
-        ['intent rewrites', 30],
-        ['tourism/event sources', 25],
-        ['enrichment-ready sources', 15],
+        ['conversation-first', 50],
+        ['Reddit/travel discussions', 25],
+        ['intent rewrites', 15],
+        ['tourism/event/public sources', 10],
       ], summary.rows),
     ],
     promotedSources: summary.rows.filter((row) => row.recommendation === 'promote').slice(0, 10),
@@ -373,6 +372,16 @@ function clientAllocation(
 function signalForBucket(bucket: string, rows: SourceQualityV2Row[]): SourceQualityV2Recommendation {
   const normalized = bucket.toLowerCase();
   const matching = rows.filter((row) => normalized.includes(normalizeBucket(row.queryType)) || normalized.includes(normalizeBucket(row.sourceType)));
+  const conversationRows = matching.filter((row) => row.queryType === 'conversation');
+  if (normalized.includes('conversation') && conversationRows.length > 0) {
+    const hasApproval = conversationRows.some((row) => row.approvedCount > 0);
+    const hasLeadLikeForumSignal = conversationRows.some((row) => row.leadLikeRate > 0 && ['public_forum', 'public_social', 'public_review'].includes(row.sourceType));
+    const floraOrCosta = conversationRows.some((row) => row.clientId === 'flora_and_fauna_foods_001' || row.clientId === 'costa_retreats_001');
+    const hasDirectoryDrag = conversationRows.some((row) => ['public_directory', 'public_business_listing'].includes(row.sourceType) || row.falsePositiveRate > 0.25);
+    if (hasDirectoryDrag) return 'reduce';
+    if (hasApproval || (hasLeadLikeForumSignal && floraOrCosta)) return 'promote';
+    return 'keep';
+  }
   if (matching.some((row) => row.recommendation === 'promote')) return 'promote';
   if (matching.some((row) => row.recommendation === 'disable')) return 'disable';
   if (matching.some((row) => row.recommendation === 'reduce')) return 'reduce';
@@ -481,6 +490,7 @@ function clientIdFromFile(filePath: string): string {
 
 function queryTypeFromText(query: string): string {
   const text = query.toLowerCase();
+  if (text.includes('conversation-first')) return 'conversation';
   if (text.includes('conversation')) return 'conversation';
   if (text.includes('rewrite')) return 'intent_rewrite';
   if (text.includes('behavior')) return 'behavior';

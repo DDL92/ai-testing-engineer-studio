@@ -45,6 +45,8 @@
     "leads:source-queries": "node --import tsx src/leadDiscovery/buildSourceQueries.ts",
     "leads:rewrite-queries": "node --import tsx src/leadDiscovery/rewriteQueries.ts",
     "leads:conversation-queries": "node --import tsx src/leadDiscovery/generateConversationQueries.ts",
+    "leads:conversation-first": "node --import tsx src/leadDiscovery/generateConversationFirstQueries.ts",
+    "leads:conversation-first-simulate": "node --import tsx src/leadDiscovery/runConversationFirstSimulation.ts",
     "leads:behavior-queries": "node --import tsx src/leadDiscovery/generateBehaviorQueries.ts",
     "leads:dynamic-queries": "node --import tsx src/leadDiscovery/generateDynamicQueries.ts",
     "leads:queries": "node --import tsx src/leadDiscovery/generateDiscoveryQueries.ts",

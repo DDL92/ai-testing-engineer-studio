@@ -108,8 +108,44 @@ function client(clientId: string, clientName: string, priority: number, searchCr
     clientName,
     priority,
     searchCredits,
-    notes: 'Basic search query allocation; one query equals one estimated credit.',
+    notes: `${allocationNoteFor(clientId)} Basic search query allocation; one query equals one estimated credit.`,
+    budgetWeights: defaultMixFor(clientId),
   };
+}
+
+function allocationNoteFor(clientId: string): string {
+  if (clientId === 'flora_and_fauna_foods_001') return 'Target mix: 50% conversation-first, 25% source-specific, 15% intent rewrites, 10% behavior/dynamic.';
+  if (clientId === 'costa_retreats_001') return 'Target mix: 50% conversation-first, 25% Reddit/travel discussions, 15% intent rewrites, 10% tourism/event/public sources.';
+  if (clientId === 'lzt_costa_rica_001') return 'Target mix: 40% source-specific public notices/construction, 30% conversation/Spanish pain phrases, 20% intent rewrites, 10% enrichment-ready public source monitor.';
+  return 'Target mix: source-quality weighted.';
+}
+
+function defaultMixFor(clientId: string): TavilyQueryAllocationClient['budgetWeights'] {
+  if (clientId === 'flora_and_fauna_foods_001') {
+    return [
+      { bucket: 'conversation-first', percentage: 50, sourceQualitySignal: 'experimental' },
+      { bucket: 'source-specific', percentage: 25, sourceQualitySignal: 'keep' },
+      { bucket: 'intent rewrites', percentage: 15, sourceQualitySignal: 'keep' },
+      { bucket: 'behavior/dynamic', percentage: 10, sourceQualitySignal: 'keep' },
+    ];
+  }
+  if (clientId === 'costa_retreats_001') {
+    return [
+      { bucket: 'conversation-first', percentage: 50, sourceQualitySignal: 'experimental' },
+      { bucket: 'Reddit/travel discussions', percentage: 25, sourceQualitySignal: 'keep' },
+      { bucket: 'intent rewrites', percentage: 15, sourceQualitySignal: 'keep' },
+      { bucket: 'tourism/event/public sources', percentage: 10, sourceQualitySignal: 'keep' },
+    ];
+  }
+  if (clientId === 'lzt_costa_rica_001') {
+    return [
+      { bucket: 'source-specific public notices/construction', percentage: 40, sourceQualitySignal: 'keep' },
+      { bucket: 'conversation/Spanish pain phrases', percentage: 30, sourceQualitySignal: 'experimental' },
+      { bucket: 'intent rewrites', percentage: 20, sourceQualitySignal: 'keep' },
+      { bucket: 'enrichment-ready public source monitor', percentage: 10, sourceQualitySignal: 'keep' },
+    ];
+  }
+  return undefined;
 }
 
 function extractCreditsFor(health: string): number {

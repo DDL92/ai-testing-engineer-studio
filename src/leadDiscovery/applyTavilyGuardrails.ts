@@ -150,9 +150,9 @@ function sortByClientPriority<TQuery extends GuardrailQueryInput>(
 }
 
 function templateTypeRank(query: GuardrailQueryInput): number {
-  if (query.queryTemplateType === 'source_specific') return 0;
-  if (query.queryTemplateType === 'intent_rewrite') return 1;
-  if (query.queryTemplateType === 'conversation') return 2;
+  if (query.queryTemplateType === 'conversation') return 0;
+  if (query.queryTemplateType === 'source_specific') return 1;
+  if (query.queryTemplateType === 'intent_rewrite') return 2;
   if (query.queryTemplateType === 'behavior') return 3;
   if (query.queryTemplateType === 'dynamic') return 4;
   if (query.queryTemplateType === 'social') return 5;

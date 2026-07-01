@@ -44,6 +44,8 @@ const tavilyQueryAllocationPath = path.join(process.cwd(), 'output', 'lead-disco
 const liveReadinessPath = path.join(process.cwd(), 'output', 'lead-discovery', 'live-readiness', 'live-readiness.json');
 const sourceQualityV2SummaryPath = path.join(process.cwd(), 'output', 'lead-discovery', 'source-quality-v2', 'source-quality-summary.json');
 const sourceQualityV2BudgetPath = path.join(process.cwd(), 'output', 'lead-discovery', 'source-quality-v2', 'budget-recommendations.json');
+const conversationFirstQueriesPath = path.join(process.cwd(), 'output', 'lead-discovery', 'conversation-first', 'conversation-first-queries.json');
+const conversationFirstSimulationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'conversation-first', 'conversation-first-simulation.json');
 const outcomesPath = path.join(process.cwd(), 'data', 'lead-discovery', 'outcomes', 'sample-outcomes.json');
 const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'dashboard');
 const dashboardPath = path.join(outputDir, 'client-dashboard.md');
@@ -310,6 +312,16 @@ interface SourceQualityV2Dashboard {
   nextBudgetAction: string;
 }
 
+interface ConversationFirstDashboard {
+  patternCount: number;
+  generatedQueryCount: number;
+  clientDistribution: string;
+  priorityMix: string;
+  simulationStatus: string;
+  expectedQueryAllocation: string;
+  recommendedNextLiveRunMode: string;
+}
+
 export function generateClientDashboard(): { filesGenerated: string[]; rows: DashboardRow[] } {
   const delivery = readJson<DeliveryBatch>(deliveryPath).deliveryCandidates;
   const searchBatch = readSearchBatch();
@@ -472,6 +484,7 @@ function renderDashboard(rows: DashboardRow[], regression: RegressionReport | nu
   const tavilyBudget = getTavilyBudgetHealthDashboard();
   const liveReadiness = getLiveRunReadinessDashboard();
   const sourceQualityV2 = getSourceQualityV2Dashboard();
+  const conversationFirst = getConversationFirstDashboard();
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -511,6 +524,16 @@ ${rows.map((row) => `- ${row.clientName}: ${row.buyerSignalsDiscovered} signals;
 ## Intent Rewrite And Conversation Discovery
 
 ${rows.map((row) => `- ${row.clientName}: rewrites executed ${row.rewrittenQueriesExecuted}; conversations executed ${row.conversationQueriesExecuted}; rewrite success ${row.rewriteSuccessRate.toFixed(1)}%; top rewrite phrases ${row.topRewritePhrases}; worst rewrite phrases ${row.worstRewritePhrases}; conversation sources ${row.topConversationSources}; conversation candidates ${row.conversationCandidateCounts}`).join('\n') || '- None.'}
+
+## Conversation-First Discovery
+
+- Conversation pattern count: ${conversationFirst.patternCount}
+- Generated conversation-first query count: ${conversationFirst.generatedQueryCount}
+- Client distribution: ${conversationFirst.clientDistribution}
+- Priority mix: ${conversationFirst.priorityMix}
+- Simulation status: ${conversationFirst.simulationStatus}
+- Expected query allocation: ${conversationFirst.expectedQueryAllocation}
+- Recommended next live run mode: ${conversationFirst.recommendedNextLiveRunMode}
 
 ## Offline Fixture Simulation
 
@@ -1007,6 +1030,35 @@ function getSourceQualityV2Dashboard(): SourceQualityV2Dashboard {
     recommendedBudgetAllocation: budget?.clientAllocations?.map((client) => `${client.clientName}: ${client.allocation.map((row) => `${row.bucket} ${row.percentage}%`).join(', ')}`).join(' || ') ?? 'Not run',
     costPerApprovedOpportunityEstimate: summary?.costPerApprovedOpportunityEstimate ?? 0,
     nextBudgetAction: summary?.nextBudgetAction ?? 'Run npm run leads:source-quality-v2 before the next Tavily allocation.',
+  };
+}
+
+function getConversationFirstDashboard(): ConversationFirstDashboard {
+  const queries = fs.existsSync(conversationFirstQueriesPath)
+    ? readJson<{
+      patternCount?: number;
+      totalQueries?: number;
+      priorityMix?: Record<string, number>;
+      clients?: Array<{ clientName: string; totalQueries: number }>;
+      allocationTargets?: Record<string, Record<string, number>>;
+    }>(conversationFirstQueriesPath)
+    : null;
+  const simulation = fs.existsSync(conversationFirstSimulationPath)
+    ? readJson<{ status?: string; passedFixtures?: number; totalFixtures?: number }>(conversationFirstSimulationPath)
+    : null;
+
+  return {
+    patternCount: queries?.patternCount ?? 0,
+    generatedQueryCount: queries?.totalQueries ?? 0,
+    clientDistribution: queries?.clients?.map((client) => `${client.clientName}:${client.totalQueries}`).join('; ') ?? 'Not run',
+    priorityMix: queries?.priorityMix ? Object.entries(queries.priorityMix).map(([key, count]) => `${key}:${count}`).join('; ') : 'Not run',
+    simulationStatus: simulation ? `${simulation.status ?? 'unknown'} (${simulation.passedFixtures ?? 0}/${simulation.totalFixtures ?? 0})` : 'Not run',
+    expectedQueryAllocation: queries?.allocationTargets
+      ? Object.entries(queries.allocationTargets).map(([clientId, allocation]) => `${clientId}: ${Object.entries(allocation).map(([bucket, percentage]) => `${bucket} ${percentage}%`).join(', ')}`).join(' || ')
+      : 'Not run',
+    recommendedNextLiveRunMode: queries && simulation?.status === 'passed'
+      ? 'Human-approved scheduled conversation-first run; preserve 60-credit cap and max 50 search credits.'
+      : 'Run npm run leads:conversation-first and npm run leads:conversation-first-simulate before live search.',
   };
 }
 

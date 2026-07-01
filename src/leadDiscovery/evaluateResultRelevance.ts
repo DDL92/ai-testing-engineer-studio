@@ -26,11 +26,15 @@ const referenceSignals = /\b(wiki|history|television|movie|streaming|encyclopedi
 const directorySignals = /\b(directory|list of|top rated|best of|reviews|charity navigator|guidestar|greatnonprofits)\b/i;
 const marketplaceSignals = /\b(marketplace|vendors?|vendor profile|find vendors?|the knot|weddingwire|zola|eventective)\b/i;
 const vendorSignals = /\b(catering company|catering companies|caterer profile|restaurant|venue|official website|service provider)\b/i;
+const discussionPathSignals = /\b(forum|forums|wedding-forums|boards|discussion|thread|community|groups)\b/i;
+const listingPathSignals = /\b(vendor|vendors|marketplace|profile|directory|listing|pricing|reviews?)\b/i;
 
 export function evaluateResultRelevance(input: ResultRelevanceInput): ResultRelevanceEvaluation {
   const host = hostFor(input.sourceUrl);
+  const urlPath = pathFor(input.sourceUrl);
+  const discussionPageAllowed = isAllowedDiscussionPage(host, urlPath, input.sourceName, input.sourceCategory);
   const blocklistHit = findBlockedDomain(host, input.clientId);
-  if (blocklistHit) {
+  if (blocklistHit && !discussionPageAllowed) {
     const relevance = categoryToRelevance(blocklistHit.category);
     return {
       resultRelevance: relevance,
@@ -43,7 +47,7 @@ export function evaluateResultRelevance(input: ResultRelevanceInput): ResultRele
   const text = `${input.title} ${input.snippet} ${input.sourceName} ${input.sourceCategory} ${host}`;
   const title = input.title;
   if (titleBlockers.test(title)) return decision('definition_page', ['title indicates definition, dictionary, grammar, wiki, or thesaurus page']);
-  if (marketplaceSignals.test(text)) return decision('marketplace', ['result appears to be a vendor marketplace']);
+  if (!discussionPageAllowed && marketplaceSignals.test(text)) return decision('marketplace', ['result appears to be a vendor marketplace']);
   if (directorySignals.test(text)) return decision('directory', ['result appears to be a directory or generic list']);
   if (vendorSignals.test(text)) return decision('vendor', ['result appears to represent a vendor, venue, or service provider']);
   if (referenceSignals.test(text)) return decision('reference_page', ['result appears to be reference, entertainment, or generic information content']);
@@ -104,4 +108,19 @@ function hostFor(url: string): string {
   } catch {
     return 'unknown';
   }
+}
+
+function pathFor(url: string): string {
+  try {
+    return new URL(url).pathname.toLowerCase();
+  } catch {
+    return '';
+  }
+}
+
+function isAllowedDiscussionPage(host: string, urlPath: string, sourceName: string, sourceCategory: string): boolean {
+  const text = `${host} ${urlPath} ${sourceName} ${sourceCategory}`.toLowerCase();
+  if (!discussionPathSignals.test(text)) return false;
+  if (listingPathSignals.test(urlPath.replace(/wedding-forums/g, ''))) return false;
+  return true;
 }

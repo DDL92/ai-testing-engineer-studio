@@ -16,6 +16,8 @@ npm run lead:discover -- --niche "gym management SaaS"
 npm run lead:pack -- --company PushPress
 npm run leads:rewrite-queries
 npm run leads:conversation-queries
+npm run leads:conversation-first
+npm run leads:conversation-first-simulate
 ```
 
 ## Intent Rewrite Engine
@@ -42,6 +44,52 @@ It generates local query plans only:
 - no outreach
 
 The generated batch is written to `output/lead-discovery/conversation-queries/conversation-queries.json`.
+
+## Conversation-First Discovery
+
+Conversation-First Discovery shifts the next Tavily plan away from generic service keywords and toward phrases that look like real buyer posts.
+
+Generic phrases such as `need catering recommendations`, `looking for bar service`, and `need food vendor recommendations` underperformed because they pulled directories, articles, vendor pages, landing pages, and marketplace profiles. Conversation patterns such as `our caterer cancelled`, `planning Costa Rica honeymoon`, and `tanque séptico se rebalsa` are more likely to match public threads where a buyer is describing an active need.
+
+Pattern libraries live in `data/lead-discovery/conversation-patterns/`:
+
+- `flora-conversation-patterns.json`
+- `costa-conversation-patterns.json`
+- `lzt-conversation-patterns.json`
+
+Generate the local query plan:
+
+```sh
+npm run leads:conversation-first
+```
+
+Outputs:
+
+- `output/lead-discovery/conversation-first/conversation-first-queries.md`
+- `output/lead-discovery/conversation-first/conversation-first-queries.json`
+
+Allowed public discussion source targets are Reddit, public Facebook group pages, WeddingWire forum paths, WeddingBee, and Tripadvisor public forums. The generator does not log in, scrape, browse, extract contacts, message anyone, or call Tavily.
+
+The query mix for the next human-approved live run is:
+
+- Flora: 50% conversation-first, 25% source-specific, 15% intent rewrites, 10% behavior/dynamic.
+- Costa: 50% conversation-first, 25% Reddit/travel discussions, 15% intent rewrites, 10% tourism/event/public sources.
+- LZT: 40% source-specific public notices/construction, 30% conversation/Spanish pain phrases, 20% intent rewrites, 10% enrichment-ready public source monitor.
+
+Budget remains unchanged: max 60 credits per scheduled run, max 50 search credits, max 8 extract credits, and 2 buffer credits.
+
+Run the fixture-only simulation:
+
+```sh
+npm run leads:conversation-first-simulate
+```
+
+Outputs:
+
+- `output/lead-discovery/conversation-first/conversation-first-simulation.md`
+- `output/lead-discovery/conversation-first/conversation-first-simulation.json`
+
+After the next approved live run, validate whether lead-like percentage improved by comparing Search Quality, Source Quality v2, Dashboard, and review outcomes. Do not promote zero-approval conversation queries automatically unless they are explicitly experimental or have higher lead-like forum/discussion evidence.
 
 ## Rewrite Learning Rules
 
