@@ -10,6 +10,18 @@ AI Testing Engineer Studio is a lean MVP for selling QA Automation and AI Testin
 - Release Locked
 - Local-only and human-approved
 
+## Current Project State
+
+Build mode is mostly complete and validation mode is active. Live Tavily runs must follow the budget scheduler and live-readiness guard; daily operation should use the command map, and future work should be judged against the north-star metrics.
+
+Reference docs:
+
+- [CHANGELOG.md](CHANGELOG.md)
+- [Architecture snapshot](docs/architecture/studio-architecture-snapshot.md)
+- [North-star metrics](docs/metrics/north-star-metrics.md)
+- [Lead discovery command map](docs/commands/lead-discovery-command-map.md)
+- [Validation mode guide](docs/status/validation-mode-guide.md)
+
 ## Quick Start
 
 ```bash
