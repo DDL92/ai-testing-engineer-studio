@@ -75,6 +75,7 @@
     "leads:export": "node --import tsx src/leadDiscovery/generateDeliveryExport.ts",
     "leads:dashboard": "node --import tsx src/leadDiscovery/generateClientDashboard.ts",
     "leads:performance": "node --import tsx src/leadDiscovery/generateSourcePerformance.ts",
+    "leads:source-quality-v2": "node --import tsx src/leadDiscovery/generateSourceQualityV2.ts",
     "leads:behavior-performance": "node --import tsx src/leadDiscovery/learnBehaviorQueries.ts",
     "leads:query-learning": "node --import tsx src/leadDiscovery/updateQueryLearning.ts",
     "leads:false-positive-learning": "node --import tsx src/leadDiscovery/updateFalsePositiveLearning.ts",

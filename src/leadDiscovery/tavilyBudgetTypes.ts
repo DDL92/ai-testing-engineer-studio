@@ -82,6 +82,11 @@ export interface TavilyQueryAllocationClient {
   priority: number;
   searchCredits: number;
   notes: string;
+  budgetWeights?: Array<{
+    bucket: string;
+    percentage: number;
+    sourceQualitySignal: string;
+  }>;
 }
 
 export interface TavilyQueryAllocation {
@@ -95,6 +100,8 @@ export interface TavilyQueryAllocation {
   extractCredits: number;
   bufferCredits: number;
   estimatedTotalCredits: number;
+  sourceQualityV2Applied: boolean;
+  sourceQualityV2NextAction: string;
   clients: TavilyQueryAllocationClient[];
   safetyRules: string[];
 }

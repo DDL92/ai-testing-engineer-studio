@@ -179,6 +179,7 @@ npm run leads:outcomes
 npm run leads:export
 npm run leads:dashboard
 npm run leads:performance
+npm run leads:source-quality-v2
 npm run leads:behavior-performance
 npm run leads:query-learning
 npm run leads:morning
@@ -216,6 +217,7 @@ Outputs:
 - `output/lead-discovery/exports/flora-and-fauna-foods/`
 - `output/lead-discovery/dashboard/`
 - `output/lead-discovery/source-performance/`
+- `output/lead-discovery/source-quality-v2/`
 - `output/lead-discovery/search-quality/behavior-query-performance.md`
 
 Client configs live in `data/lead-discovery/clients/`. Each active fictional/sample client receives a separate local lead pack under `output/lead-discovery/clients/{clientId}/`.
@@ -405,6 +407,10 @@ When Tavily credits are exhausted, keep live discovery paused and use local main
 `npm run leads:outcomes` summarizes local outcome records after client feedback. `npm run leads:export` prepares Flora delivery CSVs and review sheets. `npm run leads:dashboard` creates a client dashboard summary with behavior query count, top buyer behaviors, top pain and urgency signals, buyer signals discovered, signal strength distribution, top/worst signal combinations, promoted/disabled dynamic queries, promoted/disabled behavior queries, verification review count, verification confidence distribution, promotion reasons, conversion funnel, estimated commercial value, provider selected, Tavily configured, fallback enabled, provider health, query success/failure rate, provider failures, provider result count, empty responses, rate limits, blocked queries, and average search duration.
 
 `npm run leads:performance` tracks source and query performance across search candidates, enriched leads, delivery candidates, verification outputs, and real outcomes when available. Sample outcomes are marked with `isSample: true` and do not influence performance scores or recommendations. Recommendations are deduplicated by `clientId + sourceName + query`; conflicting recommendation signals choose the safest action in this order: disable, reduce, keep, increase, needs_more_data. It writes `source-performance-summary.md`, `source-performance.csv`, `query-performance.md`, `query-performance.csv`, and `recommendations.md` under `output/lead-discovery/source-performance/`.
+
+`npm run leads:source-quality-v2` builds a local-only source and query budget quality layer before the next live Tavily run. It reads stored review history, false-positive learning, query learning, behavior performance, source performance inputs, public source monitor artifacts, fixtures, and golden datasets where available. It writes `output/lead-discovery/source-quality-v2/source-quality-summary.md`, `source-quality-summary.json`, `budget-recommendations.md`, and `budget-recommendations.json`.
+
+Source Quality v2 scores lead-like rate, approval rate, rejection rate, false-positive rate, stale rate, buyer-role quality, enrichment readiness, commercial value, and cost efficiency, then recommends `promote`, `keep`, `reduce`, or `disable`. `npm run leads:tavily-allocation` reads these recommendations when available and attaches the recommended budget mix by client, source type, query type, and vertical. If Source Quality v2 has not been generated, Tavily allocation keeps the existing default allocation. This improves credit efficiency without changing live search behavior directly.
 
 `npm run leads:morning` is the main 7:30am operating command. It runs targeted planning, source queries, behavior queries, dynamic queries, discovery queries, Tavily health validation, safe public search, search diagnostics, search quality, enrichment, quality filtering, evidence-based verification review, verification prep, pilot packaging, export, dashboard generation, source/query performance tracking, behavior query learning, and dynamic query learning. Daniel must review outputs before delivery or contact. Outcomes should be recorded after client feedback.
 

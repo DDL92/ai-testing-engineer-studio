@@ -42,6 +42,8 @@ const extractSimulationPath = path.join(process.cwd(), 'output', 'lead-discovery
 const tavilyBudgetPlanPath = path.join(process.cwd(), 'output', 'lead-discovery', 'tavily-budget', 'tavily-budget-plan.json');
 const tavilyQueryAllocationPath = path.join(process.cwd(), 'output', 'lead-discovery', 'tavily-budget', 'query-allocation.json');
 const liveReadinessPath = path.join(process.cwd(), 'output', 'lead-discovery', 'live-readiness', 'live-readiness.json');
+const sourceQualityV2SummaryPath = path.join(process.cwd(), 'output', 'lead-discovery', 'source-quality-v2', 'source-quality-summary.json');
+const sourceQualityV2BudgetPath = path.join(process.cwd(), 'output', 'lead-discovery', 'source-quality-v2', 'budget-recommendations.json');
 const outcomesPath = path.join(process.cwd(), 'data', 'lead-discovery', 'outcomes', 'sample-outcomes.json');
 const outputDir = path.join(process.cwd(), 'output', 'lead-discovery', 'dashboard');
 const dashboardPath = path.join(outputDir, 'client-dashboard.md');
@@ -299,6 +301,15 @@ interface LiveRunReadinessDashboard {
   liveCommandWhenReady: string;
 }
 
+interface SourceQualityV2Dashboard {
+  promotedSources: string;
+  reducedSources: string;
+  disabledSources: string;
+  recommendedBudgetAllocation: string;
+  costPerApprovedOpportunityEstimate: number;
+  nextBudgetAction: string;
+}
+
 export function generateClientDashboard(): { filesGenerated: string[]; rows: DashboardRow[] } {
   const delivery = readJson<DeliveryBatch>(deliveryPath).deliveryCandidates;
   const searchBatch = readSearchBatch();
@@ -460,6 +471,7 @@ function renderDashboard(rows: DashboardRow[], regression: RegressionReport | nu
   const extractReadiness = getTavilyExtractReadinessDashboard();
   const tavilyBudget = getTavilyBudgetHealthDashboard();
   const liveReadiness = getLiveRunReadinessDashboard();
+  const sourceQualityV2 = getSourceQualityV2Dashboard();
   return `# AI Lead Discovery Client Dashboard
 
 Generated: ${new Date().toISOString()}
@@ -540,6 +552,15 @@ ${renderOperatorHealth(operatorBrief)}
 - Estimated credits for next run: ${liveReadiness.estimatedCreditsForNextRun}
 - Allowed clients: ${liveReadiness.allowedClients}
 - Live command when ready: ${liveReadiness.liveCommandWhenReady}
+
+## Source Quality v2
+
+- Promoted sources: ${sourceQualityV2.promotedSources}
+- Reduced sources: ${sourceQualityV2.reducedSources}
+- Disabled sources: ${sourceQualityV2.disabledSources}
+- Recommended budget allocation: ${sourceQualityV2.recommendedBudgetAllocation}
+- Cost-per-approved-opportunity estimate: ${sourceQualityV2.costPerApprovedOpportunityEstimate}
+- Next budget action: ${sourceQualityV2.nextBudgetAction}
 
 ## System Audit Health
 
@@ -955,6 +976,37 @@ function getLiveRunReadinessDashboard(): LiveRunReadinessDashboard {
     estimatedCreditsForNextRun: readiness?.estimatedCreditsForNextRun ?? 0,
     allowedClients: readiness?.allowedClients?.map((client) => `${client.clientName}:${client.searchCredits}`).join('; ') ?? 'none',
     liveCommandWhenReady: readiness?.liveCommandWhenReady ?? 'not available',
+  };
+}
+
+function getSourceQualityV2Dashboard(): SourceQualityV2Dashboard {
+  const summary = fs.existsSync(sourceQualityV2SummaryPath)
+    ? readJson<{
+      promotedSources?: number;
+      reducedSources?: number;
+      disabledSources?: number;
+      costPerApprovedOpportunityEstimate?: number;
+      nextBudgetAction?: string;
+      rows?: Array<{ clientName: string; sourceType: string; queryType: string; sourceName: string; recommendation: string; qualityScore: number }>;
+    }>(sourceQualityV2SummaryPath)
+    : null;
+  const budget = fs.existsSync(sourceQualityV2BudgetPath)
+    ? readJson<{
+      clientAllocations?: Array<{ clientName: string; allocation: Array<{ bucket: string; percentage: number; sourceQualitySignal: string }> }>;
+    }>(sourceQualityV2BudgetPath)
+    : null;
+  const rowSummary = (recommendation: string): string => (summary?.rows ?? [])
+    .filter((row) => row.recommendation === recommendation)
+    .slice(0, 3)
+    .map((row) => `${row.clientName} ${row.sourceType}/${row.queryType} ${row.sourceName} (${row.qualityScore})`)
+    .join('; ') || 'none';
+  return {
+    promotedSources: summary ? `${summary.promotedSources ?? 0}: ${rowSummary('promote')}` : 'Not run',
+    reducedSources: summary ? `${summary.reducedSources ?? 0}: ${rowSummary('reduce')}` : 'Not run',
+    disabledSources: summary ? `${summary.disabledSources ?? 0}: ${rowSummary('disable')}` : 'Not run',
+    recommendedBudgetAllocation: budget?.clientAllocations?.map((client) => `${client.clientName}: ${client.allocation.map((row) => `${row.bucket} ${row.percentage}%`).join(', ')}`).join(' || ') ?? 'Not run',
+    costPerApprovedOpportunityEstimate: summary?.costPerApprovedOpportunityEstimate ?? 0,
+    nextBudgetAction: summary?.nextBudgetAction ?? 'Run npm run leads:source-quality-v2 before the next Tavily allocation.',
   };
 }
 

@@ -3,10 +3,12 @@ import path = require('path');
 import { runtimeOutputPath } from '../runtimePaths';
 import { getBudgetDecision } from './tavilyBudgetManager';
 import { TavilyQueryAllocation, TavilyQueryAllocationClient } from './tavilyBudgetTypes';
+import { SourceQualityV2BudgetRecommendations } from './sourceQualityV2Types';
 
 const outputDir = runtimeOutputPath('lead-discovery', 'tavily-budget');
 const markdownPath = path.join(outputDir, 'query-allocation.md');
 const jsonPath = path.join(outputDir, 'query-allocation.json');
+const sourceQualityBudgetPath = runtimeOutputPath('lead-discovery', 'source-quality-v2', 'budget-recommendations.json');
 
 const safetyRules = [
   'Query allocation is a local plan only and does not run Tavily Search or Extract.',
@@ -17,7 +19,8 @@ const safetyRules = [
 
 export function generateTavilyQueryAllocation(now = new Date()): TavilyQueryAllocation {
   const decision = getBudgetDecision(now);
-  const clients = clientAllocationsFor(decision.budgetHealth);
+  const sourceQuality = readSourceQualityBudgetRecommendations();
+  const clients = applySourceQualityWeights(clientAllocationsFor(decision.budgetHealth), sourceQuality);
   const extractCredits = extractCreditsFor(decision.budgetHealth);
   const bufferCredits = bufferCreditsFor(decision.budgetHealth);
   const totalSearchCredits = clients.reduce((sum, client) => sum + client.searchCredits, 0);
@@ -32,6 +35,8 @@ export function generateTavilyQueryAllocation(now = new Date()): TavilyQueryAllo
     extractCredits,
     bufferCredits,
     estimatedTotalCredits: totalSearchCredits + extractCredits + bufferCredits,
+    sourceQualityV2Applied: Boolean(sourceQuality),
+    sourceQualityV2NextAction: sourceQuality?.nextBudgetAction ?? 'No Source Quality v2 recommendations found; using default allocation.',
     clients,
     safetyRules,
   };
@@ -40,6 +45,36 @@ export function generateTavilyQueryAllocation(now = new Date()): TavilyQueryAllo
   fs.writeFileSync(jsonPath, `${JSON.stringify(allocation, null, 2)}\n`, 'utf8');
   fs.writeFileSync(markdownPath, renderMarkdown(allocation), 'utf8');
   return allocation;
+}
+
+function readSourceQualityBudgetRecommendations(): SourceQualityV2BudgetRecommendations | null {
+  if (!fs.existsSync(sourceQualityBudgetPath)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(sourceQualityBudgetPath, 'utf8')) as SourceQualityV2BudgetRecommendations;
+  } catch {
+    return null;
+  }
+}
+
+function applySourceQualityWeights(
+  clients: TavilyQueryAllocationClient[],
+  recommendations: SourceQualityV2BudgetRecommendations | null,
+): TavilyQueryAllocationClient[] {
+  if (!recommendations) return clients;
+  const byClient = new Map(recommendations.clientAllocations.map((allocation) => [allocation.clientId, allocation]));
+  return clients.map((clientRow) => {
+    const allocation = byClient.get(clientRow.clientId);
+    if (!allocation) return clientRow;
+    return {
+      ...clientRow,
+      notes: `${clientRow.notes} Source Quality v2 mix available: ${allocation.allocation.map((row) => `${row.bucket} ${row.percentage}% ${row.sourceQualitySignal}`).join('; ')}.`,
+      budgetWeights: allocation.allocation.map((row) => ({
+        bucket: row.bucket,
+        percentage: row.percentage,
+        sourceQualitySignal: row.sourceQualitySignal,
+      })),
+    };
+  });
 }
 
 function clientAllocationsFor(health: string): TavilyQueryAllocationClient[] {
@@ -105,12 +140,19 @@ Generated: ${allocation.generatedAt}
 - Extract credits: ${allocation.extractCredits}
 - Buffer credits: ${allocation.bufferCredits}
 - Estimated total credits: ${allocation.estimatedTotalCredits}
+- Source Quality v2 applied: ${allocation.sourceQualityV2Applied ? 'yes' : 'no'}
+- Source Quality v2 next action: ${allocation.sourceQualityV2NextAction}
 
 ## Client Allocation
 
 | Priority | Client | Search credits | Notes |
 | ---: | --- | ---: | --- |
 ${allocation.clients.map((clientRow) => `| ${clientRow.priority} | ${clientRow.clientName} | ${clientRow.searchCredits} | ${clientRow.notes} |`).join('\n') || '| 0 | none | 0 | Paused: no external search. |'}
+
+## Source Quality v2 Budget Mix
+
+${allocation.clients.map((clientRow) => `### ${clientRow.clientName}
+${clientRow.budgetWeights?.map((weight) => `- ${weight.bucket}: ${weight.percentage}% (${weight.sourceQualitySignal})`).join('\n') || '- Source Quality v2 not available for this client.'}`).join('\n\n') || '- None.'}
 
 ## Safety Rules
 
